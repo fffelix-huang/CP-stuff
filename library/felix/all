@@ -1,0 +1,30 @@
+#ifndef FELIX_ALL_HPP
+#define FELIX_ALL_HPP 1
+
+// #include <bits/stdc++.h>
+// #include <ext/pb_ds/assoc_container.hpp>
+#include "felix/algebra.hpp"
+#include "felix/chrono.hpp"
+#include "felix/cht.hpp"
+#include "felix/combination.hpp"
+#include "felix/debug.hpp"
+#include "felix/dsu.hpp"
+#include "felix/fenwick.hpp"
+#include "felix/forest.hpp"
+#include "felix/geometry.hpp"
+#include "felix/graph.hpp"
+#include "felix/hash.hpp"
+#include "felix/internal_bit.hpp"
+#include "felix/internal_math.hpp"
+#include "felix/internal_type_traits.hpp"
+#include "felix/lazysegtree.hpp"
+#include "felix/lca.hpp"
+#include "felix/math.hpp"
+#include "felix/modint.hpp"
+#include "felix/random.hpp"
+#include "felix/segtree.hpp"
+#include "felix/sparsetable.hpp"
+#include "felix/string.hpp"
+#include "felix/type.hpp"
+
+#endif // FELIX_ALL_HPP
