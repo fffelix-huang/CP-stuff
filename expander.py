@@ -79,11 +79,6 @@ if __name__ == "__main__":
 			continue
 		result.append(line)
 
-	# if len(defined) > 0:
-	# 	result.append('\n// Included Files:')
-	# 	for s in defined:
-	# 		result.append('//   * ' + s)
-
 	output = '\n'.join(result) + '\n'
 	if opts.console:
 		print(output)
