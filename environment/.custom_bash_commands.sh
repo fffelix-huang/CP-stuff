@@ -1,16 +1,16 @@
 function make() {
 	echo -e '\033[1;42m[No flag]\033[m Compiling' $1'.cpp with c++17.'
-	g++ -std=c++17 -I ~/../../mnt/c/Felix/cp/library $1.cpp -o $1
+	g++ -std=c++17 -I ~/../../mnt/c/Felix/cp/CP-stuff/library $1.cpp -o $1
 }
 
 function fast() {
 	echo -e '\033[1;45m[-O2 flag]\033[m Compiling' $1'.cpp with c++17.'
-	g++ -std=c++17 -I ~/../../mnt/c/Felix/cp/library -O2 $1.cpp -o $1
+	g++ -std=c++17 -I ~/../../mnt/c/Felix/cp/CP-stuff/library -O2 $1.cpp -o $1
 }
 
 function debug() {
 	echo -e '\033[1;41m[DEBUG MODE]\033[m Compiling' $1'.cpp with c++17.'
-	g++ -std=c++17 -I ~/../../mnt/c/Felix/cp/library -DLOCAL $1.cpp -o $1
+	g++ -std=c++17 -I ~/../../mnt/c/Felix/cp/CP-stuff/library -DLOCAL $1.cpp -o $1
 }
 
 function run_stress_test() {
@@ -42,7 +42,7 @@ function run_stress_test() {
 
 function submit() {
 	echo 'Expanding' $1'.cpp'
-	python3 ~/../../mnt/c/Felix/cp/library/expander.py $1.cpp --lib ~/../../mnt/c/Felix/cp/library
+	python3 ~/../../mnt/c/Felix/cp/CP-stuff/library/expander.py $1.cpp --lib ~/../../mnt/c/Felix/cp/library
 	clip.exe < combined.cpp
 	echo -e "\033[1;42m"$(wc -l < combined.cpp) "lines yanked to clipboard.\033[m"
 }
