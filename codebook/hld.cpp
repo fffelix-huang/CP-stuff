@@ -58,7 +58,7 @@ public:
 		edges.emplace_back(u, v, cost);
 	}
 
-	void build(int root) {
+	void build(int root = 0) {
 		assert(0 <= root && root < n);
 		assert((int) edges.size() == n - 1);
 
@@ -158,8 +158,13 @@ class HLD : LCA<T> {
 	using LCA<T>::n;
 	using LCA<T>::edges;
 	using LCA<T>::g;
+	using LCA<T>::build;
 
 public:
+	using LCA<T>::add_edge;
+	using LCA<T>::parent;
+	using LCA<T>::lca;
+
 	HLD() : HLD(0) {}
 	HLD(int _n) : LCA<T>(_n) {}
 
@@ -172,8 +177,8 @@ public:
 		edges.emplace_back(u, v, cost);
 	}
 
-	void build_hld(int root) {
-		LCA<T>::build(root);
+	void build_hld(int root = 0) {
+		build(root);
 
 		heavy_node.assign(n, -1);
 
@@ -181,7 +186,7 @@ public:
 			int sz = 1;
 			int max_sz = 0;
 
-			int p = LCA<T>::parent(u);
+			int p = parent(u);
 
 			for(auto& i : g[u]) {
 				int x = edges[i].u;
@@ -213,7 +218,7 @@ public:
 			static int counter = 0;
 			id[u] = counter++;
 
-			int p = LCA<T>::parent(u);
+			int p = parent(u);
 
 			if(heavy_node[u] != -1) {
 				dfs2(heavy_node[u]);
@@ -239,7 +244,7 @@ public:
 		iota(chain.begin(), chain.end(), 0);
 
 		function<void(int)> dfs3 = [&](int u) {
-			int p = LCA<T>::parent(u);
+			int p = parent(u);
 
 			if(heavy_node[u] != -1) {
 				chain[heavy_node[u]] = chain[u];
@@ -272,7 +277,7 @@ public:
 
 		while(chain[u] != chain[p]) {
 			seg.emplace_back(id[chain[u]], id[u] + 1);
-			u = LCA<T>::parent(chain[u]);
+			u = parent(chain[u]);
 		}
 
 		// id[p] is smaller than id[u] but we don't want id[p]
@@ -282,7 +287,7 @@ public:
 	}
 
 	vector<pair<int, int>> path(int u, int v) const {
-		int z = LCA<T>::lca(u, v);
+		int z = lca(u, v);
 
 		auto lhs = path_up(u, z);
 		auto rhs = path_up(v, z);

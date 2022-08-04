@@ -131,7 +131,7 @@ public:
 		return dist(u) + dist(v) - 2 * dist(lca(u, v));
 	}
 
-private:
+protected:
 	int n;
 	vector<Edge> edges;
 	vector<vector<int>> g;
