@@ -4,3 +4,6 @@
 #ifdef _MSC_VER
 #include <intrin.h>
 #endif
+
+using namespace std;
+using namespace __gnu_pbds;
