@@ -1,3 +1,6 @@
+#include <ext/pb_ds/assoc_container.hpp>
+using namespace __gnu_pbds;
+
 struct splitmix64_hash {
 	static unsigned long long splitmix64(unsigned long long x) {
 		x += 0x9e3779b97f4a7c15;
