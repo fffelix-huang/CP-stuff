@@ -17,7 +17,7 @@ public:
 	}
 
 	inline unsigned long long next() {
-		return rng();
+		return uniform_int_distribution<unsigned long long>(0, ULLONG_MAX)(rng);
 	}
 
 	inline unsigned long long next(unsigned long long a) {
