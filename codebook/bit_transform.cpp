@@ -1,3 +1,4 @@
+template<class T>
 void OrTransform(vector<T>& a) {
 	const int n = (int) a.size();
 	assert((n & -n) == n);
@@ -10,6 +11,7 @@ void OrTransform(vector<T>& a) {
 	}
 }
 
+template<class T>
 void OrInvTransform(vector<T>& a) {
 	const int n = (int) a.size();
 	assert((n & -n) == n);
@@ -22,6 +24,7 @@ void OrInvTransform(vector<T>& a) {
 	}
 }
 
+template<class T>
 void AndTransform(vector<T>& a) {
 	const int n = (int) a.size();
 	assert((n & -n) == n);
@@ -34,6 +37,7 @@ void AndTransform(vector<T>& a) {
 	}
 }
 
+template<class T>
 void AndInvTransform(vector<T>& a) {
 	const int n = (int) a.size();
 	assert((n & -n) == n);
@@ -46,6 +50,7 @@ void AndInvTransform(vector<T>& a) {
 	}
 }
 
+template<class T>
 void XorTransform(vector<T>& a) {
 	const int n = (int) a.size();
 	assert((n & -n) == n);
@@ -60,6 +65,7 @@ void XorTransform(vector<T>& a) {
 	}
 }
 
+template<class T>
 void XorInvTransform(vector<T>& a) {
 	XorTransform(a);
 	T inv2 = T(1) / T((int) a.size());
@@ -70,6 +76,7 @@ void XorInvTransform(vector<T>& a) {
 
 // Compute c[k] = sum(a[i] * b[j]) for (i or j) = k.
 // Complexity: O(n log n)
+template<class T>
 vector<T> OrConvolution(vector<T> a, vector<T> b) {
 	const int n = (int) a.size();
 	assert(n == int(b.size()));
@@ -84,6 +91,7 @@ vector<T> OrConvolution(vector<T> a, vector<T> b) {
 
 // Compute c[k] = sum(a[i] * b[j]) for (i and j) = k.
 // Complexity: O(n log n)
+template<class T>
 vector<T> AndConvolution(vector<T> a, vector<T> b) {
 	const int n = (int) a.size();
 	assert(n == int(b.size()));
@@ -98,6 +106,7 @@ vector<T> AndConvolution(vector<T> a, vector<T> b) {
 
 // Compute c[k] = sum(a[i] * b[j]) for (i xor j) = k.
 // Complexity: O(n log n)
+template<class T>
 vector<T> XorConvolution(vector<T> a, vector<T> b) {
 	const int n = (int) a.size();
 	assert(n == int(b.size()));
@@ -110,14 +119,17 @@ vector<T> XorConvolution(vector<T> a, vector<T> b) {
 	return a;
 }
 
+template<class T>
 void ZetaTransform(vector<T>& a) {
 	OrTransform(a);
 }
 
+template<class T>
 void MobiusTransform(vector<T>& a) {
 	OrInvTransform(a);
 }
 
+template<class T>
 vector<T> SubsetSumConvolution(const vector<T>& f, const vector<T>& g) {
 	const int n = (int) f.size();
 	assert(n == int(g.size()));
