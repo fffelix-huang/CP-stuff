@@ -18,7 +18,7 @@
 #include "felix/internal_math.hpp"
 #include "felix/internal_type_traits.hpp"
 #include "felix/lazysegtree.hpp"
-#include "felix/lca.hpp"
+// #include "felix/lca.hpp"
 #include "felix/math.hpp"
 #include "felix/modint.hpp"
 #include "felix/random.hpp"
