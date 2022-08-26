@@ -6,7 +6,6 @@
 function fast() {
 	echo -e '\033[1;45m[-O2 flag]\033[m Compiling' $1'.cpp with c++17.'
 	g++ -std=c++17 -I ~/../../mnt/c/Felix/cp/CP-stuff/library -O2 $1.cpp -o $1
-#	g++ -std=c++17 -O2 $1.cpp -o $1
 }
 
 function debug() {
