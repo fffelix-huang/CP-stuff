@@ -1,34 +1,3 @@
-// @param m `1 <= m`
-// @return x mod m
-constexpr long long safe_mod(long long x, long long m) {
-	x %= m;
-	if(x < 0) {
-		x += m;
-	}
-	return x;
-}
-
-// @param b `1 <= b`
-// @return pair(g, x) s.t. g = gcd(a, b), xa = g (mod b), 0 <= x < b/g
-constexpr pair<long long, long long> inv_gcd(long long a, long long b) {
-	a = safe_mod(a, b);
-	if(a == 0) return {b, 0};
-
-	long long s = b, t = a;
-	long long m0 = 0, m1 = 1;
-
-	while(t) {
-		long long u = s / t;
-		s -= t * u;
-		m0 -= m1 * u;
-
-		swap(s, t);
-		swap(m0, m1);
-	}
-	if(m0 < 0) m0 += b / s;
-	return {s, m0};
-}
-
 template<int m>
 class static_modint {
 public:
