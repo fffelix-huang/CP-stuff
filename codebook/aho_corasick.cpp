@@ -1,4 +1,4 @@
-template<class T, int ALPHABET, int (*f)(T)>
+template<int ALPHABET, int (*f)(char)>
 class AhoCorasick {
 public:
 	struct Node {
@@ -11,16 +11,16 @@ public:
 		}
 	};
 
-	AhoCorasick() : AhoCorasick(vector<vector<T>>()) {}
+	AhoCorasick() : AhoCorasick(vector<string>()) {}
 
-	AhoCorasick(const vector<vector<T>>& strs) {
+	AhoCorasick(const vector<string>& strs) {
 		clear();
-		for(const vector<T>& s : strs) {
-			save_index.push_back(insert(s));
+		for(const string& s : strs) {
+			query_index.push_back(insert(s));
 		}
 	}
 
-	int insert(const vector<T>& s) {
+	int insert(const string& s) {
 		int p = 0;
 		for(int i = 0; i < (int) s.size(); ++i) {
 			int v = f(s[i]);
@@ -32,11 +32,11 @@ public:
 		return p;
 	}
 
-	vector<int> solve(const vector<T>& s) {
+	vector<int> solve(const string& s) {
 		build_failure_all();
 		int p = 0;
-		for(const T& c : s) {
-			int v = f(c);
+		for(int i = 0; i < (int) s.size(); ++i) {
+			int v = f(s[i]);
 			while(p > 0 && nodes[p].next[v] == -1) {
 				p = nodes[p].fail;
 			}
@@ -48,9 +48,9 @@ public:
 		for(int i = (int) que.size() - 1; i >= 0; --i) {
 			nodes[nodes[que[i]].fail].answer += nodes[que[i]].answer;
 		}
-		vector<int> res(save_index.size());
+		vector<int> res(query_index.size());
 		for(int i = 0; i < (int) res.size(); ++i) {
-			res[i] = nodes[save_index[i]].answer;
+			res[i] = nodes[query_index[i]].answer;
 		}
 		return res;
 	}
@@ -58,7 +58,7 @@ public:
 	void clear() {
 		nodes.clear();
 		que.clear();
-		save_index.clear();
+		query_index.clear();
 		newNode();
 		nodes[0].fail = 0;
 	}
@@ -70,7 +70,7 @@ public:
 private:
 	vector<Node> nodes;
 	vector<int> que;
-	vector<int> save_index;
+	vector<int> query_index;
 
 	inline int newNode() {
 		nodes.emplace_back();
