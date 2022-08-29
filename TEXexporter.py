@@ -28,6 +28,7 @@ if __name__ == '__main__':
 		add(''.join(f.readlines()), False)
 
 	add('\\begin{document}')
+	add('\\fontsize{8.3pt}')
 	add('\\maketitle')
 	add('\\tableofcontents')
 
@@ -37,7 +38,7 @@ if __name__ == '__main__':
 			file = file.strip()
 			if isDirectory(os.path.join(folder, file)):
 				current_dir = os.path.join(folder, file)
-				add(f'\\section{{{current_dir}}}')
+				add('\\section{{{name}}}'.format(name = file.capitalize()))
 				print('[Directory]', file, 'included')
 			else:
 				add(f'\\subsection{{{file}}}')

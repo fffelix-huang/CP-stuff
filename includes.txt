@@ -1,8 +1,50 @@
 data-structures
+	DSU.h
+	Fenwick.h
+	HashMap.h
+	Segtree.h
+	LazySegtree.h
+	OrderStatisticTree.h
+	SparseTable.h
+	ConvexHullTrick.h
+	Treap.h
 combinatorial
+	Combination.h
+	CountInversions.h
 number-theory
+	ExtendGCD.h
+	InvGCD.h
+	StaticModint.h
+	DynamicModint.h
+	CRT.h
+	LinearSieve.h
+	ModInverses.h
+	ModPow.h
+	IsPrime.h
+	PrimitiveRoot.h
+	FloorSum.h
 numerical
+	Barrett.h
+	BitTransform.h
+	Poly.h
 geometry
+	Point.h
+	ConvexHull.h
 graph
+	LCA.h
+	HLD.h
+	TwoSat.h
+	Dinic.h
 string
+	SuffixArray.h
+	LCP.h
+	KMP.h
+	Zfunc.h
+	RollingHash.h
+	Manacher.h
+	AhoCorasick.h
 misc
+	Timer.h
+	Random.h
+	Debug.h
+	Discrete.h
