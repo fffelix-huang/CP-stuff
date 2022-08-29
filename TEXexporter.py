@@ -28,7 +28,7 @@ if __name__ == '__main__':
 		add(''.join(f.readlines()), False)
 
 	add('\\begin{document}')
-	add('\\fontsize{8.3pt}')
+	# add('\\fontsize{8.3pt}')
 	add('\\maketitle')
 	add('\\tableofcontents')
 
