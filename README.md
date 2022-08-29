@@ -10,10 +10,11 @@ My competitive programming setups.
 
 ## :warning: Hints/Warnings
 
-1. Don't modify settings.txt
+1. Don't modify `settings.txt`.
 2. To add a file in `includes.txt`, the latest directory should be it's parent directory.
 3. Filenames in`includes.txt` are case sensative.
+4. $LaTeX$ are available in the code comments.
 
 # LICENSE
 
-See LICENSE.md
+See `LICENSE.md`
