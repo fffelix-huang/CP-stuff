@@ -7,6 +7,12 @@ def getDirectories(path):
 def getFiles(path):
 	return [f for f in os.listdir(path) if os.path.isfile(os.path.join(path, f))]
 
+def isFile(path):
+	return os.path.exists(path) and os.path.isfile(path)
+
+def isDirectory(path):
+	return os.path.exists(path) and not isFile(path)
+
 args = []
 
 def add(str, newLine = True):
@@ -16,7 +22,7 @@ def add(str, newLine = True):
 
 if __name__ == '__main__':
 	assert len(sys.argv) > 1
-	folder_name = sys.argv[1]
+	folder = sys.argv[1]
 
 	with open('settings.txt') as f:
 		add(''.join(f.readlines()), False)
@@ -26,26 +32,22 @@ if __name__ == '__main__':
 	add('\\tableofcontents')
 
 	with open('includes.txt') as f:
-		for chapter in f.readlines():
-			chapter = chapter.replace('\n', '')
-			ch = chapter[0].upper() + chapter[1::]
-			add(f'\\section{{{ch}}}')
-
-			new_path = os.path.join(folder_name, chapter)
-
-			for file in getFiles(new_path):
-				file = file.replace('\n', '')
+		current_dir = ''
+		for file in f.readlines():
+			file = file.strip()
+			if isDirectory(os.path.join(folder, file)):
+				current_dir = os.path.join(folder, file)
+				add(f'\\section{{{current_dir}}}')
+				print('[Directory]', file, 'included')
+			else:
 				add(f'\\subsection{{{file}}}')
-				add('\\begin{minted}[mathescape, breaklines, linenos, numbersep=5pt, frame=lines, framesep=2mm]{c++}', False)
-				# add('\\begin{lstlisting}', False)
-				with open(os.path.join(new_path, file)) as r:
+				add('\\begin{code}', False)
+				with open(os.path.join(current_dir, file)) as r:
 					add(''.join([word.replace('\t', '    ') for word in r.readlines()]), False)
-				add('\\end{minted}', False)
-				# add('\\end{lstlisting}', False)
+				add('\\end{code}', False)
+				print('[File]', file, 'included')
 
 	add('\\end{document}')
-
-	print(args)
 
 	with open('main.tex', 'w') as f:
 		f.write('\n'.join(args))

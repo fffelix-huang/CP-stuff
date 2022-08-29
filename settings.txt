@@ -23,6 +23,8 @@
 \setlength{\lineskip}{1.2pt}
 % \setlength{\extrarowheight}{8pt}
 
+\newenvironment{code}{\VerbatimEnvironment\begin{minted}[mathescape, breaklines, linenos, numbersep=5pt, frame=lines, framesep=2mm]{c++}}{\end{minted}}
+
 \title{My Codebook}
 \author{Felix Huang}
 \date{\today}
