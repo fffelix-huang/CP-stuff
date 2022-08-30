@@ -13,7 +13,7 @@ My competitive programming setups.
 1. Don't modify `settings.txt`.
 2. To add a file in `includes.txt`, the latest directory should be it's parent directory.
 3. Filenames in`includes.txt` are case sensative.
-4. $LaTeX$ are available in the code comments.
+4. $LaTeX$ are available in the code comments when rendered to PDF.
 
 # LICENSE
 
