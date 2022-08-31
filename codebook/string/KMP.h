@@ -2,7 +2,8 @@ template<class T>
 vector<int> KMP(const vector<T>& a) {
 	int n = (int) a.size();
 	vector<int> k(n);
-	for(int i = 1, j = 0; i < n; ++i) {
+	for(int i = 1; i < n; ++i) {
+		int j = k[i - 1];
 		while(j > 0 && a[i] != a[j]) {
 			j = k[j - 1];
 		}
