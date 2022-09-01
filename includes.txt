@@ -35,13 +35,16 @@ graph
 	HLD.h
 	TwoSat.h
 	Dinic.h
+	MCMF.h
 string
 	SuffixArray.h
 	LCP.h
 	KMP.h
+	DynamicKMP.h
 	Zfunc.h
 	RollingHash.h
 	Manacher.h
+	Trie.h
 	AhoCorasick.h
 misc
 	Timer.h
