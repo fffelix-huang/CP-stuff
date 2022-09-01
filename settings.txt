@@ -1,5 +1,5 @@
 \documentclass[10pt, a4paper, twocolumn, oneside]{article}
-\usepackage[utf8]{inputenc}
+% \usepackage[utf8]{inputenc}
 
 \usepackage[cache = false]{minted}
 \usemintedstyle{manni}

@@ -1,5 +1,5 @@
 \documentclass[10pt, a4paper, twocolumn, oneside]{article}
-\usepackage[utf8]{inputenc}
+% \usepackage[utf8]{inputenc}
 
 \usepackage[cache = false]{minted}
 \usemintedstyle{manni}
@@ -730,7 +730,15 @@ vector<mint> fact{1}, inv_fact{1};
 void init_fact(int n) {
     while((int) fact.size() <= n) {
         fact.push_back(fact.back() * (int) fact.size());
-        inv_fact.push_back(1 / fact.back());
+    }
+    int sz = (int) inv_fact.size();
+    if(sz >= n + 1) {
+        return;
+    }
+    inv_fact.resize(n + 1);
+    inv_fact[n] = 1 / fact.back();
+    for(int i = n - 1; i >= sz; --i) {
+        inv_fact[i] = inv_fact[i + 1] * (i + 1);
     }
 }
 
@@ -794,8 +802,13 @@ long long ext_gcd(long long a, long long b, long long& x, long long& y) {
 \subsection{InvGCD.h}
 
 \begin{code}
-// @param b `1 <= b`
-// @return pair(g, x) s.t. g = gcd(a, b), xa = g (mod b), 0 <= x < b/g
+/*
+param $1 \leq b$
+return ${g, x}$ s.t.
+    $g = \gcd(a, b)$
+    $ax = g \pmod{b}$
+    $0 \leq x < \frac{b}{g}$
+*/
 constexpr pair<long long, long long> inv_gcd(long long a, long long b) {
     a %= b;
     if(a < 0) {
@@ -812,8 +825,14 @@ constexpr pair<long long, long long> inv_gcd(long long a, long long b) {
         s -= t * u;
         m0 -= m1 * u;
 
-        swap(s, t);
-        swap(m0, m1);
+        // swap(s, t);
+        // swap(m0, m1);
+        auto tmp = s;
+        s = t;
+        t = tmp;
+        tmp = m0;
+        m0 = m1;
+        m1 = tmp;
     }
     if(m0 < 0) m0 += b / s;
     return {s, m0};
@@ -2367,7 +2386,7 @@ public:
         Edge(int _to, T _cap) : to(_to), cap(_cap) {}
     };
 
-    static constexpr T inf = numeric_limits<T>::max() / 2 - 5;
+    static constexpr T INF = numeric_limits<T>::max() / 2;
     
     int n;
     vector<Edge> e;
@@ -2378,6 +2397,8 @@ public:
     Dinic(int _n) : n(_n), g(_n) {}
 
     void add_edge(int u, int v, T c) {
+        assert(0 <= u && u < n);
+        assert(0 <= v && v < n);
         g[u].push_back(e.size());
         e.emplace_back(v, c);
         g[v].push_back(e.size());
@@ -2430,12 +2451,106 @@ public:
     }
 
     T flow(int s, int t) {
+        assert(0 <= s && s < n);
+        assert(0 <= t && t < n);
         T ans = 0;
         while(bfs(s, t)) {
             cur.assign(n, 0);
-            ans += dfs(s, t, inf);
+            ans += dfs(s, t, INF);
         }
         return ans;
+    }
+};
+
+\end{code}
+\subsection{MCMF.h}
+
+\begin{code}
+template<class Cap_t, class Cost_t>
+class MCMF {
+public:
+    struct Edge {
+        int from;
+        int to;
+        Cap_t cap;
+        Cost_t cost;
+        Edge(int u, int v, Cap_t _cap, Cost_t _cost) : from(u), to(v), cap(_cap), cost(_cost) {}
+    };
+
+    static constexpr Cap_t EPS = static_cast<Cap_t>(1e-9);
+
+    int n;
+    vector<Edge> edges;
+    vector<vector<int>> g;
+    vector<Cost_t> d;
+    vector<bool> in_queue;
+    vector<int> previous_edge;
+
+    MCMF(int _n) : n(_n), g(_n), d(_n), in_queue(_n), previous_edge(_n) {}
+
+    void add_edge(int u, int v, Cap_t cap, Cost_t cost) {
+        assert(0 <= u && u < n);
+        assert(0 <= v && v < n);
+        g[u].push_back(edges.size());
+        edges.emplace_back(u, v, cap, cost);
+        g[v].push_back(edges.size());
+        edges.emplace_back(v, u, 0, -cost);
+    }
+
+    bool bfs(int s, int t) {
+        bool found = false;
+        fill(d.begin(), d.end(), numeric_limits<Cost_t>::max());
+        d[s] = 0;
+        in_queue[s] = true;
+        queue<int> que;
+        que.push(s);
+        while(!que.empty()) {
+            int u = que.front();
+            que.pop();
+            if(u == t) {
+                found = true;
+            }
+            in_queue[u] = false;
+            for(auto& id : g[u]) {
+                const Edge& e = edges[id];
+                if(e.cap > EPS && d[u] + e.cost < d[e.to]) {
+                    d[e.to] = d[u] + e.cost;
+                    previous_edge[e.to] = id;
+                    if(!in_queue[e.to]) {
+                        que.push(e.to);
+                        in_queue[e.to] = true;
+                    }
+                }
+            }
+        }
+        return found;
+    }
+
+    pair<Cap_t, Cost_t> flow(int s, int t) {
+        assert(0 <= s && s < n);
+        assert(0 <= t && t < n);
+        Cap_t cap = 0;
+        Cost_t cost = 0;
+        while(bfs(s, t)) {
+            Cap_t send = numeric_limits<Cap_t>::max();
+            int u = t;
+            while(u != s) {
+                const Edge& e = edges[previous_edge[u]];
+                send = min(send, e.cap);
+                u = e.from;
+            }
+            u = t;
+            while(u != s) {
+                Edge& e = edges[previous_edge[u]];
+                e.cap -= send;
+                Edge& b = edges[previous_edge[u] ^ 1];
+                b.cap += send;
+                u = e.from;
+            }
+            cap += send;
+            cost += send * d[t];
+        }
+        return make_pair(cap, cost);
     }
 };
 
@@ -2710,7 +2825,8 @@ template<class T>
 vector<int> KMP(const vector<T>& a) {
     int n = (int) a.size();
     vector<int> k(n);
-    for(int i = 1, j = 0; i < n; ++i) {
+    for(int i = 1; i < n; ++i) {
+        int j = k[i - 1];
         while(j > 0 && a[i] != a[j]) {
             j = k[j - 1];
         }
@@ -2727,6 +2843,62 @@ vector<int> KMP(const string& s) {
     return KMP(s2);
 }
 
+\end{code}
+\subsection{DynamicKMP.h}
+
+\begin{code}
+template<int ALPHABET, int (*f)(char)>
+class DynamicKMP {
+public:
+    DynamicKMP() {}
+
+    DynamicKMP(const string& s) {
+        reserve(s.size());
+        for(const char& c : s) {
+            push(c);
+        }
+    }
+
+    void push(char c) {
+        int v = f(c);
+        dp.emplace_back();
+        dp.back()[v] = (int) dp.size();
+        if(p.empty()) {
+            p.push_back(0);
+            return;
+        }
+        int i = (int) p.size();
+        for(int j = 0; j < ALPHABET; ++j) {
+            if(j == v) {
+                p.push_back(dp[p[i - 1]][j]);
+            } else {
+                dp.back()[j] = dp[p[i - 1]][j];
+            }
+        }
+    }
+
+    void pop() {
+        p.pop_back();
+        dp.pop_back();
+    }
+
+    int query() const {
+        return p.back();
+    }
+
+    vector<int> query_all() const {
+        return p;
+    }
+
+    void reserve(int sz) {
+        p.reserve(sz);
+        dp.reserve(sz);
+    }
+
+private:
+    vector<int> p;
+    vector<array<int, ALPHABET>> dp;
+};
 \end{code}
 \subsection{Zfunc.h}
 
@@ -2880,6 +3052,71 @@ vector<int> manacher(const string& s) {
     s2.pop_back();
     return manacher_odd(s2);
 }
+
+\end{code}
+\subsection{Trie.h}
+
+\begin{code}
+template<int ALPHABET, int (*f)(char)>
+class Trie {
+public:
+    struct Node {
+        int answer = 0;
+        int next[ALPHABET];
+
+        Node() {
+            memset(next, -1, sizeof(next));
+        }
+    };
+
+    Trie() : Trie(vector<string>()) {}
+
+    Trie(const vector<string>& strs) {
+        clear();
+        for(const string& s : strs) {
+            insert(s);
+        }
+    }
+
+    void insert(const string& s, int p = 0) {
+        for(const char& c : s) {
+            int v = f(c);
+            if(nodes[p].next[v] == -1) {
+                nodes[p].next[v] = newNode();
+            }
+            p = nodes[p].next[v];
+        }
+        nodes[p].answer += 1;
+    }
+
+    int count(const string& s, int p = 0) {
+        for(const char& c : s) {
+            int v = f(c);
+            if(nodes[p].next[v] == -1) {
+                return 0;
+            }
+            p = nodes[p].next[v];
+        }
+        return nodes[p].answer;
+    }
+
+    void clear() {
+        nodes.clear();
+        newNode();
+    }
+
+    void reserve(int n) {
+        nodes.reserve(n);
+    }
+
+private:
+    vector<Node> nodes;
+
+    inline int newNode() {
+        nodes.emplace_back();
+        return (int) nodes.size() - 1;
+    }
+};
 
 \end{code}
 \subsection{AhoCorasick.h}

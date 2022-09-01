@@ -1,6 +1,9 @@
 /*
-$1 \leq b$
-return ${g, x}$ s.t. $g = \gcd(a, b)$, $a * x = g \pmod b$, $0 \leq x < \frac{b}{g}$
+param $1 \leq b$
+return ${g, x}$ s.t.
+	$g = \gcd(a, b)$
+	$ax = g \pmod{b}$
+	$0 \leq x < \frac{b}{g}$
 */
 constexpr pair<long long, long long> inv_gcd(long long a, long long b) {
 	a %= b;
