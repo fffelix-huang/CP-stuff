@@ -7,7 +7,7 @@ public:
 		Edge(int _to, T _cap) : to(_to), cap(_cap) {}
 	};
 
-	static constexpr T inf = numeric_limits<T>::max() / 2 - 5;
+	static constexpr T INF = numeric_limits<T>::max() / 2;
 	
 	int n;
 	vector<Edge> e;
@@ -73,7 +73,7 @@ public:
 		T ans = 0;
 		while(bfs(s, t)) {
 			cur.assign(n, 0);
-			ans += dfs(s, t, inf);
+			ans += dfs(s, t, INF);
 		}
 		return ans;
 	}
