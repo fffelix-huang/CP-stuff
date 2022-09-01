@@ -26,6 +26,7 @@ number-theory
 numerical
 	Barrett.h
 	BitTransform.h
+	FFT.h
 	Poly.h
 geometry
 	Point.h
