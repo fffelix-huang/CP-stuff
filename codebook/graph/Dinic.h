@@ -18,6 +18,8 @@ public:
 	Dinic(int _n) : n(_n), g(_n) {}
 
 	void add_edge(int u, int v, T c) {
+		assert(0 <= u && u < n);
+		assert(0 <= v && v < n);
 		g[u].push_back(e.size());
 		e.emplace_back(v, c);
 		g[v].push_back(e.size());
@@ -70,6 +72,8 @@ public:
 	}
 
 	T flow(int s, int t) {
+		assert(0 <= s && s < n);
+		assert(0 <= t && t < n);
 		T ans = 0;
 		while(bfs(s, t)) {
 			cur.assign(n, 0);
