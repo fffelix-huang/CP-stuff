@@ -1,5 +1,7 @@
-// @param b `1 <= b`
-// @return pair(g, x) s.t. g = gcd(a, b), xa = g (mod b), 0 <= x < b/g
+/*
+$1 \leq b$
+return ${g, x}$ s.t. $g = \gcd(a, b)$, $a * x = g \pmod b$, $0 \leq x < \frac{b}{g}$
+*/
 constexpr pair<long long, long long> inv_gcd(long long a, long long b) {
 	a %= b;
 	if(a < 0) {
@@ -16,8 +18,14 @@ constexpr pair<long long, long long> inv_gcd(long long a, long long b) {
 		s -= t * u;
 		m0 -= m1 * u;
 
-		swap(s, t);
-		swap(m0, m1);
+		// swap(s, t);
+		// swap(m0, m1);
+		auto tmp = s;
+		s = t;
+		t = tmp;
+		tmp = m0;
+		m0 = m1;
+		m1 = tmp;
 	}
 	if(m0 < 0) m0 += b / s;
 	return {s, m0};
