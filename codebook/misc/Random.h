@@ -21,15 +21,15 @@ public:
 	}
 
 	inline unsigned long long next(unsigned long long a) {
-		return next() % a;
+		return uniform_int_distribution<unsigned long long>(0, a - 1)(rng);
 	}
 
 	inline unsigned long long next(unsigned long long a, unsigned long long b) {
-		return a + next(b - a + 1);
+		return uniform_int_distribution<unsigned long long>(a, b)(rng);
 	}
 
 	inline long double nextDouble() {
-		return ((unsigned int) next()) / 4294967295.0;
+		return uniform_real_distribution<long double>(0.0, 1.0)(rng);
 	}
 
 	inline long double nextDouble(long double a) {
@@ -37,7 +37,7 @@ public:
 	}
 
 	inline long double nextDouble(long double a, long double b) {
-		return a + nextDouble() * (b - a);
+		return uniform_real_distribution<long double>(a, b)(rng);
 	}
 
 	template<class T>
@@ -47,5 +47,3 @@ public:
 		}
 	}
 };
-
-random_t rnd;

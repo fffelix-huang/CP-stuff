@@ -1,4 +1,9 @@
-// (rem, mod)
+/*
+return
+	$\text{remainder, modulo}$
+			or
+	$0, 0$ if do not exist
+*/
 pair<long long, long long> crt(const vector<long long>& r, const vector<long long>& m) {
 	assert(r.size() == m.size());
 	int n = (int) r.size();
@@ -6,7 +11,9 @@ pair<long long, long long> crt(const vector<long long>& r, const vector<long lon
 	long long r0 = 0, m0 = 1;
 	for(int i = 0; i < n; i++) {
 		assert(1 <= m[i]);
-		long long r1 = safe_mod(r[i], m[i]), m1 = m[i];
+		long long r1 = r[i] % m[i];
+		if(r1 < 0) r1 += m[i];
+		long long m1 = m[i];
 		if(m0 < m1) {
 			swap(r0, r1);
 			swap(m0, m1);

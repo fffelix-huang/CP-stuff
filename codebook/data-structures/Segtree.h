@@ -1,13 +1,3 @@
-// @param n `0 <= n`
-// @return minimum non-negative `x` s.t. `n <= 2**x`
-int ceil_pow2(int n) {
-	int x = 0;
-	while((1U << x) < (unsigned int)(n)) {
-		x++;
-	}
-	return x;
-}
-
 template<class T, T (*e)(), T (*op)(T, T)>
 class segtree {
 public:

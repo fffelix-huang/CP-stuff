@@ -1,4 +1,4 @@
-// find x, y, gcd for ax + by = gcd(a, b)
+// Given $a, b$, find $x, y$ s.t. $ax + by = \gcd(a, b)$
 long long ext_gcd(long long a, long long b, long long& x, long long& y) {
 	if(b == 0) {
 		x = 1;
