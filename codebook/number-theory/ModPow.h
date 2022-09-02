@@ -1,6 +1,6 @@
-// param $0 \leq n$
-// param $1 \leq m$
-// return $x^n \pmod{m}$
+// @param $0 \leq n$
+// @param $1 \leq m$
+// @return $x^n \pmod{m}$
 constexpr long long pow_mod_constexpr(long long x, long long n, int m) {
 	if(m == 1) return 0;
 	unsigned int _m = (unsigned int)(m);

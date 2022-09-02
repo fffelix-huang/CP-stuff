@@ -1,5 +1,5 @@
 // Compile time primitive root
-// @param m must be prime
+// @param $m$ must be prime
 // @return primitive root (and minimum in now)
 constexpr int primitive_root_constexpr(int m) {
 	if(m == 2) return 1;

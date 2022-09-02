@@ -1,4 +1,5 @@
-// Calculate modular inverse for mod m up to n in O(n)
+// @return array $A$ of length $N$ s.t
+//	$i \cdot A_i = 1 \pmod{m}$
 vector<int> mod_inverse(int m, int n = -1) {
 	assert(n < m);
 	if(n == -1) {

@@ -116,7 +116,7 @@ public:
 		return id[u];
 	}
 
-	// path[u, ..., p) where p is an ancestor of u
+	// return $\text{path}_{[u, \dots , p)} where $p$ is an ancestor of $u$
 	vector<pair<int, int>> path_up(int u, int p) const {
 		vector<pair<int, int>> seg;
 
@@ -125,7 +125,7 @@ public:
 			u = parent(chain[u]);
 		}
 
-		// id[p] is smaller than id[u] but we don't want id[p]
+		// $id_p$ is smaller than $id_u$ but we don't want $id_p$
 		seg.emplace_back(id[p] + 1, id[u] + 1);
 
 		return seg;

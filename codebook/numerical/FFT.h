@@ -1,7 +1,8 @@
+// Fast-Fourier-Transform
 using cd = complex<double>;
- 
-const double PI = 3.141592653589793238;
- 
+
+const double PI = acos(-1); 
+
 void fft(vector<cd>& a, bool inv) {
 	int n = (int) a.size();
 	for(int i = 1, j = 0; i < n; ++i) {

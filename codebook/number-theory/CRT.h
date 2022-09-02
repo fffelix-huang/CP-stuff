@@ -1,9 +1,7 @@
-/*
-return
-	$\text{remainder, modulo}$
-			or
-	$0, 0$ if do not exist
-*/
+// @return
+//	$\text{remainder, modulo}$
+//			or
+//	$0, 0$ if do not exist
 pair<long long, long long> crt(const vector<long long>& r, const vector<long long>& m) {
 	assert(r.size() == m.size());
 	int n = (int) r.size();

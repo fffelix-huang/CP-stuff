@@ -1,3 +1,4 @@
+// 0-based index
 template<class T>
 class fenwick {
 public:

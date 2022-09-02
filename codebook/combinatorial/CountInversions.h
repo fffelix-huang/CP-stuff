@@ -1,12 +1,16 @@
+// @return the number of inversions s.t $i < j$, $a_i > a_j$
 template<class T>
-long long countInversions(vector<T> a) {
+long long countInversions(const vector<T>& a) {
 	int n = (int) a.size();
-	a = discrete(a);
-	fenwick<int> fenw(n + 1);
+	auto b = a;
+	sort(b.begin(), b.end());
+	b.erase(unique(b.begin(), b.end()), b.end());
+	fenwick<int> fenw((int) b.size() + 1);
 	long long ans = 0;
 	for(int i = 0; i < n; ++i) {
-		ans += fenw.sum(a[i] + 1, n);
-		fenw.add(a[i], 1);
+		int x = lower_bound(b.begin(), b.end(), a[i]) - b.begin();
+		ans += fenw.sum(x + 1, (int) b.size());
+		fenw.add(x, 1);
 	}
 	return ans;
 }

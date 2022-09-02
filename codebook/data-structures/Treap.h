@@ -1,3 +1,5 @@
+mt19937_64 rng(48763);
+
 struct Node {
 	long long val;
 	long long sum;
