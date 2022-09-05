@@ -1,5 +1,4 @@
-template<class T>
-class HLD : LCA<T> {
+class HLD : LCA {
 	using LCA<T>::n;
 	using LCA<T>::edges;
 	using LCA<T>::g;
