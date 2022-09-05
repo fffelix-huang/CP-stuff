@@ -44,11 +44,8 @@ public:
 				return subtree_size[a] > subtree_size[b];
 			});
 		};
-
 		dfs(root, -1, 0);
-
 		heavy_root.assign(n, 0);
-
 		function<void(int, bool)> dfs2 = [&](int u, bool is_heavy) {
 			tour_start[u] = (int) tour_list.size();
 			tour_list.push_back(u);
@@ -62,9 +59,7 @@ public:
 				heavy = false;
 			}
 		};
-
 		dfs2(root, false);
-
 		{
 			vector<pair<int, int>> route;
 			route.reserve((int) euler.size());
@@ -126,20 +121,18 @@ public:
 		return st.prod(min(l, r), max(l, r)).second;
 	}
 
-protected:
+public:
 	int n;
 	vector<vector<int>> g;
-
 	vector<int> parent;
 	vector<int> depth;
 	vector<int> subtree_size;
 
+protected:
 	vector<int> euler;
 	vector<int> first_occurrence;
 	vector<int> tour_list;
 	vector<int> tour_start;
-
 	vector<int> heavy_root;
-
 	sparse_table<pair<int, int>, __lca_op> st;
 };

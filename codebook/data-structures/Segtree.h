@@ -5,12 +5,12 @@ public:
 
 	segtree(int _n) : segtree(vector<T>(_n, e())) {}
 	
-	segtree(const vector<T>& arr): n(int(arr.size())) {
-		log = ceil_pow2(n);
+	segtree(const vector<T>& a): n(int(a.size())) {
+		log = 31 - __builtin_clz(2 * n - 1);
 		size = 1 << log;
 		st.resize(size << 1, e());
 		for(int i = 0; i < n; ++i) {
-			st[size + i] = arr[i];
+			st[size + i] = a[i];
 		}
 		for(int i = size - 1; i; --i) {
 			update(i);

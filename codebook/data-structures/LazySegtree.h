@@ -1,4 +1,3 @@
-// Source: ac-library/atcoder/lazysegtree.hpp
 template<class S,
          S (*e)(),
          S (*op)(S, S),
@@ -13,7 +12,7 @@ public:
 	explicit lazy_segtree(int _n) : lazy_segtree(vector<S>(_n, e())) {}
 
 	explicit lazy_segtree(const vector<S>& v) : n(int(v.size())) {
-		log = ceil_pow2(n);
+		log = 31 - __builtin_clz(2 * n - 1);
 		size = 1 << log;
 		d = vector<S>(size << 1, e());
 		lz = vector<F>(size, id());
