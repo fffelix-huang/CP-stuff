@@ -25,7 +25,7 @@ public:
 		coeff.resize(n);
 	}
 
-	T operator[](int idx) const {
+	T at(int idx) const {
 		if(idx < 0 || idx >= size()) {
 			return 0;
 		}
@@ -57,7 +57,7 @@ public:
 	friend Poly operator+(const Poly& a, const Poly& b) {
 		vector<T> res(max(a.size(), b.size()));
 		for(int i = 0; i < (int) res.size(); ++i) {
-			res[i] = a[i] + b[i];
+			res[i] = a.at(i) + b.at(i);
 		}
 		return Poly(res);
 	}
@@ -65,7 +65,7 @@ public:
 	friend Poly operator-(const Poly& a, const Poly& b) {
 		vector<T> res(max(a.size(), b.size()));
 		for(int i = 0; i < (int) res.size(); ++i) {
-			res[i] = a[i] - b[i];
+			res[i] = a.at(i) - b.at(i);
 		}
 		return Poly(res);
 	}
