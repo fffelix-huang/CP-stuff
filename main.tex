@@ -2381,7 +2381,7 @@ public:
         return tour_start[u];
     }
 
-    // return $\text{path}_{[u, \dots , p)} where $p$ is an ancestor of $u$
+    // return $\text{path}_{[u, \dots , p)}$ where $p$ is an ancestor of $u$
     vector<pair<int, int>> path_up(int u, int p) const {
         vector<pair<int, int>> seg;
         while(heavy_root[u] != heavy_root[p]) {
