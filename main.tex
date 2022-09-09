@@ -106,6 +106,7 @@ private:
 \subsection{Fenwick.h}
 
 \begin{code}
+// 0-based index
 template<class T>
 class fenwick {
 public:
@@ -168,16 +169,6 @@ template<class T, class H = splitmix64_hash> using hash_set = hash_map<T, null_t
 \subsection{Segtree.h}
 
 \begin{code}
-// @param n `0 <= n`
-// @return minimum non-negative `x` s.t. `n <= 2**x`
-int ceil_pow2(int n) {
-    int x = 0;
-    while((1U << x) < (unsigned int)(n)) {
-        x++;
-    }
-    return x;
-}
-
 template<class T, T (*e)(), T (*op)(T, T)>
 class segtree {
 public:
@@ -185,12 +176,12 @@ public:
 
     segtree(int _n) : segtree(vector<T>(_n, e())) {}
     
-    segtree(const vector<T>& arr): n(int(arr.size())) {
-        log = ceil_pow2(n);
+    segtree(const vector<T>& a): n(int(a.size())) {
+        log = 31 - __builtin_clz(2 * n - 1);
         size = 1 << log;
         st.resize(size << 1, e());
         for(int i = 0; i < n; ++i) {
-            st[size + i] = arr[i];
+            st[size + i] = a[i];
         }
         for(int i = size - 1; i; --i) {
             update(i);
@@ -310,17 +301,6 @@ private:
 \subsection{LazySegtree.h}
 
 \begin{code}
-// @param n `0 <= n`
-// @return minimum non-negative `x` s.t. `n <= 2**x`
-int ceil_pow2(int n) {
-    int x = 0;
-    while((1U << x) < (unsigned int)(n)) {
-        x++;
-    }
-    return x;
-}
-
-// Source: ac-library/atcoder/lazysegtree.hpp
 template<class S,
          S (*e)(),
          S (*op)(S, S),
@@ -335,7 +315,7 @@ public:
     explicit lazy_segtree(int _n) : lazy_segtree(vector<S>(_n, e())) {}
 
     explicit lazy_segtree(const vector<S>& v) : n(int(v.size())) {
-        log = ceil_pow2(n);
+        log = 31 - __builtin_clz(2 * n - 1);
         size = 1 << log;
         d = vector<S>(size << 1, e());
         lz = vector<F>(size, id());
@@ -556,6 +536,7 @@ using namespace __gnu_pbds;
 
 template<class T, class Comp = less<T>> using ordered_set = tree<T, null_type, Comp, rb_tree_tag, tree_order_statistics_node_update>;
 template<class T> using ordered_multiset = ordered_set<T, less_equal<T>>;
+// Use `s.erase(s.find(x))` when using `ordered_multiset`
 \end{code}
 \subsection{SparseTable.h}
 
@@ -598,32 +579,34 @@ private:
 \subsection{ConvexHullTrick.h}
 
 \begin{code}
-// Source: https://github.com/kth-competitive-programming/kactl/blob/main/content/data-structures/LineContainer.h
 struct Line_t {
     mutable long long k, m, p;
-    bool operator<(const Line_t& o) const { return k < o.k; }
-    bool operator<(long long x) const { return p < x; }
+
+    inline bool operator<(const Line_t& o) const { return k < o.k; }
+    inline bool operator<(long long x) const { return p < x; }
 };
 
 // returns maximum (with minimum use negative coefficient and constant)
 struct CHT : multiset<Line_t, less<>> {
-    // (for doubles, use inf = 1/.0, div(a,b) = a/b)
-    static const long long inf = LLONG_MAX;
+    // (for doubles, use INF = 1/.0, div(a,b) = a/b)
+    static const long long INF = LLONG_MAX;
     long long div(long long a, long long b) { // floored division
         return a / b - ((a ^ b) < 0 && a % b);
     }
+
     bool isect(iterator x, iterator y) {
         if(y == end()) {
-            x->p = inf;
+            x->p = INF;
             return 0;
         }
         if(x->k == y->k) {
-            x->p = (x->m > y->m ? inf : -inf);
+            x->p = (x->m > y->m ? INF : -INF);
         } else {
             x->p = div(y->m - x->m, x->k - y->k);
         }
         return x->p >= y->p;
     }
+
     void insert_line(long long k, long long m) {
         auto z = insert({k, m, 0}), y = z++, x = y;
         while(isect(y, z)) {
@@ -636,6 +619,7 @@ struct CHT : multiset<Line_t, less<>> {
             isect(x, erase(y));
         }
     }
+
     long long eval(long long x) {
         assert(!empty());
         auto l = *lower_bound(x);
@@ -647,8 +631,8 @@ struct CHT : multiset<Line_t, less<>> {
 \subsection{Treap.h}
 
 \begin{code}
-mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());
- 
+mt19937_64 rng(48763);
+
 struct Node {
     long long val;
     long long sum;
@@ -762,25 +746,30 @@ mint P(int n, int k) {
 \subsection{CountInversions.h}
 
 \begin{code}
+// @return the number of inversions s.t $i < j$, $a_i > a_j$
 template<class T>
-long long countInversions(vector<T> a) {
+long long countInversions(const vector<T>& a) {
     int n = (int) a.size();
-    a = ordered_compress(a);
-    fenwick<int> fenw(n + 1);
+    auto b = a;
+    sort(b.begin(), b.end());
+    b.erase(unique(b.begin(), b.end()), b.end());
+    fenwick<int> fenw((int) b.size() + 1);
     long long ans = 0;
     for(int i = 0; i < n; ++i) {
-        ans += fenw.sum(a[i] + 1, n);
-        fenw.add(a[i], 1);
+        int x = lower_bound(b.begin(), b.end(), a[i]) - b.begin();
+        ans += fenw.sum(x + 1, (int) b.size());
+        fenw.add(x, 1);
     }
     return ans;
 }
+
 \end{code}
 \section{Number-theory}
 
 \subsection{ExtendGCD.h}
 
 \begin{code}
-// find x, y, gcd for ax + by = gcd(a, b)
+// @return $x, y$ s.t. $ax + by = \gcd(a, b)$
 long long ext_gcd(long long a, long long b, long long& x, long long& y) {
     if(b == 0) {
         x = 1;
@@ -802,13 +791,12 @@ long long ext_gcd(long long a, long long b, long long& x, long long& y) {
 \subsection{InvGCD.h}
 
 \begin{code}
-/*
-param $1 \leq b$
-return ${g, x}$ s.t.
-    $g = \gcd(a, b)$
-    $ax = g \pmod{b}$
-    $0 \leq x < \frac{b}{g}$
-*/
+
+// @param $1 \leq b$
+// @return ${g, x}$ s.t.
+//    $g = \gcd(a, b)$
+//    $ax = g \pmod{b}$
+//    $0 \leq x < \frac{b}{g}$
 constexpr pair<long long, long long> inv_gcd(long long a, long long b) {
     a %= b;
     if(a < 0) {
@@ -1186,7 +1174,10 @@ ostream& operator<<(ostream& out, const dynamic_modint<id>& num) {
 \subsection{CRT.h}
 
 \begin{code}
-// (rem, mod)
+// @return
+//    $\text{remainder, modulo}$
+//            or
+//    $0, 0$ if do not exist
 pair<long long, long long> crt(const vector<long long>& r, const vector<long long>& m) {
     assert(r.size() == m.size());
     int n = (int) r.size();
@@ -1194,7 +1185,9 @@ pair<long long, long long> crt(const vector<long long>& r, const vector<long lon
     long long r0 = 0, m0 = 1;
     for(int i = 0; i < n; i++) {
         assert(1 <= m[i]);
-        long long r1 = safe_mod(r[i], m[i]), m1 = m[i];
+        long long r1 = r[i] % m[i];
+        if(r1 < 0) r1 += m[i];
+        long long m1 = m[i];
         if(m0 < m1) {
             swap(r0, r1);
             swap(m0, m1);
@@ -1260,7 +1253,8 @@ void linear_sieve(int n) {
 \subsection{ModInverses.h}
 
 \begin{code}
-// Calculate modular inverse for mod m up to n in O(n)
+// @return array $A$ of length $N$ s.t
+//    $i \cdot A_i = 1 \pmod{m}$
 vector<int> mod_inverse(int m, int n = -1) {
     assert(n < m);
     if(n == -1) {
@@ -1275,12 +1269,12 @@ vector<int> mod_inverse(int m, int n = -1) {
 }
 
 \end{code}
-\subsection{ModPow.h}
+\subsection{PowMod.h}
 
 \begin{code}
-// @param n `0 <= n`
-// @param m `1 <= m`
-// @return `(x ** n) % m`
+// @param $0 \leq n$
+// @param $1 \leq m$
+// @return $x^n \pmod{m}$
 constexpr long long pow_mod_constexpr(long long x, long long n, int m) {
     if(m == 1) return 0;
     unsigned int _m = (unsigned int)(m);
@@ -1329,11 +1323,96 @@ constexpr bool is_prime_constexpr(int n) {
 template<int n> constexpr bool is_prime = is_prime_constexpr(n);
 
 \end{code}
+\subsection{Factorize.h}
+
+\begin{code}
+template<class T>
+vector<pair<T, int>> MergeFactors(const vector<pair<T, int>>& a, const vector<pair<T, int>>& b) {
+    vector<pair<T, int>> c;
+    int i = 0, j = 0;
+    while(i < (int) a.size() || j < (int) b.size()) {
+        if(i < (int) a.size() && j < (int) b.size() && a[i].first == b[j].first) {
+            c.emplace_back(a[i].first, a[i].second + b[j].second);
+            ++i, ++j;
+            continue;
+        }
+        if(j == (int) b.size() || (i < (int) a.size() && a[i].first < b[j].first)) {
+            c.push_back(a[i++]);
+        } else {
+            c.push_back(b[j++]);
+        }
+    }
+    return c;
+}
+
+template<class T>
+vector<pair<T, int>> RhoC(const T& n, const T& c) {
+    if(n <= 1) {
+        return {};
+    }
+    if(n % 2 == 0) {
+        return MergeFactors({{2, 1}}, RhoC(n / 2, c));
+    }
+    if(is_prime_constexpr(n)) {
+        return {{n, 1}};
+    }
+    T x = 2;
+    T saved = 2;
+    T p = 1;
+    T lam = 1;
+    while(true) {
+        x = (x * x % n + c) % n;
+        T g = __gcd(((x - saved) + n) % n, n);
+        if(g != 1) {
+            return MergeFactors(RhoC(g, c + 1), RhoC(n / g, c + 1));
+        }
+        if(p == lam) {
+            saved = x;
+            p <<= 1;
+            lam = 0;
+        }
+        lam += 1;
+    }
+    return {};
+}
+
+template<class T>
+vector<pair<T, int>> Factorize(T n) {
+    if(n <= 1) {
+        return {};
+    }
+    return RhoC(n, T(1));
+}
+
+template<class T>
+vector<T> BuildDivisorsFromFactors(const vector<pair<T, int>>& factors) {
+    int total = 1;
+    for(int i = 0; i < (int) factors.size(); ++i) {
+        total *= factors[i].second + 1;
+    }
+    vector<T> divisors;
+    divisors.reserve(total);
+    divisors.push_back(1);
+    for(auto& [p, cnt] : factors) {
+        int sz = (int) divisors.size();
+        for(int i = 0; i < sz; ++i) {
+            T cur = divisors[i];
+            for(int j = 0; j < cnt; ++j) {
+                cur *= p;
+                divisors.push_back(cur);
+            }
+        }
+    }
+    // sort(divisors.begin(), divisors.end());
+    return divisors;
+}
+
+\end{code}
 \subsection{PrimitiveRoot.h}
 
 \begin{code}
 // Compile time primitive root
-// @param m must be prime
+// @param $m$ must be prime
 // @return primitive root (and minimum in now)
 constexpr int primitive_root_constexpr(int m) {
     if(m == 2) return 1;
@@ -1374,9 +1453,9 @@ template<int m> constexpr int primitive_root = primitive_root_constexpr(m);
 \subsection{FloorSum.h}
 
 \begin{code}
-// @param n `n < 2^32`
-// @param m `1 <= m < 2^32`
-// @return sum_{i=0}^{n-1} floor((ai + b) / m) (mod 2^64)
+// @param $n < 2^{32}$
+// @param $1 \leq m < 2^{32}$
+// @return sum_{i=0}^{n-1} \lfloor \frac{ai + b}{m} \rfloor \pmod{2^{64}}
 unsigned long long floor_sum_unsigned(unsigned long long n, unsigned long long m, unsigned long long a, unsigned long long b) {
     unsigned long long ans = 0;
     while(true) {
@@ -1622,6 +1701,47 @@ vector<T> SubsetSumConvolution(const vector<T>& f, const vector<T>& g) {
 }
 
 \end{code}
+\subsection{FFT.h}
+
+\begin{code}
+// Fast-Fourier-Transform
+using cd = complex<double>;
+
+const double PI = acos(-1); 
+
+void fft(vector<cd>& a, bool inv) {
+    int n = (int) a.size();
+    for(int i = 1, j = 0; i < n; ++i) {
+        int bit = n >> 1;
+        for(; j & bit; bit >>= 1) {
+            j ^= bit;
+        }
+        j ^= bit;
+        if(i < j) {
+            swap(a[i], a[j]);
+        }
+    }
+    for(int len = 2; len <= n; len <<= 1) {
+        const double ang = 2 * PI / len * (inv ? -1 : +1);
+        cd rot(cos(ang), sin(ang));
+        for(int i = 0; i < n; i += len) {
+            cd w(1);
+            for(int j = 0; j < len / 2; ++j) {
+                cd u = a[i + j], v = a[i + j + len / 2] * w;
+                a[i + j] = u + v;
+                a[i + j + len / 2] = u - v;
+                w *= rot;
+            }
+        }
+    }
+    if(inv) {
+        for(auto& x : a) {
+            x /= n;
+        }
+    }
+}
+
+\end{code}
 \subsection{Poly.h}
 
 \begin{code}
@@ -1652,7 +1772,7 @@ public:
         coeff.resize(n);
     }
 
-    T operator[](int idx) const {
+    T at(int idx) const {
         if(idx < 0 || idx >= size()) {
             return 0;
         }
@@ -1684,7 +1804,7 @@ public:
     friend Poly operator+(const Poly& a, const Poly& b) {
         vector<T> res(max(a.size(), b.size()));
         for(int i = 0; i < (int) res.size(); ++i) {
-            res[i] = a[i] + b[i];
+            res[i] = a.at(i) + b.at(i);
         }
         return Poly(res);
     }
@@ -1692,7 +1812,7 @@ public:
     friend Poly operator-(const Poly& a, const Poly& b) {
         vector<T> res(max(a.size(), b.size()));
         for(int i = 0; i < (int) res.size(); ++i) {
-            res[i] = a[i] - b[i];
+            res[i] = a.at(i) - b.at(i);
         }
         return Poly(res);
     }
@@ -2061,6 +2181,7 @@ istream& operator>>(istream& in, Point<T>& p) {
 \subsection{ConvexHull.h}
 
 \begin{code}
+// @return the points of the convex hull in clock-wise order
 template<class T>
 vector<Point<T>> ConvexHull(vector<Point<T>> points) {
     const int n = (int) points.size();
@@ -2100,7 +2221,6 @@ vector<Point<T>> ConvexHull(vector<Point<T>> points) {
 \subsection{LCA.h}
 
 \begin{code}
-template<class T>
 class LCA {
 public:
     LCA() : LCA(0) {}
@@ -2110,106 +2230,133 @@ public:
         return min(a, b);
     }
 
-    struct Edge {
-        int u, v;
-        T cost;
-
-        Edge(int a, int b, T c) : u(a), v(b), cost(c) {}
-    };
-
-    void add_edge(int u, int v, T cost = 1) {
+    void add_edge(int u, int v) {
         assert(0 <= u && u < n);
         assert(0 <= v && v < n);
-
-        g[u].push_back((int) edges.size());
-        g[v].push_back((int) edges.size());
-        edges.emplace_back(u, v, cost);
+        g[u].push_back(v);
+        g[v].push_back(u);
     }
 
-    void build(int root) {
+    void build(int root = 0) {
         assert(0 <= root && root < n);
-        assert((int) edges.size() == n - 1);
-
-        _depth.assign(n, 0);
-        _dist.assign(n, 0);
-
-        euler_tour.reserve(2 * n - 1);
+        depth.assign(n, 0);
+        parent.assign(n, -1);
+        subtree_size.assign(n, 1);
+        euler.reserve(2 * n - 1);
         first_occurrence.assign(n, 0);
-
+        tour_list.reserve(n);
+        tour_start.assign(n, 0);
         function<void(int, int, int)> dfs = [&](int u, int p, int d) {
-            _depth[u] = d;
-            first_occurrence[u] = (int) euler_tour.size();
-            euler_tour.push_back(u);
-
-            for(auto& id : g[u]) {
-                int x = edges[id].u;
-                int y = edges[id].v;
-                T c = edges[id].cost;
-                int v = u ^ x ^ y;
-
+            parent[u] = p;
+            depth[u] = d;
+            first_occurrence[u] = (int) euler.size();
+            euler.push_back(u);
+            pair<int, int> heavy = {-1, -1};
+            for(auto& v : g[u]) {
                 if(v == p) {
                     continue;
                 }
-
-                _depth[v] = _depth[u] + 1;
-                _dist[v] = _dist[u] + c;
-
                 dfs(v, u, d + 1);
-
-                euler_tour.push_back(u);
+                subtree_size[u] += subtree_size[v];
+                if(subtree_size[v] > heavy.first) {
+                    heavy = {subtree_size[v], v};
+                }
+                euler.push_back(u);
+            }
+            sort(g[u].begin(), g[u].end(), [&](int a, int b) {
+                return subtree_size[a] > subtree_size[b];
+            });
+        };
+        dfs(root, -1, 0);
+        heavy_root.assign(n, 0);
+        function<void(int, bool)> dfs2 = [&](int u, bool is_heavy) {
+            tour_start[u] = (int) tour_list.size();
+            tour_list.push_back(u);
+            heavy_root[u] = (is_heavy ? heavy_root[parent[u]] : u);
+            bool heavy = true;
+            for(auto& v : g[u]) {
+                if(v == parent[u]) {
+                    continue;
+                }
+                dfs2(v, heavy);
+                heavy = false;
             }
         };
-
-        dfs(root, -1, 0);
-
-        vector<pair<int, int>> route;
-        route.reserve((int) euler_tour.size());
-
-        for(auto& u : euler_tour) {
-            route.emplace_back(_depth[u], u);
+        dfs2(root, false);
+        {
+            vector<pair<int, int>> route;
+            route.reserve((int) euler.size());
+            for(auto& u : euler) {
+                route.emplace_back(depth[u], u);
+            }
+            st = sparse_table<pair<int, int>, __lca_op>(route);
         }
-
-        st = sparse_table<pair<int, int>, __lca_op>(route);
     }
 
-    inline int depth(int u) const {
-        assert(0 <= u && u < n);
-        return _depth[u];
+    inline int dist(int u, int v) const {
+        return depth[u] + depth[v] - 2 * depth[lca(u, v)];
     }
 
-    inline int dist(int u) const {
-        assert(0 <= u && u < n);
-        return _dist[u];
+    pair<int, array<int, 2>> get_diameter() const {
+        pair<int, int> u_max = {-1, -1};
+        pair<int, int> ux_max = {-1, -1};
+        pair<int, array<int, 2>> uxv_max = {-1, {-1, -1}};
+        for(int u : euler) {
+            u_max = max(u_max, {depth[u], u});
+            ux_max = max(ux_max, {u_max.first - 2 * depth[u], u_max.second});
+            uxv_max = max(uxv_max, {ux_max.first + depth[u], {ux_max.second, u}});
+        }
+        return uxv_max;
+    }
+
+    inline int kth_ancestor(int u, int k) const {
+        if(depth[u] < k) {
+            return -1;
+        }
+        while(k > 0) {
+            int root = heavy_root[u];
+            if(depth[root] <= depth[u] - k) {
+                return tour_list[tour_start[u] - k];
+            }
+            k -= depth[u] - depth[root] + 1;
+            u = parent[root];
+        }
+        return u;
+    }
+
+    inline int kth_node_on_path(int a, int b, int k) const {
+        int z = lca(a, b);
+        int fi = depth[a] - depth[z];
+        int se = depth[b] - depth[z];
+        assert(0 <= k && k <= fi + se);
+        if(k < fi) {
+            return kth_ancestor(a, k);
+        } else {
+            return kth_ancestor(b, fi + se - k);
+        }
     }
 
     int lca(int u, int v) const {
         assert(0 <= u && u < n);
         assert(0 <= v && v < n);
-
         int l = first_occurrence[u];
         int r = first_occurrence[v];
-
         return st.prod(min(l, r), max(l, r)).second;
     }
 
-    inline int dist(int u, int v) const {
-        assert(0 <= u && u < n);
-        assert(0 <= v && v < n);
-
-        return dist(u) + dist(v) - 2 * dist(lca(u, v));
-    }
+public:
+    int n;
+    vector<vector<int>> g;
+    vector<int> parent;
+    vector<int> depth;
+    vector<int> subtree_size;
 
 protected:
-    int n;
-    vector<Edge> edges;
-    vector<vector<int>> g;
-
-    vector<int> _depth;
-    vector<T> _dist;
-
-    vector<int> euler_tour;
+    vector<int> euler;
     vector<int> first_occurrence;
-
+    vector<int> tour_list;
+    vector<int> tour_start;
+    vector<int> heavy_root;
     sparse_table<pair<int, int>, __lca_op> st;
 };
 
@@ -2217,162 +2364,50 @@ protected:
 \subsection{HLD.h}
 
 \begin{code}
-template<class T>
-class HLD : LCA<T> {
-    using LCA<T>::n;
-    using LCA<T>::edges;
-    using LCA<T>::g;
-    using LCA<T>::build;
-
+class HLD : LCA {
 public:
-    using LCA<T>::add_edge;
-    using LCA<T>::parent;
-    using LCA<T>::lca;
+    using LCA::add_edge;
+    using LCA::build;
+    using LCA::dist;
+    using LCA::get_diameter;
+    using LCA::kth_ancestor;
+    using LCA::kth_node_on_path;
+    using LCA::lca;
 
     HLD() : HLD(0) {}
-    HLD(int _n) : LCA<T>(_n) {}
-
-    void add_edge(int u, int v, T cost = 1) {
-        assert(0 <= u && u < n);
-        assert(0 <= v && v < n);
-
-        g[u].push_back((int) edges.size());
-        g[v].push_back((int) edges.size());
-        edges.emplace_back(u, v, cost);
-    }
-
-    void build_hld(int root = 0) {
-        build(root);
-
-        heavy_node.assign(n, -1);
-
-        function<int(int)> dfs = [&](int u) {
-            int sz = 1;
-            int max_sz = 0;
-
-            int p = parent(u);
-
-            for(auto& i : g[u]) {
-                int x = edges[i].u;
-                int y = edges[i].v;
-                T c = edges[i].cost;
-
-                int v = u ^ x ^ y;
-                if(v == p) {
-                    continue;
-                }
-
-                int sub_sz = dfs(v);
-
-                sz += sub_sz;
-
-                if(sub_sz > max_sz) {
-                    max_sz = sub_sz;
-                    heavy_node[u] = v;
-                }
-            }
-            return sz;
-        };
-
-        dfs(root);
-
-        id.assign(n, -1);
-
-        function<void(int)> dfs2 = [&](int u) {
-            static int counter = 0;
-            id[u] = counter++;
-
-            int p = parent(u);
-
-            if(heavy_node[u] != -1) {
-                dfs2(heavy_node[u]);
-            }
-
-            for(auto& i : g[u]) {
-                int x = edges[i].u;
-                int y = edges[i].v;
-                T c = edges[i].cost;
-
-                int v = u ^ x ^ y;
-                if(v == p || v == heavy_node[u]) {
-                    continue;
-                }
-
-                dfs2(v);
-            }
-        };
-
-        dfs2(root);
-
-        chain.resize(n);
-        iota(chain.begin(), chain.end(), 0);
-
-        function<void(int)> dfs3 = [&](int u) {
-            int p = parent(u);
-
-            if(heavy_node[u] != -1) {
-                chain[heavy_node[u]] = chain[u];
-            }
-
-            for(auto& i : g[u]) {
-                int x = edges[i].u;
-                int y = edges[i].v;
-                T c = edges[i].cost;
-
-                int v = u ^ x ^ y;
-                if(v == p) {
-                    continue;
-                }
-
-                dfs3(v);
-            }
-        };
-
-        dfs3(root);
-    }
+    HLD(int _n) : LCA(_n) {}
 
     inline int get(int u) const {
-        return id[u];
+        return tour_start[u];
     }
 
-    // path[u, ..., p) where p is an ancestor of u
+    // return $\text{path}_{[u, \dots , p)} where $p$ is an ancestor of $u$
     vector<pair<int, int>> path_up(int u, int p) const {
         vector<pair<int, int>> seg;
-
-        while(chain[u] != chain[p]) {
-            seg.emplace_back(id[chain[u]], id[u] + 1);
-            u = parent(chain[u]);
+        while(heavy_root[u] != heavy_root[p]) {
+            seg.emplace_back(get(heavy_root[u]), get(u) + 1);
+            u = parent[heavy_root[u]];
         }
-
-        // id[p] is smaller than id[u] but we don't want id[p]
-        seg.emplace_back(id[p] + 1, id[u] + 1);
-
+        // $id_p$ is smaller than $id_u$ but we don't want $id_p$
+        seg.emplace_back(get(p) + 1, get(u) + 1);
         return seg;
     }
 
     vector<pair<int, int>> path(int u, int v) const {
         int z = lca(u, v);
-
         auto lhs = path_up(u, z);
         auto rhs = path_up(v, z);
-
-        lhs.emplace_back(id[z], id[z] + 1);
+        lhs.emplace_back(get(z), get(z) + 1);
         lhs.insert(lhs.end(), rhs.begin(), rhs.end());
-
         return lhs;
     }
-
-private:
-    vector<int> heavy_node;
-    vector<int> id;
-    vector<int> chain;
 };
 
 \end{code}
 \subsection{TwoSat.h}
 
 \begin{code}
-
+// Under construction
 \end{code}
 \subsection{Dinic.h}
 
@@ -3230,11 +3265,31 @@ private:
 \end{code}
 \section{Misc}
 
+\subsection{Aliens.h}
+
+\begin{code}
+// find minimum
+int aliens(int l, int r, int k) {
+    while(l < r) {
+        int m = l + (r - l) / 2;
+        auto [score, op] = f(m);
+        if(op == k) {
+            return score - m * k;
+        }
+        if(op < k) {
+            r = m;
+        } else {
+            l = m + 1;
+        }
+    }
+    return f(l).first - l * k;
+}
+\end{code}
 \subsection{Timer.h}
 
 \begin{code}
 const clock_t startTime = clock();
-double getCurrentTime() {
+inline double getCurrentTime() {
     return (double) (clock() - startTime) / CLOCKS_PER_SEC;
 }
 
@@ -3265,15 +3320,15 @@ public:
     }
 
     inline unsigned long long next(unsigned long long a) {
-        return next() % a;
+        return uniform_int_distribution<unsigned long long>(0, a - 1)(rng);
     }
 
     inline unsigned long long next(unsigned long long a, unsigned long long b) {
-        return a + next(b - a + 1);
+        return uniform_int_distribution<unsigned long long>(a, b)(rng);
     }
 
     inline long double nextDouble() {
-        return ((unsigned int) next()) / 4294967295.0;
+        return uniform_real_distribution<long double>(0.0, 1.0)(rng);
     }
 
     inline long double nextDouble(long double a) {
@@ -3281,7 +3336,7 @@ public:
     }
 
     inline long double nextDouble(long double a, long double b) {
-        return a + nextDouble() * (b - a);
+        return uniform_real_distribution<long double>(a, b)(rng);
     }
 
     template<class T>
@@ -3291,8 +3346,6 @@ public:
         }
     }
 };
-
-random_t rnd;
 
 \end{code}
 \subsection{Debug.h}
@@ -3329,7 +3382,7 @@ struct debug {
 
 \begin{code}
 template<class T>
-vector<int> ordered_compress(const vector<T>& a, int OFFSET = 0) {
+vector<int> discrete(const vector<T>& a, int OFFSET = 0) {
     vector<T> b(a);
     sort(b.begin(), b.end());
     b.erase(unique(b.begin(), b.end()), b.end());
@@ -3340,21 +3393,55 @@ vector<int> ordered_compress(const vector<T>& a, int OFFSET = 0) {
     return c;
 }
 
-template<class T>
-vector<int> unordered_compress(const vector<T>& a, int OFFSET = 0) {
-    int n = (int) a.size();
-    hash_map<T, int> mapping;
-    vector<int> b(n);
-    for(int i = 0; i < n; ++i) {
-        auto it = mapping.find(a[i]);
-        if(it == mapping.end()) {
-            b[i] = mapping[a[i]] = OFFSET;
-            OFFSET += 1;
-        } else {
-            b[i] = it->second;
-        }
+\end{code}
+\subsection{Template.h}
+
+\begin{code}
+#include <bits/stdc++.h>
+#include <ext/pb_ds/assoc_container.hpp>
+using namespace std;
+using namespace __gnu_pbds;
+
+using uint = unsigned int;
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+template<class T> using pair2 = pair<T, T>;
+using pii = pair2<int>;
+using pll = pair2<ll>;
+using pdd = pair2<ld>;
+using vi = vector<int>;
+using vl = vector<ll>;
+template<class T> using PQ = priority_queue<T>;
+template<class T> using PQG = priority_queue<T, vector<T>, greater<T>>;
+template<class T, class Comp = less<T>> using ordered_set = tree<T, null_type, Comp, rb_tree_tag, tree_order_statistics_node_update>;
+template<class T> using ordered_multiset = ordered_set<T, less_equal<T>>;
+
+struct splitmix64_hash {
+    static ull splitmix64(ull x) {
+        x += 0x9e3779b97f4a7c15;
+        x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;
+        x = (x ^ (x >> 27)) * 0x94d049bb133111eb;
+        return x ^ (x >> 31);
     }
-    return b;
+ 
+    ull operator()(ull x) const {
+        static const ull FIXED_RANDOM = chrono::steady_clock::now().time_since_epoch().count();
+        return splitmix64(x + FIXED_RANDOM);
+    }
+};
+
+template<class T, class U, class H = splitmix64_hash> using hash_map = gp_hash_table<T, U, H>;
+template<class T, class H = splitmix64_hash> using hash_set = hash_map<T, null_type, H>;
+
+template<class T> inline bool chmin(T& a, const T& b) { if(a > b) { a = b; return true; } return false; }
+template<class T> inline bool chmax(T& a, const T& b) { if(a < b) { a = b; return true; } return false; }
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    ;
+    return 0;
 }
 
 \end{code}
