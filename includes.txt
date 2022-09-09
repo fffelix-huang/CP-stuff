@@ -19,8 +19,9 @@ number-theory
 	CRT.h
 	LinearSieve.h
 	ModInverses.h
-	ModPow.h
+	PowMod.h
 	IsPrime.h
+	Factorize.h
 	PrimitiveRoot.h
 	FloorSum.h
 numerical
@@ -48,7 +49,9 @@ string
 	Trie.h
 	AhoCorasick.h
 misc
+	Aliens.h
 	Timer.h
 	Random.h
 	Debug.h
 	Discrete.h
+	Template.h
