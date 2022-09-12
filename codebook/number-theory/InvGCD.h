@@ -1,4 +1,3 @@
-
 // @param $1 \leq b$
 // @return ${g, x}$ s.t.
 //	$g = \gcd(a, b)$
