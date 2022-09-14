@@ -8,6 +8,7 @@ data-structures
 	SparseTable.h
 	ConvexHullTrick.h
 	Treap.h
+	SkewHeap.h
 combinatorial
 	Combination.h
 	CountInversions.h

@@ -19,7 +19,7 @@ public:
 		if(l == 0) {
 			return pref[r];
 		}
-		return pref[r] - pref[l - 1] * pow_mod_constexpr(A, r - l + 1, T::mod());
+		return pref[r] - pref[l - 1] * T(pow_mod_constexpr(A, r - l + 1, T::mod()));
 	}
 	
 	inline T id() const {
