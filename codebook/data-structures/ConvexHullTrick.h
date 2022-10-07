@@ -26,7 +26,7 @@ struct CHT : multiset<Line_t, less<>> {
 		return x->p >= y->p;
 	}
 
-	void insert_line(long long k, long long m) {
+	void add_line(long long k, long long m) {
 		auto z = insert({k, m, 0}), y = z++, x = y;
 		while(isect(y, z)) {
 			z = erase(z);
@@ -39,7 +39,7 @@ struct CHT : multiset<Line_t, less<>> {
 		}
 	}
 
-	long long eval(long long x) {
+	long long get(long long x) {
 		assert(!empty());
 		auto l = *lower_bound(x);
 		return l.k * x + l.m;

@@ -15,7 +15,7 @@ void init_fact(int n) {
 	}
 }
 
-mint C(int n, int k) {
+mint binom(int n, int k) {
 	if(k < 0 || k > n) {
 		return 0;
 	}
@@ -23,7 +23,7 @@ mint C(int n, int k) {
 	return fact[n] * inv_fact[k] * inv_fact[n - k];
 }
 
-mint P(int n, int k) {
+mint permute(int n, int k) {
 	if(k < 0 || k > n) {
 		return 0;
 	}
