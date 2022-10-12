@@ -53,6 +53,44 @@ vector<pair<T, int>> Factorize(T n) {
 	if(n <= 1) {
 		return {};
 	}
+	if(n <= sieved) {
+		vector<pair<T, int>> res;
+		while(n > 1) {
+			if(!res.empty() && res.back().first == least[n]) {
+				res.back().second += 1;
+			} else {
+				res.emplace_back(least[n], 1);
+			}
+			n /= least[n];
+		}
+		return res;
+	}
+	if(n <= 1LL * sieved * sieved) {
+		vector<pair<T, int>> res;
+		if(!is_prime_constexpr(n)) {
+			for(T i : primes) {
+				T t = n / i;
+				if(i > t) {
+					break;
+				}
+				if(n == t * i) {
+					int cnt = 0;
+					while(n % i == 0) {
+						n /= i;
+						cnt += 1;
+					}
+					res.emplace_back(i, cnt);
+					if(is_prime_constexpr(n)) {
+						break;
+					}
+				}
+			}
+		}
+		if(n > 1) {
+			res.emplace_back(n, 1);
+		}
+		return res;
+	}
 	return RhoC(n, T(1));
 }
 

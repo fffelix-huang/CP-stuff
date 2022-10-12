@@ -1,33 +1,21 @@
-vector<bool> isprime;
 vector<int> primes;
-vector<int> phi;
-vector<int> mobius;
-void linear_sieve(int n) {
-	n += 1;
-	isprime.resize(n);
-	fill(isprime.begin() + 2, isprime.end(), true);
-	phi.resize(n);
-	mobius.resize(n);
-	phi[1] = mobius[1] = 1;
-	for(int i = 2; i < n; ++i) {
-		if(isprime[i]) {
+vector<int> least = {0, 1};
+int sieved = 1;
+void LinearSieve(int n) {
+	n = max(n, 1);
+	least.assign(n + 1, 0);
+	primes.clear();
+	for(int i = 2; i <= n; ++i) {
+		if(least[i] == 0) {
+			least[i] = i;
 			primes.push_back(i);
-			phi[i] = i - 1;
-			mobius[i] = -1;
 		}
-		for(auto& j : primes) {
-			if(i * j >= n) {
+		for(auto x : primes) {
+			if(x > least[i] || i * x > n) {
 				break;
 			}
-			isprime[i * j] = false;
-			if(i % j == 0) {
-				mobius[i * j] = 0;
-				phi[i * j] = phi[i] * j;
-				break;
-			} else {
-				mobius[i * j] = mobius[i] * mobius[j];
-				phi[i * j] = phi[i] * phi[j];
-			}
+			least[i * x] = x;
 		}
 	}
+	sieved = n;
 }

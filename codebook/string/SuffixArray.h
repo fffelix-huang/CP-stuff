@@ -42,7 +42,7 @@ vector<int> sa_doubling(const vector<int>& s) {
 // SA-IS, linear-time suffix array construction
 // Reference:
 // G. Nong, S. Zhang, and W. H. Chan,
-// Two Efficient Algorithms forLinear Time Suffix Array Construction
+// Two Efficient Algorithms for Linear Time Suffix Array Construction
 template<int THRESHOLD_NAIVE = 10, int THRESHOLD_DOUBLING = 40>
 vector<int> sa_is(const vector<int>& s, int upper) {
 	int n = int(s.size());
