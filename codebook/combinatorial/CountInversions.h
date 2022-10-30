@@ -1,4 +1,3 @@
-// @return the number of inversions s.t $i < j$, $a_i > a_j$
 template<class T>
 long long countInversions(const vector<T>& a) {
 	int n = (int) a.size();

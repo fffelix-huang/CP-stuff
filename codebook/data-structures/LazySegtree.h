@@ -11,7 +11,7 @@ public:
 
 	explicit lazy_segtree(int _n) : lazy_segtree(vector<S>(_n, e())) {}
 
-	explicit lazy_segtree(const vector<S>& v) : n(int(v.size())) {
+	explicit lazy_segtree(const vector<S>& v) : n((int) v.size()) {
 		log = 31 - __builtin_clz(2 * n - 1);
 		size = 1 << log;
 		d = vector<S>(size << 1, e());

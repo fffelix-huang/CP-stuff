@@ -1,6 +1,5 @@
 // Fast-Fourier-Transform
 using cd = complex<double>;
-
 const double PI = acos(-1); 
 
 void fft(vector<cd>& a, bool inv) {
