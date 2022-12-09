@@ -1,7 +1,7 @@
 // Compile time primitive root
 // @param $m$ must be prime
 // @return primitive root (and minimum in now)
-constexpr int primitive_root_constexpr(int m) {
+constexpr int primitive_root(int m) {
 	if(m == 2) return 1;
 	if(m == 167772161) return 3;
 	if(m == 469762049) return 3;
@@ -26,7 +26,7 @@ constexpr int primitive_root_constexpr(int m) {
 	for(int g = 2;; g++) {
 		bool ok = true;
 		for(int i = 0; i < cnt; i++) {
-			if(pow_mod_constexpr(g, (m - 1) / divs[i], m) == 1) {
+			if(power(g, (m - 1) / divs[i], m) == 1) {
 				ok = false;
 				break;
 			}
@@ -34,4 +34,3 @@ constexpr int primitive_root_constexpr(int m) {
 		if(ok) return g;
 	}
 }
-template<int m> constexpr int primitive_root = primitive_root_constexpr(m);

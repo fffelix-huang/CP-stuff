@@ -29,7 +29,7 @@ public:
 		edges.emplace_back(v, u, 0, -cost);
 	}
 
-	bool bfs(int s, int t) {
+	bool spfa(int s, int t) {
 		bool found = false;
 		fill(d.begin(), d.end(), numeric_limits<Cost_t>::max());
 		d[s] = 0;
@@ -63,7 +63,7 @@ public:
 		assert(0 <= t && t < n);
 		Cap_t cap = 0;
 		Cost_t cost = 0;
-		while(bfs(s, t)) {
+		while(spfa(s, t)) {
 			Cap_t send = numeric_limits<Cap_t>::max();
 			int u = t;
 			while(u != s) {

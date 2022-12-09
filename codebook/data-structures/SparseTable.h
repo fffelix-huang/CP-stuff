@@ -22,11 +22,6 @@ public:
 		return op(mat[lg][from], mat[lg][to - (1 << lg) + 1]);
 	}
 
-	inline T operator[](int p) const {
-		assert(0 <= p && p < n);
-		return mat[0][p];
-	}
-
 private:
 	int n;
 	vector<vector<T>> mat;

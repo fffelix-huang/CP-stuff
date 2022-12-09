@@ -122,6 +122,24 @@ public:
 	inline bool operator!=(const static_modint& rhs) const {
 		return !(*this == rhs);
 	}
+
+	static_modint pow(unsigned long long p) const {
+		assert(p >= 0);
+		static_modint res = 1;
+		static_modint a(*this);
+		while(p) {
+			if(p & 1) {
+				res *= a;
+			}
+			a *= a;
+			p >>= 1;
+		}
+		return res;
+	}
+
+	static_modint inv() const {
+		return 1 / static_modint(*this);
+	}
  
 private:
 	int value;

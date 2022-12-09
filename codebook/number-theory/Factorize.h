@@ -17,15 +17,17 @@ vector<pair<T, int>> MergeFactors(const vector<pair<T, int>>& a, const vector<pa
 	return c;
 }
 
+template<class T> vector<pair<T, int>> Factorize(T n);
+
 template<class T>
 vector<pair<T, int>> RhoC(const T& n, const T& c) {
 	if(n <= 1) {
 		return {};
 	}
-	if(n % 2 == 0) {
-		return MergeFactors({{2, 1}}, RhoC(n / 2, c));
+	if(n <= 1LL * sieved * sieved) {
+		return Factorize(n);
 	}
-	if(is_prime_constexpr(n)) {
+	if(is_prime(n)) {
 		return {{n, 1}};
 	}
 	T x = 2;
@@ -67,7 +69,7 @@ vector<pair<T, int>> Factorize(T n) {
 	}
 	if(n <= 1LL * sieved * sieved) {
 		vector<pair<T, int>> res;
-		if(!is_prime_constexpr(n)) {
+		if(!is_prime(n)) {
 			for(T i : primes) {
 				T t = n / i;
 				if(i > t) {
@@ -80,7 +82,7 @@ vector<pair<T, int>> Factorize(T n) {
 						cnt += 1;
 					}
 					res.emplace_back(i, cnt);
-					if(is_prime_constexpr(n)) {
+					if(is_prime(n)) {
 						break;
 					}
 				}

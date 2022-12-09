@@ -135,6 +135,24 @@ public:
 	inline bool operator!=(const dynamic_modint& rhs) const {
 		return !(*this == rhs);
 	}
+
+	dynamic_modint pow(unsigned long long p) const {
+		assert(p >= 0);
+		dynamic_modint res = 1;
+		dynamic_modint a(*this);
+		while(p) {
+			if(p & 1) {
+				res *= a;
+			}
+			a *= a;
+			p >>= 1;
+		}
+		return res;
+	}
+
+	dynamic_modint inv() const {
+		return 1 / dynamic_modint(*this);
+	}
  
 private:
 	unsigned int value;

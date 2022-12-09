@@ -1,4 +1,4 @@
-constexpr pair<long long, long long> inv_gcd(long long a, long long b) {
+pair<long long, long long> inv_gcd(long long a, long long b) {
 	a %= b;
 	if(a < 0) {
 		a += b;
@@ -13,15 +13,8 @@ constexpr pair<long long, long long> inv_gcd(long long a, long long b) {
 		long long u = s / t;
 		s -= t * u;
 		m0 -= m1 * u;
-
-		// swap(s, t);
-		// swap(m0, m1);
-		auto tmp = s;
-		s = t;
-		t = tmp;
-		tmp = m0;
-		m0 = m1;
-		m1 = tmp;
+		swap(s, t);
+		swap(m0, m1);
 	}
 	if(m0 < 0) m0 += b / s;
 	return {s, m0};
