@@ -35,8 +35,8 @@ vector<pair<T, int>> RhoC(const T& n, const T& c) {
 	T p = 1;
 	T lam = 1;
 	while(true) {
-		x = (x * x % n + c) % n;
-		T g = __gcd(((x - saved) + n) % n, n);
+		x = (1LL * x * x % n + c) % n;
+		T g = __gcd(((x - saved) % n + n) % n, n);
 		if(g != 1) {
 			return MergeFactors(RhoC(g, c + 1), RhoC(n / g, c + 1));
 		}
