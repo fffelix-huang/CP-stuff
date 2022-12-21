@@ -37,17 +37,16 @@ public:
 	}
 
 	vector<vector<int>> groups() {
-		vector<int> leader_buf(n), group_size(n);
+		vector<int> group_size(n);
 		for(int i = 0; i < n; i++) {
-			leader_buf[i] = leader(i);
-			group_size[leader_buf[i]]++;
+			group_size[leader(i)]++;
 		}
 		vector<vector<int>> result(n);
 		for(int i = 0; i < n; i++) {
 			result[i].reserve(group_size[i]);
 		}
 		for(int i = 0; i < n; i++) {
-			result[leader_buf[i]].push_back(i);
+			result[leader(i)].push_back(i);
 		}
 		result.erase(remove_if(result.begin(), result.end(), [](const vector<int>& v) {
 			return v.empty();
