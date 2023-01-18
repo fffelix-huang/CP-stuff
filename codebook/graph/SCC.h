@@ -47,6 +47,24 @@ public:
 		return id;
 	}
 
+	vector<vector<int>> compress(vector<int> id) {
+		int sz = *max_element(id.begin(), id.end()) + 1;
+		vector<vector<int>> new_g(sz);
+		for(int u = 0; u < n; ++u) {
+			for(auto v : g[u]) {
+				if(id[u] == id[v]) {
+					continue;
+				}
+				new_g[id[u]].push_back(id[v]);
+			}
+		}
+		for(int i = 0; i < sz; ++i) {
+			sort(new_g[i].begin(), new_g[i].end());
+			new_g[i].erase(unique(new_g[i].begin(), new_g[i].end()), new_g[i].end());
+		}
+		return new_g;
+	}
+
 private:
 	int n;
 	vector<vector<int>> g, h;

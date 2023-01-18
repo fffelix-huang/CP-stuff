@@ -70,7 +70,7 @@ public:
 		}
 	}
 
-	inline int dist(int u, int v) const {
+	inline int get_dist(int u, int v) const {
 		return depth[u] + depth[v] - 2 * depth[lca(u, v)];
 	}
 
@@ -86,7 +86,7 @@ public:
 		return uxv_max;
 	}
 
-	inline int kth_ancestor(int u, int k) const {
+	inline int get_kth_ancestor(int u, int k) const {
 		if(depth[u] < k) {
 			return -1;
 		}
@@ -101,7 +101,7 @@ public:
 		return u;
 	}
 
-	inline int kth_node_on_path(int a, int b, int k) const {
+	inline int get_kth_node_on_path(int a, int b, int k) const {
 		int z = lca(a, b);
 		int fi = depth[a] - depth[z];
 		int se = depth[b] - depth[z];
@@ -113,12 +113,32 @@ public:
 		}
 	}
 
-	int lca(int u, int v) const {
+	int get_lca(int u, int v) const {
 		assert(0 <= u && u < n);
 		assert(0 <= v && v < n);
 		int l = first_occurrence[u];
 		int r = first_occurrence[v];
 		return st.prod(min(l, r), max(l, r)).second;
+	}
+
+	vector<pair<int, int>> virtual_tree(vector<int> nodes) const {
+		if(nodes.empty()) {
+			return {};
+		}
+		auto &&compare_tour = [&](int a, int b) { return tour_start[a] < tour_start[b]; };
+		sort(nodes.begin(), nodes.end(), compare_tour);
+		int k = (int) nodes.size();
+		for(int i = 0; i < k - 1; i++) {
+			nodes.push_back(lca(nodes[i], nodes[i + 1]));
+		}
+		sort(nodes.begin() + k, nodes.end(), compare_tour);
+		inplace_merge(nodes.begin(), nodes.begin() + k, nodes.end(), compare_tour);
+		nodes.erase(unique(nodes.begin(), nodes.end()), nodes.end());
+		vector<pair<int, int>> result = {{nodes[0], -1}};
+		for(int i = 1; i < (int) nodes.size(); i++) {
+			result.emplace_back(nodes[i], lca(nodes[i], nodes[i - 1]));
+		}
+		return result;
 	}
 
 public:

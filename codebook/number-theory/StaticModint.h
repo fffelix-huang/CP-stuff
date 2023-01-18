@@ -124,7 +124,6 @@ public:
 	}
 
 	static_modint pow(unsigned long long p) const {
-		assert(p >= 0);
 		static_modint res = 1;
 		static_modint a(*this);
 		while(p) {
