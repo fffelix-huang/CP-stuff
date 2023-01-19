@@ -71,7 +71,7 @@ public:
 	}
 
 	inline int get_dist(int u, int v) const {
-		return depth[u] + depth[v] - 2 * depth[lca(u, v)];
+		return depth[u] + depth[v] - 2 * depth[get_lca(u, v)];
 	}
 
 	pair<int, array<int, 2>> get_diameter() const {
@@ -102,14 +102,14 @@ public:
 	}
 
 	inline int get_kth_node_on_path(int a, int b, int k) const {
-		int z = lca(a, b);
+		int z = get_lca(a, b);
 		int fi = depth[a] - depth[z];
 		int se = depth[b] - depth[z];
 		assert(0 <= k && k <= fi + se);
 		if(k < fi) {
-			return kth_ancestor(a, k);
+			return get_kth_ancestor(a, k);
 		} else {
-			return kth_ancestor(b, fi + se - k);
+			return get_kth_ancestor(b, fi + se - k);
 		}
 	}
 
@@ -129,14 +129,14 @@ public:
 		sort(nodes.begin(), nodes.end(), compare_tour);
 		int k = (int) nodes.size();
 		for(int i = 0; i < k - 1; i++) {
-			nodes.push_back(lca(nodes[i], nodes[i + 1]));
+			nodes.push_back(get_lca(nodes[i], nodes[i + 1]));
 		}
 		sort(nodes.begin() + k, nodes.end(), compare_tour);
 		inplace_merge(nodes.begin(), nodes.begin() + k, nodes.end(), compare_tour);
 		nodes.erase(unique(nodes.begin(), nodes.end()), nodes.end());
 		vector<pair<int, int>> result = {{nodes[0], -1}};
 		for(int i = 1; i < (int) nodes.size(); i++) {
-			result.emplace_back(nodes[i], lca(nodes[i], nodes[i - 1]));
+			result.emplace_back(nodes[i], get_lca(nodes[i], nodes[i - 1]));
 		}
 		return result;
 	}

@@ -17,7 +17,8 @@ public:
 	inline bool operator<=(const Fraction& other) const { return !(other < *this); }
 	inline bool operator>=(const Fraction& other) const { return !(*this < other); }
 	inline bool operator==(const Fraction& other) const { return a * other.b == b * other.a; }
-	inline bool operator!=(const Fraction& r) const { return !(*this == r); }
+	inline bool operator!=(const Fraction& other) const { return !(*this == other); }
+	template<class U> friend ostream& operator<<(ostream& out, const Fraction<U>& x);
 
 private:
 	T a, b;
