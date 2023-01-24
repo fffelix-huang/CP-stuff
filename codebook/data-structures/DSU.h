@@ -10,8 +10,6 @@ public:
 	}
 	
 	bool merge(int a, int b) {
-		assert(0 <= a && a < n);
-		assert(0 <= b && b < n);
 		a = leader(a);
 		b = leader(b);
 		if(a == b) {
@@ -26,13 +24,10 @@ public:
 	}
 	
 	inline int size(int u) {
-		assert(0 <= u && u < n);
 		return -_size[leader(u)];
 	}
 
 	inline bool same(int a, int b) {
-		assert(0 <= a && a < n);
-		assert(0 <= b && b < n);
 		return leader(a) == leader(b);
 	}
 
