@@ -1,8 +1,8 @@
 // TODOs: Make queries 0-based
 template<class T>
-class wavelet {
+class Wavelet {
 public:
-	wavelet(T* from, T* to, T L, T R) : low(L), high(R) {
+	Wavelet(T* from, T* to, T L, T R) : low(L), high(R) {
 		if(low == high || from >= to) {
 			return;
 		}
@@ -16,8 +16,8 @@ public:
 			a.push_back(a.back() + f(*it));
 		}
 		auto p = stable_partition(from, to, f);
-		l = new wavelet(from, p, low, mid);
-		r = new wavelet(p, to, mid + 1, high);
+		l = new Wavelet(from, p, low, mid);
+		r = new Wavelet(p, to, mid + 1, high);
 	}
 
 	// return kth smallest element in [L, R]
@@ -67,14 +67,14 @@ public:
 		return r->count(L - lb, R - rb, k);
 	}
 
-	~wavelet() {
+	~Wavelet() {
 		delete l;
 		delete r;
 	}
 
 private:
 	T low, high;
-	wavelet* l;
-	wavelet* r;
+	Wavelet* l;
+	Wavelet* r;
 	vector<T> a;
 };
