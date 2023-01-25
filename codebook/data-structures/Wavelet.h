@@ -1,6 +1,6 @@
-class Wavelet {
+class wavelet {
 public:
-	Wavelet(vector<int> v) : vals(v), t(0), n((int) v.size()) {
+	wavelet(vector<int> v) : vals(v), t(0), n((int) v.size()) {
 		sort(vals.begin(), vals.end());
 		vals.erase(unique(vals.begin(), vals.end()), vals.end());
 		t = __lg(2 * vals.size() - 1);
