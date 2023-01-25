@@ -5,7 +5,7 @@ public:
 
 	sparse_table(const vector<T>& a) {
 		n = static_cast<int>(a.size());
-		int max_log = 32 - __builtin_clz(n);
+		int max_log = __lg(n) + 1;
 		mat.resize(max_log);
 		mat[0] = a;
 		for(int j = 1; j < max_log; ++j) {
@@ -18,7 +18,7 @@ public:
 
 	inline T prod(int from, int to) const {
 		assert(0 <= from && from <= to && to <= n - 1);
-		int lg = 31 - __builtin_clz(to - from + 1);
+		int lg = __lg(to - from + 1);
 		return op(mat[lg][from], mat[lg][to - (1 << lg) + 1]);
 	}
 

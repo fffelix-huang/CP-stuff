@@ -6,7 +6,7 @@ public:
 	segtree(int _n) : segtree(vector<T>(_n, e())) {}
 	
 	segtree(const vector<T>& a): n(int(a.size())) {
-		log = 31 - __builtin_clz(2 * n - 1);
+		log = __lg(2 * n - 1);
 		size = 1 << log;
 		st.resize(size << 1, e());
 		for(int i = 0; i < n; ++i) {
