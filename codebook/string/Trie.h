@@ -1,53 +1,43 @@
-template<int ALPHABET, int (*f)(char)>
+template<int ALPHABET>
 class Trie {
 public:
 	struct Node {
-		int answer = 0;
-		int next[ALPHABET];
-
+		int nxt[ALPHABET];
 		Node() {
-			memset(next, -1, sizeof(next));
+			memset(nxt, -1, sizeof(nxt));
 		}
 	};
 
-	Trie() : Trie(vector<string>()) {}
+	Trie() {
+		newNode();
+	}
 
-	Trie(const vector<string>& strs) {
-		clear();
-		for(const string& s : strs) {
-			insert(s);
+	inline int next(int p, int v) {
+		return nodes[p].nxt[v] != -1 ? nodes[p].nxt[v] : nodes[p].nxt[v] = newNode();
+	}
+
+	inline void insert(const vector<int>& a, int p = 0) {
+		for(int v : a) {
+			p = next(p, v);
 		}
 	}
 
-	void insert(const string& s, int p = 0) {
-		for(const char& c : s) {
-			int v = f(c);
-			if(nodes[p].next[v] == -1) {
-				nodes[p].next[v] = newNode();
-			}
-			p = nodes[p].next[v];
-		}
-		nodes[p].answer += 1;
-	}
-
-	int count(const string& s, int p = 0) {
-		for(const char& c : s) {
-			int v = f(c);
-			if(nodes[p].next[v] == -1) {
-				return 0;
-			}
-			p = nodes[p].next[v];
-		}
-		return nodes[p].answer;
-	}
-
-	void clear() {
+	inline void clear() {
 		nodes.clear();
 		newNode();
 	}
 
-	void reserve(int n) {
-		nodes.reserve(n);
+	inline int longest_common_prefix(const vector<int>& a, int p = 0) const {
+		int ans = 0;
+		for(int v : a) {
+			if(nodes[p].nxt[v] != -1) {
+				ans += 1;
+				p = nodes[p].nxt[v];
+			} else {
+				break;
+			}
+		}
+		return ans;
 	}
 
 private:

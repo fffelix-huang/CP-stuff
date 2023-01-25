@@ -43,6 +43,7 @@ public:
 	}
 
 	inline int components() const {
+		assert((int) stk.size() < n);
 		return n - (int) stk.size();
 	}
 
