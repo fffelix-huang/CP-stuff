@@ -2,11 +2,11 @@ class DSU {
 public:
 	DSU() : DSU(0) {}
 
-	DSU(int _n) : n(_n), _size(vector<int>(n, -1)) {}
+	DSU(int _n) : n(_n), sz(n, -1) {}
 	
 	inline int leader(int u) {
 		assert(0 <= u && u < n);
-		return (_size[u] < 0 ? u : (_size[u] = leader(_size[u])));
+		return (sz[u] < 0 ? u : (sz[u] = leader(sz[u])));
 	}
 	
 	bool merge(int a, int b) {
@@ -15,16 +15,16 @@ public:
 		if(a == b) {
 			return false;
 		}
-		if(-_size[a] < -_size[b]) {
+		if(-sz[a] < -sz[b]) {
 			swap(a, b);
 		}
-		_size[a] += _size[b];
-		_size[b] = a;
+		sz[a] += sz[b];
+		sz[b] = a;
 		return true;
 	}
 	
 	inline int size(int u) {
-		return -_size[leader(u)];
+		return -sz[leader(u)];
 	}
 
 	inline bool same(int a, int b) {
@@ -51,5 +51,5 @@ public:
 
 private:
 	int n;
-	vector<int> _size;
+	vector<int> sz;
 };
