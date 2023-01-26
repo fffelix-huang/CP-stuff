@@ -199,7 +199,6 @@ public:
 		return Poly(res);
 	}
 
-	// https://judge.yosupo.jp/problem/inv_of_formal_power_series
 	Poly inv(int m) const {
 		Poly x{coeff[0].inv()};
 		int k = 1;
@@ -210,12 +209,10 @@ public:
 		return x.modxk(m);
 	}
 
-	// https://judge.yosupo.jp/problem/log_of_formal_power_series
 	Poly log(int m) const {
 		return (deriv() * inv(m)).integr().modxk(m);
 	}
 
-	// https://judge.yosupo.jp/problem/exp_of_formal_power_series
 	Poly exp(int m) const {
 		Poly x{mint(1)};
 		int k = 1;
@@ -263,7 +260,6 @@ public:
 		return ((*this) * b).divxk(n - 1);
 	}
 
-	// https://judge.yosupo.jp/problem/multipoint_evaluation
 	vector<mint> eval(vector<mint> x) const {
 		if(size() == 0) {
 			return vector<mint>(x.size(), 0);
