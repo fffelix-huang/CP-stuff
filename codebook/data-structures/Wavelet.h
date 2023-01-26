@@ -30,7 +30,7 @@ public:
 		}
 	}
 
-	// Returns kth smallest element in range [a, b)
+	// Returns kth (0-based) smallest element in range [a, b)
 	int kth(int a, int b, int k) {
 		for(int j = 0, ia = 0, ib = n, res = 0;; ++j) {
 			if(j == t) {
