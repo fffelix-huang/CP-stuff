@@ -1,19 +1,19 @@
 template<int ALPHABET>
-class Trie {
+class trie {
 public:
 	struct Node {
-		int nxt[ALPHABET];
+		int go[ALPHABET];
 		Node() {
-			memset(nxt, -1, sizeof(nxt));
+			memset(go, -1, sizeof(go));
 		}
 	};
 
-	Trie() {
+	trie() {
 		newNode();
 	}
 
 	inline int next(int p, int v) {
-		return nodes[p].nxt[v] != -1 ? nodes[p].nxt[v] : nodes[p].nxt[v] = newNode();
+		return nodes[p].go[v] != -1 ? nodes[p].go[v] : nodes[p].go[v] = newNode();
 	}
 
 	inline void insert(const vector<int>& a, int p = 0) {
@@ -30,9 +30,9 @@ public:
 	inline int longest_common_prefix(const vector<int>& a, int p = 0) const {
 		int ans = 0;
 		for(int v : a) {
-			if(nodes[p].nxt[v] != -1) {
+			if(nodes[p].go[v] != -1) {
 				ans += 1;
-				p = nodes[p].nxt[v];
+				p = nodes[p].go[v];
 			} else {
 				break;
 			}

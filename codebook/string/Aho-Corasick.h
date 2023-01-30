@@ -1,13 +1,13 @@
 template<int ALPHABET, int (*f)(char)>
-class AhoCorasick {
+class aho_corasick {
 public:
 	vector<array<int, ALPHABET>> trie;
 	vector<array<int, ALPHABET>> to;
 	vector<int> fail;
 	vector<int> cnt;
 
-	AhoCorasick() : AhoCorasick(vector<string>()) {}
-	AhoCorasick(const vector<string>& S) {
+	aho_corasick() : aho_corasick(vector<string>()) {}
+	aho_corasick(const vector<string>& S) {
 		newNode();
 		for(const auto& s : S) {
 			insert(s);
