@@ -1,4 +1,4 @@
-template<int ALPHABET = 26, MIN_CHAR = 'a'>
+template<int ALPHABET = 26, char MIN_CHAR = 'a'>
 class suffix_automaton {
 public:
 	struct Node {

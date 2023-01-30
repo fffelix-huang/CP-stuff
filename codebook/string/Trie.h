@@ -1,4 +1,4 @@
-template<int ALPHABET>
+template<int ALPHABET = 26, char MIN_CHAR = 'a'>
 class trie {
 public:
 	struct Node {

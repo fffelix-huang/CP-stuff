@@ -1,4 +1,4 @@
-template<int ALPHABET, int (*f)(char)>
+template<int ALPHABET = 26, char MIN_CHAR = 'a'>
 class aho_corasick {
 public:
 	vector<array<int, ALPHABET>> trie;
