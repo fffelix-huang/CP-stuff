@@ -12,6 +12,7 @@ public:
 
 	suffix_automaton() : suffix_automaton(string(0, ' ')) {}
 	suffix_automaton(const string& s) {
+		SA.reserve(s.size() * 2);
 		SA.emplace_back();
 		last = 0;
 		for(char c : s) {
