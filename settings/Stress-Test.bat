@@ -1,5 +1,7 @@
 @echo off
 
+:: call "q.bat [gen] [brute] [sol] [seed]"
+
 echo Compiling %1.cpp
 g++ %1.cpp -o %1.exe
 
