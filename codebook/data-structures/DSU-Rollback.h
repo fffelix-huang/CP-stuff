@@ -14,13 +14,13 @@ public:
 	bool merge(int a, int b) {
 		a = leader(a);
 		b = leader(b);
+		stk.emplace_back(a, sz[a], b, sz[b]);
 		if(a == b) {
 			return false;
 		}
 		if(-sz[a] < -sz[b]) {
 			swap(a, b);
 		}
-		stk.emplace_back(a, b, sz[b]);
 		sz[a] += sz[b];
 		sz[b] = a;
 		return true;
@@ -36,19 +36,14 @@ public:
 
 	void rollback() {
 		assert(!stk.empty());
-		auto [a, b, x] = stk.back();
+		auto [a, x, b, y] = stk.back();
 		stk.pop_back();
-		sz[a] -= x;
-		sz[b] = x;
-	}
-
-	inline int components() const {
-		assert((int) stk.size() < n);
-		return n - (int) stk.size();
+		sz[a] = x;
+		sz[b] = y;
 	}
 
 private:
 	int n;
 	vector<int> sz;
-	vector<tuple<int, int, int>> stk;
+	vector<tuple<int, int, int, int>> stk;
 };
