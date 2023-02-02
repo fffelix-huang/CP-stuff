@@ -82,6 +82,14 @@ public:
 		return ans;
 	}
 
+	void merge(const XorBasis& other) {
+		for(int i = 0; i < LOG; ++i) {
+			if(other.p[i]) {
+				insert(other.p[i]);
+			}
+		}
+	}
+
 private:
 	bool zero = false;
 	int cnt = 0;
