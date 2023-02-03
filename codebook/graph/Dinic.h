@@ -54,7 +54,7 @@ public:
 			return f;
 		}
 		T r = f;
-		for(int& i = cur[u]; i < int(g[u].size()); ++i) {
+		for(int& i = cur[u]; i < (int) g[u].size(); ++i) {
 			int j = g[u][i];
 			int v = e[j].to;
 			T c = e[j].cap;
