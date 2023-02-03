@@ -1,69 +1,64 @@
-// Hopcroft-Karp O(sqrt(n) * m)
 class bipartite_matching {
 public:
-	bipartite_matching(int _n, int _m) : n(_n), m(_m), g(_n), lhs(_n, -1), rhs(_m, -1), dist(_n) {}
+	bipartite_matching() : bipartite_matching(0, 0) {}
+	bipartite_matching(int _n, int _m) : n(_n), m(_m), lhs(_n), rhs(_m), dist(_n), cur(_n), g(_n) {}
 
 	void add_edge(int u, int v) {
 		assert(0 <= u && u < n);
-		assert(0 <= v && v < m);
+		assert(0 <= v && v < n);
 		g[u].push_back(v);
 	}
 
-	void bfs() {
+	bool bfs() {
 		queue<int> q;
-		for(int u = 0; u < n; ++u) {
-			if(lhs[u] == -1) {
-				q.push(u);
-				dist[u] = 0;
-			} else {
-				dist[u] = -1;
+		fill(dist.begin(), dist.end(), -1);
+		for(int i = 0; i < n; ++i) {
+			if(lhs[i] == -1) {
+				q.push(i);
+				dist[i] = 0;
 			}
 		}
+		bool found = false;
 		while(!q.empty()) {
 			int u = q.front();
 			q.pop();
-			for(auto v : g[u]) {
-				if(rhs[v] != -1 && dist[rhs[v]] == -1) {
-					dist[rhs[v]] = dist[u] + 1;
+			for(int v : g[u])
+				if(rhs[v] == -1) {
+					found = true;
+				} else if(dist[rhs[v]] == -1) {
 					q.push(rhs[v]);
+					dist[rhs[v]] = dist[u] + 1;
 				}
-			}
 		}
+		return found;
 	}
 
 	bool dfs(int u) {
-		for(auto v : g[u]) {
-			if(rhs[v] == -1) {
-				lhs[u] = v;
+		for(int& i = cur[u]; i < (int) g[u].size();) {
+			int v = g[u][i++];
+			if(rhs[v] == -1 || (dist[rhs[v]] == dist[u] + 1 && dfs(rhs[v]))) {
 				rhs[v] = u;
+				lhs[u] = v;
 				return true;
 			}
 		}
-		for(auto v : g[u]) {
-			if(dist[rhs[v]] == dist[u] + 1 && dfs(rhs[v])) {
-				lhs[u] = v;
-				rhs[v] = u;
-				return true;
-			}
-		}
+		dist[u] = -1;
 		return false;
 	}
 
 	int matching() {
-		while(true) {
-			bfs();
-			int augment = 0;
-			for(int u = 0; u < n; ++u) {
-				if(lhs[u] == -1) {
-					augment += dfs(u);
+		fill(lhs.begin(), lhs.end(), -1);
+		fill(rhs.begin(), rhs.end(), -1);
+		int ans = 0;
+		while(bfs()) {
+			fill(cur.begin(), cur.end(), 0);
+			for(int i = 0; i < n; ++i) {
+				if(lhs[i] == -1 && dfs(i)) {
+					ans += 1;
 				}
 			}
-			if(augment == 0) {
-				break;
-			}
-			flow += augment;
 		}
-		return flow;
+		return ans;
 	}
 
 	pair<vector<int>, vector<int>> minimum_vertex_cover() {
@@ -89,8 +84,8 @@ public:
 	}
 
 private:
-	int n, m, flow = 0;
-	vector<vector<int>> g;
-	vector<int> dist;
+	int n, m;
 	vector<int> lhs, rhs;
+	vector<int> dist, cur;
+	vector<vector<int>> g;
 };
