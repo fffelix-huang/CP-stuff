@@ -1,3 +1,4 @@
+// Hopcroft-Karp O(sqrt(n) * m)
 class bipartite_matching {
 public:
 	bipartite_matching(int _n, int _m) : n(_n), m(_m), g(_n), lhs(_n, -1), rhs(_m, -1), dist(_n) {}
