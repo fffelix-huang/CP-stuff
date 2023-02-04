@@ -24,8 +24,9 @@ public:
 		return uniform_int_distribution<unsigned long long>(0, a - 1)(rng);
 	}
 
-	inline unsigned long long next(unsigned long long a, unsigned long long b) {
-		return uniform_int_distribution<unsigned long long>(a, b)(rng);
+	template<class T>
+	inline typename enable_if<is_integral<T>::value, T>::type next(T a, T b) {
+		return uniform_int_distribution<T>(a, b)(rng);
 	}
 
 	inline long double nextDouble() {
@@ -47,3 +48,5 @@ public:
 		}
 	}
 };
+
+random_t rnd;
