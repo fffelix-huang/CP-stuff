@@ -3,12 +3,12 @@
 並查集，啟發式合併 + 路徑壓縮
 
 - 函式
-    - [Constructor](##Constructor)
-    - [merge](##merge)
-    - [same](##same)
-    - [size](##size)
-    - [leader](##leader)
-    - [groups](##groups)
+    - [Constructor](#Constructor)
+    - [merge](#merge)
+    - [same](#same)
+    - [size](#size)
+    - [leader](#leader)
+    - [groups](#groups)
 - 相關
     - [verification](##verification)
     - [reference](##reference)
