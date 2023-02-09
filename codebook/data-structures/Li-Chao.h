@@ -1,5 +1,5 @@
 template<class T>
-class li_chao {
+class LiChao {
 public:
 	static constexpr T INF = numeric_limits<T>::max();
 
@@ -9,7 +9,7 @@ public:
 		T operator()(T x) const { return a * x + b; }
 	};
 
-	li_chao(const vector<T>& xs_) : xs(xs_) {
+	LiChao(const vector<T>& xs_) : xs(xs_) {
 		sort(xs.begin(), xs.end());
 		xs.erase(unique(xs.begin(), xs.end()), xs.end());
 		n = (int) xs.size();
