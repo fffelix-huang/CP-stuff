@@ -1,11 +1,13 @@
+template<int LOG>
 class binary_trie {
 public:
-	binary_trie() {}
-	binary_trie(int LOG_) : LOG(LOG_) {
+	using T = int;
+
+	binary_trie() {
 		newNode();
 	}
 
-	void insert(int x) {
+	void insert(T x) {
 		int p = 0;
 		cnt[p] += 1;
 		for(int i = LOG - 1; i >= 0; --i) {
@@ -18,7 +20,7 @@ public:
 		}
 	}
 
-	void erase(int x) {
+	void erase(T x) {
 		int p = 0;
 		cnt[p] -= 1;
 		for(int i = LOG - 1; i >= 0; --i) {
@@ -29,29 +31,29 @@ public:
 		}
 	}
 
-	int get_min_xor(int x) {
+	T get_min_xor(T x) {
 		int p = 0;
-		int ans = 0;
+		T ans = 0;
 		for(int i = LOG - 1; i >= 0; --i) {
 			int v = x >> i & 1;
 			if(trie[p][v] && cnt[trie[p][v]] > 0) {
 				p = trie[p][v];
 			} else {
 				p = trie[p][v ^ 1];
-				ans ^= 1 << i;
+				ans ^= T(1) << i;
 			}
 		}
 		return ans;
 	}
 
-	int get_max_xor(int x) {
+	T get_max_xor(T x) {
 		int p = 0;
-		int ans = 0;
+		T ans = 0;
 		for(int i = LOG - 1; i >= 0; --i) {
 			int v = x >> i & 1;
 			if(trie[p][v ^ 1] && cnt[trie[p][v ^ 1]] > 0) {
 				p = trie[p][v ^ 1];
-				ans ^= 1 << i;
+				ans ^= T(1) << i;
 			} else {
 				p = trie[p][v];
 			}
@@ -60,14 +62,12 @@ public:
 	}
 
 private:
-	int LOG;
 	vector<array<int, 2>> trie;
 	vector<int> cnt;
 
 	int newNode() {
 		trie.emplace_back();
 		cnt.emplace_back();
-		trie.back()[0] = trie.back()[1] = cnt.back() = 0;
 		return (int) trie.size() - 1;
 	}
 };
