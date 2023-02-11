@@ -31,6 +31,21 @@ public:
 		}
 	}
 
+	int count(T x) {
+		int p = 0;
+		int ans = INT_MAX;
+		for(int i = LOG - 1; i >= 0; --i) {
+			int v = x >> i & 1;
+			if(trie[p][v]) {
+				p = trie[p][v];
+			} else {
+				return 0;
+			}
+			ans = min(ans, cnt[p]);
+		}
+		return ans;
+	}
+
 	T get_min_xor(T x) {
 		int p = 0;
 		T ans = 0;
