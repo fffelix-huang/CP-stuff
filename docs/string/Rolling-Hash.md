@@ -73,5 +73,6 @@ int hs.size()
 ## verification
 
 :thumbsup: https://atcoder.jp/contests/abc284/tasks/abc284_f
+:thumbsup: https://cses.fi/problemset/task/1753/
 
 ## reference
