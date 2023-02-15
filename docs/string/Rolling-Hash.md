@@ -60,8 +60,6 @@ array<int, HASH_COUNT> hs.merge(const vector<pair<int, int>>& seg)
 
 - $0 \leq l_i \leq r_i \leq n$
 
----
-
 ## size
 
 ```cpp
@@ -69,6 +67,8 @@ int hs.size()
 ```
 
 回傳字串長度
+
+---
 
 ## verification
 
