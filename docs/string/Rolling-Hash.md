@@ -15,13 +15,16 @@ Polynomial Hash
 ## Constructor
 
 ```cpp
-Hash<int HASH_COUNT, bool PRECOMPUTE_POWERS = true> hs()
 Hash<int HASH_COUNT, bool PRECOMPUTE_POWERS = true> hs(const string& s)
 ```
 
 `HASH_COUNT`：使用幾組 hash
+
 `PRECOMPUTE_POWERS`：次方建表
+
 如果沒有建次方表，將會使用快速冪計算，複雜度要乘以 $\log$
+
+`s` 可以為空，再透過 `add_char` 新增字元
 
 ## add_char
 
@@ -38,6 +41,7 @@ array<int, HASH_COUNT> hs.substr(int l, int r)
 ```
 
 回傳 $s[l, r)$ 的 hash 值
+
 如果 $l = r$ 回傳 $0$
 
 **constraints**
