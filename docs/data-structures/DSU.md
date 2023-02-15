@@ -10,8 +10,8 @@
     - [leader](#leader)
     - [groups](#groups)
 - 相關
-    - [verification](##verification)
-    - [reference](##reference)
+    - [verification](#verification)
+    - [reference](#reference)
 
 ## Constructor
 

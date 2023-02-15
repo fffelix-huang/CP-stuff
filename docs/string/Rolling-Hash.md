@@ -9,8 +9,8 @@ Polynomial Hash
     - [merge](#merge)
 	- [size](#size)
 - 相關
-    - [verification](##verification)
-    - [reference](##reference)
+    - [verification](#verification)
+    - [reference](#reference)
 
 ## Constructor
 
