@@ -1,34 +1,73 @@
-template<class T>
-class Rolling_Hash {
-public:
-	Rolling_Hash() {}
+# Rolling Hash
 
-	Rolling_Hash(int _A, string _s): A(_A), n((int) _s.size()), s(_s), pref(n) {
-		pref[0] = s[0];
-		for(int i = 1; i < n; ++i) {
-			pref[i] = pref[i - 1] * A + s[i];
-		}
-	}
-	
-	inline int size() const {
-		return n;
-	}
+Polynomial Hash
 
-	inline T get(int l, int r) const {
-		assert(0 <= l && l <= r && r < n);
-		if(l == 0) {
-			return pref[r];
-		}
-		return pref[r] - pref[l - 1] * T(pow_mod_constexpr(A, r - l + 1, T::mod()));
-	}
-	
-	inline T id() const {
-		return pref.back();
-	}
+- 函式
+    - [Constructor](#Constructor)
+    - [add_char](#add_char)
+    - [substr](#substr)
+    - [merge](#merge)
+	- [size](#size)
+- 相關
+    - [verification](##verification)
+    - [reference](##reference)
 
-private:
-	int A;
-	int n;
-	string s;
-	vector<T> pref;
-};
+## Constructor
+
+```cpp
+Hash<int HASH_COUNT, bool PRECOMPUTE_POWERS = true> hs()
+Hash<int HASH_COUNT, bool PRECOMPUTE_POWERS = true> hs(const string& s)
+```
+
+`HASH_COUNT`：使用幾組 hash
+`PRECOMPUTE_POWERS`：次方建表
+如果沒有建次方表，將會使用快速冪計算，複雜度要乘以 $\log$
+
+## add_char
+
+```cpp
+void hs.add_char(char c)
+```
+
+新增一個字元 `c` 到最後面
+
+## substr
+
+```cpp
+array<int, HASH_COUNT> hs.substr(int l, int r)
+```
+
+回傳 $s[l, r)$ 的 hash 值
+如果 $l = r$ 回傳 $0$
+
+**constraints**
+
+- $0 \leq l \leq r \leq n$
+
+## merge
+
+```cpp
+array<int, HASH_COUNT> hs.merge(const vector<pair<int, int>>& seg)
+```
+
+回傳 $s[l_0, r_0) + s[l_1, r_1) + \dots + s[l_k, r_k)$ 的 hash 值
+
+**constraints**
+
+- $0 \leq l_i \leq r_i \leq n$
+
+---
+
+## size
+
+```cpp
+int hs.size()
+```
+
+回傳字串長度
+
+## verification
+
+:thumbsup: https://atcoder.jp/contests/abc284/tasks/abc284_f
+
+## reference
