@@ -1,10 +1,10 @@
 template<class T, T (*op)(T, T)>
 class sparse_table {
 public:
-	sparse_table() : n(0) {}
+	sparse_table() {}
 
 	sparse_table(const vector<T>& a) {
-		n = static_cast<int>(a.size());
+		n = (int) a.size();
 		int max_log = __lg(n) + 1;
 		mat.resize(max_log);
 		mat[0] = a;
