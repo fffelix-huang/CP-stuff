@@ -11,13 +11,14 @@ class node {
 	int sz = 1;
 	int P = rng();
 	// declare extra variables:
- 
+ 	
+	// TODO:
 	node(int _id, ...) : id(_id) {
 	}
  
 	// push everything else:
 	void push_stuff() {
-		// TODO
+		// TODO:
 		if(tag) {
 			if(l != nullptr) {
 				l->unsafe_apply(tag);
@@ -37,7 +38,7 @@ class node {
  
 	// apply changes:
 	void unsafe_apply(tag) {
-		// TODO
+		// TODO:
 	}
  
 	void push() {
@@ -71,7 +72,7 @@ void debug_node(node* v, string pref = "") {
 		if(v != nullptr) {
 			v->push();
 			debug_node(v->r, pref + " ");
-			cerr << pref << "-" << " (" << v->id << ", " << v->money << ")" << endl;
+			cerr << pref << "-" << " " << v->id << endl;
 			debug_node(v->l, pref + " ");
 		} else {
 			cerr << pref << "-" << " " << "nullptr" << '\n';
