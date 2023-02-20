@@ -34,11 +34,17 @@ Treeeap
 ## node::Variables
 
 `int id`：編號 (debug 用)
+
 `node* l`：左節點
+
 `node* r`：右節點
+
 `node* p`：父節點
+
 `bool rev`：翻轉區間 tag
+
 `int sz`：子樹大小
+
 `int P`：節點的 priority
 
 其他根據需求自己增加變數
