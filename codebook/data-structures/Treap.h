@@ -12,7 +12,7 @@ class node {
 	int P = rng();
 	// declare extra variables:
  	
-	// TODO:
+	// TODO: init variables
 	node(int _id, ...) : id(_id) {
 	}
  
@@ -38,7 +38,7 @@ class node {
  
 	// apply changes:
 	void unsafe_apply(tag) {
-		// TODO:
+		// TODO: merge tag and apply changes
 	}
  
 	void push() {
@@ -53,7 +53,8 @@ class node {
 		}
 		push_stuff();
 	}
- 
+ 	
+ 	// TODO: merge variables
 	void pull() {
 		sz = 1;
 		if(l != nullptr) {
