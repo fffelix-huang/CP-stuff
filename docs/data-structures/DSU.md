@@ -10,8 +10,8 @@
     - [leader](#leader)
     - [groups](#groups)
 - 其他
-    - [verification](#verification)
-    - [reference](#reference)
+    - [Verification](#Verification)
+    - [Reference](#Reference)
 
 ## Constructor
 
@@ -107,10 +107,10 @@ vector<vector<int>> d.groups()
 
 ---
 
-## verification
+## Verification
 
 :thumbsup: https://judge.yosupo.jp/problem/unionfind
 
-## reference
+## Reference
 
 1. https://github.com/atcoder/ac-library/blob/master/document_en/dsu.md

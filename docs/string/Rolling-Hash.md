@@ -9,8 +9,8 @@ Polynomial Hash
     - [merge](#merge)
 	- [size](#size)
 - 其他
-    - [verification](#verification)
-    - [reference](#reference)
+    - [Verification](#Verification)
+    - [Reference](#Reference)
 
 ## Constructor
 
@@ -70,9 +70,9 @@ int hs.size()
 
 ---
 
-## verification
+## Verification
 
 :thumbsup: https://atcoder.jp/contests/abc284/tasks/abc284_f
 :thumbsup: https://cses.fi/problemset/task/1753/
 
-## reference
+## Reference
