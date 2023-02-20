@@ -26,6 +26,7 @@ class node {
 			if(r != nullptr) {
 				r->unsafe_apply(tag);
 			}
+			clear_tag();
 		}
 	}
  
