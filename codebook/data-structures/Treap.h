@@ -4,33 +4,27 @@ mt19937 rng((unsigned int) chrono::steady_clock::now().time_since_epoch().count(
 class node {
  public:
 	int id;
-	node* l;
-	node* r;
-	node* p;
-	bool rev;
-	int sz;
-	int P;
+	node* l = nullptr;
+	node* r = nullptr;
+	node* p = nullptr;
+	bool rev = false;
+	int sz = 1;
+	int P = rng();
 	// declare extra variables:
  
-	node(int _id, long long _x) {
-		id = _id;
-		l = r = p = nullptr;
-		rev = false;
-		sz = 1;
-		P = rng();
-		// init extra variables:
+	node(int _id, ...) : id(_id) {
 	}
  
 	// push everything else:
 	void push_stuff() {
-		if(add != 0) {
+		// TODO
+		if(tag) {
 			if(l != nullptr) {
-				l->unsafe_apply(add);
+				l->unsafe_apply(tag);
 			}
 			if(r != nullptr) {
-				r->unsafe_apply(add);
+				r->unsafe_apply(tag);
 			}
-			add = 0;
 		}
 	}
  
@@ -42,7 +36,8 @@ class node {
 	}
  
 	// apply changes:
-	void unsafe_apply() {
+	void unsafe_apply(tag) {
+		// TODO
 	}
  
 	void push() {
@@ -74,8 +69,9 @@ class node {
 void debug_node(node* v, string pref = "") {
 	#ifdef LOCAL
 		if(v != nullptr) {
+			v->push();
 			debug_node(v->r, pref + " ");
-			cerr << pref << "-" << " " << v->id << '\n';
+			cerr << pref << "-" << " (" << v->id << ", " << v->money << ")" << endl;
 			debug_node(v->l, pref + " ");
 		} else {
 			cerr << pref << "-" << " " << "nullptr" << '\n';
@@ -293,13 +289,17 @@ int get_size(node* v) {
 	return (v != nullptr ? v->sz : 0);
 }
  
-template<typename... T>
-void apply(node* v, T... args) {
-	v->unsafe_apply(args...);
+template<class... T>
+void Apply(node* v, T... args) {
+	if(v != nullptr) {
+		v->unsafe_apply(args...);
+	}
 }
  
 void reverse(node* v) {
-	v->unsafe_reverse();
+	if(v != nullptr) {
+		v->unsafe_reverse();
+	}
 }
  
 }	// namespace treap
