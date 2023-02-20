@@ -9,7 +9,7 @@
     - [size](#size)
     - [leader](#leader)
     - [groups](#groups)
-- 相關
+- 其他
     - [verification](#verification)
     - [reference](#reference)
 

@@ -8,7 +8,7 @@ Polynomial Hash
     - [substr](#substr)
     - [merge](#merge)
 	- [size](#size)
-- 相關
+- 其他
     - [verification](#verification)
     - [reference](#reference)
 
