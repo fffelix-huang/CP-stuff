@@ -3,7 +3,7 @@
 Treeeap
 
 - 客製化
-	- [node::Variable](#nodeVariables)
+	- [Variables](#Variables)
 	- [node::Constructor](#nodeConstructor)
 	- [node::push_stuff](#nodepush_stuff)
 	- [node::unsafe_apply](#nodeunsafe_apply)
@@ -31,7 +31,7 @@ Treeeap
 	- [Verification](#Verification)
 	- [Reference](#Reference)
 
-## node::Variables
+## Variables
 
 `int id`：編號 (debug 用)
 
