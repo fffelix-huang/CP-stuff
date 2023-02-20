@@ -3,11 +3,11 @@
 Treeeap
 
 - 客製化
-	- [node::Variable](#node::Variables)
-	- [node::Constructor](#node::Constructor)
-	- [node::push_stuff](#node::push_stuff)
-	- [node::unsafe_apply](#node::unsafe_apply)
-	- [node::pull](#node::pull)
+	- [node::Variable](#nodeVariables)
+	- [node::Constructor](#nodeConstructor)
+	- [node::push_stuff](#nodepush_stuff)
+	- [node::unsafe_apply](#nodeunsafe_apply)
+	- [node::pull](#nodepull)
 	- [debug_node](#debug_node)
 - 函式
 	- [find](##find)
@@ -76,10 +76,13 @@ pair<node*, int> find(node* v, const function<int(node*)> &go_to)
 ```
 
 **parameter**
+
 `node* v`：樹根
+
 `const function<int(node*)>& go_to`：要往哪個方向走 (-1：往走左、0：找到、+1：往右走)
 
 **return value**
+
 回傳停在的節點，和他的方向。
 
 ## get_leftmost
@@ -89,9 +92,11 @@ node* get_leftmost(node* v)
 ```
 
 **parameter**
+
 `node* v`：樹根
 
 **return value**
+
 回傳 inorder 順序中第一個節點。
 
 ## get_rightmost
@@ -101,9 +106,11 @@ node* get_rightmost(node* v)
 ```
 
 **parameter**
+
 `node* v`：樹根
 
 **return value**
+
 回傳 inorder 順序中最後一個節點。
 
 ## get_kth
@@ -113,9 +120,11 @@ node* get_kth(node* v, int k)
 ```
 
 **parameter**
+
 `node* v`：樹根
 
 **return value**
+
 回傳 inorder 順序中第 $k$ 個節點 (0-based)。
 
 ## get_position
@@ -125,9 +134,11 @@ int get_position(node* v)
 ```
 
 **parameter**
+
 `node* v`：樹上某個節點
 
 **return value**
+
 回傳此節點在樹中 inorder 順序中的位置 (0-based)。
 
 ## get_bst_root
@@ -137,9 +148,11 @@ node* get_bst_root(node* v)
 ```
 
 **parameter**
+
 `node* v`：樹上某個節點
 
 **return value**
+
 回傳此節點所在的樹的樹根。
 
 ## split
@@ -149,10 +162,13 @@ pair<node*, node*> split(node* v, const function<bool(node*)> &is_right)
 ```
 
 **parameter**
+
 `node* v`：樹根
+
 `const function<bool(node*)> &is_right`：怎麼切 (回傳 `true` 代表此節點要被切到右邊)
 
 **return value**
+
 回傳一組 pair 代表左樹和右樹的樹根。
 
 ## split_leftmost_k
@@ -162,10 +178,13 @@ pair<node*, node*> split_leftmost_k(node* v, int k)
 ```
 
 **parameter**
+
 `node* v`：樹根
+
 `int k`：左樹大小
 
 **return value**
+
 切割最左邊 $k$ 個到左樹，剩下到右樹，並回傳一組 pair 代表左樹和右樹的樹根。
 
 ## merge
@@ -175,10 +194,13 @@ node* merge(node* v, node* u)
 ```
 
 **parameter**
+
 `node* v`：左樹樹根
+
 `node* u`：右樹樹根
 
 **return value**
+
 合併左樹和右樹，並回傳樹根。
 
 ## count_left
@@ -188,10 +210,13 @@ int count_left(node* v, const function<bool(node*)> &is_right)
 ```
 
 **parameter**
+
 `node* v`：樹根
+
 `const function<bool(node*)> &is_right`：屬於哪邊 (回傳 `true` 代表此節點屬於右邊)
 
 **return value**
+
 回傳屬於左邊的數量 (沒用用到 `split` 所以常數比較小)
 
 ## add
@@ -201,11 +226,15 @@ node* add(node* r, node* v, const function<bool(node*)> &go_left)
 ```
 
 **parameter**
+
 `node* r`：樹根
+
 `node* v`：要加入的節點
+
 `const function<bool(node*)> &go_left`：往哪個方向走 (回傳 `true` 代表 `v` 要往左走)
 
 **return value**
+
 回傳合併後的樹根。
 
 ## remove
@@ -215,9 +244,11 @@ node* remove(node* v)
 ```
 
 **parameter**
+
 `node* v`：要刪掉的節點
 
 **return value**
+
 回傳刪除 `v` 後的樹根。
 
 ## next
@@ -227,9 +258,11 @@ node* next(node* v)
 ```
 
 **parameter**
+
 `node* v`：樹上某個節點
 
 **return value**
+
 回傳 inorder 順序中 `v` 的下一個順位。
 
 ## prev
@@ -239,9 +272,11 @@ node* prev(node* v)
 ```
 
 **parameter**
+
 `node* v`：樹上某個節點
 
 **return value**
+
 回傳 inorder 順序中 `v` 的上一個順位。
 
 ## get_size
@@ -251,9 +286,11 @@ int get_size(node* v)
 ```
 
 **parameter**
+
 `node* v`：樹根
 
 **return value**
+
 回傳 `v` 子樹的大小。
 
 ## Apply
@@ -264,6 +301,7 @@ void Apply(node* v, T... args)
 ```
 
 **parameter**
+
 `node* v`：樹根
 
 把以 `v` 為樹根的子樹打上懶標。
@@ -273,6 +311,7 @@ void Apply(node* v, T... args)
 void reverse(node* v)
 
 **parameter**
+
 `node* v`：樹根
 
 把以 `v` 為樹根的子樹翻轉。
