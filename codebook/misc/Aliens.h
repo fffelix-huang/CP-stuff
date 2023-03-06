@@ -1,7 +1,8 @@
 // find minimum
-int aliens(int l, int r, int k) {
+template<class Func>
+long long Aliens(long long l, long long r, int k, Func f) {
 	while(l < r) {
-		int m = l + (r - l) / 2;
+		long long m = l + (r - l) / 2;
 		auto [score, op] = f(m);
 		if(op == k) {
 			return score - m * k;
