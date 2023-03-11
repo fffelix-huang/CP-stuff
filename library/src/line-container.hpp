@@ -2,7 +2,7 @@
 #define FELIX_LINE_CONTAINER_HPP 1
 
 #include "includes.hpp"
-#include "internal_math.hpp"
+#include "internal-math.hpp"
 
 namespace felix {
 

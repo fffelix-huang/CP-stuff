@@ -16,21 +16,32 @@ public:
 		g.add_edge(2 * v + !y, 2 * u + x);
 	}
 
-	std::pair<bool, std::vector<bool>> solve() {
+	bool satisfiable() {
+		built = true;
+		ans.resize(n);
 		auto id = g.solve();
 		std::vector<bool> ans(n);
 		for(int i = 0; i < n; ++i) {
 			if(id[2 * i] == id[2 * i + 1]) {
-				return {false, {}};
+				return false;
 			}
 			ans[i] = (id[2 * i] < id[2 * i + 1]);
 		}
-		return {true, ans};
+		return true;
+	}
+
+	std::vector<bool> answer() {
+		if(!built) {
+			satisfiable();
+		}
+		return ans;
 	}
 
 private:
 	int n;
 	SCC g;
+	bool built;
+	std::vector<bool> ans;
 };
 
 } // namespace felix
