@@ -1,12 +1,10 @@
 #ifndef FELIX_SEGTREE_HPP
 #define FELIX_SEGTREE_HPP 1
 
-#include "felix/includes.hpp"
-#include "felix/internal_bit.hpp"
+#include "includes.hpp"
 
 namespace felix {
 
-// Source: ac-library/atcoder/segtree.hpp
 template<class T, T (*e)(), T (*op)(T, T)>
 class segtree {
 public:
@@ -14,12 +12,12 @@ public:
 
 	segtree(int _n) : segtree(std::vector<T>(_n, e())) {}
 	
-	segtree(const std::vector<T>& arr): n(int(arr.size())) {
-		log = internal::ceil_pow2(n);
+	segtree(const std::vector<T>& a): n(int(a.size())) {
+		log = std::__lg(2 * n - 1);
 		size = 1 << log;
 		st.resize(size << 1, e());
 		for(int i = 0; i < n; ++i) {
-			st[size + i] = arr[i];
+			st[size + i] = a[i];
 		}
 		for(int i = size - 1; i; --i) {
 			update(i);

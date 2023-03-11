@@ -15,7 +15,7 @@ to_zone = tz.gettz('Asia/Shanghai')
 
 logger = getLogger(__name__)  # type: Logger
 
-felix_include = re.compile('#include\s*["<](felix/[a-z_]*(|.hpp))[">]\s*')
+file_include = re.compile('#include\s*["<]([A-Za-z_]*(|.hpp))[">]\s*')
 
 include_guard = re.compile('#.*FELIX_[A-Z_]*_HPP')
 
@@ -38,7 +38,7 @@ def dfs(f: str) -> List[str]:
 		if include_guard.match(line):
 			continue
 
-		m = felix_include.match(line)
+		m = file_include.match(line)
 		if m:
 			result.extend(dfs(m.group(1)))
 			continue
@@ -72,7 +72,7 @@ if __name__ == "__main__":
 	result.append('**/')
 
 	for line in s.splitlines():
-		m = felix_include.match(line)
+		m = file_include.match(line)
 
 		if m:
 			result.extend(dfs(m.group(1)))

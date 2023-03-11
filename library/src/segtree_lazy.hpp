@@ -1,12 +1,10 @@
-#ifndef FELIX_LAZYSEGTREE_HPP
-#define FELIX_LAZYSEGTREE_HPP 1
+#ifndef FELIX_SEGTREE_LAZY_HPP
+#define FELIX_SEGTREE_LAZY_HPP 1
 
-#include "felix/includes.hpp"
-#include "felix/internal_bit.hpp"
+#include "includes.hpp"
 
 namespace felix {
 
-// Source: ac-library/atcoder/lazysegtree.hpp
 template<class S,
          S (*e)(),
          S (*op)(S, S),
@@ -20,8 +18,8 @@ public:
 
 	explicit lazy_segtree(int _n) : lazy_segtree(std::vector<S>(_n, e())) {}
 
-	explicit lazy_segtree(const std::vector<S>& v) : n(int(v.size())) {
-		log = internal::ceil_pow2(n);
+	explicit lazy_segtree(const std::vector<S>& v) : n((int) v.size()) {
+		log = std::__lg(2 * n - 1);
 		size = 1 << log;
 		d = std::vector<S>(size << 1, e());
 		lz = std::vector<F>(size, id());
@@ -235,4 +233,4 @@ private:
 
 } // namespace felix
 
-#endif // FELIX_LAZYSEGTREE_HPP
+#endif // FELIX_SEGTREE_LAZY_HPP

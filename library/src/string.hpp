@@ -1,12 +1,9 @@
 #ifndef FELIX_STRING_HPP
 #define FELIX_STRING_HPP 1
 
-#include "felix/includes.hpp"
-#include "felix/util.hpp"
+#include "includes.hpp"
 
 namespace felix {
-
-namespace internal {
 
 std::vector<int> sa_naive(const std::vector<int>& s) {
 	int n = int(s.size());
@@ -44,7 +41,7 @@ std::vector<int> sa_doubling(const std::vector<int>& s) {
 		for(int i = 1; i < n; i++) {
 			tmp[sa[i]] = tmp[sa[i - 1]] + (cmp(sa[i - 1], sa[i]) ? 1 : 0);
 		}
-		std::swap(tmp, rnk);
+		swap(tmp, rnk);
 	}
 	return sa;
 }
@@ -52,10 +49,10 @@ std::vector<int> sa_doubling(const std::vector<int>& s) {
 // SA-IS, linear-time suffix array construction
 // Reference:
 // G. Nong, S. Zhang, and W. H. Chan,
-// Two Efficient Algorithms forLinear Time Suffix Array Construction
+// Two Efficient Algorithms for Linear Time Suffix Array Construction
 template<int THRESHOLD_NAIVE = 10, int THRESHOLD_DOUBLING = 40>
 std::vector<int> sa_is(const std::vector<int>& s, int upper) {
-	int n = int(s.size());
+	int n = (int) s.size();
 	if(n == 0) {
 		return {};
 	}
@@ -185,20 +182,18 @@ std::vector<int> sa_is(const std::vector<int>& s, int upper) {
 	return sa;
 }
 
-}  // namespace internal
-
 std::vector<int> suffix_array(const std::vector<int>& s, int upper) {
 	assert(0 <= upper);
 	for(int d : s) {
 		assert(0 <= d && d <= upper);
 	}
-	auto sa = internal::sa_is(s, upper);
+	auto sa = sa_is(s, upper);
 	return sa;
 }
 
 template<class T>
 std::vector<int> suffix_array(const std::vector<T>& s) {
-	int n = int(s.size());
+	int n = (int) s.size();
 	std::vector<int> idx(n);
 	std::iota(idx.begin(), idx.end(), 0);
 	std::sort(idx.begin(), idx.end(), [&](int l, int r) { return s[l] < s[r]; });
@@ -210,16 +205,16 @@ std::vector<int> suffix_array(const std::vector<T>& s) {
 		}
 		s2[idx[i]] = now;
 	}
-	return internal::sa_is(s2, now);
+	return sa_is(s2, now);
 }
 
 std::vector<int> suffix_array(const std::string& s) {
-	int n = int(s.size());
+	int n = (int) s.size();
 	std::vector<int> s2(n);
 	for(int i = 0; i < n; i++) {
 		s2[i] = s[i];
 	}
-	return internal::sa_is(s2, 255);
+	return sa_is(s2, 255);
 }
 
 // Reference:
@@ -228,7 +223,7 @@ std::vector<int> suffix_array(const std::string& s) {
 // Applications
 template<class T>
 std::vector<int> lcp_array(const std::vector<T>& s, const std::vector<int>& sa) {
-	int n = int(s.size());
+	int n = (int) s.size();
 	assert(n >= 1);
 	std::vector<int> rnk(n);
 	for(int i = 0; i < n; i++) {
@@ -255,12 +250,34 @@ std::vector<int> lcp_array(const std::vector<T>& s, const std::vector<int>& sa) 
 }
 
 std::vector<int> lcp_array(const std::string& s, const std::vector<int>& sa) {
-	int n = int(s.size());
+	int n = (int) s.size();
 	std::vector<int> s2(n);
 	for(int i = 0; i < n; i++) {
 		s2[i] = s[i];
 	}
 	return lcp_array(s2, sa);
+}
+
+template<class T>
+std::vector<int> KMP(const std::vector<T>& a) {
+	int n = (int) a.size();
+	std::vector<int> k(n);
+	for(int i = 1; i < n; ++i) {
+		int j = k[i - 1];
+		while(j > 0 && a[i] != a[j]) {
+			j = k[j - 1];
+		}
+		if(a[i] == a[j]) {
+			j += 1;
+		}
+		k[i] = j;
+	}
+	return k;
+}
+
+std::vector<int> KMP(const std::string& s) {
+	std::vector<int> s2(s.begin(), s.end());
+	return KMP(s2);
 }
 
 template<class T>
@@ -284,78 +301,6 @@ std::vector<int> z_algorithm(const std::vector<T>& a) {
 std::vector<int> z_algorithm(const std::string& s) {
 	std::vector<int> s2(s.begin(), s.end());
 	return z_algorithm(s2);
-}
-
-template<class T>
-std::vector<int> KMP(const std::vector<T>& a) {
-	int n = (int) a.size();
-	std::vector<int> k(n);
-	for(int i = 1, j = 0; i < n; ++i) {
-		while(j > 0 && a[i] != a[j]) {
-			j = k[j - 1];
-		}
-		if(a[i] == a[j]) {
-			j += 1;
-		}
-		k[i] = j;
-	}
-	return k;
-}
-
-std::vector<int> KMP(const std::string& s) {
-	std::vector<int> s2(s.begin(), s.end());
-	return KMP(s2);
-}
-
-namespace internal {
-
-template<class T>
-std::vector<int> manacher_odd(const std::vector<T>& a) {
-	std::vector<T> b(1, -87);
-	b.insert(b.end(), a.begin(), a.end());
-	b.push_back(-69);
-	int n = (int) b.size();
-	std::vector<int> z(n);
-	z[0] = 1;
-	for(int i = 1, l = -1, r = 1; i <= n; ++i) {
-		if(i < r) {
-			z[i] = std::min(z[l + r - i], r - i);
-		}
-		while(b[i - z[i]] == b[i + z[i]]) {
-			z[i] += 1;
-		}
-		if(i + z[i] - 1 > r) {
-			l = i - z[i] + 1;
-			r = i + z[i] - 1;
-		}
-	}
-	return std::vector<int>(z.begin() + 1, z.end() - 1);
-}
-
-} // namespace internal
-
-template<class T>
-std::vector<int> manacher(const std::vector<T>& a) {
-	auto b = unordered_compress(a);
-	std::vector<int> s2;
-	s2.reserve((int) b.size() * 2);
-	for(auto& x : b) {
-		s2.push_back(x);
-		s2.push_back(-1);
-	}
-	s2.pop_back();
-	return internal::manacher_odd(s2);
-}
-
-std::vector<int> manacher(const std::string& s) {
-	std::vector<int> s2;
-	s2.reserve((int) s.size() * 2);
-	for(const auto& c : s) {
-		s2.push_back(c);
-		s2.push_back(-1);
-	}
-	s2.pop_back();
-	return internal::manacher_odd(s2);
 }
 
 } // namespace felix

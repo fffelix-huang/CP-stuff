@@ -1,7 +1,7 @@
-#ifndef FELIX_MAXFLOW_HPP
-#define FELIX_MAXFLOW_HPP 1
+#ifndef FELIX_DINIC_HPP
+#define FELIX_DINIC_HPP 1
 
-#include "felix/includes.hpp"
+#include "includes.hpp"
 
 namespace felix {
 
@@ -14,7 +14,7 @@ public:
 		Edge(int _to, T _cap) : to(_to), cap(_cap) {}
 	};
 
-	static constexpr T inf = std::numeric_limits<T>::max() / 2 - 5;
+	static constexpr T INF = std::numeric_limits<T>::max();
 	
 	int n;
 	std::vector<Edge> e;
@@ -25,6 +25,8 @@ public:
 	Dinic(int _n) : n(_n), g(_n) {}
 
 	void add_edge(int u, int v, T c) {
+		assert(0 <= u && u < n);
+		assert(0 <= v && v < n);
 		g[u].push_back(e.size());
 		e.emplace_back(v, c);
 		g[v].push_back(e.size());
@@ -59,12 +61,12 @@ public:
 			return f;
 		}
 		T r = f;
-		for(int &i = cur[u]; i < int(g[u].size()); ++i) {
+		for(int& i = cur[u]; i < (int) g[u].size(); ++i) {
 			int j = g[u][i];
 			int v = e[j].to;
 			T c = e[j].cap;
 			if(c > 0 && h[v] == h[u] + 1) {
-				T a = dfs(v, t, std::min(r, c));
+				T a = dfs(v, t, min(r, c));
 				e[j].cap -= a;
 				e[j ^ 1].cap += a;
 				r -= a;
@@ -76,11 +78,15 @@ public:
 		return f - r;
 	}
 
-	T flow(int s, int t) {
+	T flow(int s, int t, T f = INF) {
+		assert(0 <= s && s < n);
+		assert(0 <= t && t < n);
 		T ans = 0;
-		while(bfs(s, t)) {
+		while(f > 0 && bfs(s, t)) {
 			cur.assign(n, 0);
-			ans += dfs(s, t, inf);
+			T send = dfs(s, t, f);
+			ans += send;
+			f -= send;
 		}
 		return ans;
 	}
@@ -88,4 +94,4 @@ public:
 
 } // namespace felix
 
-#endif // FELIX_MAXFLOW_HPP
+#endif // FELIX_DINIC_HPP
