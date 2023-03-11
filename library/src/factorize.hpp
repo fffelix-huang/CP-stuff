@@ -2,7 +2,7 @@
 #define FELIX_FACTORIZE_HPP 1
 
 #include "includes.hpp"
-#include "math.hpp"
+#include "internal-math.hpp"
 
 namespace felix {
 
