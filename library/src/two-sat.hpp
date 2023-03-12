@@ -20,7 +20,6 @@ public:
 		built = true;
 		ans.resize(n);
 		auto id = g.solve();
-		std::vector<bool> ans(n);
 		for(int i = 0; i < n; ++i) {
 			if(id[2 * i] == id[2 * i + 1]) {
 				return false;
