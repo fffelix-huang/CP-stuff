@@ -2,6 +2,7 @@
 #define FELIX_MATH_HPP 1
 
 #include "includes.hpp"
+#include "PBDS.hpp"
 #include "internal-math.hpp"
 
 namespace felix {
@@ -67,6 +68,31 @@ std::pair<long long, long long> crt(const std::vector<long long>& r, const std::
 	return {r0, m0};
 }
 
+int discrete_log(int a, int b, int m) {
+	assert(b < m);
+	if(b == 1 || m == 1) {
+		return 0;
+	}
+	int n = (int) std::sqrt(m) + 1, e = 1, f = 1, j = 1;
+	hash_map<int, int> A;
+	internal::barrett bt(m);
+	while(j <= n && (e = f = bt.mul(e, a)) != b) {
+		A[bt.mul(e, b)] = j++;
+	}
+	if(e == b) {
+		return j;
+	}
+	if(internal::binary_gcd(m, e) == internal::binary_gcd(m, b))  {
+		for(int i = 2; i < n + 2; ++i) {
+			e = bt.mul(e, f);
+			if(A.find(e) != A.end()) {
+				return n * i - A[e];
+			}
+		}
+	}
+	return -1;
+}
+
 long long floor_sum(long long n, long long m, long long a, long long b) {
 	assert(0 <= n && n < (1LL << 32));
 	assert(1 <= m && m < (1LL << 32));
@@ -83,7 +109,6 @@ long long floor_sum(long long n, long long m, long long a, long long b) {
 	}
 	return ans + internal::floor_sum_unsigned(n, m, a, b);
 }
-
 
 } // namespace felix
 
