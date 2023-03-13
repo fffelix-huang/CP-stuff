@@ -161,6 +161,46 @@ public:
 	dynamic_modint inv() const {
 		return 1 / dynamic_modint(*this);
 	}
+
+	std::pair<bool, dynamic_modint> sqrt() const {
+		using mint = dynamic_modint;
+		if(mod() == 2 || value == 0) {
+			return {true, *this};
+		}
+		if(pow((mod() - 1) / 2) != 1) {
+			return {false, mint()};
+		}
+		if(mod() % 4 == 3) {
+			return {true, pow((mod() + 1) / 4)};
+		}
+		int pw = (mod() - 1) / 2;
+		int K = std::__lg(pw);
+		while(true) {
+			static std::mt19937 rng(std::chrono::steady_clock::now().time_since_epoch().count());
+			mint t = rng();
+			mint a = 0, b = 0, c = 1;
+			for(int k = K; k >= 0; --k) {
+				a = b * b;
+				b = b * c * 2;
+				c = c * c + a * *this;
+				if(~pw >> k & 1) {
+					continue;
+				}
+				a = b;
+				b = b * t + c;
+				c = c * t + a * *this;
+			}
+			if(b == 0) {
+				continue;
+			}
+			c -= 1;
+			c *= mint() - b.inv();
+			if(c * c == *this) {
+				return {true, c};
+			}
+		}
+		assert(false);
+	}
  
 private:
 	unsigned int value;
