@@ -181,7 +181,6 @@ inline unsigned long long binary_gcd(unsigned long long a, unsigned long long b)
 	int8_t m = __builtin_ctzll(b);
 	a >>= n;
 	b >>= m;
-	n = std::min(n, m);
 	while(a != b) {
 		unsigned long long d = a - b;
 		int8_t s = __builtin_ctzll(d);
@@ -189,7 +188,7 @@ inline unsigned long long binary_gcd(unsigned long long a, unsigned long long b)
 		b = f ? b : a;
 		a = (f ? d : -d) >> s;
 	}
-	return a << n;
+	return a << std::min(n, m);
 }
 
 } // namespace internal
