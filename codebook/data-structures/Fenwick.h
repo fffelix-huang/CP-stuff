@@ -15,7 +15,7 @@ public:
 	}
 
 	T get(int p) {
-		assert(0 <= p && p < n);
+		assert(p < n);
 		T res{};
 		while(p >= 0) {
 			res += data[p];
