@@ -121,6 +121,14 @@ public:
 		return st.prod(min(l, r), max(l, r)).second;
 	}
 
+	bool is_ancestor(int a, int b) const {
+		return get_lca(a, b) == a;
+	}
+ 
+	bool on_path(int a, int b, int x) const {
+		return (is_ancestor(x, a) || is_ancestor(x, b)) && is_ancestor(get_lca(a, b), x);
+	}
+
 	vector<pair<int, int>> virtual_tree(vector<int> nodes) const {
 		if(nodes.empty()) {
 			return {};
