@@ -20,11 +20,11 @@ public:
 	std::vector<int> depth;
 	std::vector<int> top;
 	std::vector<int> tour;
-	std::vector<int> id;
+	std::vector<int> first_occurrence;
 	std::vector<int> in, out;
 	sparse_table<std::pair<int, int>, __lca_op> st;
 
-	HLD(int _n) : n(_n), g(_n), subtree_size(_n), parent(_n), depth(_n), top(_n), id(_n), in(_n), out(_n) {
+	HLD(int _n) : n(_n), g(_n), subtree_size(_n), parent(_n), depth(_n), top(_n), first_occurrence(_n), in(_n), out(_n) {
 		tour.reserve(n);
 	}
 
@@ -49,8 +49,8 @@ public:
 	int get_lca(int u, int v) {
 		assert(0 <= u && u < n);
 		assert(0 <= v && v < n);
-		int L = in[u];
-		int R = in[v];
+		int L = first_occurrence[u];
+		int R = first_occurrence[v];
 		if(L > R) {
 			std::swap(L, R);
 		}
@@ -104,14 +104,14 @@ public:
 			if(depth[top[u]] > depth[top[v]]) {
 				std::swap(u, v);
 			}
-			seg.emplace_back(id[top[v]], id[v]);
+			seg.emplace_back(in[top[v]], in[v]);
 			v = parent[top[v]];
 		}
 		if(depth[u] > depth[v]) {
 			std::swap(u, v);
 		}
 		if(u != v || include_lca) {
-			seg.emplace_back(id[u] + !include_lca, id[v]);
+			seg.emplace_back(in[u] + !include_lca, in[v]);
 		}
 		return seg;
 	}
@@ -134,8 +134,8 @@ private:
 	}
 
 	void dfs_link(std::vector<std::pair<int, int>>& euler_tour, int u) {
-		in[u] = (int) euler_tour.size();
-		id[u] = (int) tour.size();
+		first_occurrence[u] = (int) euler_tour.size();
+		in[u] = (int) tour.size();
 		euler_tour.emplace_back(depth[u], u);
 		tour.push_back(u);
 		for(auto v : g[u]) {
@@ -143,7 +143,7 @@ private:
 			dfs_link(euler_tour, v);
 			euler_tour.emplace_back(depth[u], u);
 		}
-		out[u] = (int) euler_tour.size();
+		out[u] = (int) tour.size();
 	}
 };
 
