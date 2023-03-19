@@ -13,7 +13,7 @@ public:
 	fenwick(int _n) : n(_n), data(_n) {}
 
 	void add(int p, T x) {
-		assert(0 <= p && p < n);
+		assert(0 <= p);
 		while(p < n) {
 			data[p] += x;
 			p |= (p + 1);
