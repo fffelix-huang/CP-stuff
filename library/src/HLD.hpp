@@ -21,10 +21,10 @@ public:
 	std::vector<int> top;
 	std::vector<int> tour;
 	std::vector<int> first_occurrence;
-	std::vector<int> in, out;
+	std::vector<int> id;
 	sparse_table<std::pair<int, int>, __lca_op> st;
 
-	HLD(int _n) : n(_n), g(_n), subtree_size(_n), parent(_n), depth(_n), top(_n), first_occurrence(_n), in(_n), out(_n) {
+	HLD(int _n) : n(_n), g(_n), subtree_size(_n), parent(_n), depth(_n), top(_n), first_occurrence(_n), id(_n) {
 		tour.reserve(n);
 	}
 
@@ -60,7 +60,7 @@ public:
 	bool is_ancestor(int u, int v) {
 		assert(0 <= u && u < n);
 		assert(0 <= v && v < n);
-		return in[u] <= in[v] && in[v] < out[u];
+		return id[u] <= id[v] && id[v] < id[u] + subtree_size[u];
 	}
 
 	bool on_path(int a, int b, int x) {
@@ -80,7 +80,7 @@ public:
 		while(depth[top[u]] > d) {
 			u = parent[top[u]];
 		}
-		return tour[in[u] + d - depth[u]];
+		return tour[id[u] + d - depth[u]];
 	}
 
 	int get_kth_node_on_path(int a, int b, int k) {
@@ -104,14 +104,14 @@ public:
 			if(depth[top[u]] > depth[top[v]]) {
 				std::swap(u, v);
 			}
-			seg.emplace_back(in[top[v]], in[v]);
+			seg.emplace_back(id[top[v]], id[v]);
 			v = parent[top[v]];
 		}
 		if(depth[u] > depth[v]) {
 			std::swap(u, v);
 		}
 		if(u != v || include_lca) {
-			seg.emplace_back(in[u] + !include_lca, in[v]);
+			seg.emplace_back(id[u] + !include_lca, id[v]);
 		}
 		return seg;
 	}
@@ -135,7 +135,7 @@ private:
 
 	void dfs_link(std::vector<std::pair<int, int>>& euler_tour, int u) {
 		first_occurrence[u] = (int) euler_tour.size();
-		in[u] = (int) tour.size();
+		id[u] = (int) tour.size();
 		euler_tour.emplace_back(depth[u], u);
 		tour.push_back(u);
 		for(auto v : g[u]) {
@@ -143,7 +143,6 @@ private:
 			dfs_link(euler_tour, v);
 			euler_tour.emplace_back(depth[u], u);
 		}
-		out[u] = (int) tour.size();
 	}
 };
 
