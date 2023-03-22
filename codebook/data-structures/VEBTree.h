@@ -12,19 +12,20 @@ private:
 	constexpr static int S = 1 << K, MASK = (1 << R) - 1;
 
 	array<VEBTree<R>, S> ch;
-	VEBTree<K> act;
-	int mi, ma;
+	VEBTree<K> act = {};
+	int mn = M;
+	int mx = -1;
 
 public:
 	bool empty() const {
-		return ma < mi;
+		return mx < mn;
 	}
 	
 	int findNext(int i) const {
-		if(i <= mi) {
-			return mi;
+		if(i <= mn) {
+			return mn;
 		}
-		if(i > ma) {
+		if(i > mx) {
 			return M;
 		}
 		int j = i >> R, x = i & MASK;
@@ -33,14 +34,14 @@ public:
 			return (j << R) + res;
 		}
 		j = act.findNext(j + 1);
-		return j >= S ? ma : (j << R) + ch[j].findNext(0);
+		return j >= S ? mx : (j << R) + ch[j].findNext(0);
 	}
 
 	int findPrev(int i) const {
-		if(i >= ma) {
-			return ma;
+		if(i >= mx) {
+			return mx;
 		}
-		if(i < mi) {
+		if(i < mn) {
 			return -1;
 		}
 		int j = i >> R, x = i & MASK;
@@ -49,27 +50,27 @@ public:
 			return (j << R) + res;
 		}
 		j = act.findPrev(j - 1);
-		return j < 0 ? mi : (j << R) + ch[j].findPrev(MASK);
+		return j < 0 ? mn : (j << R) + ch[j].findPrev(MASK);
 	}
 
 	void insert(int i) {
-		if(i <= mi) {
-			if(i == mi) {
+		if(i <= mn) {
+			if(i == mn) {
 				return;
 			}
-			swap(mi, i);
+			swap(mn, i);
 			if(i == M) {
-				ma = mi;
+				mx = mn;
 			}
-			if(i >= ma) {
+			if(i >= mx) {
 				return;
 			}
-		} else if(i >= ma) {
-			if(i == ma) {
+		} else if(i >= mx) {
+			if(i == mx) {
 				return;
 			}
-			swap(ma, i);
-			if(i <= mi) {
+			swap(mx, i);
+			if(i <= mn) {
 				return;
 			}
 		}
@@ -81,23 +82,23 @@ public:
 	}
 
 	void erase(int i) {
-		if(i <= mi) {
-			if(i < mi) {
+		if(i <= mn) {
+			if(i < mn) {
 				return;
 			}
-			i = mi = findNext(mi + 1);
-			if(i >= ma) {
-				if(i > ma) {
-					ma = -1;
+			i = mn = findNext(mn + 1);
+			if(i >= mx) {
+				if(i > mx) {
+					mx = -1;
 				}
 				return;
 			}
-		} else if(i >= ma) {
-			if(i > ma) {
+		} else if(i >= mx) {
+			if(i > mx) {
 				return;
 			}
-			i = ma = findPrev(ma - 1);
-			if(i <= mi) {
+			i = mx = findPrev(mx - 1);
+			if(i <= mn) {
 				return;
 			}
 		}
@@ -109,7 +110,7 @@ public:
 	}
 
 	void clear() {
-		mi = M, ma = -1;
+		mn = M, mx = -1;
 		act.clear();
 		for(int i = 0; i < S; ++i) {
 			ch[i].clear();
@@ -127,7 +128,7 @@ public:
 			clear();
 		} else {
 			act.clear();
-			mi = s0, ma = M - 1 - s1;
+			mn = s0, mx = M - 1 - s1;
 			++s0; ++s1;
 			for(int j = 0; j < S; ++j) {
 				ch[j].init(str, shift + (j << R), max(0, s0 - (j << R)), max(0, s1 - ((S - 1 - j) << R)));
@@ -143,7 +144,7 @@ template<int B>
 class VEBTree<B, enable_if_t<(B <= 6)>> {
 private:
 	constexpr static int M = (1 << B);
-	unsigned long long act;
+	unsigned long long act = 0;
 
 public:
 	bool empty() const {
