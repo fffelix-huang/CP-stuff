@@ -7,7 +7,8 @@ namespace felix {
 
 namespace internal {
 
-constexpr long long safe_mod(long long x, long long m) {
+template<class T>
+constexpr T safe_mod(T x, T m) {
 	x %= m;
 	if(x < 0) {
 		x += m;
@@ -46,7 +47,7 @@ constexpr long long pow_mod_constexpr(long long x, long long n, int m) {
 	if (m == 1) return 0;
 	unsigned int _m = (unsigned int)(m);
 	unsigned long long r = 1;
-	unsigned long long y = safe_mod(x, m);
+	unsigned long long y = safe_mod<long long>(x, m);
 	while(n) {
 		if(n & 1) {
 			r = (r * y) % _m;
@@ -79,15 +80,16 @@ constexpr bool is_prime_constexpr(int n) {
 }
 template <int n> constexpr bool is_prime = is_prime_constexpr(n);
 
-constexpr std::pair<long long, long long> inv_gcd(long long a, long long b) {
+template<class T>
+constexpr std::pair<T, T> inv_gcd(T a, T b) {
 	a = safe_mod(a, b);
 	if(a == 0) {
 		return {b, 0};
 	}
-	long long s = b, t = a;
-	long long m0 = 0, m1 = 1;
+	T s = b, t = a;
+	T m0 = 0, m1 = 1;
 	while(t) {
-		long long u = s / t;
+		T u = s / t;
 		s -= t * u;
 		m0 -= m1 * u;
 		auto tmp = s;
@@ -165,11 +167,13 @@ unsigned long long floor_sum_unsigned(unsigned long long n, unsigned long long m
 	return ans;
 }
 
-long long floor_div(long long a, long long b) {
+template<class T>
+T floor_div(T a, T b) {
     return a / b - ((a ^ b) < 0 && a % b != 0);
 }
 
-long long ceil_div(long long a, long long b) {
+template<class T>
+T ceil_div(T a, T b) {
     return a / b + ((a ^ b) > 0 && a % b != 0);
 }
 

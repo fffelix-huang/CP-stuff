@@ -14,7 +14,7 @@ long long pow_mod(long long x, long long n, int m) {
 	}
 	internal::barrett bt((unsigned int) (m));
 	unsigned int r = 1;
-	unsigned int y = (unsigned int) internal::safe_mod(x, m);
+	unsigned int y = (unsigned int) internal::safe_mod<long long>(x, m);
 	while(n) {
 		if(n & 1) {
 			r = bt.mul(r, y);
@@ -25,7 +25,8 @@ long long pow_mod(long long x, long long n, int m) {
 	return r;
 }
 
-long long inv_mod(long long x, long long m) {
+template<class T>
+T inv_mod(T x, T m) {
 	assert(1 <= m);
 	auto z = internal::inv_gcd(x, m);
 	assert(z.first == 1);
@@ -33,15 +34,16 @@ long long inv_mod(long long x, long long m) {
 }
 
 // (rem, mod)
-std::pair<long long, long long> crt(const std::vector<long long>& r, const std::vector<long long>& m) {
+template<class T>
+std::pair<T, T> crt(const std::vector<T>& r, const std::vector<T>& m) {
 	assert(r.size() == m.size());
 	int n = (int) r.size();
 	// Contracts: 0 <= r0 < m0
-	long long r0 = 0, m0 = 1;
+	T r0 = 0, m0 = 1;
 	for(int i = 0; i < n; i++) {
 		assert(1 <= m[i]);
-		long long r1 = internal::safe_mod(r[i], m[i]);
-		long long m1 = m[i];
+		T r1 = internal::safe_mod(r[i], m[i]);
+		T m1 = m[i];
 		if(m0 < m1) {
 			std::swap(r0, r1);
 			std::swap(m0, m1);
@@ -52,13 +54,13 @@ std::pair<long long, long long> crt(const std::vector<long long>& r, const std::
 			}
 			continue;
 		}
-		long long g, im;
+		T g, im;
 		std::tie(g, im) = internal::inv_gcd(m0, m1);
-		long long u1 = (m1 / g);
+		T u1 = (m1 / g);
 		if((r1 - r0) % g) {
 			return {0, 0};
 		}
-		long long x = (r1 - r0) / g % u1 * im % u1;
+		T x = (r1 - r0) / g % u1 * im % u1;
 		r0 += x * m0;
 		m0 *= u1;
 		if(r0 < 0) {
