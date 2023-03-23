@@ -4,19 +4,26 @@ template<class c> rge<c> range(c i, c j) { return rge<c>{i, j}; }
 template<class c> auto dud(c* x)->decltype(cerr << *x, 0);
 template<class c> char dud(...);
 struct debug {
+	bool ok = true;
+	debug() {}
+	debug(bool b) : ok(b) {}
 #ifdef LOCAL
-	~debug() { cerr << endl; }
-	template<class c> typename enable_if<sizeof dud<c>(0) != 1, debug&>::type operator<<(c i) { cerr << boolalpha << i; return *this; }
-	template<class c> typename enable_if<sizeof dud<c>(0) == 1, debug&>::type operator<<(c i) { return *this << range(begin(i), end(i)); }
-	template<class c, class b> debug& operator<<(pair<b, c> d) { return *this << "(" << d.first << ", " << d.second << ")"; }
-	template<class a, class b, class c> debug& operator<<(tuple<a, b, c> tp) { return *this << "(" << get<0>(tp) << ", " << get<1>(tp) << ", " << get<2>(tp) << ")"; };
-	template<class a, class b, class c, class d> debug& operator<<(tuple<a, b, c, d> tp) { return *this << "(" << get<0>(tp) << ", " << get<1>(tp) << ", " << get<2>(tp) << ", " << get<3>(tp) << ")"; };
-	template<class c> debug& operator<<(rge<c> d) {
-		*this << "{";
+	~debug() { if(ok) cerr << endl; }
+	template<class c> typename enable_if<sizeof dud<c>(0) != 1, void>::type print(c i) { cerr << boolalpha << i; }
+	template<class c> typename enable_if<sizeof dud<c>(0) == 1, void>::type print(c i) { cerr << range(begin(i), end(i)); }
+	template<class c, class b> void print(pair<b, c> d) { cerr << "(" << d.first << ", " << d.second << ")"; }
+	template<class a, class b, class c> void print(tuple<a, b, c> tp) { cerr << "(" << get<0>(tp) << ", " << get<1>(tp) << ", " << get<2>(tp) << ")"; };
+	template<class a, class b, class c, class d> void print(tuple<a, b, c, d> tp) { cerr << "(" << get<0>(tp) << ", " << get<1>(tp) << ", " << get<2>(tp) << ", " << get<3>(tp) << ")"; };
+	template<class c> void print(rge<c> d) {
+		cerr << "{";
 		for(auto it = d.b; it != d.e; ++it) {
-			*this << ", " + 2 * (it == d.b) << *it;
+			cerr << ", " + 2 * (it == d.b) << *it;
 		}
-		return *this << "}";
+		cerr << "}";
+	}
+	template<class c> debug& operator<<(const c& x) {
+		if(ok) print(x);
+		return *this;
 	}
 #else
 	template<class c> debug& operator<<(const c&) { return *this; }

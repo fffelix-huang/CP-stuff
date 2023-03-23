@@ -11,19 +11,26 @@ template<class c> rge<c> range(c i, c j) { return rge<c>{i, j}; }
 template<class c> auto dud(c* x)->decltype(std::cerr << *x, 0);
 template<class c> char dud(...);
 struct debug {
+	bool ok = true;
+	debug() {}
+	debug(bool b) : ok(b) {}
 #ifdef LOCAL
-	~debug() { std::cerr << std::endl; }
-	template<class c> typename std::enable_if<sizeof dud<c>(0) != 1, debug&>::type operator<<(c i) { std::cerr << std::boolalpha << i; return *this; }
-	template<class c> typename std::enable_if<sizeof dud<c>(0) == 1, debug&>::type operator<<(c i) { return *this << range(begin(i), end(i)); }
-	template<class c, class b> debug& operator<<(std::pair<b, c> d) { return *this << "(" << d.first << ", " << d.second << ")"; }
-	template<class a, class b, class c> debug& operator<<(std::tuple<a, b, c> tp) { return *this << "(" << std::get<0>(tp) << ", " << std::get<1>(tp) << ", " << std::get<2>(tp) << ")"; };
-	template<class a, class b, class c, class d> debug& operator<<(std::tuple<a, b, c, d> tp) { return *this << "(" << std::get<0>(tp) << ", " << std::get<1>(tp) << ", " << std::get<2>(tp) << ", " << std::get<3>(tp) << ")"; };
-	template<class c> debug& operator<<(rge<c> d) {
-		*this << "{";
+	~debug() { if(ok) std::cerr << std::endl; }
+	template<class c> typename std::enable_if<sizeof dud<c>(0) != 1, void>::type print(c i) { std::cerr << std::boolalpha << i; }
+	template<class c> typename std::enable_if<sizeof dud<c>(0) == 1, void>::type print(c i) { std::cerr << range(std::begin(i), std::end(i)); }
+	template<class c, class b> void print(std::pair<b, c> d) { std::cerr << "(" << d.first << ", " << d.second << ")"; }
+	template<class a, class b, class c> void print(std::tuple<a, b, c> tp) { std::cerr << "(" << std::get<0>(tp) << ", " << std::get<1>(tp) << ", " << std::get<2>(tp) << ")"; };
+	template<class a, class b, class c, class d> void print(std::tuple<a, b, c, d> tp) { std::cerr << "(" << std::get<0>(tp) << ", " << std::get<1>(tp) << ", " << std::get<2>(tp) << ", " << std::get<3>(tp) << ")"; };
+	template<class c> void print(rge<c> d) {
+		std::cerr << "{";
 		for(auto it = d.b; it != d.e; ++it) {
-			*this << ", " + 2 * (it == d.b) << *it;
+			std::cerr << ", " + 2 * (it == d.b) << *it;
 		}
-		return *this << "}";
+		std::cerr << "}";
+	}
+	template<class c> debug& operator<<(const c& x) {
+		if(ok) print(x);
+		return *this;
 	}
 #else
 	template<class c> debug& operator<<(const c&) { return *this; }
