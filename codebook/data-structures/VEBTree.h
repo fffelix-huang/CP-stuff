@@ -1,6 +1,6 @@
 // van Emde Boas tree. Maintains a set of integers in range [0, 2^B) and supports operations
-//	findNext(i): returns minimum j >= i in set, or 2^B if none exist
-// 	findPrev(i): returns maximum j <= i in set, or -1 if none exist
+//	find_next(i): returns minimum j >= i in set, or 2^B if none exist
+// 	find_prev(i): returns maximum j <= i in set, or -1 if none exist
 //	insert(i), erase(i): insert/erase i into the set
 //	empty(): returns TRUE if the set is empty
 //	clear(): empties the set
@@ -21,7 +21,7 @@ public:
 		return mx < mn;
 	}
 	
-	int findNext(int i) const {
+	int find_next(int i) const {
 		if(i <= mn) {
 			return mn;
 		}
@@ -29,15 +29,15 @@ public:
 			return M;
 		}
 		int j = i >> R, x = i & MASK;
-		int res = ch[j].findNext(x);
+		int res = ch[j].find_next(x);
 		if(res <= MASK) {
 			return (j << R) + res;
 		}
-		j = act.findNext(j + 1);
-		return j >= S ? mx : (j << R) + ch[j].findNext(0);
+		j = act.find_next(j + 1);
+		return j >= S ? mx : (j << R) + ch[j].find_next(0);
 	}
 
-	int findPrev(int i) const {
+	int find_prev(int i) const {
 		if(i >= mx) {
 			return mx;
 		}
@@ -45,12 +45,12 @@ public:
 			return -1;
 		}
 		int j = i >> R, x = i & MASK;
-		int res = ch[j].findPrev(x);
+		int res = ch[j].find_prev(x);
 		if(res >= 0) {
 			return (j << R) + res;
 		}
-		j = act.findPrev(j - 1);
-		return j < 0 ? mn : (j << R) + ch[j].findPrev(MASK);
+		j = act.find_prev(j - 1);
+		return j < 0 ? mn : (j << R) + ch[j].find_prev(MASK);
 	}
 
 	void insert(int i) {
@@ -86,7 +86,7 @@ public:
 			if(i < mn) {
 				return;
 			}
-			i = mn = findNext(mn + 1);
+			i = mn = find_next(mn + 1);
 			if(i >= mx) {
 				if(i > mx) {
 					mx = -1;
@@ -97,7 +97,7 @@ public:
 			if(i > mx) {
 				return;
 			}
-			i = mx = findPrev(mx - 1);
+			i = mx = find_prev(mx - 1);
 			if(i <= mn) {
 				return;
 			}
@@ -114,28 +114,6 @@ public:
 		act.clear();
 		for(int i = 0; i < S; ++i) {
 			ch[i].clear();
-		}
-	}
-
-	void init(const string& str, int shift = 0, int s0 = 0, int s1 = 0) {
-		while(s0 + s1 < M && str[shift + s0] != '1') {
-			++s0;
-		}
-		while(s0 + s1 < M && str[shift + M - 1 - s1] != '1') {
-			++s1;
-		}
-		if(s0 + s1 >= M) {
-			clear();
-		} else {
-			act.clear();
-			mn = s0, mx = M - 1 - s1;
-			++s0; ++s1;
-			for(int j = 0; j < S; ++j) {
-				ch[j].init(str, shift + (j << R), max(0, s0 - (j << R)), max(0, s1 - ((S - 1 - j) << R)));
-				if(!ch[j].empty()) {
-					act.insert(j);
-				}
-			}
 		}
 	}
 };
@@ -155,12 +133,12 @@ public:
 		act = 0;
 	}
 
-	int findNext(int i) const {
+	int find_next(int i) const {
 		unsigned long long tmp = act >> i;
 		return (tmp ? i + __builtin_ctzll(tmp) : M);
 	}
 
-	int findPrev(int i) const {
+	int find_prev(int i) const {
 		unsigned long long tmp = act << (63 - i);
 		return (tmp ? i - __builtin_clzll(tmp) : -1);
 	}
@@ -171,12 +149,5 @@ public:
 
 	void erase(int i) {
 		act &= ~(1ULL << i);
-	}
-	
-	void init(const string& str, int shift = 0, int s0 = 0, int s1 = 0) {
-		act = 0;
-		for(int i = s0; i + s1 < M; ++i) {
-			act |= ((unsigned long long) (str[shift + i] - '0')) << i;
-		}
 	}
 };
