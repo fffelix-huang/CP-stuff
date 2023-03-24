@@ -11,9 +11,8 @@ template<class c> rge<c> range(c i, c j) { return rge<c>{i, j}; }
 template<class c> auto dud(c* x)->decltype(std::cerr << *x, 0);
 template<class c> char dud(...);
 struct debug {
-	bool ok = true;
-	debug() {}
-	debug(bool b) : ok(b) {}
+	bool ok;
+	debug(bool b = true) : ok(b) {}
 #ifdef LOCAL
 	~debug() { if(ok) std::cerr << std::endl; }
 	template<class c> typename std::enable_if<sizeof dud<c>(0) != 1, void>::type print(c i) { std::cerr << std::boolalpha << i; }
