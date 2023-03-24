@@ -16,7 +16,7 @@ struct debug {
 #ifdef LOCAL
 	~debug() { if(ok) std::cerr << std::endl; }
 	template<class c> typename std::enable_if<sizeof dud<c>(0) != 1, void>::type print(c i) { std::cerr << std::boolalpha << i; }
-	template<class c> typename std::enable_if<sizeof dud<c>(0) == 1, void>::type print(c i) { std::cerr << range(std::begin(i), std::end(i)); }
+	template<class c> typename std::enable_if<sizeof dud<c>(0) == 1, void>::type print(c i) { print(range(std::begin(i), std::end(i))); }
 	template<class c, class b> void print(std::pair<b, c> d) { std::cerr << "(" << d.first << ", " << d.second << ")"; }
 	template<class a, class b, class c> void print(std::tuple<a, b, c> tp) { std::cerr << "(" << std::get<0>(tp) << ", " << std::get<1>(tp) << ", " << std::get<2>(tp) << ")"; };
 	template<class a, class b, class c, class d> void print(std::tuple<a, b, c, d> tp) { std::cerr << "(" << std::get<0>(tp) << ", " << std::get<1>(tp) << ", " << std::get<2>(tp) << ", " << std::get<3>(tp) << ")"; };

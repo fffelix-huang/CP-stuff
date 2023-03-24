@@ -10,7 +10,7 @@ struct debug {
 #ifdef LOCAL
 	~debug() { if(ok) cerr << endl; }
 	template<class c> typename enable_if<sizeof dud<c>(0) != 1, void>::type print(c i) { cerr << boolalpha << i; }
-	template<class c> typename enable_if<sizeof dud<c>(0) == 1, void>::type print(c i) { cerr << range(begin(i), end(i)); }
+	template<class c> typename enable_if<sizeof dud<c>(0) == 1, void>::type print(c i) { print(range(begin(i), end(i))); }
 	template<class c, class b> void print(pair<b, c> d) { cerr << "(" << d.first << ", " << d.second << ")"; }
 	template<class a, class b, class c> void print(tuple<a, b, c> tp) { cerr << "(" << get<0>(tp) << ", " << get<1>(tp) << ", " << get<2>(tp) << ")"; };
 	template<class a, class b, class c, class d> void print(tuple<a, b, c, d> tp) { cerr << "(" << get<0>(tp) << ", " << get<1>(tp) << ", " << get<2>(tp) << ", " << get<3>(tp) << ")"; };
