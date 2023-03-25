@@ -7,13 +7,16 @@ public:
 				if(!p[i]) {
 					p[i] = x;
 					cnt += 1;
+					change = true;
 					return;
 				} else {
 					x ^= p[i];
 				}
 			}
 		}
-		zero = true;
+		if(zero == false) {
+			zero = change = true;
+		}
 	}
 
 	long long get_max() {
@@ -47,6 +50,10 @@ public:
 	}
 
 	void update() {
+		if(!change) {
+			return;
+		}
+		change = false;
 		d.clear();
 		for(int j = 0; j < LOG; ++j) {
 			for(int i = j - 1; i >= 0; --i) {
@@ -92,6 +99,7 @@ public:
 
 private:
 	bool zero = false;
+	bool change = false;
 	int cnt = 0;
 	long long p[LOG] = {};
 	vector<long long> d;
