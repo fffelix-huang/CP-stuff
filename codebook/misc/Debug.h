@@ -17,7 +17,8 @@ struct debug {
 	template<class c> void print(rge<c> d) {
 		cerr << "{";
 		for(auto it = d.b; it != d.e; ++it) {
-			cerr << ", " + 2 * (it == d.b) << *it;
+			cerr << ", " + 2 * (it == d.b);
+			print(*it);
 		}
 		cerr << "}";
 	}

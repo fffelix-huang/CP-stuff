@@ -23,7 +23,8 @@ struct debug {
 	template<class c> void print(rge<c> d) {
 		std::cerr << "{";
 		for(auto it = d.b; it != d.e; ++it) {
-			std::cerr << ", " + 2 * (it == d.b) << *it;
+			std::cerr << ", " + 2 * (it == d.b);
+			print(*it);
 		}
 		std::cerr << "}";
 	}
