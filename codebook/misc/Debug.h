@@ -4,16 +4,16 @@ template<class c> rge<c> range(c i, c j) { return rge<c>{i, j}; }
 template<class c> auto dud(c* x)->decltype(cerr << *x, 0);
 template<class c> char dud(...);
 struct debug {
-	bool ok = true;
-	debug() {}
-	debug(bool b) : ok(b) {}
+	bool ok;
+	debug(bool b = true) : ok(b) {}
 #ifdef LOCAL
 	~debug() { if(ok) cerr << endl; }
+	template<class T, class... U> void print(const T& x, const U&... y) { print(x); print(y...); }
 	template<class c> typename enable_if<sizeof dud<c>(0) != 1, void>::type print(c i) { cerr << boolalpha << i; }
 	template<class c> typename enable_if<sizeof dud<c>(0) == 1, void>::type print(c i) { print(range(begin(i), end(i))); }
-	template<class c, class b> void print(pair<b, c> d) { cerr << "(" << d.first << ", " << d.second << ")"; }
-	template<class a, class b, class c> void print(tuple<a, b, c> tp) { cerr << "(" << get<0>(tp) << ", " << get<1>(tp) << ", " << get<2>(tp) << ")"; };
-	template<class a, class b, class c, class d> void print(tuple<a, b, c, d> tp) { cerr << "(" << get<0>(tp) << ", " << get<1>(tp) << ", " << get<2>(tp) << ", " << get<3>(tp) << ")"; };
+	template<class c, class b> void print(pair<b, c> d) { print("(", d.first, ", ", d.second, ")"); }
+	template<class a, class b, class c> void print(tuple<a, b, c> tp) { print("(", get<0>(tp), ", ", get<1>(tp), ", ", get<2>(tp), ")"); };
+	template<class a, class b, class c, class d> void print(tuple<a, b, c, d> tp) { print("(", get<0>(tp), ", ", get<1>(tp), ", ", get<2>(tp), ", ", get<3>(tp), ")"); };
 	template<class c> void print(rge<c> d) {
 		cerr << "{";
 		for(auto it = d.b; it != d.e; ++it) {
