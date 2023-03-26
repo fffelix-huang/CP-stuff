@@ -35,7 +35,7 @@ T inv_mod(T x, T m) {
 
 // (rem, mod)
 template<class T>
-std::pair<T, T> crt(const std::vector<T>& r, const std::vector<T>& m) {
+std::pair<T, T> chinese_remainder_theorem(const std::vector<T>& r, const std::vector<T>& m) {
 	assert(r.size() == m.size());
 	int n = (int) r.size();
 	// Contracts: 0 <= r0 < m0
