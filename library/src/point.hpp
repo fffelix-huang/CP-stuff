@@ -10,124 +10,98 @@ class Point {
 public:
 	T x, y;
 
-	Point() : x(0), y(0) {}
-
-	Point(const T& a, const T& b) : x(a), y(b) {}
-
-	template<class U>
-	explicit Point(const Point<U>& p) : x(static_cast<T>(p.x)), y(static_cast<T>(p.y)) {}
+	Point(T a = 0, T b = 0) : x(a), y(b) {}
 
 	Point(const std::pair<T, T>& p) : x(p.first), y(p.second) {}
 
-	Point(const std::complex<T>& p) : x(real(p)), y(imag(p)) {}
-
-	explicit operator std::pair<T, T>() const {
+	explicit constexpr operator std::pair<T, T>() const {
 		return std::pair<T, T>(x, y);
 	}
 
-	explicit operator std::complex<T>() const {
-		return std::complex<T>(x, y);
-	}
-
-	inline Point& operator+=(const Point& rhs) {
+	constexpr Point& operator+=(const Point& rhs) & {
 		x += rhs.x;
 		y += rhs.y;
 		return *this;
 	}
 
-	inline Point& operator-=(const Point& rhs) {
+	constexpr Point& operator-=(const Point& rhs) & {
 		x -= rhs.x;
 		y -= rhs.y;
 		return *this;
 	}
 
-	inline Point& operator*=(const T& rhs) {
+	constexpr Point& operator*=(const T& rhs) & {
 		x *= rhs;
 		y *= rhs;
 		return *this;
 	}
 
-	inline Point& operator/=(const T& rhs) {
+	constexpr Point& operator/=(const T& rhs) & {
 		x /= rhs;
 		y /= rhs;
 		return *this;
 	}
 
-	template<class U>
-	inline Point& operator+=(const Point<U>& rhs) {
-		return *this += Point<T>(rhs);
-	}
-
-	template<class U>
-	inline Point& operator-=(const Point<U>& rhs) {
-		return *this -= Point<T>(rhs);
-	}
-
-	inline Point operator+() const {
+	constexpr Point operator+() const {
 		return *this;
 	}
 
-	inline Point operator-() const {
+	constexpr Point operator-() const {
 		return Point(-x, -y);
 	}
 
-	inline Point operator+(const Point& rhs) {
-		return Point(*this) += rhs;
+	friend constexpr Point operator+(Point lhs, Point rhs) {
+		return lhs += rhs;
 	}
 
-	inline Point operator-(const Point& rhs) {
-		return Point(*this) -= rhs;
+	friend constexpr Point operator-(Point lhs, Point rhs) {
+		return lhs -= rhs;
 	}
 
-	inline Point operator*(const T& rhs) {
-		return Point(*this) *= rhs;
+	friend constexpr Point operator*(Point lhs, T rhs) {
+		return lhs *= rhs;
 	}
 
-	inline Point operator/(const T& rhs) {
-		return Point(*this) /= rhs;
+	friend constexpr Point operator/(Point lhs, T rhs) {
+		return lhs /= rhs;
 	}
 
-	inline bool operator==(const Point& rhs) {
+	constexpr bool operator==(const Point& rhs) const {
 		return x == rhs.x && y == rhs.y;
 	}
 
-	inline bool operator!=(const Point& rhs) {
+	constexpr bool operator!=(const Point& rhs) const {
 		return !(*this == rhs);
 	}
 
-	inline T dist2() const {
+	constexpr T dist2() const {
 		return x * x + y * y;
 	}
 
-	inline long double dist() const {
+	constexpr long double dist() const {
 		return std::sqrt(dist2());
 	}
 
-	inline Point unit() const {
-		return *this / this->dist();
-	}
-
-	inline long double angle() const {
+	constexpr long double angle() const {
 		return std::atan2(y, x);
 	}
 
-	inline friend T dot(const Point& lhs, const Point& rhs) {
+	friend constexpr T dot(Point lhs, Point rhs) {
 		return lhs.x * rhs.x + lhs.y * rhs.y;
 	}
 
-	inline friend T cross(const Point& lhs, const Point& rhs) {
+	friend constexpr T cross(Point lhs, Point rhs) {
 		return lhs.x * rhs.y - lhs.y * rhs.x;
 	}
 
-	inline friend Point dot_cross(const Point& lhs, const Point& rhs) {
+	friend constexpr Point dot_cross(Point lhs, Point rhs) {
 		return Point(dot(lhs, rhs), cross(lhs, rhs));
 	}
-};
 
-template<class T>
-istream& operator>>(istream& in, Point<T>& p) {
-	return in >> p.x >> p.y;
-}
+	friend constexpr std::istream& operator>>(std::istream& in, Point& p) {
+		return in >> p.x >> p.y;
+	}
+};
 
 } // namespace felix
 
