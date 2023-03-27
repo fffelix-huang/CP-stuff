@@ -3,6 +3,7 @@
 
 #include "debug.hpp"
 
+using uint = unsigned int;
 using ll = long long;
 using ull = unsigned long long;
 using pii = std::pair<int, int>;
