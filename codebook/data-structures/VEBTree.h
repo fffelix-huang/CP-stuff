@@ -11,7 +11,7 @@ private:
 	constexpr static int K = B / 2, R = (B + 1) / 2, M = (1 << B);
 	constexpr static int S = 1 << K, MASK = (1 << R) - 1;
 
-	array<VEBTree<R>, S> ch;
+	array<VEBTree<R>, S> child;
 	VEBTree<K> act = {};
 	int mn = M;
 	int mx = -1;
@@ -29,12 +29,12 @@ public:
 			return M;
 		}
 		int j = i >> R, x = i & MASK;
-		int res = ch[j].find_next(x);
+		int res = child[j].find_next(x);
 		if(res <= MASK) {
 			return (j << R) + res;
 		}
 		j = act.find_next(j + 1);
-		return j >= S ? mx : (j << R) + ch[j].find_next(0);
+		return j >= S ? mx : (j << R) + child[j].find_next(0);
 	}
 
 	int find_prev(int i) const {
@@ -45,12 +45,12 @@ public:
 			return -1;
 		}
 		int j = i >> R, x = i & MASK;
-		int res = ch[j].find_prev(x);
+		int res = child[j].find_prev(x);
 		if(res >= 0) {
 			return (j << R) + res;
 		}
 		j = act.find_prev(j - 1);
-		return j < 0 ? mn : (j << R) + ch[j].find_prev(MASK);
+		return j < 0 ? mn : (j << R) + child[j].find_prev(MASK);
 	}
 
 	void insert(int i) {
@@ -75,10 +75,10 @@ public:
 			}
 		}
 		int j = i >> R;
-		if(ch[j].empty()) {
+		if(child[j].empty()) {
 			act.insert(j);
 		}
-		ch[j].insert(i & MASK);
+		child[j].insert(i & MASK);
 	}
 
 	void erase(int i) {
@@ -103,8 +103,8 @@ public:
 			}
 		}
 		int j = i >> R;
-		ch[j].erase(i & MASK);
-		if(ch[j].empty()) {
+		child[j].erase(i & MASK);
+		if(child[j].empty()) {
 			act.erase(j);
 		}
 	}
@@ -113,7 +113,7 @@ public:
 		mn = M, mx = -1;
 		act.clear();
 		for(int i = 0; i < S; ++i) {
-			ch[i].clear();
+			child[i].clear();
 		}
 	}
 };
