@@ -65,13 +65,13 @@ public:
 		return found;
 	}
 
-	std::pair<Cap_t, Cost_t> flow(int s, int t) {
+	std::pair<Cap_t, Cost_t> flow(int s, int t, Cap_t f = std::numeric_limits<Cap_t>::max()) {
 		assert(0 <= s && s < n);
 		assert(0 <= t && t < n);
 		Cap_t cap = 0;
 		Cost_t cost = 0;
-		while(spfa(s, t)) {
-			Cap_t send = std::numeric_limits<Cap_t>::max();
+		while(f > 0 && spfa(s, t)) {
+			Cap_t send = f;
 			int u = t;
 			while(u != s) {
 				const Edge& e = edges[previous_edge[u]];
@@ -87,9 +87,10 @@ public:
 				u = e.from;
 			}
 			cap += send;
+			f -= send;
 			cost += send * d[t];
 		}
-		return make_pair(cap, cost);
+		return std::make_pair(cap, cost);
 	}
 };
 
