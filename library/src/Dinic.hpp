@@ -66,7 +66,7 @@ public:
 			int v = e[j].to;
 			T c = e[j].cap;
 			if(c > 0 && h[v] == h[u] + 1) {
-				T a = dfs(v, t, min(r, c));
+				T a = dfs(v, t, std::min(r, c));
 				e[j].cap -= a;
 				e[j ^ 1].cap += a;
 				r -= a;
