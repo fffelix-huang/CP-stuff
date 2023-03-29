@@ -12,14 +12,14 @@ public:
 
 	void add_edge(int u, int v) {
 		assert(0 <= u && u < n);
-		assert(0 <= v && v < n);
+		assert(0 <= v && v < m);
 		g[u].push_back(v);
 	}
 
 	bool bfs() {
 		std::queue<int> q;
 		std::fill(dist.begin(), dist.end(), -1);
-		for(int i = 0; i < n; ++i) {
+		for(int i = 0; i < n; i++) {
 			if(lhs[i] == -1) {
 				q.push(i);
 				dist[i] = 0;
@@ -53,13 +53,13 @@ public:
 		return false;
 	}
 
-	int matching() {
+	int maximum_matching() {
 		std::fill(lhs.begin(), lhs.end(), -1);
 		std::fill(rhs.begin(), rhs.end(), -1);
 		int ans = 0;
 		while(bfs()) {
 			std::fill(cur.begin(), cur.end(), 0);
-			for(int i = 0; i < n; ++i) {
+			for(int i = 0; i < n; i++) {
 				if(lhs[i] == -1 && dfs(i)) {
 					ans += 1;
 				}
@@ -70,19 +70,42 @@ public:
 
 	std::pair<std::vector<int>, std::vector<int>> minimum_vertex_cover() {
 		std::vector<int> L, R;
-		for(int u = 0; u < n; ++u) {
+		for(int u = 0; u < n; u++) {
 			if(dist[u] == 0) {
 				L.push_back(u);
 			} else if(lhs[u] != -1) {
 				R.push_back(lhs[u]);
 			}
 		}
-		return {L, R};
+		return std::make_pair(L, R);
+	}
+
+	std::pair<std::vector<int>, std::vector<int>> maximum_independent_set() {
+		auto p = minimum_vertex_cover();
+		std::vector<bool> L(n, true), R(m, true);
+		for(auto x : p.first) {
+			L[x] = false;
+		}
+		for(auto x : p.second) {
+			R[x] = false;
+		}
+		std::vector<int> L2, R2;
+		for(int i = 0; i < n; i++) {
+			if(L[i]) {
+				L2.push_back(i);
+			}
+		}
+		for(int i = 0; i < m; i++) {
+			if(R[i]) {
+				R2.push_back(i);
+			}
+		}
+		return std::make_pair(L2, R2);
 	}
 
 	std::vector<std::pair<int, int>> get_edges() {
 		std::vector<std::pair<int, int>> ans;
-		for(int u = 0; u < n; ++u) {
+		for(int u = 0; u < n; u++) {
 			if(lhs[u] != -1) {
 				ans.emplace_back(u, lhs[u]);
 			}
