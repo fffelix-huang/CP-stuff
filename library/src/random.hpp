@@ -53,6 +53,21 @@ struct random_t {
 			std::swap(a[i], a[next(i + 1)]);
 		}
 	}
+
+	std::vector<int> permutation(int n) {
+		std::vector<int> a(n);
+		std::iota(a.begin(), a.end(), 0);
+		shuffle(a);
+		return a;
+	}
+
+	std::string string(int n, char min_char = 'a', char max_char = 'z') {
+		std::string s(n, '_');
+		for(int i = 0; i < n; i++) {
+			s[i] = next(min_char, max_char);
+		}
+		return s;
+	}
 };
 
 random_t rnd;

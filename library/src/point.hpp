@@ -6,8 +6,7 @@
 namespace felix {
 
 template<class T>
-class Point {
-public:
+struct Point {
 	T x, y;
 
 	Point(T a = 0, T b = 0) : x(a), y(b) {}
