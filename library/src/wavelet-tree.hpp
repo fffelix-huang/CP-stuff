@@ -8,14 +8,14 @@ namespace felix {
 class wavelet_tree {
 public:
 	wavelet_tree(std::vector<int> v) : vals(v), t(0), n(v.size()) {
-		sort(vals.begin(), vals.end());
-		vals.erase(unique(vals.begin(), vals.end()), vals.end());
+		std::sort(vals.begin(), vals.end());
+		vals.erase(std::unique(vals.begin(), vals.end()), vals.end());
 		t = std::__lg(2 * vals.size() - 1);
 		bits.resize((t * n + 64) >> 6, 0ULL);
 		sums.resize(bits.size(), 0);
 		std::vector<int> cnt(vals.size() + 1);
 		for(int& x : v) {
-			x = lower_bound(vals.begin(), vals.end(), x) - vals.begin();
+			x = std::lower_bound(vals.begin(), vals.end(), x) - vals.begin();
 			cnt[x + 1] += 1;
 		}
 		for(int i = 1; i < (int) vals.size(); ++i) {
