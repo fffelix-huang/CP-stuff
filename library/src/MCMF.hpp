@@ -25,6 +25,7 @@ public:
 	std::vector<bool> in_queue;
 	std::vector<int> previous_edge;
 
+	MCMF() {}
 	MCMF(int _n) : n(_n), g(_n), d(_n), in_queue(_n), previous_edge(_n) {}
 
 	void add_edge(int u, int v, Cap_t cap, Cost_t cost) {
