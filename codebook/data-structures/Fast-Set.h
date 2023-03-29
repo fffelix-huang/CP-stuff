@@ -77,7 +77,7 @@ private:
 			}
 		}
 		if(bt == 62) {
-			return MAXN + 1;
+			return -1;
 		}
 		while(bt < PREF * 64) {
 			bt = left(bt) | __builtin_ctzll(m[bt - 62]);
