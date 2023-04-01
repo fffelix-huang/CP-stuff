@@ -61,7 +61,7 @@ unsigned long long pollard_rho(unsigned long long n) {
 	}
 	unsigned long long R;
 	auto f = [&](unsigned long long x) {
-		return (__int128(x) * x + R) % n;
+		return internal::safe_mod<__int128>(__int128(x) * x + R, n);
 	};
 	auto rnd_ = [&]() {
 		static std::mt19937_64 rng(std::chrono::steady_clock::now().time_since_epoch().count());
@@ -81,7 +81,7 @@ unsigned long long pollard_rho(unsigned long long n) {
 				ys = y;
 				for(int i = 0; i < m && i < r - k; ++i) {
 					y = f(y);
-					q = (q * (__int128(x) - y) % n + n) % n;
+					q = internal::safe_mod<__int128>(__int128(x) - y, n);
 				}
 				g = internal::binary_gcd(q, n);
 			}
@@ -89,7 +89,7 @@ unsigned long long pollard_rho(unsigned long long n) {
 		if(g == n) {
 			do {
 				ys = f(ys);
-				unsigned long long x2 = ((__int128(x) - ys) % n + n) % n;
+				unsigned long long x2 = internal::safe_mod<__int128>(__int128(x) - ys, n);
 				g = internal::binary_gcd(x2, n);
 			} while(g == 1);
 		}
