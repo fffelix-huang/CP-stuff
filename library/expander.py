@@ -26,17 +26,18 @@ defined = set()
 
 def dfs(f: str) -> List[str]:
 	global defined
+
+	cur_path = str(lib_path / f)
+
+	if os.path.exists(cur_path) == False:
+		return ['#include <' + f + '>']
+
 	if f in defined:
 		logger.info('already included {}, skip'.format(f))
 		return []
 	defined.add(f)
 
 	logger.info('include {}'.format(f))
-
-	cur_path = str(lib_path / f)
-
-	if os.path.exists(cur_path) == False:
-		return ['#include <' + f + '>']
 
 	s = open(cur_path).read()
 	result = []
