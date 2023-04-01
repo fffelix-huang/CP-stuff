@@ -5,6 +5,7 @@ import sys
 import argparse
 from logging import Logger, basicConfig, getLogger
 from os import getenv, environ
+import os
 from pathlib import Path
 from typing import List
 from dateutil import tz
@@ -15,7 +16,7 @@ to_zone = tz.gettz('Asia/Shanghai')
 
 logger = getLogger(__name__)  # type: Logger
 
-file_include = re.compile('#include\s*["<]([A-Za-z_-]*(|.hpp))[">]\s*')
+file_include = re.compile('#include\s*["<]([A-Za-z_/-]*(|.hpp))[">]\s*')
 
 include_guard = re.compile('#.*FELIX_[A-Z_]*_HPP')
 
@@ -32,7 +33,12 @@ def dfs(f: str) -> List[str]:
 
 	logger.info('include {}'.format(f))
 
-	s = open(str(lib_path / f)).read()
+	cur_path = str(lib_path / f)
+
+	if os.path.exists(cur_path) == False:
+		return ['#include <' + f + '>']
+
+	s = open(cur_path).read()
 	result = []
 	for line in s.splitlines():
 		if include_guard.match(line):
