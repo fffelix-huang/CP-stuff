@@ -41,6 +41,7 @@ int point_in_convex_hull(const vector<Point<T>>& a, const Point<T>& p) {
 	// -1 ON
 	//  0 OUT
 	// +1 IN
+	// Convex Hull must be sorted in counter-clockwise order
 	int n = (int) a.size();
 	if(between(a[0], a[1], p) || between(a[0], a[n - 1], p)) {
 		return -1;
