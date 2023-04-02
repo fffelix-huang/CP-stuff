@@ -1,5 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/unionfind"
 
+#include <bits/stdc++.h>
 #include "DSU.hpp"
 using namespace std;
 using namespace felix;
