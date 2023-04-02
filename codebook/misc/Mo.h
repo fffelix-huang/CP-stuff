@@ -43,6 +43,11 @@ struct Mo {
 		}
 	}
 
+	template<class ADD, class DEL, class ANS>
+	void solve(const ADD& add, const DEL& del, const ANS& get_ans) {
+		solve(add, add, del, del, get_ans);
+	}
+
  private:
 	void sort() {
 		assert((int) order.size() == Q);
