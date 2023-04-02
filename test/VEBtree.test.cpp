@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/predecessor_problem"
 
 #include <bits/stdc++.h>
-#include "VEBtree.hpp"
+#include "../library/src/VEBtree.hpp"
 using namespace std;
 using namespace felix;
 
