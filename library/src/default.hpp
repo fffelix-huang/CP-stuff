@@ -29,4 +29,4 @@ decltype(auto) y_combinator(Fun &&fun) {
 
 template<class T> bool chmin(T& a, const T& b) { return a < b ? false : (a = b, true); }
 template<class T> bool chmax(T& a, const T& b) { return a > b ? false : (a = b, true); }
-template<class T> std::vector<T> sort_unique(std::vector<T> v) { std::sort(v.begin(), v.end()), v.erase(std::unique(v.begin(), v.end())); return v; }
+template<class T> std::vector<T> sort_unique(std::vector<T> v) { std::sort(v.begin(), v.end()), v.erase(std::unique(v.begin(), v.end()), v.end()); return v; }
