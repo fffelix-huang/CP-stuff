@@ -1,7 +1,5 @@
-#ifndef FELIX_VEBTREE_HPP
-#define FELIX_VEBTREE_HPP 1
-
-#include "includes.hpp"
+#pragma once
+#include <array>
 
 namespace felix {
 
@@ -154,5 +152,3 @@ public:
 
 
 } // namespace felix
-
-#endif // FELIX_VEBTREE_HPP

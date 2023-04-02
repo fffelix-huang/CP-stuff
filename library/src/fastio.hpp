@@ -1,7 +1,7 @@
-#ifndef FELIX_FASTIO_HPP
-#define FELIX_FASTIO_HPP 1
-
-#include "includes.hpp"
+#pragma once
+#include <iostream>
+#include <string>
+#include <type_traits>
 
 static struct FastInput {
 	static constexpr int BUF_SIZE = 1 << 20;
@@ -191,5 +191,3 @@ static struct FastOutput {
 
 #define ostream FastOutput
 #define cout fast_output
-
-#endif // FELIX_FASTIO_HPP

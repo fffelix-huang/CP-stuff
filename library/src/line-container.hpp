@@ -1,10 +1,12 @@
-#ifndef FELIX_LINE_CONTAINER_HPP
-#define FELIX_LINE_CONTAINER_HPP 1
-
-#include "includes.hpp"
+#pragma once
+#include <limits>
+#include <cassert>
+#include <set>
 #include "internal-math.hpp"
 
 namespace felix {
+
+namespace Line_Container_Impl {
 
 struct Line_t {
 	mutable long long k, m, p;
@@ -13,8 +15,10 @@ struct Line_t {
 	inline bool operator<(long long x) const { return p < x; }
 };
 
+} // Line_Container_Impl
+
 template<bool MAX = true>
-struct LineContainer : std::multiset<Line_t, std::less<>> {
+struct LineContainer : std::multiset<Line_Container_Impl::Line_t, std::less<>> {
 	static const long long INF = std::numeric_limits<long long>::max();
 
 	bool isect(iterator x, iterator y) {
@@ -55,5 +59,3 @@ struct LineContainer : std::multiset<Line_t, std::less<>> {
 };
 
 } // namespace felix
-
-#endif // FELIX_LINE_CONTAINER_HPP

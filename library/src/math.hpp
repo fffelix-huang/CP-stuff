@@ -1,7 +1,6 @@
-#ifndef FELIX_MATH_HPP
-#define FELIX_MATH_HPP 1
-
-#include "includes.hpp"
+#pragma once
+#include <vector>
+#include <cassert>
 #include "PBDS.hpp"
 #include "internal-math.hpp"
 
@@ -113,5 +112,3 @@ long long floor_sum(long long n, long long m, long long a, long long b) {
 }
 
 } // namespace felix
-
-#endif // FELIX_MATH_HPP

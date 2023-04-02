@@ -1,7 +1,7 @@
-#ifndef FELIX_CONVOLUTION_HPP
-#define FELIX_CONVOLUTION_HPP 1
+#pragma once
 
-#include "includes.hpp"
+#include <vector>
+#include <cassert>
 
 namespace felix {
 
@@ -126,5 +126,3 @@ std::vector<T> subset_convolution(const std::vector<T>& f, const std::vector<T>&
 }
 
 } // namespace felix
-
-#endif // FELIX_CONVOLUTION_HPP

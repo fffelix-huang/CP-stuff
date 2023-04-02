@@ -1,12 +1,7 @@
-#ifndef FELIX_XXX_HPP
-#define FELIX_XXX_HPP 1
-
-#include "includes.hpp"
+#pragma once
 
 namespace felix {
 
 
 
 } // namespace felix
-
-#endif // FELIX_XXX_HPP

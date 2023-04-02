@@ -1,7 +1,7 @@
-#ifndef FELIX_SCC_HPP
-#define FELIX_SCC_HPP 1
-
-#include "includes.hpp"
+#pragma once
+#include <vector>
+#include <cassert>
+#include <algorithm>
 
 namespace felix {
 
@@ -67,7 +67,7 @@ public:
 		}
 		for(int i = 0; i < sz; ++i) {
 			std::sort(new_g[i].begin(), new_g[i].end());
-			new_g[i].erase(unique(new_g[i].begin(), new_g[i].end()), new_g[i].end());
+			new_g[i].erase(std::unique(new_g[i].begin(), new_g[i].end()), new_g[i].end());
 		}
 		return new_g;
 	}
@@ -78,5 +78,3 @@ private:
 };
 
 } // namespace felix
-
-#endif // FELIX_SCC_HPP

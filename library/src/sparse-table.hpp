@@ -1,7 +1,6 @@
-#ifndef FELIX_SPARSE_TABLE_HPP
-#define FELIX_SPARSE_TABLE_HPP 1
-
-#include "includes.hpp"
+#pragma once
+#include <vector>
+#include <cassert>
 
 namespace felix {
 
@@ -35,5 +34,3 @@ private:
 };
 
 } // namespace felix
-
-#endif // FELIX_SPARSE_TABLE_HPP

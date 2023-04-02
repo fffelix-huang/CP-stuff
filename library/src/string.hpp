@@ -1,7 +1,8 @@
-#ifndef FELIX_STRING_HPP
-#define FELIX_STRING_HPP 1
-
-#include "includes.hpp"
+#pragma once
+#include <vector>
+#include <algorithm>
+#include <numeric>
+#include <cassert>
 
 namespace felix {
 
@@ -304,5 +305,3 @@ std::vector<int> z_algorithm(const std::string& s) {
 }
 
 } // namespace felix
-
-#endif // FELIX_STRING_HPP

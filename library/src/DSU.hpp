@@ -1,7 +1,7 @@
-#ifndef FELIX_DSU_HPP
-#define FELIX_DSU_HPP 1
-
-#include "includes.hpp"
+#pragma once
+#include <vector>
+#include <cassert>
+#include <algorithm>
 
 namespace felix {
 
@@ -62,5 +62,3 @@ private:
 };
 
 } // namespace felix
-
-#endif // FELIX_DSU_HPP

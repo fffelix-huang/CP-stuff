@@ -1,7 +1,8 @@
-#ifndef FELIX_SEGTREE_BEATS_HPP
-#define FELIX_SEGTREE_BEATS_HPP 1
-
-#include "includes.hpp"
+#pragma once
+#include <vector>
+#include <algorithm>
+#include <cassert>
+#include <limits>
 
 namespace felix {
 
@@ -131,7 +132,7 @@ private:
 			}
 			a[i].max = g;
 			a[i].min_second = std::min(a[i].min_second, g);
-			if(a[i].lazy_update != LLONG_MAX) {
+			if(a[i].lazy_update != std::numeric_limits<long long>::max()) {
 				a[i].lazy_update = std::min(a[i].lazy_update, g);
 			}
 			a[i].sum += g * a[i].max_count;
@@ -140,17 +141,17 @@ private:
 				tag<UPDATE>(i, g);
 				return;
 			}
-			if(a[i].min != LLONG_MAX) {
+			if(a[i].min != std::numeric_limits<long long>::max()) {
 				a[i].sum -= a[i].min * a[i].min_count;
 			}
 			a[i].min = g;
 			a[i].max_second = std::max(a[i].max_second, g);
-			if(a[i].lazy_update != LLONG_MAX) {
+			if(a[i].lazy_update != std::numeric_limits<long long>::max()) {
 				a[i].lazy_update = std::max(a[i].lazy_update, g);
 			}
 			a[i].sum += g * a[i].min_count;
 		} else if(TYPE == ADD) {
-			if(a[i].max != LLONG_MAX) {
+			if(a[i].max != std::numeric_limits<long long>::max()) {
 				a[i].max += g;
 			}
 			if(a[i].max_second != INT64_MIN) {
@@ -159,11 +160,11 @@ private:
 			if(a[i].min != INT64_MIN) {
 				a[i].min += g;
 			}
-			if(a[i].min_second != LLONG_MAX) {
+			if(a[i].min_second != std::numeric_limits<long long>::max()) {
 				a[i].min_second += g;
 			}
 			a[i].lazy_add += g;
-			if(a[i].lazy_update != LLONG_MAX) {
+			if(a[i].lazy_update != std::numeric_limits<long long>::max()) {
 				a[i].lazy_update += g;
 			}
 			a[i].sum += g * length;
@@ -172,10 +173,10 @@ private:
 			a[i].max_second = INT64_MIN;
 			a[i].max_count = length;
 			a[i].min = g;
-			a[i].min_second = LLONG_MAX;
+			a[i].min_second = std::numeric_limits<long long>::max();
 			a[i].min_count = length;
 			a[i].lazy_add = 0;
-			a[i].lazy_update = LLONG_MAX;
+			a[i].lazy_update = std::numeric_limits<long long>::max();
 			a[i].sum = g * length;
 		} else {
 			assert(false);
@@ -185,10 +186,10 @@ private:
 		int l = 2 * i + 1;
 		int r = 2 * i + 2;
 		// update
-		if(a[i].lazy_update != LLONG_MAX) {
+		if(a[i].lazy_update != std::numeric_limits<long long>::max()) {
 			tag<UPDATE>(l, a[i].lazy_update);
 			tag<UPDATE>(r, a[i].lazy_update);
-			a[i].lazy_update = LLONG_MAX;
+			a[i].lazy_update = std::numeric_limits<long long>::max();
 			return;
 		}
 		// add
@@ -232,7 +233,7 @@ private:
 		// add
 		a[i].lazy_add = 0;
 		// update
-		a[i].lazy_update = LLONG_MAX;
+		a[i].lazy_update = std::numeric_limits<long long>::max();
 		// sum
 		a[i].sum = a[l].sum + a[r].sum;
 	}
@@ -265,5 +266,3 @@ private:
 };
 
 } // namespace felix
-
-#endif // FELIX_SEGTREE_BEATS_HPP

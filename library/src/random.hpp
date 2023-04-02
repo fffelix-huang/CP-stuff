@@ -1,7 +1,11 @@
-#ifndef FELIX_RANDOM_HPP
-#define FELIX_RANDOM_HPP 1
-
-#include "includes.hpp"
+#pragma once
+#include <vector>
+#include <string>
+#include <algorithm>
+#include <numeric>
+#include <random>
+#include <chrono>
+#include <limits>
 
 namespace felix {
 
@@ -23,7 +27,7 @@ struct random_t {
 	}
 
 	unsigned long long next() {
-		return std::uniform_int_distribution<unsigned long long>(0, ULLONG_MAX)(rng);
+		return std::uniform_int_distribution<unsigned long long>(0, std::numeric_limits<unsigned long long>::max())(rng);
 	}
 
 	unsigned long long next(unsigned long long a) {
@@ -73,5 +77,3 @@ struct random_t {
 random_t rnd;
 
 } // namespace felix
-
-#endif // FELIX_RANDOM_HPP

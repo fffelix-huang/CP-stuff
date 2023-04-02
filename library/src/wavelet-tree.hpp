@@ -1,7 +1,6 @@
-#ifndef FELIX_WAVELET_TREE_HPP
-#define FELIX_WAVELET_TREE_HPP 1
-
-#include "includes.hpp"
+#pragma once
+#include <vector>
+#include <algorithm>
 
 namespace felix {
 
@@ -78,5 +77,3 @@ private:
 };
 
 } // namespace felix
-
-#endif // FELIX_WAVELET_TREE_HPP

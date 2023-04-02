@@ -1,7 +1,6 @@
-#ifndef FELIX_DEBUG_HPP
-#define FELIX_DEBUG_HPP 1
-
-#include "includes.hpp"
+#pragma once
+#include <iostream>
+#include <tuple>
 
 namespace felix {
 
@@ -40,5 +39,3 @@ struct debug {
 #define show(...) "" << LIGHT_RED << " [" << NONE << #__VA_ARGS__ ": " << (__VA_ARGS__) << LIGHT_RED << "] " << NONE << ""
 
 } // namespace felix
-
-#endif // FELIX_DEBUG_HPP

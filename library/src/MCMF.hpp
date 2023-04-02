@@ -1,7 +1,8 @@
-#ifndef FELIX_MCMF_HPP
-#define FELIX_MCMF_HPP 1
-
-#include "includes.hpp"
+#pragma once
+#include <vector>
+#include <queue>
+#include <cassert>
+#include <limits>
 
 namespace felix {
 
@@ -96,5 +97,3 @@ public:
 };
 
 } // namespace felix
-
-#endif // FELIX_MCMF_HPP

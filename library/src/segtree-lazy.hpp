@@ -1,7 +1,6 @@
-#ifndef FELIX_SEGTREE_LAZY_HPP
-#define FELIX_SEGTREE_LAZY_HPP 1
-
-#include "includes.hpp"
+#pragma once
+#include <vector>
+#include <cassert>
 
 namespace felix {
 
@@ -232,5 +231,3 @@ private:
 };
 
 } // namespace felix
-
-#endif // FELIX_SEGTREE_LAZY_HPP

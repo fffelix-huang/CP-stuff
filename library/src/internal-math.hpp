@@ -1,7 +1,5 @@
-#ifndef FELIX_INTERNAL_MATH_HPP
-#define FELIX_INTERNAL_MATH_HPP 1
-
-#include "includes.hpp"
+#pragma once
+#include <algorithm>
 
 namespace felix {
 
@@ -198,5 +196,3 @@ inline unsigned long long binary_gcd(unsigned long long a, unsigned long long b)
 } // namespace internal
 
 } // namespace felix
-
-#endif // FELIX_INTERNAL_MATH_HPP

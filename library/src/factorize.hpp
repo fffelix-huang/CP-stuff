@@ -1,7 +1,9 @@
-#ifndef FELIX_FACTORIZE_HPP
-#define FELIX_FACTORIZE_HPP 1
-
-#include "includes.hpp"
+#pragma once
+#include <vector>
+#include <cassert>
+#include <random>
+#include <chrono>
+#include <algorithm>
 #include "internal-math.hpp"
 
 namespace felix {
@@ -149,5 +151,3 @@ std::vector<unsigned long long> divisors(unsigned long long n) {
 }
 
 } // namespace felix
-
-#endif // FELIX_FACTORIZE_HPP

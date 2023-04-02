@@ -1,7 +1,6 @@
-#ifndef FELIX_POINT_HPP
-#define FELIX_POINT_HPP 1
-
-#include "includes.hpp"
+#pragma once
+#include <iostream>
+#include <cmath>
 
 namespace felix {
 
@@ -103,5 +102,3 @@ struct Point {
 };
 
 } // namespace felix
-
-#endif // FELIX_POINT_HPP

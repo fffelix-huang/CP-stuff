@@ -1,7 +1,8 @@
-#ifndef FELIX_DINIC_HPP
-#define FELIX_DINIC_HPP 1
-
-#include "includes.hpp"
+#pragma once
+#include <vector>
+#include <cassert>
+#include <queue>
+#include <limits>
 
 namespace felix {
 
@@ -94,5 +95,3 @@ public:
 };
 
 } // namespace felix
-
-#endif // FELIX_DINIC_HPP

@@ -1,7 +1,6 @@
-#ifndef FELIX_FENWICK_HPP
-#define FELIX_FENWICK_HPP 1
-
-#include "includes.hpp"
+#pragma once
+#include <vector>
+#include <cassert>
 
 namespace felix {
 
@@ -40,5 +39,3 @@ private:
 };
 
 } // namespace felix
-
-#endif // FELIX_FENWICK_HPP

@@ -1,7 +1,8 @@
-#ifndef FELIX_MODINT_HPP
-#define FELIX_MODINT_HPP 1
-
-#include "includes.hpp"
+#pragma once
+#include <iostream>
+#include <cassert>
+#include <random>
+#include <chrono>
 #include "internal-math.hpp"
 
 namespace felix {
@@ -178,5 +179,3 @@ using modint998244353 = modint<998244353>;
 using modint1000000007 = modint<1000000007>;
 
 } // namespace felix
-
-#endif // FELIX_MODINT_HPP

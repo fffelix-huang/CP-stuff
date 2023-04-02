@@ -1,7 +1,7 @@
-#ifndef FELIX_BIPARTITE_MATCHING_HPP
-#define FELIX_BIPARTITE_MATCHING_HPP 1
-
-#include "includes.hpp"
+#pragma once
+#include <vector>
+#include <queue>
+#include <cassert>
 
 namespace felix {
 
@@ -121,5 +121,3 @@ private:
 };
 
 } // namespace felix
-
-#endif // FELIX_BIPARTITE_MATCHING_HPP

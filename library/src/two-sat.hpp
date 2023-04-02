@@ -1,7 +1,5 @@
-#ifndef FELIX_TWO_SAT_HPP
-#define FELIX_TWO_SAT_HPP 1
-
-#include "includes.hpp"
+#pragma once
+#include <vector>
 #include "SCC.hpp"
 
 namespace felix {
@@ -68,5 +66,3 @@ private:
 };
 
 } // namespace felix
-
-#endif // FELIX_TWO_SAT_HPP
