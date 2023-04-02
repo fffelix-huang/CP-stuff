@@ -73,10 +73,10 @@ if __name__ == "__main__":
 	s = open(opts.source).read()
 
 	result = []
-	result.append('/**')
-	result.append(' *    author:  Penguin07')
-	result.append(' *    created: ' + datetime.strftime(datetime.utcnow().replace(tzinfo = from_zone).astimezone(to_zone), "[%Y-%m-%d %H:%M:%S]"))
-	result.append('**/')
+	# result.append('/**')
+	# result.append(' *    author:  Penguin07')
+	# result.append(' *    created: ' + datetime.strftime(datetime.utcnow().replace(tzinfo = from_zone).astimezone(to_zone), "[%Y-%m-%d %H:%M:%S]"))
+	# result.append('**/')
 
 	for line in s.splitlines():
 		m = file_include.match(line)
