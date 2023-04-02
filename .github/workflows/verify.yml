@@ -1,13 +1,9 @@
 name: verify
 
-on:
-  pull_request:
-  push:
-    branches:
-      - master
+on: push
 
 jobs:
-  build:
+  verify:
     runs-on: ubuntu-latest
 
     steps:
@@ -15,23 +11,35 @@ jobs:
 
     - name: Set up Python
       uses: actions/setup-python@v1
-    
-    - name: Install boost
-      run: sudo apt install -y libboost-dev
 
     - name: Install dependencies
       run: pip3 install -U online-judge-verify-helper
 
-    - name: Clone AC Library
-      run: cd ${GITHUB_WORKSPACE}/../ && git clone https://github.com/atcoder/ac-library.git
+    - name: Set up Rust (1.42.0)
+      uses: actions-rs/toolchain@v1
+      with:
+        toolchain: 1.42.0-x86_64-unknown-linux-gnu
+        default: true
+        profile: minimal
 
-    - name: Add AC Library to CPLUS_INCLUDE_PATH
-      run: echo "CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:${GITHUB_WORKSPACE}/../ac-library" >> $GITHUB_ENV
+    # required by cargo-udeps
+    - name: Set up Rust (nightly)
+      uses: actions-rs/toolchain@v1
+      with:
+        toolchain: nightly-x86_64-unknown-linux-gnu
+        default: true
+        profile: minimal
+
+    # required only if you set `languages.rust.list_dependencies_backend.kind` to `"cargo-udeps"`
+    - name: Install cargo-udeps for Rust
+      uses: actions-rs/install@v0.1
+      with:
+        crate: cargo-udeps
+        use-tool-cache: true
 
     - name: Run tests
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        GH_PAT: ${{ secrets.GH_PAT }}
         YUKICODER_TOKEN: ${{ secrets.YUKICODER_TOKEN }}
-        DROPBOX_TOKEN: ${{ secrets.DROPBOX_TOKEN }}
-      run: oj-verify all --jobs 2
+        GH_PAT: ${{ secrets.GH_PAT }}
+      run: oj-verify all
