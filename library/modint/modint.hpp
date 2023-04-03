@@ -117,7 +117,7 @@ public:
 		return res;
 	}
 
-	constexpr std::pair<bool, modint> sqrt() const {
+	std::pair<bool, modint> sqrt() const {
 		using mint = modint;
 		if(mod() == 2 || value == 0) {
 			return {true, *this};
