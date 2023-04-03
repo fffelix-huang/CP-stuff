@@ -1,6 +1,6 @@
 #pragma once
 #include <vector>
-#include <string>
+#include <cstring>
 #include <algorithm>
 #include <numeric>
 #include <random>

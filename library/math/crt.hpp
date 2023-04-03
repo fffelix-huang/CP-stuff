@@ -2,8 +2,8 @@
 #include <vector>
 #include <cassert>
 #include <algorithm>
-#include "internal/safe-mod.hpp"
-#include "internal/inv-gcd.hpp"
+#include "../internal/safe-mod.hpp"
+#include "../internal/inv-gcd.hpp"
 
 namespace felix {
 

@@ -1,7 +1,7 @@
 #pragma once
 #include <cassert>
-#include "internal/safe-mod.hpp"
-#include "modint/barrett.hpp"
+#include "../internal/safe-mod.hpp"
+#include "../modint/barrett.hpp"
 
 namespace felix {
 

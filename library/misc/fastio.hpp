@@ -1,6 +1,6 @@
 #pragma once
 #include <iostream>
-#include <string>
+#include <cstring>
 #include <type_traits>
 
 static struct FastInput {
@@ -77,15 +77,12 @@ static struct FastInput {
 		return read_integer(n);
 	}
 
-	#if!defined(_WIN32) || defined(_WIN64)
 	inline FastInput& operator>>(__int128& n) {
 		return read_integer(n);
 	}
-	#endif
 
 	template<class T>
 	inline typename std::enable_if<std::is_floating_point<T>::value, FastInput&>::type operator>>(T& n) {
-		// not sure ifreally fast, for compatibility only
 		n = 0;
 		if(skip_blanks()) {
 			std::string s;
@@ -167,11 +164,9 @@ static struct FastOutput {
 		return integer_to_string(n);
 	}
 
-	#if!defined(_WIN32) || defined(_WIN64)
 	inline char* stringify(__int128 n) {
 		return integer_to_string(n);
 	}
-	#endif
 
 	template<class T>
 	inline typename std::enable_if<std::is_floating_point<T>::value, char*>::type stringify(T n) {

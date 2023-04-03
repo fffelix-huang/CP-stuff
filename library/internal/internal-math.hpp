@@ -1,6 +1,6 @@
 #pragma once
 #include <algorithm>
-#include "internal/safe-mod.hpp"
+#include "safe-mod.hpp"
 
 namespace felix {
 

@@ -1,6 +1,6 @@
 #pragma once
 #include <bits/stdc++.h>
-#include "misc/debug.hpp"
+#include "debug.hpp"
 
 using uint = unsigned int;
 using ll = long long;

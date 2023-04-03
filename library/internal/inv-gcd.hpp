@@ -1,5 +1,5 @@
 #pragma once
-#include "internal/safe-mod.hpp"
+#include "safe-mod.hpp"
 
 namespace felix {
 

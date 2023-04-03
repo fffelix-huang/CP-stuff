@@ -2,7 +2,7 @@
 #include <vector>
 #include <cassert>
 #include <algorithm>
-#include "data-structure/sparse-table.hpp"
+#include "../data-structure/sparse-table.hpp"
 
 namespace felix {
 

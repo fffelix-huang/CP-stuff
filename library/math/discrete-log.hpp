@@ -2,9 +2,9 @@
 #include <vector>
 #include <cmath>
 #include <cassert>
-#include "data-structure/PBDS.hpp"
-#include "math/binary-gcd.hpp"
-#include "modint/barrett.hpp"
+#include "../data-structure/PBDS.hpp"
+#include "../modint/barrett.hpp"
+#include "binary-gcd.hpp"
 
 namespace felix {
 

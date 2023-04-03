@@ -4,8 +4,8 @@
 #include <random>
 #include <chrono>
 #include <algorithm>
-#include "math/binary-gcd.hpp"
-#include "internal/safe-mod.hpp"
+#include "binary-gcd.hpp"
+#include "../internal/safe-mod.hpp"
 
 namespace felix {
 

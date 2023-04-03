@@ -2,7 +2,7 @@
 #include <limits>
 #include <cassert>
 #include <set>
-#include "math/integer-div.hpp"
+#include "../math/integer-div.hpp"
 
 namespace felix {
 
