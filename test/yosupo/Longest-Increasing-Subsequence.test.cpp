@@ -30,7 +30,7 @@ int main() {
 		while(dp[j] != i) {
 			j -= 1;
 		}
-		ans.push_back(a[j]);
+		ans.push_back(j);
 	}
 	for(int i = (int) ans.size() - 1; i >= 0; i--) {
 		cout << ans[i] << " \n"[i == 0];
