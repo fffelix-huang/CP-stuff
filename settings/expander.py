@@ -16,7 +16,7 @@ to_zone = tz.gettz('Asia/Shanghai')
 
 logger = getLogger(__name__)  # type: Logger
 
-file_include = re.compile('#include\s*["<]([A-Za-z._/-]*(|.hpp))[">]\s*')
+file_include = re.compile('#include\s*["<]([A-Za-z_/-]*(|.hpp))[">]\s*')
 
 include_guard = re.compile('#.*FELIX_[A-Z_]*_HPP')
 
