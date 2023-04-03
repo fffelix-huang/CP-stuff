@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include <vector>
-#include "../library/data-structure/wavelet-tree.hpp"
+#include "../../library/data-structure/wavelet-tree.hpp"
 using namespace std;
 using namespace felix;
 
