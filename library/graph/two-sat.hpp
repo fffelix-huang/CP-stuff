@@ -61,7 +61,7 @@ public:
 private:
 	int n;
 	SCC g;
-	bool built;
+	bool built = false;
 	std::vector<bool> ans;
 };
 
