@@ -38,7 +38,7 @@ if __name__ == "__main__":
 
 	for line in s.splitlines():
 		T = line.split()
-		if len(T) == 0 or T[0] == '#line' or (len(T) == 2 and T[0] == '#pragma' and T[1] == 'once'):
+		if len(T) == 0 or T[0] == '#line' or line.strip() == '#pragma once' or line.strip().startswith('//'):
 			others.append('');
 			continue
 		# if T[0] == '#line':
