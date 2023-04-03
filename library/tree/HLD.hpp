@@ -87,7 +87,9 @@ public:
 		int z = get_lca(a, b);
 		int fi = depth[a] - depth[z];
 		int se = depth[b] - depth[z];
-		assert(0 <= k && k <= fi + se);
+		if(k < 0 || k > fi + se) {
+			return -1;
+		}
 		if(k < fi) {
 			return get_kth_ancestor(a, k);
 		} else {

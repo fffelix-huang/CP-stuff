@@ -13,6 +13,7 @@ public:
 	void add_edge(int u, int v) {
 		assert(0 <= u && u < n);
 		assert(0 <= v && v < m);
+		built = false;
 		g[u].push_back(v);
 	}
 
@@ -53,7 +54,8 @@ public:
 		return false;
 	}
 
-	int maximum_matching() {
+	int solve() {
+		built = true;
 		std::fill(lhs.begin(), lhs.end(), -1);
 		std::fill(rhs.begin(), rhs.end(), -1);
 		int ans = 0;
@@ -69,6 +71,9 @@ public:
 	}
 
 	std::pair<std::vector<int>, std::vector<int>> minimum_vertex_cover() {
+		if(!built) {
+			solve();
+		}
 		std::vector<int> L, R;
 		for(int u = 0; u < n; u++) {
 			if(dist[u] == 0) {
@@ -81,6 +86,9 @@ public:
 	}
 
 	std::pair<std::vector<int>, std::vector<int>> maximum_independent_set() {
+		if(!built) {
+			solve();
+		}
 		auto p = minimum_vertex_cover();
 		std::vector<bool> L(n, true), R(m, true);
 		for(auto x : p.first) {
@@ -103,7 +111,10 @@ public:
 		return std::make_pair(L2, R2);
 	}
 
-	std::vector<std::pair<int, int>> get_edges() {
+	std::vector<std::pair<int, int>> maximum_matching() {
+		if(!built) {
+			solve();
+		}
 		std::vector<std::pair<int, int>> ans;
 		for(int u = 0; u < n; u++) {
 			if(lhs[u] != -1) {
@@ -115,6 +126,7 @@ public:
 
 private:
 	int n, m;
+	bool built = false;
 	std::vector<int> lhs, rhs;
 	std::vector<int> dist, cur;
 	std::vector<std::vector<int>> g;

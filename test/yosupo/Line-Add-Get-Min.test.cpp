@@ -10,11 +10,13 @@ int main() {
 	cin.tie(0);
 	int n, q;
 	cin >> n >> q;
-	LineContainer<false> lc;
+	LineContainer<true> mx;
+	LineContainer<false> mn;
 	for(int i = 0; i < n; i++) {
 		long long a, b;
 		cin >> a >> b;
-		lc.add_line(a, b);
+		mx.add_line(-a, -b);
+		mn.add_line(a, b);
 	}
 	while(q--) {
 		int type;
@@ -22,11 +24,15 @@ int main() {
 		if(type == 0) {
 			long long a, b;
 			cin >> a >> b;
-			lc.add_line(a, b);
+			mx.add_line(-a, -b);
+			mn.add_line(a, b);
 		} else {
 			long long x;
 			cin >> x;
-			cout << lc.get(x) << "\n";
+			long long a = -mx.get(x);
+			long long b = mn.get(x);
+			assert(a == b);
+			cout << a << "\n";
 		}
 	}
 	return 0;
