@@ -4,7 +4,8 @@
 #include <random>
 #include <chrono>
 #include <algorithm>
-#include "internal-math.hpp"
+#include "math/binary-gcd.hpp"
+#include "internal/safe-mod.hpp"
 
 namespace felix {
 
@@ -85,14 +86,14 @@ unsigned long long pollard_rho(unsigned long long n) {
 					y = f(y);
 					q = internal::safe_mod<__int128>(__int128(x) - y, n);
 				}
-				g = internal::binary_gcd(q, n);
+				g = binary_gcd(q, n);
 			}
 		}
 		if(g == n) {
 			do {
 				ys = f(ys);
 				unsigned long long x2 = internal::safe_mod<__int128>(__int128(x) - ys, n);
-				g = internal::binary_gcd(x2, n);
+				g = binary_gcd(x2, n);
 			} while(g == 1);
 		}
 		if(g != n) {

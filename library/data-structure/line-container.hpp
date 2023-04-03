@@ -2,7 +2,7 @@
 #include <limits>
 #include <cassert>
 #include <set>
-#include "internal-math.hpp"
+#include "math/integer-div.hpp"
 
 namespace felix {
 
@@ -29,7 +29,7 @@ struct LineContainer : std::multiset<Line_Container_Impl::Line_t, std::less<>> {
 		if(x->k == y->k) {
 			x->p = (x->m > y->m ? INF : -INF);
 		} else {
-			x->p = internal::floor_div(y->m - x->m, x->k - y->k);
+			x->p = floor_div(y->m - x->m, x->k - y->k);
 		}
 		return x->p >= y->p;
 	}

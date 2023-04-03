@@ -1,7 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/range_kth_smallest"
 
-#include <bits/stdc++.h>
-#include "../library/src/wavelet-tree.hpp"
+#include <iostream>
+#include <vector>
+#include "../library/data-structure/wavelet-tree.hpp"
 using namespace std;
 using namespace felix;
 

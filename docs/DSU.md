@@ -1,6 +1,6 @@
 ---
 title: DSU
-documentation_of: ../library/src/DSU.hpp
+documentation_of: ../library/data-structure/DSU.hpp
 ---
 
 並查集，啟發式合併 + 路徑壓縮。除了 `d.groups()` 以外的操作都是均攤 $O(\alpha(n))$
@@ -16,4 +16,4 @@ d.groups();
 ```
 
 ## Links
-[AC Library document](https://github.com/atcoder/ac-library/blob/master/document_en/dsu.md)
+[AtCoder Library document](https://github.com/atcoder/ac-library/blob/master/document_en/dsu.md)

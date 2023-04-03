@@ -3,7 +3,7 @@
 #include <cassert>
 #include <random>
 #include <chrono>
-#include "internal-math.hpp"
+#include "internal/inv-gcd.hpp"
 
 namespace felix {
 

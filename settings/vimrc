@@ -1,6 +1,8 @@
 let g:molokai_original = 1
 let g:rehash256 = 1
 
+syntax on
+
 colorscheme molokai
 
 se nu ai hls et ru ic is sc cul
@@ -9,3 +11,4 @@ syntax on
 hi cursorline cterm=none ctermbg=89
 set bg=dark
 inoremap {<CR> {<CR>}<Esc>ko<tab>
+set laststatus=2

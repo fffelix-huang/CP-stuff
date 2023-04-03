@@ -150,5 +150,4 @@ public:
 	}
 };
 
-
 } // namespace felix

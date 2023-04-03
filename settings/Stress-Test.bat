@@ -3,13 +3,13 @@
 :: call "q.bat [gen] [brute] [sol] [seed]"
 
 echo Compiling %1.cpp
-g++ %1.cpp -o %1.exe
+g++ -std=c++17 %1.cpp -o %1.exe
 
 echo Compiling %2.cpp
-g++ %2.cpp -o %2.exe
+g++ -std=c++17 %2.cpp -o %2.exe
 
 echo Compiling %3.cpp
-g++ %3.cpp -o %3.exe
+g++ -std=c++17 %3.cpp -o %3.exe
 
 SET /A "i = %4"
 

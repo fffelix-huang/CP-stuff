@@ -1,45 +1,10 @@
 #pragma once
 #include <algorithm>
+#include "internal/safe-mod.hpp"
 
 namespace felix {
 
 namespace internal {
-
-template<class T>
-constexpr T safe_mod(T x, T m) {
-	x %= m;
-	if(x < 0) {
-		x += m;
-	}
-	return x;
-}
-
-// Fast modular multiplication by barrett reduction
-// Reference: https://en.wikipedia.org/wiki/Barrett_reduction
-struct barrett {
-	unsigned int m;
-	unsigned long long im;
-
-	explicit barrett(unsigned int _m) : m(_m), im((unsigned long long)(-1) / _m + 1) {}
-
-	unsigned int umod() const { return m; }
-
-	unsigned int mul(unsigned int a, unsigned int b) const {
-		unsigned long long z = a;
-		z *= b;
-#ifdef _MSC_VER
-		unsigned long long x;
-		_umul128(z, im, &x);
-#else
-		unsigned long long x = (unsigned long long)(((unsigned __int128)(z) * im) >> 64);
-#endif
-		unsigned int v = (unsigned int)(z - x * m);
-		if(m <= v) {
-			v += m;
-		}
-		return v;
-	}
-};
 
 constexpr long long pow_mod_constexpr(long long x, long long n, int m) {
 	if (m == 1) return 0;
@@ -77,31 +42,6 @@ constexpr bool is_prime_constexpr(int n) {
 	return true;
 }
 template <int n> constexpr bool is_prime = is_prime_constexpr(n);
-
-template<class T>
-constexpr std::pair<T, T> inv_gcd(T a, T b) {
-	a = safe_mod(a, b);
-	if(a == 0) {
-		return {b, 0};
-	}
-	T s = b, t = a;
-	T m0 = 0, m1 = 1;
-	while(t) {
-		T u = s / t;
-		s -= t * u;
-		m0 -= m1 * u;
-		auto tmp = s;
-		s = t;
-		t = tmp;
-		tmp = m0;
-		m0 = m1;
-		m1 = tmp;
-	}
-	if(m0 < 0) {
-		m0 += b / s;
-	}
-	return {s, m0};
-}
 
 constexpr int primitive_root_constexpr(int m) {
 	if(m == 2) return 1;
@@ -163,34 +103,6 @@ unsigned long long floor_sum_unsigned(unsigned long long n, unsigned long long m
 		std::swap(m, a);
 	}
 	return ans;
-}
-
-template<class T>
-T floor_div(T a, T b) {
-    return a / b - ((a ^ b) < 0 && a % b != 0);
-}
-
-template<class T>
-T ceil_div(T a, T b) {
-    return a / b + ((a ^ b) > 0 && a % b != 0);
-}
-
-inline unsigned long long binary_gcd(unsigned long long a, unsigned long long b) {
-	if(a == 0 || b == 0) {
-		return a | b;
-	}
-	int8_t n = __builtin_ctzll(a);
-	int8_t m = __builtin_ctzll(b);
-	a >>= n;
-	b >>= m;
-	while(a != b) {
-		unsigned long long d = a - b;
-		int8_t s = __builtin_ctzll(d);
-		bool f = a > b;
-		b = f ? b : a;
-		a = (f ? d : -d) >> s;
-	}
-	return a << std::min(n, m);
 }
 
 } // namespace internal

@@ -1,6 +1,6 @@
 #pragma once
 #include <vector>
-#include "SCC.hpp"
+#include "graph/SCC.hpp"
 
 namespace felix {
 

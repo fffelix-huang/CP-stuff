@@ -1,6 +1,6 @@
 #pragma once
-
 #include <vector>
+#include <algorithm>
 #include <cassert>
 
 namespace felix {

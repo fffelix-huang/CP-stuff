@@ -5,3 +5,4 @@ CXXFLAGS = ["-std=c++17", "-O2", "-Wall"]
 [[languages.cpp.environments]]
 CXX = "clang++"
 CXXFLAGS = ["-std=c++17", "-O2", "-Wall"]
+
