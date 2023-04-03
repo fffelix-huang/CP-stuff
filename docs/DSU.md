@@ -16,4 +16,4 @@ d.groups();
 ```
 
 ## Links
-https://github.com/atcoder/ac-library/blob/master/document_en/dsu.md
+[AC Library document](https://github.com/atcoder/ac-library/blob/master/document_en/dsu.md)
