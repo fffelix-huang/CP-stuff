@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/set_xor_min"
 
 #include <iostream>
-#include "data-structure/binary-trie.hpp"
+#include "../../library/data-structure/binary-trie.hpp"
 using namespace std;
 using namespace felix;
 

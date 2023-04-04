@@ -5,7 +5,7 @@ documentation_of: ../library/math/xor-basis.hpp
 
 ## 概要
 
-參考 [References](#References)。
+參考 References 的文章。
 
 ## 使用方法
 
