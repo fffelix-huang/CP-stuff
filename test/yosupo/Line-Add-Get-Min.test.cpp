@@ -10,8 +10,8 @@ int main() {
 	cin.tie(0);
 	int n, q;
 	cin >> n >> q;
-	LineContainer<true> mx;
-	LineContainer<false> mn;
+	line_container<true> mx;
+	line_container<false> mn;
 	for(int i = 0; i < n; i++) {
 		long long a, b;
 		cin >> a >> b;
