@@ -1,7 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/assignment"
 
 #include <iostream>
-#include "../../library/graph/MCMF.hpp"
+#include "../../library/flow/MCMF.hpp"
+#include "../../library/flow/KM.hpp"
 using namespace std;
 using namespace felix;
 
@@ -12,25 +13,25 @@ int main() {
 	cin >> n;
 	MCMF<int, long long> f(2 * n + 2);
 	const int S = 2 * n, T = S + 1;
+	const long long INF = 1e12L;
+	vector<vector<long long>> a(n, vector<long long>(n));
 	for(int i = 0; i < n; i++) {
 		f.add_edge(S, i, 1, 0);
 		f.add_edge(n + i, T, 1, 0);
 		for(int j = 0; j < n; j++) {
-			int x;
-			cin >> x;
-			f.add_edge(i, n + j, 1, x);
+			cin >> a[i][j];
+			f.add_edge(i, n + j, 1, a[i][j]);
+			a[i][j] = INF - a[i][j];
 		}
 	}
-	cout << f.flow(S, T).second << "\n";
-	vector<int> ans;
-	for(int i = 0; i < (int) f.edges.size(); i += 2) {
-		const auto& e = f.edges[i];
-		if(e.from < n && e.cap == 0) {
-			ans.push_back(e.to - n);
-		}
-	}
-	for(int i = 0; i < (int) ans.size(); i++) {
-		cout << ans[i] << " \n"[i == (int) ans.size() - 1];
+	long long ans = f.flow(S, T).second;
+	KM<long long> solver;
+	long long ans2 = n * INF - solver.solve(n, n, a);
+	assert(ans == ans2);
+	cout << ans << "\n";
+	auto assignment = solver.assignment();
+	for(int i = 0; i < n; i++) {
+		cout << assignment[i] << " \n"[i == n - 1];
 	}
 	return 0;
 }

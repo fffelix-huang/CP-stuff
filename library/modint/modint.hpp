@@ -1,9 +1,12 @@
 #pragma once
 #include <iostream>
+#include <vector>
+#include <algorithm>
 #include <cassert>
 #include <random>
 #include <chrono>
 #include "../internal/inv-gcd.hpp"
+#include "../internal/internal-math.hpp"
 
 namespace felix {
 
@@ -17,9 +20,44 @@ public:
 			return md;
 		}
 	}
+
+	static constexpr int primitive_root() {
+		return PRIMITIVE_ROOT;
+	}
  	
 	static constexpr void set_mod(int m) {
 		md = m;
+		IS_PRIME = internal::is_prime_constexpr(md);
+		PRIMITIVE_ROOT = (IS_PRIME ? internal::primitive_root_constexpr(md) : -1);
+	}
+
+	static constexpr void prepare(int n) {
+		int sz = (int) facts.size();
+		if(sz == mod()) {
+			return;
+		}
+		n = 1 << std::__lg(2 * n - 1);
+		if(n < sz) {
+			return;
+		}
+		if(n < (sz - 1) * 2) {
+			n = std::min((sz - 1) * 2, mod() - 1);
+		}
+		facts.resize(n + 1);
+		inv_facts.resize(n + 1);
+		invs.resize(n + 1);
+		for(int i = sz; i <= n; i++) {
+			facts[i] = facts[i - 1] * i;
+		}
+		auto eg = internal::inv_gcd(facts.back()(), mod());
+		assert(eg.first == 1);
+		inv_facts[n] = eg.second;
+		for(int i = n - 1; i >= sz; i--) {
+			inv_facts[i] = inv_facts[i + 1] * (i + 1);
+		}
+		for(int i = n; i >= sz; i--) {
+			invs[i] = inv_facts[i] * facts[i - 1];
+		}
 	}
  
 	constexpr modint() : value(0) {}
@@ -42,9 +80,25 @@ public:
 	}
 
 	constexpr modint inv() const {
+		if(value < std::min(mod() >> 1, 1 << 20)) {
+			prepare(value);
+		}
+		if(value < (int) invs.size()) {
+			return invs[value];
+		}
 		auto eg = internal::inv_gcd(value, mod());
 		assert(eg.first == 1);
 		return eg.second;
+	}
+
+	constexpr modint fact() const {
+		prepare(value);
+		return facts[value];
+	}
+
+	constexpr modint inv_fact() const {
+		prepare(value);
+		return inv_facts[value];
 	}
  
 	constexpr modint& operator+=(const modint& rhs) & {
@@ -117,16 +171,24 @@ public:
 		return res;
 	}
 
-	std::pair<bool, modint> sqrt() const {
-		using mint = modint;
+	bool has_sqrt() const {
 		if(mod() == 2 || value == 0) {
-			return {true, *this};
+			return true;
 		}
 		if(pow((mod() - 1) / 2) != 1) {
-			return {false, mint()};
+			return false;
 		}
+		return true;
+	}
+
+	modint sqrt() const {
+		using mint = modint;
+		if(mod() == 2 || value == 0) {
+			return *this;
+		}
+		assert(pow((mod() - 1) / 2) == 1);
 		if(mod() % 4 == 3) {
-			return {true, pow((mod() + 1) / 4)};
+			return pow((mod() + 1) / 4);
 		}
 		int pw = (mod() - 1) / 2;
 		int K = std::__lg(pw);
@@ -151,10 +213,9 @@ public:
 			c -= 1;
 			c *= mint() - b.inv();
 			if(c * c == *this) {
-				return {true, c};
+				return c;
 			}
 		}
-		assert(false);
 	}
 
 	friend constexpr std::istream& operator>>(std::istream& in, modint& num) {
@@ -171,9 +232,17 @@ public:
 private:
 	int value;
 	static int md;
+	static bool IS_PRIME;
+	static int PRIMITIVE_ROOT;
+	static std::vector<modint> facts, inv_facts, invs;
 };
 
 template<int id> int modint<id>::md = 998244353;
+template<int id> bool modint<id>::IS_PRIME = (id <= 0 ? true : internal::is_prime_constexpr(id));
+template<int id> int modint<id>::PRIMITIVE_ROOT = (id <= 0 ? 3 : (modint<id>::IS_PRIME ? internal::primitive_root_constexpr(id) : -1));
+template<int id> std::vector<modint<id>> modint<id>::facts = {1};
+template<int id> std::vector<modint<id>> modint<id>::inv_facts = {1};
+template<int id> std::vector<modint<id>> modint<id>::invs = {0};
 
 using modint998244353 = modint<998244353>;
 using modint1000000007 = modint<1000000007>;

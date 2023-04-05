@@ -6,19 +6,19 @@
 
 namespace felix {
 
-namespace Line_Container_Impl {
+namespace line_container_internal {
 
-struct Line_t {
+struct line_t {
 	mutable long long k, m, p;
 
-	inline bool operator<(const Line_t& o) const { return k < o.k; }
+	inline bool operator<(const line_t& o) const { return k < o.k; }
 	inline bool operator<(long long x) const { return p < x; }
 };
 
-} // Line_Container_Impl
+} // line_container_internal
 
 template<bool MAX = true>
-struct LineContainer : std::multiset<Line_Container_Impl::Line_t, std::less<>> {
+struct line_container : std::multiset<line_container_internal::line_t, std::less<>> {
 	static const long long INF = std::numeric_limits<long long>::max();
 
 	bool isect(iterator x, iterator y) {
