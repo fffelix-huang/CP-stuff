@@ -25,10 +25,12 @@ public:
 		return PRIMITIVE_ROOT;
 	}
  	
-	static constexpr void set_mod(int m) {
+	static constexpr void set_mod(int m, bool update = false) {
 		md = m;
-		IS_PRIME = internal::is_prime_constexpr(md);
-		PRIMITIVE_ROOT = (IS_PRIME ? internal::primitive_root_constexpr(md) : -1);
+		if(id <= 0 && update) {
+			IS_PRIME = internal::is_prime_constexpr(md);
+			PRIMITIVE_ROOT = (IS_PRIME ? internal::primitive_root_constexpr(md) : -1);
+		}
 	}
 
 	static constexpr void prepare(int n) {
@@ -162,8 +164,7 @@ public:
 	}
 
 	constexpr modint pow(unsigned long long p) const {
-		modint res = 1;
-		modint a(*this);
+		modint a(*this), res = 1;
 		while(p) {
 			if(p & 1) {
 				res *= a;

@@ -237,7 +237,7 @@ public:
 			return Poly(std::vector<mint>(size(), mint(0)));
 		}
 		Poly f = {{a.begin() + x, a.end()}};
-		Poly g({mint(f[0]).sqrt().second});
+		Poly g({mint(f[0]).sqrt()});
 		mint inv2 = mint(1) / 2;
 		for(int i = 1; i < m; i *= 2) {
 			g = (g + f.modxk(i * 2) * g.inv(i * 2)) * inv2;
