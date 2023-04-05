@@ -5,49 +5,40 @@
 
 namespace felix {
 
-template<class T>
-void or_transform(std::vector<T>& a, bool inv) {
+template<class T, class F>
+void fwht(std::vector<T>& a, F f) {
 	const int n = (int) a.size();
 	assert(__builtin_popcount(n) == 1);
 	for(int i = 1; i < n; i <<= 1) {
 		for(int j = 0; j < n; j += i << 1) {
-			for(int k = 0; k < i; ++k) {
-				a[i + j + k] = a[i + j + k] + a[j + k] * (inv ? -1 : +1);
+			for(int k = 0; k < i; k++) {
+				f(a[j + k], a[i + j + k]);
 			}
 		}
 	}
+}
+
+template<class T>
+void or_transform(std::vector<T>& a, bool inv) {
+	fwht(a, [&](T& x, T& y) { y += x * (inv ? -1 : +1); });
 }
 
 template<class T>
 void and_transform(std::vector<T>& a, bool inv) {
-	const int n = (int) a.size();
-	assert(__builtin_popcount(n) == 1);
-	for(int i = 1; i < n; i <<= 1) {
-		for(int j = 0; j < n; j += i << 1) {
-			for(int k = 0; k < i; ++k) {
-				a[j + k] = a[j + k] + a[i + j + k] * (inv ? -1 : +1);
-			}
-		}
-	}
+	fwht(a, [&](T& x, T& y) { x += y * (inv ? -1 : +1); });
 }
 
 template<class T>
 void xor_transform(std::vector<T>& a, bool inv) {
-	const int n = (int) a.size();
-	assert(__builtin_popcount(n) == 1);
-	for(int i = 1; i < n; i <<= 1) {
-		for(int j = 0; j < n; j += i << 1) {
-			for(int k = 0; k < i; ++k) {
-				T x = std::move(a[j + k]), y = std::move(a[i + j + k]);
-				a[j + k] = x + y;
-				a[i + j + k] = x - y;
-			}
-		}
-	}
+	fwht(a, [](T& x, T& y) {
+		T z = x + y;
+		y = x - y;
+		x = z;
+	});
 	if(inv) {
-		T inv2 = T(1) / T(a.size());
+		T z = T(1) / T(a.size());
 		for(auto& x : a) {
-			x *= inv2;
+			x *= z;
 		}
 	}
 }

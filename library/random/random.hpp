@@ -1,67 +1,49 @@
 #pragma once
 #include <vector>
 #include <cstring>
-#include <algorithm>
-#include <numeric>
-#include <random>
+#include <array>
+#include <cassert>
 #include <chrono>
-#include <limits>
+#include <numeric>
+#include "splitmix64.hpp"
 
 namespace felix {
 
 struct random_t {
-	std::mt19937_64 rng;
-	unsigned long long seed;
-
-	random_t(unsigned long long s = std::chrono::steady_clock::now().time_since_epoch().count()) {
-		set_seed(s);
+public:
+	random_t(unsigned long long seed = std::chrono::steady_clock::now().time_since_epoch().count()) {
+		for(int i = 0; i < 4; i++) {
+			s[i] = internal::splitmix64_hash::splitmix64(seed);
+			seed += 0x9e3779b97f4a7c15;
+		}
 	}
 
-	void set_seed(unsigned long long s) {
-		seed = s;
-		rng = std::mt19937_64(s);
-	}
-
-	void reset() {
-		set_seed(seed);
-	}
-
-	unsigned long long next() {
-		return std::uniform_int_distribution<unsigned long long>(0, std::numeric_limits<unsigned long long>::max())(rng);
-	}
-
-	unsigned long long next(unsigned long long a) {
-		return std::uniform_int_distribution<unsigned long long>(0, a - 1)(rng);
-	}
-
+	// [l, r]
 	template<class T>
-	typename std::enable_if<std::is_integral<T>::value, T>::type next(T a, T b) {
-		return std::uniform_int_distribution<T>(a, b)(rng);
+	T next(T l, T r) {
+		assert(l <= r);
+		return T(l + next((unsigned long long) r - l));
 	}
 
-	long double nextDouble() {
-		return std::uniform_real_distribution<long double>(0.0, 1.0)(rng);
-	}
-
-	long double nextDouble(long double a) {
-		return std::uniform_real_distribution<long double>(0, a)(rng);
-	}
-
-	long double nextDouble(long double a, long double b) {
-		return std::uniform_real_distribution<long double>(a, b)(rng);
-	}
-
-	template<class T>
-	void shuffle(std::vector<T>& a) {
-		for(int i = (int) a.size() - 1; i >= 0; --i) {
-			std::swap(a[i], a[next(i + 1)]);
+	template<class Iter>
+	void shuffle(Iter l, Iter r) {
+		if(l == r) {
+			return;
+		}
+		int pos = 0;
+		for(auto it = l + 1; it != r; it++) {
+			pos += 1;
+			int j = next(pos);
+			if(j != pos) {
+				std::iter_swap(it, l + j);
+			}
 		}
 	}
 
 	std::vector<int> permutation(int n) {
 		std::vector<int> a(n);
 		std::iota(a.begin(), a.end(), 0);
-		shuffle(a);
+		shuffle(a.begin(), a.end());
 		return a;
 	}
 
@@ -72,8 +54,41 @@ struct random_t {
 		}
 		return s;
 	}
-};
 
-random_t rnd;
+private:
+	std::array<unsigned long long, 4> s;
+
+	// https://xoshiro.di.unimi.it/xoshiro256starstar.c
+	static unsigned long long rotl(const unsigned long long x, int k) {
+		return (x << k) | (x >> (64 - k));
+	}
+
+	unsigned long long next() {
+		const unsigned long long result = rotl(s[1] * 5, 7) * 9;
+		const unsigned long long t = s[1] << 17;
+		s[2] ^= s[0];
+		s[3] ^= s[1];
+		s[1] ^= s[2];
+		s[0] ^= s[3];
+		s[2] ^= t;
+		s[3] = rotl(s[3], 45);
+		return result;
+	}
+
+	// [0, upper]
+	unsigned long long next(unsigned long long upper) {
+		if((upper & (upper + 1)) == 0) {
+			return next() & upper;
+		}
+		int lg = std::__lg(upper);
+		unsigned long long mask = (lg == 63 ? ~0ULL : (1ULL << (lg + 1)) - 1);
+		while(true) {
+			unsigned long long r = next() & mask;
+			if(r <= upper) {
+				return r;
+			}
+		}
+	}
+} rnd;
 
 } // namespace felix
