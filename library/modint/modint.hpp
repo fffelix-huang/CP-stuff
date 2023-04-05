@@ -32,6 +32,9 @@ public:
 	}
 
 	static constexpr void prepare(int n) {
+		if(id <= 0) {
+			return;
+		}
 		int sz = (int) facts.size();
 		if(sz == mod()) {
 			return;
