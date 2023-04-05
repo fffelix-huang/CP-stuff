@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <tuple>
 #include <cassert>
 #include <algorithm>
 #include "../internal/safe-mod.hpp"
