@@ -7,7 +7,7 @@
 namespace felix {
 
 template<class T>
-class Dinic {
+class dinic {
 public:
 	struct Edge {
 		int from, to;
@@ -22,8 +22,8 @@ public:
 	std::vector<std::vector<int>> g;
 	std::vector<int> cur, h;
 
-	Dinic() {}
-	explicit Dinic(int _n) : n(_n), g(_n) {}
+	dinic() : n(0) {}
+	explicit dinic(int _n) : n(_n), g(_n) {}
 
 	void add_edge(int u, int v, T c) {
 		assert(0 <= u && u < n);
