@@ -120,7 +120,7 @@ std::vector<unsigned long long> factorize(unsigned long long n) {
 	return res;
 }
 
-std::vector<unsigned long long> divisors(unsigned long long n) {
+std::vector<unsigned long long> get_divisors(unsigned long long n) {
 	if(n == 0) {
 		return {};
 	}

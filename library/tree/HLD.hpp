@@ -24,7 +24,8 @@ public:
 	std::vector<int> id;
 	sparse_table<std::pair<int, int>, __lca_op> st;
 
-	HLD(int _n) : n(_n), g(_n), subtree_size(_n), parent(_n), depth(_n), top(_n), first_occurrence(_n), id(_n) {
+	HLD() : n(0) {}
+	explicit HLD(int _n) : n(_n), g(_n), subtree_size(_n), parent(_n), depth(_n), top(_n), first_occurrence(_n), id(_n) {
 		tour.reserve(n);
 	}
 

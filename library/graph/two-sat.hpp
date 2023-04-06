@@ -6,8 +6,8 @@ namespace felix {
 
 class two_sat {
 public:
-	two_sat() : two_sat(0) {}
-	two_sat(int _n) : n(_n), g(_n * 2) {}
+	two_sat() : n(0) {}
+	explicit two_sat(int _n) : n(_n), g(_n * 2) {}
 
 	void add_implies_clause(int u, bool x, int v, bool y) {
 		g.add_edge(2 * u + x, 2 * v + y);

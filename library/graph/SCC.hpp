@@ -8,8 +8,8 @@ namespace felix {
 
 class SCC {
 public:
-	SCC() : SCC(0) {}
-	SCC(int _n) : n(_n), g(_n), h(_n) {}
+	SCC() : n(0) {}
+	explicit SCC(int _n) : n(_n), g(_n), h(_n) {}
 
 	void add_edge(int u, int v) {
 		assert(0 <= u && u < n);

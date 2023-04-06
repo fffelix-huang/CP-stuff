@@ -18,8 +18,8 @@ struct lowlink {
 	int tvcc_cnt = 0;
 	std::vector<int> tvcc_id;
 
-	lowlink() {}
-	lowlink(int _n) : n(_n), g(_n), is_articulation(_n, false), id(_n, -1), low(_n, -1) {}
+	lowlink() : n(0) {}
+	explicit lowlink(int _n) : n(_n), g(_n), is_articulation(_n, false), id(_n, -1), low(_n, -1) {}
 
 	void add_edge(int u, int v) {
 		assert(0 <= u && u < n);

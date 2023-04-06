@@ -20,12 +20,8 @@ public:
 			return md;
 		}
 	}
-
-	static constexpr int primitive_root() {
-		return PRIMITIVE_ROOT;
-	}
  	
-	static constexpr void set_mod(int m, bool update = false) {
+	static constexpr void set_mod(int m) {
 		if(id > 0 || md == m) {
 			return;
 		}
@@ -33,10 +29,6 @@ public:
 		facts.resize(1);
 		inv_facts.resize(1);
 		invs.resize(1);
-		if(update) {
-			IS_PRIME = internal::is_prime_constexpr(md);
-			PRIMITIVE_ROOT = (IS_PRIME ? internal::primitive_root_constexpr(md) : -1);
-		}
 	}
 
 	static constexpr void prepare(int n) {
@@ -239,14 +231,10 @@ public:
 private:
 	int value;
 	static int md;
-	static bool IS_PRIME;
-	static int PRIMITIVE_ROOT;
 	static std::vector<modint> facts, inv_facts, invs;
 };
 
 template<int id> int modint<id>::md = 998244353;
-template<int id> bool modint<id>::IS_PRIME = (id <= 0 ? true : internal::is_prime_constexpr(id));
-template<int id> int modint<id>::PRIMITIVE_ROOT = (id <= 0 ? 3 : (modint<id>::IS_PRIME ? internal::primitive_root_constexpr(id) : -1));
 template<int id> std::vector<modint<id>> modint<id>::facts = {1};
 template<int id> std::vector<modint<id>> modint<id>::inv_facts = {1};
 template<int id> std::vector<modint<id>> modint<id>::invs = {0};

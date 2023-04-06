@@ -23,7 +23,7 @@ public:
 	std::vector<int> cur, h;
 
 	Dinic() {}
-	Dinic(int _n) : n(_n), g(_n) {}
+	explicit Dinic(int _n) : n(_n), g(_n) {}
 
 	void add_edge(int u, int v, T c) {
 		assert(0 <= u && u < n);

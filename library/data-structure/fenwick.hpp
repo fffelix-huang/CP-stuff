@@ -7,9 +7,8 @@ namespace felix {
 template<class T>
 class fenwick {
 public:
-	fenwick() : fenwick(0) {}
-
-	fenwick(int _n) : n(_n), data(_n) {}
+	fenwick() : n(0) {}
+	explicit fenwick(int _n) : n(_n), data(_n) {}
 
 	void add(int p, T x) {
 		assert(0 <= p);

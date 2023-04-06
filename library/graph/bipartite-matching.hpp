@@ -7,8 +7,8 @@ namespace felix {
 
 class bipartite_matching {
 public:
-	bipartite_matching() : bipartite_matching(0, 0) {}
-	bipartite_matching(int _n, int _m) : n(_n), m(_m), lhs(_n), rhs(_m), dist(_n), cur(_n), g(_n) {}
+	bipartite_matching() : n(0), m(0) {}
+	explicit bipartite_matching(int _n, int _m) : n(_n), m(_m), lhs(_n), rhs(_m), dist(_n), cur(_n), g(_n) {}
 
 	void add_edge(int u, int v) {
 		assert(0 <= u && u < n);

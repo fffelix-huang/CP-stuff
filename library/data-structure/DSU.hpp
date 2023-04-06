@@ -9,7 +9,7 @@ class DSU {
 public:
 	DSU() : DSU(0) {}
 
-	DSU(int _n) : n(_n), sz(n, -1) {}
+	explicit DSU(int _n) : n(_n), sz(n, -1) {}
 	
 	inline int leader(int u) {
 		assert(0 <= u && u < n);

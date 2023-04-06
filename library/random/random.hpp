@@ -11,7 +11,7 @@ namespace felix {
 
 struct random_t {
 public:
-	random_t(unsigned long long seed = std::chrono::steady_clock::now().time_since_epoch().count()) {
+	explicit random_t(unsigned long long seed = std::chrono::steady_clock::now().time_since_epoch().count()) {
 		for(int i = 0; i < 4; i++) {
 			s[i] = internal::splitmix64_hash::splitmix64(seed);
 			seed += 0x9e3779b97f4a7c15;

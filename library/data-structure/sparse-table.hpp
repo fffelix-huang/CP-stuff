@@ -8,8 +8,7 @@ template<class T, T (*op)(T, T)>
 class sparse_table {
 public:
 	sparse_table() {}
-
-	sparse_table(const std::vector<T>& a) {
+	explicit sparse_table(const std::vector<T>& a) {
 		n = (int) a.size();
 		int max_log = std::__lg(n) + 1;
 		mat.resize(max_log);

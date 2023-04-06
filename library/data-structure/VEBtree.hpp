@@ -18,6 +18,10 @@ public:
 	bool empty() const {
 		return mx < mn;
 	}
+
+	bool contains(int i) const {
+		return find_next(i) == i;
+	}
 	
 	int find_next(int i) const {
 		if(i <= mn) {
@@ -129,6 +133,10 @@ public:
 
 	void clear() { 
 		act = 0;
+	}
+
+	bool contains(int i) const {
+		return find_next(i) == i;
 	}
 
 	int find_next(int i) const {

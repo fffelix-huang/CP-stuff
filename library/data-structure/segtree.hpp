@@ -8,10 +8,8 @@ template<class T, T (*e)(), T (*op)(T, T)>
 class segtree {
 public:
 	segtree() : segtree(0) {}
-
-	segtree(int _n) : segtree(std::vector<T>(_n, e())) {}
-	
-	segtree(const std::vector<T>& a): n(int(a.size())) {
+	explicit segtree(int _n) : segtree(std::vector<T>(_n, e())) {}
+	explicit segtree(const std::vector<T>& a): n(a.size()) {
 		log = std::__lg(2 * n - 1);
 		size = 1 << log;
 		st.resize(size << 1, e());

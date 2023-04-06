@@ -6,7 +6,8 @@ namespace felix {
 
 class wavelet_tree {
 public:
-	wavelet_tree(std::vector<int> v) : vals(v), t(0), n(v.size()) {
+	wavelet_tree() {}
+	explicit wavelet_tree(std::vector<int> v) : vals(v), t(0), n(v.size()) {
 		std::sort(vals.begin(), vals.end());
 		vals.erase(std::unique(vals.begin(), vals.end()), vals.end());
 		t = std::__lg(2 * vals.size() - 1);

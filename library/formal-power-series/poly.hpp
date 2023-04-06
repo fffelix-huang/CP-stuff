@@ -4,26 +4,23 @@
 #include <algorithm>
 #include <functional>
 #include <cassert>
+#include "../convolution/NTT.hpp"
 
 namespace felix {
 
-namespace poly_internal {
-
-std::vector<int> bit_reorder;
-
-} // namespace poly_internal
-
 template<class mint>
-class Poly {
+struct Poly {
 public:
+	static constexpr int mod = mint::mod();
+
 	Poly() {}
-	Poly(int n) : a(n) {}
+	explicit Poly(int n, std::function<mint(int)> f = [](int) { return 0; }) : a(n) {
+		for(int i = 0; i < n; i++) {
+			a[i] = f(i);
+		}
+	}
 	Poly(const std::vector<mint>& a) : a(a) {}
 	Poly(const std::initializer_list<mint>& a) : a(a) {}
-
-	static constexpr int mod() {
-		return mint::mod();
-	}
 
 	inline int size() const {
 		return (int) a.size();
@@ -43,7 +40,7 @@ public:
 		if(idx >= 0 && idx < size()) {
 			return a[idx];
 		} else {
-			return mint(0);
+			return 0;
 		}
 	}
 
@@ -68,30 +65,7 @@ public:
 	}
 
 	friend Poly operator*(Poly a, Poly b) {
-		if(a.size() == 0 || b.size() == 0) {
-			return Poly();
-		}
-		if(std::min(a.size(), b.size()) < 128) {
-			Poly c(a.size() + b.size() - 1);
-			for(int i = 0; i < a.size(); i++) {
-				for(int j = 0; j < b.size(); j++) {
-					c[i + j] += a[i] * b[j];
-				}
-			}
-			return c;
-		}
-		int total = a.size() + b.size() - 1;
-		int sz = 1 << std::__lg(2 * total - 1);
-		a.a.resize(sz);
-		b.a.resize(sz);
-		dft(a.a);
-		dft(b.a);
-		for(int i = 0; i < sz; ++i) {
-			a.a[i] = a[i] * b[i];
-		}
-		idft(a.a);
-		a.resize(total);
-		return a;
+		return Poly(NTT<mint>::multiply(a.a, b.a));
 	}
 
 	friend Poly operator*(mint a, Poly b) {
@@ -109,19 +83,19 @@ public:
 	}
 
 	Poly& operator+=(Poly b) {
-		return *this = *this + b;
+		return (*this) = (*this) + b;
 	}
 
 	Poly& operator-=(Poly b) {
-		return *this = *this - b;
+		return (*this) = (*this) - b;
 	}
 
 	Poly& operator*=(Poly b) {
-		return *this = *this * b;
+		return (*this) = (*this) * b;
 	}
 
 	Poly& operator*=(mint b) {
-		return *this = *this * b;
+		return (*this) = (*this) * b;
 	}
 
 	Poly mulxk(int k) const {
@@ -192,7 +166,7 @@ public:
 			return b;
 		}
 		int s = 0, sz = size();
-		while(s < sz && (*this)[s] == 0) {
+		while(s < sz && a[s] == 0) {
 			s += 1;
 		}
 		if(s == sz) {
@@ -204,7 +178,7 @@ public:
 		if(s * k >= m) {
 			return Poly(m);
 		}
-		return ((((*this).divxk(s) * (*this)[s].inv()).log(m) * mint(k)).exp(m) * (*this)[s].pow(k)).mulxk(s * k).modxk(m);
+		return (((divxk(s) * a[s].inv()).log(m) * mint(k)).exp(m) * a[s].pow(k)).mulxk(s * k).modxk(m);
 	}
 
 	bool has_sqrt() const {
@@ -212,7 +186,7 @@ public:
 			return true;
 		}
 		int x = 0;
-		while(x < size() && (*this)[x] == 0) {
+		while(x < size() && a[x] == 0) {
 			x += 1;
 		}
 		if(x == size()) {
@@ -221,8 +195,8 @@ public:
 		if(x % 2 == 1) {
 			return false;
 		}
-		mint y = (*this)[x];
-		return (y == 0 || y.pow((mod() - 1) / 2) == 1);
+		mint y = a[x];
+		return (y == 0 || y.pow((mod - 1) / 2) == 1);
 	}
 
 	Poly sqrt(int m) const {
@@ -230,7 +204,7 @@ public:
 			return Poly();
 		}
 		int x = 0;
-		while(x < size() && (*this)[x] == 0) {
+		while(x < size() && a[x] == 0) {
 			x += 1;
 		}
 		if(x == size()) {
@@ -310,62 +284,6 @@ public:
 
 private:
 	std::vector<mint> a;
-	static std::vector<mint> roots;
-
-	static void ensure_base(int n) {
-		if((int) poly_internal::bit_reorder.size() != n) {
-			int k = __builtin_ctz(n) - 1;
-			poly_internal::bit_reorder.resize(n);
-			for(int i = 0; i < n; ++i) {
-				poly_internal::bit_reorder[i] = poly_internal::bit_reorder[i >> 1] >> 1 | (i & 1) << k;
-			}
-		}
-		if((int) roots.size() < n) {
-			int k = __builtin_ctz(roots.size());
-			roots.resize(n);
-			while((1 << k) < n) {
-				mint e = mint(mint::primitive_root()).pow((mod() - 1) >> (k + 1));
-				for(int i = 1 << (k - 1); i < (1 << k); ++i) {
-					roots[2 * i] = roots[i];
-					roots[2 * i + 1] = roots[i] * e;
-				}
-				k += 1;
-			}
-		}
-	}
-
-	static void dft(std::vector<mint>& a) {
-		const int n = (int) a.size();
-		assert(__builtin_popcount(n) == 1);
-		ensure_base(n);
-		for(int i = 0; i < n; ++i) {
-			if(poly_internal::bit_reorder[i] < i) {
-				std::swap(a[i], a[poly_internal::bit_reorder[i]]);
-			}
-		}
-		for(int k = 1; k < n; k <<= 1) {
-			for(int i = 0; i < n; i += k << 1) {
-				for(int j = 0; j < k; ++j) {
-					mint u = a[i + j];
-					mint v = a[i + j + k] * roots[k + j];
-					a[i + j] = u + v;
-					a[i + j + k] = u - v;
-				}
-			}
-		}
-	}
-
-	static void idft(std::vector<mint>& a) {
-		const int n = (int) a.size();
-		reverse(a.begin() + 1, a.end());
-		dft(a);
-		mint inv = (1 - mod()) / n;
-		for(int i = 0; i < n; ++i) {
-			a[i] *= inv;
-		}
-	}
 };
-
-template<class mint> std::vector<mint> Poly<mint>::roots{0, 1};
 
 } // namespace felix
