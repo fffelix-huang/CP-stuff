@@ -26,17 +26,20 @@ public:
 	}
  	
 	static constexpr void set_mod(int m, bool update = false) {
+		if(id > 0 || md == m) {
+			return;
+		}
 		md = m;
-		if(id <= 0 && update) {
+		facts.resize(1);
+		inv_facts.resize(1);
+		invs.resize(1);
+		if(update) {
 			IS_PRIME = internal::is_prime_constexpr(md);
 			PRIMITIVE_ROOT = (IS_PRIME ? internal::primitive_root_constexpr(md) : -1);
 		}
 	}
 
 	static constexpr void prepare(int n) {
-		if(id <= 0) {
-			return;
-		}
 		int sz = (int) facts.size();
 		if(sz == mod()) {
 			return;
@@ -85,7 +88,7 @@ public:
 	}
 
 	constexpr modint inv() const {
-		if(value < std::min(mod() >> 1, 1 << 20)) {
+		if(id > 0 && value < std::min(mod() >> 1, 1 << 20)) {
 			prepare(value);
 		}
 		if(value < (int) invs.size()) {

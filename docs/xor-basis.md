@@ -21,6 +21,8 @@ b.merge(c); // 把 c 的基底合併進 b
 
 ## 題目
 [ABC283 G - Partial Xor Enumeration](https://atcoder.jp/contests/abc283/tasks/abc283_g)
+[ABC236 F - Spices](https://atcoder.jp/contests/abc236/tasks/abc236_f)
+[CF 1778E - The Tree Has Fallen!](https://codeforces.com/problemset/problem/1778/E)
 
 ## References
 [CF - A Beautiful Technique for Some XOR Related Problems](https://codeforces.com/blog/entry/68953)

@@ -3,7 +3,7 @@ title: Sum of floor linear ($\sum_{i = 0}^{n - 1} \lfloor \frac{ai + b}{m} \rflo
 documentation_of: ../library/math/floor-sum.md
 ---
 
-$f(n, m, a, b) = \sum_{i = 0}^{n - 1} \lfloor \frac{a \times i + b}{m} \rfloor \bmod{2^{64}}$
+計算 $f(n, m, a, b) = \sum_{i = 0}^{n - 1} \lfloor \frac{a \times i + b}{m} \rfloor \bmod{2^{64}}$
 
 時間複雜度：$O(\log n)$
 
