@@ -1,11 +1,10 @@
 // Find extreme point in a near concave/convex function
-// Large range -> Small THRESHOLD
-// Small range -> Large THRESHOLD
+// Choose THRESHOLD wisely
 // 30 ~ 35 SAMPLE_POINTS is enough
 // Constant Factor is big
 // Test on https://codeforces.com/contest/1814/problem/B
 template<bool MAX, class T = long long, class F = std::function<T(T, T)>>
-T find_extreme_point(T l, T r, F f, int THRESHOLD = 5000, int SAMPLE_POINTS = 35) {
+T find_extreme_point(T l, T r, F f, int THRESHOLD = 20000, int SAMPLE_POINTS = 32) {
 	static constexpr T INIT_VALUE = (MAX ? std::numeric_limits<T>::min() : std::numeric_limits<T>::max());
 	static constexpr auto better = [&](const T& a, const T& b) {
 		if constexpr(MAX) {
@@ -26,7 +25,7 @@ T find_extreme_point(T l, T r, F f, int THRESHOLD = 5000, int SAMPLE_POINTS = 35
 		}
 		return ans;
 	}
-	T BLCOK_SIZE = std::max<T>(sz / THRESHOLD, 1);
+	T BLCOK_SIZE = std::max<T>(sz / THRESHOLD, THRESHOLD);
 	int BLOCK_CNT = (sz + BLCOK_SIZE - 1) / BLCOK_SIZE;
 	auto get_block_range = [&](int id) -> std::pair<T, T> {
 		T L = l + id * BLCOK_SIZE;
@@ -48,5 +47,11 @@ T find_extreme_point(T l, T r, F f, int THRESHOLD = 5000, int SAMPLE_POINTS = 35
 		}
 	}
 	auto [new_L, new_R] = get_block_range(best.second);
-	return find_extreme_point<MAX>(new_L, new_R, f, std::max<int>(THRESHOLD * 0.95, 50), std::max<int>(SAMPLE_POINTS * 0.95, 10));
+	for(T i = new_L; i <= new_R; i++) {
+		T cur = f(i);
+		if(better(ans, cur)) {
+			ans = cur;
+		}
+	}
+	return ans;
 }
