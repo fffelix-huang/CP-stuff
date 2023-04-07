@@ -1,11 +1,13 @@
 ---
-title: Sum of floor linear ($\sum_{i = 0}^{n - 1} \lfloor \frac{ai + b}{m} \rfloor$)
-documentation_of: ../library/math/floor-sum.hpp
+title: Wavelet Tree (靜態區間第 $k$ 大)
+documentation_of: ../library/data-structure/wavelet-tree.hpp
 ---
 
-計算 $f(n, m, a, b) = \sum_{i = 0}^{n - 1} \lfloor \frac{a \times i + b}{m} \rfloor \bmod{2^{64}}$
-
-時間複雜度：$O(\log n)$
+## 使用方法
+```cpp
+wavelet_tree tree(v); // 初始化
+tree.kth(l, r, k); // 回傳區間 [l, r) 的第 k 大 (0-based)
+```
 
 ## 題目
 [AtCoder Library Practice Contest C - Floor Sum](https://atcoder.jp/contests/practice2/tasks/practice2_c)
