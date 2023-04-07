@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_B"
 
 #include <iostream>
-#include "flow/MCMF.hpp"
+#include "../../library/flow/MCMF.hpp"
 using namespace std;
 using namespace felix;
 
