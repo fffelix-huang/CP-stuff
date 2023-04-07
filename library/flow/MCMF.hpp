@@ -18,6 +18,8 @@ public:
 	};
 
 	static constexpr Cap_t EPS = static_cast<Cap_t>(1e-9);
+	static constexpr Cap_t CAP_INF = std::numeric_limits<Cap_t>::max();
+	static constexpr Cost_t COST_INF = std::numeric_limits<Cost_t>::max();
 
 	int n;
 	std::vector<Edge> edges;
@@ -26,7 +28,7 @@ public:
 	std::vector<bool> in_queue;
 	std::vector<int> previous_edge;
 
-	MCMF() {}
+	MCMF() : n(0) {}
 	explicit MCMF(int _n) : n(_n), g(_n), d(_n), in_queue(_n), previous_edge(_n) {}
 
 	void add_edge(int u, int v, Cap_t cap, Cost_t cost) {
@@ -40,7 +42,7 @@ public:
 
 	bool spfa(int s, int t) {
 		bool found = false;
-		std::fill(d.begin(), d.end(), std::numeric_limits<Cost_t>::max());
+		std::fill(d.begin(), d.end(), COST_INF);
 		d[s] = 0;
 		in_queue[s] = true;
 		std::queue<int> que;
@@ -67,7 +69,7 @@ public:
 		return found;
 	}
 
-	std::pair<Cap_t, Cost_t> flow(int s, int t, Cap_t f = std::numeric_limits<Cap_t>::max()) {
+	std::pair<Cap_t, Cost_t> flow(int s, int t, Cap_t f = CAP_INF) {
 		assert(0 <= s && s < n);
 		assert(0 <= t && t < n);
 		Cap_t cap = 0;
