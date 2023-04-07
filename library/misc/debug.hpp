@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <tuple>
+#include <algorithm>
 
 namespace felix {
 
