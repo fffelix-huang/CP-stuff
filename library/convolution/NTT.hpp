@@ -2,6 +2,7 @@
 #include <vector>
 #include <algorithm>
 #include <cassert>
+#include <type_traits>
 #include "../modint/modint.hpp"
 #include "../internal/internal-math.hpp"
 
@@ -102,6 +103,18 @@ public:
 		iFFT(a);
 		a.resize(len);
 		return a;
+	}
+
+	template<class T>
+	static typename std::enable_if_t<std::is_integral_v<T>, std::vector<T>> multiply(std::vector<T> a, std::vector<T> b) {
+		std::vector<mint> fa(a.begin(), a.end());
+		std::vector<mint> fb(b.begin(), b.end());
+		auto fc = multiply(fa, fb);
+		std::vector<T> c(fc.size());
+		for(int i = 0; i < (int) c.size(); i++) {
+			c[i] = fc[i]();
+		}
+		return c;
 	}
 
 private:
