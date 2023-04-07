@@ -1,4 +1,4 @@
-// return the points of the convex hull in clock-wise order
+// return the points of the convex hull in counter-clockwise order
 template<class T>
 vector<Point<T>> ConvexHull(vector<Point<T>> points) {
 	const int n = (int) points.size();
@@ -29,5 +29,6 @@ vector<Point<T>> ConvexHull(vector<Point<T>> points) {
 	vector<Point<T>> lower = build();
 	lower.pop_back();
 	upper.insert(upper.end(), lower.begin() + 1, lower.end());
+	reverse(upper.begin(), upper.end());
 	return upper;
 }

@@ -17,6 +17,7 @@ struct debug {
 	template<class T, class... U> void print(const T& x, const U&... y) { print(x); print(y...); }
 	template<class c> typename std::enable_if<sizeof dud<c>(0) != 1, void>::type print(c i) { std::cerr << std::boolalpha << i; }
 	template<class c> typename std::enable_if<sizeof dud<c>(0) == 1, void>::type print(c i) { print(range(std::begin(i), std::end(i))); }
+	void print(__int128 x) { if(x == 0) { print("0"); return; } bool neg = (x < 0); if(x < 0) { x = -x; } std::string s; while(x > 0) { s += '0' + x % 10; x /= 10; } if(neg) { s += '-'; } std::reverse(s.begin(), s.end()); print(s); }
 	template<class c, class b> void print(std::pair<b, c> d) { print("(", d.first, ", ", d.second, ")"); }
 	template<class a, class b, class c> void print(std::tuple<a, b, c> tp) { print("(", std::get<0>(tp), ", ", std::get<1>(tp), ", ", std::get<2>(tp), ")"); };
 	template<class a, class b, class c, class d> void print(std::tuple<a, b, c, d> tp) { print("(", std::get<0>(tp), ", ", std::get<1>(tp), ", ", std::get<2>(tp), ", ", std::get<3>(tp), ")"); };

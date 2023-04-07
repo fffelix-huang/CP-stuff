@@ -65,7 +65,7 @@ public:
 	}
 
 	friend Poly operator*(Poly a, Poly b) {
-		return Poly(NTT<mint>::multiply(a.a, b.a));
+		return Poly(NTT<mod>::multiply(a.a, b.a));
 	}
 
 	friend Poly operator*(mint a, Poly b) {

@@ -2,6 +2,7 @@
 #include <vector>
 #include <algorithm>
 #include <cassert>
+#include "../modint/modint.hpp"
 #include "../internal/internal-math.hpp"
 
 namespace felix {
@@ -12,10 +13,12 @@ std::vector<int> rev;
 
 } // namespace ntt_internal
 
-template<class mint>
+template<int mod>
 class NTT {
+	static_assert(internal::is_prime_constexpr(mod));
+	using mint = modint<mod>;
+
 public:
-	static constexpr int mod = mint::mod();
 	static constexpr int primitive_root = internal::primitive_root_constexpr(mint::mod());
 
 	static void prepare(int n) {
@@ -105,6 +108,6 @@ private:
 	static std::vector<mint> roots;
 };
 
-template<class mint> std::vector<mint> NTT<mint>::roots{0, 1};
+template<int mod> std::vector<modint<mod>> NTT<mod>::roots{0, 1};
 
 } // namespace felix
