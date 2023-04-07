@@ -11,8 +11,8 @@ Poly<mint> PartitionFunction(int n) {
 	Poly<mint> p(n + 1);
 	p[0] = 1;
 	for(int i = 1; i <= n; i++) {
-		int x = i * (3 * i + 1) / 2;
-		int y = i * (3 * i - 1) / 2;
+		long long x = 1LL * i * (3 * i + 1) / 2;
+		long long y = 1LL * i * (3 * i - 1) / 2;
 		if(x <= n) {
 			p[x] += (i % 2 == 0 ? +1 : -1);
 		}

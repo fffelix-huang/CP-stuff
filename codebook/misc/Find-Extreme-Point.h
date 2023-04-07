@@ -3,7 +3,7 @@
 // Small range -> Large THRESHOLD
 // 30 ~ 35 SAMPLE_POINTS is enough
 // Constant Factor is big
-// Tested on https://codeforces.com/contest/1814/submission/201103071
+// Test on https://codeforces.com/contest/1814/problem/B
 template<bool MAX, class T = long long, class F = std::function<T(T, T)>>
 T find_extreme_point(T l, T r, F f, int THRESHOLD = 5000, int SAMPLE_POINTS = 35) {
 	static constexpr T INIT_VALUE = (MAX ? std::numeric_limits<T>::min() : std::numeric_limits<T>::max());

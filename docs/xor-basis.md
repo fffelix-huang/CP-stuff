@@ -12,10 +12,10 @@ documentation_of: ../library/math/xor-basis.hpp
 ```cpp
 xor_basis<60> b;
 b.insert(x);
-b.get_min();
-b.get_max();
-b.get_kth(); // 如果超過範圍回傳 -1
-b.contains(x);
+long long x = b.get_min();
+long long x = b.get_max();
+long long x = b.get_kth(); // 如果超過範圍回傳 -1
+bool res = b.contains(x);
 b.merge(c); // 把 c 的基底合併進 b
 ```
 

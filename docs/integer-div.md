@@ -7,8 +7,9 @@ documentation_of: ../library/math/integer-div.hpp
 
 `ceil_div(a, b)` 回傳最小且 $\geq \frac{a}{b}$ 的整數
 
+## 使用方法
 ```cpp
-floor_div(-2, 4); // -1
-floor_div(-5, 2); // -3
-ceil_div(-2, 4);  //  0
+int a = floor_div(-2, 4); // -1
+int b = floor_div(-5, 2); // -3
+int c = ceil_div(-2, 4);  //  0
 ```
