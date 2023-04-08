@@ -232,7 +232,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/Convolution-Mod-1000000007.test.cpp
   requiredBy: []
-  timestamp: '2023-04-08 01:08:03+08:00'
+  timestamp: '2023-04-07 17:24:34+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Convolution-Mod-1000000007.test.cpp

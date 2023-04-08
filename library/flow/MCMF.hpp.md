@@ -79,7 +79,7 @@ data:
   isVerificationFile: false
   path: library/flow/MCMF.hpp
   requiredBy: []
-  timestamp: '2023-04-08 01:08:03+08:00'
+  timestamp: '2023-04-07 15:58:52+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/Minimum-Cost-Flow.test.cpp

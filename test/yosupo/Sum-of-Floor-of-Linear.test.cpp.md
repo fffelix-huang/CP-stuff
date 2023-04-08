@@ -85,7 +85,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/Sum-of-Floor-of-Linear.test.cpp
   requiredBy: []
-  timestamp: '2023-04-08 01:08:03+08:00'
+  timestamp: '2023-04-03 21:36:34+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Sum-of-Floor-of-Linear.test.cpp

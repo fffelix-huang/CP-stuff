@@ -75,7 +75,7 @@ data:
   isVerificationFile: false
   path: library/misc/default.hpp
   requiredBy: []
-  timestamp: '2023-04-08 01:08:03+08:00'
+  timestamp: '2023-04-07 23:16:56+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/misc/default.hpp

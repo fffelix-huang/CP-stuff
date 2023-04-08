@@ -70,7 +70,7 @@ data:
   isVerificationFile: false
   path: library/geometry/point.hpp
   requiredBy: []
-  timestamp: '2023-04-08 01:08:03+08:00'
+  timestamp: '2023-04-03 13:30:29+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/Sort-Points-by-Argument.test.cpp

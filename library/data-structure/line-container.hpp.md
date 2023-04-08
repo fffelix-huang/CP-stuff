@@ -60,7 +60,7 @@ data:
   isVerificationFile: false
   path: library/data-structure/line-container.hpp
   requiredBy: []
-  timestamp: '2023-04-08 01:08:03+08:00'
+  timestamp: '2023-04-05 22:30:32+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/Line-Add-Get-Min.test.cpp

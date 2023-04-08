@@ -29,7 +29,7 @@ data:
   isVerificationFile: false
   path: library/string/KMP.hpp
   requiredBy: []
-  timestamp: '2023-04-08 01:08:03+08:00'
+  timestamp: '2023-04-03 16:14:50+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/string/KMP.hpp

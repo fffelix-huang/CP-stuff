@@ -75,7 +75,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/Sort-Points-by-Argument.test.cpp
   requiredBy: []
-  timestamp: '2023-04-08 01:08:03+08:00'
+  timestamp: '2023-04-04 17:29:43+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Sort-Points-by-Argument.test.cpp

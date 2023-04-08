@@ -313,7 +313,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/Product-of-Polynomial-Sequence.test.cpp
   requiredBy: []
-  timestamp: '2023-04-08 01:08:03+08:00'
+  timestamp: '2023-04-07 16:56:04+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Product-of-Polynomial-Sequence.test.cpp

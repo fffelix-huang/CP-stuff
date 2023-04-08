@@ -40,7 +40,7 @@ data:
   requiredBy:
   - library/math/factorize.hpp
   - library/math/discrete-log.hpp
-  timestamp: '2023-04-08 01:08:03+08:00'
+  timestamp: '2023-04-03 17:58:04+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/Factorize.test.cpp

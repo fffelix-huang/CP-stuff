@@ -54,7 +54,7 @@ data:
   path: library/data-structure/sparse-table.hpp
   requiredBy:
   - library/tree/HLD.hpp
-  timestamp: '2023-04-08 01:08:03+08:00'
+  timestamp: '2023-04-06 14:01:45+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/Vertex-Add-Path-Sum.test.cpp

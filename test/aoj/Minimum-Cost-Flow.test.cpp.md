@@ -69,7 +69,7 @@ data:
   isVerificationFile: true
   path: test/aoj/Minimum-Cost-Flow.test.cpp
   requiredBy: []
-  timestamp: '2023-04-08 01:08:03+08:00'
+  timestamp: '2023-04-07 15:58:52+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/Minimum-Cost-Flow.test.cpp

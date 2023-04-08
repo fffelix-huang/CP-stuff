@@ -88,7 +88,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/Predecessor-Problem.test.cpp
   requiredBy: []
-  timestamp: '2023-04-08 01:08:03+08:00'
+  timestamp: '2023-04-06 14:01:45+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Predecessor-Problem.test.cpp

@@ -63,7 +63,7 @@ data:
   isVerificationFile: false
   path: library/math/crt.hpp
   requiredBy: []
-  timestamp: '2023-04-08 01:08:03+08:00'
+  timestamp: '2023-04-06 00:00:42+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/Convolution-Mod-1000000007.test.cpp

@@ -128,7 +128,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/Vertex-Add-Path-Sum.test.cpp
   requiredBy: []
-  timestamp: '2023-04-08 01:08:03+08:00'
+  timestamp: '2023-04-07 18:15:44+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Vertex-Add-Path-Sum.test.cpp

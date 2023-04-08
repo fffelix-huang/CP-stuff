@@ -70,7 +70,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/Line-Add-Get-Min.test.cpp
   requiredBy: []
-  timestamp: '2023-04-08 01:08:03+08:00'
+  timestamp: '2023-04-06 01:03:29+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Line-Add-Get-Min.test.cpp

@@ -87,7 +87,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/Assignment-Problem.test.cpp
   requiredBy: []
-  timestamp: '2023-04-08 01:08:03+08:00'
+  timestamp: '2023-04-07 02:40:21+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Assignment-Problem.test.cpp

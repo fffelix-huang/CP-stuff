@@ -92,7 +92,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/Discrete-Logarithm.test.cpp
   requiredBy: []
-  timestamp: '2023-04-08 01:08:03+08:00'
+  timestamp: '2023-04-05 16:22:46+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Discrete-Logarithm.test.cpp
