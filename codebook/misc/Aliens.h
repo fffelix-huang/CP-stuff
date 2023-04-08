@@ -1,11 +1,10 @@
-// find minimum
-template<class Func>
+template<class Func, bool MAX>
 long long Aliens(long long l, long long r, int k, Func f) {
 	while(l < r) {
 		long long m = l + (r - l) / 2;
 		auto [score, op] = f(m);
 		if(op == k) {
-			return score - m * k;
+			return score + m * k * (MAX ? +1 : -1);
 		}
 		if(op < k) {
 			r = m;
@@ -13,5 +12,5 @@ long long Aliens(long long l, long long r, int k, Func f) {
 			l = m + 1;
 		}
 	}
-	return f(l).first - l * k;
+	return f(l).first + l * k * (MAX ? +1 : -1);
 }
