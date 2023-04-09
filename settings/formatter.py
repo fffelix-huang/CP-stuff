@@ -37,13 +37,9 @@ if __name__ == "__main__":
 	others = []
 
 	for line in s.splitlines():
-		T = line.split()
-		if line.strip().startswith('//'):
+		if line.strip().startswith('//') or line.strip().startswith('#line')or line.strip().startswith('#pragma once'):
 			continue
-		if len(T) == 0 or T[0] == '#line' or line.strip() == '#pragma once':
-			others.append('');
-			continue
-		if len(T[0]) >= 8 and T[0][0:8] == '#include':
+		if line.strip().startswith('#include')
 			includes.append(line)
 		else:
 			others.append(line)
