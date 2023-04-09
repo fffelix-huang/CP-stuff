@@ -11,7 +11,7 @@ public:
 
 	explicit DSU(int _n) : n(_n), sz(n, -1) {}
 	
-	inline int leader(int u) {
+	int leader(int u) {
 		assert(0 <= u && u < n);
 		return (sz[u] < 0 ? u : (sz[u] = leader(sz[u])));
 	}
@@ -22,19 +22,16 @@ public:
 		if(a == b) {
 			return false;
 		}
-		if(-sz[a] < -sz[b]) {
-			std::swap(a, b);
-		}
 		sz[a] += sz[b];
 		sz[b] = a;
 		return true;
 	}
 	
-	inline int size(int u) {
+	int size(int u) {
 		return -sz[leader(u)];
 	}
 
-	inline bool same(int a, int b) {
+	bool same(int a, int b) {
 		return leader(a) == leader(b);
 	}
 
