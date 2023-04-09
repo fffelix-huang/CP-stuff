@@ -4,39 +4,43 @@
 #include <algorithm>
 #include <functional>
 #include <cassert>
+#include "../modint/modint.hpp"
 #include "../convolution/NTT.hpp"
 
 namespace felix {
 
-template<class mint>
+template<int mod>
 struct Poly {
-public:
-	static constexpr int mod = mint::mod();
+	using mint = modint<mod>;
 
+public:
 	Poly() {}
-	explicit Poly(int n, std::function<mint(int)> f = [](int) { return 0; }) : a(n) {
+	Poly(int n) : a(n) {}
+	Poly(const std::vector<mint>& a) : a(a) {}
+	Poly(const std::initializer_list<mint>& a) : a(a) {}
+
+	template<class F>
+	explicit Poly(int n, F f) : a(n) {
 		for(int i = 0; i < n; i++) {
 			a[i] = f(i);
 		}
 	}
-	Poly(const std::vector<mint>& a) : a(a) {}
-	Poly(const std::initializer_list<mint>& a) : a(a) {}
 
-	inline int size() const {
+	constexpr int size() const {
 		return (int) a.size();
 	}
 
-	void resize(int n) {
+	constexpr void resize(int n) {
 		a.resize(n);
 	}
 
-	void shrink() {
+	constexpr void shrink() {
 		while(size() && a.back() == 0) {
 			a.pop_back();
 		}
 	}
 
-	mint operator[](int idx) const {
+	constexpr mint operator[](int idx) const {
 		if(idx >= 0 && idx < size()) {
 			return a[idx];
 		} else {
@@ -44,11 +48,11 @@ public:
 		}
 	}
 
-	mint& operator[](int idx) {
+	constexpr mint& operator[](int idx) {
 		return a[idx];
 	}
 
-	friend Poly operator+(const Poly& a, const Poly& b) {
+	constexpr friend Poly operator+(const Poly& a, const Poly& b) {
 		Poly c(std::max(a.size(), b.size()));
 		for(int i = 0; i < c.size(); i++) {
 			c[i] = a[i] + b[i];
@@ -56,7 +60,7 @@ public:
 		return c;
 	}
 
-	friend Poly operator-(const Poly& a, const Poly& b) {
+	constexpr friend Poly operator-(const Poly& a, const Poly& b) {
 		Poly c(std::max(a.size(), b.size()));
 		for(int i = 0; i < c.size(); i++) {
 			c[i] = a[i] - b[i];
@@ -64,59 +68,59 @@ public:
 		return c;
 	}
 
-	friend Poly operator*(Poly a, Poly b) {
+	constexpr friend Poly operator*(Poly a, Poly b) {
 		return Poly(NTT<mod>::multiply(a.a, b.a));
 	}
 
-	friend Poly operator*(mint a, Poly b) {
+	constexpr friend Poly operator*(mint a, Poly b) {
 		for(int i = 0; i < b.size(); i++) {
 			b[i] *= a;
 		}
 		return b;
 	}
 
-	friend Poly operator*(Poly a, mint b) {
+	constexpr friend Poly operator*(Poly a, mint b) {
 		for(int i = 0; i < a.size(); i++) {
 			a[i] *= b;
 		}
 		return a;
 	}
 
-	Poly& operator+=(Poly b) {
+	constexpr Poly& operator+=(Poly b) {
 		return (*this) = (*this) + b;
 	}
 
-	Poly& operator-=(Poly b) {
+	constexpr Poly& operator-=(Poly b) {
 		return (*this) = (*this) - b;
 	}
 
-	Poly& operator*=(Poly b) {
+	constexpr Poly& operator*=(Poly b) {
 		return (*this) = (*this) * b;
 	}
 
-	Poly& operator*=(mint b) {
+	constexpr Poly& operator*=(mint b) {
 		return (*this) = (*this) * b;
 	}
 
-	Poly mulxk(int k) const {
+	constexpr Poly mulxk(int k) const {
 		auto b = a;
 		b.insert(b.begin(), k, mint(0));
 		return Poly(b);
 	}
 
-	Poly modxk(int k) const {
+	constexpr Poly modxk(int k) const {
 		k = std::min(k, size());
 		return Poly(std::vector<mint>(a.begin(), a.begin() + k));
 	}
 
-	Poly divxk(int k) const {
+	constexpr Poly divxk(int k) const {
 		if(size() <= k) {
 			return Poly();
 		}
 		return Poly(std::vector<mint>(a.begin() + k, a.end()));
 	}
 
-	Poly deriv() const {
+	constexpr Poly deriv() const {
 		if(a.empty()) {
 			return Poly();
 		}
@@ -127,7 +131,7 @@ public:
 		return c;
 	}
 
-	Poly integr() const {
+	constexpr Poly integr() const {
 		Poly c(size() + 1);
 		for(int i = 0; i < size(); ++i) {
 			c[i + 1] = a[i] / mint(i + 1);
@@ -135,7 +139,7 @@ public:
 		return c;
 	}
 
-	Poly inv(int m) const {
+	constexpr Poly inv(int m) const {
 		Poly x{a[0].inv()};
 		int k = 1;
 		while(k < m) {
@@ -145,11 +149,11 @@ public:
 		return x.modxk(m);
 	}
 
-	Poly log(int m) const {
+	constexpr Poly log(int m) const {
 		return (deriv() * inv(m)).integr().modxk(m);
 	}
 
-	Poly exp(int m) const {
+	constexpr Poly exp(int m) const {
 		Poly x{mint(1)};
 		int k = 1;
 		while(k < m) {
@@ -159,7 +163,7 @@ public:
 		return x.modxk(m);
 	}
 
-	Poly pow(long long k, int m) const {
+	constexpr Poly pow(long long k, int m) const {
 		if(k == 0) {
 			Poly b(m);
 			b[0] = 1;
@@ -181,7 +185,7 @@ public:
 		return (((divxk(s) * a[s].inv()).log(m) * mint(k)).exp(m) * a[s].pow(k)).mulxk(s * k).modxk(m);
 	}
 
-	bool has_sqrt() const {
+	constexpr bool has_sqrt() const {
 		if(size() == 0) {
 			return true;
 		}
@@ -199,7 +203,7 @@ public:
 		return (y == 0 || y.pow((mod - 1) / 2) == 1);
 	}
 
-	Poly sqrt(int m) const {
+	constexpr Poly sqrt(int m) const {
 		if(size() == 0) {
 			return Poly();
 		}
@@ -219,7 +223,7 @@ public:
 		return g.modxk(m).mulxk(x / 2);
 	}
 
-	Poly shift(mint c) const {
+	constexpr Poly shift(mint c) const {
 		int n = size();
 		mint::prepare(n);
 		Poly b(*this);
@@ -239,7 +243,7 @@ public:
 		return b;
 	}
 
-	Poly mulT(Poly b) const {
+	constexpr Poly mulT(Poly b) const {
 		if(b.size() == 0) {
 			return Poly();
 		}
@@ -248,7 +252,7 @@ public:
 		return ((*this) * b).divxk(n - 1);
 	}
 
-	std::vector<mint> eval(std::vector<mint> x) const {
+	constexpr std::vector<mint> eval(std::vector<mint> x) const {
 		if(size() == 0) {
 			return std::vector<mint>(x.size(), mint(0));
 		}
