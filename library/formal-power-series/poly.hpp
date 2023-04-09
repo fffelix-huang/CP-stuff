@@ -15,8 +15,8 @@ struct Poly {
 
 public:
 	Poly() {}
-	Poly(int n) : a(n) {}
-	Poly(const std::vector<mint>& a) : a(a) {}
+	explicit Poly(int n) : a(n) {}
+	explicit Poly(const std::vector<mint>& a) : a(a) {}
 	Poly(const std::initializer_list<mint>& a) : a(a) {}
 
 	template<class F>
@@ -248,11 +248,11 @@ public:
 			return Poly();
 		}
 		int n = b.size();
-		reverse(b.a.begin(), b.a.end());
+		std::reverse(b.a.begin(), b.a.end());
 		return ((*this) * b).divxk(n - 1);
 	}
 
-	constexpr std::vector<mint> eval(std::vector<mint> x) const {
+	std::vector<mint> eval(std::vector<mint> x) const {
 		if(size() == 0) {
 			return std::vector<mint>(x.size(), mint(0));
 		}
