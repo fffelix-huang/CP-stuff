@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/internal/safe-mod.hpp
     title: library/internal/safe-mod.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/convolution/NTT.hpp
     title: library/convolution/NTT.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/formal-power-series/poly.hpp
     title: library/formal-power-series/poly.hpp
   - icon: ':heavy_check_mark:'
     path: library/math/floor-sum.hpp
     title: Sum of floor linear ($\sum_{i = 0}^{n - 1} \lfloor \frac{ai + b}{m} \rfloor$)
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/modint/modint.hpp
     title: library/modint/modint.hpp
   _extendedVerifiedWith:
@@ -27,31 +27,31 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/Convolution-Mod-1000000007.test.cpp
     title: test/yosupo/Convolution-Mod-1000000007.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/Convolution.test.cpp
     title: test/yosupo/Convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/Exp-of-Formal-Power-Series.test.cpp
     title: test/yosupo/Exp-of-Formal-Power-Series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/Inv-of-Formal-Power-Series.test.cpp
     title: test/yosupo/Inv-of-Formal-Power-Series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/Log-of-Formal-Power-Series.test.cpp
     title: test/yosupo/Log-of-Formal-Power-Series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/Multipoint-Evaluation.test.cpp
     title: test/yosupo/Multipoint-Evaluation.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/Partition-Function.test.cpp
     title: test/yosupo/Partition-Function.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/Polynomial-Taylor-Shift.test.cpp
     title: test/yosupo/Polynomial-Taylor-Shift.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/Pow-of-Formal-Power-Series.test.cpp
     title: test/yosupo/Pow-of-Formal-Power-Series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/Product-of-Polynomial-Sequence.test.cpp
     title: test/yosupo/Product-of-Polynomial-Sequence.test.cpp
   - icon: ':heavy_check_mark:'
@@ -63,7 +63,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/Sqrt-Mod.test.cpp
     title: test/yosupo/Sqrt-Mod.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/Sqrt-of-Formal-Power-Series.test.cpp
     title: test/yosupo/Sqrt-of-Formal-Power-Series.test.cpp
   - icon: ':heavy_check_mark:'
@@ -72,9 +72,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/Sum-of-Floor-of-Linear.test.cpp
     title: test/yosupo/Sum-of-Floor-of-Linear.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"library/internal/internal-math.hpp\"\n#include <algorithm>\n\
@@ -157,7 +157,7 @@ data:
   - library/modint/modint.hpp
   - library/convolution/NTT.hpp
   timestamp: '2023-04-03 16:14:50+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/Subset-Convolution.test.cpp
   - test/yosupo/Sqrt-of-Formal-Power-Series.test.cpp

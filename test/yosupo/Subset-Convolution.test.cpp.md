@@ -4,16 +4,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/convolution/subset-convolution.hpp
     title: library/convolution/subset-convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/internal/internal-math.hpp
     title: library/internal/internal-math.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/internal/inv-gcd.hpp
     title: library/internal/inv-gcd.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/internal/safe-mod.hpp
     title: library/internal/safe-mod.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/modint/modint.hpp
     title: library/modint/modint.hpp
   _extendedRequiredBy: []

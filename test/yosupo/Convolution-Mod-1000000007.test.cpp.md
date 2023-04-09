@@ -1,22 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/convolution/NTT.hpp
     title: library/convolution/NTT.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/internal/internal-math.hpp
     title: library/internal/internal-math.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/internal/inv-gcd.hpp
     title: library/internal/inv-gcd.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/internal/safe-mod.hpp
     title: library/internal/safe-mod.hpp
   - icon: ':heavy_check_mark:'
     path: library/math/crt.hpp
     title: "crt (\u4E2D\u570B\u5269\u9918\u5B9A\u7406)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/modint/modint.hpp
     title: library/modint/modint.hpp
   _extendedRequiredBy: []

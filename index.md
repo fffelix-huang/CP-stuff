@@ -3,7 +3,7 @@ data:
   libraryCategories:
   - name: library/convolution
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/convolution/NTT.hpp
       title: library/convolution/NTT.hpp
     - icon: ':heavy_check_mark:'
@@ -57,7 +57,7 @@ data:
       title: library/flow/dinic.hpp
   - name: library/formal-power-series
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: library/formal-power-series/poly.hpp
       title: library/formal-power-series/poly.hpp
   - name: library/geometry
@@ -81,13 +81,13 @@ data:
       title: library/graph/two-sat.hpp
   - name: library/internal
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/internal/internal-math.hpp
       title: library/internal/internal-math.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/internal/inv-gcd.hpp
       title: library/internal/inv-gcd.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/internal/safe-mod.hpp
       title: library/internal/safe-mod.hpp
   - name: library/math
@@ -135,7 +135,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/modint/barrett.hpp
       title: library/modint/barrett.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/modint/modint.hpp
       title: library/modint/modint.hpp
   - name: library/random
@@ -209,19 +209,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/Convolution-Mod-1000000007.test.cpp
       title: test/yosupo/Convolution-Mod-1000000007.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/Convolution.test.cpp
       title: test/yosupo/Convolution.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/Discrete-Logarithm.test.cpp
       title: test/yosupo/Discrete-Logarithm.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/Exp-of-Formal-Power-Series.test.cpp
       title: test/yosupo/Exp-of-Formal-Power-Series.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/Factorize.test.cpp
       title: test/yosupo/Factorize.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/Inv-of-Formal-Power-Series.test.cpp
       title: test/yosupo/Inv-of-Formal-Power-Series.test.cpp
     - icon: ':heavy_check_mark:'
@@ -230,7 +230,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/Line-Add-Get-Min.test.cpp
       title: test/yosupo/Line-Add-Get-Min.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/Log-of-Formal-Power-Series.test.cpp
       title: test/yosupo/Log-of-Formal-Power-Series.test.cpp
     - icon: ':heavy_check_mark:'
@@ -245,28 +245,28 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/Matching-on-Bipartite-Graph.test.cpp
       title: test/yosupo/Matching-on-Bipartite-Graph.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/Multipoint-Evaluation.test.cpp
       title: test/yosupo/Multipoint-Evaluation.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/Number-of-Substrings.test.cpp
       title: test/yosupo/Number-of-Substrings.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/Partition-Function.test.cpp
       title: test/yosupo/Partition-Function.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/Point-Add-Range-Sum.test.cpp
       title: test/yosupo/Point-Add-Range-Sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/Polynomial-Taylor-Shift.test.cpp
       title: test/yosupo/Polynomial-Taylor-Shift.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/Pow-of-Formal-Power-Series.test.cpp
       title: test/yosupo/Pow-of-Formal-Power-Series.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/Predecessor-Problem.test.cpp
       title: test/yosupo/Predecessor-Problem.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/Product-of-Polynomial-Sequence.test.cpp
       title: test/yosupo/Product-of-Polynomial-Sequence.test.cpp
     - icon: ':heavy_check_mark:'
@@ -287,7 +287,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/Sqrt-Mod.test.cpp
       title: test/yosupo/Sqrt-Mod.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/Sqrt-of-Formal-Power-Series.test.cpp
       title: test/yosupo/Sqrt-of-Formal-Power-Series.test.cpp
     - icon: ':heavy_check_mark:'
