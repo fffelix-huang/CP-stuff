@@ -14,7 +14,7 @@ int main() {
 	cin.tie(0);
 	int n, m;
 	cin >> n >> m;
-	Poly<mint> a(n);
+	Poly<998244353> a(n);
 	for(int i = 0; i < n; i++) {
 		cin >> a[i];
 	}

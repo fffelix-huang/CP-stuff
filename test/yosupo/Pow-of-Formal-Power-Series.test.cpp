@@ -1,12 +1,9 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/pow_of_formal_power_series"
 
 #include <iostream>
-#include "../../library/modint/modint.hpp"
 #include "../../library/formal-power-series/poly.hpp"
 using namespace std;
 using namespace felix;
-
-using mint = modint998244353;
 
 int main() {
 	ios::sync_with_stdio(false);
@@ -14,7 +11,7 @@ int main() {
 	int n;
 	long long k;
 	cin >> n >> k;
-	Poly<mint> a(n);
+	Poly<998244353> a(n);
 	for(int i = 0; i < n; i++) {
 		cin >> a[i];
 	}

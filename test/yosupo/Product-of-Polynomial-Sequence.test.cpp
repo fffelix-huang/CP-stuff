@@ -2,12 +2,9 @@
 
 #include <iostream>
 #include <queue>
-#include "../../library/modint/modint.hpp"
 #include "../../library/formal-power-series/poly.hpp"
 using namespace std;
 using namespace felix;
-
-using mint = modint998244353;
 
 int main() {
 	ios::sync_with_stdio(false);
@@ -18,7 +15,7 @@ int main() {
 		cout << "1\n";
 		return 0;
 	}
-	vector<Poly<mint>> a(n);
+	vector<Poly<998244353>> a(n);
 	for(int i = 0; i < n; i++) {
 		int m;
 		cin >> m;
