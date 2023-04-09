@@ -279,21 +279,21 @@ data:
     \ namespace felix\r\n#line 7 \"test/yosupo/Multipoint-Evaluation.test.cpp\"\n\
     using namespace std;\r\nusing namespace felix;\r\n\r\nusing mint = modint998244353;\r\
     \n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\n\tcin.tie(0);\r\n\tint\
-    \ n, m;\r\n\tcin >> n >> m;\r\n\tPoly<mint> a(n);\r\n\tfor(int i = 0; i < n; i++)\
-    \ {\r\n\t\tcin >> a[i];\r\n\t}\r\n\tvector<mint> b(m);\r\n\tfor(int i = 0; i <\
-    \ m; i++) {\r\n\t\tcin >> b[i];\r\n\t}\r\n\tauto ans = a.eval(b);\r\n\tfor(int\
-    \ i = 0; i < m; i++) {\r\n\t\tcout << ans[i] << \" \\n\"[i == m - 1];\r\n\t}\r\
-    \n\treturn 0;\r\n}\r\n"
+    \ n, m;\r\n\tcin >> n >> m;\r\n\tPoly<998244353> a(n);\r\n\tfor(int i = 0; i <\
+    \ n; i++) {\r\n\t\tcin >> a[i];\r\n\t}\r\n\tvector<mint> b(m);\r\n\tfor(int i\
+    \ = 0; i < m; i++) {\r\n\t\tcin >> b[i];\r\n\t}\r\n\tauto ans = a.eval(b);\r\n\
+    \tfor(int i = 0; i < m; i++) {\r\n\t\tcout << ans[i] << \" \\n\"[i == m - 1];\r\
+    \n\t}\r\n\treturn 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/multipoint_evaluation\"\
     \r\n\r\n#include <iostream>\r\n#include <vector>\r\n#include \"../../library/modint/modint.hpp\"\
     \r\n#include \"../../library/formal-power-series/poly.hpp\"\r\nusing namespace\
     \ std;\r\nusing namespace felix;\r\n\r\nusing mint = modint998244353;\r\n\r\n\
     int main() {\r\n\tios::sync_with_stdio(false);\r\n\tcin.tie(0);\r\n\tint n, m;\r\
-    \n\tcin >> n >> m;\r\n\tPoly<mint> a(n);\r\n\tfor(int i = 0; i < n; i++) {\r\n\
-    \t\tcin >> a[i];\r\n\t}\r\n\tvector<mint> b(m);\r\n\tfor(int i = 0; i < m; i++)\
-    \ {\r\n\t\tcin >> b[i];\r\n\t}\r\n\tauto ans = a.eval(b);\r\n\tfor(int i = 0;\
-    \ i < m; i++) {\r\n\t\tcout << ans[i] << \" \\n\"[i == m - 1];\r\n\t}\r\n\treturn\
-    \ 0;\r\n}\r\n"
+    \n\tcin >> n >> m;\r\n\tPoly<998244353> a(n);\r\n\tfor(int i = 0; i < n; i++)\
+    \ {\r\n\t\tcin >> a[i];\r\n\t}\r\n\tvector<mint> b(m);\r\n\tfor(int i = 0; i <\
+    \ m; i++) {\r\n\t\tcin >> b[i];\r\n\t}\r\n\tauto ans = a.eval(b);\r\n\tfor(int\
+    \ i = 0; i < m; i++) {\r\n\t\tcout << ans[i] << \" \\n\"[i == m - 1];\r\n\t}\r\
+    \n\treturn 0;\r\n}\r\n"
   dependsOn:
   - library/modint/modint.hpp
   - library/internal/inv-gcd.hpp
@@ -304,7 +304,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/Multipoint-Evaluation.test.cpp
   requiredBy: []
-  timestamp: '2023-04-09 22:16:30+08:00'
+  timestamp: '2023-04-09 23:28:31+08:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/Multipoint-Evaluation.test.cpp

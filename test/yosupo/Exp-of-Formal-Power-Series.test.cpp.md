@@ -31,25 +31,26 @@ data:
     - https://judge.yosupo.jp/problem/exp_of_formal_power_series
   bundledCode: "#line 1 \"test/yosupo/Exp-of-Formal-Power-Series.test.cpp\"\n#define\
     \ PROBLEM \"https://judge.yosupo.jp/problem/exp_of_formal_power_series\"\r\n\r\
-    \n#include <iostream>\r\n#include <vector>\r\n#line 4 \"library/modint/modint.hpp\"\
-    \n#include <algorithm>\r\n#include <cassert>\r\n#include <random>\r\n#include\
-    \ <chrono>\r\n#line 2 \"library/internal/safe-mod.hpp\"\n\r\nnamespace felix {\r\
-    \n\r\nnamespace internal {\r\n\r\ntemplate<class T>\r\nconstexpr T safe_mod(T\
-    \ x, T m) {\r\n\tx %= m;\r\n\tif(x < 0) {\r\n\t\tx += m;\r\n\t}\r\n\treturn x;\r\
-    \n}\r\n\r\n} // namespace internal\r\n\r\n} // namespace felix\n#line 3 \"library/internal/inv-gcd.hpp\"\
-    \n\r\nnamespace felix {\r\n\r\nnamespace internal {\r\n\r\ntemplate<class T>\r\
-    \nconstexpr std::pair<T, T> inv_gcd(T a, T b) {\r\n\ta = safe_mod(a, b);\r\n\t\
-    if(a == 0) {\r\n\t\treturn {b, 0};\r\n\t}\r\n\tT s = b, t = a;\r\n\tT m0 = 0,\
-    \ m1 = 1;\r\n\twhile(t) {\r\n\t\tT u = s / t;\r\n\t\ts -= t * u;\r\n\t\tm0 -=\
-    \ m1 * u;\r\n\t\tauto tmp = s;\r\n\t\ts = t;\r\n\t\tt = tmp;\r\n\t\ttmp = m0;\r\
-    \n\t\tm0 = m1;\r\n\t\tm1 = tmp;\r\n\t}\r\n\tif(m0 < 0) {\r\n\t\tm0 += b / s;\r\
-    \n\t}\r\n\treturn {s, m0};\r\n}\r\n\r\n} // namespace internal\r\n\r\n} // namespace\
-    \ felix\r\n#line 4 \"library/internal/internal-math.hpp\"\n\nnamespace felix {\n\
-    \nnamespace internal {\n\nconstexpr long long pow_mod_constexpr(long long x, long\
-    \ long n, int m) {\n\tif (m == 1) return 0;\n\tunsigned int _m = (unsigned int)(m);\n\
-    \tunsigned long long r = 1;\n\tunsigned long long y = safe_mod<long long>(x, m);\n\
-    \twhile(n) {\n\t\tif(n & 1) {\n\t\t\tr = (r * y) % _m;\n\t\t}\n\t\ty = (y * y)\
-    \ % _m;\n\t\tn >>= 1;\n\t}\n\treturn r;\n}\n\nconstexpr bool is_prime_constexpr(int\
+    \n#include <iostream>\r\n#include <vector>\r\n#line 3 \"library/formal-power-series/poly.hpp\"\
+    \n#include <initializer_list>\r\n#include <algorithm>\r\n#include <functional>\r\
+    \n#include <cassert>\r\n#line 6 \"library/modint/modint.hpp\"\n#include <random>\r\
+    \n#include <chrono>\r\n#line 2 \"library/internal/safe-mod.hpp\"\n\r\nnamespace\
+    \ felix {\r\n\r\nnamespace internal {\r\n\r\ntemplate<class T>\r\nconstexpr T\
+    \ safe_mod(T x, T m) {\r\n\tx %= m;\r\n\tif(x < 0) {\r\n\t\tx += m;\r\n\t}\r\n\
+    \treturn x;\r\n}\r\n\r\n} // namespace internal\r\n\r\n} // namespace felix\n\
+    #line 3 \"library/internal/inv-gcd.hpp\"\n\r\nnamespace felix {\r\n\r\nnamespace\
+    \ internal {\r\n\r\ntemplate<class T>\r\nconstexpr std::pair<T, T> inv_gcd(T a,\
+    \ T b) {\r\n\ta = safe_mod(a, b);\r\n\tif(a == 0) {\r\n\t\treturn {b, 0};\r\n\t\
+    }\r\n\tT s = b, t = a;\r\n\tT m0 = 0, m1 = 1;\r\n\twhile(t) {\r\n\t\tT u = s /\
+    \ t;\r\n\t\ts -= t * u;\r\n\t\tm0 -= m1 * u;\r\n\t\tauto tmp = s;\r\n\t\ts = t;\r\
+    \n\t\tt = tmp;\r\n\t\ttmp = m0;\r\n\t\tm0 = m1;\r\n\t\tm1 = tmp;\r\n\t}\r\n\t\
+    if(m0 < 0) {\r\n\t\tm0 += b / s;\r\n\t}\r\n\treturn {s, m0};\r\n}\r\n\r\n} //\
+    \ namespace internal\r\n\r\n} // namespace felix\r\n#line 4 \"library/internal/internal-math.hpp\"\
+    \n\nnamespace felix {\n\nnamespace internal {\n\nconstexpr long long pow_mod_constexpr(long\
+    \ long x, long long n, int m) {\n\tif (m == 1) return 0;\n\tunsigned int _m =\
+    \ (unsigned int)(m);\n\tunsigned long long r = 1;\n\tunsigned long long y = safe_mod<long\
+    \ long>(x, m);\n\twhile(n) {\n\t\tif(n & 1) {\n\t\t\tr = (r * y) % _m;\n\t\t}\n\
+    \t\ty = (y * y) % _m;\n\t\tn >>= 1;\n\t}\n\treturn r;\n}\n\nconstexpr bool is_prime_constexpr(int\
     \ n) {\n\tif(n <= 1) return false;\n\tif(n == 2 || n == 7 || n == 61) return true;\n\
     \tif(n % 2 == 0) return false;\n\tlong long d = n - 1;\n\td >>= __builtin_ctzll(d);\n\
     \tconstexpr long long bases[3] = {2, 7, 61};\n\tfor(long long a : bases) {\n\t\
@@ -146,12 +147,10 @@ data:
     \ modint<id>::facts = {1};\r\ntemplate<int id> std::vector<modint<id>> modint<id>::inv_facts\
     \ = {1};\r\ntemplate<int id> std::vector<modint<id>> modint<id>::invs = {0};\r\
     \n\r\nusing modint998244353 = modint<998244353>;\r\nusing modint1000000007 = modint<1000000007>;\r\
-    \n\r\n} // namespace felix\r\n#line 3 \"library/formal-power-series/poly.hpp\"\
-    \n#include <initializer_list>\r\n#line 5 \"library/formal-power-series/poly.hpp\"\
-    \n#include <functional>\r\n#line 5 \"library/convolution/NTT.hpp\"\n#include <type_traits>\r\
-    \n#line 8 \"library/convolution/NTT.hpp\"\n\r\nnamespace felix {\r\n\r\nnamespace\
-    \ ntt_internal {\r\n\r\nstd::vector<int> rev;\r\n\r\n} // namespace ntt_internal\r\
-    \n\r\ntemplate<int mod>\r\nclass NTT {\r\n\tstatic_assert(internal::is_prime_constexpr(mod));\r\
+    \n\r\n} // namespace felix\r\n#line 5 \"library/convolution/NTT.hpp\"\n#include\
+    \ <type_traits>\r\n#line 8 \"library/convolution/NTT.hpp\"\n\r\nnamespace felix\
+    \ {\r\n\r\nnamespace ntt_internal {\r\n\r\nstd::vector<int> rev;\r\n\r\n} // namespace\
+    \ ntt_internal\r\n\r\ntemplate<int mod>\r\nclass NTT {\r\n\tstatic_assert(internal::is_prime_constexpr(mod));\r\
     \n\tusing mint = modint<mod>;\r\n\r\npublic:\r\n\tstatic constexpr int primitive_root\
     \ = internal::primitive_root_constexpr(mint::mod());\r\n\r\n\tstatic void prepare(int\
     \ n) {\r\n\t\tif((int) ntt_internal::rev.size() != n) {\r\n\t\t\tint k = __builtin_ctz(n)\
@@ -277,31 +276,30 @@ data:
     \ * p + 1]).modxk(m - l));\r\n\t\t\t\twork(2 * p + 1, m, r, num.mulT(q[2 * p]).modxk(r\
     \ - m));\r\n\t\t\t}\r\n\t\t};\r\n\t\twork(1, 0, n, mulT(q[1].inv(n)));\r\n\t\t\
     return ans;\r\n\t}\r\n\r\nprivate:\r\n\tstd::vector<mint> a;\r\n};\r\n\r\n} //\
-    \ namespace felix\r\n#line 7 \"test/yosupo/Exp-of-Formal-Power-Series.test.cpp\"\
-    \nusing namespace std;\r\nusing namespace felix;\r\n\r\nusing mint = modint998244353;\r\
-    \n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\n\tcin.tie(0);\r\n\tint\
-    \ n;\r\n\tcin >> n;\r\n\tPoly<mint> a(n);\r\n\tfor(int i = 0; i < n; i++) {\r\n\
-    \t\tcin >> a[i];\r\n\t}\r\n\ta = a.exp(n);\r\n\tfor(int i = 0; i < n; i++) {\r\
-    \n\t\tcout << a[i] << \" \\n\"[i == n - 1];\r\n\t}\r\n\treturn 0;\r\n}\r\n"
+    \ namespace felix\r\n#line 6 \"test/yosupo/Exp-of-Formal-Power-Series.test.cpp\"\
+    \nusing namespace std;\r\nusing namespace felix;\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\
+    \n\tcin.tie(0);\r\n\tint n;\r\n\tcin >> n;\r\n\tPoly<998244353> a(n);\r\n\tfor(int\
+    \ i = 0; i < n; i++) {\r\n\t\tcin >> a[i];\r\n\t}\r\n\ta = a.exp(n);\r\n\tfor(int\
+    \ i = 0; i < n; i++) {\r\n\t\tcout << a[i] << \" \\n\"[i == n - 1];\r\n\t}\r\n\
+    \treturn 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/exp_of_formal_power_series\"\
-    \r\n\r\n#include <iostream>\r\n#include <vector>\r\n#include \"../../library/modint/modint.hpp\"\
-    \r\n#include \"../../library/formal-power-series/poly.hpp\"\r\nusing namespace\
-    \ std;\r\nusing namespace felix;\r\n\r\nusing mint = modint998244353;\r\n\r\n\
-    int main() {\r\n\tios::sync_with_stdio(false);\r\n\tcin.tie(0);\r\n\tint n;\r\n\
-    \tcin >> n;\r\n\tPoly<mint> a(n);\r\n\tfor(int i = 0; i < n; i++) {\r\n\t\tcin\
-    \ >> a[i];\r\n\t}\r\n\ta = a.exp(n);\r\n\tfor(int i = 0; i < n; i++) {\r\n\t\t\
-    cout << a[i] << \" \\n\"[i == n - 1];\r\n\t}\r\n\treturn 0;\r\n}\r\n"
+    \r\n\r\n#include <iostream>\r\n#include <vector>\r\n#include \"../../library/formal-power-series/poly.hpp\"\
+    \r\nusing namespace std;\r\nusing namespace felix;\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\
+    \n\tcin.tie(0);\r\n\tint n;\r\n\tcin >> n;\r\n\tPoly<998244353> a(n);\r\n\tfor(int\
+    \ i = 0; i < n; i++) {\r\n\t\tcin >> a[i];\r\n\t}\r\n\ta = a.exp(n);\r\n\tfor(int\
+    \ i = 0; i < n; i++) {\r\n\t\tcout << a[i] << \" \\n\"[i == n - 1];\r\n\t}\r\n\
+    \treturn 0;\r\n}\r\n"
   dependsOn:
+  - library/formal-power-series/poly.hpp
   - library/modint/modint.hpp
   - library/internal/inv-gcd.hpp
   - library/internal/safe-mod.hpp
   - library/internal/internal-math.hpp
-  - library/formal-power-series/poly.hpp
   - library/convolution/NTT.hpp
   isVerificationFile: true
   path: test/yosupo/Exp-of-Formal-Power-Series.test.cpp
   requiredBy: []
-  timestamp: '2023-04-09 22:16:30+08:00'
+  timestamp: '2023-04-09 23:28:31+08:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/Exp-of-Formal-Power-Series.test.cpp
