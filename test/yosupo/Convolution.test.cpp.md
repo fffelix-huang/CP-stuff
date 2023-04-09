@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: library/convolution/NTT.hpp
     title: library/convolution/NTT.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/formal-power-series/poly.hpp
     title: library/formal-power-series/poly.hpp
   - icon: ':question:'
@@ -21,9 +21,9 @@ data:
     title: library/modint/modint.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/convolution_mod
@@ -189,30 +189,30 @@ data:
     \r\ntemplate<int mod> std::vector<modint<mod>> NTT<mod>::roots{0, 1};\r\n\r\n\
     } // namespace felix\r\n#line 9 \"library/formal-power-series/poly.hpp\"\n\r\n\
     namespace felix {\r\n\r\ntemplate<int mod>\r\nstruct Poly {\r\n\tusing mint =\
-    \ modint<mod>;\r\n\r\npublic:\r\n\tPoly() {}\r\n\tPoly(int n) : a(n) {}\r\n\t\
-    Poly(const std::vector<mint>& a) : a(a) {}\r\n\tPoly(const std::initializer_list<mint>&\
-    \ a) : a(a) {}\r\n\r\n\ttemplate<class F>\r\n\texplicit Poly(int n, F f) : a(n)\
-    \ {\r\n\t\tfor(int i = 0; i < n; i++) {\r\n\t\t\ta[i] = f(i);\r\n\t\t}\r\n\t}\r\
-    \n\r\n\tconstexpr int size() const {\r\n\t\treturn (int) a.size();\r\n\t}\r\n\r\
-    \n\tconstexpr void resize(int n) {\r\n\t\ta.resize(n);\r\n\t}\r\n\r\n\tconstexpr\
-    \ void shrink() {\r\n\t\twhile(size() && a.back() == 0) {\r\n\t\t\ta.pop_back();\r\
-    \n\t\t}\r\n\t}\r\n\r\n\tconstexpr mint operator[](int idx) const {\r\n\t\tif(idx\
-    \ >= 0 && idx < size()) {\r\n\t\t\treturn a[idx];\r\n\t\t} else {\r\n\t\t\treturn\
-    \ 0;\r\n\t\t}\r\n\t}\r\n\r\n\tconstexpr mint& operator[](int idx) {\r\n\t\treturn\
-    \ a[idx];\r\n\t}\r\n\r\n\tconstexpr friend Poly operator+(const Poly& a, const\
+    \ modint<mod>;\r\n\r\npublic:\r\n\tPoly() {}\r\n\texplicit Poly(int n) : a(n)\
+    \ {}\r\n\texplicit Poly(const std::vector<mint>& a) : a(a) {}\r\n\tPoly(const\
+    \ std::initializer_list<mint>& a) : a(a) {}\r\n\r\n\ttemplate<class F>\r\n\texplicit\
+    \ Poly(int n, F f) : a(n) {\r\n\t\tfor(int i = 0; i < n; i++) {\r\n\t\t\ta[i]\
+    \ = f(i);\r\n\t\t}\r\n\t}\r\n\r\n\tconstexpr int size() const {\r\n\t\treturn\
+    \ (int) a.size();\r\n\t}\r\n\r\n\tconstexpr void resize(int n) {\r\n\t\ta.resize(n);\r\
+    \n\t}\r\n\r\n\tconstexpr void shrink() {\r\n\t\twhile(size() && a.back() == 0)\
+    \ {\r\n\t\t\ta.pop_back();\r\n\t\t}\r\n\t}\r\n\r\n\tconstexpr mint operator[](int\
+    \ idx) const {\r\n\t\tif(idx >= 0 && idx < size()) {\r\n\t\t\treturn a[idx];\r\
+    \n\t\t} else {\r\n\t\t\treturn 0;\r\n\t\t}\r\n\t}\r\n\r\n\tconstexpr mint& operator[](int\
+    \ idx) {\r\n\t\treturn a[idx];\r\n\t}\r\n\r\n\tconstexpr friend Poly operator+(const\
+    \ Poly& a, const Poly& b) {\r\n\t\tPoly c(std::max(a.size(), b.size()));\r\n\t\
+    \tfor(int i = 0; i < c.size(); i++) {\r\n\t\t\tc[i] = a[i] + b[i];\r\n\t\t}\r\n\
+    \t\treturn c;\r\n\t}\r\n\r\n\tconstexpr friend Poly operator-(const Poly& a, const\
     \ Poly& b) {\r\n\t\tPoly c(std::max(a.size(), b.size()));\r\n\t\tfor(int i = 0;\
-    \ i < c.size(); i++) {\r\n\t\t\tc[i] = a[i] + b[i];\r\n\t\t}\r\n\t\treturn c;\r\
-    \n\t}\r\n\r\n\tconstexpr friend Poly operator-(const Poly& a, const Poly& b) {\r\
-    \n\t\tPoly c(std::max(a.size(), b.size()));\r\n\t\tfor(int i = 0; i < c.size();\
-    \ i++) {\r\n\t\t\tc[i] = a[i] - b[i];\r\n\t\t}\r\n\t\treturn c;\r\n\t}\r\n\r\n\
-    \tconstexpr friend Poly operator*(Poly a, Poly b) {\r\n\t\treturn Poly(NTT<mod>::multiply(a.a,\
-    \ b.a));\r\n\t}\r\n\r\n\tconstexpr friend Poly operator*(mint a, Poly b) {\r\n\
-    \t\tfor(int i = 0; i < b.size(); i++) {\r\n\t\t\tb[i] *= a;\r\n\t\t}\r\n\t\treturn\
-    \ b;\r\n\t}\r\n\r\n\tconstexpr friend Poly operator*(Poly a, mint b) {\r\n\t\t\
-    for(int i = 0; i < a.size(); i++) {\r\n\t\t\ta[i] *= b;\r\n\t\t}\r\n\t\treturn\
-    \ a;\r\n\t}\r\n\r\n\tconstexpr Poly& operator+=(Poly b) {\r\n\t\treturn (*this)\
-    \ = (*this) + b;\r\n\t}\r\n\r\n\tconstexpr Poly& operator-=(Poly b) {\r\n\t\t\
-    return (*this) = (*this) - b;\r\n\t}\r\n\r\n\tconstexpr Poly& operator*=(Poly\
+    \ i < c.size(); i++) {\r\n\t\t\tc[i] = a[i] - b[i];\r\n\t\t}\r\n\t\treturn c;\r\
+    \n\t}\r\n\r\n\tconstexpr friend Poly operator*(Poly a, Poly b) {\r\n\t\treturn\
+    \ Poly(NTT<mod>::multiply(a.a, b.a));\r\n\t}\r\n\r\n\tconstexpr friend Poly operator*(mint\
+    \ a, Poly b) {\r\n\t\tfor(int i = 0; i < b.size(); i++) {\r\n\t\t\tb[i] *= a;\r\
+    \n\t\t}\r\n\t\treturn b;\r\n\t}\r\n\r\n\tconstexpr friend Poly operator*(Poly\
+    \ a, mint b) {\r\n\t\tfor(int i = 0; i < a.size(); i++) {\r\n\t\t\ta[i] *= b;\r\
+    \n\t\t}\r\n\t\treturn a;\r\n\t}\r\n\r\n\tconstexpr Poly& operator+=(Poly b) {\r\
+    \n\t\treturn (*this) = (*this) + b;\r\n\t}\r\n\r\n\tconstexpr Poly& operator-=(Poly\
+    \ b) {\r\n\t\treturn (*this) = (*this) - b;\r\n\t}\r\n\r\n\tconstexpr Poly& operator*=(Poly\
     \ b) {\r\n\t\treturn (*this) = (*this) * b;\r\n\t}\r\n\r\n\tconstexpr Poly& operator*=(mint\
     \ b) {\r\n\t\treturn (*this) = (*this) * b;\r\n\t}\r\n\r\n\tconstexpr Poly mulxk(int\
     \ k) const {\r\n\t\tauto b = a;\r\n\t\tb.insert(b.begin(), k, mint(0));\r\n\t\t\
@@ -259,10 +259,10 @@ data:
     \ b.a.end());\r\n\t\tfor(int i = 0; i < n; i++) {\r\n\t\t\tb[i] *= mint(i).inv_fact();\r\
     \n\t\t}\r\n\t\treturn b;\r\n\t}\r\n\r\n\tconstexpr Poly mulT(Poly b) const {\r\
     \n\t\tif(b.size() == 0) {\r\n\t\t\treturn Poly();\r\n\t\t}\r\n\t\tint n = b.size();\r\
-    \n\t\treverse(b.a.begin(), b.a.end());\r\n\t\treturn ((*this) * b).divxk(n - 1);\r\
-    \n\t}\r\n\r\n\tconstexpr std::vector<mint> eval(std::vector<mint> x) const {\r\
-    \n\t\tif(size() == 0) {\r\n\t\t\treturn std::vector<mint>(x.size(), mint(0));\r\
-    \n\t\t}\r\n\t\tconst int n = std::max((int) x.size(), size());\r\n\t\tstd::vector<Poly>\
+    \n\t\tstd::reverse(b.a.begin(), b.a.end());\r\n\t\treturn ((*this) * b).divxk(n\
+    \ - 1);\r\n\t}\r\n\r\n\tstd::vector<mint> eval(std::vector<mint> x) const {\r\n\
+    \t\tif(size() == 0) {\r\n\t\t\treturn std::vector<mint>(x.size(), mint(0));\r\n\
+    \t\t}\r\n\t\tconst int n = std::max((int) x.size(), size());\r\n\t\tstd::vector<Poly>\
     \ q(4 * n);\r\n\t\tstd::vector<mint> ans(x.size());\r\n\t\tx.resize(n);\r\n\t\t\
     std::function<void(int, int, int)> build = [&](int p, int l, int r) {\r\n\t\t\t\
     if(r - l == 1) {\r\n\t\t\t\tq[p] = Poly{1, -x[l]};\r\n\t\t\t} else {\r\n\t\t\t\
@@ -300,8 +300,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/Convolution.test.cpp
   requiredBy: []
-  timestamp: '2023-04-09 23:28:31+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-04-09 23:41:39+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Convolution.test.cpp
 layout: document

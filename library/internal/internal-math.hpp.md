@@ -8,7 +8,7 @@ data:
   - icon: ':question:'
     path: library/convolution/NTT.hpp
     title: library/convolution/NTT.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/formal-power-series/poly.hpp
     title: library/formal-power-series/poly.hpp
   - icon: ':heavy_check_mark:'
@@ -27,31 +27,31 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/Convolution-Mod-1000000007.test.cpp
     title: test/yosupo/Convolution-Mod-1000000007.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/Convolution.test.cpp
     title: test/yosupo/Convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/Exp-of-Formal-Power-Series.test.cpp
     title: test/yosupo/Exp-of-Formal-Power-Series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/Inv-of-Formal-Power-Series.test.cpp
     title: test/yosupo/Inv-of-Formal-Power-Series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/Log-of-Formal-Power-Series.test.cpp
     title: test/yosupo/Log-of-Formal-Power-Series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/Multipoint-Evaluation.test.cpp
     title: test/yosupo/Multipoint-Evaluation.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/Partition-Function.test.cpp
     title: test/yosupo/Partition-Function.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/Polynomial-Taylor-Shift.test.cpp
     title: test/yosupo/Polynomial-Taylor-Shift.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/Pow-of-Formal-Power-Series.test.cpp
     title: test/yosupo/Pow-of-Formal-Power-Series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/Product-of-Polynomial-Sequence.test.cpp
     title: test/yosupo/Product-of-Polynomial-Sequence.test.cpp
   - icon: ':heavy_check_mark:'
