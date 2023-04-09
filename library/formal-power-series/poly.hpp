@@ -212,9 +212,9 @@ public:
 			x += 1;
 		}
 		if(x == size()) {
-			return Poly(std::vector<mint>(size(), mint(0)));
+			return Poly(size());
 		}
-		Poly f = {{a.begin() + x, a.end()}};
+		Poly f = divxk(x);
 		Poly g({mint(f[0]).sqrt()});
 		mint inv2 = mint(1) / 2;
 		for(int i = 1; i < m; i *= 2) {
