@@ -37,9 +37,10 @@ if __name__ == "__main__":
 	others = []
 
 	for line in s.splitlines():
-		if line.strip().startswith('//') or line.strip().startswith('#line')or line.strip().startswith('#pragma once'):
+		T = line.strip()
+		if T.startswith('//') or T.startswith('#line') or T.startswith('#pragma once'):
 			continue
-		if line.strip().startswith('#include')
+		if T.startswith('#include'):
 			includes.append(line)
 		else:
 			others.append(line)
