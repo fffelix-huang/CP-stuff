@@ -38,7 +38,7 @@ if __name__ == "__main__":
 
 	for line in s.splitlines():
 		T = line.strip()
-		if T.startswith('//') or T.startswith('#line') or T.startswith('#pragma once'):
+		if T.startswith('#line') or T.startswith('#pragma once'):
 			continue
 		if T.startswith('#include'):
 			includes.append(line)
