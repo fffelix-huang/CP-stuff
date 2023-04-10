@@ -35,6 +35,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/data-structure/line-container.hpp
       title: library/data-structure/line-container.hpp
+    - icon: ':warning:'
+      path: library/data-structure/rectangle-sum.hpp
+      title: library/data-structure/rectangle-sum.hpp
     - icon: ':heavy_check_mark:'
       path: library/data-structure/segtree.hpp
       title: library/data-structure/segtree.hpp
@@ -257,6 +260,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/Point-Add-Range-Sum.test.cpp
       title: test/yosupo/Point-Add-Range-Sum.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/Point-Add-Rectangle-Sum.test.cpp
+      title: test/yosupo/Point-Add-Rectangle-Sum.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/Polynomial-Taylor-Shift.test.cpp
       title: test/yosupo/Polynomial-Taylor-Shift.test.cpp
