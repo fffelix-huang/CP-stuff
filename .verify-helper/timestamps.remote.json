@@ -28,6 +28,7 @@
 "test/yosupo/Number-of-Substrings.test.cpp": "2023-04-03 21:36:34 +0800",
 "test/yosupo/Partition-Function.test.cpp": "2023-04-10 00:54:20 +0800",
 "test/yosupo/Point-Add-Range-Sum.test.cpp": "2023-04-06 14:01:45 +0800",
+"test/yosupo/Point-Add-Rectangle-Sum.test.cpp": "2023-04-10 17:10:44 +0800",
 "test/yosupo/Polynomial-Taylor-Shift.test.cpp": "2023-04-10 00:54:20 +0800",
 "test/yosupo/Pow-of-Formal-Power-Series.test.cpp": "2023-04-10 00:54:20 +0800",
 "test/yosupo/Predecessor-Problem.test.cpp": "2023-04-06 14:01:45 +0800",
