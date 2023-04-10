@@ -5,10 +5,13 @@ data:
     path: library/data-structure/fenwick.hpp
     title: library/data-structure/fenwick.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/Point-Add-Rectangle-Sum.test.cpp
+    title: test/yosupo/Point-Add-Rectangle-Sum.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"library/data-structure/rectangle-sum.hpp\"\n#include <vector>\n\
@@ -78,8 +81,9 @@ data:
   path: library/data-structure/rectangle-sum.hpp
   requiredBy: []
   timestamp: '2023-04-10 16:57:50+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/yosupo/Point-Add-Rectangle-Sum.test.cpp
 documentation_of: library/data-structure/rectangle-sum.hpp
 layout: document
 redirect_from:

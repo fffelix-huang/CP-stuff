@@ -35,7 +35,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/data-structure/line-container.hpp
       title: library/data-structure/line-container.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: library/data-structure/rectangle-sum.hpp
       title: library/data-structure/rectangle-sum.hpp
     - icon: ':heavy_check_mark:'
@@ -260,7 +260,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/Point-Add-Range-Sum.test.cpp
       title: test/yosupo/Point-Add-Range-Sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/Point-Add-Rectangle-Sum.test.cpp
       title: test/yosupo/Point-Add-Rectangle-Sum.test.cpp
     - icon: ':heavy_check_mark:'
