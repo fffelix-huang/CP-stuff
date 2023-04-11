@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/internal/internal-math.hpp
     title: library/internal/internal-math.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/internal/safe-mod.hpp
     title: library/internal/safe-mod.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/math/floor-sum.hpp
     title: Sum of floor linear ($\sum_{i = 0}^{n - 1} \lfloor \frac{ai + b}{m} \rfloor$)
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/sum_of_floor_of_linear
@@ -29,7 +29,7 @@ data:
     \ felix\n#line 2 \"library/internal/internal-math.hpp\"\n#include <algorithm>\n\
     #line 4 \"library/internal/internal-math.hpp\"\n\nnamespace felix {\n\nnamespace\
     \ internal {\n\nconstexpr long long pow_mod_constexpr(long long x, long long n,\
-    \ int m) {\n\tif (m == 1) return 0;\n\tunsigned int _m = (unsigned int)(m);\n\t\
+    \ int m) {\n\tif(m == 1) return 0;\n\tunsigned int _m = (unsigned int)(m);\n\t\
     unsigned long long r = 1;\n\tunsigned long long y = safe_mod<long long>(x, m);\n\
     \twhile(n) {\n\t\tif(n & 1) {\n\t\t\tr = (r * y) % _m;\n\t\t}\n\t\ty = (y * y)\
     \ % _m;\n\t\tn >>= 1;\n\t}\n\treturn r;\n}\n\nconstexpr bool is_prime_constexpr(int\
@@ -85,8 +85,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/Sum-of-Floor-of-Linear.test.cpp
   requiredBy: []
-  timestamp: '2023-04-03 21:36:34+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-04-11 19:54:37+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/Sum-of-Floor-of-Linear.test.cpp
 layout: document

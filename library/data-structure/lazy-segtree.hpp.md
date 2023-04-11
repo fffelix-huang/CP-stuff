@@ -3,15 +3,15 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/Range-Affine-Point-Get.test.cpp
     title: test/yosupo/Range-Affine-Point-Get.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/Range-Affine-Range-Sum.test.cpp
     title: test/yosupo/Range-Affine-Range-Sum.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"library/data-structure/lazy-segtree.hpp\"\n#include <vector>\n\
@@ -139,7 +139,7 @@ data:
   path: library/data-structure/lazy-segtree.hpp
   requiredBy: []
   timestamp: '2023-04-06 14:01:45+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/Range-Affine-Range-Sum.test.cpp
   - test/yosupo/Range-Affine-Point-Get.test.cpp

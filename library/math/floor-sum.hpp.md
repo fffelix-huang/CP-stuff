@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/internal/internal-math.hpp
     title: library/internal/internal-math.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/internal/safe-mod.hpp
     title: library/internal/safe-mod.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/Sum-of-Floor-of-Linear.test.cpp
     title: test/yosupo/Sum-of-Floor-of-Linear.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"library/math/floor-sum.hpp\"\n#include <cassert>\r\n#line\
@@ -24,8 +24,8 @@ data:
     \ namespace internal\r\n\r\n} // namespace felix\n#line 2 \"library/internal/internal-math.hpp\"\
     \n#include <algorithm>\n#line 4 \"library/internal/internal-math.hpp\"\n\nnamespace\
     \ felix {\n\nnamespace internal {\n\nconstexpr long long pow_mod_constexpr(long\
-    \ long x, long long n, int m) {\n\tif (m == 1) return 0;\n\tunsigned int _m =\
-    \ (unsigned int)(m);\n\tunsigned long long r = 1;\n\tunsigned long long y = safe_mod<long\
+    \ long x, long long n, int m) {\n\tif(m == 1) return 0;\n\tunsigned int _m = (unsigned\
+    \ int)(m);\n\tunsigned long long r = 1;\n\tunsigned long long y = safe_mod<long\
     \ long>(x, m);\n\twhile(n) {\n\t\tif(n & 1) {\n\t\t\tr = (r * y) % _m;\n\t\t}\n\
     \t\ty = (y * y) % _m;\n\t\tn >>= 1;\n\t}\n\treturn r;\n}\n\nconstexpr bool is_prime_constexpr(int\
     \ n) {\n\tif(n <= 1) return false;\n\tif(n == 2 || n == 7 || n == 61) return true;\n\
@@ -79,8 +79,8 @@ data:
   isVerificationFile: false
   path: library/math/floor-sum.hpp
   requiredBy: []
-  timestamp: '2023-04-03 16:14:50+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-04-11 19:54:37+08:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/Sum-of-Floor-of-Linear.test.cpp
 documentation_of: library/math/floor-sum.hpp

@@ -2,16 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/convolution/NTT.hpp
     title: library/convolution/NTT.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/formal-power-series/poly.hpp
     title: library/formal-power-series/poly.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/internal/internal-math.hpp
     title: library/internal/internal-math.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/internal/inv-gcd.hpp
     title: library/internal/inv-gcd.hpp
   - icon: ':heavy_check_mark:'
@@ -20,7 +20,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/math/factorize.hpp
     title: "Integer Factorization (Pollard Rho \u8CEA\u56E0\u6578\u5206\u89E3)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/math/floor-sum.hpp
     title: Sum of floor linear ($\sum_{i = 0}^{n - 1} \lfloor \frac{ai + b}{m} \rfloor$)
   - icon: ':warning:'
@@ -29,7 +29,7 @@ data:
   - icon: ':warning:'
     path: library/math/pow-mod.hpp
     title: library/math/pow-mod.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/modint/modint.hpp
     title: library/modint/modint.hpp
   _extendedVerifiedWith:
@@ -72,27 +72,27 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/Product-of-Polynomial-Sequence.test.cpp
     title: test/yosupo/Product-of-Polynomial-Sequence.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/Range-Affine-Point-Get.test.cpp
     title: test/yosupo/Range-Affine-Point-Get.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/Range-Affine-Range-Sum.test.cpp
     title: test/yosupo/Range-Affine-Range-Sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/Sqrt-Mod.test.cpp
     title: test/yosupo/Sqrt-Mod.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/Sqrt-of-Formal-Power-Series.test.cpp
     title: test/yosupo/Sqrt-of-Formal-Power-Series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/Subset-Convolution.test.cpp
     title: test/yosupo/Subset-Convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/Sum-of-Floor-of-Linear.test.cpp
     title: test/yosupo/Sum-of-Floor-of-Linear.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"library/internal/safe-mod.hpp\"\n\r\nnamespace felix {\r\
@@ -118,7 +118,7 @@ data:
   - library/internal/inv-gcd.hpp
   - library/internal/internal-math.hpp
   timestamp: '2023-04-03 13:30:29+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/Subset-Convolution.test.cpp
   - test/yosupo/Sqrt-of-Formal-Power-Series.test.cpp
