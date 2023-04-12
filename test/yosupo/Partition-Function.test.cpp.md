@@ -151,7 +151,7 @@ data:
     \ {\r\n\r\nnamespace ntt_internal {\r\n\r\nstd::vector<int> rev;\r\n\r\n} // namespace\
     \ ntt_internal\r\n\r\ntemplate<int mod>\r\nclass NTT {\r\n\tstatic_assert(internal::is_prime_constexpr(mod));\r\
     \n\tusing mint = modint<mod>;\r\n\r\npublic:\r\n\tstatic constexpr int primitive_root\
-    \ = internal::primitive_root_constexpr(mint::mod());\r\n\r\n\tstatic void prepare(int\
+    \ = internal::primitive_root_constexpr(mod);\r\n\r\n\tstatic void prepare(int\
     \ n) {\r\n\t\tif((int) ntt_internal::rev.size() != n) {\r\n\t\t\tint k = __builtin_ctz(n)\
     \ - 1;\r\n\t\t\tntt_internal::rev.resize(n);\r\n\t\t\tfor(int i = 0; i < n; ++i)\
     \ {\r\n\t\t\t\tntt_internal::rev[i] = ntt_internal::rev[i >> 1] >> 1 | (i & 1)\
@@ -308,7 +308,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/Partition-Function.test.cpp
   requiredBy: []
-  timestamp: '2023-04-12 10:11:53+08:00'
+  timestamp: '2023-04-13 05:56:07+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Partition-Function.test.cpp
