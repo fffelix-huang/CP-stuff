@@ -1,5 +1,5 @@
 ---
-title: DSU
+title: DSU (路徑壓縮)
 documentation_of: ../library/data-structure/DSU.hpp
 ---
 

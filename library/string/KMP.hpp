@@ -15,9 +15,7 @@ std::vector<int> KMP(const std::vector<T>& a) {
 		while(j > 0 && a[i] != a[j]) {
 			j = k[j - 1];
 		}
-		if(a[i] == a[j]) {
-			j += 1;
-		}
+		j += (a[i] == a[j]);
 		k[i] = j;
 	}
 	return k;

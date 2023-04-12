@@ -75,7 +75,7 @@ public:
 				if(found) {
 					break;
 				}
-				T delta = std::numeric_limits<T>::max();
+				T delta = INF;
 				for(int y = 0; y < ny; y++) {
 					if(!visy[y]) {
 						delta = std::min(delta, slack[y]);

@@ -17,7 +17,7 @@ struct line_t {
 
 } // line_container_internal
 
-template<bool MAX = true>
+template<bool MAX>
 struct line_container : std::multiset<line_container_internal::line_t, std::less<>> {
 	static const long long INF = std::numeric_limits<long long>::max();
 
