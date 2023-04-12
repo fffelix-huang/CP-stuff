@@ -37,28 +37,28 @@ data:
     break;\r\n\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t\tque.push(yx[y]);\r\n\t\t\t\t\t\t\t\
     p[yx[y]] = x;\r\n\t\t\t\t\t\t\tvisy[y] = visx[yx[y]] = true;\r\n\t\t\t\t\t\t\t\
     update(yx[y]);\r\n\t\t\t\t\t\t}\r\n\t\t\t\t\t}\r\n\t\t\t\t}\r\n\t\t\t\tif(found)\
-    \ {\r\n\t\t\t\t\tbreak;\r\n\t\t\t\t}\r\n\t\t\t\tT delta = std::numeric_limits<T>::max();\r\
-    \n\t\t\t\tfor(int y = 0; y < ny; y++) {\r\n\t\t\t\t\tif(!visy[y]) {\r\n\t\t\t\t\
-    \t\tdelta = std::min(delta, slack[y]);\r\n\t\t\t\t\t}\r\n\t\t\t\t}\r\n\t\t\t\t\
-    for(int x = 0; x < nx; x++) {\r\n\t\t\t\t\tif(visx[x]) {\r\n\t\t\t\t\t\tlx[x]\
+    \ {\r\n\t\t\t\t\tbreak;\r\n\t\t\t\t}\r\n\t\t\t\tT delta = INF;\r\n\t\t\t\tfor(int\
+    \ y = 0; y < ny; y++) {\r\n\t\t\t\t\tif(!visy[y]) {\r\n\t\t\t\t\t\tdelta = std::min(delta,\
+    \ slack[y]);\r\n\t\t\t\t\t}\r\n\t\t\t\t}\r\n\t\t\t\tfor(int x = 0; x < nx; x++)\
+    \ {\r\n\t\t\t\t\tif(visx[x]) {\r\n\t\t\t\t\t\tlx[x] -= delta;\r\n\t\t\t\t\t}\r\
+    \n\t\t\t\t}\r\n\t\t\t\tfor(int y = 0; y < ny; y++) {\r\n\t\t\t\t\tif(visy[y])\
+    \ {\r\n\t\t\t\t\t\tly[y] += delta;\r\n\t\t\t\t\t} else {\r\n\t\t\t\t\t\tslack[y]\
     \ -= delta;\r\n\t\t\t\t\t}\r\n\t\t\t\t}\r\n\t\t\t\tfor(int y = 0; y < ny; y++)\
-    \ {\r\n\t\t\t\t\tif(visy[y]) {\r\n\t\t\t\t\t\tly[y] += delta;\r\n\t\t\t\t\t} else\
-    \ {\r\n\t\t\t\t\t\tslack[y] -= delta;\r\n\t\t\t\t\t}\r\n\t\t\t\t}\r\n\t\t\t\t\
-    for(int y = 0; y < ny; y++) {\r\n\t\t\t\t\tif(!visy[y] && slack[y] == 0) {\r\n\
-    \t\t\t\t\t\tif(yx[y] == -1) {\r\n\t\t\t\t\t\t\tex = slackx[y];\r\n\t\t\t\t\t\t\
-    \tey = y;\r\n\t\t\t\t\t\t\tfound = true;\r\n\t\t\t\t\t\t\tbreak;\r\n\t\t\t\t\t\
-    \t}\r\n\t\t\t\t\t\tque.push(yx[y]);\r\n\t\t\t\t\t\tp[yx[y]] = slackx[y];\r\n\t\
-    \t\t\t\t\tvisy[y] = visx[yx[y]] = true;\r\n\t\t\t\t\t\tupdate(yx[y]);\r\n\t\t\t\
-    \t\t}\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t\tcosts[cur + 1] = costs[cur];\r\n\t\t\t\
-    for(int x = ex, y = ey, ty; x != -1; x = p[x], y = ty) {\r\n\t\t\t\tcosts[cur\
-    \ + 1] += a[x][y];\r\n\t\t\t\tif(xy[x] != -1) {\r\n\t\t\t\t\tcosts[cur + 1] -=\
-    \ a[x][xy[x]];\r\n\t\t\t\t}\r\n\t\t\t\tty = xy[x];\r\n\t\t\t\txy[x] = y;\r\n\t\
-    \t\t\tyx[y] = x;\r\n\t\t\t}\r\n\t\t}\r\n\t\treturn costs[nx];\r\n\t}\r\n\r\n\t\
-    std::vector<int> assignment() {\r\n\t\treturn xy;\r\n\t}\r\n\r\n\tstd::pair<std::vector<T>,\
-    \ std::vector<T>> labels() {\r\n\t\treturn std::make_pair(lx, ly);\r\n\t}\r\n\r\
-    \n\tstd::vector<T> weights() {\r\n\t\treturn costs;\r\n\t}\r\n\r\nprivate:\r\n\
-    \tstd::vector<T> lx, ly, slack, costs;\r\n\tstd::vector<int> xy, yx, p, slackx;\r\
-    \n\tstd::vector<bool> visx, visy;\r\n};\r\n\r\n} // namespace felix\r\n"
+    \ {\r\n\t\t\t\t\tif(!visy[y] && slack[y] == 0) {\r\n\t\t\t\t\t\tif(yx[y] == -1)\
+    \ {\r\n\t\t\t\t\t\t\tex = slackx[y];\r\n\t\t\t\t\t\t\tey = y;\r\n\t\t\t\t\t\t\t\
+    found = true;\r\n\t\t\t\t\t\t\tbreak;\r\n\t\t\t\t\t\t}\r\n\t\t\t\t\t\tque.push(yx[y]);\r\
+    \n\t\t\t\t\t\tp[yx[y]] = slackx[y];\r\n\t\t\t\t\t\tvisy[y] = visx[yx[y]] = true;\r\
+    \n\t\t\t\t\t\tupdate(yx[y]);\r\n\t\t\t\t\t}\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t\t\
+    costs[cur + 1] = costs[cur];\r\n\t\t\tfor(int x = ex, y = ey, ty; x != -1; x =\
+    \ p[x], y = ty) {\r\n\t\t\t\tcosts[cur + 1] += a[x][y];\r\n\t\t\t\tif(xy[x] !=\
+    \ -1) {\r\n\t\t\t\t\tcosts[cur + 1] -= a[x][xy[x]];\r\n\t\t\t\t}\r\n\t\t\t\tty\
+    \ = xy[x];\r\n\t\t\t\txy[x] = y;\r\n\t\t\t\tyx[y] = x;\r\n\t\t\t}\r\n\t\t}\r\n\
+    \t\treturn costs[nx];\r\n\t}\r\n\r\n\tstd::vector<int> assignment() {\r\n\t\t\
+    return xy;\r\n\t}\r\n\r\n\tstd::pair<std::vector<T>, std::vector<T>> labels()\
+    \ {\r\n\t\treturn std::make_pair(lx, ly);\r\n\t}\r\n\r\n\tstd::vector<T> weights()\
+    \ {\r\n\t\treturn costs;\r\n\t}\r\n\r\nprivate:\r\n\tstd::vector<T> lx, ly, slack,\
+    \ costs;\r\n\tstd::vector<int> xy, yx, p, slackx;\r\n\tstd::vector<bool> visx,\
+    \ visy;\r\n};\r\n\r\n} // namespace felix\r\n"
   code: "#pragma once\r\n#include <vector>\r\n#include <queue>\r\n#include <limits>\r\
     \n#include <cassert>\r\n\r\nnamespace felix {\r\n\r\n// https://atcoder.jp/contests/abc247/submissions/30867023\r\
     \ntemplate<class T>\r\nclass KM {\r\npublic:\r\n\tstatic constexpr T INF = std::numeric_limits<T>::max();\r\
@@ -84,33 +84,33 @@ data:
     break;\r\n\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t\tque.push(yx[y]);\r\n\t\t\t\t\t\t\t\
     p[yx[y]] = x;\r\n\t\t\t\t\t\t\tvisy[y] = visx[yx[y]] = true;\r\n\t\t\t\t\t\t\t\
     update(yx[y]);\r\n\t\t\t\t\t\t}\r\n\t\t\t\t\t}\r\n\t\t\t\t}\r\n\t\t\t\tif(found)\
-    \ {\r\n\t\t\t\t\tbreak;\r\n\t\t\t\t}\r\n\t\t\t\tT delta = std::numeric_limits<T>::max();\r\
-    \n\t\t\t\tfor(int y = 0; y < ny; y++) {\r\n\t\t\t\t\tif(!visy[y]) {\r\n\t\t\t\t\
-    \t\tdelta = std::min(delta, slack[y]);\r\n\t\t\t\t\t}\r\n\t\t\t\t}\r\n\t\t\t\t\
-    for(int x = 0; x < nx; x++) {\r\n\t\t\t\t\tif(visx[x]) {\r\n\t\t\t\t\t\tlx[x]\
+    \ {\r\n\t\t\t\t\tbreak;\r\n\t\t\t\t}\r\n\t\t\t\tT delta = INF;\r\n\t\t\t\tfor(int\
+    \ y = 0; y < ny; y++) {\r\n\t\t\t\t\tif(!visy[y]) {\r\n\t\t\t\t\t\tdelta = std::min(delta,\
+    \ slack[y]);\r\n\t\t\t\t\t}\r\n\t\t\t\t}\r\n\t\t\t\tfor(int x = 0; x < nx; x++)\
+    \ {\r\n\t\t\t\t\tif(visx[x]) {\r\n\t\t\t\t\t\tlx[x] -= delta;\r\n\t\t\t\t\t}\r\
+    \n\t\t\t\t}\r\n\t\t\t\tfor(int y = 0; y < ny; y++) {\r\n\t\t\t\t\tif(visy[y])\
+    \ {\r\n\t\t\t\t\t\tly[y] += delta;\r\n\t\t\t\t\t} else {\r\n\t\t\t\t\t\tslack[y]\
     \ -= delta;\r\n\t\t\t\t\t}\r\n\t\t\t\t}\r\n\t\t\t\tfor(int y = 0; y < ny; y++)\
-    \ {\r\n\t\t\t\t\tif(visy[y]) {\r\n\t\t\t\t\t\tly[y] += delta;\r\n\t\t\t\t\t} else\
-    \ {\r\n\t\t\t\t\t\tslack[y] -= delta;\r\n\t\t\t\t\t}\r\n\t\t\t\t}\r\n\t\t\t\t\
-    for(int y = 0; y < ny; y++) {\r\n\t\t\t\t\tif(!visy[y] && slack[y] == 0) {\r\n\
-    \t\t\t\t\t\tif(yx[y] == -1) {\r\n\t\t\t\t\t\t\tex = slackx[y];\r\n\t\t\t\t\t\t\
-    \tey = y;\r\n\t\t\t\t\t\t\tfound = true;\r\n\t\t\t\t\t\t\tbreak;\r\n\t\t\t\t\t\
-    \t}\r\n\t\t\t\t\t\tque.push(yx[y]);\r\n\t\t\t\t\t\tp[yx[y]] = slackx[y];\r\n\t\
-    \t\t\t\t\tvisy[y] = visx[yx[y]] = true;\r\n\t\t\t\t\t\tupdate(yx[y]);\r\n\t\t\t\
-    \t\t}\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t\tcosts[cur + 1] = costs[cur];\r\n\t\t\t\
-    for(int x = ex, y = ey, ty; x != -1; x = p[x], y = ty) {\r\n\t\t\t\tcosts[cur\
-    \ + 1] += a[x][y];\r\n\t\t\t\tif(xy[x] != -1) {\r\n\t\t\t\t\tcosts[cur + 1] -=\
-    \ a[x][xy[x]];\r\n\t\t\t\t}\r\n\t\t\t\tty = xy[x];\r\n\t\t\t\txy[x] = y;\r\n\t\
-    \t\t\tyx[y] = x;\r\n\t\t\t}\r\n\t\t}\r\n\t\treturn costs[nx];\r\n\t}\r\n\r\n\t\
-    std::vector<int> assignment() {\r\n\t\treturn xy;\r\n\t}\r\n\r\n\tstd::pair<std::vector<T>,\
-    \ std::vector<T>> labels() {\r\n\t\treturn std::make_pair(lx, ly);\r\n\t}\r\n\r\
-    \n\tstd::vector<T> weights() {\r\n\t\treturn costs;\r\n\t}\r\n\r\nprivate:\r\n\
-    \tstd::vector<T> lx, ly, slack, costs;\r\n\tstd::vector<int> xy, yx, p, slackx;\r\
-    \n\tstd::vector<bool> visx, visy;\r\n};\r\n\r\n} // namespace felix\r\n"
+    \ {\r\n\t\t\t\t\tif(!visy[y] && slack[y] == 0) {\r\n\t\t\t\t\t\tif(yx[y] == -1)\
+    \ {\r\n\t\t\t\t\t\t\tex = slackx[y];\r\n\t\t\t\t\t\t\tey = y;\r\n\t\t\t\t\t\t\t\
+    found = true;\r\n\t\t\t\t\t\t\tbreak;\r\n\t\t\t\t\t\t}\r\n\t\t\t\t\t\tque.push(yx[y]);\r\
+    \n\t\t\t\t\t\tp[yx[y]] = slackx[y];\r\n\t\t\t\t\t\tvisy[y] = visx[yx[y]] = true;\r\
+    \n\t\t\t\t\t\tupdate(yx[y]);\r\n\t\t\t\t\t}\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t\t\
+    costs[cur + 1] = costs[cur];\r\n\t\t\tfor(int x = ex, y = ey, ty; x != -1; x =\
+    \ p[x], y = ty) {\r\n\t\t\t\tcosts[cur + 1] += a[x][y];\r\n\t\t\t\tif(xy[x] !=\
+    \ -1) {\r\n\t\t\t\t\tcosts[cur + 1] -= a[x][xy[x]];\r\n\t\t\t\t}\r\n\t\t\t\tty\
+    \ = xy[x];\r\n\t\t\t\txy[x] = y;\r\n\t\t\t\tyx[y] = x;\r\n\t\t\t}\r\n\t\t}\r\n\
+    \t\treturn costs[nx];\r\n\t}\r\n\r\n\tstd::vector<int> assignment() {\r\n\t\t\
+    return xy;\r\n\t}\r\n\r\n\tstd::pair<std::vector<T>, std::vector<T>> labels()\
+    \ {\r\n\t\treturn std::make_pair(lx, ly);\r\n\t}\r\n\r\n\tstd::vector<T> weights()\
+    \ {\r\n\t\treturn costs;\r\n\t}\r\n\r\nprivate:\r\n\tstd::vector<T> lx, ly, slack,\
+    \ costs;\r\n\tstd::vector<int> xy, yx, p, slackx;\r\n\tstd::vector<bool> visx,\
+    \ visy;\r\n};\r\n\r\n} // namespace felix\r\n"
   dependsOn: []
   isVerificationFile: false
   path: library/flow/KM.hpp
   requiredBy: []
-  timestamp: '2023-04-05 22:30:32+08:00'
+  timestamp: '2023-04-13 06:05:35+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/Assignment-Problem.test.cpp

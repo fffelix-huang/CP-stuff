@@ -28,7 +28,7 @@ data:
     namespace felix {\n\nnamespace line_container_internal {\n\nstruct line_t {\n\t\
     mutable long long k, m, p;\n\n\tinline bool operator<(const line_t& o) const {\
     \ return k < o.k; }\n\tinline bool operator<(long long x) const { return p < x;\
-    \ }\n};\n\n} // line_container_internal\n\ntemplate<bool MAX = true>\nstruct line_container\
+    \ }\n};\n\n} // line_container_internal\n\ntemplate<bool MAX>\nstruct line_container\
     \ : std::multiset<line_container_internal::line_t, std::less<>> {\n\tstatic const\
     \ long long INF = std::numeric_limits<long long>::max();\n\n\tbool isect(iterator\
     \ x, iterator y) {\n\t\tif(y == end()) {\n\t\t\tx->p = INF;\n\t\t\treturn 0;\n\
@@ -70,7 +70,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/Line-Add-Get-Min.test.cpp
   requiredBy: []
-  timestamp: '2023-04-06 01:03:29+08:00'
+  timestamp: '2023-04-13 06:05:35+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Line-Add-Get-Min.test.cpp

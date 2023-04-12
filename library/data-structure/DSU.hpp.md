@@ -53,7 +53,7 @@ data:
   - test/yosupo/Unionfind.test.cpp
 documentation_of: library/data-structure/DSU.hpp
 layout: document
-title: DSU
+title: "DSU (\u8DEF\u5F91\u58D3\u7E2E)"
 ---
 
 ## 並查集

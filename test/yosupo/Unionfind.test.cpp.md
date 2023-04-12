@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/data-structure/DSU.hpp
-    title: DSU
+    title: "DSU (\u8DEF\u5F91\u58D3\u7E2E)"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
