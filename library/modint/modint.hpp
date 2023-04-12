@@ -14,11 +14,7 @@ template<int id>
 class modint {
 public:
 	static constexpr int mod() {
-		if(id > 0) {
-			return id;
-		} else {
-			return md;
-		}
+		return (id > 0 ? id : md);
 	}
  	
 	static constexpr void set_mod(int m) {
