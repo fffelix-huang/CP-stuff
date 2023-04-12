@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/convolution/subset-convolution.hpp
     title: library/convolution/subset-convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/internal/internal-math.hpp
     title: library/internal/internal-math.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/internal/inv-gcd.hpp
     title: library/internal/inv-gcd.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/internal/safe-mod.hpp
     title: library/internal/safe-mod.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/modint/modint.hpp
     title: library/modint/modint.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/subset_convolution
@@ -28,7 +28,7 @@ data:
     - https://judge.yosupo.jp/problem/subset_convolution
   bundledCode: "#line 1 \"test/yosupo/Subset-Convolution.test.cpp\"\n#define PROBLEM\
     \ \"https://judge.yosupo.jp/problem/subset_convolution\"\r\n\r\n#include <iostream>\r\
-    \n#line 3 \"library/modint/modint.hpp\"\n#include <vector>\r\n#include <algorithm>\r\
+    \n#include <vector>\r\n#line 4 \"library/modint/modint.hpp\"\n#include <algorithm>\r\
     \n#include <cassert>\r\n#include <random>\r\n#include <chrono>\r\n#line 2 \"library/internal/safe-mod.hpp\"\
     \n\r\nnamespace felix {\r\n\r\nnamespace internal {\r\n\r\ntemplate<class T>\r\
     \nconstexpr T safe_mod(T x, T m) {\r\n\tx %= m;\r\n\tif(x < 0) {\r\n\t\tx += m;\r\
@@ -178,7 +178,7 @@ data:
     \ - j][mask];\n\t\t\t}\n\t\t}\n\t}\n\tfor(int i = 0; i <= lg; ++i) {\n\t\tor_transform(h[i],\
     \ true);\n\t}\n\tstd::vector<T> result(n);\n\tfor(int mask = 0; mask < n; ++mask)\
     \ {\n\t\tresult[mask] = h[__builtin_popcount(mask)][mask];\n\t}\n\treturn result;\n\
-    }\n\n} // namespace felix\n#line 6 \"test/yosupo/Subset-Convolution.test.cpp\"\
+    }\n\n} // namespace felix\n#line 7 \"test/yosupo/Subset-Convolution.test.cpp\"\
     \nusing namespace std;\r\nusing namespace felix;\r\n\r\nusing mint = modint998244353;\r\
     \n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\n\tcin.tie(0);\r\n\tint\
     \ n;\r\n\tcin >> n;\r\n\tn = 1 << n;\r\n\tvector<mint> a(n);\r\n\tfor(int i =\
@@ -187,15 +187,15 @@ data:
     \ b);\r\n\tfor(int i = 0; i < n; i++) {\r\n\t\tcout << c[i] << \" \\n\"[i == n\
     \ - 1];\r\n\t}\r\n\treturn 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/subset_convolution\"\r\n\
-    \r\n#include <iostream>\r\n#include \"../../library/modint/modint.hpp\"\r\n#include\
-    \ \"../../library/convolution/subset-convolution.hpp\"\r\nusing namespace std;\r\
-    \nusing namespace felix;\r\n\r\nusing mint = modint998244353;\r\n\r\nint main()\
-    \ {\r\n\tios::sync_with_stdio(false);\r\n\tcin.tie(0);\r\n\tint n;\r\n\tcin >>\
-    \ n;\r\n\tn = 1 << n;\r\n\tvector<mint> a(n);\r\n\tfor(int i = 0; i < n; i++)\
-    \ {\r\n\t\tcin >> a[i];\r\n\t}\r\n\tvector<mint> b(n);\r\n\tfor(int i = 0; i <\
-    \ n; i++) {\r\n\t\tcin >> b[i];\r\n\t}\r\n\tauto c = subset_convolution(a, b);\r\
-    \n\tfor(int i = 0; i < n; i++) {\r\n\t\tcout << c[i] << \" \\n\"[i == n - 1];\r\
-    \n\t}\r\n\treturn 0;\r\n}\r\n"
+    \r\n#include <iostream>\r\n#include <vector>\r\n#include \"../../library/modint/modint.hpp\"\
+    \r\n#include \"../../library/convolution/subset-convolution.hpp\"\r\nusing namespace\
+    \ std;\r\nusing namespace felix;\r\n\r\nusing mint = modint998244353;\r\n\r\n\
+    int main() {\r\n\tios::sync_with_stdio(false);\r\n\tcin.tie(0);\r\n\tint n;\r\n\
+    \tcin >> n;\r\n\tn = 1 << n;\r\n\tvector<mint> a(n);\r\n\tfor(int i = 0; i < n;\
+    \ i++) {\r\n\t\tcin >> a[i];\r\n\t}\r\n\tvector<mint> b(n);\r\n\tfor(int i = 0;\
+    \ i < n; i++) {\r\n\t\tcin >> b[i];\r\n\t}\r\n\tauto c = subset_convolution(a,\
+    \ b);\r\n\tfor(int i = 0; i < n; i++) {\r\n\t\tcout << c[i] << \" \\n\"[i == n\
+    \ - 1];\r\n\t}\r\n\treturn 0;\r\n}\r\n"
   dependsOn:
   - library/modint/modint.hpp
   - library/internal/inv-gcd.hpp
@@ -205,8 +205,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/Subset-Convolution.test.cpp
   requiredBy: []
-  timestamp: '2023-04-12 10:11:53+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-04-12 11:26:00+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Subset-Convolution.test.cpp
 layout: document
