@@ -2,10 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/convolution/NTT.hpp
     title: library/convolution/NTT.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/formal-power-series/poly.hpp
     title: library/formal-power-series/poly.hpp
   - icon: ':question:'
@@ -72,16 +72,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/Product-of-Polynomial-Sequence.test.cpp
     title: test/yosupo/Product-of-Polynomial-Sequence.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/Range-Affine-Point-Get.test.cpp
     title: test/yosupo/Range-Affine-Point-Get.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/Range-Affine-Range-Sum.test.cpp
     title: test/yosupo/Range-Affine-Range-Sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/Sqrt-Mod.test.cpp
     title: test/yosupo/Sqrt-Mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/Sqrt-of-Formal-Power-Series.test.cpp
     title: test/yosupo/Sqrt-of-Formal-Power-Series.test.cpp
   - icon: ':x:'

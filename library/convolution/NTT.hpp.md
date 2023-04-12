@@ -14,7 +14,7 @@ data:
     path: library/modint/modint.hpp
     title: library/modint/modint.hpp
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/formal-power-series/poly.hpp
     title: library/formal-power-series/poly.hpp
   _extendedVerifiedWith:
@@ -48,12 +48,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/Product-of-Polynomial-Sequence.test.cpp
     title: test/yosupo/Product-of-Polynomial-Sequence.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/Sqrt-of-Formal-Power-Series.test.cpp
     title: test/yosupo/Sqrt-of-Formal-Power-Series.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"library/convolution/NTT.hpp\"\n#include <vector>\r\n#include\
@@ -104,11 +104,10 @@ data:
     \ % m);\n\t\tstd::swap(m, a);\n\t}\n\treturn ans;\n}\n\n} // namespace internal\n\
     \n} // namespace felix\n#line 10 \"library/modint/modint.hpp\"\n\r\nnamespace\
     \ felix {\r\n\r\ntemplate<int id>\r\nclass modint {\r\npublic:\r\n\tstatic constexpr\
-    \ int mod() {\r\n\t\tif(id > 0) {\r\n\t\t\treturn id;\r\n\t\t} else {\r\n\t\t\t\
-    return md;\r\n\t\t}\r\n\t}\r\n \t\r\n\tstatic constexpr void set_mod(int m) {\r\
-    \n\t\tif(id > 0 || md == m) {\r\n\t\t\treturn;\r\n\t\t}\r\n\t\tmd = m;\r\n\t\t\
-    facts.resize(1);\r\n\t\tinv_facts.resize(1);\r\n\t\tinvs.resize(1);\r\n\t}\r\n\
-    \r\n\tstatic constexpr void prepare(int n) {\r\n\t\tint sz = (int) facts.size();\r\
+    \ int mod() {\r\n\t\treturn (id > 0 ? id : md);\r\n\t}\r\n \t\r\n\tstatic constexpr\
+    \ void set_mod(int m) {\r\n\t\tif(id > 0 || md == m) {\r\n\t\t\treturn;\r\n\t\t\
+    }\r\n\t\tmd = m;\r\n\t\tfacts.resize(1);\r\n\t\tinv_facts.resize(1);\r\n\t\tinvs.resize(1);\r\
+    \n\t}\r\n\r\n\tstatic constexpr void prepare(int n) {\r\n\t\tint sz = (int) facts.size();\r\
     \n\t\tif(sz == mod()) {\r\n\t\t\treturn;\r\n\t\t}\r\n\t\tn = 1 << std::__lg(2\
     \ * n - 1);\r\n\t\tif(n < sz) {\r\n\t\t\treturn;\r\n\t\t}\r\n\t\tif(n < (sz -\
     \ 1) * 2) {\r\n\t\t\tn = std::min((sz - 1) * 2, mod() - 1);\r\n\t\t}\r\n\t\tfacts.resize(n\
@@ -265,8 +264,8 @@ data:
   path: library/convolution/NTT.hpp
   requiredBy:
   - library/formal-power-series/poly.hpp
-  timestamp: '2023-04-11 19:54:37+08:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2023-04-12 10:11:53+08:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/Sqrt-of-Formal-Power-Series.test.cpp
   - test/yosupo/Product-of-Polynomial-Sequence.test.cpp

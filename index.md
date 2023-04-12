@@ -3,7 +3,7 @@ data:
   libraryCategories:
   - name: library/convolution
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/convolution/NTT.hpp
       title: library/convolution/NTT.hpp
     - icon: ':question:'
@@ -29,7 +29,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/data-structure/fenwick2d.hpp
       title: library/data-structure/fenwick2d.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/data-structure/lazy-segtree.hpp
       title: library/data-structure/lazy-segtree.hpp
     - icon: ':heavy_check_mark:'
@@ -60,7 +60,7 @@ data:
       title: library/flow/dinic.hpp
   - name: library/formal-power-series
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/formal-power-series/poly.hpp
       title: library/formal-power-series/poly.hpp
   - name: library/geometry
@@ -275,10 +275,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/Product-of-Polynomial-Sequence.test.cpp
       title: test/yosupo/Product-of-Polynomial-Sequence.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/Range-Affine-Point-Get.test.cpp
       title: test/yosupo/Range-Affine-Point-Get.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/Range-Affine-Range-Sum.test.cpp
       title: test/yosupo/Range-Affine-Range-Sum.test.cpp
     - icon: ':heavy_check_mark:'
@@ -290,10 +290,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/Sort-Points-by-Argument.test.cpp
       title: test/yosupo/Sort-Points-by-Argument.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/Sqrt-Mod.test.cpp
       title: test/yosupo/Sqrt-Mod.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/Sqrt-of-Formal-Power-Series.test.cpp
       title: test/yosupo/Sqrt-of-Formal-Power-Series.test.cpp
     - icon: ':heavy_check_mark:'
