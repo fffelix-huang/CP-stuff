@@ -20,7 +20,7 @@ class NTT {
 	using mint = modint<mod>;
 
 public:
-	static constexpr int primitive_root = internal::primitive_root_constexpr(mint::mod());
+	static constexpr int primitive_root = internal::primitive_root_constexpr(mod);
 
 	static void prepare(int n) {
 		if((int) ntt_internal::rev.size() != n) {
