@@ -56,5 +56,3 @@ long long a, b;
 long long g = binary_gcd(a, b);
 ```
 
-## References
-[AtCoder Library document](https://atcoder.github.io/ac-library/production/document_en/dsu.html)
