@@ -1,6 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/subset_convolution"
 
 #include <iostream>
+#include <vector>
 #include "../../library/modint/modint.hpp"
 #include "../../library/convolution/subset-convolution.hpp"
 using namespace std;
