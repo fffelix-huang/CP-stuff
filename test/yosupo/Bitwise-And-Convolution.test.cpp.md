@@ -4,13 +4,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/convolution/subset-convolution.hpp
     title: library/convolution/subset-convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/internal/internal-math.hpp
     title: library/internal/internal-math.hpp
   - icon: ':heavy_check_mark:'
     path: library/internal/inv-gcd.hpp
     title: library/internal/inv-gcd.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/internal/safe-mod.hpp
     title: library/internal/safe-mod.hpp
   - icon: ':heavy_check_mark:'
@@ -56,29 +56,31 @@ data:
     \ true;\n}\ntemplate <int n> constexpr bool is_prime = is_prime_constexpr(n);\n\
     \nconstexpr int primitive_root_constexpr(int m) {\n\tif(m == 2) return 1;\n\t\
     if(m == 167772161) return 3;\n\tif(m == 469762049) return 3;\n\tif(m == 754974721)\
-    \ return 11;\n\tif(m == 998244353) return 3;\n\tint divs[20] = {};\n\tdivs[0]\
-    \ = 2;\n\tint cnt = 1;\n\tint x = (m - 1) / 2;\n\tx >>= __builtin_ctz(x);\n\t\
-    for(int i = 3; 1LL * i * i <= x; i += 2) {\n\t\tif(x % i == 0) {\n\t\t\tdivs[cnt++]\
-    \ = i;\n\t\t\twhile(x % i == 0) {\n\t\t\t\tx /= i;\n\t\t\t}\n\t\t}\n\t}\n\tif(x\
-    \ > 1) {\n\t\tdivs[cnt++] = x;\n\t}\n\tfor(int g = 2;; g++) {\n\t\tbool ok = true;\n\
-    \t\tfor(int i = 0; i < cnt; i++) {\n\t\t\tif(pow_mod_constexpr(g, (m - 1) / divs[i],\
-    \ m) == 1) {\n\t\t\t\tok = false;\n\t\t\t\tbreak;\n\t\t\t}\n\t\t}\n\t\tif(ok)\
-    \ {\n\t\t\treturn g;\n\t\t}\n\t}\n}\ntemplate <int m> constexpr int primitive_root\
-    \ = primitive_root_constexpr(m);\n\n// @param n `n < 2^32`\n// @param m `1 <=\
-    \ m < 2^32`\n// @return sum_{i=0}^{n-1} floor((ai + b) / m) (mod 2^64)\nunsigned\
-    \ long long floor_sum_unsigned(unsigned long long n, unsigned long long m, unsigned\
-    \ long long a, unsigned long long b) {\n\tunsigned long long ans = 0;\n\twhile(true)\
-    \ {\n\t\tif(a >= m) {\n\t\t\tans += n * (n - 1) / 2 * (a / m);\n\t\t\ta %= m;\n\
-    \t\t}\n\t\tif(b >= m) {\n\t\t\tans += n * (b / m);\n\t\t\tb %= m;\n\t\t}\n\t\t\
-    unsigned long long y_max = a * n + b;\n\t\tif(y_max < m) {\n\t\t\tbreak;\n\t\t\
-    }\n\t\tn = (unsigned long long) (y_max / m);\n\t\tb = (unsigned long long) (y_max\
-    \ % m);\n\t\tstd::swap(m, a);\n\t}\n\treturn ans;\n}\n\n} // namespace internal\n\
-    \n} // namespace felix\n#line 10 \"library/modint/modint.hpp\"\n\r\nnamespace\
-    \ felix {\r\n\r\ntemplate<int id>\r\nclass modint {\r\npublic:\r\n\tstatic constexpr\
-    \ int mod() {\r\n\t\treturn (id > 0 ? id : md);\r\n\t}\r\n \t\r\n\tstatic constexpr\
-    \ void set_mod(int m) {\r\n\t\tif(id > 0 || md == m) {\r\n\t\t\treturn;\r\n\t\t\
-    }\r\n\t\tmd = m;\r\n\t\tfacts.resize(1);\r\n\t\tinv_facts.resize(1);\r\n\t\tinvs.resize(1);\r\
-    \n\t}\r\n\r\n\tstatic constexpr void prepare(int n) {\r\n\t\tint sz = (int) facts.size();\r\
+    \ return 11;\n\tif(m == 880803841) return 26;\n\tif(m == 998244353) return 3;\n\
+    \tif(m == 1045430273) return 3;\n\tif(m == 1051721729) return 6;\n\tif(m == 1053818881)\
+    \ return 7;\n\tint divs[20] = {};\n\tdivs[0] = 2;\n\tint cnt = 1;\n\tint x = (m\
+    \ - 1) / 2;\n\tx >>= __builtin_ctz(x);\n\tfor(int i = 3; 1LL * i * i <= x; i +=\
+    \ 2) {\n\t\tif(x % i == 0) {\n\t\t\tdivs[cnt++] = i;\n\t\t\twhile(x % i == 0)\
+    \ {\n\t\t\t\tx /= i;\n\t\t\t}\n\t\t}\n\t}\n\tif(x > 1) {\n\t\tdivs[cnt++] = x;\n\
+    \t}\n\tfor(int g = 2;; g++) {\n\t\tbool ok = true;\n\t\tfor(int i = 0; i < cnt;\
+    \ i++) {\n\t\t\tif(pow_mod_constexpr(g, (m - 1) / divs[i], m) == 1) {\n\t\t\t\t\
+    ok = false;\n\t\t\t\tbreak;\n\t\t\t}\n\t\t}\n\t\tif(ok) {\n\t\t\treturn g;\n\t\
+    \t}\n\t}\n}\ntemplate <int m> constexpr int primitive_root = primitive_root_constexpr(m);\n\
+    \n// @param n `n < 2^32`\n// @param m `1 <= m < 2^32`\n// @return sum_{i=0}^{n-1}\
+    \ floor((ai + b) / m) (mod 2^64)\nunsigned long long floor_sum_unsigned(unsigned\
+    \ long long n, unsigned long long m, unsigned long long a, unsigned long long\
+    \ b) {\n\tunsigned long long ans = 0;\n\twhile(true) {\n\t\tif(a >= m) {\n\t\t\
+    \tans += n * (n - 1) / 2 * (a / m);\n\t\t\ta %= m;\n\t\t}\n\t\tif(b >= m) {\n\t\
+    \t\tans += n * (b / m);\n\t\t\tb %= m;\n\t\t}\n\t\tunsigned long long y_max =\
+    \ a * n + b;\n\t\tif(y_max < m) {\n\t\t\tbreak;\n\t\t}\n\t\tn = (unsigned long\
+    \ long) (y_max / m);\n\t\tb = (unsigned long long) (y_max % m);\n\t\tstd::swap(m,\
+    \ a);\n\t}\n\treturn ans;\n}\n\n} // namespace internal\n\n} // namespace felix\n\
+    #line 10 \"library/modint/modint.hpp\"\n\r\nnamespace felix {\r\n\r\ntemplate<int\
+    \ id>\r\nclass modint {\r\npublic:\r\n\tstatic constexpr int mod() {\r\n\t\treturn\
+    \ (id > 0 ? id : md);\r\n\t}\r\n \t\r\n\tstatic constexpr void set_mod(int m)\
+    \ {\r\n\t\tif(id > 0 || md == m) {\r\n\t\t\treturn;\r\n\t\t}\r\n\t\tmd = m;\r\n\
+    \t\tfacts.resize(1);\r\n\t\tinv_facts.resize(1);\r\n\t\tinvs.resize(1);\r\n\t\
+    }\r\n\r\n\tstatic constexpr void prepare(int n) {\r\n\t\tint sz = (int) facts.size();\r\
     \n\t\tif(sz == mod()) {\r\n\t\t\treturn;\r\n\t\t}\r\n\t\tn = 1 << std::__lg(2\
     \ * n - 1);\r\n\t\tif(n < sz) {\r\n\t\t\treturn;\r\n\t\t}\r\n\t\tif(n < (sz -\
     \ 1) * 2) {\r\n\t\t\tn = std::min((sz - 1) * 2, mod() - 1);\r\n\t\t}\r\n\t\tfacts.resize(n\
@@ -210,7 +212,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/Bitwise-And-Convolution.test.cpp
   requiredBy: []
-  timestamp: '2023-04-12 10:11:53+08:00'
+  timestamp: '2023-04-14 03:12:12+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Bitwise-And-Convolution.test.cpp

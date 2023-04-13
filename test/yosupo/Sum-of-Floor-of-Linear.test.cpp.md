@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/internal/internal-math.hpp
     title: library/internal/internal-math.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/internal/safe-mod.hpp
     title: library/internal/safe-mod.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/math/floor-sum.hpp
     title: Sum of floor linear ($\sum_{i = 0}^{n - 1} \lfloor \frac{ai + b}{m} \rfloor$)
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/sum_of_floor_of_linear
@@ -42,33 +42,35 @@ data:
     \ true;\n}\ntemplate <int n> constexpr bool is_prime = is_prime_constexpr(n);\n\
     \nconstexpr int primitive_root_constexpr(int m) {\n\tif(m == 2) return 1;\n\t\
     if(m == 167772161) return 3;\n\tif(m == 469762049) return 3;\n\tif(m == 754974721)\
-    \ return 11;\n\tif(m == 998244353) return 3;\n\tint divs[20] = {};\n\tdivs[0]\
-    \ = 2;\n\tint cnt = 1;\n\tint x = (m - 1) / 2;\n\tx >>= __builtin_ctz(x);\n\t\
-    for(int i = 3; 1LL * i * i <= x; i += 2) {\n\t\tif(x % i == 0) {\n\t\t\tdivs[cnt++]\
-    \ = i;\n\t\t\twhile(x % i == 0) {\n\t\t\t\tx /= i;\n\t\t\t}\n\t\t}\n\t}\n\tif(x\
-    \ > 1) {\n\t\tdivs[cnt++] = x;\n\t}\n\tfor(int g = 2;; g++) {\n\t\tbool ok = true;\n\
-    \t\tfor(int i = 0; i < cnt; i++) {\n\t\t\tif(pow_mod_constexpr(g, (m - 1) / divs[i],\
-    \ m) == 1) {\n\t\t\t\tok = false;\n\t\t\t\tbreak;\n\t\t\t}\n\t\t}\n\t\tif(ok)\
-    \ {\n\t\t\treturn g;\n\t\t}\n\t}\n}\ntemplate <int m> constexpr int primitive_root\
-    \ = primitive_root_constexpr(m);\n\n// @param n `n < 2^32`\n// @param m `1 <=\
-    \ m < 2^32`\n// @return sum_{i=0}^{n-1} floor((ai + b) / m) (mod 2^64)\nunsigned\
-    \ long long floor_sum_unsigned(unsigned long long n, unsigned long long m, unsigned\
-    \ long long a, unsigned long long b) {\n\tunsigned long long ans = 0;\n\twhile(true)\
-    \ {\n\t\tif(a >= m) {\n\t\t\tans += n * (n - 1) / 2 * (a / m);\n\t\t\ta %= m;\n\
-    \t\t}\n\t\tif(b >= m) {\n\t\t\tans += n * (b / m);\n\t\t\tb %= m;\n\t\t}\n\t\t\
-    unsigned long long y_max = a * n + b;\n\t\tif(y_max < m) {\n\t\t\tbreak;\n\t\t\
-    }\n\t\tn = (unsigned long long) (y_max / m);\n\t\tb = (unsigned long long) (y_max\
-    \ % m);\n\t\tstd::swap(m, a);\n\t}\n\treturn ans;\n}\n\n} // namespace internal\n\
-    \n} // namespace felix\n#line 5 \"library/math/floor-sum.hpp\"\n\r\nnamespace\
-    \ felix {\r\n\r\nlong long floor_sum(long long n, long long m, long long a, long\
-    \ long b) {\r\n\tassert(0 <= n && n < (1LL << 32));\r\n\tassert(1 <= m && m <\
-    \ (1LL << 32));\r\n\tunsigned long long ans = 0;\r\n\tif(a < 0) {\r\n\t\tunsigned\
-    \ long long a2 = internal::safe_mod(a, m);\r\n\t\tans -= 1ULL * n * (n - 1) /\
-    \ 2 * ((a2 - a) / m);\r\n\t\ta = a2;\r\n\t}\r\n\tif(b < 0) {\r\n\t\tunsigned long\
-    \ long b2 = internal::safe_mod(b, m);\r\n\t\tans -= 1ULL * n * ((b2 - b) / m);\r\
-    \n\t\tb = b2;\r\n\t}\r\n\treturn ans + internal::floor_sum_unsigned(n, m, a, b);\r\
-    \n}\r\n\r\n} // namespace felix\r\n#line 5 \"test/yosupo/Sum-of-Floor-of-Linear.test.cpp\"\
-    \nusing namespace std;\r\nusing namespace felix;\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\
+    \ return 11;\n\tif(m == 880803841) return 26;\n\tif(m == 998244353) return 3;\n\
+    \tif(m == 1045430273) return 3;\n\tif(m == 1051721729) return 6;\n\tif(m == 1053818881)\
+    \ return 7;\n\tint divs[20] = {};\n\tdivs[0] = 2;\n\tint cnt = 1;\n\tint x = (m\
+    \ - 1) / 2;\n\tx >>= __builtin_ctz(x);\n\tfor(int i = 3; 1LL * i * i <= x; i +=\
+    \ 2) {\n\t\tif(x % i == 0) {\n\t\t\tdivs[cnt++] = i;\n\t\t\twhile(x % i == 0)\
+    \ {\n\t\t\t\tx /= i;\n\t\t\t}\n\t\t}\n\t}\n\tif(x > 1) {\n\t\tdivs[cnt++] = x;\n\
+    \t}\n\tfor(int g = 2;; g++) {\n\t\tbool ok = true;\n\t\tfor(int i = 0; i < cnt;\
+    \ i++) {\n\t\t\tif(pow_mod_constexpr(g, (m - 1) / divs[i], m) == 1) {\n\t\t\t\t\
+    ok = false;\n\t\t\t\tbreak;\n\t\t\t}\n\t\t}\n\t\tif(ok) {\n\t\t\treturn g;\n\t\
+    \t}\n\t}\n}\ntemplate <int m> constexpr int primitive_root = primitive_root_constexpr(m);\n\
+    \n// @param n `n < 2^32`\n// @param m `1 <= m < 2^32`\n// @return sum_{i=0}^{n-1}\
+    \ floor((ai + b) / m) (mod 2^64)\nunsigned long long floor_sum_unsigned(unsigned\
+    \ long long n, unsigned long long m, unsigned long long a, unsigned long long\
+    \ b) {\n\tunsigned long long ans = 0;\n\twhile(true) {\n\t\tif(a >= m) {\n\t\t\
+    \tans += n * (n - 1) / 2 * (a / m);\n\t\t\ta %= m;\n\t\t}\n\t\tif(b >= m) {\n\t\
+    \t\tans += n * (b / m);\n\t\t\tb %= m;\n\t\t}\n\t\tunsigned long long y_max =\
+    \ a * n + b;\n\t\tif(y_max < m) {\n\t\t\tbreak;\n\t\t}\n\t\tn = (unsigned long\
+    \ long) (y_max / m);\n\t\tb = (unsigned long long) (y_max % m);\n\t\tstd::swap(m,\
+    \ a);\n\t}\n\treturn ans;\n}\n\n} // namespace internal\n\n} // namespace felix\n\
+    #line 5 \"library/math/floor-sum.hpp\"\n\r\nnamespace felix {\r\n\r\nlong long\
+    \ floor_sum(long long n, long long m, long long a, long long b) {\r\n\tassert(0\
+    \ <= n && n < (1LL << 32));\r\n\tassert(1 <= m && m < (1LL << 32));\r\n\tunsigned\
+    \ long long ans = 0;\r\n\tif(a < 0) {\r\n\t\tunsigned long long a2 = internal::safe_mod(a,\
+    \ m);\r\n\t\tans -= 1ULL * n * (n - 1) / 2 * ((a2 - a) / m);\r\n\t\ta = a2;\r\n\
+    \t}\r\n\tif(b < 0) {\r\n\t\tunsigned long long b2 = internal::safe_mod(b, m);\r\
+    \n\t\tans -= 1ULL * n * ((b2 - b) / m);\r\n\t\tb = b2;\r\n\t}\r\n\treturn ans\
+    \ + internal::floor_sum_unsigned(n, m, a, b);\r\n}\r\n\r\n} // namespace felix\r\
+    \n#line 5 \"test/yosupo/Sum-of-Floor-of-Linear.test.cpp\"\nusing namespace std;\r\
+    \nusing namespace felix;\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\
     \n\tcin.tie(0);\r\n\tint tt;\r\n\tcin >> tt;\r\n\twhile(tt--) {\r\n\t\tint a,\
     \ b, c, d;\r\n\t\tcin >> a >> b >> c >> d;\r\n\t\tcout << floor_sum(a, b, c, d)\
     \ << \"\\n\";\r\n\t}\r\n\treturn 0;\r\n}\r\n"
@@ -85,8 +87,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/Sum-of-Floor-of-Linear.test.cpp
   requiredBy: []
-  timestamp: '2023-04-11 19:54:37+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-04-14 03:12:12+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/Sum-of-Floor-of-Linear.test.cpp
 layout: document
