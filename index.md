@@ -38,7 +38,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/data-structure/rectangle-sum.hpp
       title: library/data-structure/rectangle-sum.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/data-structure/segtree.hpp
       title: library/data-structure/segtree.hpp
     - icon: ':heavy_check_mark:'
@@ -183,7 +183,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/Minimum-Cost-Flow.test.cpp
       title: test/aoj/Minimum-Cost-Flow.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/Range-Minimum-Query.test.cpp
       title: test/aoj/Range-Minimum-Query.test.cpp
     - icon: ':heavy_check_mark:'

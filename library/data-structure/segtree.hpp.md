@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/Range-Minimum-Query.test.cpp
     title: test/aoj/Range-Minimum-Query.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"library/data-structure/segtree.hpp\"\n#include <vector>\n\
@@ -21,7 +21,7 @@ data:
     \t}\n\t}\n\t\n\tvoid set(int p, S val) {\n\t\tassert(0 <= p && p < n);\n\t\tp\
     \ += size;\n\t\tst[p] = val;\n\t\tfor(int i = 1; i <= log; ++i) {\n\t\t\tupdate(p\
     \ >> i);\n\t\t}\n\t}\n\n\tS get(int p) const {\n\t\tassert(0 <= p && p < n);\n\
-    \t\treturn st[p + size];\n\t}\n\n\tT operator[](int p) const {\n\t\treturn get(p);\n\
+    \t\treturn st[p + size];\n\t}\n\n\tS operator[](int p) const {\n\t\treturn get(p);\n\
     \t}\n\t\n\tS prod(int l, int r) const {\n\t\tassert(0 <= l && l <= r && r <= n);\n\
     \t\tS sml = e(), smr = e();\n\t\tl += size;\n\t\tr += size;\n\t\twhile(l < r)\
     \ {\n\t\t\tif(l & 1) {\n\t\t\t\tsml = op(sml, st[l++]);\n\t\t\t}\n\t\t\tif(r &\
@@ -55,7 +55,7 @@ data:
     \ - 1; i; --i) {\n\t\t\tupdate(i);\n\t\t}\n\t}\n\t\n\tvoid set(int p, S val) {\n\
     \t\tassert(0 <= p && p < n);\n\t\tp += size;\n\t\tst[p] = val;\n\t\tfor(int i\
     \ = 1; i <= log; ++i) {\n\t\t\tupdate(p >> i);\n\t\t}\n\t}\n\n\tS get(int p) const\
-    \ {\n\t\tassert(0 <= p && p < n);\n\t\treturn st[p + size];\n\t}\n\n\tT operator[](int\
+    \ {\n\t\tassert(0 <= p && p < n);\n\t\treturn st[p + size];\n\t}\n\n\tS operator[](int\
     \ p) const {\n\t\treturn get(p);\n\t}\n\t\n\tS prod(int l, int r) const {\n\t\t\
     assert(0 <= l && l <= r && r <= n);\n\t\tS sml = e(), smr = e();\n\t\tl += size;\n\
     \t\tr += size;\n\t\twhile(l < r) {\n\t\t\tif(l & 1) {\n\t\t\t\tsml = op(sml, st[l++]);\n\
@@ -84,8 +84,8 @@ data:
   isVerificationFile: false
   path: library/data-structure/segtree.hpp
   requiredBy: []
-  timestamp: '2023-04-14 15:08:33+08:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-04-14 15:55:01+08:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/Range-Minimum-Query.test.cpp
 documentation_of: library/data-structure/segtree.hpp
