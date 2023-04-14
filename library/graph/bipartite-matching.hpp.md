@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/Matching-on-Bipartite-Graph.test.cpp
     title: test/yosupo/Matching-on-Bipartite-Graph.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"library/graph/bipartite-matching.hpp\"\n#include <vector>\n\
@@ -27,28 +27,13 @@ data:
     \ i = cur[u]; i < (int) g[u].size();) {\n\t\t\tint v = g[u][i++];\n\t\t\tif(rhs[v]\
     \ == -1 || (dist[rhs[v]] == dist[u] + 1 && dfs(rhs[v]))) {\n\t\t\t\trhs[v] = u;\n\
     \t\t\t\tlhs[u] = v;\n\t\t\t\treturn true;\n\t\t\t}\n\t\t}\n\t\tdist[u] = -1;\n\
-    \t\treturn false;\n\t}\n\n\tint solve() {\n\t\tbuilt = true;\n\t\tstd::fill(lhs.begin(),\
-    \ lhs.end(), -1);\n\t\tstd::fill(rhs.begin(), rhs.end(), -1);\n\t\tint ans = 0;\n\
-    \t\twhile(bfs()) {\n\t\t\tstd::fill(cur.begin(), cur.end(), 0);\n\t\t\tfor(int\
-    \ i = 0; i < n; i++) {\n\t\t\t\tif(lhs[i] == -1 && dfs(i)) {\n\t\t\t\t\tans +=\
-    \ 1;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn ans;\n\t}\n\n\tstd::pair<std::vector<int>,\
-    \ std::vector<int>> minimum_vertex_cover() {\n\t\tif(!built) {\n\t\t\tsolve();\n\
-    \t\t}\n\t\tstd::vector<int> L, R;\n\t\tfor(int u = 0; u < n; u++) {\n\t\t\tif(dist[u]\
-    \ == 0) {\n\t\t\t\tL.push_back(u);\n\t\t\t} else if(lhs[u] != -1) {\n\t\t\t\t\
-    R.push_back(lhs[u]);\n\t\t\t}\n\t\t}\n\t\treturn std::make_pair(L, R);\n\t}\n\n\
-    \tstd::pair<std::vector<int>, std::vector<int>> maximum_independent_set() {\n\t\
-    \tif(!built) {\n\t\t\tsolve();\n\t\t}\n\t\tauto p = minimum_vertex_cover();\n\t\
-    \tstd::vector<bool> L(n, true), R(m, true);\n\t\tfor(auto x : p.first) {\n\t\t\
-    \tL[x] = false;\n\t\t}\n\t\tfor(auto x : p.second) {\n\t\t\tR[x] = false;\n\t\t\
-    }\n\t\tstd::vector<int> L2, R2;\n\t\tfor(int i = 0; i < n; i++) {\n\t\t\tif(L[i])\
-    \ {\n\t\t\t\tL2.push_back(i);\n\t\t\t}\n\t\t}\n\t\tfor(int i = 0; i < m; i++)\
-    \ {\n\t\t\tif(R[i]) {\n\t\t\t\tR2.push_back(i);\n\t\t\t}\n\t\t}\n\t\treturn std::make_pair(L2,\
-    \ R2);\n\t}\n\n\tstd::vector<std::pair<int, int>> maximum_matching() {\n\t\tif(!built)\
-    \ {\n\t\t\tsolve();\n\t\t}\n\t\tstd::vector<std::pair<int, int>> ans;\n\t\tfor(int\
-    \ u = 0; u < n; u++) {\n\t\t\tif(lhs[u] != -1) {\n\t\t\t\tans.emplace_back(u,\
-    \ lhs[u]);\n\t\t\t}\n\t\t}\n\t\treturn ans;\n\t}\n\nprivate:\n\tint n, m;\n\t\
-    bool built = false;\n\tstd::vector<int> lhs, rhs;\n\tstd::vector<int> dist, cur;\n\
-    \tstd::vector<std::vector<int>> g;\n};\n\n} // namespace felix\n"
+    \t\treturn false;\n\t}\n\n\tint solve() {\n\t\tstd::fill(lhs.begin(), lhs.end(),\
+    \ -1);\n\t\tstd::fill(rhs.begin(), rhs.end(), -1);\n\t\tint ans = 0;\n\t\twhile(bfs())\
+    \ {\n\t\t\tstd::fill(cur.begin(), cur.end(), 0);\n\t\t\tfor(int i = 0; i < n;\
+    \ i++) {\n\t\t\t\tif(lhs[i] == -1 && dfs(i)) {\n\t\t\t\t\tans += 1;\n\t\t\t\t\
+    }\n\t\t\t}\n\t\t}\n\t\treturn ans;\n\t}\n\n\tint match(int u) const { return lhs[u];\
+    \ }\n\nprivate:\n\tint n, m;\n\tstd::vector<int> lhs, rhs;\n\tstd::vector<int>\
+    \ dist, cur;\n\tstd::vector<std::vector<int>> g;\n};\n\n} // namespace felix\n"
   code: "#pragma once\n#include <vector>\n#include <queue>\n#include <cassert>\n\n\
     namespace felix {\n\nclass bipartite_matching {\npublic:\n\tbipartite_matching()\
     \ : n(0), m(0) {}\n\texplicit bipartite_matching(int _n, int _m) : n(_n), m(_m),\
@@ -65,33 +50,19 @@ data:
     \ (int) g[u].size();) {\n\t\t\tint v = g[u][i++];\n\t\t\tif(rhs[v] == -1 || (dist[rhs[v]]\
     \ == dist[u] + 1 && dfs(rhs[v]))) {\n\t\t\t\trhs[v] = u;\n\t\t\t\tlhs[u] = v;\n\
     \t\t\t\treturn true;\n\t\t\t}\n\t\t}\n\t\tdist[u] = -1;\n\t\treturn false;\n\t\
-    }\n\n\tint solve() {\n\t\tbuilt = true;\n\t\tstd::fill(lhs.begin(), lhs.end(),\
-    \ -1);\n\t\tstd::fill(rhs.begin(), rhs.end(), -1);\n\t\tint ans = 0;\n\t\twhile(bfs())\
-    \ {\n\t\t\tstd::fill(cur.begin(), cur.end(), 0);\n\t\t\tfor(int i = 0; i < n;\
-    \ i++) {\n\t\t\t\tif(lhs[i] == -1 && dfs(i)) {\n\t\t\t\t\tans += 1;\n\t\t\t\t\
-    }\n\t\t\t}\n\t\t}\n\t\treturn ans;\n\t}\n\n\tstd::pair<std::vector<int>, std::vector<int>>\
-    \ minimum_vertex_cover() {\n\t\tif(!built) {\n\t\t\tsolve();\n\t\t}\n\t\tstd::vector<int>\
-    \ L, R;\n\t\tfor(int u = 0; u < n; u++) {\n\t\t\tif(dist[u] == 0) {\n\t\t\t\t\
-    L.push_back(u);\n\t\t\t} else if(lhs[u] != -1) {\n\t\t\t\tR.push_back(lhs[u]);\n\
-    \t\t\t}\n\t\t}\n\t\treturn std::make_pair(L, R);\n\t}\n\n\tstd::pair<std::vector<int>,\
-    \ std::vector<int>> maximum_independent_set() {\n\t\tif(!built) {\n\t\t\tsolve();\n\
-    \t\t}\n\t\tauto p = minimum_vertex_cover();\n\t\tstd::vector<bool> L(n, true),\
-    \ R(m, true);\n\t\tfor(auto x : p.first) {\n\t\t\tL[x] = false;\n\t\t}\n\t\tfor(auto\
-    \ x : p.second) {\n\t\t\tR[x] = false;\n\t\t}\n\t\tstd::vector<int> L2, R2;\n\t\
-    \tfor(int i = 0; i < n; i++) {\n\t\t\tif(L[i]) {\n\t\t\t\tL2.push_back(i);\n\t\
-    \t\t}\n\t\t}\n\t\tfor(int i = 0; i < m; i++) {\n\t\t\tif(R[i]) {\n\t\t\t\tR2.push_back(i);\n\
-    \t\t\t}\n\t\t}\n\t\treturn std::make_pair(L2, R2);\n\t}\n\n\tstd::vector<std::pair<int,\
-    \ int>> maximum_matching() {\n\t\tif(!built) {\n\t\t\tsolve();\n\t\t}\n\t\tstd::vector<std::pair<int,\
-    \ int>> ans;\n\t\tfor(int u = 0; u < n; u++) {\n\t\t\tif(lhs[u] != -1) {\n\t\t\
-    \t\tans.emplace_back(u, lhs[u]);\n\t\t\t}\n\t\t}\n\t\treturn ans;\n\t}\n\nprivate:\n\
-    \tint n, m;\n\tbool built = false;\n\tstd::vector<int> lhs, rhs;\n\tstd::vector<int>\
-    \ dist, cur;\n\tstd::vector<std::vector<int>> g;\n};\n\n} // namespace felix\n"
+    }\n\n\tint solve() {\n\t\tstd::fill(lhs.begin(), lhs.end(), -1);\n\t\tstd::fill(rhs.begin(),\
+    \ rhs.end(), -1);\n\t\tint ans = 0;\n\t\twhile(bfs()) {\n\t\t\tstd::fill(cur.begin(),\
+    \ cur.end(), 0);\n\t\t\tfor(int i = 0; i < n; i++) {\n\t\t\t\tif(lhs[i] == -1\
+    \ && dfs(i)) {\n\t\t\t\t\tans += 1;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn ans;\n\
+    \t}\n\n\tint match(int u) const { return lhs[u]; }\n\nprivate:\n\tint n, m;\n\t\
+    std::vector<int> lhs, rhs;\n\tstd::vector<int> dist, cur;\n\tstd::vector<std::vector<int>>\
+    \ g;\n};\n\n} // namespace felix\n"
   dependsOn: []
   isVerificationFile: false
   path: library/graph/bipartite-matching.hpp
   requiredBy: []
-  timestamp: '2023-04-06 14:01:45+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-04-14 23:28:35+08:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/Matching-on-Bipartite-Graph.test.cpp
 documentation_of: library/graph/bipartite-matching.hpp
