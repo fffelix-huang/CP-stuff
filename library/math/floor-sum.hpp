@@ -1,25 +1,24 @@
 #pragma once
-#include <cassert>
-#include "../internal/safe-mod.hpp"
-#include "../internal/internal-math.hpp"
 
 namespace felix {
 
-long long floor_sum(long long n, long long m, long long a, long long b) {
-	assert(0 <= n && n < (1LL << 32));
-	assert(1 <= m && m < (1LL << 32));
-	unsigned long long ans = 0;
-	if(a < 0) {
-		unsigned long long a2 = internal::safe_mod(a, m);
-		ans -= 1ULL * n * (n - 1) / 2 * ((a2 - a) / m);
-		a = a2;
+long long floor_sum(long long a, long long b, long long c, long long n) {
+	long long ans = 0;
+	if(a >= c) {
+		ans += (n - 1) * n * (a / c) / 2;
+		a %= c;
 	}
-	if(b < 0) {
-		unsigned long long b2 = internal::safe_mod(b, m);
-		ans -= 1ULL * n * ((b2 - b) / m);
-		b = b2;
+	if(b >= c) {
+		ans += n * (b / c);
+		b %= c;
 	}
-	return ans + internal::floor_sum_unsigned(n, m, a, b);
+	long long y_max = (a * n + b) / c;
+	long long x_max = y_max * c - b;
+	if(y_max == 0) {
+		return ans;
+	}
+	ans += (n - (x_max + a - 1) / a) * y_max;
+	return ans + floor_sum(c, (a - x_max % a) % a, a, y_max);
 }
 
 } // namespace felix

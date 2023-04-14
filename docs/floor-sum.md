@@ -3,7 +3,19 @@ title: Sum of floor linear ($\sum_{i = 0}^{n - 1} \lfloor \frac{ai + b}{m} \rflo
 documentation_of: ../library/math/floor-sum.hpp
 ---
 
-計算 $f(n, m, a, b) = \sum_{i = 0}^{n - 1} \lfloor \frac{a \times i + b}{m} \rfloor \bmod{2^{64}}$
+$f(a, b, c, n) = \sum_{i = 0}^{n - 1} \lfloor \frac{ai + b}{c} \rfloor$
+
+## 使用方法
+```cpp
+int a, b, c, n;
+long long ans = floor_sum(a, b, c, n);
+```
+
+$g(a, b, c, n) = \sum_{i = 0}^{n - 1} i \lfloor \frac{ai + b}{c} \rfloor$
+
+$h(a, b, c, n) = \sum_{i = 0}^{n - 1} \lfloor \frac{ai + b}{c} \rfloor^2$
+
+$g$ 和 $h$ 變形的做法請參考 Reference 裡 OI wiki 的文章。
 
 時間複雜度：$O(\log n)$
 

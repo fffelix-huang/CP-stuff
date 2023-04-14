@@ -6,7 +6,6 @@
 #include <random>
 #include <chrono>
 #include "../internal/inv-gcd.hpp"
-#include "../internal/internal-math.hpp"
 
 namespace felix {
 

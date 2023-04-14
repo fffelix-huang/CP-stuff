@@ -3,19 +3,19 @@ title: xor basis (線性基)
 documentation_of: ../library/math/xor-basis.hpp
 ---
 
-## 概要
-
-參考 References 的文章。
-
 ## 使用方法
 
 ```cpp
-xor_basis<60> b;
+xor_basis<60> b; // [0, 2^60)
+
+long long x, k;
 b.insert(x);
-long long x = b.get_min();
-long long x = b.get_max();
-long long x = b.get_kth(); // 如果超過範圍回傳 -1
-bool res = b.contains(x);
+long long mn = b.get_min();
+long long mx = b.get_max();
+long long kth = b.get_kth(k); // 0-based 如果超過範圍回傳 -1
+bool has_x = b.contains(x);
+
+xor_basis<60> c;
 b.merge(c); // 把 c 的基底合併進 b
 ```
 

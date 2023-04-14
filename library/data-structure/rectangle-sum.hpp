@@ -41,7 +41,7 @@ struct RectangleSum {
 		}
 		ans.assign(qid, 0);
 		fenw = fenwick<Weight_t>(sz);
-		solve(0, queries.size());
+		CDQ(0, queries.size());
 		return ans;
 	}
 
@@ -51,13 +51,13 @@ private:
 	std::vector<Weight_t> ans;
 	fenwick<Weight_t> fenw;
 
-	void solve(int l, int r) {
+	void CDQ(int l, int r) {
 		if(l + 1 == r) {
 			return;
 		}
 		int mid = (l + r) / 2;
-		solve(l, mid);
-		solve(mid, r);
+		CDQ(l, mid);
+		CDQ(mid, r);
 		int i = l;
 		for(int j = mid; j < r; j++) {
 			const Query& q = queries[j];

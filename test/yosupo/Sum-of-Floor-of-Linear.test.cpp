@@ -11,9 +11,9 @@ int main() {
 	int tt;
 	cin >> tt;
 	while(tt--) {
-		int a, b, c, d;
-		cin >> a >> b >> c >> d;
-		cout << floor_sum(a, b, c, d) << "\n";
+		int n, m, a, b;
+		cin >> n >> m >> a >> b;
+		cout << floor_sum(a, b, m, n) << "\n";
 	}
 	return 0;
 }
