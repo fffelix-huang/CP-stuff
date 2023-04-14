@@ -10,16 +10,17 @@ int main() {
 	cin.tie(0);
 	int n, m, k;
 	cin >> n >> m >> k;
-	bipartite_matching bm(n, m);
+	bipartite_matching solver(n, m);
 	for(int i = 0; i < k; i++) {
 		int u, v;
 		cin >> u >> v;
-		bm.add_edge(u, v);
+		solver.add_edge(u, v);
 	}
-	auto ans = bm.maximum_matching();
-	cout << ans.size() << "\n";
-	for(auto [u, v] : ans) {
-		cout << u << " " << v << "\n";
+	cout << solver.solve() << "\n";
+	for(int i = 0; i < n; i++) {
+		if(solver.match(i) != -1) {
+			cout << i << " " << solver.match(i) << "\n";
+		}
 	}
 	return 0;
 }
