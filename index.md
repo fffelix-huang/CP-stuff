@@ -73,7 +73,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/graph/SCC.hpp
       title: library/graph/SCC.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/graph/bipartite-matching.hpp
       title: library/graph/bipartite-matching.hpp
     - icon: ':heavy_check_mark:'
@@ -245,7 +245,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/Many-A+B-128-bit.test.cpp
       title: test/yosupo/Many-A+B-128-bit.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/Matching-on-Bipartite-Graph.test.cpp
       title: test/yosupo/Matching-on-Bipartite-Graph.test.cpp
     - icon: ':heavy_check_mark:'
