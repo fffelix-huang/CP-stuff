@@ -4,15 +4,15 @@
 
 namespace felix {
 
-template<class T, T (*e)(), T (*op)(T, T)>
+template<class S, S (*e)(), S (*op)(S, S)>
 class segtree {
 public:
 	segtree() : segtree(0) {}
-	explicit segtree(int _n) : segtree(std::vector<T>(_n, e())) {}
-	explicit segtree(const std::vector<T>& a): n(a.size()) {
+	explicit segtree(int _n) : segtree(std::vector<S>(_n, e())) {}
+	explicit segtree(const std::vector<S>& a): n(a.size()) {
 		log = std::__lg(2 * n - 1);
 		size = 1 << log;
-		st.resize(size << 1, e());
+		st.resize(size * 2, e());
 		for(int i = 0; i < n; ++i) {
 			st[size + i] = a[i];
 		}
@@ -21,7 +21,7 @@ public:
 		}
 	}
 	
-	void set(int p, T val) {
+	void set(int p, S val) {
 		assert(0 <= p && p < n);
 		p += size;
 		st[p] = val;
@@ -30,18 +30,18 @@ public:
 		}
 	}
 
-	inline T get(int p) const {
+	S get(int p) const {
 		assert(0 <= p && p < n);
 		return st[p + size];
 	}
 
-	inline T operator[](int p) const {
+	T operator[](int p) const {
 		return get(p);
 	}
 	
-	T prod(int l, int r) const {
+	S prod(int l, int r) const {
 		assert(0 <= l && l <= r && r <= n);
-		T sml = e(), smr = e();
+		S sml = e(), smr = e();
 		l += size;
 		r += size;
 		while(l < r) {
@@ -57,10 +57,10 @@ public:
 		return op(sml, smr);
 	}
 
-	inline T all_prod() const { return st[1]; }
+	S all_prod() const { return st[1]; }
 
-	template<bool (*f)(T)> int max_right(int l) const {
-		return max_right(l, [](T x) { return f(x); });
+	template<bool (*f)(S)> int max_right(int l) const {
+		return max_right(l, [](S x) { return f(x); });
 	}
 
 	template<class F> int max_right(int l, F f) const {
@@ -70,29 +70,27 @@ public:
 			return n;
 		}
 		l += size;
-		T sm = e();
+		S sm = e();
 		do {
-			while(!(l & 1)) {
+			while(~l & 1) {
 				l >>= 1;
 			}
 			if(!f(op(sm, st[l]))) {
 				while(l < size) {
 					l <<= 1;
 					if(f(op(sm, st[l]))) {
-						sm = op(sm, st[l]);
-						l++;
+						sm = op(sm, st[l++]);
 					}
 				}
 				return l - size;
 			}
-			sm = op(sm, st[l]);
-			l++;
+			sm = op(sm, st[l++]);
 		} while((l & -l) != l);
 		return n;
 	}
 
-	template<bool (*f)(T)> int min_left(int r) const {
-		return min_left(r, [](T x) { return f(x); });
+	template<bool (*f)(S)> int min_left(int r) const {
+		return min_left(r, [](S x) { return f(x); });
 	}
 
 	template<class F> int min_left(int r, F f) const {
@@ -102,7 +100,7 @@ public:
 			return 0;
 		}
 		r += size;
-		T sm = e();
+		S sm = e();
 		do {
 			r--;
 			while(r > 1 && (r & 1)) {
@@ -110,10 +108,9 @@ public:
 			}
 			if(!f(op(st[r], sm))) {
 				while(r < size) {
-					r = r << 1 | 1;
+					r = r * 2 + 1;
 					if(f(op(st[r], sm))) {
-						sm = op(st[r], sm);
-						r--;
+						sm = op(st[r--], sm);
 					}
 				}
 				return r + 1 - size;
@@ -125,9 +122,11 @@ public:
 	
 private:
 	int n, size, log;
-	std::vector<T> st;
+	std::vector<S> st;
 
-	inline void update(int v) { st[v] = op(st[v << 1], st[v << 1 | 1]); }
+	void update(int v) {
+		st[v] = op(st[v * 2], st[v * 2 + 1]);
+	}
 };
 
 } // namespace felix
