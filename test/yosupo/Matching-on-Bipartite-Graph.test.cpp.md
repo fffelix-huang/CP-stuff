@@ -42,24 +42,26 @@ data:
     #line 5 \"test/yosupo/Matching-on-Bipartite-Graph.test.cpp\"\nusing namespace\
     \ std;\r\nusing namespace felix;\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\
     \n\tcin.tie(0);\r\n\tint n, m, k;\r\n\tcin >> n >> m >> k;\r\n\tbipartite_matching\
-    \ bm(n, m);\r\n\tfor(int i = 0; i < k; i++) {\r\n\t\tint u, v;\r\n\t\tcin >> u\
-    \ >> v;\r\n\t\tbm.add_edge(u, v);\r\n\t}\r\n\tauto ans = bm.maximum_matching();\r\
-    \n\tcout << ans.size() << \"\\n\";\r\n\tfor(auto [u, v] : ans) {\r\n\t\tcout <<\
-    \ u << \" \" << v << \"\\n\";\r\n\t}\r\n\treturn 0;\r\n}\r\n"
+    \ solver(n, m);\r\n\tfor(int i = 0; i < k; i++) {\r\n\t\tint u, v;\r\n\t\tcin\
+    \ >> u >> v;\r\n\t\tsolver.add_edge(u, v);\r\n\t}\r\n\tcout << solver.solve()\
+    \ << \"\\n\";\r\n\tfor(int i = 0; i < n; i++) {\r\n\t\tif(solver.match(i) != -1)\
+    \ {\r\n\t\t\tcout << i << \" \" << solver.match(i) << \"\\n\";\r\n\t\t}\r\n\t\
+    }\r\n\treturn 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/bipartitematching\"\r\n\
     \r\n#include <iostream>\r\n#include \"../../library/graph/bipartite-matching.hpp\"\
     \r\nusing namespace std;\r\nusing namespace felix;\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\
     \n\tcin.tie(0);\r\n\tint n, m, k;\r\n\tcin >> n >> m >> k;\r\n\tbipartite_matching\
-    \ bm(n, m);\r\n\tfor(int i = 0; i < k; i++) {\r\n\t\tint u, v;\r\n\t\tcin >> u\
-    \ >> v;\r\n\t\tbm.add_edge(u, v);\r\n\t}\r\n\tauto ans = bm.maximum_matching();\r\
-    \n\tcout << ans.size() << \"\\n\";\r\n\tfor(auto [u, v] : ans) {\r\n\t\tcout <<\
-    \ u << \" \" << v << \"\\n\";\r\n\t}\r\n\treturn 0;\r\n}\r\n"
+    \ solver(n, m);\r\n\tfor(int i = 0; i < k; i++) {\r\n\t\tint u, v;\r\n\t\tcin\
+    \ >> u >> v;\r\n\t\tsolver.add_edge(u, v);\r\n\t}\r\n\tcout << solver.solve()\
+    \ << \"\\n\";\r\n\tfor(int i = 0; i < n; i++) {\r\n\t\tif(solver.match(i) != -1)\
+    \ {\r\n\t\t\tcout << i << \" \" << solver.match(i) << \"\\n\";\r\n\t\t}\r\n\t\
+    }\r\n\treturn 0;\r\n}\r\n"
   dependsOn:
   - library/graph/bipartite-matching.hpp
   isVerificationFile: true
   path: test/yosupo/Matching-on-Bipartite-Graph.test.cpp
   requiredBy: []
-  timestamp: '2023-04-14 23:28:35+08:00'
+  timestamp: '2023-04-14 23:35:21+08:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/Matching-on-Bipartite-Graph.test.cpp
