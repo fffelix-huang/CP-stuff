@@ -144,8 +144,11 @@ data:
   - name: library/random
     pages:
     - icon: ':warning:'
+      path: library/random/graph-generator.hpp
+      title: Graph Generator
+    - icon: ':warning:'
       path: library/random/random.hpp
-      title: library/random/random.hpp
+      title: random_t
     - icon: ':heavy_check_mark:'
       path: library/random/splitmix64.hpp
       title: library/random/splitmix64.hpp

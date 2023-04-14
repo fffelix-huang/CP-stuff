@@ -9,8 +9,11 @@ data:
     path: library/math/discrete-log.hpp
     title: "Discrete Log (\u96E2\u6563\u5C0D\u6578 $a^x \\equiv b \\pmod m$)"
   - icon: ':warning:'
+    path: library/random/graph-generator.hpp
+    title: Graph Generator
+  - icon: ':warning:'
     path: library/random/random.hpp
-    title: library/random/random.hpp
+    title: random_t
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/Associative-Array.test.cpp
@@ -48,6 +51,7 @@ data:
   isVerificationFile: false
   path: library/random/splitmix64.hpp
   requiredBy:
+  - library/random/graph-generator.hpp
   - library/random/random.hpp
   - library/math/discrete-log.hpp
   - library/data-structure/PBDS.hpp
