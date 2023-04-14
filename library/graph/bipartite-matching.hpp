@@ -13,7 +13,6 @@ public:
 	void add_edge(int u, int v) {
 		assert(0 <= u && u < n);
 		assert(0 <= v && v < m);
-		built = false;
 		g[u].push_back(v);
 	}
 
