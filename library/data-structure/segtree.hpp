@@ -35,7 +35,7 @@ public:
 		return st[p + size];
 	}
 
-	T operator[](int p) const {
+	S operator[](int p) const {
 		return get(p);
 	}
 	
