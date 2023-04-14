@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/data-structure/VEBtree.hpp
-    title: library/data-structure/VEBtree.hpp
+    title: Van Emde Boas Tree
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

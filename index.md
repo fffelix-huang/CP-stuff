@@ -6,7 +6,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/convolution/NTT.hpp
       title: library/convolution/NTT.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/convolution/subset-convolution.hpp
       title: library/convolution/subset-convolution.hpp
   - name: library/data-structure
@@ -19,7 +19,7 @@ data:
       title: library/data-structure/PBDS.hpp
     - icon: ':heavy_check_mark:'
       path: library/data-structure/VEBtree.hpp
-      title: library/data-structure/VEBtree.hpp
+      title: Van Emde Boas Tree
     - icon: ':heavy_check_mark:'
       path: library/data-structure/binary-trie.hpp
       title: library/data-structure/binary-trie.hpp
@@ -84,13 +84,10 @@ data:
       title: library/graph/two-sat.hpp
   - name: library/internal
     pages:
-    - icon: ':heavy_check_mark:'
-      path: library/internal/internal-math.hpp
-      title: library/internal/internal-math.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/internal/inv-gcd.hpp
       title: library/internal/inv-gcd.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/internal/safe-mod.hpp
       title: library/internal/safe-mod.hpp
   - name: library/math
@@ -107,7 +104,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/factorize.hpp
       title: "Integer Factorization (Pollard Rho \u8CEA\u56E0\u6578\u5206\u89E3)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: library/math/floor-sum.hpp
       title: Sum of floor linear ($\sum_{i = 0}^{n - 1} \lfloor \frac{ai + b}{m} \rfloor$)
     - icon: ':heavy_check_mark:'
@@ -138,7 +135,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/modint/barrett.hpp
       title: library/modint/barrett.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/modint/modint.hpp
       title: library/modint/modint.hpp
   - name: library/random
@@ -305,13 +302,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/Strongly-Connected-Components.test.cpp
       title: test/yosupo/Strongly-Connected-Components.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/Subset-Convolution.test.cpp
       title: test/yosupo/Subset-Convolution.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/Suffix-Array.test.cpp
       title: test/yosupo/Suffix-Array.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/Sum-of-Floor-of-Linear.test.cpp
       title: test/yosupo/Sum-of-Floor-of-Linear.test.cpp
     - icon: ':heavy_check_mark:'

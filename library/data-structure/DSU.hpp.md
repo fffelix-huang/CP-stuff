@@ -63,12 +63,16 @@ title: "DSU (\u8DEF\u5F91\u58D3\u7E2E)"
 
 ## 使用方法
 ```cpp
+int n;
 DSU d(n);
-d.leader(u);
-d.size(u);
-d.merge(u, v);
-d.same(u, v);
-d.groups();
+
+int u, v;
+
+int x = d.leader(u);
+int sz = d.size(u);
+bool success = d.merge(u, v);
+bool is_same = d.same(u, v);
+vector<vector<int>> g = d.groups();
 ```
 
 ## References

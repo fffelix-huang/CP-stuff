@@ -43,7 +43,11 @@ title: Integer division ($\lfloor \frac{a}{b} \rfloor \lceil \frac{a}{b} \rceil$
 
 ## 使用方法
 ```cpp
-int a = floor_div(-2, 4); // -1
-int b = floor_div(-5, 2); // -3
-int c = ceil_div(-2, 4);  //  0
+int x, y;
+
+int a = floor_div(x, y);
+int b = ceil_div(x, y);
+int c = floor_div(-2, 4); // -1
+int d = floor_div(-5, 2); // -3
+int e = ceil_div(-2, 4);  //  0
 ```

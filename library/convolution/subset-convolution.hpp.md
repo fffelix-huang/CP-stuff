@@ -9,12 +9,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/Bitwise-Xor-Convolution.test.cpp
     title: test/yosupo/Bitwise-Xor-Convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/Subset-Convolution.test.cpp
     title: test/yosupo/Subset-Convolution.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"library/convolution/subset-convolution.hpp\"\n#include <vector>\n\
@@ -99,7 +99,7 @@ data:
   path: library/convolution/subset-convolution.hpp
   requiredBy: []
   timestamp: '2023-04-05 16:22:46+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/Subset-Convolution.test.cpp
   - test/yosupo/Bitwise-Xor-Convolution.test.cpp

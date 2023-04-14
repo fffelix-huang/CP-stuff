@@ -41,11 +41,11 @@ data:
     \t\tys.erase(std::unique(ys.begin(), ys.end()), ys.end());\n\t\tsz = (int) ys.size();\n\
     \t\tfor(auto& q : queries) {\n\t\t\tq.y = std::lower_bound(ys.begin(), ys.end(),\
     \ q.y) - ys.begin();\n\t\t}\n\t\tans.assign(qid, 0);\n\t\tfenw = fenwick<Weight_t>(sz);\n\
-    \t\tsolve(0, queries.size());\n\t\treturn ans;\n\t}\n\nprivate:\n\tint qid = 0,\
+    \t\tCDQ(0, queries.size());\n\t\treturn ans;\n\t}\n\nprivate:\n\tint qid = 0,\
     \ sz;\n\tstd::vector<Query> queries;\n\tstd::vector<Weight_t> ans;\n\tfenwick<Weight_t>\
-    \ fenw;\n\n\tvoid solve(int l, int r) {\n\t\tif(l + 1 == r) {\n\t\t\treturn;\n\
-    \t\t}\n\t\tint mid = (l + r) / 2;\n\t\tsolve(l, mid);\n\t\tsolve(mid, r);\n\t\t\
-    int i = l;\n\t\tfor(int j = mid; j < r; j++) {\n\t\t\tconst Query& q = queries[j];\n\
+    \ fenw;\n\n\tvoid CDQ(int l, int r) {\n\t\tif(l + 1 == r) {\n\t\t\treturn;\n\t\
+    \t}\n\t\tint mid = (l + r) / 2;\n\t\tCDQ(l, mid);\n\t\tCDQ(mid, r);\n\t\tint i\
+    \ = l;\n\t\tfor(int j = mid; j < r; j++) {\n\t\t\tconst Query& q = queries[j];\n\
     \t\t\twhile(i < mid && queries[i].x >= q.x) {\n\t\t\t\tif(queries[i].id == -1)\
     \ {\n\t\t\t\t\tfenw.add(queries[i].y, queries[i].w);\n\t\t\t\t}\n\t\t\t\ti +=\
     \ 1;\n\t\t\t}\n\t\t\tif(q.id >= 0) {\n\t\t\t\tans[q.id] += q.w * fenw.sum(q.y,\
@@ -80,7 +80,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/Point-Add-Rectangle-Sum.test.cpp
   requiredBy: []
-  timestamp: '2023-04-10 17:10:44+08:00'
+  timestamp: '2023-04-14 23:04:57+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Point-Add-Rectangle-Sum.test.cpp
