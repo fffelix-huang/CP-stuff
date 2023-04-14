@@ -4,13 +4,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/data-structure/lazy-segtree.hpp
     title: library/data-structure/lazy-segtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/internal/internal-math.hpp
     title: library/internal/internal-math.hpp
   - icon: ':heavy_check_mark:'
     path: library/internal/inv-gcd.hpp
     title: library/internal/inv-gcd.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/internal/safe-mod.hpp
     title: library/internal/safe-mod.hpp
   - icon: ':heavy_check_mark:'
