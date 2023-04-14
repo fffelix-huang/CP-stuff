@@ -23,6 +23,7 @@
 "test/yosupo/Longest-Increasing-Subsequence.test.cpp": "2023-04-04 03:04:06 +0800",
 "test/yosupo/Lowest-Common-Ancestor.test.cpp": "2023-04-06 14:01:45 +0800",
 "test/yosupo/Many-A+B-128-bit.test.cpp": "2023-04-04 03:02:03 +0800",
+"test/yosupo/Matching-on-Bipartite-Graph.test.cpp": "2023-04-14 23:41:27 +0800",
 "test/yosupo/Matching-on-General-Graph.test.cpp": "2023-04-14 23:28:35 +0800",
 "test/yosupo/Multipoint-Evaluation.test.cpp": "2023-04-14 23:04:57 +0800",
 "test/yosupo/Number-of-Substrings.test.cpp": "2023-04-03 21:36:34 +0800",
