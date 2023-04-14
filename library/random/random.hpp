@@ -58,7 +58,6 @@ public:
 private:
 	std::array<unsigned long long, 4> s;
 
-	// https://xoshiro.di.unimi.it/xoshiro256starstar.c
 	static unsigned long long rotl(const unsigned long long x, int k) {
 		return (x << k) | (x >> (64 - k));
 	}
