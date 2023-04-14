@@ -15,7 +15,7 @@ int main() {
 	for(int i = 0; i < n; i++) {
 		cin >> a[i];
 	}
-	a = a.inv(n);
+	a = a.inv();
 	for(int i = 0; i < n; i++) {
 		cout << a[i] << " \n"[i == n - 1];
 	}

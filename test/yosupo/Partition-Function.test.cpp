@@ -19,7 +19,7 @@ Poly<mod> PartitionFunction(int n) {
 			p[y] += (i % 2 == 0 ? +1 : -1);
 		}
 	}
-	return p.inv(n + 1);
+	return p.inv();
 }
 
 int main() {

@@ -139,7 +139,10 @@ public:
 		return c;
 	}
 
-	constexpr Poly inv(int m) const {
+	constexpr Poly inv(int m = -1) const {
+		if(m == -1) {
+			m = size();
+		}
 		Poly x{a[0].inv()};
 		int k = 1;
 		while(k < m) {
@@ -149,11 +152,17 @@ public:
 		return x.modxk(m);
 	}
 
-	constexpr Poly log(int m) const {
+	constexpr Poly log(int m = -1) const {
+		if(m == -1) {
+			m = size();
+		}
 		return (deriv() * inv(m)).integr().modxk(m);
 	}
 
-	constexpr Poly exp(int m) const {
+	constexpr Poly exp(int m = -1) const {
+		if(m == -1) {
+			m = size();
+		}
 		Poly x{mint(1)};
 		int k = 1;
 		while(k < m) {
@@ -163,7 +172,10 @@ public:
 		return x.modxk(m);
 	}
 
-	constexpr Poly pow(long long k, int m) const {
+	constexpr Poly pow(long long k, int m = -1) const {
+		if(m == -1) {
+			m = size();
+		}
 		if(k == 0) {
 			Poly b(m);
 			b[0] = 1;
@@ -203,7 +215,10 @@ public:
 		return (y == 0 || y.pow((mod - 1) / 2) == 1);
 	}
 
-	constexpr Poly sqrt(int m) const {
+	constexpr Poly sqrt(int m = -1) const {
+		if(m == -1) {
+			m = size();
+		}
 		if(size() == 0) {
 			return Poly();
 		}

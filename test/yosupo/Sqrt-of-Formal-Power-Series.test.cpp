@@ -17,7 +17,7 @@ int main() {
 	if(!a.has_sqrt()) {
 		cout << "-1\n";
 	} else {
-		a = a.sqrt(n);
+		a = a.sqrt();
 		for(int i = 0; i < n; i++) {
 			cout << a[i] << " \n"[i == n - 1];
 		}
