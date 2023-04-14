@@ -124,6 +124,7 @@ Graph star(int n, bool weighted = false, long long w_min = 1, long long w_max = 
 	for(int i = 1; i < n; i++) {
 		add_edge(g, order[0], order[i]);
 	}
+	assert(g.m == n - 1);
 	return g;
 }
 
