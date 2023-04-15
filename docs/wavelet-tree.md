@@ -6,7 +6,7 @@ documentation_of: ../library/data-structure/wavelet-tree.hpp
 ## 使用方法
 ```cpp
 vector<int> v = {4, 8, 7, 6, 3};
-vector<pair<int, int>> v2({{3, 1}, {4, 1}, {5, 9}, {2, 6}});
+vector<pair<int, int>> v2({make_pair(3, 1), make_pair(4, 1), make_pair(5, 9), make_pair(2, 6)});
 
 // 初始化
 wavelet_tree tree(v);
