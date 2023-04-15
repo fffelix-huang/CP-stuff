@@ -1,5 +1,5 @@
 ---
-title: Graph Generator
+title: Random Graph Generator
 documentation_of: ../library/random/graph-generator.hpp
 ---
 
