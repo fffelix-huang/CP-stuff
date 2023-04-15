@@ -50,7 +50,7 @@ data:
     \n\t\tz *= b;\r\n#ifdef _MSC_VER\r\n\t\tunsigned long long x;\r\n\t\t_umul128(z,\
     \ im, &x);\r\n#else\r\n\t\tunsigned long long x = (unsigned long long)(((unsigned\
     \ __int128)(z) * im) >> 64);\r\n#endif\r\n\t\tunsigned long long y = x * _m;\r\
-    \n\t\treturn (unsigned int)(z - y + (z < y ? _m : 0));\r\n\t}\r\n};\r\n\r\n} //\
+    \n\t\treturn (unsigned int)(z - y + (z < y ? m : 0));\r\n\t}\r\n};\r\n\r\n} //\
     \ namespace internal\r\n\r\n} // namespace felix\r\n#line 2 \"library/math/binary-gcd.hpp\"\
     \n\r\nnamespace felix {\r\n\r\ntemplate<class T>\r\ninline T binary_gcd(T a, T\
     \ b) {\r\n\tif(a == 0 || b == 0) {\r\n\t\treturn a | b;\r\n\t}\r\n\tint8_t n =\
@@ -86,7 +86,7 @@ data:
   isVerificationFile: false
   path: library/math/discrete-log.hpp
   requiredBy: []
-  timestamp: '2023-04-15 18:25:48+08:00'
+  timestamp: '2023-04-16 03:01:01+08:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/Discrete-Logarithm.test.cpp
