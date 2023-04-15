@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/data-structure/PBDS.hpp
     title: library/data-structure/PBDS.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/random/splitmix64.hpp
     title: library/random/splitmix64.hpp
   _extendedRequiredBy: []

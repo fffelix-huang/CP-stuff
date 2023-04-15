@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/data-structure/PBDS.hpp
     title: library/data-structure/PBDS.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/binary-gcd.hpp
     title: "Binary GCD (\u4F4D\u5143 GCD)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/math/discrete-log.hpp
     title: "Discrete Log (\u96E2\u6563\u5C0D\u6578 $a^x \\equiv b \\pmod m$)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/modint/barrett.hpp
     title: library/modint/barrett.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/random/splitmix64.hpp
     title: library/random/splitmix64.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/discrete_logarithm_mod
@@ -54,26 +54,25 @@ data:
     \ mul(unsigned int a, unsigned int b) const {\r\n\t\tunsigned long long z = a;\r\
     \n\t\tz *= b;\r\n#ifdef _MSC_VER\r\n\t\tunsigned long long x;\r\n\t\t_umul128(z,\
     \ im, &x);\r\n#else\r\n\t\tunsigned long long x = (unsigned long long)(((unsigned\
-    \ __int128)(z) * im) >> 64);\r\n#endif\r\n\t\tunsigned int v = (unsigned int)(z\
-    \ - x * m);\r\n\t\tif(m <= v) {\r\n\t\t\tv += m;\r\n\t\t}\r\n\t\treturn v;\r\n\
-    \t}\r\n};\r\n\r\n} // namespace internal\r\n\r\n} // namespace felix\r\n#line\
-    \ 2 \"library/math/binary-gcd.hpp\"\n\r\nnamespace felix {\r\n\r\ntemplate<class\
-    \ T>\r\ninline T binary_gcd(T a, T b) {\r\n\tif(a == 0 || b == 0) {\r\n\t\treturn\
-    \ a | b;\r\n\t}\r\n\tint8_t n = __builtin_ctzll(a);\r\n\tint8_t m = __builtin_ctzll(b);\r\
-    \n\ta >>= n;\r\n\tb >>= m;\r\n\twhile(a != b) {\r\n\t\tT d = a - b;\r\n\t\tint8_t\
-    \ s = __builtin_ctzll(d);\r\n\t\tbool f = a > b;\r\n\t\tb = f ? b : a;\r\n\t\t\
-    a = (f ? d : -d) >> s;\r\n\t}\r\n\treturn a << (n < m ? n : m);\r\n}\r\n\r\n}\
-    \ // namespace felix\r\n#line 8 \"library/math/discrete-log.hpp\"\n\r\nnamespace\
-    \ felix {\r\n\r\nint discrete_log(int a, int b, int m) {\r\n\tassert(b < m);\r\
-    \n\tif(b == 1 || m == 1) {\r\n\t\treturn 0;\r\n\t}\r\n\tint n = (int) std::sqrt(m)\
-    \ + 1, e = 1, f = 1, j = 1;\r\n\thash_map<int, int> A;\r\n\tinternal::barrett\
-    \ bt(m);\r\n\twhile(j <= n && (e = f = bt.mul(e, a)) != b) {\r\n\t\tA[bt.mul(e,\
-    \ b)] = j++;\r\n\t}\r\n\tif(e == b) {\r\n\t\treturn j;\r\n\t}\r\n\tif(binary_gcd(m,\
-    \ e) == binary_gcd(m, b))  {\r\n\t\tfor(int i = 2; i < n + 2; ++i) {\r\n\t\t\t\
-    e = bt.mul(e, f);\r\n\t\t\tif(A.find(e) != A.end()) {\r\n\t\t\t\treturn n * i\
-    \ - A[e];\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n\treturn -1;\r\n}\r\n\r\n} // namespace\
-    \ felix\r\n#line 5 \"test/yosupo/Discrete-Logarithm.test.cpp\"\nusing namespace\
-    \ std;\r\nusing namespace felix;\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\
+    \ __int128)(z) * im) >> 64);\r\n#endif\r\n\t\tunsigned long long y = x * _m;\r\
+    \n\t\treturn (unsigned int)(z - y + (z < y ? _m : 0));\r\n\t}\r\n};\r\n\r\n} //\
+    \ namespace internal\r\n\r\n} // namespace felix\r\n#line 2 \"library/math/binary-gcd.hpp\"\
+    \n\r\nnamespace felix {\r\n\r\ntemplate<class T>\r\ninline T binary_gcd(T a, T\
+    \ b) {\r\n\tif(a == 0 || b == 0) {\r\n\t\treturn a | b;\r\n\t}\r\n\tint8_t n =\
+    \ __builtin_ctzll(a);\r\n\tint8_t m = __builtin_ctzll(b);\r\n\ta >>= n;\r\n\t\
+    b >>= m;\r\n\twhile(a != b) {\r\n\t\tT d = a - b;\r\n\t\tint8_t s = __builtin_ctzll(d);\r\
+    \n\t\tbool f = a > b;\r\n\t\tb = f ? b : a;\r\n\t\ta = (f ? d : -d) >> s;\r\n\t\
+    }\r\n\treturn a << (n < m ? n : m);\r\n}\r\n\r\n} // namespace felix\r\n#line\
+    \ 8 \"library/math/discrete-log.hpp\"\n\r\nnamespace felix {\r\n\r\nint discrete_log(int\
+    \ a, int b, int m) {\r\n\tassert(b < m);\r\n\tif(b == 1 || m == 1) {\r\n\t\treturn\
+    \ 0;\r\n\t}\r\n\tint n = (int) std::sqrt(m) + 1, e = 1, f = 1, j = 1;\r\n\thash_map<int,\
+    \ int> A;\r\n\tinternal::barrett bt(m);\r\n\twhile(j <= n && (e = f = bt.mul(e,\
+    \ a)) != b) {\r\n\t\tA[bt.mul(e, b)] = j++;\r\n\t}\r\n\tif(e == b) {\r\n\t\treturn\
+    \ j;\r\n\t}\r\n\tif(binary_gcd(m, e) == binary_gcd(m, b))  {\r\n\t\tfor(int i\
+    \ = 2; i < n + 2; ++i) {\r\n\t\t\te = bt.mul(e, f);\r\n\t\t\tif(A.find(e) != A.end())\
+    \ {\r\n\t\t\t\treturn n * i - A[e];\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n\treturn -1;\r\
+    \n}\r\n\r\n} // namespace felix\r\n#line 5 \"test/yosupo/Discrete-Logarithm.test.cpp\"\
+    \nusing namespace std;\r\nusing namespace felix;\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\
     \n\tcin.tie(0);\r\n\tint tt;\r\n\tcin >> tt;\r\n\twhile(tt--) {\r\n\t\tint x,\
     \ y, m;\r\n\t\tcin >> x >> y >> m;\r\n\t\tcout << discrete_log(x, y, m) << \"\\\
     n\";\r\n\t}\r\n\treturn 0;\r\n}\r\n"
@@ -92,8 +91,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/Discrete-Logarithm.test.cpp
   requiredBy: []
-  timestamp: '2023-04-05 16:22:46+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-04-15 18:25:48+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/Discrete-Logarithm.test.cpp
 layout: document
