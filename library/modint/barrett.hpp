@@ -23,11 +23,8 @@ struct barrett {
 #else
 		unsigned long long x = (unsigned long long)(((unsigned __int128)(z) * im) >> 64);
 #endif
-		unsigned int v = (unsigned int)(z - x * m);
-		if(m <= v) {
-			v += m;
-		}
-		return v;
+		unsigned long long y = x * _m;
+		return (unsigned int)(z - y + (z < y ? _m : 0));
 	}
 };
 
