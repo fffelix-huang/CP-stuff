@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/internal/safe-mod.hpp
     title: library/internal/safe-mod.hpp
-  - icon: ':x:'
+  - icon: ':warning:'
     path: library/modint/barrett.hpp
     title: library/modint/barrett.hpp
   _extendedRequiredBy: []
@@ -27,9 +27,9 @@ data:
     \ mul(unsigned int a, unsigned int b) const {\r\n\t\tunsigned long long z = a;\r\
     \n\t\tz *= b;\r\n#ifdef _MSC_VER\r\n\t\tunsigned long long x;\r\n\t\t_umul128(z,\
     \ im, &x);\r\n#else\r\n\t\tunsigned long long x = (unsigned long long)(((unsigned\
-    \ __int128)(z) * im) >> 64);\r\n#endif\r\n\t\tunsigned long long y = x * _m;\r\
-    \n\t\treturn (unsigned int)(z - y + (z < y ? m : 0));\r\n\t}\r\n};\r\n\r\n} //\
-    \ namespace internal\r\n\r\n} // namespace felix\r\n#line 5 \"library/math/pow-mod.hpp\"\
+    \ __int128)(z) * im) >> 64);\r\n#endif\r\n\t\tunsigned long long y = x * m;\r\n\
+    \t\treturn (unsigned int)(z - y + (z < y ? m : 0));\r\n\t}\r\n};\r\n\r\n} // namespace\
+    \ internal\r\n\r\n} // namespace felix\r\n#line 5 \"library/math/pow-mod.hpp\"\
     \n\r\nnamespace felix {\r\n\r\nlong long pow_mod(long long x, long long n, int\
     \ m) {\r\n\tassert(0 <= n && 1 <= m);\r\n\tif(m == 1) {\r\n\t\treturn 0;\r\n\t\
     }\r\n\tinternal::barrett bt((unsigned int) (m));\r\n\tunsigned int r = 1;\r\n\t\
@@ -51,7 +51,7 @@ data:
   isVerificationFile: false
   path: library/math/pow-mod.hpp
   requiredBy: []
-  timestamp: '2023-04-16 03:01:01+08:00'
+  timestamp: '2023-04-16 03:09:05+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/math/pow-mod.hpp

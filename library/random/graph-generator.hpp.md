@@ -4,7 +4,7 @@ data:
   - icon: ':warning:'
     path: library/random/random.hpp
     title: random_t
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/random/splitmix64.hpp
     title: library/random/splitmix64.hpp
   _extendedRequiredBy: []

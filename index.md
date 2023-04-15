@@ -14,7 +14,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/data-structure/DSU.hpp
       title: "DSU (\u8DEF\u5F91\u58D3\u7E2E)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/data-structure/PBDS.hpp
       title: library/data-structure/PBDS.hpp
     - icon: ':heavy_check_mark:'
@@ -95,13 +95,13 @@ data:
       title: library/internal/safe-mod.hpp
   - name: library/math
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/math/binary-gcd.hpp
       title: "Binary GCD (\u4F4D\u5143 GCD)"
     - icon: ':heavy_check_mark:'
       path: library/math/crt.hpp
       title: "crt (\u4E2D\u570B\u5269\u9918\u5B9A\u7406)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/math/discrete-log.hpp
       title: "Discrete Log (\u96E2\u6563\u5C0D\u6578 $a^x \\equiv b \\pmod m$)"
     - icon: ':heavy_check_mark:'
@@ -135,7 +135,7 @@ data:
       title: library/misc/fastio.hpp
   - name: library/modint
     pages:
-    - icon: ':x:'
+    - icon: ':warning:'
       path: library/modint/barrett.hpp
       title: library/modint/barrett.hpp
     - icon: ':heavy_check_mark:'
@@ -149,7 +149,7 @@ data:
     - icon: ':warning:'
       path: library/random/random.hpp
       title: random_t
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/random/splitmix64.hpp
       title: library/random/splitmix64.hpp
   - name: library/string
@@ -218,7 +218,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/Convolution.test.cpp
       title: test/yosupo/Convolution.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/Discrete-Logarithm.test.cpp
       title: test/yosupo/Discrete-Logarithm.test.cpp
     - icon: ':heavy_check_mark:'
