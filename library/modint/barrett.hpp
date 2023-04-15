@@ -24,7 +24,7 @@ struct barrett {
 		unsigned long long x = (unsigned long long)(((unsigned __int128)(z) * im) >> 64);
 #endif
 		unsigned long long y = x * _m;
-		return (unsigned int)(z - y + (z < y ? _m : 0));
+		return (unsigned int)(z - y + (z < y ? m : 0));
 	}
 };
 
