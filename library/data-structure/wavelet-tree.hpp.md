@@ -3,18 +3,18 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/Range-Kth-Smallest.test.cpp
     title: test/yosupo/Range-Kth-Smallest.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"library/data-structure/wavelet-tree.hpp\"\n#include <vector>\n\
     #include <algorithm>\n\nnamespace felix {\n\ntemplate<class T>\nclass wavelet_tree\
     \ {\npublic:\n\twavelet_tree() {}\n\texplicit wavelet_tree(const std::vector<T>&\
-    \ _v) : vals(_v), n(_v.size()) {\n\t\tstd::sort(vals.begin(), vals.end());\n\t\
+    \ _v) : n(_v.size()), vals(_v) {\n\t\tstd::sort(vals.begin(), vals.end());\n\t\
     \tvals.erase(std::unique(vals.begin(), vals.end()), vals.end());\n\t\tlog = std::__lg(2\
     \ * vals.size() - 1);\n\t\tbits.resize((log * n + 64) >> 6, 0ULL);\n\t\tsums.resize(bits.size(),\
     \ 0);\n\t\tstd::vector<int> v(_v.size()), cnt(vals.size() + 1);\n\t\tfor(int i\
@@ -43,7 +43,7 @@ data:
     \ - 1));\n\t}\n};\n\n} // namespace felix\n"
   code: "#pragma once\n#include <vector>\n#include <algorithm>\n\nnamespace felix\
     \ {\n\ntemplate<class T>\nclass wavelet_tree {\npublic:\n\twavelet_tree() {}\n\
-    \texplicit wavelet_tree(const std::vector<T>& _v) : vals(_v), n(_v.size()) {\n\
+    \texplicit wavelet_tree(const std::vector<T>& _v) : n(_v.size()), vals(_v) {\n\
     \t\tstd::sort(vals.begin(), vals.end());\n\t\tvals.erase(std::unique(vals.begin(),\
     \ vals.end()), vals.end());\n\t\tlog = std::__lg(2 * vals.size() - 1);\n\t\tbits.resize((log\
     \ * n + 64) >> 6, 0ULL);\n\t\tsums.resize(bits.size(), 0);\n\t\tstd::vector<int>\
@@ -74,8 +74,8 @@ data:
   isVerificationFile: false
   path: library/data-structure/wavelet-tree.hpp
   requiredBy: []
-  timestamp: '2023-04-15 17:36:20+08:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-04-15 17:44:44+08:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/Range-Kth-Smallest.test.cpp
 documentation_of: library/data-structure/wavelet-tree.hpp

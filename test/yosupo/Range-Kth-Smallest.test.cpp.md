@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/data-structure/wavelet-tree.hpp
     title: "Wavelet Tree (\u975C\u614B\u5340\u9593\u7B2C $k$ \u5927)"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/range_kth_smallest
@@ -19,7 +19,7 @@ data:
     \n#include <vector>\r\n#line 3 \"library/data-structure/wavelet-tree.hpp\"\n#include\
     \ <algorithm>\n\nnamespace felix {\n\ntemplate<class T>\nclass wavelet_tree {\n\
     public:\n\twavelet_tree() {}\n\texplicit wavelet_tree(const std::vector<T>& _v)\
-    \ : vals(_v), n(_v.size()) {\n\t\tstd::sort(vals.begin(), vals.end());\n\t\tvals.erase(std::unique(vals.begin(),\
+    \ : n(_v.size()), vals(_v) {\n\t\tstd::sort(vals.begin(), vals.end());\n\t\tvals.erase(std::unique(vals.begin(),\
     \ vals.end()), vals.end());\n\t\tlog = std::__lg(2 * vals.size() - 1);\n\t\tbits.resize((log\
     \ * n + 64) >> 6, 0ULL);\n\t\tsums.resize(bits.size(), 0);\n\t\tstd::vector<int>\
     \ v(_v.size()), cnt(vals.size() + 1);\n\t\tfor(int i = 0; i < (int) v.size();\
@@ -49,7 +49,7 @@ data:
     \ felix;\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\n\tcin.tie(0);\r\
     \n\tint n, q;\r\n\tcin >> n >> q;\r\n\tvector<int> a(n);\r\n\tfor(int i = 0; i\
     \ < n; i++) {\r\n\t\tcin >> a[i];\r\n\t}\r\n\twavelet_tree tree(a);\r\n\twhile(q--)\
-    \ {\r\n\t\tint l, r, k;\r\n\t\tcin >> l >> r >> k;\r\n\t\tcout << tree.kth(l,\
+    \ {\r\n\t\tint l, r, k;\r\n\t\tcin >> l >> r >> k;\r\n\t\tcout << tree.get_kth(l,\
     \ r, k) << \"\\n\";\r\n\t}\r\n\treturn 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_kth_smallest\"\r\n\
     \r\n#include <iostream>\r\n#include <vector>\r\n#include \"../../library/data-structure/wavelet-tree.hpp\"\
@@ -57,14 +57,14 @@ data:
     \n\tcin.tie(0);\r\n\tint n, q;\r\n\tcin >> n >> q;\r\n\tvector<int> a(n);\r\n\t\
     for(int i = 0; i < n; i++) {\r\n\t\tcin >> a[i];\r\n\t}\r\n\twavelet_tree tree(a);\r\
     \n\twhile(q--) {\r\n\t\tint l, r, k;\r\n\t\tcin >> l >> r >> k;\r\n\t\tcout <<\
-    \ tree.kth(l, r, k) << \"\\n\";\r\n\t}\r\n\treturn 0;\r\n}\r\n"
+    \ tree.get_kth(l, r, k) << \"\\n\";\r\n\t}\r\n\treturn 0;\r\n}\r\n"
   dependsOn:
   - library/data-structure/wavelet-tree.hpp
   isVerificationFile: true
   path: test/yosupo/Range-Kth-Smallest.test.cpp
   requiredBy: []
-  timestamp: '2023-04-15 17:36:20+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-04-15 17:44:44+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Range-Kth-Smallest.test.cpp
 layout: document
