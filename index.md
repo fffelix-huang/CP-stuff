@@ -135,7 +135,7 @@ data:
       title: library/misc/fastio.hpp
   - name: library/modint
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: library/modint/barrett.hpp
       title: library/modint/barrett.hpp
     - icon: ':heavy_check_mark:'
