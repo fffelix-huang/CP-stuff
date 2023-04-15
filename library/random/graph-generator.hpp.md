@@ -186,7 +186,7 @@ data:
   verifiedWith: []
 documentation_of: library/random/graph-generator.hpp
 layout: document
-title: Graph Generator
+title: Random Graph Generator
 ---
 
 ## 使用方法

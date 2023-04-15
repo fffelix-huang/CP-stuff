@@ -119,7 +119,6 @@ title: Van Emde Boas Tree
 VEBtree<24> tree; // [0, 2^24)
 
 int a;
-
 tree.insert(a);
 tree.erase(a);
 bool has_a = tree.contains(a);

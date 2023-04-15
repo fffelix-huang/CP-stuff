@@ -10,7 +10,7 @@ data:
     title: "Discrete Log (\u96E2\u6563\u5C0D\u6578 $a^x \\equiv b \\pmod m$)"
   - icon: ':warning:'
     path: library/random/graph-generator.hpp
-    title: Graph Generator
+    title: Random Graph Generator
   - icon: ':warning:'
     path: library/random/random.hpp
     title: random_t

@@ -4,7 +4,7 @@ data:
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: library/tree/HLD.hpp
-    title: Heavy Light Decomposition
+    title: "Heavy Light Decomposition (\u8F15\u91CD\u93C8\u5256\u5206)"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/Jump-on-Tree.test.cpp

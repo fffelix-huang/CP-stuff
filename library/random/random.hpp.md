@@ -7,7 +7,7 @@ data:
   _extendedRequiredBy:
   - icon: ':warning:'
     path: library/random/graph-generator.hpp
-    title: Graph Generator
+    title: Random Graph Generator
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp

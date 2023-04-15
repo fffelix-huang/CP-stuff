@@ -151,7 +151,7 @@ data:
   - test/yosupo/Jump-on-Tree.test.cpp
 documentation_of: library/tree/HLD.hpp
 layout: document
-title: Heavy Light Decomposition
+title: "Heavy Light Decomposition (\u8F15\u91CD\u93C8\u5256\u5206)"
 ---
 
 ## 輕重鏈剖分
@@ -168,9 +168,8 @@ hld.add_edge(u, v);
 hld.build(root); // 以 root 為根結點建構
 
 int z, k;
-
 int lca = hld.get_lca(u, v); // 回傳 u 和 v 的 LCA
-bool anc = hld.is_ancestor(u, v); // 回傳 u 是不是 v 的祖先
+bool is_anc = hld.is_ancestor(u, v); // 回傳 u 是不是 v 的祖先
 bool btw = hld.on_path(u, v, z); // 回傳 z 是不是在 u 到 v 的路徑上
 int dist = hld.get_distance(u, v); // 回傳 u 到 v 的距離
 int kth_anc = hld.get_kth_ancestor(u, k); // 回傳 u 的第 k 個祖先，或 -1 如果不存在

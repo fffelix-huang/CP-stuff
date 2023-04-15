@@ -145,7 +145,7 @@ data:
     pages:
     - icon: ':warning:'
       path: library/random/graph-generator.hpp
-      title: Graph Generator
+      title: Random Graph Generator
     - icon: ':warning:'
       path: library/random/random.hpp
       title: random_t
@@ -170,7 +170,7 @@ data:
     pages:
     - icon: ':heavy_check_mark:'
       path: library/tree/HLD.hpp
-      title: Heavy Light Decomposition
+      title: "Heavy Light Decomposition (\u8F15\u91CD\u93C8\u5256\u5206)"
   verificationCategories:
   - name: test/aoj
     pages:
