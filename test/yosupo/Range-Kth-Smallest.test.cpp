@@ -19,7 +19,7 @@ int main() {
 	while(q--) {
 		int l, r, k;
 		cin >> l >> r >> k;
-		cout << tree.kth(l, r, k) << "\n";
+		cout << tree.get_kth(l, r, k) << "\n";
 	}
 	return 0;
 }

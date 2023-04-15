@@ -8,7 +8,7 @@ template<class T>
 class wavelet_tree {
 public:
 	wavelet_tree() {}
-	explicit wavelet_tree(const std::vector<T>& _v) : vals(_v), n(_v.size()) {
+	explicit wavelet_tree(const std::vector<T>& _v) : n(_v.size()), vals(_v) {
 		std::sort(vals.begin(), vals.end());
 		vals.erase(std::unique(vals.begin(), vals.end()), vals.end());
 		log = std::__lg(2 * vals.size() - 1);
