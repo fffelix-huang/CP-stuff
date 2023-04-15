@@ -12,7 +12,7 @@ long long x, k;
 b.insert(x);
 long long mn = b.get_min();
 long long mx = b.get_max();
-long long kth = b.get_kth(k); // 0-based 如果超過範圍回傳 -1
+long long kth = b.get_kth(k); // 如果超過範圍回傳 -1
 bool has_x = b.contains(x);
 
 xor_basis<60> c;
