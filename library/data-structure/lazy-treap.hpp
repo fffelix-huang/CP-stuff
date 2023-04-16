@@ -23,12 +23,12 @@ public:
 		S val, sum;
 		F lz = id();
 		bool rev = false;
-		int sz = 0;
+		int sz = 1;
 		Node* l = nullptr;
 		Node* r = nullptr;
 
 		Node() {}
-		Node(const S& s) : val(s), sum(s), sz(1) {}
+		Node(const S& s) : val(s), sum(s) {}
 	};
 
 	Node* new_tree() { return nullptr; }
@@ -150,6 +150,7 @@ public:
 		if(root == nullptr) {
 			return;
 		}
+		push(root);
 		print(root->l, sep);
 		std::cout << root->val;
 		if(sep != '\0') {
