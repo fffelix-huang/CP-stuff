@@ -3,10 +3,10 @@ data:
   libraryCategories:
   - name: library/convolution
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/convolution/NTT.hpp
       title: library/convolution/NTT.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/convolution/subset-convolution.hpp
       title: library/convolution/subset-convolution.hpp
   - name: library/data-structure
@@ -32,6 +32,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/data-structure/lazy-segtree.hpp
       title: library/data-structure/lazy-segtree.hpp
+    - icon: ':warning:'
+      path: library/data-structure/lazy-treap.hpp
+      title: library/data-structure/lazy-treap.hpp
     - icon: ':heavy_check_mark:'
       path: library/data-structure/line-container.hpp
       title: library/data-structure/line-container.hpp
@@ -60,7 +63,7 @@ data:
       title: library/flow/dinic.hpp
   - name: library/formal-power-series
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/formal-power-series/poly.hpp
       title: library/formal-power-series/poly.hpp
   - name: library/geometry
@@ -87,10 +90,10 @@ data:
       title: library/graph/two-sat.hpp
   - name: library/internal
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/internal/inv-gcd.hpp
       title: library/internal/inv-gcd.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/internal/safe-mod.hpp
       title: library/internal/safe-mod.hpp
   - name: library/math
@@ -138,7 +141,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/modint/barrett.hpp
       title: library/modint/barrett.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/modint/modint.hpp
       title: library/modint/modint.hpp
   - name: library/random
@@ -149,6 +152,9 @@ data:
     - icon: ':warning:'
       path: library/random/random.hpp
       title: random_t
+    - icon: ':question:'
+      path: library/random/rng.hpp
+      title: library/random/rng.hpp
     - icon: ':heavy_check_mark:'
       path: library/random/splitmix64.hpp
       title: library/random/splitmix64.hpp
@@ -299,7 +305,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/Sqrt-Mod.test.cpp
       title: test/yosupo/Sqrt-Mod.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/Sqrt-of-Formal-Power-Series.test.cpp
       title: test/yosupo/Sqrt-of-Formal-Power-Series.test.cpp
     - icon: ':heavy_check_mark:'
@@ -311,7 +317,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/Strongly-Connected-Components.test.cpp
       title: test/yosupo/Strongly-Connected-Components.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/Subset-Convolution.test.cpp
       title: test/yosupo/Subset-Convolution.test.cpp
     - icon: ':heavy_check_mark:'

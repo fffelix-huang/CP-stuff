@@ -1,22 +1,19 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':question:'
-    path: library/internal/safe-mod.hpp
-    title: library/internal/safe-mod.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':question:'
     path: library/convolution/NTT.hpp
     title: library/convolution/NTT.hpp
+  - icon: ':warning:'
+    path: library/data-structure/lazy-treap.hpp
+    title: library/data-structure/lazy-treap.hpp
   - icon: ':question:'
     path: library/formal-power-series/poly.hpp
     title: library/formal-power-series/poly.hpp
   - icon: ':heavy_check_mark:'
-    path: library/math/crt.hpp
-    title: "crt (\u4E2D\u570B\u5269\u9918\u5B9A\u7406)"
-  - icon: ':warning:'
-    path: library/math/inv-mod.hpp
-    title: library/math/inv-mod.hpp
+    path: library/math/factorize.hpp
+    title: "Integer Factorization (Pollard Rho \u8CEA\u56E0\u6578\u5206\u89E3)"
   - icon: ':question:'
     path: library/modint/modint.hpp
     title: library/modint/modint.hpp
@@ -36,6 +33,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/Exp-of-Formal-Power-Series.test.cpp
     title: test/yosupo/Exp-of-Formal-Power-Series.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/Factorize.test.cpp
+    title: test/yosupo/Factorize.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/Inv-of-Formal-Power-Series.test.cpp
     title: test/yosupo/Inv-of-Formal-Power-Series.test.cpp
@@ -77,41 +77,30 @@ data:
   _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"library/internal/safe-mod.hpp\"\n\r\nnamespace felix {\r\
-    \n\r\nnamespace internal {\r\n\r\ntemplate<class T>\r\nconstexpr T safe_mod(T\
-    \ x, T m) {\r\n\tx %= m;\r\n\tif(x < 0) {\r\n\t\tx += m;\r\n\t}\r\n\treturn x;\r\
-    \n}\r\n\r\n} // namespace internal\r\n\r\n} // namespace felix\n#line 3 \"library/internal/inv-gcd.hpp\"\
-    \n\r\nnamespace felix {\r\n\r\nnamespace internal {\r\n\r\ntemplate<class T>\r\
-    \nconstexpr std::pair<T, T> inv_gcd(T a, T b) {\r\n\ta = safe_mod(a, b);\r\n\t\
-    if(a == 0) {\r\n\t\treturn {b, 0};\r\n\t}\r\n\tT s = b, t = a;\r\n\tT m0 = 0,\
-    \ m1 = 1;\r\n\twhile(t) {\r\n\t\tT u = s / t;\r\n\t\ts -= t * u;\r\n\t\tm0 -=\
-    \ m1 * u;\r\n\t\tauto tmp = s;\r\n\t\ts = t;\r\n\t\tt = tmp;\r\n\t\ttmp = m0;\r\
-    \n\t\tm0 = m1;\r\n\t\tm1 = tmp;\r\n\t}\r\n\tif(m0 < 0) {\r\n\t\tm0 += b / s;\r\
-    \n\t}\r\n\treturn {s, m0};\r\n}\r\n\r\n} // namespace internal\r\n\r\n} // namespace\
-    \ felix\r\n"
-  code: "#pragma once\r\n#include \"safe-mod.hpp\"\r\n\r\nnamespace felix {\r\n\r\n\
-    namespace internal {\r\n\r\ntemplate<class T>\r\nconstexpr std::pair<T, T> inv_gcd(T\
-    \ a, T b) {\r\n\ta = safe_mod(a, b);\r\n\tif(a == 0) {\r\n\t\treturn {b, 0};\r\
-    \n\t}\r\n\tT s = b, t = a;\r\n\tT m0 = 0, m1 = 1;\r\n\twhile(t) {\r\n\t\tT u =\
-    \ s / t;\r\n\t\ts -= t * u;\r\n\t\tm0 -= m1 * u;\r\n\t\tauto tmp = s;\r\n\t\t\
-    s = t;\r\n\t\tt = tmp;\r\n\t\ttmp = m0;\r\n\t\tm0 = m1;\r\n\t\tm1 = tmp;\r\n\t\
-    }\r\n\tif(m0 < 0) {\r\n\t\tm0 += b / s;\r\n\t}\r\n\treturn {s, m0};\r\n}\r\n\r\
-    \n} // namespace internal\r\n\r\n} // namespace felix\r\n"
-  dependsOn:
-  - library/internal/safe-mod.hpp
+  bundledCode: "#line 2 \"library/random/rng.hpp\"\n#include <chrono>\n\nnamespace\
+    \ felix {\n\ninline unsigned long long rng() {\n\tstatic unsigned long long SEED\
+    \ = std::chrono::steady_clock::now().time_since_epoch().count();\n\tSEED ^= SEED\
+    \ << 7;\n\tSEED ^= SEED >> 9;\n\treturn SEED & 0xFFFFFFFFULL;\n}\n\n} // namespace\
+    \ felix\n"
+  code: "#pragma once\n#include <chrono>\n\nnamespace felix {\n\ninline unsigned long\
+    \ long rng() {\n\tstatic unsigned long long SEED = std::chrono::steady_clock::now().time_since_epoch().count();\n\
+    \tSEED ^= SEED << 7;\n\tSEED ^= SEED >> 9;\n\treturn SEED & 0xFFFFFFFFULL;\n}\n\
+    \n} // namespace felix\n"
+  dependsOn: []
   isVerificationFile: false
-  path: library/internal/inv-gcd.hpp
+  path: library/random/rng.hpp
   requiredBy:
-  - library/math/crt.hpp
-  - library/math/inv-mod.hpp
+  - library/math/factorize.hpp
   - library/formal-power-series/poly.hpp
+  - library/data-structure/lazy-treap.hpp
   - library/modint/modint.hpp
   - library/convolution/NTT.hpp
-  timestamp: '2023-04-03 16:14:50+08:00'
+  timestamp: '2023-04-16 16:01:15+08:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/Subset-Convolution.test.cpp
   - test/yosupo/Sqrt-of-Formal-Power-Series.test.cpp
+  - test/yosupo/Factorize.test.cpp
   - test/yosupo/Range-Affine-Range-Sum.test.cpp
   - test/yosupo/Bitwise-Xor-Convolution.test.cpp
   - test/yosupo/Product-of-Polynomial-Sequence.test.cpp
@@ -127,10 +116,10 @@ data:
   - test/yosupo/Convolution-Mod-1000000007.test.cpp
   - test/yosupo/Sqrt-Mod.test.cpp
   - test/yosupo/Range-Affine-Point-Get.test.cpp
-documentation_of: library/internal/inv-gcd.hpp
+documentation_of: library/random/rng.hpp
 layout: document
 redirect_from:
-- /library/library/internal/inv-gcd.hpp
-- /library/library/internal/inv-gcd.hpp.html
-title: library/internal/inv-gcd.hpp
+- /library/library/random/rng.hpp
+- /library/library/random/rng.hpp.html
+title: library/random/rng.hpp
 ---
