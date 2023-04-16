@@ -6,6 +6,7 @@
 #include <random>
 #include <chrono>
 #include "../internal/inv-gcd.hpp"
+#include "../random/rng.hpp"
 
 namespace felix {
 
@@ -186,7 +187,6 @@ public:
 		}
 		int pw = (mod() - 1) / 2;
 		int K = std::__lg(pw);
-		std::mt19937 rng(std::chrono::steady_clock::now().time_since_epoch().count());
 		while(true) {
 			mint t = rng();
 			mint a = 0, b = 0, c = 1;

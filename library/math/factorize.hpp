@@ -6,6 +6,7 @@
 #include <algorithm>
 #include "binary-gcd.hpp"
 #include "../internal/safe-mod.hpp"
+#include "../random/rng.hpp"
 
 namespace felix {
 
@@ -68,7 +69,6 @@ T pollard_rho(T n) {
 		return internal::safe_mod<__int128>(__int128(x) * x + R, n);
 	};
 	auto rnd_ = [&]() {
-		static std::mt19937_64 rng(std::chrono::steady_clock::now().time_since_epoch().count());
 		return rng() % (n - 2) + 2;
 	};
 	while(true) {
