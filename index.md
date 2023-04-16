@@ -32,7 +32,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/data-structure/lazy-segtree.hpp
       title: library/data-structure/lazy-segtree.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: library/data-structure/lazy-treap.hpp
       title: library/data-structure/lazy-treap.hpp
     - icon: ':heavy_check_mark:'
@@ -227,6 +227,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/Discrete-Logarithm.test.cpp
       title: test/yosupo/Discrete-Logarithm.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
+      title: test/yosupo/Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/Exp-of-Formal-Power-Series.test.cpp
       title: test/yosupo/Exp-of-Formal-Power-Series.test.cpp

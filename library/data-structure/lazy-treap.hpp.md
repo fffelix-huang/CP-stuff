@@ -5,10 +5,13 @@ data:
     path: library/random/rng.hpp
     title: library/random/rng.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
+    title: test/yosupo/Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"library/data-structure/lazy-treap.hpp\"\n#include <iostream>\n\
@@ -142,8 +145,9 @@ data:
   path: library/data-structure/lazy-treap.hpp
   requiredBy: []
   timestamp: '2023-04-16 16:26:33+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/yosupo/Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
 documentation_of: library/data-structure/lazy-treap.hpp
 layout: document
 redirect_from:

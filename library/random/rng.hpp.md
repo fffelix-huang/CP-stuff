@@ -5,7 +5,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/convolution/NTT.hpp
     title: library/convolution/NTT.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: library/data-structure/lazy-treap.hpp
     title: library/data-structure/lazy-treap.hpp
   - icon: ':heavy_check_mark:'
@@ -30,6 +30,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/Convolution.test.cpp
     title: test/yosupo/Convolution.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
+    title: test/yosupo/Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/Exp-of-Formal-Power-Series.test.cpp
     title: test/yosupo/Exp-of-Formal-Power-Series.test.cpp
@@ -112,6 +115,7 @@ data:
   - test/yosupo/Inv-of-Formal-Power-Series.test.cpp
   - test/yosupo/Exp-of-Formal-Power-Series.test.cpp
   - test/yosupo/Polynomial-Taylor-Shift.test.cpp
+  - test/yosupo/Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
   - test/yosupo/Bitwise-And-Convolution.test.cpp
   - test/yosupo/Convolution-Mod-1000000007.test.cpp
   - test/yosupo/Sqrt-Mod.test.cpp
