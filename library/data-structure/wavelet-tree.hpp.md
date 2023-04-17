@@ -12,7 +12,7 @@ data:
   attributes:
     links: []
   bundledCode: "#line 2 \"library/data-structure/wavelet-tree.hpp\"\n#include <vector>\n\
-    #include <algorithm>\n\nnamespace felix {\n\ntemplate<class T>\nclass wavelet_tree\
+    #include <algorithm>\n\nnamespace felix {\n\ntemplate<class T>\nstruct wavelet_tree\
     \ {\npublic:\n\twavelet_tree() {}\n\texplicit wavelet_tree(const std::vector<T>&\
     \ _v) : n(_v.size()), vals(_v) {\n\t\tstd::sort(vals.begin(), vals.end());\n\t\
     \tvals.erase(std::unique(vals.begin(), vals.end()), vals.end());\n\t\tlog = std::__lg(2\
@@ -42,7 +42,7 @@ data:
     \t\treturn sums[i >> 6] + __builtin_popcountll(bits[i >> 6] & ((1ULL << (i & 63))\
     \ - 1));\n\t}\n};\n\n} // namespace felix\n"
   code: "#pragma once\n#include <vector>\n#include <algorithm>\n\nnamespace felix\
-    \ {\n\ntemplate<class T>\nclass wavelet_tree {\npublic:\n\twavelet_tree() {}\n\
+    \ {\n\ntemplate<class T>\nstruct wavelet_tree {\npublic:\n\twavelet_tree() {}\n\
     \texplicit wavelet_tree(const std::vector<T>& _v) : n(_v.size()), vals(_v) {\n\
     \t\tstd::sort(vals.begin(), vals.end());\n\t\tvals.erase(std::unique(vals.begin(),\
     \ vals.end()), vals.end());\n\t\tlog = std::__lg(2 * vals.size() - 1);\n\t\tbits.resize((log\
@@ -74,7 +74,7 @@ data:
   isVerificationFile: false
   path: library/data-structure/wavelet-tree.hpp
   requiredBy: []
-  timestamp: '2023-04-15 17:44:44+08:00'
+  timestamp: '2023-04-17 12:10:28+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/Range-Kth-Smallest.test.cpp

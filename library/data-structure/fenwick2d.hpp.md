@@ -12,7 +12,7 @@ data:
   attributes:
     links: []
   bundledCode: "#line 2 \"library/data-structure/fenwick2d.hpp\"\n#include <vector>\r\
-    \n#include <cassert>\r\n\r\nnamespace felix {\r\n\r\ntemplate<class T>\r\nclass\
+    \n#include <cassert>\r\n\r\nnamespace felix {\r\n\r\ntemplate<class T>\r\nstruct\
     \ fenwick2d {\r\npublic:\r\n\tfenwick2d() : n(0), m(0) {}\r\n\texplicit fenwick2d(int\
     \ _n, int _m) : n(_n), m(_m), data(_n, std::vector<T>(_m)) {}\r\n\r\n\tvoid add(int\
     \ x, int y, T val) {\r\n\t\tassert(0 <= x && 0 <= y);\r\n\t\tif(x >= n || y >=\
@@ -27,7 +27,7 @@ data:
     \n\t}\r\n\r\nprivate:\r\n\tint n, m;\r\n\tstd::vector<std::vector<T>> data;\r\n\
     };\r\n\r\n} // namespace felix\r\n"
   code: "#pragma once\r\n#include <vector>\r\n#include <cassert>\r\n\r\nnamespace\
-    \ felix {\r\n\r\ntemplate<class T>\r\nclass fenwick2d {\r\npublic:\r\n\tfenwick2d()\
+    \ felix {\r\n\r\ntemplate<class T>\r\nstruct fenwick2d {\r\npublic:\r\n\tfenwick2d()\
     \ : n(0), m(0) {}\r\n\texplicit fenwick2d(int _n, int _m) : n(_n), m(_m), data(_n,\
     \ std::vector<T>(_m)) {}\r\n\r\n\tvoid add(int x, int y, T val) {\r\n\t\tassert(0\
     \ <= x && 0 <= y);\r\n\t\tif(x >= n || y >= m) {\r\n\t\t\treturn;\r\n\t\t}\r\n\
@@ -45,7 +45,7 @@ data:
   isVerificationFile: false
   path: library/data-structure/fenwick2d.hpp
   requiredBy: []
-  timestamp: '2023-04-07 18:15:44+08:00'
+  timestamp: '2023-04-17 12:10:28+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/The-Maximum-Number-of-Overlaps.test.cpp

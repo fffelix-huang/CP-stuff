@@ -20,7 +20,7 @@ data:
   bundledCode: "#line 1 \"test/yosupo/2-Sat.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/two_sat\"\
     \r\n\r\n#include <iostream>\r\n#line 2 \"library/graph/two-sat.hpp\"\n#include\
     \ <vector>\n#line 3 \"library/graph/SCC.hpp\"\n#include <cassert>\n#include <algorithm>\n\
-    #include <functional>\n\nnamespace felix {\n\nclass SCC {\npublic:\n\tSCC() :\
+    #include <functional>\n\nnamespace felix {\n\nstruct SCC {\npublic:\n\tSCC() :\
     \ n(0) {}\n\texplicit SCC(int _n) : n(_n), g(_n), h(_n) {}\n\n\tvoid add_edge(int\
     \ u, int v) {\n\t\tassert(0 <= u && u < n);\n\t\tassert(0 <= v && v < n);\n\t\t\
     g[u].push_back(v);\n\t\th[v].push_back(u);\n\t}\n\n\tstd::vector<int> solve()\
@@ -42,7 +42,7 @@ data:
     \t\t\tnew_g[i].erase(std::unique(new_g[i].begin(), new_g[i].end()), new_g[i].end());\n\
     \t\t}\n\t\treturn new_g;\n\t}\n\nprivate:\n\tint n;\n\tstd::vector<std::vector<int>>\
     \ g, h;\n};\n\n} // namespace felix\n#line 4 \"library/graph/two-sat.hpp\"\n\n\
-    namespace felix {\n\nclass two_sat {\npublic:\n\ttwo_sat() : n(0) {}\n\texplicit\
+    namespace felix {\n\nstruct two_sat {\npublic:\n\ttwo_sat() : n(0) {}\n\texplicit\
     \ two_sat(int _n) : n(_n), g(_n * 2) {}\n\n\tvoid add_implies_clause(int u, bool\
     \ x, int v, bool y) {\n\t\tg.add_edge(2 * u + x, 2 * v + y);\n\t\tg.add_edge(2\
     \ * v + !y, 2 * u + !x);\n\t}\n\n\tvoid add_or_clause(int u, bool x, int v, bool\
@@ -86,7 +86,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/2-Sat.test.cpp
   requiredBy: []
-  timestamp: '2023-04-06 14:01:45+08:00'
+  timestamp: '2023-04-17 12:10:28+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/2-Sat.test.cpp

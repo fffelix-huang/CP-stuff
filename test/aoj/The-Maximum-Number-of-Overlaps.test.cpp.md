@@ -18,7 +18,7 @@ data:
     \ PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_5_B\"\
     \r\n\r\n#include <iostream>\r\n#line 2 \"library/data-structure/fenwick2d.hpp\"\
     \n#include <vector>\r\n#include <cassert>\r\n\r\nnamespace felix {\r\n\r\ntemplate<class\
-    \ T>\r\nclass fenwick2d {\r\npublic:\r\n\tfenwick2d() : n(0), m(0) {}\r\n\texplicit\
+    \ T>\r\nstruct fenwick2d {\r\npublic:\r\n\tfenwick2d() : n(0), m(0) {}\r\n\texplicit\
     \ fenwick2d(int _n, int _m) : n(_n), m(_m), data(_n, std::vector<T>(_m)) {}\r\n\
     \r\n\tvoid add(int x, int y, T val) {\r\n\t\tassert(0 <= x && 0 <= y);\r\n\t\t\
     if(x >= n || y >= m) {\r\n\t\t\treturn;\r\n\t\t}\r\n\t\tfor(int i = x; i < n;\
@@ -54,7 +54,7 @@ data:
   isVerificationFile: true
   path: test/aoj/The-Maximum-Number-of-Overlaps.test.cpp
   requiredBy: []
-  timestamp: '2023-04-07 18:15:44+08:00'
+  timestamp: '2023-04-17 12:10:28+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/The-Maximum-Number-of-Overlaps.test.cpp

@@ -23,7 +23,7 @@ data:
   bundledCode: "#line 1 \"test/yosupo/Vertex-Add-Path-Sum.test.cpp\"\n#define PROBLEM\
     \ \"https://judge.yosupo.jp/problem/vertex_add_path_sum\"\r\n\r\n#include <iostream>\r\
     \n#line 2 \"library/data-structure/fenwick.hpp\"\n#include <vector>\n#include\
-    \ <cassert>\n\nnamespace felix {\n\ntemplate<class T>\nclass fenwick {\npublic:\n\
+    \ <cassert>\n\nnamespace felix {\n\ntemplate<class T>\nstruct fenwick {\npublic:\n\
     \tfenwick() : n(0) {}\n\texplicit fenwick(int _n) : n(_n), data(_n) {}\n\n\tvoid\
     \ add(int p, T x) {\n\t\tassert(0 <= p);\n\t\twhile(p < n) {\n\t\t\tdata[p] +=\
     \ x;\n\t\t\tp |= (p + 1);\n\t\t}\n\t}\n\n\tT get(int p) {\n\t\tassert(p < n);\n\
@@ -32,7 +32,7 @@ data:
     \ get(r) - (l ? get(l - 1) : T{});\n\t}\n\nprivate:\n\tint n;\n\tstd::vector<T>\
     \ data;\n};\n\n} // namespace felix\n#line 4 \"library/tree/HLD.hpp\"\n#include\
     \ <algorithm>\r\n#line 4 \"library/data-structure/sparse-table.hpp\"\n\nnamespace\
-    \ felix {\n\ntemplate<class T, T (*op)(T, T)>\nclass sparse_table {\npublic:\n\
+    \ felix {\n\ntemplate<class T, T (*op)(T, T)>\nstruct sparse_table {\npublic:\n\
     \tsparse_table() {}\n\texplicit sparse_table(const std::vector<T>& a) {\n\t\t\
     n = (int) a.size();\n\t\tint max_log = std::__lg(n) + 1;\n\t\tmat.resize(max_log);\n\
     \t\tmat[0] = a;\n\t\tfor(int j = 1; j < max_log; ++j) {\n\t\t\tmat[j].resize(n\
@@ -42,7 +42,7 @@ data:
     \ && to <= n - 1);\n\t\tint lg = std::__lg(to - from + 1);\n\t\treturn op(mat[lg][from],\
     \ mat[lg][to - (1 << lg) + 1]);\n\t}\n\nprivate:\n\tint n;\n\tstd::vector<std::vector<T>>\
     \ mat;\n};\n\n} // namespace felix\n#line 6 \"library/tree/HLD.hpp\"\n\r\nnamespace\
-    \ felix {\r\n\r\nclass HLD {\r\nprivate:\r\n\tstatic constexpr std::pair<int,\
+    \ felix {\r\n\r\nstruct HLD {\r\nprivate:\r\n\tstatic constexpr std::pair<int,\
     \ int> __lca_op(std::pair<int, int> a, std::pair<int, int> b) {\r\n\t\treturn\
     \ std::min(a, b);\r\n\t}\r\n\r\npublic:\r\n\tint n;\r\n\tstd::vector<std::vector<int>>\
     \ g;\r\n\tstd::vector<int> subtree_size;\r\n\tstd::vector<int> parent;\r\n\tstd::vector<int>\
@@ -128,7 +128,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/Vertex-Add-Path-Sum.test.cpp
   requiredBy: []
-  timestamp: '2023-04-07 18:15:44+08:00'
+  timestamp: '2023-04-17 12:10:28+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Vertex-Add-Path-Sum.test.cpp

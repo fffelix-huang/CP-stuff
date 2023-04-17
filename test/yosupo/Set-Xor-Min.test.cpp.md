@@ -17,7 +17,7 @@ data:
   bundledCode: "#line 1 \"test/yosupo/Set-Xor-Min.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/set_xor_min\"\
     \r\n\r\n#include <iostream>\r\n#line 2 \"library/data-structure/binary-trie.hpp\"\
     \n#include <vector>\r\n#include <array>\r\n\r\nnamespace felix {\r\n\r\ntemplate<class\
-    \ T>\r\nclass binary_trie {\r\npublic:\r\n\tbinary_trie() {\r\n\t\tnew_node();\r\
+    \ T>\r\nstruct binary_trie {\r\npublic:\r\n\tbinary_trie() {\r\n\t\tnew_node();\r\
     \n\t}\r\n\r\n\tvoid clear() {\r\n\t\ttrie.clear();\r\n\t\tnew_node();\r\n\t}\r\
     \n\r\n\tvoid insert(T x) {\r\n\t\tfor(int i = B - 1, p = 0; i >= 0; i--) {\r\n\
     \t\t\tint y = x >> i & 1;\r\n\t\t\tif(trie[p].go[y] == 0) {\r\n\t\t\t\ttrie[p].go[y]\
@@ -63,7 +63,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/Set-Xor-Min.test.cpp
   requiredBy: []
-  timestamp: '2023-04-04 20:43:53+08:00'
+  timestamp: '2023-04-17 12:10:28+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Set-Xor-Min.test.cpp

@@ -3,7 +3,7 @@ data:
   libraryCategories:
   - name: library/convolution
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/convolution/NTT.hpp
       title: library/convolution/NTT.hpp
     - icon: ':heavy_check_mark:'
@@ -90,10 +90,10 @@ data:
       title: library/graph/two-sat.hpp
   - name: library/internal
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/internal/inv-gcd.hpp
       title: library/internal/inv-gcd.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/internal/safe-mod.hpp
       title: library/internal/safe-mod.hpp
   - name: library/math
@@ -101,7 +101,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/binary-gcd.hpp
       title: "Binary GCD (\u4F4D\u5143 GCD)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: library/math/crt.hpp
       title: "crt (\u4E2D\u570B\u5269\u9918\u5B9A\u7406)"
     - icon: ':heavy_check_mark:'
@@ -141,7 +141,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/modint/barrett.hpp
       title: library/modint/barrett.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/modint/modint.hpp
       title: library/modint/modint.hpp
   - name: library/random
@@ -152,7 +152,7 @@ data:
     - icon: ':warning:'
       path: library/random/random.hpp
       title: random_t
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/random/rng.hpp
       title: library/random/rng.hpp
     - icon: ':heavy_check_mark:'
@@ -218,7 +218,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/Bitwise-Xor-Convolution.test.cpp
       title: test/yosupo/Bitwise-Xor-Convolution.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/Convolution-Mod-1000000007.test.cpp
       title: test/yosupo/Convolution-Mod-1000000007.test.cpp
     - icon: ':heavy_check_mark:'

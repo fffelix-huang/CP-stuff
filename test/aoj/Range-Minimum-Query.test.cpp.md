@@ -18,7 +18,7 @@ data:
     \ \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_A\"\r\n\r\n\
     #include <iostream>\r\n#include <climits>\r\n#line 2 \"library/data-structure/segtree.hpp\"\
     \n#include <vector>\n#include <cassert>\n\nnamespace felix {\n\ntemplate<class\
-    \ S, S (*e)(), S (*op)(S, S)>\nclass segtree {\npublic:\n\tsegtree() : segtree(0)\
+    \ S, S (*e)(), S (*op)(S, S)>\nstruct segtree {\npublic:\n\tsegtree() : segtree(0)\
     \ {}\n\texplicit segtree(int _n) : segtree(std::vector<S>(_n, e())) {}\n\texplicit\
     \ segtree(const std::vector<S>& a): n(a.size()) {\n\t\tlog = std::__lg(2 * n -\
     \ 1);\n\t\tsize = 1 << log;\n\t\tst.resize(size * 2, e());\n\t\tfor(int i = 0;\
@@ -72,7 +72,7 @@ data:
   isVerificationFile: true
   path: test/aoj/Range-Minimum-Query.test.cpp
   requiredBy: []
-  timestamp: '2023-04-14 15:55:01+08:00'
+  timestamp: '2023-04-17 12:10:28+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/Range-Minimum-Query.test.cpp

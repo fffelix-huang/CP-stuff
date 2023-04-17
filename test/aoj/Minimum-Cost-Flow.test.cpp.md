@@ -18,7 +18,7 @@ data:
     https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_B\"\r\n\r\n#include\
     \ <iostream>\r\n#line 2 \"library/flow/MCMF.hpp\"\n#include <vector>\n#include\
     \ <queue>\n#include <cassert>\n#include <limits>\n\nnamespace felix {\n\ntemplate<class\
-    \ Cap_t, class Cost_t>\nclass MCMF {\npublic:\n\tstruct Edge {\n\t\tint from;\n\
+    \ Cap_t, class Cost_t>\nstruct MCMF {\npublic:\n\tstruct Edge {\n\t\tint from;\n\
     \t\tint to;\n\t\tCap_t cap;\n\t\tCost_t cost;\n\t\tEdge(int u, int v, Cap_t _cap,\
     \ Cost_t _cost) : from(u), to(v), cap(_cap), cost(_cost) {}\n\t};\n\n\tstatic\
     \ constexpr Cap_t EPS = static_cast<Cap_t>(1e-9);\n\tstatic constexpr Cap_t CAP_INF\
@@ -69,7 +69,7 @@ data:
   isVerificationFile: true
   path: test/aoj/Minimum-Cost-Flow.test.cpp
   requiredBy: []
-  timestamp: '2023-04-07 15:58:52+08:00'
+  timestamp: '2023-04-17 12:10:28+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/Minimum-Cost-Flow.test.cpp

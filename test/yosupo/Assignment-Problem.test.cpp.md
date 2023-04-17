@@ -18,7 +18,7 @@ data:
     \ \"https://judge.yosupo.jp/problem/assignment\"\r\n\r\n#include <iostream>\r\n\
     #line 2 \"library/flow/KM.hpp\"\n#include <vector>\r\n#include <queue>\r\n#include\
     \ <limits>\r\n#include <cassert>\r\n\r\nnamespace felix {\r\n\r\n// https://atcoder.jp/contests/abc247/submissions/30867023\r\
-    \ntemplate<class T>\r\nclass KM {\r\npublic:\r\n\tstatic constexpr T INF = std::numeric_limits<T>::max();\r\
+    \ntemplate<class T>\r\nstruct KM {\r\npublic:\r\n\tstatic constexpr T INF = std::numeric_limits<T>::max();\r\
     \n\r\n\tT solve(int nx, int ny, std::vector<std::vector<T>> a) {\r\n\t\tassert(0\
     \ <= nx && nx <= ny);\r\n\t\tassert((int) a.size() == nx);\r\n\t\tfor(int i =\
     \ 0; i < nx; ++i) {\r\n\t\t\tassert((int) a[i].size() == ny);\r\n\t\t\tfor(auto\
@@ -86,7 +86,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/Assignment-Problem.test.cpp
   requiredBy: []
-  timestamp: '2023-04-13 06:05:35+08:00'
+  timestamp: '2023-04-17 12:10:28+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Assignment-Problem.test.cpp

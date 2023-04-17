@@ -17,7 +17,7 @@ data:
   bundledCode: "#line 2 \"library/data-structure/lazy-segtree.hpp\"\n#include <vector>\n\
     #include <cassert>\n\nnamespace felix {\n\ntemplate<class S,\n         S (*e)(),\n\
     \         S (*op)(S, S),\n         class F,\n         F (*id)(),\n         S (*mapping)(F,\
-    \ S),\n         F (*composition)(F, F)>\nclass lazy_segtree {\npublic:\n\tlazy_segtree()\
+    \ S),\n         F (*composition)(F, F)>\nstruct lazy_segtree {\npublic:\n\tlazy_segtree()\
     \ : lazy_segtree(0) {}\n\texplicit lazy_segtree(int _n) : lazy_segtree(std::vector<S>(_n,\
     \ e())) {}\n\texplicit lazy_segtree(const std::vector<S>& v) : n((int) v.size())\
     \ {\n\t\tlog = std::__lg(2 * n - 1);\n\t\tsize = 1 << log;\n\t\td = std::vector<S>(size\
@@ -77,26 +77,26 @@ data:
   code: "#pragma once\n#include <vector>\n#include <cassert>\n\nnamespace felix {\n\
     \ntemplate<class S,\n         S (*e)(),\n         S (*op)(S, S),\n         class\
     \ F,\n         F (*id)(),\n         S (*mapping)(F, S),\n         F (*composition)(F,\
-    \ F)>\nclass lazy_segtree {\npublic:\n\tlazy_segtree() : lazy_segtree(0) {}\n\t\
-    explicit lazy_segtree(int _n) : lazy_segtree(std::vector<S>(_n, e())) {}\n\texplicit\
-    \ lazy_segtree(const std::vector<S>& v) : n((int) v.size()) {\n\t\tlog = std::__lg(2\
-    \ * n - 1);\n\t\tsize = 1 << log;\n\t\td = std::vector<S>(size << 1, e());\n\t\
-    \tlz = std::vector<F>(size, id());\n\t\tfor(int i = 0; i < n; i++) {\n\t\t\td[size\
-    \ + i] = v[i];\n\t\t}\n\t\tfor(int i = size - 1; i; --i) {\n\t\t\tupdate(i);\n\
-    \t\t}\n\t}\n\n\tvoid set(int p, S x) {\n\t\tassert(0 <= p && p < n);\n\t\tp +=\
-    \ size;\n\t\tfor(int i = log; i; --i) {\n\t\t\tpush(p >> i);\n\t\t}\n\t\td[p]\
-    \ = x;\n\t\tfor(int i = 1; i <= log; ++i) {\n\t\t\tupdate(p >> i);\n\t\t}\n\t\
-    }\n\n\tS get(int p) {\n\t\tassert(0 <= p && p < n);\n\t\tp += size;\n\t\tfor(int\
-    \ i = log; i; i--) {\n\t\t\tpush(p >> i);\n\t\t}\n\t\treturn d[p];\n\t}\n\n\t\
-    S operator[](int p) {\n\t\treturn get(p);\n\t}\n\n\tS prod(int l, int r) {\n\t\
-    \tassert(0 <= l && l <= r && r <= n);\n\t\tif(l == r) {\n\t\t\treturn e();\n\t\
-    \t}\n\t\tl += size;\n\t\tr += size;\n\t\tfor(int i = log; i; i--) {\n\t\t\tif(((l\
-    \ >> i) << i) != l) {\n\t\t\t\tpush(l >> i);\n\t\t\t}\n\t\t\tif(((r >> i) << i)\
-    \ != r) {\n\t\t\t\tpush(r >> i);\n\t\t\t}\n\t\t}\n\t\tS sml = e(), smr = e();\n\
-    \t\twhile(l < r) {\n\t\t\tif(l & 1) {\n\t\t\t\tsml = op(sml, d[l++]);\n\t\t\t\
-    }\n\t\t\tif(r & 1) {\n\t\t\t\tsmr = op(d[--r], smr);\n\t\t\t}\n\t\t\tl >>= 1;\n\
-    \t\t\tr >>= 1;\n\t\t}\n\t\treturn op(sml, smr);\n\t}\n\n\tS all_prod() const {\
-    \ return d[1]; }\n\n\tvoid apply(int p, F f) {\n\t\tassert(0 <= p && p < n);\n\
+    \ F)>\nstruct lazy_segtree {\npublic:\n\tlazy_segtree() : lazy_segtree(0) {}\n\
+    \texplicit lazy_segtree(int _n) : lazy_segtree(std::vector<S>(_n, e())) {}\n\t\
+    explicit lazy_segtree(const std::vector<S>& v) : n((int) v.size()) {\n\t\tlog\
+    \ = std::__lg(2 * n - 1);\n\t\tsize = 1 << log;\n\t\td = std::vector<S>(size <<\
+    \ 1, e());\n\t\tlz = std::vector<F>(size, id());\n\t\tfor(int i = 0; i < n; i++)\
+    \ {\n\t\t\td[size + i] = v[i];\n\t\t}\n\t\tfor(int i = size - 1; i; --i) {\n\t\
+    \t\tupdate(i);\n\t\t}\n\t}\n\n\tvoid set(int p, S x) {\n\t\tassert(0 <= p && p\
+    \ < n);\n\t\tp += size;\n\t\tfor(int i = log; i; --i) {\n\t\t\tpush(p >> i);\n\
+    \t\t}\n\t\td[p] = x;\n\t\tfor(int i = 1; i <= log; ++i) {\n\t\t\tupdate(p >> i);\n\
+    \t\t}\n\t}\n\n\tS get(int p) {\n\t\tassert(0 <= p && p < n);\n\t\tp += size;\n\
+    \t\tfor(int i = log; i; i--) {\n\t\t\tpush(p >> i);\n\t\t}\n\t\treturn d[p];\n\
+    \t}\n\n\tS operator[](int p) {\n\t\treturn get(p);\n\t}\n\n\tS prod(int l, int\
+    \ r) {\n\t\tassert(0 <= l && l <= r && r <= n);\n\t\tif(l == r) {\n\t\t\treturn\
+    \ e();\n\t\t}\n\t\tl += size;\n\t\tr += size;\n\t\tfor(int i = log; i; i--) {\n\
+    \t\t\tif(((l >> i) << i) != l) {\n\t\t\t\tpush(l >> i);\n\t\t\t}\n\t\t\tif(((r\
+    \ >> i) << i) != r) {\n\t\t\t\tpush(r >> i);\n\t\t\t}\n\t\t}\n\t\tS sml = e(),\
+    \ smr = e();\n\t\twhile(l < r) {\n\t\t\tif(l & 1) {\n\t\t\t\tsml = op(sml, d[l++]);\n\
+    \t\t\t}\n\t\t\tif(r & 1) {\n\t\t\t\tsmr = op(d[--r], smr);\n\t\t\t}\n\t\t\tl >>=\
+    \ 1;\n\t\t\tr >>= 1;\n\t\t}\n\t\treturn op(sml, smr);\n\t}\n\n\tS all_prod() const\
+    \ { return d[1]; }\n\n\tvoid apply(int p, F f) {\n\t\tassert(0 <= p && p < n);\n\
     \t\tp += size;\n\t\tfor(int i = log; i; i--) {\n\t\t\tpush(p >> i);\n\t\t}\n\t\
     \td[p] = mapping(f, d[p]);\n\t\tfor(int i = 1; i <= log; i++) {\n\t\t\tupdate(p\
     \ >> i);\n\t\t}\n\t}\n\tvoid apply(int l, int r, F f) {\n\t\tassert(0 <= l &&\
@@ -138,7 +138,7 @@ data:
   isVerificationFile: false
   path: library/data-structure/lazy-segtree.hpp
   requiredBy: []
-  timestamp: '2023-04-06 14:01:45+08:00'
+  timestamp: '2023-04-17 12:10:28+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/Range-Affine-Range-Sum.test.cpp

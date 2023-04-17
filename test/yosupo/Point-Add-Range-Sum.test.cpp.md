@@ -17,7 +17,7 @@ data:
   bundledCode: "#line 1 \"test/yosupo/Point-Add-Range-Sum.test.cpp\"\n#define PROBLEM\
     \ \"https://judge.yosupo.jp/problem/point_add_range_sum\"\r\n\r\n#include <iostream>\r\
     \n#line 2 \"library/data-structure/fenwick.hpp\"\n#include <vector>\n#include\
-    \ <cassert>\n\nnamespace felix {\n\ntemplate<class T>\nclass fenwick {\npublic:\n\
+    \ <cassert>\n\nnamespace felix {\n\ntemplate<class T>\nstruct fenwick {\npublic:\n\
     \tfenwick() : n(0) {}\n\texplicit fenwick(int _n) : n(_n), data(_n) {}\n\n\tvoid\
     \ add(int p, T x) {\n\t\tassert(0 <= p);\n\t\twhile(p < n) {\n\t\t\tdata[p] +=\
     \ x;\n\t\t\tp |= (p + 1);\n\t\t}\n\t}\n\n\tT get(int p) {\n\t\tassert(p < n);\n\
@@ -46,7 +46,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/Point-Add-Range-Sum.test.cpp
   requiredBy: []
-  timestamp: '2023-04-06 14:01:45+08:00'
+  timestamp: '2023-04-17 12:10:28+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Point-Add-Range-Sum.test.cpp

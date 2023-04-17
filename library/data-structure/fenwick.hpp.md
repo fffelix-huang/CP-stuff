@@ -24,7 +24,7 @@ data:
   attributes:
     links: []
   bundledCode: "#line 2 \"library/data-structure/fenwick.hpp\"\n#include <vector>\n\
-    #include <cassert>\n\nnamespace felix {\n\ntemplate<class T>\nclass fenwick {\n\
+    #include <cassert>\n\nnamespace felix {\n\ntemplate<class T>\nstruct fenwick {\n\
     public:\n\tfenwick() : n(0) {}\n\texplicit fenwick(int _n) : n(_n), data(_n) {}\n\
     \n\tvoid add(int p, T x) {\n\t\tassert(0 <= p);\n\t\twhile(p < n) {\n\t\t\tdata[p]\
     \ += x;\n\t\t\tp |= (p + 1);\n\t\t}\n\t}\n\n\tT get(int p) {\n\t\tassert(p < n);\n\
@@ -33,7 +33,7 @@ data:
     \ get(r) - (l ? get(l - 1) : T{});\n\t}\n\nprivate:\n\tint n;\n\tstd::vector<T>\
     \ data;\n};\n\n} // namespace felix\n"
   code: "#pragma once\n#include <vector>\n#include <cassert>\n\nnamespace felix {\n\
-    \ntemplate<class T>\nclass fenwick {\npublic:\n\tfenwick() : n(0) {}\n\texplicit\
+    \ntemplate<class T>\nstruct fenwick {\npublic:\n\tfenwick() : n(0) {}\n\texplicit\
     \ fenwick(int _n) : n(_n), data(_n) {}\n\n\tvoid add(int p, T x) {\n\t\tassert(0\
     \ <= p);\n\t\twhile(p < n) {\n\t\t\tdata[p] += x;\n\t\t\tp |= (p + 1);\n\t\t}\n\
     \t}\n\n\tT get(int p) {\n\t\tassert(p < n);\n\t\tT res{};\n\t\twhile(p >= 0) {\n\
@@ -45,7 +45,7 @@ data:
   path: library/data-structure/fenwick.hpp
   requiredBy:
   - library/data-structure/rectangle-sum.hpp
-  timestamp: '2023-04-06 14:01:45+08:00'
+  timestamp: '2023-04-17 12:10:28+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/Vertex-Add-Path-Sum.test.cpp

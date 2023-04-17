@@ -13,16 +13,16 @@ data:
     links: []
   bundledCode: "#line 2 \"library/flow/MCMF.hpp\"\n#include <vector>\n#include <queue>\n\
     #include <cassert>\n#include <limits>\n\nnamespace felix {\n\ntemplate<class Cap_t,\
-    \ class Cost_t>\nclass MCMF {\npublic:\n\tstruct Edge {\n\t\tint from;\n\t\tint\
-    \ to;\n\t\tCap_t cap;\n\t\tCost_t cost;\n\t\tEdge(int u, int v, Cap_t _cap, Cost_t\
-    \ _cost) : from(u), to(v), cap(_cap), cost(_cost) {}\n\t};\n\n\tstatic constexpr\
-    \ Cap_t EPS = static_cast<Cap_t>(1e-9);\n\tstatic constexpr Cap_t CAP_INF = std::numeric_limits<Cap_t>::max();\n\
-    \tstatic constexpr Cost_t COST_INF = std::numeric_limits<Cost_t>::max();\n\n\t\
-    int n;\n\tstd::vector<Edge> edges;\n\tstd::vector<std::vector<int>> g;\n\tstd::vector<Cost_t>\
-    \ d;\n\tstd::vector<bool> in_queue;\n\tstd::vector<int> previous_edge;\n\n\tMCMF()\
-    \ : n(0) {}\n\texplicit MCMF(int _n) : n(_n), g(_n), d(_n), in_queue(_n), previous_edge(_n)\
-    \ {}\n\n\tvoid add_edge(int u, int v, Cap_t cap, Cost_t cost) {\n\t\tassert(0\
-    \ <= u && u < n);\n\t\tassert(0 <= v && v < n);\n\t\tg[u].push_back(edges.size());\n\
+    \ class Cost_t>\nstruct MCMF {\npublic:\n\tstruct Edge {\n\t\tint from;\n\t\t\
+    int to;\n\t\tCap_t cap;\n\t\tCost_t cost;\n\t\tEdge(int u, int v, Cap_t _cap,\
+    \ Cost_t _cost) : from(u), to(v), cap(_cap), cost(_cost) {}\n\t};\n\n\tstatic\
+    \ constexpr Cap_t EPS = static_cast<Cap_t>(1e-9);\n\tstatic constexpr Cap_t CAP_INF\
+    \ = std::numeric_limits<Cap_t>::max();\n\tstatic constexpr Cost_t COST_INF = std::numeric_limits<Cost_t>::max();\n\
+    \n\tint n;\n\tstd::vector<Edge> edges;\n\tstd::vector<std::vector<int>> g;\n\t\
+    std::vector<Cost_t> d;\n\tstd::vector<bool> in_queue;\n\tstd::vector<int> previous_edge;\n\
+    \n\tMCMF() : n(0) {}\n\texplicit MCMF(int _n) : n(_n), g(_n), d(_n), in_queue(_n),\
+    \ previous_edge(_n) {}\n\n\tvoid add_edge(int u, int v, Cap_t cap, Cost_t cost)\
+    \ {\n\t\tassert(0 <= u && u < n);\n\t\tassert(0 <= v && v < n);\n\t\tg[u].push_back(edges.size());\n\
     \t\tedges.emplace_back(u, v, cap, cost);\n\t\tg[v].push_back(edges.size());\n\t\
     \tedges.emplace_back(v, u, 0, -cost);\n\t}\n\n\tbool spfa(int s, int t) {\n\t\t\
     bool found = false;\n\t\tstd::fill(d.begin(), d.end(), COST_INF);\n\t\td[s] =\
@@ -44,7 +44,7 @@ data:
     \ send;\n\t\t\tcost += send * d[t];\n\t\t}\n\t\treturn std::make_pair(cap, cost);\n\
     \t}\n};\n\n} // namespace felix\n"
   code: "#pragma once\n#include <vector>\n#include <queue>\n#include <cassert>\n#include\
-    \ <limits>\n\nnamespace felix {\n\ntemplate<class Cap_t, class Cost_t>\nclass\
+    \ <limits>\n\nnamespace felix {\n\ntemplate<class Cap_t, class Cost_t>\nstruct\
     \ MCMF {\npublic:\n\tstruct Edge {\n\t\tint from;\n\t\tint to;\n\t\tCap_t cap;\n\
     \t\tCost_t cost;\n\t\tEdge(int u, int v, Cap_t _cap, Cost_t _cost) : from(u),\
     \ to(v), cap(_cap), cost(_cost) {}\n\t};\n\n\tstatic constexpr Cap_t EPS = static_cast<Cap_t>(1e-9);\n\
@@ -79,7 +79,7 @@ data:
   isVerificationFile: false
   path: library/flow/MCMF.hpp
   requiredBy: []
-  timestamp: '2023-04-07 15:58:52+08:00'
+  timestamp: '2023-04-17 12:10:28+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/Minimum-Cost-Flow.test.cpp

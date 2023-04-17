@@ -28,7 +28,7 @@ data:
     links: []
   bundledCode: "#line 2 \"library/data-structure/sparse-table.hpp\"\n#include <vector>\n\
     #include <cassert>\n\nnamespace felix {\n\ntemplate<class T, T (*op)(T, T)>\n\
-    class sparse_table {\npublic:\n\tsparse_table() {}\n\texplicit sparse_table(const\
+    struct sparse_table {\npublic:\n\tsparse_table() {}\n\texplicit sparse_table(const\
     \ std::vector<T>& a) {\n\t\tn = (int) a.size();\n\t\tint max_log = std::__lg(n)\
     \ + 1;\n\t\tmat.resize(max_log);\n\t\tmat[0] = a;\n\t\tfor(int j = 1; j < max_log;\
     \ ++j) {\n\t\t\tmat[j].resize(n - (1 << j) + 1);\n\t\t\tfor(int i = 0; i <= n\
@@ -39,7 +39,7 @@ data:
     }\n\nprivate:\n\tint n;\n\tstd::vector<std::vector<T>> mat;\n};\n\n} // namespace\
     \ felix\n"
   code: "#pragma once\n#include <vector>\n#include <cassert>\n\nnamespace felix {\n\
-    \ntemplate<class T, T (*op)(T, T)>\nclass sparse_table {\npublic:\n\tsparse_table()\
+    \ntemplate<class T, T (*op)(T, T)>\nstruct sparse_table {\npublic:\n\tsparse_table()\
     \ {}\n\texplicit sparse_table(const std::vector<T>& a) {\n\t\tn = (int) a.size();\n\
     \t\tint max_log = std::__lg(n) + 1;\n\t\tmat.resize(max_log);\n\t\tmat[0] = a;\n\
     \t\tfor(int j = 1; j < max_log; ++j) {\n\t\t\tmat[j].resize(n - (1 << j) + 1);\n\
@@ -54,7 +54,7 @@ data:
   path: library/data-structure/sparse-table.hpp
   requiredBy:
   - library/tree/HLD.hpp
-  timestamp: '2023-04-06 14:01:45+08:00'
+  timestamp: '2023-04-17 12:10:28+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/Vertex-Add-Path-Sum.test.cpp

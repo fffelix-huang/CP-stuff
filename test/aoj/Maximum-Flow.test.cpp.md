@@ -17,7 +17,7 @@ data:
   bundledCode: "#line 1 \"test/aoj/Maximum-Flow.test.cpp\"\n#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_A\"\
     \r\n\r\n#include <iostream>\r\n#line 2 \"library/flow/dinic.hpp\"\n#include <vector>\n\
     #include <cassert>\n#include <queue>\n#include <limits>\n\nnamespace felix {\n\
-    \ntemplate<class T>\nclass dinic {\npublic:\n\tstruct Edge {\n\t\tint from, to;\n\
+    \ntemplate<class T>\nstruct dinic {\npublic:\n\tstruct Edge {\n\t\tint from, to;\n\
     \t\tT cap;\n\t\tEdge(int _from, int _to, T _cap) : from(_from), to(_to), cap(_cap)\
     \ {}\n\t};\n\n\tstatic constexpr T INF = std::numeric_limits<T>::max();\n\t\n\t\
     int n;\n\tstd::vector<Edge> edges;\n\tstd::vector<std::vector<int>> g;\n\tstd::vector<int>\
@@ -59,7 +59,7 @@ data:
   isVerificationFile: true
   path: test/aoj/Maximum-Flow.test.cpp
   requiredBy: []
-  timestamp: '2023-04-07 11:28:12+08:00'
+  timestamp: '2023-04-17 12:10:28+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/Maximum-Flow.test.cpp

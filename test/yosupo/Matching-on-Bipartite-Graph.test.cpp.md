@@ -17,7 +17,7 @@ data:
   bundledCode: "#line 1 \"test/yosupo/Matching-on-Bipartite-Graph.test.cpp\"\n#define\
     \ PROBLEM \"https://judge.yosupo.jp/problem/bipartitematching\"\r\n\r\n#include\
     \ <iostream>\r\n#line 2 \"library/graph/bipartite-matching.hpp\"\n#include <vector>\n\
-    #include <queue>\n#include <cassert>\n\nnamespace felix {\n\nclass bipartite_matching\
+    #include <queue>\n#include <cassert>\n\nnamespace felix {\n\nstruct bipartite_matching\
     \ {\npublic:\n\tbipartite_matching() : n(0), m(0) {}\n\texplicit bipartite_matching(int\
     \ _n, int _m) : n(_n), m(_m), lhs(_n), rhs(_m), dist(_n), cur(_n), g(_n) {}\n\n\
     \tvoid add_edge(int u, int v) {\n\t\tassert(0 <= u && u < n);\n\t\tassert(0 <=\
@@ -60,7 +60,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/Matching-on-Bipartite-Graph.test.cpp
   requiredBy: []
-  timestamp: '2023-04-14 23:41:27+08:00'
+  timestamp: '2023-04-17 12:10:28+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Matching-on-Bipartite-Graph.test.cpp

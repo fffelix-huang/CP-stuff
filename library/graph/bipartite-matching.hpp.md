@@ -12,7 +12,7 @@ data:
   attributes:
     links: []
   bundledCode: "#line 2 \"library/graph/bipartite-matching.hpp\"\n#include <vector>\n\
-    #include <queue>\n#include <cassert>\n\nnamespace felix {\n\nclass bipartite_matching\
+    #include <queue>\n#include <cassert>\n\nnamespace felix {\n\nstruct bipartite_matching\
     \ {\npublic:\n\tbipartite_matching() : n(0), m(0) {}\n\texplicit bipartite_matching(int\
     \ _n, int _m) : n(_n), m(_m), lhs(_n), rhs(_m), dist(_n), cur(_n), g(_n) {}\n\n\
     \tvoid add_edge(int u, int v) {\n\t\tassert(0 <= u && u < n);\n\t\tassert(0 <=\
@@ -35,7 +35,7 @@ data:
     std::vector<int> lhs, rhs;\n\tstd::vector<int> dist, cur;\n\tstd::vector<std::vector<int>>\
     \ g;\n};\n\n} // namespace felix\n"
   code: "#pragma once\n#include <vector>\n#include <queue>\n#include <cassert>\n\n\
-    namespace felix {\n\nclass bipartite_matching {\npublic:\n\tbipartite_matching()\
+    namespace felix {\n\nstruct bipartite_matching {\npublic:\n\tbipartite_matching()\
     \ : n(0), m(0) {}\n\texplicit bipartite_matching(int _n, int _m) : n(_n), m(_m),\
     \ lhs(_n), rhs(_m), dist(_n), cur(_n), g(_n) {}\n\n\tvoid add_edge(int u, int\
     \ v) {\n\t\tassert(0 <= u && u < n);\n\t\tassert(0 <= v && v < m);\n\t\tg[u].push_back(v);\n\
@@ -60,7 +60,7 @@ data:
   isVerificationFile: false
   path: library/graph/bipartite-matching.hpp
   requiredBy: []
-  timestamp: '2023-04-14 23:41:27+08:00'
+  timestamp: '2023-04-17 12:10:28+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/Matching-on-Bipartite-Graph.test.cpp

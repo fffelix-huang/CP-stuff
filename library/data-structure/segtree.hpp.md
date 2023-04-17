@@ -13,7 +13,7 @@ data:
     links: []
   bundledCode: "#line 2 \"library/data-structure/segtree.hpp\"\n#include <vector>\n\
     #include <cassert>\n\nnamespace felix {\n\ntemplate<class S, S (*e)(), S (*op)(S,\
-    \ S)>\nclass segtree {\npublic:\n\tsegtree() : segtree(0) {}\n\texplicit segtree(int\
+    \ S)>\nstruct segtree {\npublic:\n\tsegtree() : segtree(0) {}\n\texplicit segtree(int\
     \ _n) : segtree(std::vector<S>(_n, e())) {}\n\texplicit segtree(const std::vector<S>&\
     \ a): n(a.size()) {\n\t\tlog = std::__lg(2 * n - 1);\n\t\tsize = 1 << log;\n\t\
     \tst.resize(size * 2, e());\n\t\tfor(int i = 0; i < n; ++i) {\n\t\t\tst[size +\
@@ -47,7 +47,7 @@ data:
     \ size, log;\n\tstd::vector<S> st;\n\n\tvoid update(int v) {\n\t\tst[v] = op(st[v\
     \ * 2], st[v * 2 + 1]);\n\t}\n};\n\n} // namespace felix\n"
   code: "#pragma once\n#include <vector>\n#include <cassert>\n\nnamespace felix {\n\
-    \ntemplate<class S, S (*e)(), S (*op)(S, S)>\nclass segtree {\npublic:\n\tsegtree()\
+    \ntemplate<class S, S (*e)(), S (*op)(S, S)>\nstruct segtree {\npublic:\n\tsegtree()\
     \ : segtree(0) {}\n\texplicit segtree(int _n) : segtree(std::vector<S>(_n, e()))\
     \ {}\n\texplicit segtree(const std::vector<S>& a): n(a.size()) {\n\t\tlog = std::__lg(2\
     \ * n - 1);\n\t\tsize = 1 << log;\n\t\tst.resize(size * 2, e());\n\t\tfor(int\
@@ -84,7 +84,7 @@ data:
   isVerificationFile: false
   path: library/data-structure/segtree.hpp
   requiredBy: []
-  timestamp: '2023-04-14 15:55:01+08:00'
+  timestamp: '2023-04-17 12:10:28+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/Range-Minimum-Query.test.cpp

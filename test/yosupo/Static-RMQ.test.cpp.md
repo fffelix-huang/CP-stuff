@@ -17,7 +17,7 @@ data:
   bundledCode: "#line 1 \"test/yosupo/Static-RMQ.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/staticrmq\"\
     \r\n\r\n#include <iostream>\r\n#include <vector>\r\n#include <algorithm>\r\n#line\
     \ 3 \"library/data-structure/sparse-table.hpp\"\n#include <cassert>\n\nnamespace\
-    \ felix {\n\ntemplate<class T, T (*op)(T, T)>\nclass sparse_table {\npublic:\n\
+    \ felix {\n\ntemplate<class T, T (*op)(T, T)>\nstruct sparse_table {\npublic:\n\
     \tsparse_table() {}\n\texplicit sparse_table(const std::vector<T>& a) {\n\t\t\
     n = (int) a.size();\n\t\tint max_log = std::__lg(n) + 1;\n\t\tmat.resize(max_log);\n\
     \t\tmat[0] = a;\n\t\tfor(int j = 1; j < max_log; ++j) {\n\t\t\tmat[j].resize(n\
@@ -46,7 +46,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/Static-RMQ.test.cpp
   requiredBy: []
-  timestamp: '2023-04-06 14:01:45+08:00'
+  timestamp: '2023-04-17 12:10:28+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Static-RMQ.test.cpp

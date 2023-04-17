@@ -18,7 +18,7 @@ data:
     \ PROBLEM \"https://judge.yosupo.jp/problem/general_matching\"\n\n#include <iostream>\n\
     #line 2 \"library/graph/general-matching.hpp\"\n#include <vector>\n#include <numeric>\n\
     #include <cassert>\n#include <random>\n#include <chrono>\n#include <algorithm>\n\
-    \nnamespace felix {\n\nclass general_matching {\npublic:\n\tgeneral_matching()\
+    \nnamespace felix {\n\nstruct general_matching {\npublic:\n\tgeneral_matching()\
     \ : n(0) {}\n\texplicit general_matching(int n) : n(n), g(n, -1), mate(n, -1),\
     \ vis(n, false) {}\n\n\tvoid add_edge(int a, int b) {\n\t\tedges.emplace_back(b,\
     \ g[a]);\n\t\tg[a] = (int) edges.size() - 1;\n\t\tedges.emplace_back(a, g[b]);\n\
@@ -58,7 +58,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/Matching-on-General-Graph.test.cpp
   requiredBy: []
-  timestamp: '2023-04-14 23:28:35+08:00'
+  timestamp: '2023-04-17 12:10:28+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Matching-on-General-Graph.test.cpp

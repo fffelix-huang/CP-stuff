@@ -17,7 +17,7 @@ data:
   bundledCode: "#line 1 \"test/yosupo/Strongly-Connected-Components.test.cpp\"\n#define\
     \ PROBLEM \"https://judge.yosupo.jp/problem/scc\"\r\n\r\n#include <iostream>\r\
     \n#line 2 \"library/graph/SCC.hpp\"\n#include <vector>\n#include <cassert>\n#include\
-    \ <algorithm>\n#include <functional>\n\nnamespace felix {\n\nclass SCC {\npublic:\n\
+    \ <algorithm>\n#include <functional>\n\nnamespace felix {\n\nstruct SCC {\npublic:\n\
     \tSCC() : n(0) {}\n\texplicit SCC(int _n) : n(_n), g(_n), h(_n) {}\n\n\tvoid add_edge(int\
     \ u, int v) {\n\t\tassert(0 <= u && u < n);\n\t\tassert(0 <= v && v < n);\n\t\t\
     g[u].push_back(v);\n\t\th[v].push_back(u);\n\t}\n\n\tstd::vector<int> solve()\
@@ -63,7 +63,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/Strongly-Connected-Components.test.cpp
   requiredBy: []
-  timestamp: '2023-04-07 23:16:56+08:00'
+  timestamp: '2023-04-17 12:10:28+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Strongly-Connected-Components.test.cpp

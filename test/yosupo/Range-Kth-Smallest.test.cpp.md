@@ -17,7 +17,7 @@ data:
   bundledCode: "#line 1 \"test/yosupo/Range-Kth-Smallest.test.cpp\"\n#define PROBLEM\
     \ \"https://judge.yosupo.jp/problem/range_kth_smallest\"\r\n\r\n#include <iostream>\r\
     \n#include <vector>\r\n#line 3 \"library/data-structure/wavelet-tree.hpp\"\n#include\
-    \ <algorithm>\n\nnamespace felix {\n\ntemplate<class T>\nclass wavelet_tree {\n\
+    \ <algorithm>\n\nnamespace felix {\n\ntemplate<class T>\nstruct wavelet_tree {\n\
     public:\n\twavelet_tree() {}\n\texplicit wavelet_tree(const std::vector<T>& _v)\
     \ : n(_v.size()), vals(_v) {\n\t\tstd::sort(vals.begin(), vals.end());\n\t\tvals.erase(std::unique(vals.begin(),\
     \ vals.end()), vals.end());\n\t\tlog = std::__lg(2 * vals.size() - 1);\n\t\tbits.resize((log\
@@ -63,7 +63,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/Range-Kth-Smallest.test.cpp
   requiredBy: []
-  timestamp: '2023-04-15 17:44:44+08:00'
+  timestamp: '2023-04-17 12:10:28+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Range-Kth-Smallest.test.cpp

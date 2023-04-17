@@ -17,7 +17,7 @@ data:
   bundledCode: "#line 1 \"test/yosupo/Unionfind.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/unionfind\"\
     \r\n\r\n#include <iostream>\r\n#line 2 \"library/data-structure/DSU.hpp\"\n#include\
     \ <vector>\n#include <cassert>\n#include <algorithm>\n\nnamespace felix {\n\n\
-    class DSU {\npublic:\n\tDSU() : DSU(0) {}\n\n\texplicit DSU(int _n) : n(_n), sz(n,\
+    struct DSU {\npublic:\n\tDSU() : DSU(0) {}\n\texplicit DSU(int _n) : n(_n), sz(n,\
     \ -1) {}\n\t\n\tint leader(int u) {\n\t\tassert(0 <= u && u < n);\n\t\treturn\
     \ (sz[u] < 0 ? u : (sz[u] = leader(sz[u])));\n\t}\n\t\n\tbool merge(int a, int\
     \ b) {\n\t\ta = leader(a);\n\t\tb = leader(b);\n\t\tif(a == b) {\n\t\t\treturn\
@@ -49,7 +49,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/Unionfind.test.cpp
   requiredBy: []
-  timestamp: '2023-04-09 13:15:34+08:00'
+  timestamp: '2023-04-17 12:10:28+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Unionfind.test.cpp

@@ -12,7 +12,7 @@ data:
   attributes:
     links: []
   bundledCode: "#line 2 \"library/data-structure/binary-trie.hpp\"\n#include <vector>\r\
-    \n#include <array>\r\n\r\nnamespace felix {\r\n\r\ntemplate<class T>\r\nclass\
+    \n#include <array>\r\n\r\nnamespace felix {\r\n\r\ntemplate<class T>\r\nstruct\
     \ binary_trie {\r\npublic:\r\n\tbinary_trie() {\r\n\t\tnew_node();\r\n\t}\r\n\r\
     \n\tvoid clear() {\r\n\t\ttrie.clear();\r\n\t\tnew_node();\r\n\t}\r\n\r\n\tvoid\
     \ insert(T x) {\r\n\t\tfor(int i = B - 1, p = 0; i >= 0; i--) {\r\n\t\t\tint y\
@@ -39,7 +39,7 @@ data:
     \n\t\treturn (int) trie.size() - 1;\r\n\t}\r\n};\r\n\r\n} // namespace felix\r\
     \n"
   code: "#pragma once\r\n#include <vector>\r\n#include <array>\r\n\r\nnamespace felix\
-    \ {\r\n\r\ntemplate<class T>\r\nclass binary_trie {\r\npublic:\r\n\tbinary_trie()\
+    \ {\r\n\r\ntemplate<class T>\r\nstruct binary_trie {\r\npublic:\r\n\tbinary_trie()\
     \ {\r\n\t\tnew_node();\r\n\t}\r\n\r\n\tvoid clear() {\r\n\t\ttrie.clear();\r\n\
     \t\tnew_node();\r\n\t}\r\n\r\n\tvoid insert(T x) {\r\n\t\tfor(int i = B - 1, p\
     \ = 0; i >= 0; i--) {\r\n\t\t\tint y = x >> i & 1;\r\n\t\t\tif(trie[p].go[y] ==\
@@ -68,7 +68,7 @@ data:
   isVerificationFile: false
   path: library/data-structure/binary-trie.hpp
   requiredBy: []
-  timestamp: '2023-04-04 20:16:33+08:00'
+  timestamp: '2023-04-17 12:10:28+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/Set-Xor-Min.test.cpp

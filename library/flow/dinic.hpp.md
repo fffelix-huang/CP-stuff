@@ -13,9 +13,9 @@ data:
     links: []
   bundledCode: "#line 2 \"library/flow/dinic.hpp\"\n#include <vector>\n#include <cassert>\n\
     #include <queue>\n#include <limits>\n\nnamespace felix {\n\ntemplate<class T>\n\
-    class dinic {\npublic:\n\tstruct Edge {\n\t\tint from, to;\n\t\tT cap;\n\t\tEdge(int\
-    \ _from, int _to, T _cap) : from(_from), to(_to), cap(_cap) {}\n\t};\n\n\tstatic\
-    \ constexpr T INF = std::numeric_limits<T>::max();\n\t\n\tint n;\n\tstd::vector<Edge>\
+    struct dinic {\npublic:\n\tstruct Edge {\n\t\tint from, to;\n\t\tT cap;\n\t\t\
+    Edge(int _from, int _to, T _cap) : from(_from), to(_to), cap(_cap) {}\n\t};\n\n\
+    \tstatic constexpr T INF = std::numeric_limits<T>::max();\n\t\n\tint n;\n\tstd::vector<Edge>\
     \ edges;\n\tstd::vector<std::vector<int>> g;\n\tstd::vector<int> cur, h;\n\n\t\
     dinic() : n(0) {}\n\texplicit dinic(int _n) : n(_n), g(_n) {}\n\n\tvoid add_edge(int\
     \ u, int v, T c) {\n\t\tassert(0 <= u && u < n);\n\t\tassert(0 <= v && v < n);\n\
@@ -38,7 +38,7 @@ data:
     \ send = dfs(s, t, f);\n\t\t\tans += send;\n\t\t\tf -= send;\n\t\t}\n\t\treturn\
     \ ans;\n\t}\n};\n\n} // namespace felix\n"
   code: "#pragma once\n#include <vector>\n#include <cassert>\n#include <queue>\n#include\
-    \ <limits>\n\nnamespace felix {\n\ntemplate<class T>\nclass dinic {\npublic:\n\
+    \ <limits>\n\nnamespace felix {\n\ntemplate<class T>\nstruct dinic {\npublic:\n\
     \tstruct Edge {\n\t\tint from, to;\n\t\tT cap;\n\t\tEdge(int _from, int _to, T\
     \ _cap) : from(_from), to(_to), cap(_cap) {}\n\t};\n\n\tstatic constexpr T INF\
     \ = std::numeric_limits<T>::max();\n\t\n\tint n;\n\tstd::vector<Edge> edges;\n\
@@ -67,7 +67,7 @@ data:
   isVerificationFile: false
   path: library/flow/dinic.hpp
   requiredBy: []
-  timestamp: '2023-04-07 11:28:12+08:00'
+  timestamp: '2023-04-17 12:10:28+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/Maximum-Flow.test.cpp
