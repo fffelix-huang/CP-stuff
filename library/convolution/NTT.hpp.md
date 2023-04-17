@@ -85,8 +85,8 @@ data:
     \ 1) * 2) {\r\n\t\t\tn = std::min((sz - 1) * 2, mod() - 1);\r\n\t\t}\r\n\t\tfacts.resize(n\
     \ + 1);\r\n\t\tinv_facts.resize(n + 1);\r\n\t\tinvs.resize(n + 1);\r\n\t\tfor(int\
     \ i = sz; i <= n; i++) {\r\n\t\t\tfacts[i] = facts[i - 1] * i;\r\n\t\t}\r\n\t\t\
-    auto eg = internal::inv_gcd(facts.back()(), mod());\r\n\t\tassert(eg.first ==\
-    \ 1);\r\n\t\tinv_facts[n] = eg.second;\r\n\t\tfor(int i = n - 1; i >= sz; i--)\
+    auto eg = internal::inv_gcd<long long>(facts.back()(), mod());\r\n\t\tassert(eg.first\
+    \ == 1);\r\n\t\tinv_facts[n] = eg.second;\r\n\t\tfor(int i = n - 1; i >= sz; i--)\
     \ {\r\n\t\t\tinv_facts[i] = inv_facts[i + 1] * (i + 1);\r\n\t\t}\r\n\t\tfor(int\
     \ i = n; i >= sz; i--) {\r\n\t\t\tinvs[i] = inv_facts[i] * facts[i - 1];\r\n\t\
     \t}\r\n\t}\r\n \r\n\tconstexpr modint() : value(0) {} \r\n\ttemplate<class T>\
@@ -95,7 +95,7 @@ data:
     \n \r\n\ttemplate<class T>\r\n\texplicit constexpr operator T() const {\r\n\t\t\
     return static_cast<T>(value);\r\n\t}\r\n\r\n\tconstexpr modint inv() const {\r\
     \n\t\tif(id > 0 && value < std::min(mod() >> 1, 1 << 18)) {\r\n\t\t\tprepare(value);\r\
-    \n\t\t\treturn invs[value];\r\n\t\t}\r\n\t\tauto eg = internal::inv_gcd(value,\
+    \n\t\t\treturn invs[value];\r\n\t\t}\r\n\t\tauto eg = internal::inv_gcd<long long>(value,\
     \ mod());\r\n\t\tassert(eg.first == 1);\r\n\t\treturn eg.second;\r\n\t}\r\n\r\n\
     \tconstexpr modint fact() const {\r\n\t\tprepare(value);\r\n\t\treturn facts[value];\r\
     \n\t}\r\n\r\n\tconstexpr modint inv_fact() const {\r\n\t\tprepare(value);\r\n\t\
@@ -406,7 +406,7 @@ data:
   path: library/convolution/NTT.hpp
   requiredBy:
   - library/formal-power-series/poly.hpp
-  timestamp: '2023-04-17 14:44:56+08:00'
+  timestamp: '2023-04-17 15:22:37+08:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/Sqrt-of-Formal-Power-Series.test.cpp
