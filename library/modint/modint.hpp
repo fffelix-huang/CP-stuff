@@ -55,7 +55,7 @@ public:
 	}
  
 	constexpr modint() : value(0) {} 
-	template<class T> constexpr modint(T v) : value(v >= 0 ? v % mod() : (v % mod() + mod()) % mod()) {}
+	template<class T> constexpr modint(T v) : value(v >= 0 ? v % mod() : v % mod() + mod()) {}
  
 	constexpr int operator()() const { return value; }
 	template<class T> explicit constexpr operator T() const { return static_cast<T>(value); }
