@@ -3,6 +3,8 @@
 #include <cstring>
 #include <type_traits>
 
+namespace std {
+
 static struct FastInput {
 	static constexpr int BUF_SIZE = 1 << 20;
 	char buf[BUF_SIZE];
@@ -186,3 +188,5 @@ static struct FastOutput {
 
 #define ostream FastOutput
 #define cout fast_output
+
+} // namespace std

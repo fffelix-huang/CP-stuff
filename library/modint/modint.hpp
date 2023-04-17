@@ -45,7 +45,7 @@ public:
 		for(int i = sz; i <= n; i++) {
 			facts[i] = facts[i - 1] * i;
 		}
-		auto eg = internal::inv_gcd(facts.back()(), mod());
+		auto eg = internal::inv_gcd<long long>(facts.back()(), mod());
 		assert(eg.first == 1);
 		inv_facts[n] = eg.second;
 		for(int i = n - 1; i >= sz; i--) {
@@ -73,7 +73,7 @@ public:
 			prepare(value);
 			return invs[value];
 		}
-		auto eg = internal::inv_gcd(value, mod());
+		auto eg = internal::inv_gcd<long long>(value, mod());
 		assert(eg.first == 1);
 		return eg.second;
 	}
