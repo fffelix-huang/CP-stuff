@@ -69,7 +69,7 @@ public:
 	}
 
 	constexpr friend Poly operator*(Poly a, Poly b) {
-		return Poly(NTT<mod>::multiply(a.a, b.a));
+		return Poly(convolution(a.a, b.a));
 	}
 
 	constexpr friend Poly operator*(mint a, Poly b) {

@@ -58,13 +58,7 @@ public:
  
 	constexpr modint() : value(0) {}
  
-	constexpr modint(long long v) {
-		v %= mod();
-		if(v < 0) {
-			v += mod();
-		}
-		value = v;
-	}
+	constexpr modint(long long v) : value((v % mod() + mod()) % mod()) {}
  
 	constexpr int operator()() const {
 		return value;
@@ -76,10 +70,8 @@ public:
 	}
 
 	constexpr modint inv() const {
-		if(id > 0 && value < std::min(mod() >> 1, 1 << 20)) {
+		if(id > 0 && value < std::min(mod() >> 1, 1 << 18)) {
 			prepare(value);
-		}
-		if(value < (int) invs.size()) {
 			return invs[value];
 		}
 		auto eg = internal::inv_gcd(value, mod());
@@ -155,7 +147,7 @@ public:
 	}
 
 	constexpr modint pow(unsigned long long p) const {
-		modint a(*this), res = 1;
+		modint a(*this), res(1);
 		while(p) {
 			if(p & 1) {
 				res *= a;
