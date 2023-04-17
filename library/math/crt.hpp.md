@@ -8,13 +8,10 @@ data:
     path: library/internal/safe-mod.hpp
     title: library/internal/safe-mod.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/yosupo/Convolution-Mod-1000000007.test.cpp
-    title: test/yosupo/Convolution-Mod-1000000007.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"library/math/crt.hpp\"\n#include <vector>\r\n#include <tuple>\r\
@@ -64,9 +61,8 @@ data:
   path: library/math/crt.hpp
   requiredBy: []
   timestamp: '2023-04-06 00:00:42+08:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/yosupo/Convolution-Mod-1000000007.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: library/math/crt.hpp
 layout: document
 title: "crt (\u4E2D\u570B\u5269\u9918\u5B9A\u7406)"

@@ -10,9 +10,6 @@ data:
   - icon: ':question:'
     path: library/internal/safe-mod.hpp
     title: library/internal/safe-mod.hpp
-  - icon: ':x:'
-    path: library/math/crt.hpp
-    title: "crt (\u4E2D\u570B\u5269\u9918\u5B9A\u7406)"
   - icon: ':question:'
     path: library/modint/modint.hpp
     title: library/modint/modint.hpp
@@ -31,12 +28,12 @@ data:
     - https://judge.yosupo.jp/problem/convolution_mod_1000000007
   bundledCode: "#line 1 \"test/yosupo/Convolution-Mod-1000000007.test.cpp\"\n#define\
     \ PROBLEM \"https://judge.yosupo.jp/problem/convolution_mod_1000000007\"\r\n\r\
-    \n#include <iostream>\r\n#line 2 \"library/math/crt.hpp\"\n#include <vector>\r\
-    \n#include <tuple>\r\n#include <cassert>\r\n#include <algorithm>\r\n#line 2 \"\
-    library/internal/safe-mod.hpp\"\n\r\nnamespace felix {\r\n\r\nnamespace internal\
-    \ {\r\n\r\ntemplate<class T>\r\nconstexpr T safe_mod(T x, T m) {\r\n\tx %= m;\r\
-    \n\tif(x < 0) {\r\n\t\tx += m;\r\n\t}\r\n\treturn x;\r\n}\r\n\r\n} // namespace\
-    \ internal\r\n\r\n} // namespace felix\n#line 3 \"library/internal/inv-gcd.hpp\"\
+    \n#include <iostream>\r\n#line 3 \"library/modint/modint.hpp\"\n#include <vector>\r\
+    \n#include <algorithm>\r\n#include <cassert>\r\n#include <random>\r\n#include\
+    \ <chrono>\r\n#line 2 \"library/internal/safe-mod.hpp\"\n\r\nnamespace felix {\r\
+    \n\r\nnamespace internal {\r\n\r\ntemplate<class T>\r\nconstexpr T safe_mod(T\
+    \ x, T m) {\r\n\tx %= m;\r\n\tif(x < 0) {\r\n\t\tx += m;\r\n\t}\r\n\treturn x;\r\
+    \n}\r\n\r\n} // namespace internal\r\n\r\n} // namespace felix\n#line 3 \"library/internal/inv-gcd.hpp\"\
     \n\r\nnamespace felix {\r\n\r\nnamespace internal {\r\n\r\ntemplate<class T>\r\
     \nconstexpr std::pair<T, T> inv_gcd(T a, T b) {\r\n\ta = safe_mod(a, b);\r\n\t\
     if(a == 0) {\r\n\t\treturn {b, 0};\r\n\t}\r\n\tT s = b, t = a;\r\n\tT m0 = 0,\
@@ -44,22 +41,8 @@ data:
     \ m1 * u;\r\n\t\tauto tmp = s;\r\n\t\ts = t;\r\n\t\tt = tmp;\r\n\t\ttmp = m0;\r\
     \n\t\tm0 = m1;\r\n\t\tm1 = tmp;\r\n\t}\r\n\tif(m0 < 0) {\r\n\t\tm0 += b / s;\r\
     \n\t}\r\n\treturn {s, m0};\r\n}\r\n\r\n} // namespace internal\r\n\r\n} // namespace\
-    \ felix\r\n#line 8 \"library/math/crt.hpp\"\n\r\nnamespace felix {\r\n\r\n// (rem,\
-    \ mod)\r\ntemplate<class T>\r\nstd::pair<T, T> crt(const std::vector<T>& r, const\
-    \ std::vector<T>& m) {\r\n\tassert(r.size() == m.size());\r\n\tint n = (int) r.size();\r\
-    \n\t// Contracts: 0 <= r0 < m0\r\n\tT r0 = 0, m0 = 1;\r\n\tfor(int i = 0; i <\
-    \ n; i++) {\r\n\t\tassert(1 <= m[i]);\r\n\t\tT r1 = internal::safe_mod(r[i], m[i]);\r\
-    \n\t\tT m1 = m[i];\r\n\t\tif(m0 < m1) {\r\n\t\t\tstd::swap(r0, r1);\r\n\t\t\t\
-    std::swap(m0, m1);\r\n\t\t}\r\n\t\tif(m0 % m1 == 0) {\r\n\t\t\tif(r0 % m1 != r1)\
-    \ {\r\n\t\t\t\treturn {0, 0};\r\n\t\t\t}\r\n\t\t\tcontinue;\r\n\t\t}\r\n\t\tT\
-    \ g, im;\r\n\t\tstd::tie(g, im) = internal::inv_gcd(m0, m1);\r\n\t\tT u1 = (m1\
-    \ / g);\r\n\t\tif((r1 - r0) % g) {\r\n\t\t\treturn {0, 0};\r\n\t\t}\r\n\t\tT x\
-    \ = (r1 - r0) / g % u1 * im % u1;\r\n\t\tr0 += x * m0;\r\n\t\tm0 *= u1;\r\n\t\t\
-    if(r0 < 0) {\r\n\t\t\tr0 += m0;\r\n\t\t}\r\n\t}\r\n\treturn {r0, m0};\r\n}\r\n\
-    \r\n} // namespace felix\r\n#line 5 \"library/convolution/NTT.hpp\"\n#include\
-    \ <type_traits>\r\n#line 6 \"library/modint/modint.hpp\"\n#include <random>\r\n\
-    #include <chrono>\r\n#line 3 \"library/random/rng.hpp\"\n\nnamespace felix {\n\
-    \ninline unsigned long long rng() {\n\tstatic unsigned long long SEED = std::chrono::steady_clock::now().time_since_epoch().count();\n\
+    \ felix\r\n#line 3 \"library/random/rng.hpp\"\n\nnamespace felix {\n\ninline unsigned\
+    \ long long rng() {\n\tstatic unsigned long long SEED = std::chrono::steady_clock::now().time_since_epoch().count();\n\
     \tSEED ^= SEED << 7;\n\tSEED ^= SEED >> 9;\n\treturn SEED & 0xFFFFFFFFULL;\n}\n\
     \n} // namespace felix\n#line 10 \"library/modint/modint.hpp\"\n\r\nnamespace\
     \ felix {\r\n\r\ntemplate<int id>\r\nstruct modint {\r\npublic:\r\n\tstatic constexpr\
@@ -128,8 +111,9 @@ data:
     \ id> std::vector<modint<id>> modint<id>::facts = {1};\r\ntemplate<int id> std::vector<modint<id>>\
     \ modint<id>::inv_facts = {1};\r\ntemplate<int id> std::vector<modint<id>> modint<id>::invs\
     \ = {0};\r\n\r\nusing modint998244353 = modint<998244353>;\r\nusing modint1000000007\
-    \ = modint<1000000007>;\r\n\r\n} // namespace felix\r\n#line 8 \"library/convolution/NTT.hpp\"\
-    \n\r\nnamespace felix {\r\n\r\nnamespace internal {\r\n\r\nconstexpr int primitive_root_constexpr(int\
+    \ = modint<1000000007>;\r\n\r\n} // namespace felix\r\n#line 5 \"library/convolution/NTT.hpp\"\
+    \n#include <type_traits>\r\n#line 8 \"library/convolution/NTT.hpp\"\n\r\nnamespace\
+    \ felix {\r\n\r\nnamespace internal {\r\n\r\nconstexpr int primitive_root_constexpr(int\
     \ m) {\r\n\tif(m == 2) return 1;\r\n\tif(m == 167772161) return 3;\r\n\tif(m ==\
     \ 469762049) return 3;\r\n\tif(m == 754974721) return 11;\r\n\tif(m == 880803841)\
     \ return 26;\r\n\tif(m == 998244353) return 3;\r\n\tif(m == 1045430273) return\
@@ -255,38 +239,33 @@ data:
     \ r01 % m1;\r\n\t\tlong long z = ((n2 + m2 - x) * r02r12 + (m2 - y) * r12) % m2;\r\
     \n\t\tans[i] = x + y * w1 + __uint128_t(z) * w2;\r\n\t}\r\n\treturn ans;\r\n}\r\
     \n\r\n} // namespace felix\r\n#line 6 \"test/yosupo/Convolution-Mod-1000000007.test.cpp\"\
-    \nusing namespace std;\r\nusing namespace felix;\r\n\r\nconstexpr int NTT_PRIMES[]\
-    \ = {469762049, 754974721, 998244353};\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\
-    \n\tcin.tie(0);\r\n\tint n, m;\r\n\tcin >> n >> m;\r\n\tvector<int> a(n);\r\n\t\
-    for(int i = 0; i < n; i++) {\r\n\t\tcin >> a[i];\r\n\t}\r\n\tvector<int> b(m);\r\
-    \n\tfor(int i = 0; i < m; i++) {\r\n\t\tcin >> b[i];\r\n\t}\r\n\tauto c0 = NTT<NTT_PRIMES[0]>::multiply(a,\
-    \ b);\r\n\tauto c1 = NTT<NTT_PRIMES[1]>::multiply(a, b);\r\n\tauto c2 = NTT<NTT_PRIMES[2]>::multiply(a,\
-    \ b);\r\n\tfor(int i = 0; i < n + m - 1; i++) {\r\n\t\tcout << (int) (crt(vector<__int128>{c0[i],\
-    \ c1[i], c2[i]}, vector<__int128>{NTT_PRIMES, NTT_PRIMES + 3}).first % ((int)\
-    \ 1e9 + 7)) << \" \\n\"[i == n + m - 2];\r\n\t}\r\n\treturn 0;\r\n}\r\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/convolution_mod_1000000007\"\
-    \r\n\r\n#include <iostream>\r\n#include \"../../library/math/crt.hpp\"\r\n#include\
-    \ \"../../library/convolution/NTT.hpp\"\r\nusing namespace std;\r\nusing namespace\
-    \ felix;\r\n\r\nconstexpr int NTT_PRIMES[] = {469762049, 754974721, 998244353};\r\
+    \nusing namespace std;\r\nusing namespace felix;\r\n\r\nusing mint = modint1000000007;\r\
     \n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\n\tcin.tie(0);\r\n\tint\
     \ n, m;\r\n\tcin >> n >> m;\r\n\tvector<int> a(n);\r\n\tfor(int i = 0; i < n;\
     \ i++) {\r\n\t\tcin >> a[i];\r\n\t}\r\n\tvector<int> b(m);\r\n\tfor(int i = 0;\
-    \ i < m; i++) {\r\n\t\tcin >> b[i];\r\n\t}\r\n\tauto c0 = NTT<NTT_PRIMES[0]>::multiply(a,\
-    \ b);\r\n\tauto c1 = NTT<NTT_PRIMES[1]>::multiply(a, b);\r\n\tauto c2 = NTT<NTT_PRIMES[2]>::multiply(a,\
-    \ b);\r\n\tfor(int i = 0; i < n + m - 1; i++) {\r\n\t\tcout << (int) (crt(vector<__int128>{c0[i],\
-    \ c1[i], c2[i]}, vector<__int128>{NTT_PRIMES, NTT_PRIMES + 3}).first % ((int)\
-    \ 1e9 + 7)) << \" \\n\"[i == n + m - 2];\r\n\t}\r\n\treturn 0;\r\n}\r\n"
+    \ i < m; i++) {\r\n\t\tcin >> b[i];\r\n\t}\r\n\tauto c = convolution_u128(a, b);\r\
+    \n\tfor(int i = 0; i < n + m - 1; i++) {\r\n\t\tcout << mint(c[i]) << \" \\n\"\
+    [i == n + m - 2];\r\n\t}\r\n\treturn 0;\r\n}\r\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/convolution_mod_1000000007\"\
+    \r\n\r\n#include <iostream>\r\n#include \"../../library/modint/modint.hpp\"\r\n\
+    #include \"../../library/convolution/NTT.hpp\"\r\nusing namespace std;\r\nusing\
+    \ namespace felix;\r\n\r\nusing mint = modint1000000007;\r\n\r\nint main() {\r\
+    \n\tios::sync_with_stdio(false);\r\n\tcin.tie(0);\r\n\tint n, m;\r\n\tcin >> n\
+    \ >> m;\r\n\tvector<int> a(n);\r\n\tfor(int i = 0; i < n; i++) {\r\n\t\tcin >>\
+    \ a[i];\r\n\t}\r\n\tvector<int> b(m);\r\n\tfor(int i = 0; i < m; i++) {\r\n\t\t\
+    cin >> b[i];\r\n\t}\r\n\tauto c = convolution_u128(a, b);\r\n\tfor(int i = 0;\
+    \ i < n + m - 1; i++) {\r\n\t\tcout << mint(c[i]) << \" \\n\"[i == n + m - 2];\r\
+    \n\t}\r\n\treturn 0;\r\n}\r\n"
   dependsOn:
-  - library/math/crt.hpp
-  - library/internal/safe-mod.hpp
-  - library/internal/inv-gcd.hpp
-  - library/convolution/NTT.hpp
   - library/modint/modint.hpp
+  - library/internal/inv-gcd.hpp
+  - library/internal/safe-mod.hpp
   - library/random/rng.hpp
+  - library/convolution/NTT.hpp
   isVerificationFile: true
   path: test/yosupo/Convolution-Mod-1000000007.test.cpp
   requiredBy: []
-  timestamp: '2023-04-17 12:10:28+08:00'
+  timestamp: '2023-04-17 13:53:00+08:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/Convolution-Mod-1000000007.test.cpp

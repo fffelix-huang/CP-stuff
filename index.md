@@ -101,7 +101,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/binary-gcd.hpp
       title: "Binary GCD (\u4F4D\u5143 GCD)"
-    - icon: ':x:'
+    - icon: ':warning:'
       path: library/math/crt.hpp
       title: "crt (\u4E2D\u570B\u5269\u9918\u5B9A\u7406)"
     - icon: ':heavy_check_mark:'
