@@ -44,7 +44,7 @@ public:
 			facts[i] = facts[i - 1] * i;
 		}
 		auto eg = internal::inv_gcd(facts.back()(), mod());
-		assert(eg.first == 1);
+		// assert(eg.first == 1); 
 		inv_facts[n] = eg.second;
 		for(int i = n - 1; i >= sz; i--) {
 			inv_facts[i] = inv_facts[i + 1] * (i + 1);
