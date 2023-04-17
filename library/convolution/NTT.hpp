@@ -249,7 +249,7 @@ std::vector<mint> convolution(const std::vector<mint>& a, const std::vector<mint
     }
     int sz = 1 << std::__lg(2 * (n + m - 1) - 1);
     assert((mint::mod() - 1) % sz == 0);
-    if(std::min(n, m) < 64) {
+    if(std::min(n, m) < 128) {
     	return n >= m ? internal::convolution_naive(a, b) : internal::convolution_naive(b, a);
     }
     return internal::convolution_ntt(a, b);
@@ -277,7 +277,6 @@ std::vector<T> convolution(const std::vector<T>& a, const std::vector<T>& b) {
 
 template<class T>
 std::vector<__uint128_t> convolution_u128(const std::vector<T>& a, const std::vector<T>& b) {
-	#define constexpr const
 	static constexpr int m0 = 167772161;
 	static constexpr int m1 = 469762049;
 	static constexpr int m2 = 754974721;
@@ -295,7 +294,7 @@ std::vector<__uint128_t> convolution_u128(const std::vector<T>& a, const std::ve
 		return {};
 	}
 	std::vector<__uint128_t> ans(a.size() + b.size() - 1);
-	if(std::min(a.size(), b.size()) < 64) {
+	if(std::min(a.size(), b.size()) < 128) {
 		for(int i = 0; i < (int) a.size(); i++) {
 			for(int j = 0; j < (int) b.size(); j++) {
 				ans[i + j] += 1LL * a[i] * b[j];
