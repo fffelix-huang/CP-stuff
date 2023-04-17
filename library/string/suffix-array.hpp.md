@@ -73,9 +73,8 @@ data:
     \ i = 0; i < n; i++) {\r\n\t\tif(i && s[idx[i - 1]] != s[idx[i]]) {\r\n\t\t\t\
     now++;\r\n\t\t}\r\n\t\ts2[idx[i]] = now;\r\n\t}\r\n\treturn internal::sa_is(s2,\
     \ now);\r\n}\r\n\r\nstd::vector<int> suffix_array(const std::string& s) {\r\n\t\
-    int n = (int) s.size();\r\n\tstd::vector<int> s2(n);\r\n\tfor(int i = 0; i < n;\
-    \ i++) {\r\n\t\ts2[i] = s[i];\r\n\t}\r\n\treturn internal::sa_is(s2, 255);\r\n\
-    }\r\n\r\n} // namespace felix\r\n"
+    return internal::sa_is(std::vector<int>(s.begin(), s.end()), 255);\r\n}\r\n\r\n\
+    } // namespace felix\r\n"
   code: "#pragma once\r\n#include <vector>\r\n#include <cstring>\r\n#include <algorithm>\r\
     \n#include <numeric>\r\n#include <cassert>\r\n\r\nnamespace felix {\r\n\r\nnamespace\
     \ internal {\r\n\r\nstd::vector<int> sa_is(const std::vector<int>& s, int upper)\
@@ -134,14 +133,13 @@ data:
     \tint now = 0;\r\n\tfor(int i = 0; i < n; i++) {\r\n\t\tif(i && s[idx[i - 1]]\
     \ != s[idx[i]]) {\r\n\t\t\tnow++;\r\n\t\t}\r\n\t\ts2[idx[i]] = now;\r\n\t}\r\n\
     \treturn internal::sa_is(s2, now);\r\n}\r\n\r\nstd::vector<int> suffix_array(const\
-    \ std::string& s) {\r\n\tint n = (int) s.size();\r\n\tstd::vector<int> s2(n);\r\
-    \n\tfor(int i = 0; i < n; i++) {\r\n\t\ts2[i] = s[i];\r\n\t}\r\n\treturn internal::sa_is(s2,\
+    \ std::string& s) {\r\n\treturn internal::sa_is(std::vector<int>(s.begin(), s.end()),\
     \ 255);\r\n}\r\n\r\n} // namespace felix\r\n"
   dependsOn: []
   isVerificationFile: false
   path: library/string/suffix-array.hpp
   requiredBy: []
-  timestamp: '2023-04-16 22:59:03+08:00'
+  timestamp: '2023-04-17 09:05:42+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/Suffix-Array.test.cpp

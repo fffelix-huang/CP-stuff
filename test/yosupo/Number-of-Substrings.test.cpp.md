@@ -78,29 +78,26 @@ data:
     \ i = 0; i < n; i++) {\r\n\t\tif(i && s[idx[i - 1]] != s[idx[i]]) {\r\n\t\t\t\
     now++;\r\n\t\t}\r\n\t\ts2[idx[i]] = now;\r\n\t}\r\n\treturn internal::sa_is(s2,\
     \ now);\r\n}\r\n\r\nstd::vector<int> suffix_array(const std::string& s) {\r\n\t\
-    int n = (int) s.size();\r\n\tstd::vector<int> s2(n);\r\n\tfor(int i = 0; i < n;\
-    \ i++) {\r\n\t\ts2[i] = s[i];\r\n\t}\r\n\treturn internal::sa_is(s2, 255);\r\n\
-    }\r\n\r\n} // namespace felix\r\n#line 7 \"library/string/lcp-array.hpp\"\n\r\n\
-    namespace felix {\r\n\t\r\n// Reference:\r\n// T. Kasai, G. Lee, H. Arimura, S.\
-    \ Arikawa, and K. Park,\r\n// Linear-Time Longest-Common-Prefix Computation in\
-    \ Suffix Arrays and Its\r\n// Applications\r\ntemplate<class T>\r\nstd::vector<int>\
-    \ lcp_array(const std::vector<T>& s, const std::vector<int>& sa) {\r\n\tint n\
-    \ = (int) s.size();\r\n\tassert(n >= 1);\r\n\tstd::vector<int> rnk(n);\r\n\tfor(int\
-    \ i = 0; i < n; i++) {\r\n\t\trnk[sa[i]] = i;\r\n\t}\r\n\tstd::vector<int> lcp(n\
-    \ - 1);\r\n\tint h = 0;\r\n\tfor(int i = 0; i < n; i++) {\r\n\t\tif(h > 0) {\r\
-    \n\t\t\th--;\r\n\t\t}\r\n\t\tif(rnk[i] == 0) {\r\n\t\t\tcontinue;\r\n\t\t}\r\n\
-    \t\tint j = sa[rnk[i] - 1];\r\n\t\tfor(; j + h < n && i + h < n; h++) {\r\n\t\t\
-    \tif(s[j + h] != s[i + h]) {\r\n\t\t\t\tbreak;\r\n\t\t\t}\r\n\t\t}\r\n\t\tlcp[rnk[i]\
-    \ - 1] = h;\r\n\t}\r\n\treturn lcp;\r\n}\r\n\r\nstd::vector<int> lcp_array(const\
-    \ std::string& s, const std::vector<int>& sa) {\r\n\tint n = (int) s.size();\r\
-    \n\tstd::vector<int> s2(n);\r\n\tfor(int i = 0; i < n; i++) {\r\n\t\ts2[i] = s[i];\r\
-    \n\t}\r\n\treturn lcp_array(s2, sa);\r\n}\r\n\r\n} // namespace felix\r\n#line\
-    \ 7 \"test/yosupo/Number-of-Substrings.test.cpp\"\nusing namespace std;\r\nusing\
-    \ namespace felix;\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\n\t\
-    cin.tie(0);\r\n\tstring s;\r\n\tcin >> s;\r\n\tint n = (int) s.size();\r\n\tauto\
-    \ sa = suffix_array(s);\r\n\tauto lcp = lcp_array(s, sa);\r\n\tcout << n * (n\
-    \ + 1LL) / 2 - accumulate(lcp.begin(), lcp.end(), 0LL) << \"\\n\";\r\n\treturn\
-    \ 0;\r\n}\r\n"
+    return internal::sa_is(std::vector<int>(s.begin(), s.end()), 255);\r\n}\r\n\r\n\
+    } // namespace felix\r\n#line 7 \"library/string/lcp-array.hpp\"\n\r\nnamespace\
+    \ felix {\r\n\t\r\n// Reference:\r\n// T. Kasai, G. Lee, H. Arimura, S. Arikawa,\
+    \ and K. Park,\r\n// Linear-Time Longest-Common-Prefix Computation in Suffix Arrays\
+    \ and Its\r\n// Applications\r\ntemplate<class T>\r\nstd::vector<int> lcp_array(const\
+    \ std::vector<T>& s, const std::vector<int>& sa) {\r\n\tint n = (int) s.size();\r\
+    \n\tassert(n >= 1);\r\n\tstd::vector<int> rnk(n);\r\n\tfor(int i = 0; i < n; i++)\
+    \ {\r\n\t\trnk[sa[i]] = i;\r\n\t}\r\n\tstd::vector<int> lcp(n - 1);\r\n\tint h\
+    \ = 0;\r\n\tfor(int i = 0; i < n; i++) {\r\n\t\tif(h > 0) {\r\n\t\t\th--;\r\n\t\
+    \t}\r\n\t\tif(rnk[i] == 0) {\r\n\t\t\tcontinue;\r\n\t\t}\r\n\t\tint j = sa[rnk[i]\
+    \ - 1];\r\n\t\tfor(; j + h < n && i + h < n; h++) {\r\n\t\t\tif(s[j + h] != s[i\
+    \ + h]) {\r\n\t\t\t\tbreak;\r\n\t\t\t}\r\n\t\t}\r\n\t\tlcp[rnk[i] - 1] = h;\r\n\
+    \t}\r\n\treturn lcp;\r\n}\r\n\r\nstd::vector<int> lcp_array(const std::string&\
+    \ s, const std::vector<int>& sa) {\r\n\treturn lcp_array(std::vector<int>(s.begin(),\
+    \ s.end()), sa);\r\n}\r\n\r\n} // namespace felix\r\n#line 7 \"test/yosupo/Number-of-Substrings.test.cpp\"\
+    \nusing namespace std;\r\nusing namespace felix;\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\
+    \n\tcin.tie(0);\r\n\tstring s;\r\n\tcin >> s;\r\n\tint n = (int) s.size();\r\n\
+    \tauto sa = suffix_array(s);\r\n\tauto lcp = lcp_array(s, sa);\r\n\tcout << n\
+    \ * (n + 1LL) / 2 - accumulate(lcp.begin(), lcp.end(), 0LL) << \"\\n\";\r\n\t\
+    return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/number_of_substrings\"\r\
     \n\r\n#include <iostream>\r\n#include <numeric>\r\n#include \"../../library/string/suffix-array.hpp\"\
     \r\n#include \"../../library/string/lcp-array.hpp\"\r\nusing namespace std;\r\n\
@@ -115,7 +112,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/Number-of-Substrings.test.cpp
   requiredBy: []
-  timestamp: '2023-04-16 22:59:03+08:00'
+  timestamp: '2023-04-17 09:05:42+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Number-of-Substrings.test.cpp
