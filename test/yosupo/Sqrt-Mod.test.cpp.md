@@ -43,56 +43,54 @@ data:
     \tSEED ^= SEED << 7;\n\tSEED ^= SEED >> 9;\n\treturn SEED & 0xFFFFFFFFULL;\n}\n\
     \n} // namespace felix\n#line 10 \"library/modint/modint.hpp\"\n\r\nnamespace\
     \ felix {\r\n\r\ntemplate<int id>\r\nstruct modint {\r\npublic:\r\n\tstatic constexpr\
-    \ int mod() {\r\n\t\treturn (id > 0 ? id : md);\r\n\t}\r\n \t\r\n\tstatic constexpr\
-    \ void set_mod(int m) {\r\n\t\tif(id > 0 || md == m) {\r\n\t\t\treturn;\r\n\t\t\
-    }\r\n\t\tmd = m;\r\n\t\tfacts.resize(1);\r\n\t\tinv_facts.resize(1);\r\n\t\tinvs.resize(1);\r\
-    \n\t}\r\n\r\n\tstatic constexpr void prepare(int n) {\r\n\t\tint sz = (int) facts.size();\r\
+    \ int mod() { return (id > 0 ? id : md); }\r\n \t\r\n\tstatic constexpr void set_mod(int\
+    \ m) {\r\n\t\tif(id > 0 || md == m) {\r\n\t\t\treturn;\r\n\t\t}\r\n\t\tmd = m;\r\
+    \n\t\tfacts.resize(1);\r\n\t\tinv_facts.resize(1);\r\n\t\tinvs.resize(1);\r\n\t\
+    }\r\n\r\n\tstatic constexpr void prepare(int n) {\r\n\t\tint sz = (int) facts.size();\r\
     \n\t\tif(sz == mod()) {\r\n\t\t\treturn;\r\n\t\t}\r\n\t\tn = 1 << std::__lg(2\
     \ * n - 1);\r\n\t\tif(n < sz) {\r\n\t\t\treturn;\r\n\t\t}\r\n\t\tif(n < (sz -\
     \ 1) * 2) {\r\n\t\t\tn = std::min((sz - 1) * 2, mod() - 1);\r\n\t\t}\r\n\t\tfacts.resize(n\
     \ + 1);\r\n\t\tinv_facts.resize(n + 1);\r\n\t\tinvs.resize(n + 1);\r\n\t\tfor(int\
     \ i = sz; i <= n; i++) {\r\n\t\t\tfacts[i] = facts[i - 1] * i;\r\n\t\t}\r\n\t\t\
-    auto eg = internal::inv_gcd<long long>(facts.back()(), mod());\r\n\t\tassert(eg.first\
-    \ == 1);\r\n\t\tinv_facts[n] = eg.second;\r\n\t\tfor(int i = n - 1; i >= sz; i--)\
-    \ {\r\n\t\t\tinv_facts[i] = inv_facts[i + 1] * (i + 1);\r\n\t\t}\r\n\t\tfor(int\
-    \ i = n; i >= sz; i--) {\r\n\t\t\tinvs[i] = inv_facts[i] * facts[i - 1];\r\n\t\
-    \t}\r\n\t}\r\n \r\n\tconstexpr modint() : value(0) {} \r\n\ttemplate<class T>\
-    \ constexpr modint(T v) : value(v >= 0 ? v % mod() : (v % mod() + mod()) % mod())\
-    \ {}\r\n \r\n\tconstexpr int operator()() const {\r\n\t\treturn value;\r\n\t}\r\
-    \n \r\n\ttemplate<class T>\r\n\texplicit constexpr operator T() const {\r\n\t\t\
-    return static_cast<T>(value);\r\n\t}\r\n\r\n\tconstexpr modint inv() const {\r\
-    \n\t\tif(id > 0 && value < std::min(mod() >> 1, 1 << 18)) {\r\n\t\t\tprepare(value);\r\
-    \n\t\t\treturn invs[value];\r\n\t\t}\r\n\t\tauto eg = internal::inv_gcd<long long>(value,\
-    \ mod());\r\n\t\tassert(eg.first == 1);\r\n\t\treturn eg.second;\r\n\t}\r\n\r\n\
-    \tconstexpr modint fact() const {\r\n\t\tprepare(value);\r\n\t\treturn facts[value];\r\
-    \n\t}\r\n\r\n\tconstexpr modint inv_fact() const {\r\n\t\tprepare(value);\r\n\t\
-    \treturn inv_facts[value];\r\n\t}\r\n \r\n\tconstexpr modint& operator+=(const\
-    \ modint& rhs) & {\r\n\t\tvalue += rhs.value;\r\n\t\tif(value >= mod()) {\r\n\t\
-    \t\tvalue -= mod();\r\n\t\t}\r\n\t\treturn *this;\r\n\t}\r\n \r\n\tconstexpr modint&\
-    \ operator-=(const modint& rhs) & {\r\n\t\tvalue -= rhs.value;\r\n\t\tif(value\
-    \ < 0) {\r\n\t\t\tvalue += mod();\r\n\t\t}\r\n\t\treturn *this;\r\n\t}\r\n\r\n\
-    \tconstexpr modint& operator*=(const modint& rhs) & {\r\n\t\tvalue = 1LL * value\
-    \ * rhs.value % mod();\r\n\t\treturn *this;\r\n\t}\r\n\r\n\tconstexpr modint&\
-    \ operator/=(const modint& rhs) & {\r\n\t\treturn *this *= rhs.inv();\r\n\t}\r\
-    \n\r\n\tfriend constexpr modint operator+(modint lhs, modint rhs) {\r\n\t\treturn\
-    \ lhs += rhs;\r\n\t}\r\n\r\n\tfriend constexpr modint operator-(modint lhs, modint\
-    \ rhs) {\r\n\t\treturn lhs -= rhs;\r\n\t}\r\n\r\n\tfriend constexpr modint operator*(modint\
-    \ lhs, modint rhs) {\r\n\t\treturn lhs *= rhs;\r\n\t}\r\n\r\n\tfriend constexpr\
-    \ modint operator/(modint lhs, modint rhs) {\r\n\t\treturn lhs /= rhs;\r\n\t}\r\
-    \n\r\n\tconstexpr modint operator+() const {\r\n\t\treturn *this;\r\n\t}\r\n\r\
-    \n\tconstexpr modint operator-() const {\r\n\t\treturn modint() - *this;\r\n\t\
-    }\r\n \r\n\tconstexpr bool operator==(const modint& rhs) const {\r\n\t\treturn\
-    \ value == rhs.value;\r\n\t}\r\n \r\n\tconstexpr bool operator!=(const modint&\
-    \ rhs) const {\r\n\t\treturn !(*this == rhs);\r\n\t}\r\n\r\n\tconstexpr modint\
-    \ pow(unsigned long long p) const {\r\n\t\tmodint a(*this), res(1);\r\n\t\twhile(p)\
-    \ {\r\n\t\t\tif(p & 1) {\r\n\t\t\t\tres *= a;\r\n\t\t\t}\r\n\t\t\ta *= a;\r\n\t\
-    \t\tp >>= 1;\r\n\t\t}\r\n\t\treturn res;\r\n\t}\r\n\r\n\tbool has_sqrt() const\
-    \ {\r\n\t\tif(mod() == 2 || value == 0) {\r\n\t\t\treturn true;\r\n\t\t}\r\n\t\
-    \tif(pow((mod() - 1) / 2) != 1) {\r\n\t\t\treturn false;\r\n\t\t}\r\n\t\treturn\
-    \ true;\r\n\t}\r\n\r\n\tmodint sqrt() const {\r\n\t\tusing mint = modint;\r\n\t\
-    \tif(mod() == 2 || value == 0) {\r\n\t\t\treturn *this;\r\n\t\t}\r\n\t\tassert(pow((mod()\
-    \ - 1) / 2) == 1);\r\n\t\tif(mod() % 4 == 3) {\r\n\t\t\treturn pow((mod() + 1)\
-    \ / 4);\r\n\t\t}\r\n\t\tint pw = (mod() - 1) / 2;\r\n\t\tint K = std::__lg(pw);\r\
+    auto eg = internal::inv_gcd(facts.back()(), mod());\r\n\t\t// assert(eg.first\
+    \ == 1); \r\n\t\tinv_facts[n] = eg.second;\r\n\t\tfor(int i = n - 1; i >= sz;\
+    \ i--) {\r\n\t\t\tinv_facts[i] = inv_facts[i + 1] * (i + 1);\r\n\t\t}\r\n\t\t\
+    for(int i = n; i >= sz; i--) {\r\n\t\t\tinvs[i] = inv_facts[i] * facts[i - 1];\r\
+    \n\t\t}\r\n\t}\r\n \r\n\tconstexpr modint() : value(0) {} \r\n\ttemplate<class\
+    \ T> constexpr modint(T v) : value(v >= 0 ? v % mod() : (v % mod() + mod()) %\
+    \ mod()) {}\r\n \r\n\tconstexpr int operator()() const { return value; }\r\n\t\
+    template<class T> explicit constexpr operator T() const { return static_cast<T>(value);\
+    \ }\r\n\r\n\tconstexpr modint inv() const {\r\n\t\tif(id > 0 && value < std::min(mod()\
+    \ >> 1, 1 << 18)) {\r\n\t\t\tprepare(value);\r\n\t\t\treturn invs[value];\r\n\t\
+    \t}\r\n\t\tauto eg = internal::inv_gcd(value, mod());\r\n\t\tassert(eg.first ==\
+    \ 1);\r\n\t\treturn eg.second;\r\n\t}\r\n\r\n\tconstexpr modint fact() const {\r\
+    \n\t\tprepare(value);\r\n\t\treturn facts[value];\r\n\t}\r\n\r\n\tconstexpr modint\
+    \ inv_fact() const {\r\n\t\tprepare(value);\r\n\t\treturn inv_facts[value];\r\n\
+    \t}\r\n \r\n\tconstexpr modint& operator+=(const modint& rhs) & {\r\n\t\tvalue\
+    \ += rhs.value;\r\n\t\tif(value >= mod()) {\r\n\t\t\tvalue -= mod();\r\n\t\t}\r\
+    \n\t\treturn *this;\r\n\t}\r\n \r\n\tconstexpr modint& operator-=(const modint&\
+    \ rhs) & {\r\n\t\tvalue -= rhs.value;\r\n\t\tif(value < 0) {\r\n\t\t\tvalue +=\
+    \ mod();\r\n\t\t}\r\n\t\treturn *this;\r\n\t}\r\n\r\n\tconstexpr modint& operator*=(const\
+    \ modint& rhs) & {\r\n\t\tvalue = 1LL * value * rhs.value % mod();\r\n\t\treturn\
+    \ *this;\r\n\t}\r\n\r\n\tconstexpr modint& operator/=(const modint& rhs) & {\r\
+    \n\t\treturn *this *= rhs.inv();\r\n\t}\r\n\r\n\tfriend constexpr modint operator+(modint\
+    \ lhs, modint rhs) { return lhs += rhs; }\r\n\tfriend constexpr modint operator-(modint\
+    \ lhs, modint rhs) { return lhs -= rhs; }\r\n\tfriend constexpr modint operator*(modint\
+    \ lhs, modint rhs) { return lhs *= rhs; }\r\n\tfriend constexpr modint operator/(modint\
+    \ lhs, modint rhs) { return lhs /= rhs; }\r\n\r\n\tconstexpr modint operator+()\
+    \ const { return *this; }\r\n\tconstexpr modint operator-() const { return modint()\
+    \ - *this; } \r\n\tconstexpr bool operator==(const modint& rhs) const { return\
+    \ value == rhs.value; } \r\n\tconstexpr bool operator!=(const modint& rhs) const\
+    \ { return value != rhs.value; }\r\n\r\n\tconstexpr modint pow(unsigned long long\
+    \ p) const {\r\n\t\tmodint a(*this), res(1);\r\n\t\twhile(p) {\r\n\t\t\tif(p &\
+    \ 1) {\r\n\t\t\t\tres *= a;\r\n\t\t\t}\r\n\t\t\ta *= a;\r\n\t\t\tp >>= 1;\r\n\t\
+    \t}\r\n\t\treturn res;\r\n\t}\r\n\r\n\tbool has_sqrt() const {\r\n\t\tif(mod()\
+    \ == 2 || value == 0) {\r\n\t\t\treturn true;\r\n\t\t}\r\n\t\tif(pow((mod() -\
+    \ 1) / 2) != 1) {\r\n\t\t\treturn false;\r\n\t\t}\r\n\t\treturn true;\r\n\t}\r\
+    \n\r\n\tmodint sqrt() const {\r\n\t\tusing mint = modint;\r\n\t\tif(mod() == 2\
+    \ || value == 0) {\r\n\t\t\treturn *this;\r\n\t\t}\r\n\t\tassert(pow((mod() -\
+    \ 1) / 2) == 1);\r\n\t\tif(mod() % 4 == 3) {\r\n\t\t\treturn pow((mod() + 1) /\
+    \ 4);\r\n\t\t}\r\n\t\tint pw = (mod() - 1) / 2;\r\n\t\tint K = std::__lg(pw);\r\
     \n\t\twhile(true) {\r\n\t\t\tmint t = rng();\r\n\t\t\tmint a = 0, b = 0, c = 1;\r\
     \n\t\t\tfor(int k = K; k >= 0; --k) {\r\n\t\t\t\ta = b * b;\r\n\t\t\t\tb = b *\
     \ c * 2;\r\n\t\t\t\tc = c * c + a * *this;\r\n\t\t\t\tif(~pw >> k & 1) {\r\n\t\
@@ -132,7 +130,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/Sqrt-Mod.test.cpp
   requiredBy: []
-  timestamp: '2023-04-17 15:22:37+08:00'
+  timestamp: '2023-04-17 16:34:47+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Sqrt-Mod.test.cpp
