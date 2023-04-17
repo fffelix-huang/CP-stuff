@@ -22,8 +22,7 @@ std::vector<int> KMP(const std::vector<T>& a) {
 }
 
 std::vector<int> KMP(const std::string& s) {
-	std::vector<int> s2(s.begin(), s.end());
-	return KMP(s2);
+	return KMP(std::vector<int>(s.begin(), s.end()));
 }
 
 } // namespace felix

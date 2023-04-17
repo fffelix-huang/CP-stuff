@@ -40,12 +40,7 @@ std::vector<int> lcp_array(const std::vector<T>& s, const std::vector<int>& sa) 
 }
 
 std::vector<int> lcp_array(const std::string& s, const std::vector<int>& sa) {
-	int n = (int) s.size();
-	std::vector<int> s2(n);
-	for(int i = 0; i < n; i++) {
-		s2[i] = s[i];
-	}
-	return lcp_array(s2, sa);
+	return lcp_array(std::vector<int>(s.begin(), s.end()), sa);
 }
 
 } // namespace felix

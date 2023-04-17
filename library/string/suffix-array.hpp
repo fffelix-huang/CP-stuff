@@ -163,12 +163,7 @@ std::vector<int> suffix_array(const std::vector<T>& s) {
 }
 
 std::vector<int> suffix_array(const std::string& s) {
-	int n = (int) s.size();
-	std::vector<int> s2(n);
-	for(int i = 0; i < n; i++) {
-		s2[i] = s[i];
-	}
-	return internal::sa_is(s2, 255);
+	return internal::sa_is(std::vector<int>(s.begin(), s.end()), 255);
 }
 
 } // namespace felix

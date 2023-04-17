@@ -25,8 +25,7 @@ std::vector<int> z_algorithm(const std::vector<T>& a) {
 }
 
 std::vector<int> z_algorithm(const std::string& s) {
-	std::vector<int> s2(s.begin(), s.end());
-	return z_algorithm(s2);
+	return z_algorithm(std::vector<int>(s.begin(), s.end()));
 }
 
 } // namespace felix
