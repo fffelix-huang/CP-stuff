@@ -55,15 +55,15 @@ data:
     \ 1) * 2) {\r\n\t\t\tn = std::min((sz - 1) * 2, mod() - 1);\r\n\t\t}\r\n\t\tfacts.resize(n\
     \ + 1);\r\n\t\tinv_facts.resize(n + 1);\r\n\t\tinvs.resize(n + 1);\r\n\t\tfor(int\
     \ i = sz; i <= n; i++) {\r\n\t\t\tfacts[i] = facts[i - 1] * i;\r\n\t\t}\r\n\t\t\
-    auto eg = internal::inv_gcd(facts.back()(), mod());\r\n\t\t// assert(eg.first\
-    \ == 1); \r\n\t\tinv_facts[n] = eg.second;\r\n\t\tfor(int i = n - 1; i >= sz;\
-    \ i--) {\r\n\t\t\tinv_facts[i] = inv_facts[i + 1] * (i + 1);\r\n\t\t}\r\n\t\t\
-    for(int i = n; i >= sz; i--) {\r\n\t\t\tinvs[i] = inv_facts[i] * facts[i - 1];\r\
-    \n\t\t}\r\n\t}\r\n \r\n\tconstexpr modint() : value(0) {} \r\n\ttemplate<class\
-    \ T> constexpr modint(T v) : value(v >= 0 ? v % mod() : (v % mod() + mod()) %\
-    \ mod()) {}\r\n \r\n\tconstexpr int operator()() const { return value; }\r\n\t\
-    template<class T> explicit constexpr operator T() const { return static_cast<T>(value);\
-    \ }\r\n\r\n\tconstexpr modint inv() const {\r\n\t\tif(id > 0 && value < std::min(mod()\
+    auto eg = internal::inv_gcd(facts.back()(), mod());\r\n\t\tassert(eg.first ==\
+    \ 1);\r\n\t\tinv_facts[n] = eg.second;\r\n\t\tfor(int i = n - 1; i >= sz; i--)\
+    \ {\r\n\t\t\tinv_facts[i] = inv_facts[i + 1] * (i + 1);\r\n\t\t}\r\n\t\tfor(int\
+    \ i = n; i >= sz; i--) {\r\n\t\t\tinvs[i] = inv_facts[i] * facts[i - 1];\r\n\t\
+    \t}\r\n\t}\r\n \r\n\tconstexpr modint() : value(0) {} \r\n\ttemplate<class T>\
+    \ constexpr modint(T v) : value(v >= 0 ? v % mod() : (v % mod() + mod()) % mod())\
+    \ {}\r\n \r\n\tconstexpr int operator()() const { return value; }\r\n\ttemplate<class\
+    \ T> explicit constexpr operator T() const { return static_cast<T>(value); }\r\
+    \n\r\n\tconstexpr modint inv() const {\r\n\t\tif(id > 0 && value < std::min(mod()\
     \ >> 1, 1 << 18)) {\r\n\t\t\tprepare(value);\r\n\t\t\treturn invs[value];\r\n\t\
     \t}\r\n\t\tauto eg = internal::inv_gcd(value, mod());\r\n\t\tassert(eg.first ==\
     \ 1);\r\n\t\treturn eg.second;\r\n\t}\r\n\r\n\tconstexpr modint fact() const {\r\
@@ -174,7 +174,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/Bitwise-Xor-Convolution.test.cpp
   requiredBy: []
-  timestamp: '2023-04-17 16:34:47+08:00'
+  timestamp: '2023-04-17 16:59:25+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Bitwise-Xor-Convolution.test.cpp
