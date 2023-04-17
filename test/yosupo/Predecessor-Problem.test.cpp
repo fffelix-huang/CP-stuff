@@ -26,7 +26,7 @@ int main() {
 		} else if(type == 1) {
 			tree.erase(x);
 		} else if(type == 2) {
-			cout << (tree.find_next(x) == x) << "\n";
+			cout << tree.contains(x) << "\n";
 		} else if(type == 3) {
 			int ans = tree.find_next(x);
 			if(ans >= n) {
