@@ -5,7 +5,7 @@
 namespace felix {
 
 template<class T>
-class fenwick {
+struct fenwick {
 public:
 	fenwick() : n(0) {}
 	explicit fenwick(int _n) : n(_n), data(_n) {}

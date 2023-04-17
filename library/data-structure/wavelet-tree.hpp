@@ -5,7 +5,7 @@
 namespace felix {
 
 template<class T>
-class wavelet_tree {
+struct wavelet_tree {
 public:
 	wavelet_tree() {}
 	explicit wavelet_tree(const std::vector<T>& _v) : n(_v.size()), vals(_v) {

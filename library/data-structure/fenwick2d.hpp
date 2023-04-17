@@ -5,7 +5,7 @@
 namespace felix {
 
 template<class T>
-class fenwick2d {
+struct fenwick2d {
 public:
 	fenwick2d() : n(0), m(0) {}
 	explicit fenwick2d(int _n, int _m) : n(_n), m(_m), data(_n, std::vector<T>(_m)) {}

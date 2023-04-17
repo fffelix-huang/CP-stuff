@@ -8,7 +8,7 @@ namespace felix {
 
 // https://atcoder.jp/contests/abc247/submissions/30867023
 template<class T>
-class KM {
+struct KM {
 public:
 	static constexpr T INF = std::numeric_limits<T>::max();
 

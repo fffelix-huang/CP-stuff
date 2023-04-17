@@ -5,7 +5,7 @@
 namespace felix {
 
 template<class T>
-class binary_trie {
+struct binary_trie {
 public:
 	binary_trie() {
 		new_node();

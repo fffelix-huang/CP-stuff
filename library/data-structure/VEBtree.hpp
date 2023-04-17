@@ -4,24 +4,18 @@
 namespace felix {
 
 template<int B, typename ENABLE = void>
-class VEBtree {
+struct VEBtree {
 private:
 	constexpr static int K = B / 2, R = (B + 1) / 2, M = (1 << B);
 	constexpr static int S = 1 << K, MASK = (1 << R) - 1;
 
 	std::array<VEBtree<R>, S> child;
 	VEBtree<K> act = {};
-	int mn = M;
-	int mx = -1;
+	int mn = M, mx = -1;
 
 public:
-	bool empty() const {
-		return mx < mn;
-	}
-
-	bool contains(int i) const {
-		return find_next(i) == i;
-	}
+	bool empty() const { return mx < mn; }
+	bool contains(int i) const { return find_next(i) == i; }
 	
 	int find_next(int i) const {
 		if(i <= mn) {
@@ -121,23 +115,17 @@ public:
 };
 
 template<int B>
-class VEBtree<B, std::enable_if_t<(B <= 6)>> {
+struct VEBtree<B, std::enable_if_t<(B <= 6)>> {
 private:
 	constexpr static int M = (1 << B);
 	unsigned long long act = 0;
 
 public:
-	bool empty() const {
-		return !act;
-	}
-
-	void clear() { 
-		act = 0;
-	}
-
-	bool contains(int i) const {
-		return find_next(i) == i;
-	}
+	bool empty() const { return !act; }
+	void clear() { act = 0; }
+	bool contains(int i) const { return find_next(i) == i; }
+	void insert(int i) { act |= 1ULL << i; }
+	void erase(int i) { act &= ~(1ULL << i); }
 
 	int find_next(int i) const {
 		unsigned long long tmp = act >> i;
@@ -147,14 +135,6 @@ public:
 	int find_prev(int i) const {
 		unsigned long long tmp = act << (63 - i);
 		return (tmp ? i - __builtin_clzll(tmp) : -1);
-	}
-
-	void insert(int i) {
-		act |= 1ULL << i;
-	}
-
-	void erase(int i) {
-		act &= ~(1ULL << i);
 	}
 };
 

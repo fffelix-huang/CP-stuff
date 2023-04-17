@@ -8,7 +8,7 @@
 
 namespace felix {
 
-class general_matching {
+struct general_matching {
 public:
 	general_matching() : n(0) {}
 	explicit general_matching(int n) : n(n), g(n, -1), mate(n, -1), vis(n, false) {}

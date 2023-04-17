@@ -11,7 +11,7 @@
 namespace felix {
 
 template<int id>
-class modint {
+struct modint {
 public:
 	static constexpr int mod() {
 		return (id > 0 ? id : md);

@@ -4,7 +4,7 @@
 
 namespace felix {
 
-class two_sat {
+struct two_sat {
 public:
 	two_sat() : n(0) {}
 	explicit two_sat(int _n) : n(_n), g(_n * 2) {}

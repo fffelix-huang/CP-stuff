@@ -5,7 +5,7 @@
 
 namespace felix {
 
-class bipartite_matching {
+struct bipartite_matching {
 public:
 	bipartite_matching() : n(0), m(0) {}
 	explicit bipartite_matching(int _n, int _m) : n(_n), m(_m), lhs(_n), rhs(_m), dist(_n), cur(_n), g(_n) {}

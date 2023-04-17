@@ -6,7 +6,7 @@
 
 namespace felix {
 
-class HLD {
+struct HLD {
 private:
 	static constexpr std::pair<int, int> __lca_op(std::pair<int, int> a, std::pair<int, int> b) {
 		return std::min(a, b);

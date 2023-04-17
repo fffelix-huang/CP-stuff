@@ -7,7 +7,7 @@
 namespace felix {
 
 template<class T>
-class dinic {
+struct dinic {
 public:
 	struct Edge {
 		int from, to;

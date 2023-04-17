@@ -5,7 +5,7 @@
 namespace felix {
 
 template<class T, T (*op)(T, T)>
-class sparse_table {
+struct sparse_table {
 public:
 	sparse_table() {}
 	explicit sparse_table(const std::vector<T>& a) {

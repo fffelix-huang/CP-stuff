@@ -7,7 +7,7 @@
 namespace felix {
 
 template<class Cap_t, class Cost_t>
-class MCMF {
+struct MCMF {
 public:
 	struct Edge {
 		int from;

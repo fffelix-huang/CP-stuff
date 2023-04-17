@@ -6,7 +6,7 @@
 
 namespace felix {
 
-class SCC {
+struct SCC {
 public:
 	SCC() : n(0) {}
 	explicit SCC(int _n) : n(_n), g(_n), h(_n) {}

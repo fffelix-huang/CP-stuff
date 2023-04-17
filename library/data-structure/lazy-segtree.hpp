@@ -11,7 +11,7 @@ template<class S,
          F (*id)(),
          S (*mapping)(F, S),
          F (*composition)(F, F)>
-class lazy_segtree {
+struct lazy_segtree {
 public:
 	lazy_segtree() : lazy_segtree(0) {}
 	explicit lazy_segtree(int _n) : lazy_segtree(std::vector<S>(_n, e())) {}

@@ -5,7 +5,7 @@
 namespace felix {
 
 template<class S, S (*e)(), S (*op)(S, S)>
-class segtree {
+struct segtree {
 public:
 	segtree() : segtree(0) {}
 	explicit segtree(int _n) : segtree(std::vector<S>(_n, e())) {}

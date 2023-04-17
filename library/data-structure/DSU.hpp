@@ -5,10 +5,9 @@
 
 namespace felix {
 
-class DSU {
+struct DSU {
 public:
 	DSU() : DSU(0) {}
-
 	explicit DSU(int _n) : n(_n), sz(n, -1) {}
 	
 	int leader(int u) {
