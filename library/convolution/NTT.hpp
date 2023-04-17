@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <array>
 #include <algorithm>
 #include <cassert>
 #include <type_traits>
@@ -305,6 +306,7 @@ std::vector<__uint128_t> convolution_u128(const std::vector<T>& a, const std::ve
 	auto c0 = convolution<m0>(a, b);
 	auto c1 = convolution<m1>(a, b);
 	auto c2 = convolution<m2>(a, b);
+	assert(c0.size() == ans.size());
 	int n = (int) c0.size();
 	for(int i = 0; i < n; i++) {
 		long long n1 = c1[i], n2 = c2[i];

@@ -56,9 +56,8 @@ public:
 		}
 	}
  
-	constexpr modint() : value(0) {}
- 
-	constexpr modint(long long v) : value((v % mod() + mod()) % mod()) {}
+	constexpr modint() : value(0) {} 
+	template<class T> constexpr modint(T v) : value(v >= 0 ? v % mod() : (v % mod() + mod()) % mod()) {}
  
 	constexpr int operator()() const {
 		return value;
