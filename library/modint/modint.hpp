@@ -13,9 +13,7 @@ namespace felix {
 template<int id>
 struct modint {
 public:
-	static constexpr int mod() {
-		return (id > 0 ? id : md);
-	}
+	static constexpr int mod() { return (id > 0 ? id : md); }
  	
 	static constexpr void set_mod(int m) {
 		if(id > 0 || md == m) {
@@ -45,7 +43,7 @@ public:
 		for(int i = sz; i <= n; i++) {
 			facts[i] = facts[i - 1] * i;
 		}
-		auto eg = internal::inv_gcd<long long>(facts.back()(), mod());
+		auto eg = internal::inv_gcd(facts.back()(), mod());
 		assert(eg.first == 1);
 		inv_facts[n] = eg.second;
 		for(int i = n - 1; i >= sz; i--) {
@@ -59,21 +57,15 @@ public:
 	constexpr modint() : value(0) {} 
 	template<class T> constexpr modint(T v) : value(v >= 0 ? v % mod() : (v % mod() + mod()) % mod()) {}
  
-	constexpr int operator()() const {
-		return value;
-	}
- 
-	template<class T>
-	explicit constexpr operator T() const {
-		return static_cast<T>(value);
-	}
+	constexpr int operator()() const { return value; }
+	template<class T> explicit constexpr operator T() const { return static_cast<T>(value); }
 
 	constexpr modint inv() const {
 		if(id > 0 && value < std::min(mod() >> 1, 1 << 18)) {
 			prepare(value);
 			return invs[value];
 		}
-		auto eg = internal::inv_gcd<long long>(value, mod());
+		auto eg = internal::inv_gcd(value, mod());
 		assert(eg.first == 1);
 		return eg.second;
 	}
@@ -113,37 +105,15 @@ public:
 		return *this *= rhs.inv();
 	}
 
-	friend constexpr modint operator+(modint lhs, modint rhs) {
-		return lhs += rhs;
-	}
+	friend constexpr modint operator+(modint lhs, modint rhs) { return lhs += rhs; }
+	friend constexpr modint operator-(modint lhs, modint rhs) { return lhs -= rhs; }
+	friend constexpr modint operator*(modint lhs, modint rhs) { return lhs *= rhs; }
+	friend constexpr modint operator/(modint lhs, modint rhs) { return lhs /= rhs; }
 
-	friend constexpr modint operator-(modint lhs, modint rhs) {
-		return lhs -= rhs;
-	}
-
-	friend constexpr modint operator*(modint lhs, modint rhs) {
-		return lhs *= rhs;
-	}
-
-	friend constexpr modint operator/(modint lhs, modint rhs) {
-		return lhs /= rhs;
-	}
-
-	constexpr modint operator+() const {
-		return *this;
-	}
-
-	constexpr modint operator-() const {
-		return modint() - *this;
-	}
- 
-	constexpr bool operator==(const modint& rhs) const {
-		return value == rhs.value;
-	}
- 
-	constexpr bool operator!=(const modint& rhs) const {
-		return !(*this == rhs);
-	}
+	constexpr modint operator+() const { return *this; }
+	constexpr modint operator-() const { return modint() - *this; } 
+	constexpr bool operator==(const modint& rhs) const { return value == rhs.value; } 
+	constexpr bool operator!=(const modint& rhs) const { return value != rhs.value; }
 
 	constexpr modint pow(unsigned long long p) const {
 		modint a(*this), res(1);
