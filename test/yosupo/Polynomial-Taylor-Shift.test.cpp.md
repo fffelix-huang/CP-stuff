@@ -65,8 +65,8 @@ data:
     \ {\r\n\t\t\tinv_facts[i] = inv_facts[i + 1] * (i + 1);\r\n\t\t}\r\n\t\tfor(int\
     \ i = n; i >= sz; i--) {\r\n\t\t\tinvs[i] = inv_facts[i] * facts[i - 1];\r\n\t\
     \t}\r\n\t}\r\n \r\n\tconstexpr modint() : value(0) {} \r\n\ttemplate<class T>\
-    \ constexpr modint(T v) : value(v >= 0 ? v % mod() : (v % mod() + mod()) % mod())\
-    \ {}\r\n \r\n\tconstexpr int operator()() const { return value; }\r\n\ttemplate<class\
+    \ constexpr modint(T v) : value(v >= 0 ? v % mod() : v % mod() + mod()) {}\r\n\
+    \ \r\n\tconstexpr int operator()() const { return value; }\r\n\ttemplate<class\
     \ T> explicit constexpr operator T() const { return static_cast<T>(value); }\r\
     \n\r\n\tconstexpr modint inv() const {\r\n\t\tif(id > 0 && value < std::min(mod()\
     \ >> 1, 1 << 18)) {\r\n\t\t\tprepare(value);\r\n\t\t\treturn invs[value];\r\n\t\
@@ -356,7 +356,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/Polynomial-Taylor-Shift.test.cpp
   requiredBy: []
-  timestamp: '2023-04-17 16:59:25+08:00'
+  timestamp: '2023-04-18 02:50:02+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Polynomial-Taylor-Shift.test.cpp
