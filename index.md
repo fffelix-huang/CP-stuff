@@ -3,7 +3,7 @@ data:
   libraryCategories:
   - name: library/convolution
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/convolution/NTT.hpp
       title: library/convolution/NTT.hpp
     - icon: ':heavy_check_mark:'
@@ -90,10 +90,10 @@ data:
       title: library/graph/two-sat.hpp
   - name: library/internal
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/internal/inv-gcd.hpp
       title: library/internal/inv-gcd.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/internal/safe-mod.hpp
       title: library/internal/safe-mod.hpp
   - name: library/math
@@ -141,7 +141,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/modint/barrett.hpp
       title: library/modint/barrett.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/modint/modint.hpp
       title: library/modint/modint.hpp
   - name: library/random
@@ -152,7 +152,7 @@ data:
     - icon: ':warning:'
       path: library/random/random.hpp
       title: random_t
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/random/rng.hpp
       title: library/random/rng.hpp
     - icon: ':heavy_check_mark:'
@@ -218,7 +218,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/Bitwise-Xor-Convolution.test.cpp
       title: test/yosupo/Bitwise-Xor-Convolution.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/Convolution-Mod-1000000007.test.cpp
       title: test/yosupo/Convolution-Mod-1000000007.test.cpp
     - icon: ':heavy_check_mark:'
