@@ -63,11 +63,10 @@ data:
     \ {\r\n\t\t\ttree.insert(i);\r\n\t\t}\r\n\t}\r\n\twhile(q--) {\r\n\t\tint type,\
     \ x;\r\n\t\tcin >> type >> x;\r\n\t\tif(type == 0) {\r\n\t\t\ttree.insert(x);\r\
     \n\t\t} else if(type == 1) {\r\n\t\t\ttree.erase(x);\r\n\t\t} else if(type ==\
-    \ 2) {\r\n\t\t\tcout << (tree.find_next(x) == x) << \"\\n\";\r\n\t\t} else if(type\
-    \ == 3) {\r\n\t\t\tint ans = tree.find_next(x);\r\n\t\t\tif(ans >= n) {\r\n\t\t\
-    \t\tans = -1;\r\n\t\t\t}\r\n\t\t\tcout << ans << \"\\n\";\r\n\t\t} else {\r\n\t\
-    \t\tcout << tree.find_prev(x) << \"\\n\";\r\n\t\t}\r\n\t}\r\n\treturn 0;\r\n}\r\
-    \n"
+    \ 2) {\r\n\t\t\tcout << tree.contains(x) << \"\\n\";\r\n\t\t} else if(type ==\
+    \ 3) {\r\n\t\t\tint ans = tree.find_next(x);\r\n\t\t\tif(ans >= n) {\r\n\t\t\t\
+    \tans = -1;\r\n\t\t\t}\r\n\t\t\tcout << ans << \"\\n\";\r\n\t\t} else {\r\n\t\t\
+    \tcout << tree.find_prev(x) << \"\\n\";\r\n\t\t}\r\n\t}\r\n\treturn 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/predecessor_problem\"\r\
     \n\r\n#include <iostream>\r\n#include \"../../library/data-structure/VEBtree.hpp\"\
     \r\nusing namespace std;\r\nusing namespace felix;\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\
@@ -76,17 +75,16 @@ data:
     \ {\r\n\t\t\ttree.insert(i);\r\n\t\t}\r\n\t}\r\n\twhile(q--) {\r\n\t\tint type,\
     \ x;\r\n\t\tcin >> type >> x;\r\n\t\tif(type == 0) {\r\n\t\t\ttree.insert(x);\r\
     \n\t\t} else if(type == 1) {\r\n\t\t\ttree.erase(x);\r\n\t\t} else if(type ==\
-    \ 2) {\r\n\t\t\tcout << (tree.find_next(x) == x) << \"\\n\";\r\n\t\t} else if(type\
-    \ == 3) {\r\n\t\t\tint ans = tree.find_next(x);\r\n\t\t\tif(ans >= n) {\r\n\t\t\
-    \t\tans = -1;\r\n\t\t\t}\r\n\t\t\tcout << ans << \"\\n\";\r\n\t\t} else {\r\n\t\
-    \t\tcout << tree.find_prev(x) << \"\\n\";\r\n\t\t}\r\n\t}\r\n\treturn 0;\r\n}\r\
-    \n"
+    \ 2) {\r\n\t\t\tcout << tree.contains(x) << \"\\n\";\r\n\t\t} else if(type ==\
+    \ 3) {\r\n\t\t\tint ans = tree.find_next(x);\r\n\t\t\tif(ans >= n) {\r\n\t\t\t\
+    \tans = -1;\r\n\t\t\t}\r\n\t\t\tcout << ans << \"\\n\";\r\n\t\t} else {\r\n\t\t\
+    \tcout << tree.find_prev(x) << \"\\n\";\r\n\t\t}\r\n\t}\r\n\treturn 0;\r\n}\r\n"
   dependsOn:
   - library/data-structure/VEBtree.hpp
   isVerificationFile: true
   path: test/yosupo/Predecessor-Problem.test.cpp
   requiredBy: []
-  timestamp: '2023-04-17 12:10:28+08:00'
+  timestamp: '2023-04-18 01:45:12+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Predecessor-Problem.test.cpp
