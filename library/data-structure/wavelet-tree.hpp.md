@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/Range-Kth-Smallest.test.cpp
     title: test/yosupo/Range-Kth-Smallest.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"library/data-structure/wavelet-tree.hpp\"\n#include <vector>\n\
@@ -20,7 +20,7 @@ data:
     \ 0ULL);\n\t\tsums.resize(bits.size(), 0);\n\t\tstd::vector<int> v(_v.size()),\
     \ cnt(vals.size() + 1);\n\t\tfor(int i = 0; i < (int) v.size(); i++) {\n\t\t\t\
     v[i] = std::lower_bound(vals.begin(), vals.end(), _v[i]) - vals.begin();\n\t\t\
-    \tcnt[v[i] + 1] += 1;\n\t\t}\n\t\tstd::partial_sum(cnt.begin(), cnt.end() - 1;\
+    \tcnt[v[i] + 1] += 1;\n\t\t}\n\t\tstd::partial_sum(cnt.begin(), cnt.end() - 1,\
     \ cnt.begin());\n\t\tfor(int j = 0; j < log; ++j) {\n\t\t\tfor(int i : v) {\n\t\
     \t\t\tint tmp = i >> (log - 1 - j);\n\t\t\t\tint pos = (tmp >> 1) << (log - j);\n\
     \t\t\t\tset_bit(j * n + cnt[pos], tmp & 1);\n\t\t\t\tcnt[pos] += 1;\n\t\t\t}\n\
@@ -50,7 +50,7 @@ data:
     \ v(_v.size()), cnt(vals.size() + 1);\n\t\tfor(int i = 0; i < (int) v.size();\
     \ i++) {\n\t\t\tv[i] = std::lower_bound(vals.begin(), vals.end(), _v[i]) - vals.begin();\n\
     \t\t\tcnt[v[i] + 1] += 1;\n\t\t}\n\t\tstd::partial_sum(cnt.begin(), cnt.end()\
-    \ - 1; cnt.begin());\n\t\tfor(int j = 0; j < log; ++j) {\n\t\t\tfor(int i : v)\
+    \ - 1, cnt.begin());\n\t\tfor(int j = 0; j < log; ++j) {\n\t\t\tfor(int i : v)\
     \ {\n\t\t\t\tint tmp = i >> (log - 1 - j);\n\t\t\t\tint pos = (tmp >> 1) << (log\
     \ - j);\n\t\t\t\tset_bit(j * n + cnt[pos], tmp & 1);\n\t\t\t\tcnt[pos] += 1;\n\
     \t\t\t}\n\t\t\tfor(int i : v) {\n\t\t\t\tcnt[(i >> (log - j)) << (log - j)] -=\
@@ -74,8 +74,8 @@ data:
   isVerificationFile: false
   path: library/data-structure/wavelet-tree.hpp
   requiredBy: []
-  timestamp: '2023-04-18 16:25:49+08:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-04-18 17:16:47+08:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/Range-Kth-Smallest.test.cpp
 documentation_of: library/data-structure/wavelet-tree.hpp

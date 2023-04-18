@@ -47,7 +47,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/data-structure/sparse-table.hpp
       title: library/data-structure/sparse-table.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/data-structure/wavelet-tree.hpp
       title: "Wavelet Tree (\u975C\u614B\u5340\u9593\u7B2C $k$ \u5927)"
   - name: library/flow
@@ -296,7 +296,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/Range-Affine-Range-Sum.test.cpp
       title: test/yosupo/Range-Affine-Range-Sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/Range-Kth-Smallest.test.cpp
       title: test/yosupo/Range-Kth-Smallest.test.cpp
     - icon: ':heavy_check_mark:'

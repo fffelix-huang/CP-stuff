@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/data-structure/wavelet-tree.hpp
     title: "Wavelet Tree (\u975C\u614B\u5340\u9593\u7B2C $k$ \u5927)"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/range_kth_smallest
@@ -25,7 +25,7 @@ data:
     \ 0ULL);\n\t\tsums.resize(bits.size(), 0);\n\t\tstd::vector<int> v(_v.size()),\
     \ cnt(vals.size() + 1);\n\t\tfor(int i = 0; i < (int) v.size(); i++) {\n\t\t\t\
     v[i] = std::lower_bound(vals.begin(), vals.end(), _v[i]) - vals.begin();\n\t\t\
-    \tcnt[v[i] + 1] += 1;\n\t\t}\n\t\tstd::partial_sum(cnt.begin(), cnt.end() - 1;\
+    \tcnt[v[i] + 1] += 1;\n\t\t}\n\t\tstd::partial_sum(cnt.begin(), cnt.end() - 1,\
     \ cnt.begin());\n\t\tfor(int j = 0; j < log; ++j) {\n\t\t\tfor(int i : v) {\n\t\
     \t\t\tint tmp = i >> (log - 1 - j);\n\t\t\t\tint pos = (tmp >> 1) << (log - j);\n\
     \t\t\t\tset_bit(j * n + cnt[pos], tmp & 1);\n\t\t\t\tcnt[pos] += 1;\n\t\t\t}\n\
@@ -63,8 +63,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/Range-Kth-Smallest.test.cpp
   requiredBy: []
-  timestamp: '2023-04-18 16:25:49+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-04-18 17:16:47+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Range-Kth-Smallest.test.cpp
 layout: document
