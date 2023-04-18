@@ -3,6 +3,7 @@
 #include "debug.hpp"
 
 #define all(v) (v).begin(), (v).end()
+#define rall(v) (v).rbegin(), (v).rend()
 #define sz(v) ((int) (v).size())
 #define FOR(i, begin, end) for(int i = (begin), i##_end_ = (end); i < i##_end_; i++)
 #define IFOR(i, begin, end) for(int i = (end) - 1, i##_begin_ = (begin); i >= i##_begin_; i--)
