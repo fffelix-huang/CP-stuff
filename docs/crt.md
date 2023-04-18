@@ -1,5 +1,5 @@
 ---
-title: crt (中國剩餘定理)
+title: Chinese Remainder Theorem (中國剩餘定理)
 documentation_of: ../library/math/crt.hpp
 ---
 
