@@ -1,10 +1,7 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: library/misc/default.hpp
-    title: library/misc/default.hpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -79,8 +76,7 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: library/misc/debug.hpp
-  requiredBy:
-  - library/misc/default.hpp
+  requiredBy: []
   timestamp: '2023-04-07 23:16:56+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
