@@ -13,4 +13,5 @@ vector<int> sa = suffix_array(s); // 10 7 4 1 0 9 8 6 3 5 2
 
 ## References
 [SA-IS 論文](https://local.ugene.unipro.ru/tracker/secure/attachment/12144/Linear+Suffix+Array+Construction+by+Almost+Pure+Induced-Sorting.pdf)
+
 [Atcoder Library document](https://atcoder.github.io/ac-library/production/document_en/string.html)
