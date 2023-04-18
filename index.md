@@ -6,7 +6,7 @@ data:
     - icon: ':question:'
       path: library/convolution/NTT.hpp
       title: library/convolution/NTT.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/convolution/subset-convolution.hpp
       title: library/convolution/subset-convolution.hpp
   - name: library/data-structure
@@ -63,7 +63,7 @@ data:
       title: library/flow/dinic.hpp
   - name: library/formal-power-series
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/formal-power-series/poly.hpp
       title: library/formal-power-series/poly.hpp
   - name: library/geometry
@@ -218,7 +218,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/Bitwise-Xor-Convolution.test.cpp
       title: test/yosupo/Bitwise-Xor-Convolution.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/Convolution-Mod-1000000007.test.cpp
       title: test/yosupo/Convolution-Mod-1000000007.test.cpp
     - icon: ':heavy_check_mark:'
@@ -308,7 +308,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/Sqrt-Mod.test.cpp
       title: test/yosupo/Sqrt-Mod.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/Sqrt-of-Formal-Power-Series.test.cpp
       title: test/yosupo/Sqrt-of-Formal-Power-Series.test.cpp
     - icon: ':heavy_check_mark:'
@@ -320,7 +320,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/Strongly-Connected-Components.test.cpp
       title: test/yosupo/Strongly-Connected-Components.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/Subset-Convolution.test.cpp
       title: test/yosupo/Subset-Convolution.test.cpp
     - icon: ':heavy_check_mark:'
