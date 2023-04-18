@@ -64,10 +64,11 @@ public:
 		if(id > 0 && value < std::min(mod() >> 1, 1 << 18)) {
 			prepare(value);
 			return invs[value];
+		} else {
+			auto eg = internal::inv_gcd(value, mod());
+			assert(eg.first == 1);
+			return eg.second;
 		}
-		auto eg = internal::inv_gcd(value, mod());
-		assert(eg.first == 1);
-		return eg.second;
 	}
 
 	constexpr modint fact() const {
