@@ -103,7 +103,7 @@ template<int mod>
 struct NTT {
 	using mint = modint<mod>;
 
-	static NTT_prepare<mod> info;
+	inline constexpr static NTT_prepare<mod> info = {};
 
 	static void NTT4(std::vector<mint>& a) {
 		int n = (int) a.size();
@@ -202,8 +202,6 @@ struct NTT {
 		}
 	}
 };
-
-template<int mod> NTT_prepare<mod> NTT<mod>::info;
 
 template<class mint>
 std::vector<mint> convolution_naive(const std::vector<mint>& a, const std::vector<mint>& b) {
