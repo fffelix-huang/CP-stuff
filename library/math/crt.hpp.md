@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/internal/inv-gcd.hpp
     title: library/internal/inv-gcd.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/internal/safe-mod.hpp
     title: library/internal/safe-mod.hpp
   _extendedRequiredBy: []
@@ -65,7 +65,7 @@ data:
   verifiedWith: []
 documentation_of: library/math/crt.hpp
 layout: document
-title: "crt (\u4E2D\u570B\u5269\u9918\u5B9A\u7406)"
+title: "Chinese Remainder Theorem (\u4E2D\u570B\u5269\u9918\u5B9A\u7406)"
 ---
 
 ## 中國剩餘定理

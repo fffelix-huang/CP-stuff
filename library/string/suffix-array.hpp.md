@@ -146,8 +146,17 @@ data:
   - test/yosupo/Number-of-Substrings.test.cpp
 documentation_of: library/string/suffix-array.hpp
 layout: document
-redirect_from:
-- /library/library/string/suffix-array.hpp
-- /library/library/string/suffix-array.hpp.html
-title: library/string/suffix-array.hpp
+title: Suffix Array
 ---
+
+## 使用方法
+```cpp
+string s = "mississippi";
+vector<int> sa = suffix_array(s); // 10 7 4 1 0 9 8 6 3 5 2
+```
+
+時間複雜度：$O(n)$
+
+## References
+[SA-IS 論文](https://local.ugene.unipro.ru/tracker/secure/attachment/12144/Linear+Suffix+Array+Construction+by+Almost+Pure+Induced-Sorting.pdf)
+[Atcoder Library document](https://atcoder.github.io/ac-library/production/document_en/string.html)

@@ -3,10 +3,10 @@ data:
   libraryCategories:
   - name: library/convolution
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/convolution/NTT.hpp
       title: library/convolution/NTT.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/convolution/subset-convolution.hpp
       title: library/convolution/subset-convolution.hpp
   - name: library/data-structure
@@ -63,7 +63,7 @@ data:
       title: library/flow/dinic.hpp
   - name: library/formal-power-series
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/formal-power-series/poly.hpp
       title: library/formal-power-series/poly.hpp
   - name: library/geometry
@@ -90,10 +90,10 @@ data:
       title: library/graph/two-sat.hpp
   - name: library/internal
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/internal/inv-gcd.hpp
       title: library/internal/inv-gcd.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/internal/safe-mod.hpp
       title: library/internal/safe-mod.hpp
   - name: library/math
@@ -103,7 +103,7 @@ data:
       title: "Binary GCD (\u4F4D\u5143 GCD)"
     - icon: ':warning:'
       path: library/math/crt.hpp
-      title: "crt (\u4E2D\u570B\u5269\u9918\u5B9A\u7406)"
+      title: "Chinese Remainder Theorem (\u4E2D\u570B\u5269\u9918\u5B9A\u7406)"
     - icon: ':heavy_check_mark:'
       path: library/math/discrete-log.hpp
       title: "Discrete Log (\u96E2\u6563\u5C0D\u6578 $a^x \\equiv b \\pmod m$)"
@@ -141,7 +141,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/modint/barrett.hpp
       title: library/modint/barrett.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/modint/modint.hpp
       title: library/modint/modint.hpp
   - name: library/random
@@ -152,7 +152,7 @@ data:
     - icon: ':warning:'
       path: library/random/random.hpp
       title: random_t
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/random/rng.hpp
       title: library/random/rng.hpp
     - icon: ':heavy_check_mark:'
@@ -168,10 +168,10 @@ data:
       title: library/string/lcp-array.hpp
     - icon: ':heavy_check_mark:'
       path: library/string/suffix-array.hpp
-      title: library/string/suffix-array.hpp
+      title: Suffix Array
     - icon: ':heavy_check_mark:'
       path: library/string/z-algorithm.hpp
-      title: library/string/z-algorithm.hpp
+      title: Z Algorithm
   - name: library/tree
     pages:
     - icon: ':heavy_check_mark:'
@@ -308,7 +308,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/Sqrt-Mod.test.cpp
       title: test/yosupo/Sqrt-Mod.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/Sqrt-of-Formal-Power-Series.test.cpp
       title: test/yosupo/Sqrt-of-Formal-Power-Series.test.cpp
     - icon: ':heavy_check_mark:'
@@ -320,7 +320,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/Strongly-Connected-Components.test.cpp
       title: test/yosupo/Strongly-Connected-Components.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/Subset-Convolution.test.cpp
       title: test/yosupo/Subset-Convolution.test.cpp
     - icon: ':heavy_check_mark:'
