@@ -1,22 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/convolution/NTT.hpp
     title: library/convolution/NTT.hpp
   - icon: ':heavy_check_mark:'
     path: library/formal-power-series/poly.hpp
     title: library/formal-power-series/poly.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/internal/inv-gcd.hpp
     title: library/internal/inv-gcd.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/internal/safe-mod.hpp
     title: library/internal/safe-mod.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/modint/modint.hpp
     title: library/modint/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/random/rng.hpp
     title: library/random/rng.hpp
   _extendedRequiredBy: []
@@ -149,17 +149,17 @@ data:
     \t\t\trate3[i] = root[i + 3] * prod;\r\n\t\t\t\tirate3[i] = iroot[i + 3] * iprod;\r\
     \n\t\t\t\tprod *= iroot[i + 3];\r\n\t\t\t\tiprod *= root[i + 3];\r\n\t\t\t}\r\n\
     \t\t}\r\n\t}\r\n};\r\n\r\ntemplate<int mod>\r\nstruct NTT {\r\n\tusing mint =\
-    \ modint<mod>;\r\n\r\n\tstatic NTT_prepare<mod> info;\r\n\r\n\tstatic void NTT4(std::vector<mint>&\
-    \ a) {\r\n\t\tint n = (int) a.size();\r\n\t\tint h = __builtin_ctz(n);\r\n\t\t\
-    int len = 0;\r\n\t\twhile(len < h) {\r\n\t\t\tif(h - len == 1) {\r\n\t\t\t\tint\
-    \ p = 1 << (h - len - 1);\r\n\t\t\t\tmint rot = 1;\r\n\t\t\t\tfor(int s = 0; s\
-    \ < (1 << len); s++) {\r\n\t\t\t\t\tint offset = s << (h - len);\r\n\t\t\t\t\t\
-    for(int i = 0; i < p; i++) {\r\n\t\t\t\t\t\tauto l = a[i + offset];\r\n\t\t\t\t\
-    \t\tauto r = a[i + offset + p] * rot;\r\n\t\t\t\t\t\ta[i + offset] = l + r;\r\n\
-    \t\t\t\t\t\ta[i + offset + p] = l - r;\r\n\t\t\t\t\t}\r\n\t\t\t\t\tif(s + 1 !=\
-    \ (1 << len)) {\r\n\t\t\t\t\t\trot *= info.rate2[__builtin_ctz(~(unsigned int)\
-    \ s)];\r\n\t\t\t\t\t}\r\n\t\t\t\t}\r\n\t\t\t\tlen++;\r\n\t\t\t} else {\r\n\t\t\
-    \t\tint p = 1 << (h - len - 2);\r\n\t\t\t\tmint rot = 1, imag = info.root[2];\r\
+    \ modint<mod>;\r\n\r\n\tinline constexpr static NTT_prepare<mod> info = {};\r\n\
+    \r\n\tstatic void NTT4(std::vector<mint>& a) {\r\n\t\tint n = (int) a.size();\r\
+    \n\t\tint h = __builtin_ctz(n);\r\n\t\tint len = 0;\r\n\t\twhile(len < h) {\r\n\
+    \t\t\tif(h - len == 1) {\r\n\t\t\t\tint p = 1 << (h - len - 1);\r\n\t\t\t\tmint\
+    \ rot = 1;\r\n\t\t\t\tfor(int s = 0; s < (1 << len); s++) {\r\n\t\t\t\t\tint offset\
+    \ = s << (h - len);\r\n\t\t\t\t\tfor(int i = 0; i < p; i++) {\r\n\t\t\t\t\t\t\
+    auto l = a[i + offset];\r\n\t\t\t\t\t\tauto r = a[i + offset + p] * rot;\r\n\t\
+    \t\t\t\t\ta[i + offset] = l + r;\r\n\t\t\t\t\t\ta[i + offset + p] = l - r;\r\n\
+    \t\t\t\t\t}\r\n\t\t\t\t\tif(s + 1 != (1 << len)) {\r\n\t\t\t\t\t\trot *= info.rate2[__builtin_ctz(~(unsigned\
+    \ int) s)];\r\n\t\t\t\t\t}\r\n\t\t\t\t}\r\n\t\t\t\tlen++;\r\n\t\t\t} else {\r\n\
+    \t\t\t\tint p = 1 << (h - len - 2);\r\n\t\t\t\tmint rot = 1, imag = info.root[2];\r\
     \n\t\t\t\tfor(int s = 0; s < (1 << len); s++) {\r\n\t\t\t\t\tmint rot2 = rot *\
     \ rot;\r\n\t\t\t\t\tmint rot3 = rot2 * rot;\r\n\t\t\t\t\tint offset = s << (h\
     \ - len);\r\n\t\t\t\t\tfor(int i = 0; i < p; i++) {\r\n\t\t\t\t\t\tauto mod2 =\
@@ -197,52 +197,51 @@ data:
     \ (mod - a2na3iimag)) * irot3();\r\n\t\t\t\t\t}\r\n\t\t\t\t\tif(s + 1 != (1 <<\
     \ (len - 2))) {\r\n\t\t\t\t\t\tirot *= info.irate3[__builtin_ctz(~(unsigned int)\
     \ s)];\r\n\t\t\t\t\t}\r\n\t\t\t\t}\r\n\t\t\t\tlen -= 2;\r\n\t\t\t}\r\n\t\t}\r\n\
-    \t}\r\n};\r\n\r\ntemplate<int mod> NTT_prepare<mod> NTT<mod>::info;\r\n\r\ntemplate<class\
-    \ mint>\r\nstd::vector<mint> convolution_naive(const std::vector<mint>& a, const\
-    \ std::vector<mint>& b) {\r\n\tint n = (int) a.size(), m = (int) b.size();\r\n\
-    \tassert(n >= m);\r\n\tint len = n + m - 1;\r\n\tstd::vector<mint> ans(len);\r\
-    \n\tfor(int i = 0; i < n; i++) {\r\n\t\tfor(int j = 0; j < m; j++) {\r\n\t\t\t\
-    ans[i + j] += a[i] * b[j];\r\n\t\t}\r\n\t}\r\n\treturn ans;\r\n}\r\n\r\ntemplate<class\
-    \ mint>\r\nstd::vector<mint> convolution_ntt(std::vector<mint> a, std::vector<mint>\
-    \ b) {\r\n\tint n = (int) a.size(), m = (int) b.size();\r\n\tint sz = 1 << std::__lg(2\
-    \ * (n + m - 1) - 1);\r\n\ta.resize(sz);\r\n\tb.resize(sz);\r\n\tNTT<mint::mod()>::NTT4(a);\r\
-    \n\tNTT<mint::mod()>::NTT4(b);\r\n\tfor(int i = 0; i < sz; i++) {\r\n\t\ta[i]\
-    \ *= b[i];\r\n\t}\r\n\tNTT<mint::mod()>::iNTT4(a);\r\n\ta.resize(n + m - 1);\r\
-    \n\tmint iz = mint(sz).inv();\r\n\tfor(int i = 0; i < n + m - 1; i++) {\r\n\t\t\
-    a[i] *= iz;\r\n\t}\r\n\treturn a;\r\n}\r\n\r\n} // namespace internal\r\n\r\n\
-    template<class mint>\r\nstd::vector<mint> convolution(const std::vector<mint>&\
-    \ a, const std::vector<mint>& b) {\r\n    int n = (int) a.size(), m = (int) b.size();\r\
-    \n    if(n == 0 || m == 0) {\r\n    \treturn {};\r\n    }\r\n    int sz = 1 <<\
-    \ std::__lg(2 * (n + m - 1) - 1);\r\n    assert((mint::mod() - 1) % sz == 0);\r\
-    \n    if(std::min(n, m) < 128) {\r\n    \treturn n >= m ? internal::convolution_naive(a,\
-    \ b) : internal::convolution_naive(b, a);\r\n    }\r\n    return internal::convolution_ntt(a,\
-    \ b);\r\n}\r\n\r\ntemplate<int mod, class T, std::enable_if_t<std::is_integral_v<T>>*\
-    \ = nullptr>\r\nstd::vector<T> convolution(const std::vector<T>& a, const std::vector<T>&\
-    \ b) {\r\n\tusing mint = modint<mod>;\r\n\r\n\tint n = (int) a.size(), m = (int)\
-    \ b.size();\r\n\tif(n == 0 || m == 0) {\r\n\t\treturn {};\r\n\t}\r\n\tint sz =\
-    \ 1 << std::__lg(2 * (n + m - 1) - 1);\r\n\tassert((mod - 1) % sz == 0);\r\n\t\
-    std::vector<mint> a2(a.begin(), a.end());\r\n\tstd::vector<mint> b2(b.begin(),\
-    \ b.end());\r\n\tauto c2 = convolution(std::move(a2), std::move(b2));\r\n\tstd::vector<T>\
-    \ c(n + m - 1);\r\n\tfor(int i = 0; i < n + m - 1; i++) {\r\n\t\tc[i] = c2[i]();\r\
-    \n\t}\r\n\treturn c;\r\n}\r\n\r\ntemplate<class T>\r\nstd::vector<__uint128_t>\
-    \ convolution_u128(const std::vector<T>& a, const std::vector<T>& b) {\r\n\tstatic\
-    \ constexpr int m0 = 167772161;\r\n\tstatic constexpr int m1 = 469762049;\r\n\t\
-    static constexpr int m2 = 754974721;\r\n\tusing mint0 = modint<m0>;\r\n\tusing\
-    \ mint1 = modint<m1>;\r\n\tusing mint2 = modint<m2>;\r\n\tconstexpr int r01 =\
-    \ mint1(m0).inv()();\r\n\tconstexpr int r02 = mint2(m0).inv()();\r\n\tconstexpr\
-    \ int r12 = mint2(m1).inv()();\r\n\tconstexpr int r02r12 = 1LL * (r02) * r12 %\
-    \ m2;\r\n\tconstexpr long long w1 = m0;\r\n\tconstexpr long long w2 = 1LL * m0\
-    \ * m1;\r\n\r\n\tif(a.empty() || b.empty()) {\r\n\t\treturn {};\r\n\t}\r\n\tstd::vector<__uint128_t>\
-    \ ans(a.size() + b.size() - 1);\r\n\tif(std::min(a.size(), b.size()) < 128) {\r\
-    \n\t\tfor(int i = 0; i < (int) a.size(); i++) {\r\n\t\t\tfor(int j = 0; j < (int)\
-    \ b.size(); j++) {\r\n\t\t\t\tans[i + j] += 1LL * a[i] * b[j];\r\n\t\t\t}\r\n\t\
-    \t}\r\n\t\treturn ans;\r\n\t}\r\n\tauto c0 = convolution<m0>(a, b);\r\n\tauto\
-    \ c1 = convolution<m1>(a, b);\r\n\tauto c2 = convolution<m2>(a, b);\r\n\tint n\
-    \ = (int) c0.size();\r\n\tfor(int i = 0; i < n; i++) {\r\n\t\tlong long n1 = c1[i],\
-    \ n2 = c2[i];\r\n\t\tlong long x = c0[i];\r\n\t\tlong long y = (n1 + m1 - x) *\
-    \ r01 % m1;\r\n\t\tlong long z = ((n2 + m2 - x) * r02r12 + (m2 - y) * r12) % m2;\r\
-    \n\t\tans[i] = x + y * w1 + __uint128_t(z) * w2;\r\n\t}\r\n\treturn ans;\r\n}\r\
-    \n\r\n} // namespace felix\r\n#line 9 \"library/formal-power-series/poly.hpp\"\
+    \t}\r\n};\r\n\r\ntemplate<class mint>\r\nstd::vector<mint> convolution_naive(const\
+    \ std::vector<mint>& a, const std::vector<mint>& b) {\r\n\tint n = (int) a.size(),\
+    \ m = (int) b.size();\r\n\tassert(n >= m);\r\n\tint len = n + m - 1;\r\n\tstd::vector<mint>\
+    \ ans(len);\r\n\tfor(int i = 0; i < n; i++) {\r\n\t\tfor(int j = 0; j < m; j++)\
+    \ {\r\n\t\t\tans[i + j] += a[i] * b[j];\r\n\t\t}\r\n\t}\r\n\treturn ans;\r\n}\r\
+    \n\r\ntemplate<class mint>\r\nstd::vector<mint> convolution_ntt(std::vector<mint>\
+    \ a, std::vector<mint> b) {\r\n\tint n = (int) a.size(), m = (int) b.size();\r\
+    \n\tint sz = 1 << std::__lg(2 * (n + m - 1) - 1);\r\n\ta.resize(sz);\r\n\tb.resize(sz);\r\
+    \n\tNTT<mint::mod()>::NTT4(a);\r\n\tNTT<mint::mod()>::NTT4(b);\r\n\tfor(int i\
+    \ = 0; i < sz; i++) {\r\n\t\ta[i] *= b[i];\r\n\t}\r\n\tNTT<mint::mod()>::iNTT4(a);\r\
+    \n\ta.resize(n + m - 1);\r\n\tmint iz = mint(sz).inv();\r\n\tfor(int i = 0; i\
+    \ < n + m - 1; i++) {\r\n\t\ta[i] *= iz;\r\n\t}\r\n\treturn a;\r\n}\r\n\r\n} //\
+    \ namespace internal\r\n\r\ntemplate<class mint>\r\nstd::vector<mint> convolution(const\
+    \ std::vector<mint>& a, const std::vector<mint>& b) {\r\n    int n = (int) a.size(),\
+    \ m = (int) b.size();\r\n    if(n == 0 || m == 0) {\r\n    \treturn {};\r\n  \
+    \  }\r\n    int sz = 1 << std::__lg(2 * (n + m - 1) - 1);\r\n    assert((mint::mod()\
+    \ - 1) % sz == 0);\r\n    if(std::min(n, m) < 128) {\r\n    \treturn n >= m ?\
+    \ internal::convolution_naive(a, b) : internal::convolution_naive(b, a);\r\n \
+    \   }\r\n    return internal::convolution_ntt(a, b);\r\n}\r\n\r\ntemplate<int\
+    \ mod, class T, std::enable_if_t<std::is_integral_v<T>>* = nullptr>\r\nstd::vector<T>\
+    \ convolution(const std::vector<T>& a, const std::vector<T>& b) {\r\n\tusing mint\
+    \ = modint<mod>;\r\n\r\n\tint n = (int) a.size(), m = (int) b.size();\r\n\tif(n\
+    \ == 0 || m == 0) {\r\n\t\treturn {};\r\n\t}\r\n\tint sz = 1 << std::__lg(2 *\
+    \ (n + m - 1) - 1);\r\n\tassert((mod - 1) % sz == 0);\r\n\tstd::vector<mint> a2(a.begin(),\
+    \ a.end());\r\n\tstd::vector<mint> b2(b.begin(), b.end());\r\n\tauto c2 = convolution(std::move(a2),\
+    \ std::move(b2));\r\n\tstd::vector<T> c(n + m - 1);\r\n\tfor(int i = 0; i < n\
+    \ + m - 1; i++) {\r\n\t\tc[i] = c2[i]();\r\n\t}\r\n\treturn c;\r\n}\r\n\r\ntemplate<class\
+    \ T>\r\nstd::vector<__uint128_t> convolution_u128(const std::vector<T>& a, const\
+    \ std::vector<T>& b) {\r\n\tstatic constexpr int m0 = 167772161;\r\n\tstatic constexpr\
+    \ int m1 = 469762049;\r\n\tstatic constexpr int m2 = 754974721;\r\n\tusing mint0\
+    \ = modint<m0>;\r\n\tusing mint1 = modint<m1>;\r\n\tusing mint2 = modint<m2>;\r\
+    \n\tconstexpr int r01 = mint1(m0).inv()();\r\n\tconstexpr int r02 = mint2(m0).inv()();\r\
+    \n\tconstexpr int r12 = mint2(m1).inv()();\r\n\tconstexpr int r02r12 = 1LL * (r02)\
+    \ * r12 % m2;\r\n\tconstexpr long long w1 = m0;\r\n\tconstexpr long long w2 =\
+    \ 1LL * m0 * m1;\r\n\r\n\tif(a.empty() || b.empty()) {\r\n\t\treturn {};\r\n\t\
+    }\r\n\tstd::vector<__uint128_t> ans(a.size() + b.size() - 1);\r\n\tif(std::min(a.size(),\
+    \ b.size()) < 128) {\r\n\t\tfor(int i = 0; i < (int) a.size(); i++) {\r\n\t\t\t\
+    for(int j = 0; j < (int) b.size(); j++) {\r\n\t\t\t\tans[i + j] += 1LL * a[i]\
+    \ * b[j];\r\n\t\t\t}\r\n\t\t}\r\n\t\treturn ans;\r\n\t}\r\n\tauto c0 = convolution<m0>(a,\
+    \ b);\r\n\tauto c1 = convolution<m1>(a, b);\r\n\tauto c2 = convolution<m2>(a,\
+    \ b);\r\n\tint n = (int) c0.size();\r\n\tfor(int i = 0; i < n; i++) {\r\n\t\t\
+    long long n1 = c1[i], n2 = c2[i];\r\n\t\tlong long x = c0[i];\r\n\t\tlong long\
+    \ y = (n1 + m1 - x) * r01 % m1;\r\n\t\tlong long z = ((n2 + m2 - x) * r02r12 +\
+    \ (m2 - y) * r12) % m2;\r\n\t\tans[i] = x + y * w1 + __uint128_t(z) * w2;\r\n\t\
+    }\r\n\treturn ans;\r\n}\r\n\r\n} // namespace felix\r\n#line 9 \"library/formal-power-series/poly.hpp\"\
     \n\r\nnamespace felix {\r\n\r\ntemplate<int mod>\r\nstruct Poly {\r\n\tusing mint\
     \ = modint<mod>;\r\n\r\npublic:\r\n\tPoly() {}\r\n\texplicit Poly(int n) : a(n)\
     \ {}\r\n\texplicit Poly(const std::vector<mint>& a) : a(a) {}\r\n\tPoly(const\
@@ -356,7 +355,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/Log-of-Formal-Power-Series.test.cpp
   requiredBy: []
-  timestamp: '2023-04-18 02:50:02+08:00'
+  timestamp: '2023-04-18 18:58:14+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Log-of-Formal-Power-Series.test.cpp
