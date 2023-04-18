@@ -20,7 +20,7 @@ public:
 			v[i] = std::lower_bound(vals.begin(), vals.end(), _v[i]) - vals.begin();
 			cnt[v[i] + 1] += 1;
 		}
-		std::partial_sum(cnt.begin(), cnt.end() - 1; cnt.begin());
+		std::partial_sum(cnt.begin(), cnt.end() - 1, cnt.begin());
 		for(int j = 0; j < log; ++j) {
 			for(int i : v) {
 				int tmp = i >> (log - 1 - j);
