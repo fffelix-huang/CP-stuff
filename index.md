@@ -203,7 +203,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/Power.test.cpp
       title: test/aoj/Power.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/Prime-Factorize.test.cpp
       title: test/aoj/Prime-Factorize.test.cpp
     - icon: ':heavy_check_mark:'
