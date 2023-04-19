@@ -31,6 +31,9 @@ data:
     path: test/yosupo/Convolution.test.cpp
     title: test/yosupo/Convolution.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/Determinant-of-Matrix.test.cpp
+    title: test/yosupo/Determinant-of-Matrix.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
     title: test/yosupo/Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -45,6 +48,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/Log-of-Formal-Power-Series.test.cpp
     title: test/yosupo/Log-of-Formal-Power-Series.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/Matrix-Product.test.cpp
+    title: test/yosupo/Matrix-Product.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/Multipoint-Evaluation.test.cpp
     title: test/yosupo/Multipoint-Evaluation.test.cpp
@@ -110,9 +116,11 @@ data:
   - test/yosupo/Convolution.test.cpp
   - test/yosupo/Multipoint-Evaluation.test.cpp
   - test/yosupo/Pow-of-Formal-Power-Series.test.cpp
+  - test/yosupo/Determinant-of-Matrix.test.cpp
   - test/yosupo/Partition-Function.test.cpp
   - test/yosupo/Log-of-Formal-Power-Series.test.cpp
   - test/yosupo/Inv-of-Formal-Power-Series.test.cpp
+  - test/yosupo/Matrix-Product.test.cpp
   - test/yosupo/Exp-of-Formal-Power-Series.test.cpp
   - test/yosupo/Polynomial-Taylor-Shift.test.cpp
   - test/yosupo/Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp

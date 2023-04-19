@@ -125,6 +125,11 @@ data:
     - icon: ':warning:'
       path: library/math/xor-basis.hpp
       title: "xor basis (\u7DDA\u6027\u57FA)"
+  - name: library/matrix
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: library/matrix/matrix.hpp
+      title: library/matrix/matrix.hpp
   - name: library/misc
     pages:
     - icon: ':warning:'
@@ -225,6 +230,9 @@ data:
       path: test/yosupo/Convolution.test.cpp
       title: test/yosupo/Convolution.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/yosupo/Determinant-of-Matrix.test.cpp
+      title: test/yosupo/Determinant-of-Matrix.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/Discrete-Logarithm.test.cpp
       title: test/yosupo/Discrete-Logarithm.test.cpp
     - icon: ':heavy_check_mark:'
@@ -263,6 +271,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/Matching-on-General-Graph.test.cpp
       title: test/yosupo/Matching-on-General-Graph.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/Matrix-Product.test.cpp
+      title: test/yosupo/Matrix-Product.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/Multipoint-Evaluation.test.cpp
       title: test/yosupo/Multipoint-Evaluation.test.cpp
