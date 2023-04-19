@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_1_A"
 
 #include <iostream>
-#include "math/factorize.hpp"
+#include "../../library/math/factorize.hpp"
 using namespace std;
 using namespace felix;
 
