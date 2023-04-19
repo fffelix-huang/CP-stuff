@@ -1,5 +1,5 @@
 template<class T>
-std::vector<T> dijkstra(const std::vector<std::pair<int, T>>& g, const std::vector<int>& src) {
+std::vector<T> dijkstra(const std::vector<std::vector<std::pair<int, T>>>& g, const std::vector<int>& src) {
 	int n = (int) g.size();
 	std::vector<T> dp(n, std::numeric_limits<T>::max());
 	std::priority_queue<std::pair<T, int>, std::vector<pair<T, int>>, std::greater<pair<T, int>>> pq;
