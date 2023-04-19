@@ -22,6 +22,9 @@ data:
     title: library/modint/modint.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/aoj/Power.test.cpp
+    title: test/aoj/Power.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/Bitwise-And-Convolution.test.cpp
     title: test/yosupo/Bitwise-And-Convolution.test.cpp
   - icon: ':heavy_check_mark:'
@@ -139,6 +142,7 @@ data:
   - test/yosupo/Convolution-Mod-1000000007.test.cpp
   - test/yosupo/Sqrt-Mod.test.cpp
   - test/yosupo/Range-Affine-Point-Get.test.cpp
+  - test/aoj/Power.test.cpp
 documentation_of: library/internal/inv-gcd.hpp
 layout: document
 redirect_from:

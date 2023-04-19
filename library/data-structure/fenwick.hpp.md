@@ -7,6 +7,9 @@ data:
     title: library/data-structure/rectangle-sum.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/aoj/Range-Query-on-a-Tree.test.cpp
+    title: test/aoj/Range-Query-on-a-Tree.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/Point-Add-Range-Sum.test.cpp
     title: test/yosupo/Point-Add-Range-Sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -52,6 +55,7 @@ data:
   - test/yosupo/Point-Add-Rectangle-Sum.test.cpp
   - test/yosupo/Vertex-Add-Subtree-Sum.test.cpp
   - test/yosupo/Point-Add-Range-Sum.test.cpp
+  - test/aoj/Range-Query-on-a-Tree.test.cpp
 documentation_of: library/data-structure/fenwick.hpp
 layout: document
 redirect_from:
