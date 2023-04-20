@@ -16,6 +16,9 @@ data:
     path: test/yosupo/Data-Structure/Static-Range-Frequency.test.cpp
     title: test/yosupo/Data-Structure/Static-Range-Frequency.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/Data-Structure/Static-Range-Sum.test.cpp
+    title: test/yosupo/Data-Structure/Static-Range-Sum.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/Math/Discrete-Logarithm.test.cpp
     title: test/yosupo/Math/Discrete-Logarithm.test.cpp
   _isVerificationFailed: false
@@ -77,6 +80,7 @@ data:
   verifiedWith:
   - test/yosupo/Data-Structure/Associative-Array.test.cpp
   - test/yosupo/Data-Structure/Static-Range-Frequency.test.cpp
+  - test/yosupo/Data-Structure/Static-Range-Sum.test.cpp
   - test/yosupo/Math/Discrete-Logarithm.test.cpp
 documentation_of: library/data-structure/PBDS.hpp
 layout: document

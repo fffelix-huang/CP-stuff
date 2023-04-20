@@ -281,6 +281,9 @@ data:
       path: test/yosupo/Data-Structure/Static-Range-Frequency.test.cpp
       title: test/yosupo/Data-Structure/Static-Range-Frequency.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/yosupo/Data-Structure/Static-Range-Sum.test.cpp
+      title: test/yosupo/Data-Structure/Static-Range-Sum.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/Data-Structure/Unionfind.test.cpp
       title: test/yosupo/Data-Structure/Unionfind.test.cpp
     - icon: ':heavy_check_mark:'
