@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/internal/safe-mod.hpp
     title: library/internal/safe-mod.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/binary-gcd.hpp
     title: "Binary GCD (\u4F4D\u5143 GCD)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/random/rng.hpp
     title: library/random/rng.hpp
   _extendedRequiredBy: []
@@ -15,12 +15,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ntl/Prime-Factorize.test.cpp
     title: test/aoj/ntl/Prime-Factorize.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/Factorize.test.cpp
-    title: test/yosupo/Factorize.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/yosupo/Math/Factorize.test.cpp
+    title: test/yosupo/Math/Factorize.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"library/math/factorize.hpp\"\n#include <vector>\n#include\
@@ -124,9 +124,9 @@ data:
   path: library/math/factorize.hpp
   requiredBy: []
   timestamp: '2023-04-16 16:08:53+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yosupo/Factorize.test.cpp
+  - test/yosupo/Math/Factorize.test.cpp
   - test/aoj/ntl/Prime-Factorize.test.cpp
 documentation_of: library/math/factorize.hpp
 layout: document

@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/Sum-of-Floor-of-Linear.test.cpp
-    title: test/yosupo/Sum-of-Floor-of-Linear.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/yosupo/Math/Sum-of-Floor-of-Linear.test.cpp
+    title: test/yosupo/Math/Sum-of-Floor-of-Linear.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"library/math/floor-sum.hpp\"\n\r\nnamespace felix {\r\n\r\
@@ -32,9 +32,9 @@ data:
   path: library/math/floor-sum.hpp
   requiredBy: []
   timestamp: '2023-04-14 23:04:57+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yosupo/Sum-of-Floor-of-Linear.test.cpp
+  - test/yosupo/Math/Sum-of-Floor-of-Linear.test.cpp
 documentation_of: library/math/floor-sum.hpp
 layout: document
 title: Sum of floor linear ($\sum_{i = 0}^{n - 1} \lfloor \frac{ai + b}{m} \rfloor$)

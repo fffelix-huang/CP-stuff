@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/graph/two-sat.hpp
     title: library/graph/two-sat.hpp
   _extendedVerifiedWith:
@@ -10,14 +10,14 @@ data:
     path: test/aoj/grl/Strongly-Connected-Components.test.cpp
     title: test/aoj/grl/Strongly-Connected-Components.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/2-Sat.test.cpp
-    title: test/yosupo/2-Sat.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/Strongly-Connected-Components.test.cpp
-    title: test/yosupo/Strongly-Connected-Components.test.cpp
-  _isVerificationFailed: false
+    path: test/yosupo/Graph/Strongly-Connected-Components.test.cpp
+    title: test/yosupo/Graph/Strongly-Connected-Components.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/Math/2-Sat.test.cpp
+    title: test/yosupo/Math/2-Sat.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"library/graph/SCC.hpp\"\n#include <vector>\n#include <cassert>\n\
@@ -72,10 +72,10 @@ data:
   requiredBy:
   - library/graph/two-sat.hpp
   timestamp: '2023-04-17 12:10:28+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yosupo/Strongly-Connected-Components.test.cpp
-  - test/yosupo/2-Sat.test.cpp
+  - test/yosupo/Graph/Strongly-Connected-Components.test.cpp
+  - test/yosupo/Math/2-Sat.test.cpp
   - test/aoj/grl/Strongly-Connected-Components.test.cpp
 documentation_of: library/graph/SCC.hpp
 layout: document

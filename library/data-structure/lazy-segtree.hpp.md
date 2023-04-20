@@ -7,11 +7,11 @@ data:
     path: test/aoj/grl/Range-Query-on-a-Tree-II.test.cpp
     title: test/aoj/grl/Range-Query-on-a-Tree-II.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/Range-Affine-Point-Get.test.cpp
-    title: test/yosupo/Range-Affine-Point-Get.test.cpp
+    path: test/yosupo/Data-Structure/Range-Affine-Point-Get.test.cpp
+    title: test/yosupo/Data-Structure/Range-Affine-Point-Get.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/Range-Affine-Range-Sum.test.cpp
-    title: test/yosupo/Range-Affine-Range-Sum.test.cpp
+    path: test/yosupo/Data-Structure/Range-Affine-Range-Sum.test.cpp
+    title: test/yosupo/Data-Structure/Range-Affine-Range-Sum.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -144,8 +144,8 @@ data:
   timestamp: '2023-04-17 12:10:28+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/Range-Affine-Range-Sum.test.cpp
-  - test/yosupo/Range-Affine-Point-Get.test.cpp
+  - test/yosupo/Data-Structure/Range-Affine-Range-Sum.test.cpp
+  - test/yosupo/Data-Structure/Range-Affine-Point-Get.test.cpp
   - test/aoj/grl/Range-Query-on-a-Tree-II.test.cpp
 documentation_of: library/data-structure/lazy-segtree.hpp
 layout: document

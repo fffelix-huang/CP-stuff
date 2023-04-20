@@ -10,14 +10,14 @@ data:
     path: test/aoj/grl/Bridges.test.cpp
     title: test/aoj/grl/Bridges.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/Biconnected-Components.test.cpp
-    title: test/yosupo/Biconnected-Components.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/Two-Edge-Connected-Components.test.cpp
-    title: test/yosupo/Two-Edge-Connected-Components.test.cpp
-  _isVerificationFailed: false
+    path: test/yosupo/Graph/Biconnected-Components.test.cpp
+    title: test/yosupo/Graph/Biconnected-Components.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/Graph/Two-Edge-Connected-Components.test.cpp
+    title: test/yosupo/Graph/Two-Edge-Connected-Components.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"library/graph/lowlink.hpp\"\n#include <vector>\r\n#include\
@@ -128,10 +128,10 @@ data:
   path: library/graph/lowlink.hpp
   requiredBy: []
   timestamp: '2023-04-06 14:01:45+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yosupo/Biconnected-Components.test.cpp
-  - test/yosupo/Two-Edge-Connected-Components.test.cpp
+  - test/yosupo/Graph/Biconnected-Components.test.cpp
+  - test/yosupo/Graph/Two-Edge-Connected-Components.test.cpp
   - test/aoj/grl/Articulation-Points.test.cpp
   - test/aoj/grl/Bridges.test.cpp
 documentation_of: library/graph/lowlink.hpp

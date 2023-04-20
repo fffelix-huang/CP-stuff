@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/Z-Algorithm.test.cpp
-    title: test/yosupo/Z-Algorithm.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/yosupo/String/Z-Algorithm.test.cpp
+    title: test/yosupo/String/Z-Algorithm.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"library/string/z-algorithm.hpp\"\n#include <vector>\n#include\
@@ -34,9 +34,9 @@ data:
   path: library/string/z-algorithm.hpp
   requiredBy: []
   timestamp: '2023-04-17 09:05:42+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yosupo/Z-Algorithm.test.cpp
+  - test/yosupo/String/Z-Algorithm.test.cpp
 documentation_of: library/string/z-algorithm.hpp
 layout: document
 title: Z Algorithm

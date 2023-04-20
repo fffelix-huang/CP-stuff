@@ -7,8 +7,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/Line-Add-Get-Min.test.cpp
-    title: test/yosupo/Line-Add-Get-Min.test.cpp
+    path: test/yosupo/Data-Structure/Line-Add-Get-Min.test.cpp
+    title: test/yosupo/Data-Structure/Line-Add-Get-Min.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -62,7 +62,7 @@ data:
   timestamp: '2023-04-13 06:05:35+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/Line-Add-Get-Min.test.cpp
+  - test/yosupo/Data-Structure/Line-Add-Get-Min.test.cpp
 documentation_of: library/data-structure/line-container.hpp
 layout: document
 redirect_from:

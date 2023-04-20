@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/data-structure/sparse-table.hpp
     title: library/data-structure/sparse-table.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/tree/HLD.hpp
     title: "Heavy Light Decomposition (\u8F15\u91CD\u93C8\u5256\u5206)"
   _extendedRequiredBy: []

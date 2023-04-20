@@ -10,17 +10,17 @@ data:
     path: test/aoj/grl/Range-Query-on-a-Tree.test.cpp
     title: test/aoj/grl/Range-Query-on-a-Tree.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/Point-Add-Range-Sum.test.cpp
-    title: test/yosupo/Point-Add-Range-Sum.test.cpp
+    path: test/yosupo/Data-Structure/Point-Add-Range-Sum.test.cpp
+    title: test/yosupo/Data-Structure/Point-Add-Range-Sum.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/Point-Add-Rectangle-Sum.test.cpp
-    title: test/yosupo/Point-Add-Rectangle-Sum.test.cpp
+    path: test/yosupo/Data-Structure/Point-Add-Rectangle-Sum.test.cpp
+    title: test/yosupo/Data-Structure/Point-Add-Rectangle-Sum.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/Vertex-Add-Path-Sum.test.cpp
-    title: test/yosupo/Vertex-Add-Path-Sum.test.cpp
+    path: test/yosupo/Data-Structure/Vertex-Add-Path-Sum.test.cpp
+    title: test/yosupo/Data-Structure/Vertex-Add-Path-Sum.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/Vertex-Add-Subtree-Sum.test.cpp
-    title: test/yosupo/Vertex-Add-Subtree-Sum.test.cpp
+    path: test/yosupo/Data-Structure/Vertex-Add-Subtree-Sum.test.cpp
+    title: test/yosupo/Data-Structure/Vertex-Add-Subtree-Sum.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -51,10 +51,10 @@ data:
   timestamp: '2023-04-17 12:10:28+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/Vertex-Add-Path-Sum.test.cpp
-  - test/yosupo/Point-Add-Rectangle-Sum.test.cpp
-  - test/yosupo/Vertex-Add-Subtree-Sum.test.cpp
-  - test/yosupo/Point-Add-Range-Sum.test.cpp
+  - test/yosupo/Data-Structure/Vertex-Add-Path-Sum.test.cpp
+  - test/yosupo/Data-Structure/Point-Add-Rectangle-Sum.test.cpp
+  - test/yosupo/Data-Structure/Vertex-Add-Subtree-Sum.test.cpp
+  - test/yosupo/Data-Structure/Point-Add-Range-Sum.test.cpp
   - test/aoj/grl/Range-Query-on-a-Tree.test.cpp
 documentation_of: library/data-structure/fenwick.hpp
 layout: document

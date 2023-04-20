@@ -7,8 +7,8 @@ data:
     title: library/data-structure/line-container.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/Line-Add-Get-Min.test.cpp
-    title: test/yosupo/Line-Add-Get-Min.test.cpp
+    path: test/yosupo/Data-Structure/Line-Add-Get-Min.test.cpp
+    title: test/yosupo/Data-Structure/Line-Add-Get-Min.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -31,7 +31,7 @@ data:
   timestamp: '2023-04-03 13:30:29+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/Line-Add-Get-Min.test.cpp
+  - test/yosupo/Data-Structure/Line-Add-Get-Min.test.cpp
 documentation_of: library/math/integer-div.hpp
 layout: document
 title: Integer division ($\lfloor \frac{a}{b} \rfloor \lceil \frac{a}{b} \rceil$)

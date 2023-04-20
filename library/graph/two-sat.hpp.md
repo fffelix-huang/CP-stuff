@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/graph/SCC.hpp
     title: library/graph/SCC.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/2-Sat.test.cpp
-    title: test/yosupo/2-Sat.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/yosupo/Math/2-Sat.test.cpp
+    title: test/yosupo/Math/2-Sat.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"library/graph/two-sat.hpp\"\n#include <vector>\n#line 3\
@@ -80,9 +80,9 @@ data:
   path: library/graph/two-sat.hpp
   requiredBy: []
   timestamp: '2023-04-17 12:10:28+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yosupo/2-Sat.test.cpp
+  - test/yosupo/Math/2-Sat.test.cpp
 documentation_of: library/graph/two-sat.hpp
 layout: document
 redirect_from:

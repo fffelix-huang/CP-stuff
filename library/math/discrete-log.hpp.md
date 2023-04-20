@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/data-structure/PBDS.hpp
     title: library/data-structure/PBDS.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/binary-gcd.hpp
     title: "Binary GCD (\u4F4D\u5143 GCD)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/modint/barrett.hpp
     title: library/modint/barrett.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/random/splitmix64.hpp
     title: library/random/splitmix64.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/Discrete-Logarithm.test.cpp
-    title: test/yosupo/Discrete-Logarithm.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/yosupo/Math/Discrete-Logarithm.test.cpp
+    title: test/yosupo/Math/Discrete-Logarithm.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"library/math/discrete-log.hpp\"\n#include <vector>\r\n#include\
@@ -87,9 +87,9 @@ data:
   path: library/math/discrete-log.hpp
   requiredBy: []
   timestamp: '2023-04-16 03:12:19+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yosupo/Discrete-Logarithm.test.cpp
+  - test/yosupo/Math/Discrete-Logarithm.test.cpp
 documentation_of: library/math/discrete-log.hpp
 layout: document
 title: "Discrete Log (\u96E2\u6563\u5C0D\u6578 $a^x \\equiv b \\pmod m$)"

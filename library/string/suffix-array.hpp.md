@@ -3,15 +3,15 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/Number-of-Substrings.test.cpp
-    title: test/yosupo/Number-of-Substrings.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/Suffix-Array.test.cpp
-    title: test/yosupo/Suffix-Array.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/yosupo/String/Number-of-Substrings.test.cpp
+    title: test/yosupo/String/Number-of-Substrings.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/String/Suffix-Array.test.cpp
+    title: test/yosupo/String/Suffix-Array.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"library/string/suffix-array.hpp\"\n#include <vector>\r\n\
@@ -140,10 +140,10 @@ data:
   path: library/string/suffix-array.hpp
   requiredBy: []
   timestamp: '2023-04-17 09:05:42+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yosupo/Suffix-Array.test.cpp
-  - test/yosupo/Number-of-Substrings.test.cpp
+  - test/yosupo/String/Suffix-Array.test.cpp
+  - test/yosupo/String/Number-of-Substrings.test.cpp
 documentation_of: library/string/suffix-array.hpp
 layout: document
 title: Suffix Array

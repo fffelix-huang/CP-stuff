@@ -2,10 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/data-structure/PBDS.hpp
     title: library/data-structure/PBDS.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/math/discrete-log.hpp
     title: "Discrete Log (\u96E2\u6563\u5C0D\u6578 $a^x \\equiv b \\pmod m$)"
   - icon: ':warning:'
@@ -16,17 +16,17 @@ data:
     title: random_t
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/Associative-Array.test.cpp
-    title: test/yosupo/Associative-Array.test.cpp
+    path: test/yosupo/Data-Structure/Associative-Array.test.cpp
+    title: test/yosupo/Data-Structure/Associative-Array.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/Discrete-Logarithm.test.cpp
-    title: test/yosupo/Discrete-Logarithm.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/Static-Range-Frequency.test.cpp
-    title: test/yosupo/Static-Range-Frequency.test.cpp
-  _isVerificationFailed: false
+    path: test/yosupo/Data-Structure/Static-Range-Frequency.test.cpp
+    title: test/yosupo/Data-Structure/Static-Range-Frequency.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/Math/Discrete-Logarithm.test.cpp
+    title: test/yosupo/Math/Discrete-Logarithm.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - http://xoshiro.di.unimi.it/splitmix64.c
@@ -56,11 +56,11 @@ data:
   - library/math/discrete-log.hpp
   - library/data-structure/PBDS.hpp
   timestamp: '2023-04-05 16:22:46+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yosupo/Discrete-Logarithm.test.cpp
-  - test/yosupo/Associative-Array.test.cpp
-  - test/yosupo/Static-Range-Frequency.test.cpp
+  - test/yosupo/Data-Structure/Associative-Array.test.cpp
+  - test/yosupo/Data-Structure/Static-Range-Frequency.test.cpp
+  - test/yosupo/Math/Discrete-Logarithm.test.cpp
 documentation_of: library/random/splitmix64.hpp
 layout: document
 redirect_from:

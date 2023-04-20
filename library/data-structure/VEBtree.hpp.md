@@ -4,8 +4,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/Predecessor-Problem.test.cpp
-    title: test/yosupo/Predecessor-Problem.test.cpp
+    path: test/yosupo/Data-Structure/Predecessor-Problem.test.cpp
+    title: test/yosupo/Data-Structure/Predecessor-Problem.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -101,7 +101,7 @@ data:
   timestamp: '2023-04-17 12:10:28+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/Predecessor-Problem.test.cpp
+  - test/yosupo/Data-Structure/Predecessor-Problem.test.cpp
 documentation_of: library/data-structure/VEBtree.hpp
 layout: document
 title: Van Emde Boas Tree

@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/random/rng.hpp
     title: library/random/rng.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
-    title: test/yosupo/Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
+    path: test/yosupo/Data-Structure/Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
+    title: test/yosupo/Data-Structure/Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -147,7 +147,7 @@ data:
   timestamp: '2023-04-16 16:26:33+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
+  - test/yosupo/Data-Structure/Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
 documentation_of: library/data-structure/lazy-treap.hpp
 layout: document
 redirect_from:
