@@ -15,7 +15,14 @@ data:
     \ = (end) - 1, i##_begin_ = (begin); i >= i##_begin_; i--)\n#define REP(i, n)\
     \ FOR(i, 0, n)\n#define IREP(i, n) IFOR(i, 0, n)\n\nusing uint = unsigned int;\n\
     using ll = long long;\nusing ull = unsigned long long;\nusing pii = std::pair<int,\
-    \ int>;\nusing pll = std::pair<ll, ll>;\n\ntemplate<class Fun>\nclass y_combinator_result\
+    \ int>;\nusing pll = std::pair<ll, ll>;\n\ntemplate<class T, class U> std::istream&\
+    \ operator>>(std::istream& in, std::pair<T, U>& p) { return in >> p.first >> p.second;\
+    \ }\ntemplate<class A, class B, class C> std::istream& operator>>(std::istream&\
+    \ in, std::tuple<A, B, C>& tp) { return in >> std::get<0>(tp) >> std::get<1>(tp)\
+    \ >> std::get<2>(tp); }\ntemplate<class T, int N> std::istream& operator>>(std::istream&\
+    \ in, std::array<T, N>& a) { for(T& x : a) in >> x; return in; }\ntemplate<class\
+    \ T> std::istream& operator>>(std::istream& in, std::vector<T>& a) { for(T& x\
+    \ : a) in >> x; return in; }\n\ntemplate<class Fun>\nclass y_combinator_result\
     \ {\n\tFun fun_;\npublic:\n\ttemplate<class T>\n\texplicit y_combinator_result(T\
     \ &&fun): fun_(std::forward<T>(fun)) {}\n\n\ttemplate<class ...Args>\n\tdecltype(auto)\
     \ operator()(Args &&...args) {\n\t\treturn fun_(std::ref(*this), std::forward<Args>(args)...);\n\
@@ -33,11 +40,18 @@ data:
     \ i##_begin_; i--)\n#define REP(i, n) FOR(i, 0, n)\n#define IREP(i, n) IFOR(i,\
     \ 0, n)\n\nusing uint = unsigned int;\nusing ll = long long;\nusing ull = unsigned\
     \ long long;\nusing pii = std::pair<int, int>;\nusing pll = std::pair<ll, ll>;\n\
-    \ntemplate<class Fun>\nclass y_combinator_result {\n\tFun fun_;\npublic:\n\ttemplate<class\
-    \ T>\n\texplicit y_combinator_result(T &&fun): fun_(std::forward<T>(fun)) {}\n\
-    \n\ttemplate<class ...Args>\n\tdecltype(auto) operator()(Args &&...args) {\n\t\
-    \treturn fun_(std::ref(*this), std::forward<Args>(args)...);\n\t}\n};\n\ntemplate<class\
-    \ Fun>\ndecltype(auto) y_combinator(Fun &&fun) {\n\treturn y_combinator_result<std::decay_t<Fun>>(std::forward<Fun>(fun));\n\
+    \ntemplate<class T, class U> std::istream& operator>>(std::istream& in, std::pair<T,\
+    \ U>& p) { return in >> p.first >> p.second; }\ntemplate<class A, class B, class\
+    \ C> std::istream& operator>>(std::istream& in, std::tuple<A, B, C>& tp) { return\
+    \ in >> std::get<0>(tp) >> std::get<1>(tp) >> std::get<2>(tp); }\ntemplate<class\
+    \ T, int N> std::istream& operator>>(std::istream& in, std::array<T, N>& a) {\
+    \ for(T& x : a) in >> x; return in; }\ntemplate<class T> std::istream& operator>>(std::istream&\
+    \ in, std::vector<T>& a) { for(T& x : a) in >> x; return in; }\n\ntemplate<class\
+    \ Fun>\nclass y_combinator_result {\n\tFun fun_;\npublic:\n\ttemplate<class T>\n\
+    \texplicit y_combinator_result(T &&fun): fun_(std::forward<T>(fun)) {}\n\n\ttemplate<class\
+    \ ...Args>\n\tdecltype(auto) operator()(Args &&...args) {\n\t\treturn fun_(std::ref(*this),\
+    \ std::forward<Args>(args)...);\n\t}\n};\n\ntemplate<class Fun>\ndecltype(auto)\
+    \ y_combinator(Fun &&fun) {\n\treturn y_combinator_result<std::decay_t<Fun>>(std::forward<Fun>(fun));\n\
     }\n\ntemplate<class T> bool chmin(T& a, const T& b) { return a < b ? false : (a\
     \ = b, true); }\ntemplate<class T> bool chmax(T& a, const T& b) { return a > b\
     \ ? false : (a = b, true); }\ntemplate<class T> std::vector<T> sort_unique(std::vector<T>\
@@ -47,7 +61,7 @@ data:
   isVerificationFile: false
   path: library/misc/default.hpp
   requiredBy: []
-  timestamp: '2023-04-18 22:47:10+08:00'
+  timestamp: '2023-04-21 01:30:53+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/misc/default.hpp
