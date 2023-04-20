@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/graph/two-sat.hpp
     title: library/graph/two-sat.hpp
   _extendedVerifiedWith:
@@ -12,12 +12,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/Graph/Strongly-Connected-Components.test.cpp
     title: test/yosupo/Graph/Strongly-Connected-Components.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/Math/2-Sat.test.cpp
     title: test/yosupo/Math/2-Sat.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"library/graph/SCC.hpp\"\n#include <vector>\n#include <cassert>\n\
@@ -72,7 +72,7 @@ data:
   requiredBy:
   - library/graph/two-sat.hpp
   timestamp: '2023-04-17 12:10:28+08:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/Graph/Strongly-Connected-Components.test.cpp
   - test/yosupo/Math/2-Sat.test.cpp

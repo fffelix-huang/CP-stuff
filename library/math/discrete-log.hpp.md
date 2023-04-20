@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/data-structure/PBDS.hpp
     title: library/data-structure/PBDS.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/binary-gcd.hpp
     title: "Binary GCD (\u4F4D\u5143 GCD)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/modint/barrett.hpp
     title: library/modint/barrett.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/random/splitmix64.hpp
     title: library/random/splitmix64.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/Math/Discrete-Logarithm.test.cpp
     title: test/yosupo/Math/Discrete-Logarithm.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"library/math/discrete-log.hpp\"\n#include <vector>\r\n#include\
@@ -87,7 +87,7 @@ data:
   path: library/math/discrete-log.hpp
   requiredBy: []
   timestamp: '2023-04-16 03:12:19+08:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/Math/Discrete-Logarithm.test.cpp
 documentation_of: library/math/discrete-log.hpp

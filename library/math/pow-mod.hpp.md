@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/internal/safe-mod.hpp
     title: library/internal/safe-mod.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/modint/barrett.hpp
     title: library/modint/barrett.hpp
   _extendedRequiredBy: []

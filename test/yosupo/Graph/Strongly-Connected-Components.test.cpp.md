@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/graph/SCC.hpp
     title: library/graph/SCC.hpp
   _extendedRequiredBy: []

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/data-structure/sparse-table.hpp
     title: library/data-structure/sparse-table.hpp
   _extendedRequiredBy: []
@@ -21,15 +21,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/Data-Structure/Vertex-Add-Subtree-Sum.test.cpp
     title: test/yosupo/Data-Structure/Vertex-Add-Subtree-Sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/Tree/Jump-on-Tree.test.cpp
     title: test/yosupo/Tree/Jump-on-Tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/Tree/Lowest-Common-Ancestor.test.cpp
     title: test/yosupo/Tree/Lowest-Common-Ancestor.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"library/tree/HLD.hpp\"\n#include <vector>\r\n#include <cassert>\r\
@@ -152,7 +152,7 @@ data:
   path: library/tree/HLD.hpp
   requiredBy: []
   timestamp: '2023-04-17 12:10:28+08:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/Tree/Lowest-Common-Ancestor.test.cpp
   - test/yosupo/Tree/Jump-on-Tree.test.cpp
