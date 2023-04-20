@@ -2,8 +2,8 @@
 
 #include <iostream>
 #include <numeric>
-#include "../../library/string/suffix-array.hpp"
-#include "../../library/string/lcp-array.hpp"
+#include "../../../library/string/suffix-array.hpp"
+#include "../../../library/string/lcp-array.hpp"
 using namespace std;
 using namespace felix;
 

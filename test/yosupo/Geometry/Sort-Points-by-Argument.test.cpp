@@ -3,7 +3,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-#include "../../library/geometry/point.hpp"
+#include "../../../library/geometry/point.hpp"
 using namespace std;
 using namespace felix;
 

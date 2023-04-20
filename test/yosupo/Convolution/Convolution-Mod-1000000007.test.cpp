@@ -1,8 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/convolution_mod_1000000007"
 
 #include <iostream>
-#include "../../library/modint/modint.hpp"
-#include "../../library/convolution/NTT.hpp"
+#include "../../../library/modint/modint.hpp"
+#include "../../../library/convolution/NTT.hpp"
 using namespace std;
 using namespace felix;
 

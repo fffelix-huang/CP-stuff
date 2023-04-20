@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/zalgorithm"
 
 #include <iostream>
-#include "../../library/string/z-algorithm.hpp"
+#include "../../../library/string/z-algorithm.hpp"
 using namespace std;
 using namespace felix;
 

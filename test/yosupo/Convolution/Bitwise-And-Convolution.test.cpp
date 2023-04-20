@@ -1,8 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/bitwise_and_convolution"
 
 #include <iostream>
-#include "../../library/modint/modint.hpp"
-#include "../../library/convolution/subset-convolution.hpp"
+#include "../../../library/modint/modint.hpp"
+#include "../../../library/convolution/subset-convolution.hpp"
 using namespace std;
 using namespace felix;
 

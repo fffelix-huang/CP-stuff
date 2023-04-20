@@ -1,9 +1,8 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/subset_convolution"
+#define PROBLEM "https://judge.yosupo.jp/problem/bitwise_xor_convolution"
 
 #include <iostream>
-#include <vector>
-#include "../../library/modint/modint.hpp"
-#include "../../library/convolution/subset-convolution.hpp"
+#include "../../../library/modint/modint.hpp"
+#include "../../../library/convolution/subset-convolution.hpp"
 using namespace std;
 using namespace felix;
 
@@ -23,7 +22,7 @@ int main() {
 	for(int i = 0; i < n; i++) {
 		cin >> b[i];
 	}
-	auto c = subset_convolution(a, b);
+	auto c = xor_convolution(a, b);
 	for(int i = 0; i < n; i++) {
 		cout << c[i] << " \n"[i == n - 1];
 	}

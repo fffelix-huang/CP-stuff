@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/suffixarray"
 
 #include <iostream>
-#include "../../library/string/suffix-array.hpp"
+#include "../../../library/string/suffix-array.hpp"
 using namespace std;
 using namespace felix;
 

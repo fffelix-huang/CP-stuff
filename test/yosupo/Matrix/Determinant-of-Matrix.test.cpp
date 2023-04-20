@@ -1,8 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/matrix_det"
 
 #include <iostream>
-#include "../../library/matrix/matrix.hpp"
-#include "../../library/modint/modint.hpp"
+#include "../../../library/matrix/matrix.hpp"
+#include "../../../library/modint/modint.hpp"
 using namespace std;
 using namespace felix;
 
