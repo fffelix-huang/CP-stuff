@@ -121,9 +121,9 @@ private:
 } // namespace xor_basis_internal
 
 template<int B, class ENABLE = void> struct xor_basis : public xor_basis_internal::xor_basis_helper<B, __int128> {};
-template<int B> struct xor_basis<B, std::enable_if_t<(B >= 33 && B <= 64)>> : public xor_basis_internal::xor_basis_helper<B, unsigned long long> {};
-template<int B> struct xor_basis<B, std::enable_if_t<(B >= 17 && B <= 32)>> : public xor_basis_internal::xor_basis_helper<B, unsigned int> {};
-template<int B> struct xor_basis<B, std::enable_if_t<(B >= 9 && B <= 16)>> : public xor_basis_internal::xor_basis_helper<B, unsigned short> {};
-template<int B> struct xor_basis<B, std::enable_if_t<(B <= 8)>> : public xor_basis_internal::xor_basis_helper<B, uint8_t> {};
+template<int B> struct xor_basis<B, std::enable_if_t<(B >= 32 && B < 64)>> : public xor_basis_internal::xor_basis_helper<B, long long> {};
+template<int B> struct xor_basis<B, std::enable_if_t<(B >= 16 && B < 32)>> : public xor_basis_internal::xor_basis_helper<B, int> {};
+template<int B> struct xor_basis<B, std::enable_if_t<(B >= 8 && B < 16)>> : public xor_basis_internal::xor_basis_helper<B, short> {};
+template<int B> struct xor_basis<B, std::enable_if_t<(B < 8)>> : public xor_basis_internal::xor_basis_helper<B, int8_t> {};
 
 } // namespace felix

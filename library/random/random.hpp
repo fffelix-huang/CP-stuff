@@ -3,26 +3,40 @@
 #include <cstring>
 #include <array>
 #include <cassert>
-#include <chrono>
 #include <numeric>
+#include <climits>
 #include "splitmix64.hpp"
 
 namespace felix {
 
 struct random_t {
 public:
-	explicit random_t(unsigned long long seed = std::chrono::steady_clock::now().time_since_epoch().count()) {
+	explicit random_t(unsigned long long seed = 3905348978240129619LL) {
+		set_seed(seed);
+	}
+
+	void set_seed(unsigned long long seed) {
 		for(int i = 0; i < 4; i++) {
 			s[i] = internal::splitmix64_hash::splitmix64(seed);
 			seed += 0x9e3779b97f4a7c15;
 		}
 	}
 
+	// [0, n)
+	unsigned long long next(unsigned long long n) {
+		const unsigned long long LIMIT = std::numeric_limits<unsigned long long>::max() / n * n;
+		unsigned long long r;
+		do {
+			r = next();
+		} while(r >= LIMIT);
+		return r % n;
+	}
+
 	// [l, r]
 	template<class T>
 	T next(T l, T r) {
 		assert(l <= r);
-		return T(l + next((unsigned long long) r - l));
+		return T(l + next(r - l + 1ULL));
 	}
 
 	template<class Iter>
@@ -33,7 +47,7 @@ public:
 		int pos = 0;
 		for(auto it = l + 1; it != r; it++) {
 			pos += 1;
-			int j = next(pos);
+			int j = next(pos + 1);
 			if(j != pos) {
 				std::iter_swap(it, l + j);
 			}
@@ -72,21 +86,6 @@ private:
 		s[2] ^= t;
 		s[3] = rotl(s[3], 45);
 		return result;
-	}
-
-	// [0, upper]
-	unsigned long long next(unsigned long long upper) {
-		if((upper & (upper + 1)) == 0) {
-			return next() & upper;
-		}
-		int lg = std::__lg(upper);
-		unsigned long long mask = (lg == 63 ? ~0ULL : (1ULL << (lg + 1)) - 1);
-		while(true) {
-			unsigned long long r = next() & mask;
-			if(r <= upper) {
-				return r;
-			}
-		}
 	}
 } rnd;
 
