@@ -15,6 +15,11 @@ using ull = unsigned long long;
 using pii = std::pair<int, int>;
 using pll = std::pair<ll, ll>;
 
+template<class T, class U> std::istream& operator>>(std::istream& in, std::pair<T, U>& p) { return in >> p.first >> p.second; }
+template<class A, class B, class C> std::istream& operator>>(std::istream& in, std::tuple<A, B, C>& tp) { return in >> std::get<0>(tp) >> std::get<1>(tp) >> std::get<2>(tp); }
+template<class T, int N> std::istream& operator>>(std::istream& in, std::array<T, N>& a) { for(T& x : a) in >> x; return in; }
+template<class T> std::istream& operator>>(std::istream& in, std::vector<T>& a) { for(T& x : a) in >> x; return in; }
+
 template<class Fun>
 class y_combinator_result {
 	Fun fun_;
