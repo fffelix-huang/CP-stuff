@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/point_add_rectangle_sum"
 
 #include <iostream>
-#include "../../library/data-structure/rectangle-sum.hpp"
+#include "../../../library/data-structure/rectangle-sum.hpp"
 using namespace std;
 using namespace felix;
 

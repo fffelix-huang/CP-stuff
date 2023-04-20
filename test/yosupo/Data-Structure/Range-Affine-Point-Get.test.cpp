@@ -2,8 +2,8 @@
 
 #include <iostream>
 #include <vector>
-#include "../../library/data-structure/lazy-segtree.hpp"
-#include "../../library/modint/modint.hpp"
+#include "../../../library/data-structure/lazy-segtree.hpp"
+#include "../../../library/modint/modint.hpp"
 using namespace std;
 using namespace felix;
 

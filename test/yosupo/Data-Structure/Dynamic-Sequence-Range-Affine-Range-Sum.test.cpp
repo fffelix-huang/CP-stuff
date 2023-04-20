@@ -1,8 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum"
 
 #include <iostream>
-#include "../../library/modint/modint.hpp"
-#include "../../library/data-structure/lazy-treap.hpp"
+#include "../../../library/modint/modint.hpp"
+#include "../../../library/data-structure/lazy-treap.hpp"
 using namespace std;
 using namespace felix;
 

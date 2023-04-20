@@ -2,8 +2,8 @@
 
 #include <iostream>
 #include <vector>
-#include "../../library/modint/modint.hpp"
-#include "../../library/formal-power-series/poly.hpp"
+#include "../../../library/modint/modint.hpp"
+#include "../../../library/formal-power-series/poly.hpp"
 using namespace std;
 using namespace felix;
 

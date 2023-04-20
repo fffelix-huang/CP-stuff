@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/point_add_range_sum"
 
 #include <iostream>
-#include "../../library/data-structure/fenwick.hpp"
+#include "../../../library/data-structure/fenwick.hpp"
 using namespace std;
 using namespace felix;
 

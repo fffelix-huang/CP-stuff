@@ -3,7 +3,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-#include "../../library/data-structure/sparse-table.hpp"
+#include "../../../library/data-structure/sparse-table.hpp"
 using namespace std;
 using namespace felix;
 

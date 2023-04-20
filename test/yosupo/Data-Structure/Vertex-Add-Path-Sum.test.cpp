@@ -1,8 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/vertex_add_path_sum"
 
 #include <iostream>
-#include "../../library/data-structure/fenwick.hpp"
-#include "../../library/tree/HLD.hpp"
+#include "../../../library/data-structure/fenwick.hpp"
+#include "../../../library/tree/HLD.hpp"
 using namespace std;
 using namespace felix;
 
