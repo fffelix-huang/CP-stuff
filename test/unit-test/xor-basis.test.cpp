@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <vector>
+#include <chrono>
 #include <cassert>
 #include <algorithm>
 #include "../../library/math/xor-basis.hpp"
@@ -47,9 +48,10 @@ void TEST() {
 }
 
 int main() {
+	rnd.set_seed(chrono::steady_clock::now().time_since_epoch().count());
 	TEST<1, 1>();
 	TEST<1, 60>();
-	for(int rep = 0; rep < 50; rep++) {
+	for(int iter = 0; iter < 50; iter++) {
 		TEST<20, 60>();
 	}
 
