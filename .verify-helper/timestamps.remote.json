@@ -28,6 +28,7 @@
 "test/yosupo/Data-Structure/Set-Xor-Min.test.cpp": "2023-04-20 12:52:42 +0800",
 "test/yosupo/Data-Structure/Static-RMQ.test.cpp": "2023-04-20 12:52:42 +0800",
 "test/yosupo/Data-Structure/Static-Range-Frequency.test.cpp": "2023-04-20 12:52:42 +0800",
+"test/yosupo/Data-Structure/Static-Range-Sum.test.cpp": "2023-04-20 14:51:28 +0800",
 "test/yosupo/Data-Structure/Unionfind.test.cpp": "2023-04-20 12:52:42 +0800",
 "test/yosupo/Data-Structure/Vertex-Add-Path-Sum.test.cpp": "2023-04-20 12:52:42 +0800",
 "test/yosupo/Data-Structure/Vertex-Add-Subtree-Sum.test.cpp": "2023-04-20 12:52:42 +0800",
