@@ -11,10 +11,13 @@ data:
   - icon: ':warning:'
     path: library/random/graph-generator.hpp
     title: Random Graph Generator
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: library/random/random.hpp
     title: random_t
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/unit-test/xor-basis.test.cpp
+    title: test/unit-test/xor-basis.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/Data-Structure/Associative-Array.test.cpp
     title: test/yosupo/Data-Structure/Associative-Array.test.cpp
@@ -61,6 +64,7 @@ data:
   timestamp: '2023-04-05 16:22:46+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/unit-test/xor-basis.test.cpp
   - test/yosupo/Data-Structure/Associative-Array.test.cpp
   - test/yosupo/Data-Structure/Static-Range-Frequency.test.cpp
   - test/yosupo/Data-Structure/Static-Range-Sum.test.cpp

@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/unit-test/xor-basis.test.cpp
+    title: test/unit-test/xor-basis.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"library/math/xor-basis.hpp\"\n#include <vector>\r\n#include\
@@ -40,13 +43,13 @@ data:
     \t}\r\n\t}\r\n};\r\n\r\n} // namespace xor_basis_internal\r\n\r\ntemplate<int\
     \ B, class ENABLE = void> struct xor_basis : public xor_basis_internal::xor_basis_helper<B,\
     \ __int128> {};\r\ntemplate<int B> struct xor_basis<B, std::enable_if_t<(B >=\
-    \ 33 && B <= 64)>> : public xor_basis_internal::xor_basis_helper<B, unsigned long\
-    \ long> {};\r\ntemplate<int B> struct xor_basis<B, std::enable_if_t<(B >= 17 &&\
-    \ B <= 32)>> : public xor_basis_internal::xor_basis_helper<B, unsigned int> {};\r\
-    \ntemplate<int B> struct xor_basis<B, std::enable_if_t<(B >= 9 && B <= 16)>> :\
-    \ public xor_basis_internal::xor_basis_helper<B, unsigned short> {};\r\ntemplate<int\
-    \ B> struct xor_basis<B, std::enable_if_t<(B <= 8)>> : public xor_basis_internal::xor_basis_helper<B,\
-    \ uint8_t> {};\r\n\r\n} // namespace felix\r\n"
+    \ 32 && B < 64)>> : public xor_basis_internal::xor_basis_helper<B, long long>\
+    \ {};\r\ntemplate<int B> struct xor_basis<B, std::enable_if_t<(B >= 16 && B <\
+    \ 32)>> : public xor_basis_internal::xor_basis_helper<B, int> {};\r\ntemplate<int\
+    \ B> struct xor_basis<B, std::enable_if_t<(B >= 8 && B < 16)>> : public xor_basis_internal::xor_basis_helper<B,\
+    \ short> {};\r\ntemplate<int B> struct xor_basis<B, std::enable_if_t<(B < 8)>>\
+    \ : public xor_basis_internal::xor_basis_helper<B, int8_t> {};\r\n\r\n} // namespace\
+    \ felix\r\n"
   code: "#pragma once\r\n#include <vector>\r\n#include <array>\r\n#include <type_traits>\r\
     \n\r\nnamespace felix {\r\n\r\nnamespace xor_basis_internal {\r\n\r\ntemplate<int\
     \ B, class T>\r\nstruct xor_basis_helper {\r\npublic:\r\n\tvoid insert(T x) {\r\
@@ -78,20 +81,21 @@ data:
     \n\t\t\t}\r\n\t\t}\r\n\t}\r\n};\r\n\r\n} // namespace xor_basis_internal\r\n\r\
     \ntemplate<int B, class ENABLE = void> struct xor_basis : public xor_basis_internal::xor_basis_helper<B,\
     \ __int128> {};\r\ntemplate<int B> struct xor_basis<B, std::enable_if_t<(B >=\
-    \ 33 && B <= 64)>> : public xor_basis_internal::xor_basis_helper<B, unsigned long\
-    \ long> {};\r\ntemplate<int B> struct xor_basis<B, std::enable_if_t<(B >= 17 &&\
-    \ B <= 32)>> : public xor_basis_internal::xor_basis_helper<B, unsigned int> {};\r\
-    \ntemplate<int B> struct xor_basis<B, std::enable_if_t<(B >= 9 && B <= 16)>> :\
-    \ public xor_basis_internal::xor_basis_helper<B, unsigned short> {};\r\ntemplate<int\
-    \ B> struct xor_basis<B, std::enable_if_t<(B <= 8)>> : public xor_basis_internal::xor_basis_helper<B,\
-    \ uint8_t> {};\r\n\r\n} // namespace felix\r\n"
+    \ 32 && B < 64)>> : public xor_basis_internal::xor_basis_helper<B, long long>\
+    \ {};\r\ntemplate<int B> struct xor_basis<B, std::enable_if_t<(B >= 16 && B <\
+    \ 32)>> : public xor_basis_internal::xor_basis_helper<B, int> {};\r\ntemplate<int\
+    \ B> struct xor_basis<B, std::enable_if_t<(B >= 8 && B < 16)>> : public xor_basis_internal::xor_basis_helper<B,\
+    \ short> {};\r\ntemplate<int B> struct xor_basis<B, std::enable_if_t<(B < 8)>>\
+    \ : public xor_basis_internal::xor_basis_helper<B, int8_t> {};\r\n\r\n} // namespace\
+    \ felix\r\n"
   dependsOn: []
   isVerificationFile: false
   path: library/math/xor-basis.hpp
   requiredBy: []
-  timestamp: '2023-04-06 10:37:20+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2023-04-20 18:14:15+08:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/unit-test/xor-basis.test.cpp
 documentation_of: library/math/xor-basis.hpp
 layout: document
 title: "xor basis (\u7DDA\u6027\u57FA)"

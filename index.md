@@ -122,7 +122,7 @@ data:
     - icon: ':warning:'
       path: library/math/pow-mod.hpp
       title: library/math/pow-mod.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: library/math/xor-basis.hpp
       title: "xor basis (\u7DDA\u6027\u57FA)"
   - name: library/matrix
@@ -154,7 +154,7 @@ data:
     - icon: ':warning:'
       path: library/random/graph-generator.hpp
       title: Random Graph Generator
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: library/random/random.hpp
       title: random_t
     - icon: ':heavy_check_mark:'
@@ -225,6 +225,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/ntl/Prime-Factorize.test.cpp
       title: test/aoj/ntl/Prime-Factorize.test.cpp
+  - name: test/unit-test
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/unit-test/xor-basis.test.cpp
+      title: test/unit-test/xor-basis.test.cpp
   - name: test/yosupo/Convolution
     pages:
     - icon: ':heavy_check_mark:'
