@@ -185,10 +185,31 @@ Graph sparse(int n, bool weighted = false, long long w_min = 1, long long w_max 
 	return g;
 }
 
+Graph bipartite(int n, bool weighted = false, long long w_min = 1, long long w_max = 1) {
+	set_weight(weighted, w_min, w_max);
+	Graph g(n, weighted);
+	if(n == 1) {
+		return g;
+	}
+	auto perm = rnd.permutation(n);
+	int l_cnt = rnd.next(1, n - 1);
+	int r_cnt = n - l_cnt;
+	auto l_vertices = std::vector<int>(perm.begin(), perm.begin() + l_cnt);
+	auto r_vertices = std::vector<int>(perm.begin() + l_cnt, perm.end());
+	for(auto u : l_vertices) {
+		for(auto v : r_vertices) {
+			if(rnd.next(0, 1)) {
+				add_edge(g, u, v);
+			}
+		}
+	}
+	return g;
+}
+
 Graph generate(int n, bool is_tree = false, bool weighted = false, long long w_min = 1, long long w_max = 1) {
 	using F = std::function<Graph(int, bool, long long, long long)>;
-	std::vector<F> f{tree, path, star, perfect, simple, namori, sparse};
-	int mx = (is_tree ? 2 : 6);
+	std::vector<F> f{tree, path, star, perfect, simple, namori, sparse, bipartite};
+	int mx = (is_tree ? 2 : (int) f.size());
 	return f[rnd.next(0, mx)](n, weighted, w_min, w_max);
 }
 
