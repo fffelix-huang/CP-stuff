@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/discrete_logarithm_mod"
 
 #include <iostream>
-#include "../../library/math/discrete-log.hpp"
+#include "../../../library/math/discrete-log.hpp"
 using namespace std;
 using namespace felix;
 

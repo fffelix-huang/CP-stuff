@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/partition_function"
 
 #include <iostream>
-#include "../../library/formal-power-series/poly.hpp"
+#include "../../../library/formal-power-series/poly.hpp"
 using namespace std;
 using namespace felix;
 

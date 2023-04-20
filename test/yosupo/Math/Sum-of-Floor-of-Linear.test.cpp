@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/sum_of_floor_of_linear"
 
 #include <iostream>
-#include "../../library/math/floor-sum.hpp"
+#include "../../../library/math/floor-sum.hpp"
 using namespace std;
 using namespace felix;
 

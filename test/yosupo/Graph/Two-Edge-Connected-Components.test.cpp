@@ -1,7 +1,7 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/biconnected_components"
+#define PROBLEM "https://judge.yosupo.jp/problem/two_edge_connected_components"
 
 #include <iostream>
-#include "../../library/graph/lowlink.hpp"
+#include "../../../library/graph/lowlink.hpp"
 using namespace std;
 using namespace felix;
 
@@ -16,7 +16,7 @@ int main() {
 		cin >> u >> v;
 		g.add_edge(u, v);
 	}
-	auto components = g.biconnected_components_vertices();
+	auto components = g.two_edge_connected_components();
 	cout << components.size() << "\n";
 	for(auto v : components) {
 		cout << v.size();
