@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_1_B"
 
 #include <iostream>
-#include "../../library/modint/modint.hpp"
+#include "../../../library/modint/modint.hpp"
 using namespace std;
 using namespace felix;
 

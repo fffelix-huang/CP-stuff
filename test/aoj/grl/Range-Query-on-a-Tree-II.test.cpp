@@ -1,8 +1,8 @@
 #define PROBLEM "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_5_E"
 
 #include <iostream>
-#include "../../library/tree/HLD.hpp"
-#include "../../library/data-structure/lazy-segtree.hpp"
+#include "../../../library/tree/HLD.hpp"
+#include "../../../library/data-structure/lazy-segtree.hpp"
 using namespace std;
 using namespace felix;
 

@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_5_B"
 
 #include <iostream>
-#include "../../library/data-structure/fenwick2d.hpp"
+#include "../../../library/data-structure/fenwick2d.hpp"
 using namespace std;
 using namespace felix;
 

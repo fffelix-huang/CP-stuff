@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include <climits>
-#include "../../library/data-structure/segtree.hpp"
+#include "../../../library/data-structure/segtree.hpp"
 using namespace std;
 using namespace felix;
 

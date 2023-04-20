@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_A"
 
 #include <iostream>
-#include "../../library/flow/dinic.hpp"
+#include "../../../library/flow/dinic.hpp"
 using namespace std;
 using namespace felix;
 
