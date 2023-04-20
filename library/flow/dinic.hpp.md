@@ -4,8 +4,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/aoj/Maximum-Flow.test.cpp
-    title: test/aoj/Maximum-Flow.test.cpp
+    path: test/aoj/grl/Maximum-Flow.test.cpp
+    title: test/aoj/grl/Maximum-Flow.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -70,7 +70,7 @@ data:
   timestamp: '2023-04-17 12:10:28+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/Maximum-Flow.test.cpp
+  - test/aoj/grl/Maximum-Flow.test.cpp
 documentation_of: library/flow/dinic.hpp
 layout: document
 redirect_from:

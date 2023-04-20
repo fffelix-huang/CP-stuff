@@ -14,8 +14,8 @@ data:
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_C
     links:
     - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_C
-  bundledCode: "#line 1 \"test/aoj/Strongly-Connected-Components.test.cpp\"\n#define\
-    \ PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_C\"\
+  bundledCode: "#line 1 \"test/aoj/grl/Strongly-Connected-Components.test.cpp\"\n\
+    #define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_C\"\
     \r\n\r\n#include <iostream>\r\n#line 2 \"library/graph/SCC.hpp\"\n#include <vector>\n\
     #include <cassert>\n#include <algorithm>\n#include <functional>\n\nnamespace felix\
     \ {\n\nstruct SCC {\npublic:\n\tSCC() : n(0) {}\n\texplicit SCC(int _n) : n(_n),\
@@ -38,7 +38,7 @@ data:
     \t\t\t}\n\t\t}\n\t\tfor(int i = 0; i < sz; ++i) {\n\t\t\tstd::sort(new_g[i].begin(),\
     \ new_g[i].end());\n\t\t\tnew_g[i].erase(std::unique(new_g[i].begin(), new_g[i].end()),\
     \ new_g[i].end());\n\t\t}\n\t\treturn new_g;\n\t}\n\nprivate:\n\tint n;\n\tstd::vector<std::vector<int>>\
-    \ g, h;\n};\n\n} // namespace felix\n#line 5 \"test/aoj/Strongly-Connected-Components.test.cpp\"\
+    \ g, h;\n};\n\n} // namespace felix\n#line 5 \"test/aoj/grl/Strongly-Connected-Components.test.cpp\"\
     \nusing namespace std;\r\nusing namespace felix;\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\
     \n\tcin.tie(0);\r\n\tint n, m;\r\n\tcin >> n >> m;\r\n\tSCC g(n);\r\n\tfor(int\
     \ i = 0; i < m; i++) {\r\n\t\tint u, v;\r\n\t\tcin >> u >> v;\r\n\t\tg.add_edge(u,\
@@ -46,8 +46,8 @@ data:
     \ {\r\n\t\tint u, v;\r\n\t\tcin >> u >> v;\r\n\t\tcout << (id[u] == id[v]) <<\
     \ \"\\n\";\r\n\t}\r\n\treturn 0;\r\n}\r\n\r\n"
   code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_C\"\
-    \r\n\r\n#include <iostream>\r\n#include \"../../library/graph/SCC.hpp\"\r\nusing\
-    \ namespace std;\r\nusing namespace felix;\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\
+    \r\n\r\n#include <iostream>\r\n#include \"../../../library/graph/SCC.hpp\"\r\n\
+    using namespace std;\r\nusing namespace felix;\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\
     \n\tcin.tie(0);\r\n\tint n, m;\r\n\tcin >> n >> m;\r\n\tSCC g(n);\r\n\tfor(int\
     \ i = 0; i < m; i++) {\r\n\t\tint u, v;\r\n\t\tcin >> u >> v;\r\n\t\tg.add_edge(u,\
     \ v);\r\n\t}\r\n\tauto id = g.solve();\r\n\tint q;\r\n\tcin >> q;\r\n\twhile(q--)\
@@ -56,15 +56,15 @@ data:
   dependsOn:
   - library/graph/SCC.hpp
   isVerificationFile: true
-  path: test/aoj/Strongly-Connected-Components.test.cpp
+  path: test/aoj/grl/Strongly-Connected-Components.test.cpp
   requiredBy: []
-  timestamp: '2023-04-20 01:36:55+08:00'
+  timestamp: '2023-04-20 12:37:07+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/aoj/Strongly-Connected-Components.test.cpp
+documentation_of: test/aoj/grl/Strongly-Connected-Components.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/Strongly-Connected-Components.test.cpp
-- /verify/test/aoj/Strongly-Connected-Components.test.cpp.html
-title: test/aoj/Strongly-Connected-Components.test.cpp
+- /verify/test/aoj/grl/Strongly-Connected-Components.test.cpp
+- /verify/test/aoj/grl/Strongly-Connected-Components.test.cpp.html
+title: test/aoj/grl/Strongly-Connected-Components.test.cpp
 ---

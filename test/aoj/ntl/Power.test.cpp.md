@@ -23,7 +23,7 @@ data:
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_1_B
     links:
     - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_1_B
-  bundledCode: "#line 1 \"test/aoj/Power.test.cpp\"\n#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_1_B\"\
+  bundledCode: "#line 1 \"test/aoj/ntl/Power.test.cpp\"\n#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_1_B\"\
     \r\n\r\n#include <iostream>\r\n#line 3 \"library/modint/modint.hpp\"\n#include\
     \ <vector>\r\n#include <algorithm>\r\n#include <cassert>\r\n#include <random>\r\
     \n#include <chrono>\r\n#line 2 \"library/internal/safe-mod.hpp\"\n\r\nnamespace\
@@ -107,14 +107,14 @@ data:
     \ id> std::vector<modint<id>> modint<id>::facts = {1};\r\ntemplate<int id> std::vector<modint<id>>\
     \ modint<id>::inv_facts = {1};\r\ntemplate<int id> std::vector<modint<id>> modint<id>::invs\
     \ = {0};\r\n\r\nusing modint998244353 = modint<998244353>;\r\nusing modint1000000007\
-    \ = modint<1000000007>;\r\n\r\n} // namespace felix\r\n#line 5 \"test/aoj/Power.test.cpp\"\
+    \ = modint<1000000007>;\r\n\r\n} // namespace felix\r\n#line 5 \"test/aoj/ntl/Power.test.cpp\"\
     \nusing namespace std;\r\nusing namespace felix;\r\n\r\nusing mint = modint1000000007;\r\
     \n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\n\tcin.tie(0);\r\n\tint\
     \ a, b;\r\n\tcin >> a >> b;\r\n\tcout << mint(a).pow(b) << \"\\n\";\r\n\treturn\
     \ 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_1_B\"\
-    \r\n\r\n#include <iostream>\r\n#include \"../../library/modint/modint.hpp\"\r\n\
-    using namespace std;\r\nusing namespace felix;\r\n\r\nusing mint = modint1000000007;\r\
+    \r\n\r\n#include <iostream>\r\n#include \"../../../library/modint/modint.hpp\"\
+    \r\nusing namespace std;\r\nusing namespace felix;\r\n\r\nusing mint = modint1000000007;\r\
     \n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\n\tcin.tie(0);\r\n\tint\
     \ a, b;\r\n\tcin >> a >> b;\r\n\tcout << mint(a).pow(b) << \"\\n\";\r\n\treturn\
     \ 0;\r\n}\r\n"
@@ -124,15 +124,15 @@ data:
   - library/internal/safe-mod.hpp
   - library/random/rng.hpp
   isVerificationFile: true
-  path: test/aoj/Power.test.cpp
+  path: test/aoj/ntl/Power.test.cpp
   requiredBy: []
-  timestamp: '2023-04-20 01:36:55+08:00'
+  timestamp: '2023-04-20 12:37:07+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/aoj/Power.test.cpp
+documentation_of: test/aoj/ntl/Power.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/Power.test.cpp
-- /verify/test/aoj/Power.test.cpp.html
-title: test/aoj/Power.test.cpp
+- /verify/test/aoj/ntl/Power.test.cpp
+- /verify/test/aoj/ntl/Power.test.cpp.html
+title: test/aoj/ntl/Power.test.cpp
 ---

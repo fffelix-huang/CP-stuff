@@ -23,11 +23,11 @@ data:
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_1_A
     links:
     - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_1_A
-  bundledCode: "#line 1 \"test/aoj/Prime-Factorize.test.cpp\"\n#define PROBLEM \"\
-    https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_1_A\"\r\n\r\n#include\
-    \ <iostream>\r\n#line 2 \"library/math/factorize.hpp\"\n#include <vector>\n#include\
-    \ <cassert>\n#include <random>\n#include <chrono>\n#include <algorithm>\n#line\
-    \ 2 \"library/math/binary-gcd.hpp\"\n\r\nnamespace felix {\r\n\r\ntemplate<class\
+  bundledCode: "#line 1 \"test/aoj/ntl/Prime-Factorize.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_1_A\"\r\n\r\n\
+    #include <iostream>\r\n#line 2 \"library/math/factorize.hpp\"\n#include <vector>\n\
+    #include <cassert>\n#include <random>\n#include <chrono>\n#include <algorithm>\n\
+    #line 2 \"library/math/binary-gcd.hpp\"\n\r\nnamespace felix {\r\n\r\ntemplate<class\
     \ T>\r\ninline T binary_gcd(T a, T b) {\r\n\tif(a == 0 || b == 0) {\r\n\t\treturn\
     \ a | b;\r\n\t}\r\n\tint8_t n = __builtin_ctzll(a);\r\n\tint8_t m = __builtin_ctzll(b);\r\
     \n\ta >>= n;\r\n\tb >>= m;\r\n\twhile(a != b) {\r\n\t\tT d = a - b;\r\n\t\tint8_t\
@@ -77,14 +77,14 @@ data:
     \ {\n\t\t\tres.push_back(x);\n\t\t\treturn;\n\t\t}\n\t\tfor(int j = v[i].second;\
     \ ; j--) {\n\t\t\tf(f, i + 1, x);\n\t\t\tif(j == 0) {\n\t\t\t\tbreak;\n\t\t\t\
     }\n\t\t\tx *= v[i].first;\n\t\t}\n\t};\n\tf(f, 0, 1);\n\tstd::sort(res.begin(),\
-    \ res.end());\n\treturn res;\n}\n\n} // namespace felix\n#line 5 \"test/aoj/Prime-Factorize.test.cpp\"\
+    \ res.end());\n\treturn res;\n}\n\n} // namespace felix\n#line 5 \"test/aoj/ntl/Prime-Factorize.test.cpp\"\
     \nusing namespace std;\r\nusing namespace felix;\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\
     \n\tcin.tie(0);\r\n\tint n;\r\n\tcin >> n;\r\n\tauto factors = factorize(n);\r\
     \n\tcout << n << \":\";\r\n\tfor(auto x : factors) {\r\n\t\tcout << \" \" << x;\r\
     \n\t}\r\n\tcout << \"\\n\";\r\n\treturn 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_1_A\"\
-    \r\n\r\n#include <iostream>\r\n#include \"../../library/math/factorize.hpp\"\r\
-    \nusing namespace std;\r\nusing namespace felix;\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\
+    \r\n\r\n#include <iostream>\r\n#include \"../../../library/math/factorize.hpp\"\
+    \r\nusing namespace std;\r\nusing namespace felix;\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\
     \n\tcin.tie(0);\r\n\tint n;\r\n\tcin >> n;\r\n\tauto factors = factorize(n);\r\
     \n\tcout << n << \":\";\r\n\tfor(auto x : factors) {\r\n\t\tcout << \" \" << x;\r\
     \n\t}\r\n\tcout << \"\\n\";\r\n\treturn 0;\r\n}\r\n"
@@ -94,15 +94,15 @@ data:
   - library/internal/safe-mod.hpp
   - library/random/rng.hpp
   isVerificationFile: true
-  path: test/aoj/Prime-Factorize.test.cpp
+  path: test/aoj/ntl/Prime-Factorize.test.cpp
   requiredBy: []
-  timestamp: '2023-04-20 01:41:24+08:00'
+  timestamp: '2023-04-20 12:37:07+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/aoj/Prime-Factorize.test.cpp
+documentation_of: test/aoj/ntl/Prime-Factorize.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/Prime-Factorize.test.cpp
-- /verify/test/aoj/Prime-Factorize.test.cpp.html
-title: test/aoj/Prime-Factorize.test.cpp
+- /verify/test/aoj/ntl/Prime-Factorize.test.cpp
+- /verify/test/aoj/ntl/Prime-Factorize.test.cpp.html
+title: test/aoj/ntl/Prime-Factorize.test.cpp
 ---

@@ -7,14 +7,14 @@ data:
     title: "Heavy Light Decomposition (\u8F15\u91CD\u93C8\u5256\u5206)"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/aoj/Lowest-Common-Ancestor.test.cpp
-    title: test/aoj/Lowest-Common-Ancestor.test.cpp
+    path: test/aoj/grl/Lowest-Common-Ancestor.test.cpp
+    title: test/aoj/grl/Lowest-Common-Ancestor.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/aoj/Range-Query-on-a-Tree-II.test.cpp
-    title: test/aoj/Range-Query-on-a-Tree-II.test.cpp
+    path: test/aoj/grl/Range-Query-on-a-Tree-II.test.cpp
+    title: test/aoj/grl/Range-Query-on-a-Tree-II.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/aoj/Range-Query-on-a-Tree.test.cpp
-    title: test/aoj/Range-Query-on-a-Tree.test.cpp
+    path: test/aoj/grl/Range-Query-on-a-Tree.test.cpp
+    title: test/aoj/grl/Range-Query-on-a-Tree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/Jump-on-Tree.test.cpp
     title: test/yosupo/Jump-on-Tree.test.cpp
@@ -71,9 +71,9 @@ data:
   - test/yosupo/Static-RMQ.test.cpp
   - test/yosupo/Lowest-Common-Ancestor.test.cpp
   - test/yosupo/Jump-on-Tree.test.cpp
-  - test/aoj/Range-Query-on-a-Tree-II.test.cpp
-  - test/aoj/Range-Query-on-a-Tree.test.cpp
-  - test/aoj/Lowest-Common-Ancestor.test.cpp
+  - test/aoj/grl/Range-Query-on-a-Tree-II.test.cpp
+  - test/aoj/grl/Range-Query-on-a-Tree.test.cpp
+  - test/aoj/grl/Lowest-Common-Ancestor.test.cpp
 documentation_of: library/data-structure/sparse-table.hpp
 layout: document
 redirect_from:

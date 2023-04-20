@@ -20,7 +20,7 @@ data:
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_5_D
     links:
     - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_5_D
-  bundledCode: "#line 1 \"test/aoj/Range-Query-on-a-Tree.test.cpp\"\n#define PROBLEM\
+  bundledCode: "#line 1 \"test/aoj/grl/Range-Query-on-a-Tree.test.cpp\"\n#define PROBLEM\
     \ \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_5_D\"\r\n\r\n\
     #include <iostream>\r\n#line 2 \"library/tree/HLD.hpp\"\n#include <vector>\r\n\
     #include <cassert>\r\n#include <algorithm>\r\n#line 4 \"library/data-structure/sparse-table.hpp\"\
@@ -91,7 +91,7 @@ data:
     \t\twhile(p >= 0) {\n\t\t\tres += data[p];\n\t\t\tp = (p & (p + 1)) - 1;\n\t\t\
     }\n\t\treturn res;\n\t}\n\n\tT sum(int l, int r) {\n\t\treturn get(r) - (l ? get(l\
     \ - 1) : T{});\n\t}\n\nprivate:\n\tint n;\n\tstd::vector<T> data;\n};\n\n} //\
-    \ namespace felix\n#line 6 \"test/aoj/Range-Query-on-a-Tree.test.cpp\"\nusing\
+    \ namespace felix\n#line 6 \"test/aoj/grl/Range-Query-on-a-Tree.test.cpp\"\nusing\
     \ namespace std;\r\nusing namespace felix;\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\
     \n\tcin.tie(0);\r\n\tint n;\r\n\tcin >> n;\r\n\tHLD hld(n);\r\n\tfor(int i = 0;\
     \ i < n; i++) {\r\n\t\tint m;\r\n\t\tcin >> m;\r\n\t\tfor(int j = 0; j < m; j++)\
@@ -102,11 +102,11 @@ data:
     \t\t\tfenw.add(hld.id[u] + hld.subtree_size[u], -w);\r\n\t\t} else {\r\n\t\t\t\
     cout << fenw.get(hld.id[u]) << \"\\n\";\r\n\t\t}\r\n\t}\r\n\treturn 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_5_D\"\
-    \r\n\r\n#include <iostream>\r\n#include \"../../library/tree/HLD.hpp\"\r\n#include\
-    \ \"../../library/data-structure/fenwick.hpp\"\r\nusing namespace std;\r\nusing\
-    \ namespace felix;\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\n\t\
-    cin.tie(0);\r\n\tint n;\r\n\tcin >> n;\r\n\tHLD hld(n);\r\n\tfor(int i = 0; i\
-    \ < n; i++) {\r\n\t\tint m;\r\n\t\tcin >> m;\r\n\t\tfor(int j = 0; j < m; j++)\
+    \r\n\r\n#include <iostream>\r\n#include \"../../../library/tree/HLD.hpp\"\r\n\
+    #include \"../../../library/data-structure/fenwick.hpp\"\r\nusing namespace std;\r\
+    \nusing namespace felix;\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\
+    \n\tcin.tie(0);\r\n\tint n;\r\n\tcin >> n;\r\n\tHLD hld(n);\r\n\tfor(int i = 0;\
+    \ i < n; i++) {\r\n\t\tint m;\r\n\t\tcin >> m;\r\n\t\tfor(int j = 0; j < m; j++)\
     \ {\r\n\t\t\tint x;\r\n\t\t\tcin >> x;\r\n\t\t\thld.add_edge(i, x);\r\n\t\t}\r\
     \n\t}\r\n\thld.build(0);\r\n\tfenwick<int> fenw(n);\r\n\tint q;\r\n\tcin >> q;\r\
     \n\twhile(q--) {\r\n\t\tint type, u;\r\n\t\tcin >> type >> u;\r\n\t\tif(type ==\
@@ -118,15 +118,15 @@ data:
   - library/data-structure/sparse-table.hpp
   - library/data-structure/fenwick.hpp
   isVerificationFile: true
-  path: test/aoj/Range-Query-on-a-Tree.test.cpp
+  path: test/aoj/grl/Range-Query-on-a-Tree.test.cpp
   requiredBy: []
-  timestamp: '2023-04-20 01:36:55+08:00'
+  timestamp: '2023-04-20 12:37:07+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/aoj/Range-Query-on-a-Tree.test.cpp
+documentation_of: test/aoj/grl/Range-Query-on-a-Tree.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/Range-Query-on-a-Tree.test.cpp
-- /verify/test/aoj/Range-Query-on-a-Tree.test.cpp.html
-title: test/aoj/Range-Query-on-a-Tree.test.cpp
+- /verify/test/aoj/grl/Range-Query-on-a-Tree.test.cpp
+- /verify/test/aoj/grl/Range-Query-on-a-Tree.test.cpp.html
+title: test/aoj/grl/Range-Query-on-a-Tree.test.cpp
 ---

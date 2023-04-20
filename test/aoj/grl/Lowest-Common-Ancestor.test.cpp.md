@@ -17,10 +17,10 @@ data:
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_5_C
     links:
     - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_5_C
-  bundledCode: "#line 1 \"test/aoj/Lowest-Common-Ancestor.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_5_C\"\r\n\r\n\
-    #include <iostream>\r\n#line 2 \"library/tree/HLD.hpp\"\n#include <vector>\r\n\
-    #include <cassert>\r\n#include <algorithm>\r\n#line 4 \"library/data-structure/sparse-table.hpp\"\
+  bundledCode: "#line 1 \"test/aoj/grl/Lowest-Common-Ancestor.test.cpp\"\n#define\
+    \ PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_5_C\"\
+    \r\n\r\n#include <iostream>\r\n#line 2 \"library/tree/HLD.hpp\"\n#include <vector>\r\
+    \n#include <cassert>\r\n#include <algorithm>\r\n#line 4 \"library/data-structure/sparse-table.hpp\"\
     \n\nnamespace felix {\n\ntemplate<class T, T (*op)(T, T)>\nstruct sparse_table\
     \ {\npublic:\n\tsparse_table() {}\n\texplicit sparse_table(const std::vector<T>&\
     \ a) {\n\t\tn = (int) a.size();\n\t\tint max_log = std::__lg(n) + 1;\n\t\tmat.resize(max_log);\n\
@@ -80,7 +80,7 @@ data:
     \n\t\tid[u] = (int) tour.size();\r\n\t\teuler_tour.emplace_back(depth[u], u);\r\
     \n\t\ttour.push_back(u);\r\n\t\tfor(auto v : g[u]) {\r\n\t\t\ttop[v] = (v == g[u][0]\
     \ ? top[u] : v);\r\n\t\t\tdfs_link(euler_tour, v);\r\n\t\t\teuler_tour.emplace_back(depth[u],\
-    \ u);\r\n\t\t}\r\n\t}\r\n};\r\n\r\n} // namespace felix\r\n#line 5 \"test/aoj/Lowest-Common-Ancestor.test.cpp\"\
+    \ u);\r\n\t\t}\r\n\t}\r\n};\r\n\r\n} // namespace felix\r\n#line 5 \"test/aoj/grl/Lowest-Common-Ancestor.test.cpp\"\
     \nusing namespace std;\r\nusing namespace felix;\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\
     \n\tcin.tie(0);\r\n\tint n;\r\n\tcin >> n;\r\n\tHLD hld(n);\r\n\tfor(int i = 0;\
     \ i < n; i++) {\r\n\t\tint m;\r\n\t\tcin >> m;\r\n\t\tfor(int j = 0; j < m; j++)\
@@ -89,8 +89,8 @@ data:
     int u, v;\r\n\t\tcin >> u >> v;\r\n\t\tcout << hld.get_lca(u, v) << \"\\n\";\r\
     \n\t}\r\n\treturn 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_5_C\"\
-    \r\n\r\n#include <iostream>\r\n#include \"../../library/tree/HLD.hpp\"\r\nusing\
-    \ namespace std;\r\nusing namespace felix;\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\
+    \r\n\r\n#include <iostream>\r\n#include \"../../../library/tree/HLD.hpp\"\r\n\
+    using namespace std;\r\nusing namespace felix;\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\
     \n\tcin.tie(0);\r\n\tint n;\r\n\tcin >> n;\r\n\tHLD hld(n);\r\n\tfor(int i = 0;\
     \ i < n; i++) {\r\n\t\tint m;\r\n\t\tcin >> m;\r\n\t\tfor(int j = 0; j < m; j++)\
     \ {\r\n\t\t\tint x;\r\n\t\t\tcin >> x;\r\n\t\t\thld.add_edge(i, x);\r\n\t\t}\r\
@@ -101,15 +101,15 @@ data:
   - library/tree/HLD.hpp
   - library/data-structure/sparse-table.hpp
   isVerificationFile: true
-  path: test/aoj/Lowest-Common-Ancestor.test.cpp
+  path: test/aoj/grl/Lowest-Common-Ancestor.test.cpp
   requiredBy: []
-  timestamp: '2023-04-20 01:36:55+08:00'
+  timestamp: '2023-04-20 12:37:07+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/aoj/Lowest-Common-Ancestor.test.cpp
+documentation_of: test/aoj/grl/Lowest-Common-Ancestor.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/Lowest-Common-Ancestor.test.cpp
-- /verify/test/aoj/Lowest-Common-Ancestor.test.cpp.html
-title: test/aoj/Lowest-Common-Ancestor.test.cpp
+- /verify/test/aoj/grl/Lowest-Common-Ancestor.test.cpp
+- /verify/test/aoj/grl/Lowest-Common-Ancestor.test.cpp.html
+title: test/aoj/grl/Lowest-Common-Ancestor.test.cpp
 ---

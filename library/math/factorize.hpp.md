@@ -13,8 +13,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/aoj/Prime-Factorize.test.cpp
-    title: test/aoj/Prime-Factorize.test.cpp
+    path: test/aoj/ntl/Prime-Factorize.test.cpp
+    title: test/aoj/ntl/Prime-Factorize.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/Factorize.test.cpp
     title: test/yosupo/Factorize.test.cpp
@@ -127,7 +127,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/Factorize.test.cpp
-  - test/aoj/Prime-Factorize.test.cpp
+  - test/aoj/ntl/Prime-Factorize.test.cpp
 documentation_of: library/math/factorize.hpp
 layout: document
 title: "Integer Factorization (Pollard Rho \u8CEA\u56E0\u6578\u5206\u89E3)"

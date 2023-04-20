@@ -20,10 +20,10 @@ data:
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_5_E
     links:
     - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_5_E
-  bundledCode: "#line 1 \"test/aoj/Range-Query-on-a-Tree-II.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_5_E\"\r\n\r\n\
-    #include <iostream>\r\n#line 2 \"library/tree/HLD.hpp\"\n#include <vector>\r\n\
-    #include <cassert>\r\n#include <algorithm>\r\n#line 4 \"library/data-structure/sparse-table.hpp\"\
+  bundledCode: "#line 1 \"test/aoj/grl/Range-Query-on-a-Tree-II.test.cpp\"\n#define\
+    \ PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_5_E\"\
+    \r\n\r\n#include <iostream>\r\n#line 2 \"library/tree/HLD.hpp\"\n#include <vector>\r\
+    \n#include <cassert>\r\n#include <algorithm>\r\n#line 4 \"library/data-structure/sparse-table.hpp\"\
     \n\nnamespace felix {\n\ntemplate<class T, T (*op)(T, T)>\nstruct sparse_table\
     \ {\npublic:\n\tsparse_table() {}\n\texplicit sparse_table(const std::vector<T>&\
     \ a) {\n\t\tn = (int) a.size();\n\t\tint max_log = std::__lg(n) + 1;\n\t\tmat.resize(max_log);\n\
@@ -142,7 +142,7 @@ data:
     \ all_apply(int k, F f) {\n\t\td[k] = mapping(f, d[k]);\n\t\tif(k < size) {\n\t\
     \t\tlz[k] = composition(f, lz[k]);\n\t\t}\n\t}\n\n\tvoid push(int k) {\n\t\tall_apply(k\
     \ << 1, lz[k]);\n\t\tall_apply(k << 1 | 1, lz[k]);\n\t\tlz[k] = id();\n\t}\n};\n\
-    \n} // namespace felix\n#line 6 \"test/aoj/Range-Query-on-a-Tree-II.test.cpp\"\
+    \n} // namespace felix\n#line 6 \"test/aoj/grl/Range-Query-on-a-Tree-II.test.cpp\"\
     \nusing namespace std;\r\nusing namespace felix;\r\n\r\nstruct S {\r\n\tlong long\
     \ sum = 0;\r\n\tint sz = 0;\r\n\r\n\tS() {}\r\n\tS(long long a, int b) : sum(a),\
     \ sz(b) {}\r\n};\r\n\r\nS e() { return S(); }\r\nS op(S a, S b) { return S(a.sum\
@@ -161,13 +161,13 @@ data:
     \tans = op(ans, seg.prod(x, y + 1));\r\n\t\t\t}\r\n\t\t\tcout << ans.sum << \"\
     \\n\";\r\n\t\t}\r\n\t}\r\n\treturn 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_5_E\"\
-    \r\n\r\n#include <iostream>\r\n#include \"../../library/tree/HLD.hpp\"\r\n#include\
-    \ \"../../library/data-structure/lazy-segtree.hpp\"\r\nusing namespace std;\r\n\
-    using namespace felix;\r\n\r\nstruct S {\r\n\tlong long sum = 0;\r\n\tint sz =\
-    \ 0;\r\n\r\n\tS() {}\r\n\tS(long long a, int b) : sum(a), sz(b) {}\r\n};\r\n\r\
-    \nS e() { return S(); }\r\nS op(S a, S b) { return S(a.sum + b.sum, a.sz + b.sz);\
-    \ }\r\n\r\nusing F = int;\r\n\r\nF id() { return 0; }\r\n\r\nS mapping(F f, S\
-    \ s) {\r\n\ts.sum += 1LL * f * s.sz;\r\n\treturn s;\r\n}\r\n\r\nF composition(F\
+    \r\n\r\n#include <iostream>\r\n#include \"../../../library/tree/HLD.hpp\"\r\n\
+    #include \"../../../library/data-structure/lazy-segtree.hpp\"\r\nusing namespace\
+    \ std;\r\nusing namespace felix;\r\n\r\nstruct S {\r\n\tlong long sum = 0;\r\n\
+    \tint sz = 0;\r\n\r\n\tS() {}\r\n\tS(long long a, int b) : sum(a), sz(b) {}\r\n\
+    };\r\n\r\nS e() { return S(); }\r\nS op(S a, S b) { return S(a.sum + b.sum, a.sz\
+    \ + b.sz); }\r\n\r\nusing F = int;\r\n\r\nF id() { return 0; }\r\n\r\nS mapping(F\
+    \ f, S s) {\r\n\ts.sum += 1LL * f * s.sz;\r\n\treturn s;\r\n}\r\n\r\nF composition(F\
     \ a, F b) { return a + b; }\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\
     \n\tcin.tie(0);\r\n\tint n;\r\n\tcin >> n;\r\n\tHLD hld(n);\r\n\tfor(int i = 0;\
     \ i < n; i++) {\r\n\t\tint m;\r\n\t\tcin >> m;\r\n\t\tfor(int j = 0; j < m; j++)\
@@ -185,15 +185,15 @@ data:
   - library/data-structure/sparse-table.hpp
   - library/data-structure/lazy-segtree.hpp
   isVerificationFile: true
-  path: test/aoj/Range-Query-on-a-Tree-II.test.cpp
+  path: test/aoj/grl/Range-Query-on-a-Tree-II.test.cpp
   requiredBy: []
-  timestamp: '2023-04-20 01:36:55+08:00'
+  timestamp: '2023-04-20 12:37:07+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/aoj/Range-Query-on-a-Tree-II.test.cpp
+documentation_of: test/aoj/grl/Range-Query-on-a-Tree-II.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/Range-Query-on-a-Tree-II.test.cpp
-- /verify/test/aoj/Range-Query-on-a-Tree-II.test.cpp.html
-title: test/aoj/Range-Query-on-a-Tree-II.test.cpp
+- /verify/test/aoj/grl/Range-Query-on-a-Tree-II.test.cpp
+- /verify/test/aoj/grl/Range-Query-on-a-Tree-II.test.cpp.html
+title: test/aoj/grl/Range-Query-on-a-Tree-II.test.cpp
 ---

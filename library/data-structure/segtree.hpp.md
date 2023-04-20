@@ -4,8 +4,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/aoj/Range-Minimum-Query.test.cpp
-    title: test/aoj/Range-Minimum-Query.test.cpp
+    path: test/aoj/dsl/Range-Minimum-Query.test.cpp
+    title: test/aoj/dsl/Range-Minimum-Query.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -87,7 +87,7 @@ data:
   timestamp: '2023-04-17 12:10:28+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/Range-Minimum-Query.test.cpp
+  - test/aoj/dsl/Range-Minimum-Query.test.cpp
 documentation_of: library/data-structure/segtree.hpp
 layout: document
 redirect_from:

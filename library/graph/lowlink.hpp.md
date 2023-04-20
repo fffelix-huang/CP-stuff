@@ -4,11 +4,11 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/aoj/Articulation-Points.test.cpp
-    title: test/aoj/Articulation-Points.test.cpp
+    path: test/aoj/grl/Articulation-Points.test.cpp
+    title: test/aoj/grl/Articulation-Points.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/aoj/Bridges.test.cpp
-    title: test/aoj/Bridges.test.cpp
+    path: test/aoj/grl/Bridges.test.cpp
+    title: test/aoj/grl/Bridges.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/Biconnected-Components.test.cpp
     title: test/yosupo/Biconnected-Components.test.cpp
@@ -132,8 +132,8 @@ data:
   verifiedWith:
   - test/yosupo/Biconnected-Components.test.cpp
   - test/yosupo/Two-Edge-Connected-Components.test.cpp
-  - test/aoj/Articulation-Points.test.cpp
-  - test/aoj/Bridges.test.cpp
+  - test/aoj/grl/Articulation-Points.test.cpp
+  - test/aoj/grl/Bridges.test.cpp
 documentation_of: library/graph/lowlink.hpp
 layout: document
 redirect_from:

@@ -14,22 +14,23 @@ data:
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_B
     links:
     - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_B
-  bundledCode: "#line 1 \"test/aoj/Minimum-Cost-Flow.test.cpp\"\n#define PROBLEM \"\
-    https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_B\"\r\n\r\n#include\
-    \ <iostream>\r\n#line 2 \"library/flow/MCMF.hpp\"\n#include <vector>\n#include\
-    \ <queue>\n#include <cassert>\n#include <limits>\n\nnamespace felix {\n\ntemplate<class\
-    \ Cap_t, class Cost_t>\nstruct MCMF {\npublic:\n\tstruct Edge {\n\t\tint from;\n\
-    \t\tint to;\n\t\tCap_t cap;\n\t\tCost_t cost;\n\t\tEdge(int u, int v, Cap_t _cap,\
-    \ Cost_t _cost) : from(u), to(v), cap(_cap), cost(_cost) {}\n\t};\n\n\tstatic\
-    \ constexpr Cap_t EPS = static_cast<Cap_t>(1e-9);\n\tstatic constexpr Cap_t CAP_INF\
-    \ = std::numeric_limits<Cap_t>::max();\n\tstatic constexpr Cost_t COST_INF = std::numeric_limits<Cost_t>::max();\n\
-    \n\tint n;\n\tstd::vector<Edge> edges;\n\tstd::vector<std::vector<int>> g;\n\t\
-    std::vector<Cost_t> d;\n\tstd::vector<bool> in_queue;\n\tstd::vector<int> previous_edge;\n\
-    \n\tMCMF() : n(0) {}\n\texplicit MCMF(int _n) : n(_n), g(_n), d(_n), in_queue(_n),\
-    \ previous_edge(_n) {}\n\n\tvoid add_edge(int u, int v, Cap_t cap, Cost_t cost)\
-    \ {\n\t\tassert(0 <= u && u < n);\n\t\tassert(0 <= v && v < n);\n\t\tg[u].push_back(edges.size());\n\
-    \t\tedges.emplace_back(u, v, cap, cost);\n\t\tg[v].push_back(edges.size());\n\t\
-    \tedges.emplace_back(v, u, 0, -cost);\n\t}\n\n\tbool spfa(int s, int t) {\n\t\t\
+  bundledCode: "#line 1 \"test/aoj/grl/Minimum-Cost-Flow.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_B\"\r\n\r\n\
+    #include <iostream>\r\n#line 2 \"library/flow/MCMF.hpp\"\n#include <vector>\n\
+    #include <queue>\n#include <cassert>\n#include <limits>\n\nnamespace felix {\n\
+    \ntemplate<class Cap_t, class Cost_t>\nstruct MCMF {\npublic:\n\tstruct Edge {\n\
+    \t\tint from;\n\t\tint to;\n\t\tCap_t cap;\n\t\tCost_t cost;\n\t\tEdge(int u,\
+    \ int v, Cap_t _cap, Cost_t _cost) : from(u), to(v), cap(_cap), cost(_cost) {}\n\
+    \t};\n\n\tstatic constexpr Cap_t EPS = static_cast<Cap_t>(1e-9);\n\tstatic constexpr\
+    \ Cap_t CAP_INF = std::numeric_limits<Cap_t>::max();\n\tstatic constexpr Cost_t\
+    \ COST_INF = std::numeric_limits<Cost_t>::max();\n\n\tint n;\n\tstd::vector<Edge>\
+    \ edges;\n\tstd::vector<std::vector<int>> g;\n\tstd::vector<Cost_t> d;\n\tstd::vector<bool>\
+    \ in_queue;\n\tstd::vector<int> previous_edge;\n\n\tMCMF() : n(0) {}\n\texplicit\
+    \ MCMF(int _n) : n(_n), g(_n), d(_n), in_queue(_n), previous_edge(_n) {}\n\n\t\
+    void add_edge(int u, int v, Cap_t cap, Cost_t cost) {\n\t\tassert(0 <= u && u\
+    \ < n);\n\t\tassert(0 <= v && v < n);\n\t\tg[u].push_back(edges.size());\n\t\t\
+    edges.emplace_back(u, v, cap, cost);\n\t\tg[v].push_back(edges.size());\n\t\t\
+    edges.emplace_back(v, u, 0, -cost);\n\t}\n\n\tbool spfa(int s, int t) {\n\t\t\
     bool found = false;\n\t\tstd::fill(d.begin(), d.end(), COST_INF);\n\t\td[s] =\
     \ 0;\n\t\tin_queue[s] = true;\n\t\tstd::queue<int> que;\n\t\tque.push(s);\n\t\t\
     while(!que.empty()) {\n\t\t\tint u = que.front();\n\t\t\tque.pop();\n\t\t\tif(u\
@@ -47,7 +48,7 @@ data:
     \t\t\t\te.cap -= send;\n\t\t\t\tEdge& b = edges[previous_edge[u] ^ 1];\n\t\t\t\
     \tb.cap += send;\n\t\t\t\tu = e.from;\n\t\t\t}\n\t\t\tcap += send;\n\t\t\tf -=\
     \ send;\n\t\t\tcost += send * d[t];\n\t\t}\n\t\treturn std::make_pair(cap, cost);\n\
-    \t}\n};\n\n} // namespace felix\n#line 5 \"test/aoj/Minimum-Cost-Flow.test.cpp\"\
+    \t}\n};\n\n} // namespace felix\n#line 5 \"test/aoj/grl/Minimum-Cost-Flow.test.cpp\"\
     \nusing namespace std;\r\nusing namespace felix;\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\
     \n\tcin.tie(0);\r\n\tint n, m, k;\r\n\tcin >> n >> m >> k;\r\n\tMCMF<int, int>\
     \ f(n);\r\n\tfor(int i = 0; i < m; i++) {\r\n\t\tint u, v, cap, cost;\r\n\t\t\
@@ -56,8 +57,8 @@ data:
     n\";\r\n\t} else {\r\n\t\tcout << cost << \"\\n\";\r\n\t}\r\n\treturn 0;\r\n}\r\
     \n"
   code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_B\"\
-    \r\n\r\n#include <iostream>\r\n#include \"../../library/flow/MCMF.hpp\"\r\nusing\
-    \ namespace std;\r\nusing namespace felix;\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\
+    \r\n\r\n#include <iostream>\r\n#include \"../../../library/flow/MCMF.hpp\"\r\n\
+    using namespace std;\r\nusing namespace felix;\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\
     \n\tcin.tie(0);\r\n\tint n, m, k;\r\n\tcin >> n >> m >> k;\r\n\tMCMF<int, int>\
     \ f(n);\r\n\tfor(int i = 0; i < m; i++) {\r\n\t\tint u, v, cap, cost;\r\n\t\t\
     cin >> u >> v >> cap >> cost;\r\n\t\tf.add_edge(u, v, cap, cost);\r\n\t}\r\n\t\
@@ -67,15 +68,15 @@ data:
   dependsOn:
   - library/flow/MCMF.hpp
   isVerificationFile: true
-  path: test/aoj/Minimum-Cost-Flow.test.cpp
+  path: test/aoj/grl/Minimum-Cost-Flow.test.cpp
   requiredBy: []
-  timestamp: '2023-04-17 12:10:28+08:00'
+  timestamp: '2023-04-20 12:37:07+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/aoj/Minimum-Cost-Flow.test.cpp
+documentation_of: test/aoj/grl/Minimum-Cost-Flow.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/Minimum-Cost-Flow.test.cpp
-- /verify/test/aoj/Minimum-Cost-Flow.test.cpp.html
-title: test/aoj/Minimum-Cost-Flow.test.cpp
+- /verify/test/aoj/grl/Minimum-Cost-Flow.test.cpp
+- /verify/test/aoj/grl/Minimum-Cost-Flow.test.cpp.html
+title: test/aoj/grl/Minimum-Cost-Flow.test.cpp
 ---

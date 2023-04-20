@@ -14,7 +14,7 @@ data:
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_A
     links:
     - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_A
-  bundledCode: "#line 1 \"test/aoj/Range-Minimum-Query.test.cpp\"\n#define PROBLEM\
+  bundledCode: "#line 1 \"test/aoj/dsl/Range-Minimum-Query.test.cpp\"\n#define PROBLEM\
     \ \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_A\"\r\n\r\n\
     #include <iostream>\r\n#include <climits>\r\n#line 2 \"library/data-structure/segtree.hpp\"\
     \n#include <vector>\n#include <cassert>\n\nnamespace felix {\n\ntemplate<class\
@@ -50,7 +50,7 @@ data:
     \t\t\t\t}\n\t\t\t\t}\n\t\t\t\treturn r + 1 - size;\n\t\t\t}\n\t\t\tsm = op(st[r],\
     \ sm);\n\t\t} while((r & -r) != r);\n\t\treturn 0;\n\t}\n\t\nprivate:\n\tint n,\
     \ size, log;\n\tstd::vector<S> st;\n\n\tvoid update(int v) {\n\t\tst[v] = op(st[v\
-    \ * 2], st[v * 2 + 1]);\n\t}\n};\n\n} // namespace felix\n#line 6 \"test/aoj/Range-Minimum-Query.test.cpp\"\
+    \ * 2], st[v * 2 + 1]);\n\t}\n};\n\n} // namespace felix\n#line 6 \"test/aoj/dsl/Range-Minimum-Query.test.cpp\"\
     \nusing namespace std;\r\nusing namespace felix;\r\n\r\nint e() {\r\n\treturn\
     \ INT_MAX;\r\n}\r\n\r\nint op(int a, int b) {\r\n\treturn min(a, b);\r\n}\r\n\r\
     \nint main() {\r\n\tios::sync_with_stdio(false);\r\n\tcin.tie(0);\r\n\tint n,\
@@ -59,7 +59,7 @@ data:
     \t\tseg.set(x, y);\r\n\t\t} else {\r\n\t\t\tcout << seg.prod(x, y + 1) << \"\\\
     n\";\r\n\t\t}\r\n\t}\r\n\treturn 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_A\"\
-    \r\n\r\n#include <iostream>\r\n#include <climits>\r\n#include \"../../library/data-structure/segtree.hpp\"\
+    \r\n\r\n#include <iostream>\r\n#include <climits>\r\n#include \"../../../library/data-structure/segtree.hpp\"\
     \r\nusing namespace std;\r\nusing namespace felix;\r\n\r\nint e() {\r\n\treturn\
     \ INT_MAX;\r\n}\r\n\r\nint op(int a, int b) {\r\n\treturn min(a, b);\r\n}\r\n\r\
     \nint main() {\r\n\tios::sync_with_stdio(false);\r\n\tcin.tie(0);\r\n\tint n,\
@@ -70,15 +70,15 @@ data:
   dependsOn:
   - library/data-structure/segtree.hpp
   isVerificationFile: true
-  path: test/aoj/Range-Minimum-Query.test.cpp
+  path: test/aoj/dsl/Range-Minimum-Query.test.cpp
   requiredBy: []
-  timestamp: '2023-04-17 12:10:28+08:00'
+  timestamp: '2023-04-20 12:37:07+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/aoj/Range-Minimum-Query.test.cpp
+documentation_of: test/aoj/dsl/Range-Minimum-Query.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/Range-Minimum-Query.test.cpp
-- /verify/test/aoj/Range-Minimum-Query.test.cpp.html
-title: test/aoj/Range-Minimum-Query.test.cpp
+- /verify/test/aoj/dsl/Range-Minimum-Query.test.cpp
+- /verify/test/aoj/dsl/Range-Minimum-Query.test.cpp.html
+title: test/aoj/dsl/Range-Minimum-Query.test.cpp
 ---

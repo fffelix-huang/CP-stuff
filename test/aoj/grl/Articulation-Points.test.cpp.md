@@ -11,13 +11,14 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_B
+    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_A
     links:
-    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_B
-  bundledCode: "#line 1 \"test/aoj/Bridges.test.cpp\"\n#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_B\"\
-    \r\n\r\n#include <iostream>\r\n#line 2 \"library/graph/lowlink.hpp\"\n#include\
-    \ <vector>\r\n#include <algorithm>\r\n#include <cassert>\r\n\r\nnamespace felix\
-    \ {\r\n\r\nstruct lowlink {\r\n\tint n, cnt = 0;\r\n\tstd::vector<std::vector<std::pair<int,\
+    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_A
+  bundledCode: "#line 1 \"test/aoj/grl/Articulation-Points.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_A\"\r\n\r\n\
+    #include <iostream>\r\n#line 2 \"library/graph/lowlink.hpp\"\n#include <vector>\r\
+    \n#include <algorithm>\r\n#include <cassert>\r\n\r\nnamespace felix {\r\n\r\n\
+    struct lowlink {\r\n\tint n, cnt = 0;\r\n\tstd::vector<std::vector<std::pair<int,\
     \ int>>> g;\r\n\tstd::vector<std::pair<int, int>> edges;\r\n\tstd::vector<int>\
     \ roots;\r\n\tstd::vector<bool> is_bridge, is_articulation, is_tree_edge;\r\n\t\
     std::vector<int> id, low;\r\n\r\n\tint tecc_cnt = 0;\r\n\tstd::vector<int> tecc_id;\r\
@@ -66,39 +67,31 @@ data:
     \ biconnected_components_edges() {\r\n\t\tbuild();\r\n\t\tstd::vector<std::vector<int>>\
     \ ret(tvcc_cnt);\r\n\t\tfor(int i = 0; i < (int) edges.size(); i++) {\r\n\t\t\t\
     ret[tvcc_id[i]].push_back(i);\r\n\t\t}\r\n\t\treturn ret;\r\n\t}\r\n};\r\n\r\n\
-    } // namespace felix\r\n#line 5 \"test/aoj/Bridges.test.cpp\"\nusing namespace\
-    \ std;\r\nusing namespace felix;\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\
-    \n\tcin.tie(0);\r\n\tint n, m;\r\n\tcin >> n >> m;\r\n\tlowlink g(n);\r\n\tfor(int\
-    \ i = 0; i < m; i++) {\r\n\t\tint u, v;\r\n\t\tcin >> u >> v;\r\n\t\tg.add_edge(u,\
-    \ v);\r\n\t}\r\n\tg.build();\r\n\tvector<pair<int, int>> bridges;\r\n\tfor(int\
-    \ i = 0; i < m; i++) {\r\n\t\tif(g.is_bridge[i]) {\r\n\t\t\tauto [u, v] = g.edges[i];\r\
-    \n\t\t\tif(u > v) {\r\n\t\t\t\tswap(u, v);\r\n\t\t\t}\r\n\t\t\tbridges.emplace_back(u,\
-    \ v);\r\n\t\t}\r\n\t}\r\n\tsort(bridges.begin(), bridges.end());\r\n\tfor(auto\
-    \ [u, v] : bridges) {\r\n\t\tcout << u << \" \" << v << \"\\n\";\r\n\t}\r\n\t\
-    return 0;\r\n}\r\n"
-  code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_B\"\
-    \r\n\r\n#include <iostream>\r\n#include \"../../library/graph/lowlink.hpp\"\r\n\
+    } // namespace felix\r\n#line 5 \"test/aoj/grl/Articulation-Points.test.cpp\"\n\
     using namespace std;\r\nusing namespace felix;\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\
     \n\tcin.tie(0);\r\n\tint n, m;\r\n\tcin >> n >> m;\r\n\tlowlink g(n);\r\n\tfor(int\
     \ i = 0; i < m; i++) {\r\n\t\tint u, v;\r\n\t\tcin >> u >> v;\r\n\t\tg.add_edge(u,\
-    \ v);\r\n\t}\r\n\tg.build();\r\n\tvector<pair<int, int>> bridges;\r\n\tfor(int\
-    \ i = 0; i < m; i++) {\r\n\t\tif(g.is_bridge[i]) {\r\n\t\t\tauto [u, v] = g.edges[i];\r\
-    \n\t\t\tif(u > v) {\r\n\t\t\t\tswap(u, v);\r\n\t\t\t}\r\n\t\t\tbridges.emplace_back(u,\
-    \ v);\r\n\t\t}\r\n\t}\r\n\tsort(bridges.begin(), bridges.end());\r\n\tfor(auto\
-    \ [u, v] : bridges) {\r\n\t\tcout << u << \" \" << v << \"\\n\";\r\n\t}\r\n\t\
-    return 0;\r\n}\r\n"
+    \ v);\r\n\t}\r\n\tg.build();\r\n\tfor(int i = 0; i < n; i++) {\r\n\t\tif(g.is_articulation[i])\
+    \ {\r\n\t\t\tcout << i << \"\\n\";\r\n\t\t}\r\n\t}\r\n\treturn 0;\r\n}\r\n"
+  code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_A\"\
+    \r\n\r\n#include <iostream>\r\n#include \"../../../library/graph/lowlink.hpp\"\
+    \r\nusing namespace std;\r\nusing namespace felix;\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\
+    \n\tcin.tie(0);\r\n\tint n, m;\r\n\tcin >> n >> m;\r\n\tlowlink g(n);\r\n\tfor(int\
+    \ i = 0; i < m; i++) {\r\n\t\tint u, v;\r\n\t\tcin >> u >> v;\r\n\t\tg.add_edge(u,\
+    \ v);\r\n\t}\r\n\tg.build();\r\n\tfor(int i = 0; i < n; i++) {\r\n\t\tif(g.is_articulation[i])\
+    \ {\r\n\t\t\tcout << i << \"\\n\";\r\n\t\t}\r\n\t}\r\n\treturn 0;\r\n}\r\n"
   dependsOn:
   - library/graph/lowlink.hpp
   isVerificationFile: true
-  path: test/aoj/Bridges.test.cpp
+  path: test/aoj/grl/Articulation-Points.test.cpp
   requiredBy: []
-  timestamp: '2023-04-06 14:01:45+08:00'
+  timestamp: '2023-04-20 12:37:07+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/aoj/Bridges.test.cpp
+documentation_of: test/aoj/grl/Articulation-Points.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/Bridges.test.cpp
-- /verify/test/aoj/Bridges.test.cpp.html
-title: test/aoj/Bridges.test.cpp
+- /verify/test/aoj/grl/Articulation-Points.test.cpp
+- /verify/test/aoj/grl/Articulation-Points.test.cpp.html
+title: test/aoj/grl/Articulation-Points.test.cpp
 ---

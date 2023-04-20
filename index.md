@@ -183,44 +183,48 @@ data:
       path: library/tree/HLD.hpp
       title: "Heavy Light Decomposition (\u8F15\u91CD\u93C8\u5256\u5206)"
   verificationCategories:
-  - name: test/aoj
+  - name: test/aoj/dsl
     pages:
     - icon: ':heavy_check_mark:'
-      path: test/aoj/Articulation-Points.test.cpp
-      title: test/aoj/Articulation-Points.test.cpp
+      path: test/aoj/dsl/Range-Minimum-Query.test.cpp
+      title: test/aoj/dsl/Range-Minimum-Query.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/aoj/Bridges.test.cpp
-      title: test/aoj/Bridges.test.cpp
+      path: test/aoj/dsl/The-Maximum-Number-of-Overlaps.test.cpp
+      title: test/aoj/dsl/The-Maximum-Number-of-Overlaps.test.cpp
+  - name: test/aoj/grl
+    pages:
     - icon: ':heavy_check_mark:'
-      path: test/aoj/Lowest-Common-Ancestor.test.cpp
-      title: test/aoj/Lowest-Common-Ancestor.test.cpp
+      path: test/aoj/grl/Articulation-Points.test.cpp
+      title: test/aoj/grl/Articulation-Points.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/aoj/Maximum-Flow.test.cpp
-      title: test/aoj/Maximum-Flow.test.cpp
+      path: test/aoj/grl/Bridges.test.cpp
+      title: test/aoj/grl/Bridges.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/aoj/Minimum-Cost-Flow.test.cpp
-      title: test/aoj/Minimum-Cost-Flow.test.cpp
+      path: test/aoj/grl/Lowest-Common-Ancestor.test.cpp
+      title: test/aoj/grl/Lowest-Common-Ancestor.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/aoj/Power.test.cpp
-      title: test/aoj/Power.test.cpp
+      path: test/aoj/grl/Maximum-Flow.test.cpp
+      title: test/aoj/grl/Maximum-Flow.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/aoj/Prime-Factorize.test.cpp
-      title: test/aoj/Prime-Factorize.test.cpp
+      path: test/aoj/grl/Minimum-Cost-Flow.test.cpp
+      title: test/aoj/grl/Minimum-Cost-Flow.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/aoj/Range-Minimum-Query.test.cpp
-      title: test/aoj/Range-Minimum-Query.test.cpp
+      path: test/aoj/grl/Range-Query-on-a-Tree-II.test.cpp
+      title: test/aoj/grl/Range-Query-on-a-Tree-II.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/aoj/Range-Query-on-a-Tree-II.test.cpp
-      title: test/aoj/Range-Query-on-a-Tree-II.test.cpp
+      path: test/aoj/grl/Range-Query-on-a-Tree.test.cpp
+      title: test/aoj/grl/Range-Query-on-a-Tree.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/aoj/Range-Query-on-a-Tree.test.cpp
-      title: test/aoj/Range-Query-on-a-Tree.test.cpp
+      path: test/aoj/grl/Strongly-Connected-Components.test.cpp
+      title: test/aoj/grl/Strongly-Connected-Components.test.cpp
+  - name: test/aoj/ntl
+    pages:
     - icon: ':heavy_check_mark:'
-      path: test/aoj/Strongly-Connected-Components.test.cpp
-      title: test/aoj/Strongly-Connected-Components.test.cpp
+      path: test/aoj/ntl/Power.test.cpp
+      title: test/aoj/ntl/Power.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/aoj/The-Maximum-Number-of-Overlaps.test.cpp
-      title: test/aoj/The-Maximum-Number-of-Overlaps.test.cpp
+      path: test/aoj/ntl/Prime-Factorize.test.cpp
+      title: test/aoj/ntl/Prime-Factorize.test.cpp
   - name: test/yosupo
     pages:
     - icon: ':heavy_check_mark:'

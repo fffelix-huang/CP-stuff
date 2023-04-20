@@ -4,8 +4,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/aoj/Range-Query-on-a-Tree-II.test.cpp
-    title: test/aoj/Range-Query-on-a-Tree-II.test.cpp
+    path: test/aoj/grl/Range-Query-on-a-Tree-II.test.cpp
+    title: test/aoj/grl/Range-Query-on-a-Tree-II.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/Range-Affine-Point-Get.test.cpp
     title: test/yosupo/Range-Affine-Point-Get.test.cpp
@@ -146,7 +146,7 @@ data:
   verifiedWith:
   - test/yosupo/Range-Affine-Range-Sum.test.cpp
   - test/yosupo/Range-Affine-Point-Get.test.cpp
-  - test/aoj/Range-Query-on-a-Tree-II.test.cpp
+  - test/aoj/grl/Range-Query-on-a-Tree-II.test.cpp
 documentation_of: library/data-structure/lazy-segtree.hpp
 layout: document
 redirect_from:

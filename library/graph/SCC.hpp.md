@@ -7,8 +7,8 @@ data:
     title: library/graph/two-sat.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/aoj/Strongly-Connected-Components.test.cpp
-    title: test/aoj/Strongly-Connected-Components.test.cpp
+    path: test/aoj/grl/Strongly-Connected-Components.test.cpp
+    title: test/aoj/grl/Strongly-Connected-Components.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/2-Sat.test.cpp
     title: test/yosupo/2-Sat.test.cpp
@@ -76,7 +76,7 @@ data:
   verifiedWith:
   - test/yosupo/Strongly-Connected-Components.test.cpp
   - test/yosupo/2-Sat.test.cpp
-  - test/aoj/Strongly-Connected-Components.test.cpp
+  - test/aoj/grl/Strongly-Connected-Components.test.cpp
 documentation_of: library/graph/SCC.hpp
 layout: document
 redirect_from:
