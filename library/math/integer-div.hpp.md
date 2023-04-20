@@ -7,6 +7,9 @@ data:
     title: library/data-structure/line-container.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/unit-test/integer-div.test.cpp
+    title: test/unit-test/integer-div.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/Data-Structure/Line-Add-Get-Min.test.cpp
     title: test/yosupo/Data-Structure/Line-Add-Get-Min.test.cpp
   _isVerificationFailed: false
@@ -31,6 +34,7 @@ data:
   timestamp: '2023-04-03 13:30:29+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/unit-test/integer-div.test.cpp
   - test/yosupo/Data-Structure/Line-Add-Get-Min.test.cpp
 documentation_of: library/math/integer-div.hpp
 layout: document

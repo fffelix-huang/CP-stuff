@@ -228,6 +228,9 @@ data:
   - name: test/unit-test
     pages:
     - icon: ':heavy_check_mark:'
+      path: test/unit-test/integer-div.test.cpp
+      title: test/unit-test/integer-div.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/unit-test/xor-basis.test.cpp
       title: test/unit-test/xor-basis.test.cpp
   - name: test/yosupo/Convolution
