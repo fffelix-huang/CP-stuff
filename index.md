@@ -339,6 +339,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/Data-Structure/Vertex-Add-Subtree-Sum.test.cpp
       title: test/yosupo/Data-Structure/Vertex-Add-Subtree-Sum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/Data-Structure/Vertex-Set-Path-Composite.test.cpp
+      title: test/yosupo/Data-Structure/Vertex-Set-Path-Composite.test.cpp
   - name: test/yosupo/Geometry
     pages:
     - icon: ':heavy_check_mark:'

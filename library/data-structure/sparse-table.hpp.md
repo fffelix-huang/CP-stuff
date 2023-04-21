@@ -25,6 +25,9 @@ data:
     path: test/yosupo/Data-Structure/Vertex-Add-Subtree-Sum.test.cpp
     title: test/yosupo/Data-Structure/Vertex-Add-Subtree-Sum.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/Data-Structure/Vertex-Set-Path-Composite.test.cpp
+    title: test/yosupo/Data-Structure/Vertex-Set-Path-Composite.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/Tree/Jump-on-Tree.test.cpp
     title: test/yosupo/Tree/Jump-on-Tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -71,6 +74,7 @@ data:
   - test/yosupo/Data-Structure/Vertex-Add-Path-Sum.test.cpp
   - test/yosupo/Data-Structure/Vertex-Add-Subtree-Sum.test.cpp
   - test/yosupo/Data-Structure/Static-RMQ.test.cpp
+  - test/yosupo/Data-Structure/Vertex-Set-Path-Composite.test.cpp
   - test/aoj/grl/Range-Query-on-a-Tree-II.test.cpp
   - test/aoj/grl/Range-Query-on-a-Tree.test.cpp
   - test/aoj/grl/Lowest-Common-Ancestor.test.cpp

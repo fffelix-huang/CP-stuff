@@ -49,6 +49,9 @@ data:
     path: test/yosupo/Data-Structure/Range-Affine-Range-Sum.test.cpp
     title: test/yosupo/Data-Structure/Range-Affine-Range-Sum.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/Data-Structure/Vertex-Set-Path-Composite.test.cpp
+    title: test/yosupo/Data-Structure/Vertex-Set-Path-Composite.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/Math/Partition-Function.test.cpp
     title: test/yosupo/Math/Partition-Function.test.cpp
   - icon: ':heavy_check_mark:'
@@ -128,6 +131,7 @@ data:
   - test/yosupo/Convolution/Bitwise-And-Convolution.test.cpp
   - test/yosupo/Convolution/Convolution-Mod-1000000007.test.cpp
   - test/yosupo/Data-Structure/Range-Affine-Range-Sum.test.cpp
+  - test/yosupo/Data-Structure/Vertex-Set-Path-Composite.test.cpp
   - test/yosupo/Data-Structure/Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
   - test/yosupo/Data-Structure/Range-Affine-Point-Get.test.cpp
   - test/yosupo/Math/Partition-Function.test.cpp
