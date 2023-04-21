@@ -15,7 +15,7 @@ struct lazy_segtree {
 public:
 	lazy_segtree() : lazy_segtree(0) {}
 	explicit lazy_segtree(int _n) : lazy_segtree(std::vector<S>(_n, e())) {}
-	explicit lazy_segtree(const std::vector<S>& v) : n((int) v.size()) {
+	explicit lazy_segtree(const std::vector<S>& v) : n(v.size()) {
 		log = std::__lg(2 * n - 1);
 		size = 1 << log;
 		d = std::vector<S>(size << 1, e());

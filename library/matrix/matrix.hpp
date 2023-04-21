@@ -9,8 +9,8 @@ template<class T>
 struct Matrix {
 public:
 	Matrix() {}
-	Matrix(int n) : Matrix(n, n) {}
-	Matrix(int n, int m) : a(n, std::vector<T>(m)) {}
+	explicit Matrix(int n) : Matrix(n, n) {}
+	explicit Matrix(int n, int m) : a(n, std::vector<T>(m)) {}
 
 	int H() const { return (int) a.size(); }
 	int W() const { return (int) a[0].size(); }

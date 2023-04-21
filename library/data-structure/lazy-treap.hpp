@@ -32,6 +32,7 @@ public:
 	};
 
 	Node* new_tree() { return nullptr; }
+	Node* make_node(const S& s) { return new Node(s); }
 
 	int size(Node* v) const { return v != nullptr ? v->sz : 0; }
 	bool empty(Node* v) const { return v == nullptr; }
@@ -198,10 +199,6 @@ protected:
 		if(v->r != nullptr) {
 			v->sum = op(v->sum, v->r->sum);
 		}
-	}
-
-	Node* make_node(const S& s) {
-		return new Node(s);
 	}
 };
 
