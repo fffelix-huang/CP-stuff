@@ -3,8 +3,8 @@
 #include <tuple>
 #include <cassert>
 #include <algorithm>
-#include "../internal/safe-mod.hpp"
-#include "../internal/inv-gcd.hpp"
+#include "safe-mod.hpp"
+#include "inv-gcd.hpp"
 
 namespace felix {
 

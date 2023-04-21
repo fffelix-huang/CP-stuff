@@ -5,7 +5,7 @@
 #include <cassert>
 #include <type_traits>
 #include "../modint/modint.hpp"
-#include "../internal/safe-mod.hpp"
+#include "../math/safe-mod.hpp"
 
 namespace felix {
 

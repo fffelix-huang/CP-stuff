@@ -5,7 +5,7 @@
 #include <chrono>
 #include <algorithm>
 #include "binary-gcd.hpp"
-#include "../internal/safe-mod.hpp"
+#include "safe-mod.hpp"
 #include "../random/rng.hpp"
 
 namespace felix {

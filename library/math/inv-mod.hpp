@@ -1,6 +1,6 @@
 #pragma once
 #include <cassert>
-#include "../internal/inv-gcd.hpp"
+#include "inv-gcd.hpp"
 
 namespace felix {
 

@@ -5,7 +5,7 @@
 #include <cassert>
 #include <random>
 #include <chrono>
-#include "../internal/inv-gcd.hpp"
+#include "../math/inv-gcd.hpp"
 #include "../random/rng.hpp"
 
 namespace felix {
