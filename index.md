@@ -186,8 +186,35 @@ data:
   - name: test/aoj/dsl
     pages:
     - icon: ':heavy_check_mark:'
+      path: test/aoj/dsl/Disjoint-Set-Union-Find-Tree.test.cpp
+      title: test/aoj/dsl/Disjoint-Set-Union-Find-Tree.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/dsl/RMQ-and-RAQ.test.cpp
+      title: test/aoj/dsl/RMQ-and-RAQ.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/dsl/RMQ-and-RUQ.test.cpp
+      title: test/aoj/dsl/RMQ-and-RUQ.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/dsl/RSQ-and-RAQ.test.cpp
+      title: test/aoj/dsl/RSQ-and-RAQ.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/dsl/RSQ-and-RUQ.test.cpp
+      title: test/aoj/dsl/RSQ-and-RUQ.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/dsl/Range-Add-Query.test.cpp
+      title: test/aoj/dsl/Range-Add-Query.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/aoj/dsl/Range-Minimum-Query.test.cpp
       title: test/aoj/dsl/Range-Minimum-Query.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/dsl/Range-Sum-Query.test.cpp
+      title: test/aoj/dsl/Range-Sum-Query.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/dsl/Range-Update-Query.test.cpp
+      title: test/aoj/dsl/Range-Update-Query.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/dsl/The-Maximum-Number-of-Customers.test.cpp
+      title: test/aoj/dsl/The-Maximum-Number-of-Customers.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/dsl/The-Maximum-Number-of-Overlaps.test.cpp
       title: test/aoj/dsl/The-Maximum-Number-of-Overlaps.test.cpp

@@ -4,6 +4,21 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/aoj/dsl/RMQ-and-RAQ.test.cpp
+    title: test/aoj/dsl/RMQ-and-RAQ.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/dsl/RMQ-and-RUQ.test.cpp
+    title: test/aoj/dsl/RMQ-and-RUQ.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/dsl/RSQ-and-RAQ.test.cpp
+    title: test/aoj/dsl/RSQ-and-RAQ.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/dsl/RSQ-and-RUQ.test.cpp
+    title: test/aoj/dsl/RSQ-and-RUQ.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/dsl/Range-Update-Query.test.cpp
+    title: test/aoj/dsl/Range-Update-Query.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/aoj/grl/Range-Query-on-a-Tree-II.test.cpp
     title: test/aoj/grl/Range-Query-on-a-Tree-II.test.cpp
   - icon: ':heavy_check_mark:'
@@ -147,6 +162,11 @@ data:
   - test/yosupo/Data-Structure/Range-Affine-Range-Sum.test.cpp
   - test/yosupo/Data-Structure/Range-Affine-Point-Get.test.cpp
   - test/aoj/grl/Range-Query-on-a-Tree-II.test.cpp
+  - test/aoj/dsl/RMQ-and-RUQ.test.cpp
+  - test/aoj/dsl/Range-Update-Query.test.cpp
+  - test/aoj/dsl/RMQ-and-RAQ.test.cpp
+  - test/aoj/dsl/RSQ-and-RAQ.test.cpp
+  - test/aoj/dsl/RSQ-and-RUQ.test.cpp
 documentation_of: library/data-structure/lazy-segtree.hpp
 layout: document
 redirect_from:

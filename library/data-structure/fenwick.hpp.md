@@ -7,6 +7,15 @@ data:
     title: library/data-structure/rectangle-sum.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/aoj/dsl/Range-Add-Query.test.cpp
+    title: test/aoj/dsl/Range-Add-Query.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/dsl/Range-Sum-Query.test.cpp
+    title: test/aoj/dsl/Range-Sum-Query.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/dsl/The-Maximum-Number-of-Customers.test.cpp
+    title: test/aoj/dsl/The-Maximum-Number-of-Customers.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/aoj/grl/Range-Query-on-a-Tree.test.cpp
     title: test/aoj/grl/Range-Query-on-a-Tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -56,6 +65,9 @@ data:
   - test/yosupo/Data-Structure/Vertex-Add-Subtree-Sum.test.cpp
   - test/yosupo/Data-Structure/Point-Add-Range-Sum.test.cpp
   - test/aoj/grl/Range-Query-on-a-Tree.test.cpp
+  - test/aoj/dsl/The-Maximum-Number-of-Customers.test.cpp
+  - test/aoj/dsl/Range-Sum-Query.test.cpp
+  - test/aoj/dsl/Range-Add-Query.test.cpp
 documentation_of: library/data-structure/fenwick.hpp
 layout: document
 redirect_from:

@@ -4,6 +4,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/aoj/dsl/Disjoint-Set-Union-Find-Tree.test.cpp
+    title: test/aoj/dsl/Disjoint-Set-Union-Find-Tree.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/Data-Structure/Unionfind.test.cpp
     title: test/yosupo/Data-Structure/Unionfind.test.cpp
   _isVerificationFailed: false
@@ -51,6 +54,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/Data-Structure/Unionfind.test.cpp
+  - test/aoj/dsl/Disjoint-Set-Union-Find-Tree.test.cpp
 documentation_of: library/data-structure/DSU.hpp
 layout: document
 title: "DSU (\u8DEF\u5F91\u58D3\u7E2E)"
