@@ -1,9 +1,9 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: library/internal/safe-mod.hpp
-    title: library/internal/safe-mod.hpp
+  - icon: ':question:'
+    path: library/math/safe-mod.hpp
+    title: library/math/safe-mod.hpp
   - icon: ':heavy_check_mark:'
     path: library/modint/barrett.hpp
     title: library/modint/barrett.hpp
@@ -15,10 +15,10 @@ data:
   attributes:
     links: []
   bundledCode: "#line 2 \"library/math/pow-mod.hpp\"\n#include <cassert>\r\n#line\
-    \ 2 \"library/internal/safe-mod.hpp\"\n\r\nnamespace felix {\r\n\r\nnamespace\
-    \ internal {\r\n\r\ntemplate<class T>\r\nconstexpr T safe_mod(T x, T m) {\r\n\t\
-    x %= m;\r\n\tif(x < 0) {\r\n\t\tx += m;\r\n\t}\r\n\treturn x;\r\n}\r\n\r\n} //\
-    \ namespace internal\r\n\r\n} // namespace felix\n#line 2 \"library/modint/barrett.hpp\"\
+    \ 2 \"library/math/safe-mod.hpp\"\n\r\nnamespace felix {\r\n\r\nnamespace internal\
+    \ {\r\n\r\ntemplate<class T>\r\nconstexpr T safe_mod(T x, T m) {\r\n\tx %= m;\r\
+    \n\tif(x < 0) {\r\n\t\tx += m;\r\n\t}\r\n\treturn x;\r\n}\r\n\r\n} // namespace\
+    \ internal\r\n\r\n} // namespace felix\n#line 2 \"library/modint/barrett.hpp\"\
     \n\r\nnamespace felix {\r\n\r\nnamespace internal {\r\n\r\n// Fast modular multiplication\
     \ by barrett reduction\r\n// Reference: https://en.wikipedia.org/wiki/Barrett_reduction\r\
     \nstruct barrett {\r\n\tunsigned int m;\r\n\tunsigned long long im;\r\n\r\n\t\
@@ -37,21 +37,21 @@ data:
     \ {\r\n\t\tif(n & 1) {\r\n\t\t\tr = bt.mul(r, y);\r\n\t\t}\r\n\t\ty = bt.mul(y,\
     \ y);\r\n\t\tn >>= 1;\r\n\t}\r\n\treturn r;\r\n}\r\n\r\n} // namespace felix\r\
     \n"
-  code: "#pragma once\r\n#include <cassert>\r\n#include \"../internal/safe-mod.hpp\"\
-    \r\n#include \"../modint/barrett.hpp\"\r\n\r\nnamespace felix {\r\n\r\nlong long\
-    \ pow_mod(long long x, long long n, int m) {\r\n\tassert(0 <= n && 1 <= m);\r\n\
-    \tif(m == 1) {\r\n\t\treturn 0;\r\n\t}\r\n\tinternal::barrett bt((unsigned int)\
-    \ (m));\r\n\tunsigned int r = 1;\r\n\tunsigned int y = (unsigned int) internal::safe_mod<long\
+  code: "#pragma once\r\n#include <cassert>\r\n#include \"safe-mod.hpp\"\r\n#include\
+    \ \"../modint/barrett.hpp\"\r\n\r\nnamespace felix {\r\n\r\nlong long pow_mod(long\
+    \ long x, long long n, int m) {\r\n\tassert(0 <= n && 1 <= m);\r\n\tif(m == 1)\
+    \ {\r\n\t\treturn 0;\r\n\t}\r\n\tinternal::barrett bt((unsigned int) (m));\r\n\
+    \tunsigned int r = 1;\r\n\tunsigned int y = (unsigned int) internal::safe_mod<long\
     \ long>(x, m);\r\n\twhile(n) {\r\n\t\tif(n & 1) {\r\n\t\t\tr = bt.mul(r, y);\r\
     \n\t\t}\r\n\t\ty = bt.mul(y, y);\r\n\t\tn >>= 1;\r\n\t}\r\n\treturn r;\r\n}\r\n\
     \r\n} // namespace felix\r\n"
   dependsOn:
-  - library/internal/safe-mod.hpp
+  - library/math/safe-mod.hpp
   - library/modint/barrett.hpp
   isVerificationFile: false
   path: library/math/pow-mod.hpp
   requiredBy: []
-  timestamp: '2023-04-16 03:09:05+08:00'
+  timestamp: '2023-04-21 21:20:30+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/math/pow-mod.hpp

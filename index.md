@@ -3,7 +3,7 @@ data:
   libraryCategories:
   - name: library/convolution
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/convolution/NTT.hpp
       title: library/convolution/NTT.hpp
     - icon: ':heavy_check_mark:'
@@ -63,7 +63,7 @@ data:
       title: library/flow/dinic.hpp
   - name: library/formal-power-series
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/formal-power-series/poly.hpp
       title: library/formal-power-series/poly.hpp
   - name: library/geometry
@@ -88,14 +88,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/graph/two-sat.hpp
       title: library/graph/two-sat.hpp
-  - name: library/internal
-    pages:
-    - icon: ':heavy_check_mark:'
-      path: library/internal/inv-gcd.hpp
-      title: library/internal/inv-gcd.hpp
-    - icon: ':heavy_check_mark:'
-      path: library/internal/safe-mod.hpp
-      title: library/internal/safe-mod.hpp
   - name: library/math
     pages:
     - icon: ':heavy_check_mark:'
@@ -116,12 +108,18 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/integer-div.hpp
       title: Integer division ($\lfloor \frac{a}{b} \rfloor \lceil \frac{a}{b} \rceil$)
+    - icon: ':question:'
+      path: library/math/inv-gcd.hpp
+      title: library/math/inv-gcd.hpp
     - icon: ':warning:'
       path: library/math/inv-mod.hpp
       title: library/math/inv-mod.hpp
     - icon: ':warning:'
       path: library/math/pow-mod.hpp
       title: library/math/pow-mod.hpp
+    - icon: ':question:'
+      path: library/math/safe-mod.hpp
+      title: library/math/safe-mod.hpp
     - icon: ':heavy_check_mark:'
       path: library/math/xor-basis.hpp
       title: "xor basis (\u7DDA\u6027\u57FA)"
@@ -146,7 +144,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/modint/barrett.hpp
       title: library/modint/barrett.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/modint/modint.hpp
       title: library/modint/modint.hpp
   - name: library/random
@@ -157,7 +155,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/random/random.hpp
       title: random_t
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/random/rng.hpp
       title: library/random/rng.hpp
     - icon: ':heavy_check_mark:'
@@ -419,7 +417,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/Polynomial/Product-of-Polynomial-Sequence.test.cpp
       title: test/yosupo/Polynomial/Product-of-Polynomial-Sequence.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/Polynomial/Sqrt-of-Formal-Power-Series.test.cpp
       title: test/yosupo/Polynomial/Sqrt-of-Formal-Power-Series.test.cpp
   - name: test/yosupo/String

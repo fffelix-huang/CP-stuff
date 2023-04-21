@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: library/internal/inv-gcd.hpp
-    title: library/internal/inv-gcd.hpp
-  - icon: ':heavy_check_mark:'
-    path: library/internal/safe-mod.hpp
-    title: library/internal/safe-mod.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: library/math/inv-gcd.hpp
+    title: library/math/inv-gcd.hpp
+  - icon: ':question:'
+    path: library/math/safe-mod.hpp
+    title: library/math/safe-mod.hpp
+  - icon: ':question:'
     path: library/modint/modint.hpp
     title: library/modint/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/random/rng.hpp
     title: library/random/rng.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/formal-power-series/poly.hpp
     title: library/formal-power-series/poly.hpp
   _extendedVerifiedWith:
@@ -48,29 +48,29 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/Polynomial/Product-of-Polynomial-Sequence.test.cpp
     title: test/yosupo/Polynomial/Product-of-Polynomial-Sequence.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/Polynomial/Sqrt-of-Formal-Power-Series.test.cpp
     title: test/yosupo/Polynomial/Sqrt-of-Formal-Power-Series.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"library/convolution/NTT.hpp\"\n#include <vector>\r\n#include\
     \ <array>\r\n#include <algorithm>\r\n#include <cassert>\r\n#include <type_traits>\r\
     \n#line 2 \"library/modint/modint.hpp\"\n#include <iostream>\r\n#line 6 \"library/modint/modint.hpp\"\
-    \n#include <random>\r\n#include <chrono>\r\n#line 2 \"library/internal/safe-mod.hpp\"\
+    \n#include <random>\r\n#include <chrono>\r\n#line 2 \"library/math/safe-mod.hpp\"\
     \n\r\nnamespace felix {\r\n\r\nnamespace internal {\r\n\r\ntemplate<class T>\r\
     \nconstexpr T safe_mod(T x, T m) {\r\n\tx %= m;\r\n\tif(x < 0) {\r\n\t\tx += m;\r\
     \n\t}\r\n\treturn x;\r\n}\r\n\r\n} // namespace internal\r\n\r\n} // namespace\
-    \ felix\n#line 3 \"library/internal/inv-gcd.hpp\"\n\r\nnamespace felix {\r\n\r\
-    \nnamespace internal {\r\n\r\ntemplate<class T>\r\nconstexpr std::pair<T, T> inv_gcd(T\
-    \ a, T b) {\r\n\ta = safe_mod(a, b);\r\n\tif(a == 0) {\r\n\t\treturn {b, 0};\r\
-    \n\t}\r\n\tT s = b, t = a;\r\n\tT m0 = 0, m1 = 1;\r\n\twhile(t) {\r\n\t\tT u =\
-    \ s / t;\r\n\t\ts -= t * u;\r\n\t\tm0 -= m1 * u;\r\n\t\tauto tmp = s;\r\n\t\t\
-    s = t;\r\n\t\tt = tmp;\r\n\t\ttmp = m0;\r\n\t\tm0 = m1;\r\n\t\tm1 = tmp;\r\n\t\
-    }\r\n\tif(m0 < 0) {\r\n\t\tm0 += b / s;\r\n\t}\r\n\treturn {s, m0};\r\n}\r\n\r\
-    \n} // namespace internal\r\n\r\n} // namespace felix\r\n#line 3 \"library/random/rng.hpp\"\
+    \ felix\n#line 3 \"library/math/inv-gcd.hpp\"\n\r\nnamespace felix {\r\n\r\nnamespace\
+    \ internal {\r\n\r\ntemplate<class T>\r\nconstexpr std::pair<T, T> inv_gcd(T a,\
+    \ T b) {\r\n\ta = safe_mod(a, b);\r\n\tif(a == 0) {\r\n\t\treturn {b, 0};\r\n\t\
+    }\r\n\tT s = b, t = a;\r\n\tT m0 = 0, m1 = 1;\r\n\twhile(t) {\r\n\t\tT u = s /\
+    \ t;\r\n\t\ts -= t * u;\r\n\t\tm0 -= m1 * u;\r\n\t\tauto tmp = s;\r\n\t\ts = t;\r\
+    \n\t\tt = tmp;\r\n\t\ttmp = m0;\r\n\t\tm0 = m1;\r\n\t\tm1 = tmp;\r\n\t}\r\n\t\
+    if(m0 < 0) {\r\n\t\tm0 += b / s;\r\n\t}\r\n\treturn {s, m0};\r\n}\r\n\r\n} //\
+    \ namespace internal\r\n\r\n} // namespace felix\r\n#line 3 \"library/random/rng.hpp\"\
     \n\nnamespace felix {\n\ninline unsigned long long rng() {\n\tstatic unsigned\
     \ long long SEED = std::chrono::steady_clock::now().time_since_epoch().count();\n\
     \tSEED ^= SEED << 7;\n\tSEED ^= SEED >> 9;\n\treturn SEED & 0xFFFFFFFFULL;\n}\n\
@@ -268,7 +268,7 @@ data:
     \n\r\n} // namespace felix\r\n"
   code: "#pragma once\r\n#include <vector>\r\n#include <array>\r\n#include <algorithm>\r\
     \n#include <cassert>\r\n#include <type_traits>\r\n#include \"../modint/modint.hpp\"\
-    \r\n#include \"../internal/safe-mod.hpp\"\r\n\r\nnamespace felix {\r\n\r\nnamespace\
+    \r\n#include \"../math/safe-mod.hpp\"\r\n\r\nnamespace felix {\r\n\r\nnamespace\
     \ internal {\r\n\r\nconstexpr int primitive_root_constexpr(int m) {\r\n\tif(m\
     \ == 998244353) return 3;\r\n\tif(m == 167772161) return 3;\r\n\tif(m == 469762049)\
     \ return 3;\r\n\tif(m == 754974721) return 11;\r\n\tif(m == 880803841) return\
@@ -396,15 +396,15 @@ data:
     \n\r\n} // namespace felix\r\n"
   dependsOn:
   - library/modint/modint.hpp
-  - library/internal/inv-gcd.hpp
-  - library/internal/safe-mod.hpp
+  - library/math/inv-gcd.hpp
+  - library/math/safe-mod.hpp
   - library/random/rng.hpp
   isVerificationFile: false
   path: library/convolution/NTT.hpp
   requiredBy:
   - library/formal-power-series/poly.hpp
-  timestamp: '2023-04-18 19:21:36+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-04-21 21:20:30+08:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/Convolution/Convolution.test.cpp
   - test/yosupo/Convolution/Convolution-Mod-1000000007.test.cpp

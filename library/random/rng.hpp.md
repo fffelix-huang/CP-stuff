@@ -2,19 +2,19 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/convolution/NTT.hpp
     title: library/convolution/NTT.hpp
   - icon: ':heavy_check_mark:'
     path: library/data-structure/lazy-treap.hpp
     title: library/data-structure/lazy-treap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/formal-power-series/poly.hpp
     title: library/formal-power-series/poly.hpp
   - icon: ':heavy_check_mark:'
     path: library/math/factorize.hpp
     title: "Integer Factorization (Pollard Rho \u8CEA\u56E0\u6578\u5206\u89E3)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/modint/modint.hpp
     title: library/modint/modint.hpp
   _extendedVerifiedWith:
@@ -84,12 +84,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/Polynomial/Product-of-Polynomial-Sequence.test.cpp
     title: test/yosupo/Polynomial/Product-of-Polynomial-Sequence.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/Polynomial/Sqrt-of-Formal-Power-Series.test.cpp
     title: test/yosupo/Polynomial/Sqrt-of-Formal-Power-Series.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"library/random/rng.hpp\"\n#include <chrono>\n\nnamespace\
@@ -111,7 +111,7 @@ data:
   - library/modint/modint.hpp
   - library/convolution/NTT.hpp
   timestamp: '2023-04-16 16:01:15+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/Convolution/Subset-Convolution.test.cpp
   - test/yosupo/Convolution/Bitwise-Xor-Convolution.test.cpp

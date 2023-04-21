@@ -4,16 +4,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/data-structure/lazy-segtree.hpp
     title: library/data-structure/lazy-segtree.hpp
-  - icon: ':heavy_check_mark:'
-    path: library/internal/inv-gcd.hpp
-    title: library/internal/inv-gcd.hpp
-  - icon: ':heavy_check_mark:'
-    path: library/internal/safe-mod.hpp
-    title: library/internal/safe-mod.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: library/math/inv-gcd.hpp
+    title: library/math/inv-gcd.hpp
+  - icon: ':question:'
+    path: library/math/safe-mod.hpp
+    title: library/math/safe-mod.hpp
+  - icon: ':question:'
     path: library/modint/modint.hpp
     title: library/modint/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/random/rng.hpp
     title: library/random/rng.hpp
   _extendedRequiredBy: []
@@ -89,10 +89,10 @@ data:
     \ << 1, lz[k]);\n\t\tall_apply(k << 1 | 1, lz[k]);\n\t\tlz[k] = id();\n\t}\n};\n\
     \n} // namespace felix\n#line 4 \"library/modint/modint.hpp\"\n#include <algorithm>\r\
     \n#line 6 \"library/modint/modint.hpp\"\n#include <random>\r\n#include <chrono>\r\
-    \n#line 2 \"library/internal/safe-mod.hpp\"\n\r\nnamespace felix {\r\n\r\nnamespace\
+    \n#line 2 \"library/math/safe-mod.hpp\"\n\r\nnamespace felix {\r\n\r\nnamespace\
     \ internal {\r\n\r\ntemplate<class T>\r\nconstexpr T safe_mod(T x, T m) {\r\n\t\
     x %= m;\r\n\tif(x < 0) {\r\n\t\tx += m;\r\n\t}\r\n\treturn x;\r\n}\r\n\r\n} //\
-    \ namespace internal\r\n\r\n} // namespace felix\n#line 3 \"library/internal/inv-gcd.hpp\"\
+    \ namespace internal\r\n\r\n} // namespace felix\n#line 3 \"library/math/inv-gcd.hpp\"\
     \n\r\nnamespace felix {\r\n\r\nnamespace internal {\r\n\r\ntemplate<class T>\r\
     \nconstexpr std::pair<T, T> inv_gcd(T a, T b) {\r\n\ta = safe_mod(a, b);\r\n\t\
     if(a == 0) {\r\n\t\treturn {b, 0};\r\n\t}\r\n\tT s = b, t = a;\r\n\tT m0 = 0,\
@@ -210,13 +210,13 @@ data:
   dependsOn:
   - library/data-structure/lazy-segtree.hpp
   - library/modint/modint.hpp
-  - library/internal/inv-gcd.hpp
-  - library/internal/safe-mod.hpp
+  - library/math/inv-gcd.hpp
+  - library/math/safe-mod.hpp
   - library/random/rng.hpp
   isVerificationFile: true
   path: test/yosupo/Data-Structure/Range-Affine-Range-Sum.test.cpp
   requiredBy: []
-  timestamp: '2023-04-20 12:52:42+08:00'
+  timestamp: '2023-04-21 21:20:30+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Data-Structure/Range-Affine-Range-Sum.test.cpp

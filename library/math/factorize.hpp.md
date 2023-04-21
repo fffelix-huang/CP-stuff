@@ -2,12 +2,12 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: library/internal/safe-mod.hpp
-    title: library/internal/safe-mod.hpp
-  - icon: ':heavy_check_mark:'
     path: library/math/binary-gcd.hpp
     title: "Binary GCD (\u4F4D\u5143 GCD)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: library/math/safe-mod.hpp
+    title: library/math/safe-mod.hpp
+  - icon: ':question:'
     path: library/random/rng.hpp
     title: library/random/rng.hpp
   _extendedRequiredBy: []
@@ -31,12 +31,12 @@ data:
     \n\ta >>= n;\r\n\tb >>= m;\r\n\twhile(a != b) {\r\n\t\tT d = a - b;\r\n\t\tint8_t\
     \ s = __builtin_ctzll(d);\r\n\t\tbool f = a > b;\r\n\t\tb = f ? b : a;\r\n\t\t\
     a = (f ? d : -d) >> s;\r\n\t}\r\n\treturn a << (n < m ? n : m);\r\n}\r\n\r\n}\
-    \ // namespace felix\r\n#line 2 \"library/internal/safe-mod.hpp\"\n\r\nnamespace\
-    \ felix {\r\n\r\nnamespace internal {\r\n\r\ntemplate<class T>\r\nconstexpr T\
-    \ safe_mod(T x, T m) {\r\n\tx %= m;\r\n\tif(x < 0) {\r\n\t\tx += m;\r\n\t}\r\n\
-    \treturn x;\r\n}\r\n\r\n} // namespace internal\r\n\r\n} // namespace felix\n\
-    #line 3 \"library/random/rng.hpp\"\n\nnamespace felix {\n\ninline unsigned long\
-    \ long rng() {\n\tstatic unsigned long long SEED = std::chrono::steady_clock::now().time_since_epoch().count();\n\
+    \ // namespace felix\r\n#line 2 \"library/math/safe-mod.hpp\"\n\r\nnamespace felix\
+    \ {\r\n\r\nnamespace internal {\r\n\r\ntemplate<class T>\r\nconstexpr T safe_mod(T\
+    \ x, T m) {\r\n\tx %= m;\r\n\tif(x < 0) {\r\n\t\tx += m;\r\n\t}\r\n\treturn x;\r\
+    \n}\r\n\r\n} // namespace internal\r\n\r\n} // namespace felix\n#line 3 \"library/random/rng.hpp\"\
+    \n\nnamespace felix {\n\ninline unsigned long long rng() {\n\tstatic unsigned\
+    \ long long SEED = std::chrono::steady_clock::now().time_since_epoch().count();\n\
     \tSEED ^= SEED << 7;\n\tSEED ^= SEED >> 9;\n\treturn SEED & 0xFFFFFFFFULL;\n}\n\
     \n} // namespace felix\n#line 10 \"library/math/factorize.hpp\"\n\nnamespace felix\
     \ {\n\nbool is_prime(long long n, std::vector<long long> x) {\n\tlong long d =\
@@ -78,11 +78,11 @@ data:
     \ res.end());\n\treturn res;\n}\n\n} // namespace felix\n"
   code: "#pragma once\n#include <vector>\n#include <cassert>\n#include <random>\n\
     #include <chrono>\n#include <algorithm>\n#include \"binary-gcd.hpp\"\n#include\
-    \ \"../internal/safe-mod.hpp\"\n#include \"../random/rng.hpp\"\n\nnamespace felix\
-    \ {\n\nbool is_prime(long long n, std::vector<long long> x) {\n\tlong long d =\
-    \ n - 1;\n\td >>= __builtin_ctzll(d);\n\tfor(auto a : x) {\n\t\tif(n <= a) {\n\
-    \t\t\tbreak;\n\t\t}\n\t\tlong long t = d;\n\t\tlong long y = 1, b = t;\n\t\twhile(b)\
-    \ {\n\t\t\tif(b & 1) {\n\t\t\t\ty = __int128(y) * a % n;\n\t\t\t}\n\t\t\ta = __int128(a)\
+    \ \"safe-mod.hpp\"\n#include \"../random/rng.hpp\"\n\nnamespace felix {\n\nbool\
+    \ is_prime(long long n, std::vector<long long> x) {\n\tlong long d = n - 1;\n\t\
+    d >>= __builtin_ctzll(d);\n\tfor(auto a : x) {\n\t\tif(n <= a) {\n\t\t\tbreak;\n\
+    \t\t}\n\t\tlong long t = d;\n\t\tlong long y = 1, b = t;\n\t\twhile(b) {\n\t\t\
+    \tif(b & 1) {\n\t\t\t\ty = __int128(y) * a % n;\n\t\t\t}\n\t\t\ta = __int128(a)\
     \ * a % n;\n\t\t\tb >>= 1;\n\t\t}\n\t\twhile(t != n - 1 && y != 1 && y != n -\
     \ 1) {\n\t\t\ty = __int128(y) * y % n;\n\t\t\tt <<= 1;\n\t\t}\n\t\tif(y != n -\
     \ 1 && t % 2 == 0) {\n\t\t\treturn false;\n\t\t}\n\t}\n\treturn true;\n}\n\nbool\
@@ -118,12 +118,12 @@ data:
     \ res.end());\n\treturn res;\n}\n\n} // namespace felix\n"
   dependsOn:
   - library/math/binary-gcd.hpp
-  - library/internal/safe-mod.hpp
+  - library/math/safe-mod.hpp
   - library/random/rng.hpp
   isVerificationFile: false
   path: library/math/factorize.hpp
   requiredBy: []
-  timestamp: '2023-04-16 16:08:53+08:00'
+  timestamp: '2023-04-21 21:20:30+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/Math/Factorize.test.cpp

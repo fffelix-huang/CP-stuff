@@ -2,15 +2,15 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: library/internal/safe-mod.hpp
-    title: library/internal/safe-mod.hpp
-  - icon: ':heavy_check_mark:'
     path: library/math/binary-gcd.hpp
     title: "Binary GCD (\u4F4D\u5143 GCD)"
   - icon: ':heavy_check_mark:'
     path: library/math/factorize.hpp
     title: "Integer Factorization (Pollard Rho \u8CEA\u56E0\u6578\u5206\u89E3)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: library/math/safe-mod.hpp
+    title: library/math/safe-mod.hpp
+  - icon: ':question:'
     path: library/random/rng.hpp
     title: library/random/rng.hpp
   _extendedRequiredBy: []
@@ -33,12 +33,12 @@ data:
     \n\ta >>= n;\r\n\tb >>= m;\r\n\twhile(a != b) {\r\n\t\tT d = a - b;\r\n\t\tint8_t\
     \ s = __builtin_ctzll(d);\r\n\t\tbool f = a > b;\r\n\t\tb = f ? b : a;\r\n\t\t\
     a = (f ? d : -d) >> s;\r\n\t}\r\n\treturn a << (n < m ? n : m);\r\n}\r\n\r\n}\
-    \ // namespace felix\r\n#line 2 \"library/internal/safe-mod.hpp\"\n\r\nnamespace\
-    \ felix {\r\n\r\nnamespace internal {\r\n\r\ntemplate<class T>\r\nconstexpr T\
-    \ safe_mod(T x, T m) {\r\n\tx %= m;\r\n\tif(x < 0) {\r\n\t\tx += m;\r\n\t}\r\n\
-    \treturn x;\r\n}\r\n\r\n} // namespace internal\r\n\r\n} // namespace felix\n\
-    #line 3 \"library/random/rng.hpp\"\n\nnamespace felix {\n\ninline unsigned long\
-    \ long rng() {\n\tstatic unsigned long long SEED = std::chrono::steady_clock::now().time_since_epoch().count();\n\
+    \ // namespace felix\r\n#line 2 \"library/math/safe-mod.hpp\"\n\r\nnamespace felix\
+    \ {\r\n\r\nnamespace internal {\r\n\r\ntemplate<class T>\r\nconstexpr T safe_mod(T\
+    \ x, T m) {\r\n\tx %= m;\r\n\tif(x < 0) {\r\n\t\tx += m;\r\n\t}\r\n\treturn x;\r\
+    \n}\r\n\r\n} // namespace internal\r\n\r\n} // namespace felix\n#line 3 \"library/random/rng.hpp\"\
+    \n\nnamespace felix {\n\ninline unsigned long long rng() {\n\tstatic unsigned\
+    \ long long SEED = std::chrono::steady_clock::now().time_since_epoch().count();\n\
     \tSEED ^= SEED << 7;\n\tSEED ^= SEED >> 9;\n\treturn SEED & 0xFFFFFFFFULL;\n}\n\
     \n} // namespace felix\n#line 10 \"library/math/factorize.hpp\"\n\nnamespace felix\
     \ {\n\nbool is_prime(long long n, std::vector<long long> x) {\n\tlong long d =\
@@ -91,12 +91,12 @@ data:
   dependsOn:
   - library/math/factorize.hpp
   - library/math/binary-gcd.hpp
-  - library/internal/safe-mod.hpp
+  - library/math/safe-mod.hpp
   - library/random/rng.hpp
   isVerificationFile: true
   path: test/aoj/ntl/Prime-Factorize.test.cpp
   requiredBy: []
-  timestamp: '2023-04-20 12:37:07+08:00'
+  timestamp: '2023-04-21 21:20:30+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ntl/Prime-Factorize.test.cpp
