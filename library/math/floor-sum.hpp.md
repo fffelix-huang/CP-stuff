@@ -61,4 +61,5 @@ $g$ 和 $h$ 變形的做法請參考 Reference 裡 OI wiki 的文章。
 
 ## References
 [AtCoder Library document](https://atcoder.github.io/ac-library/production/document_en/math.html)
+
 [OI wiki - 類歐幾里得算法](https://oi-wiki.org/math/number-theory/euclidean/)
