@@ -4,16 +4,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/data-structure/lazy-treap.hpp
     title: library/data-structure/lazy-treap.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/inv-gcd.hpp
     title: library/math/inv-gcd.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/safe-mod.hpp
     title: library/math/safe-mod.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/modint/modint.hpp
     title: library/modint/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/random/rng.hpp
     title: library/random/rng.hpp
   _extendedRequiredBy: []
@@ -118,40 +118,40 @@ data:
     \ Node {\n\t\tS val, sum;\n\t\tF lz = id();\n\t\tbool rev = false;\n\t\tint sz\
     \ = 1;\n\t\tNode* l = nullptr;\n\t\tNode* r = nullptr;\n\n\t\tNode() {}\n\t\t\
     Node(const S& s) : val(s), sum(s) {}\n\t};\n\n\tNode* new_tree() { return nullptr;\
-    \ }\n\n\tint size(Node* v) const { return v != nullptr ? v->sz : 0; }\n\tbool\
-    \ empty(Node* v) const { return v == nullptr; }\n\n\tNode* merge(Node* a, Node*\
-    \ b) {\n\t\tif(a == nullptr || b == nullptr) {\n\t\t\treturn a != nullptr ? a\
-    \ : b;\n\t\t}\n\t\tif((int) ((rng() * (a->sz + b->sz)) >> 32) < a->sz) {\n\t\t\
-    \tpush(a);\n\t\t\ta->r = merge(a->r, b);\n\t\t\tpull(a);\n\t\t\treturn a;\n\t\t\
-    } else {\n\t\t\tpush(b);\n\t\t\tb->l = merge(a, b->l);\n\t\t\tpull(b);\n\t\t\t\
-    return b;\n\t\t}\n\t}\n\n\tstd::pair<Node*, Node*> split(Node*& root, int k) {\n\
-    \t\tif(root == nullptr) {\n\t\t\treturn std::make_pair(nullptr, nullptr);\n\t\t\
-    }\n\t\tpush(root);\n\t\tif(k <= size(root->l)) {\n\t\t\tauto p = split(root->l,\
-    \ k);\n\t\t\troot->l = p.second;\n\t\t\tpull(root);\n\t\t\treturn std::make_pair(p.first,\
-    \ root);\n\t\t} else {\n\t\t\tauto p = split(root->r, k - size(root->l) - 1);\n\
-    \t\t\troot->r = p.first;\n\t\t\tpull(root);\n\t\t\treturn std::make_pair(root,\
-    \ p.second);\n\t\t}\n\t}\n\n\tstd::tuple<Node*, Node*, Node*> split_range(Node*&\
-    \ root, int l, int r) {\n\t\tassert(l < r);\n\t\tauto lhs = split(root, l);\n\t\
-    \tauto rhs = split(lhs.second, r - l);\n\t\treturn std::make_tuple(lhs.first,\
-    \ rhs.first, rhs.second);\n\t}\n\n\tvoid insert(Node*& root, int pos, const S&\
-    \ s) {\n\t\tauto p = split(root, pos);\n\t\troot = merge(p.first, merge(make_node(s),\
-    \ p.second));\n\t}\n\n\tvoid erase(Node*& root, int pos) {\n\t\tauto [lhs, mid,\
-    \ rhs] = split_range(root, pos, pos + 1);\n\t\troot = merge(lhs, rhs);\n\t}\n\n\
-    \tvoid set(Node*& root, int pos, const S& s) {\n\t\tauto [lhs, mid, rhs] = split_range(root,\
-    \ pos, pos + 1);\n\t\t*mid = Node(s);\n\t\troot = merge(lhs, merge(mid, rhs));\n\
-    \t}\n\n\tvoid apply(Node*& root, int l, int r, const F& f) {\n\t\tif(l == r) {\n\
-    \t\t\treturn;\n\t\t}\n\t\tauto [lhs, mid, rhs] = split_range(root, l, r);\n\t\t\
-    all_apply(mid, f);\n\t\troot = merge(lhs, merge(mid, rhs));\n\t}\n\n\tS prod(Node*&\
-    \ root, int l, int r) {\n\t\tauto [lhs, mid, rhs] = split_range(root, l, r);\n\
-    \t\tif(mid != nullptr) {\n\t\t\tpush(mid);\n\t\t}\n\t\tS ans = mid->sum;\n\t\t\
-    root = merge(lhs, merge(mid, rhs));\n\t\treturn ans;\n\t}\n\n\tS get(Node*& root,\
-    \ int pos) {\n\t\tauto [lhs, mid, rhs] = split_range(root, pos, pos + 1);\n\t\t\
-    S ans = mid->val;\n\t\troot = merge(lhs, merge(mid, rhs));\n\t\treturn ans;\n\t\
-    }\n\n\tvoid reverse(Node*& root) {\n\t\troot->rev ^= 1;\n\t}\n\n\tvoid reverse(Node*&\
-    \ root, int l, int r) {\n\t\tauto [lhs, mid, rhs] = split_range(root, l, r);\n\
-    \t\treverse(mid);\n\t\troot = merge(lhs, merge(mid, rhs));\n\t}\n\n\tvoid assign(Node*&\
-    \ root, const std::vector<S>& init) {\n\t\tint n = (int) init.size();\n\t\tif(n\
-    \ == 0) {\n\t\t\troot = new_tree();\n\t\t\treturn;\n\t\t}\n\t\tstd::function<Node*(int,\
+    \ }\n\tNode* make_node(const S& s) { return new Node(s); }\n\n\tint size(Node*\
+    \ v) const { return v != nullptr ? v->sz : 0; }\n\tbool empty(Node* v) const {\
+    \ return v == nullptr; }\n\n\tNode* merge(Node* a, Node* b) {\n\t\tif(a == nullptr\
+    \ || b == nullptr) {\n\t\t\treturn a != nullptr ? a : b;\n\t\t}\n\t\tif((int)\
+    \ ((rng() * (a->sz + b->sz)) >> 32) < a->sz) {\n\t\t\tpush(a);\n\t\t\ta->r = merge(a->r,\
+    \ b);\n\t\t\tpull(a);\n\t\t\treturn a;\n\t\t} else {\n\t\t\tpush(b);\n\t\t\tb->l\
+    \ = merge(a, b->l);\n\t\t\tpull(b);\n\t\t\treturn b;\n\t\t}\n\t}\n\n\tstd::pair<Node*,\
+    \ Node*> split(Node*& root, int k) {\n\t\tif(root == nullptr) {\n\t\t\treturn\
+    \ std::make_pair(nullptr, nullptr);\n\t\t}\n\t\tpush(root);\n\t\tif(k <= size(root->l))\
+    \ {\n\t\t\tauto p = split(root->l, k);\n\t\t\troot->l = p.second;\n\t\t\tpull(root);\n\
+    \t\t\treturn std::make_pair(p.first, root);\n\t\t} else {\n\t\t\tauto p = split(root->r,\
+    \ k - size(root->l) - 1);\n\t\t\troot->r = p.first;\n\t\t\tpull(root);\n\t\t\t\
+    return std::make_pair(root, p.second);\n\t\t}\n\t}\n\n\tstd::tuple<Node*, Node*,\
+    \ Node*> split_range(Node*& root, int l, int r) {\n\t\tassert(l < r);\n\t\tauto\
+    \ lhs = split(root, l);\n\t\tauto rhs = split(lhs.second, r - l);\n\t\treturn\
+    \ std::make_tuple(lhs.first, rhs.first, rhs.second);\n\t}\n\n\tvoid insert(Node*&\
+    \ root, int pos, const S& s) {\n\t\tauto p = split(root, pos);\n\t\troot = merge(p.first,\
+    \ merge(make_node(s), p.second));\n\t}\n\n\tvoid erase(Node*& root, int pos) {\n\
+    \t\tauto [lhs, mid, rhs] = split_range(root, pos, pos + 1);\n\t\troot = merge(lhs,\
+    \ rhs);\n\t}\n\n\tvoid set(Node*& root, int pos, const S& s) {\n\t\tauto [lhs,\
+    \ mid, rhs] = split_range(root, pos, pos + 1);\n\t\t*mid = Node(s);\n\t\troot\
+    \ = merge(lhs, merge(mid, rhs));\n\t}\n\n\tvoid apply(Node*& root, int l, int\
+    \ r, const F& f) {\n\t\tif(l == r) {\n\t\t\treturn;\n\t\t}\n\t\tauto [lhs, mid,\
+    \ rhs] = split_range(root, l, r);\n\t\tall_apply(mid, f);\n\t\troot = merge(lhs,\
+    \ merge(mid, rhs));\n\t}\n\n\tS prod(Node*& root, int l, int r) {\n\t\tauto [lhs,\
+    \ mid, rhs] = split_range(root, l, r);\n\t\tif(mid != nullptr) {\n\t\t\tpush(mid);\n\
+    \t\t}\n\t\tS ans = mid->sum;\n\t\troot = merge(lhs, merge(mid, rhs));\n\t\treturn\
+    \ ans;\n\t}\n\n\tS get(Node*& root, int pos) {\n\t\tauto [lhs, mid, rhs] = split_range(root,\
+    \ pos, pos + 1);\n\t\tS ans = mid->val;\n\t\troot = merge(lhs, merge(mid, rhs));\n\
+    \t\treturn ans;\n\t}\n\n\tvoid reverse(Node*& root) {\n\t\troot->rev ^= 1;\n\t\
+    }\n\n\tvoid reverse(Node*& root, int l, int r) {\n\t\tauto [lhs, mid, rhs] = split_range(root,\
+    \ l, r);\n\t\treverse(mid);\n\t\troot = merge(lhs, merge(mid, rhs));\n\t}\n\n\t\
+    void assign(Node*& root, const std::vector<S>& init) {\n\t\tint n = (int) init.size();\n\
+    \t\tif(n == 0) {\n\t\t\troot = new_tree();\n\t\t\treturn;\n\t\t}\n\t\tstd::function<Node*(int,\
     \ int)> build = [&](int l, int r) {\n\t\t\tif(l + 1 == r) {\n\t\t\t\treturn make_node(init[l]);\n\
     \t\t\t}\n\t\t\tint mid = (l + r) / 2;\n\t\t\treturn merge(build(l, mid), build(mid,\
     \ r));\n\t\t};\n\t\troot = build(0, n);\n\t}\n\n\tvoid print(Node* root, char\
@@ -168,8 +168,7 @@ data:
     \t\t\tv->rev = false;\n\t\t}\n\t}\n\n\tvoid pull(Node* v) {\n\t\tv->sz = 1 + size(v->l)\
     \ + size(v->r);\n\t\tv->sum = v->val;\n\t\tif(v->l != nullptr) {\n\t\t\tv->sum\
     \ = op(v->l->sum, v->sum);\n\t\t}\n\t\tif(v->r != nullptr) {\n\t\t\tv->sum = op(v->sum,\
-    \ v->r->sum);\n\t\t}\n\t}\n\n\tNode* make_node(const S& s) {\n\t\treturn new Node(s);\n\
-    \t}\n};\n\n} // namespace felix\n#line 6 \"test/yosupo/Data-Structure/Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp\"\
+    \ v->r->sum);\n\t\t}\n\t}\n};\n\n} // namespace felix\n#line 6 \"test/yosupo/Data-Structure/Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp\"\
     \nusing namespace std;\nusing namespace felix;\n\nusing mint = modint998244353;\n\
     \nstruct S {\n\tmint sum;\n\tint sz;\n\n\tS() {}\n\tS(mint x, int y = 1) : sum(x),\
     \ sz(y) {}\n};\n\nS op(S a, S b) { return S(a.sum + b.sum, a.sz + b.sz); }\nS\
@@ -221,7 +220,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/Data-Structure/Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
   requiredBy: []
-  timestamp: '2023-04-21 21:20:30+08:00'
+  timestamp: '2023-04-22 00:13:18+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Data-Structure/Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp

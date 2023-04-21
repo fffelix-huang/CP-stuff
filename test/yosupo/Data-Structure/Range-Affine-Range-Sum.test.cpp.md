@@ -4,16 +4,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/data-structure/lazy-segtree.hpp
     title: library/data-structure/lazy-segtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/inv-gcd.hpp
     title: library/math/inv-gcd.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/safe-mod.hpp
     title: library/math/safe-mod.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/modint/modint.hpp
     title: library/modint/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/random/rng.hpp
     title: library/random/rng.hpp
   _extendedRequiredBy: []
@@ -33,8 +33,8 @@ data:
     \         S (*op)(S, S),\n         class F,\n         F (*id)(),\n         S (*mapping)(F,\
     \ S),\n         F (*composition)(F, F)>\nstruct lazy_segtree {\npublic:\n\tlazy_segtree()\
     \ : lazy_segtree(0) {}\n\texplicit lazy_segtree(int _n) : lazy_segtree(std::vector<S>(_n,\
-    \ e())) {}\n\texplicit lazy_segtree(const std::vector<S>& v) : n((int) v.size())\
-    \ {\n\t\tlog = std::__lg(2 * n - 1);\n\t\tsize = 1 << log;\n\t\td = std::vector<S>(size\
+    \ e())) {}\n\texplicit lazy_segtree(const std::vector<S>& v) : n(v.size()) {\n\
+    \t\tlog = std::__lg(2 * n - 1);\n\t\tsize = 1 << log;\n\t\td = std::vector<S>(size\
     \ << 1, e());\n\t\tlz = std::vector<F>(size, id());\n\t\tfor(int i = 0; i < n;\
     \ i++) {\n\t\t\td[size + i] = v[i];\n\t\t}\n\t\tfor(int i = size - 1; i; --i)\
     \ {\n\t\t\tupdate(i);\n\t\t}\n\t}\n\n\tvoid set(int p, S x) {\n\t\tassert(0 <=\
@@ -216,7 +216,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/Data-Structure/Range-Affine-Range-Sum.test.cpp
   requiredBy: []
-  timestamp: '2023-04-21 21:20:30+08:00'
+  timestamp: '2023-04-22 00:13:18+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Data-Structure/Range-Affine-Range-Sum.test.cpp

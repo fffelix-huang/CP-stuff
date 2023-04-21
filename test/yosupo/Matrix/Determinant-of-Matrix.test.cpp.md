@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/inv-gcd.hpp
     title: library/math/inv-gcd.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/safe-mod.hpp
     title: library/math/safe-mod.hpp
   - icon: ':heavy_check_mark:'
     path: library/matrix/matrix.hpp
     title: library/matrix/matrix.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/modint/modint.hpp
     title: library/modint/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/random/rng.hpp
     title: library/random/rng.hpp
   _extendedRequiredBy: []
@@ -30,14 +30,14 @@ data:
     \ PROBLEM \"https://judge.yosupo.jp/problem/matrix_det\"\r\n\r\n#include <iostream>\r\
     \n#line 2 \"library/matrix/matrix.hpp\"\n#include <vector>\r\n#include <algorithm>\r\
     \n#include <cassert>\r\n\r\nnamespace felix {\r\n\r\ntemplate<class T>\r\nstruct\
-    \ Matrix {\r\npublic:\r\n\tMatrix() {}\r\n\tMatrix(int n) : Matrix(n, n) {}\r\n\
-    \tMatrix(int n, int m) : a(n, std::vector<T>(m)) {}\r\n\r\n\tint H() const { return\
-    \ (int) a.size(); }\r\n\tint W() const { return (int) a[0].size(); }\r\n\r\n\t\
-    inline const std::vector<T> operator[](int i) const { return a[i]; }\r\n\tinline\
-    \ std::vector<T>& operator[](int i) { return a[i]; }\r\n\r\n\tstatic Matrix I(int\
-    \ n) {\r\n\t\tMatrix b(n);\r\n\t\tfor(int i = 0; i < n; i++) {\r\n\t\t\tb[i][i]\
-    \ = T(1);\r\n\t\t}\r\n\t\treturn b;\r\n\t}\r\n\r\n\tMatrix& operator+=(const Matrix&\
-    \ b) {\r\n\t\tint n = H(), m = W();\r\n\t\tassert(n == b.H() && m == b.W());\r\
+    \ Matrix {\r\npublic:\r\n\tMatrix() {}\r\n\texplicit Matrix(int n) : Matrix(n,\
+    \ n) {}\r\n\texplicit Matrix(int n, int m) : a(n, std::vector<T>(m)) {}\r\n\r\n\
+    \tint H() const { return (int) a.size(); }\r\n\tint W() const { return (int) a[0].size();\
+    \ }\r\n\r\n\tinline const std::vector<T> operator[](int i) const { return a[i];\
+    \ }\r\n\tinline std::vector<T>& operator[](int i) { return a[i]; }\r\n\r\n\tstatic\
+    \ Matrix I(int n) {\r\n\t\tMatrix b(n);\r\n\t\tfor(int i = 0; i < n; i++) {\r\n\
+    \t\t\tb[i][i] = T(1);\r\n\t\t}\r\n\t\treturn b;\r\n\t}\r\n\r\n\tMatrix& operator+=(const\
+    \ Matrix& b) {\r\n\t\tint n = H(), m = W();\r\n\t\tassert(n == b.H() && m == b.W());\r\
     \n\t\tfor(int i = 0; i < n; i++) {\r\n\t\t\tfor(int j = 0; j < m; j++) {\r\n\t\
     \t\t\ta[i][j] += b.a[i][j];\r\n\t\t\t}\r\n\t\t}\r\n\t\treturn *this;\r\n\t}\r\n\
     \r\n\tMatrix& operator-=(const Matrix& b) {\r\n\t\tint n = H(), m = W();\r\n\t\
@@ -176,7 +176,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/Matrix/Determinant-of-Matrix.test.cpp
   requiredBy: []
-  timestamp: '2023-04-21 21:20:30+08:00'
+  timestamp: '2023-04-22 00:13:18+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Matrix/Determinant-of-Matrix.test.cpp
