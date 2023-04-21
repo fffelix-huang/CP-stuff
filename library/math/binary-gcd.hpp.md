@@ -10,6 +10,9 @@ data:
     title: "Integer Factorization (Pollard Rho \u8CEA\u56E0\u6578\u5206\u89E3)"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/aoj/ntl/Least-Common-Multiple.test.cpp
+    title: test/aoj/ntl/Least-Common-Multiple.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ntl/Prime-Factorize.test.cpp
     title: test/aoj/ntl/Prime-Factorize.test.cpp
   - icon: ':heavy_check_mark:'
@@ -48,6 +51,7 @@ data:
   verifiedWith:
   - test/yosupo/Math/Factorize.test.cpp
   - test/yosupo/Math/Discrete-Logarithm.test.cpp
+  - test/aoj/ntl/Least-Common-Multiple.test.cpp
   - test/aoj/ntl/Prime-Factorize.test.cpp
 documentation_of: library/math/binary-gcd.hpp
 layout: document

@@ -224,6 +224,9 @@ data:
       path: test/aoj/grl/Articulation-Points.test.cpp
       title: test/aoj/grl/Articulation-Points.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/aoj/grl/Bipartite-Matching.test.cpp
+      title: test/aoj/grl/Bipartite-Matching.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/aoj/grl/Bridges.test.cpp
       title: test/aoj/grl/Bridges.test.cpp
     - icon: ':heavy_check_mark:'
@@ -246,6 +249,9 @@ data:
       title: test/aoj/grl/Strongly-Connected-Components.test.cpp
   - name: test/aoj/ntl
     pages:
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/ntl/Least-Common-Multiple.test.cpp
+      title: test/aoj/ntl/Least-Common-Multiple.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/ntl/Power.test.cpp
       title: test/aoj/ntl/Power.test.cpp
