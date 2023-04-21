@@ -4,6 +4,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/aoj/cgl/Area.test.cpp
+    title: test/aoj/cgl/Area.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/Geometry/Sort-Points-by-Argument.test.cpp
     title: test/yosupo/Geometry/Sort-Points-by-Argument.test.cpp
   _isVerificationFailed: false
@@ -71,6 +74,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/Geometry/Sort-Points-by-Argument.test.cpp
+  - test/aoj/cgl/Area.test.cpp
 documentation_of: library/geometry/point.hpp
 layout: document
 redirect_from:
