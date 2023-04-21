@@ -2,6 +2,7 @@
 #include <vector>
 #include <cassert>
 #include <algorithm>
+#include <cmath>
 #include "../data-structure/sparse-table.hpp"
 
 namespace felix {
@@ -98,25 +99,35 @@ public:
 		}
 	}
 
-	std::vector<std::pair<int, int>> get_path(int u, int v, bool include_lca = true) {
+	std::vector<std::pair<int, int>> get_path(int u, int v, bool include_lca) {
 		if(u == v && !include_lca) {
 			return {};
 		}
-		std::vector<std::pair<int, int>> seg;
+		std::vector<std::pair<int, int>> lhs, rhs;
 		while(top[u] != top[v]) {
 			if(depth[top[u]] > depth[top[v]]) {
-				std::swap(u, v);
+				lhs.emplace_back(u, top[u]);
+				u = parent[top[u]];
+			} else {
+				rhs.emplace_back(top[v], v);
+				v = parent[top[v]];
 			}
-			seg.emplace_back(id[top[v]], id[v]);
-			v = parent[top[v]];
-		}
-		if(depth[u] > depth[v]) {
-			std::swap(u, v);
 		}
 		if(u != v || include_lca) {
-			seg.emplace_back(id[u] + !include_lca, id[v]);
+			if(include_lca) {
+				lhs.emplace_back(u, v);
+			} else {
+				int d = std::abs(depth[u] - depth[v]);
+				if(depth[u] < depth[v]) {
+					rhs.emplace_back(tour[id[v] - d + 1], v);
+				} else {
+					lhs.emplace_back(u, tour[id[u] - d + 1]);
+				}
+			}
 		}
-		return seg;
+		std::reverse(rhs.begin(), rhs.end());
+		lhs.insert(lhs.end(), rhs.begin(), rhs.end());
+		return lhs;
 	}
 
 private:

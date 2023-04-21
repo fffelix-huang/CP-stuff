@@ -1,6 +1,8 @@
 #define PROBLEM "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_5_E"
 
 #include <iostream>
+#include <vector>
+#include <algorithm>
 #include "../../../library/tree/HLD.hpp"
 #include "../../../library/data-structure/lazy-segtree.hpp"
 using namespace std;
@@ -54,12 +56,18 @@ int main() {
 			int w;
 			cin >> w;
 			for(auto [x, y] : hld.get_path(0, u, false)) {
-				seg.apply(x, y + 1, F{w});
+				if(hld.id[x] > hld.id[y]) {
+					swap(x, y);
+				}
+				seg.apply(hld.id[x], hld.id[y] + 1, F{w});
 			}
 		} else {
 			S ans = e();
 			for(auto [x, y] : hld.get_path(0, u, false)) {
-				ans = op(ans, seg.prod(x, y + 1));
+				if(hld.id[x] > hld.id[y]) {
+					swap(x, y);
+				}
+				ans = op(ans, seg.prod(hld.id[x], hld.id[y] + 1));
 			}
 			cout << ans.sum << "\n";
 		}
