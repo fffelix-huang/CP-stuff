@@ -151,5 +151,5 @@ S res = lct.prod(u, v);
 ```
 
 ## References
-https://judge.yosupo.jp/submission/7137
-https://hitonanode.github.io/cplib-cpp/data_structure/link_cut_tree.hpp
+[https://judge.yosupo.jp/submission/7137](https://judge.yosupo.jp/submission/7137)
+[https://hitonanode.github.io/cplib-cpp/data_structure/link_cut_tree.hpp](https://hitonanode.github.io/cplib-cpp/data_structure/link_cut_tree.hpp)

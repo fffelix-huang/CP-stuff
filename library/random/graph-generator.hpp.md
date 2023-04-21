@@ -215,4 +215,4 @@ GraphGenerator::generate(n, is_tree, weighted, low, high).print(OFFSET);
 ```
 
 ## References
-https://nyaannyaan.github.io/library/random_graph/gen.hpp
+[https://nyaannyaan.github.io/library/random_graph/gen.hpp](https://nyaannyaan.github.io/library/random_graph/gen.hpp)
