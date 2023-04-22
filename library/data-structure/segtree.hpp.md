@@ -7,6 +7,12 @@ data:
     path: test/aoj/dsl/Range-Minimum-Query.test.cpp
     title: test/aoj/dsl/Range-Minimum-Query.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/Data-Structure/Deque-Operate-All-Composite.test.cpp
+    title: test/yosupo/Data-Structure/Deque-Operate-All-Composite.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/Data-Structure/Queue-Operate-All-Composite.test.cpp
+    title: test/yosupo/Data-Structure/Queue-Operate-All-Composite.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/Data-Structure/Vertex-Set-Path-Composite.test.cpp
     title: test/yosupo/Data-Structure/Vertex-Set-Path-Composite.test.cpp
   _isVerificationFailed: false
@@ -91,6 +97,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/Data-Structure/Vertex-Set-Path-Composite.test.cpp
+  - test/yosupo/Data-Structure/Queue-Operate-All-Composite.test.cpp
+  - test/yosupo/Data-Structure/Deque-Operate-All-Composite.test.cpp
   - test/aoj/dsl/Range-Minimum-Query.test.cpp
 documentation_of: library/data-structure/segtree.hpp
 layout: document

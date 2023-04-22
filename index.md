@@ -295,6 +295,9 @@ data:
       path: test/yosupo/Data-Structure/Associative-Array.test.cpp
       title: test/yosupo/Data-Structure/Associative-Array.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/yosupo/Data-Structure/Deque-Operate-All-Composite.test.cpp
+      title: test/yosupo/Data-Structure/Deque-Operate-All-Composite.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/Data-Structure/Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
       title: test/yosupo/Data-Structure/Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
     - icon: ':heavy_check_mark:'
@@ -315,6 +318,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/Data-Structure/Predecessor-Problem.test.cpp
       title: test/yosupo/Data-Structure/Predecessor-Problem.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/Data-Structure/Queue-Operate-All-Composite.test.cpp
+      title: test/yosupo/Data-Structure/Queue-Operate-All-Composite.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/Data-Structure/Range-Affine-Point-Get.test.cpp
       title: test/yosupo/Data-Structure/Range-Affine-Point-Get.test.cpp

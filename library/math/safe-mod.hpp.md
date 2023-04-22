@@ -49,11 +49,17 @@ data:
     path: test/yosupo/Convolution/Subset-Convolution.test.cpp
     title: test/yosupo/Convolution/Subset-Convolution.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/Data-Structure/Deque-Operate-All-Composite.test.cpp
+    title: test/yosupo/Data-Structure/Deque-Operate-All-Composite.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/Data-Structure/Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
     title: test/yosupo/Data-Structure/Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/Data-Structure/Dynamic-Tree-Vertex-Set-Path-Composite.test.cpp
     title: test/yosupo/Data-Structure/Dynamic-Tree-Vertex-Set-Path-Composite.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/Data-Structure/Queue-Operate-All-Composite.test.cpp
+    title: test/yosupo/Data-Structure/Queue-Operate-All-Composite.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/Data-Structure/Range-Affine-Point-Get.test.cpp
     title: test/yosupo/Data-Structure/Range-Affine-Point-Get.test.cpp
@@ -139,6 +145,8 @@ data:
   - test/yosupo/Data-Structure/Dynamic-Tree-Vertex-Set-Path-Composite.test.cpp
   - test/yosupo/Data-Structure/Vertex-Set-Path-Composite.test.cpp
   - test/yosupo/Data-Structure/Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
+  - test/yosupo/Data-Structure/Queue-Operate-All-Composite.test.cpp
+  - test/yosupo/Data-Structure/Deque-Operate-All-Composite.test.cpp
   - test/yosupo/Data-Structure/Range-Affine-Point-Get.test.cpp
   - test/yosupo/Math/Factorize.test.cpp
   - test/yosupo/Math/Partition-Function.test.cpp
