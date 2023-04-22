@@ -3,6 +3,8 @@
 #include <algorithm>
 #include <cassert>
 
+namespace felix {
+
 template<class S,
          S (*e)(),
          S (*op)(S, S),
@@ -51,32 +53,29 @@ public:
 	}
 
 	void make_root(int u) {
-		assert(0 <= u && u < n);
 		access(u);
 		a[u].rev ^= 1;
 		push(&a[u]);
 	}
 
 	void link(int u, int v) {
-		assert(0 <= u && u < n);
-		assert(0 <= v && v < n);
 		make_root(v);
 		a[v].p = &a[u];
 	}
 
+	void cut(int u) {
+		access(u);
+		a[u].l->p = nullptr;
+		a[u].l = nullptr;
+		pull(&a[u]);
+	}
+
 	void cut(int u, int v) {
-		assert(0 <= u && u < n);
-		assert(0 <= v && v < n);
 		make_root(u);
-		access(v);
-		a[v].l->p = nullptr;
-		a[v].l = nullptr;
-		pull(&a[v]);
+		cut(v);
 	}
 
 	bool is_connected(int u, int v) {
-		assert(0 <= u && u < n);
-		assert(0 <= v && v < n);
 		if(u == v) {
 			return true;
 		}
@@ -85,29 +84,24 @@ public:
 	}
 
 	void set(int u, const S& s) {
-		assert(0 <= u && u < n);
 		access(u);
 		a[u].val = s;
 		pull(&a[u]);
 	}
 
 	S get(int u) {
-		assert(0 <= u && u < n);
 		access(u);
 		return a[u].val;
 	}
 
 	void apply(int u, int v, const F& f) {
-		assert(0 <= u && u < n);
-		assert(0 <= v && v < n);
 		make_root(u);
 		access(v);
 		all_apply(&a[v], f);
+		push(&a[v]);
 	}
 
 	S prod(int u, int v) {
-		assert(0 <= u && u < n);
-		assert(0 <= v && v < n);
 		make_root(u);
 		access(v);
 		return a[v].sum;
@@ -199,3 +193,5 @@ private:
 		}
 	}
 };
+
+} // namespace felix
