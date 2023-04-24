@@ -10,6 +10,7 @@ to_zone = tz.gettz('Asia/Shanghai')
 if __name__ == "__main__":
 	parser = argparse.ArgumentParser(description='Formatter: format cpp file')
 	parser.add_argument('source', help='Source File')
+	parser.add_argument('author', help='Author')
 	parser.add_argument('-c', '--console',
 						action='store_true', help='Print to Console')
 	opts = parser.parse_args()
@@ -30,7 +31,7 @@ if __name__ == "__main__":
 
 	result = []
 	result.append('/**')
-	result.append(' *    author:  Penguin07')
+	result.append(' *    author:  {}'.format(opts.author))
 	result.append(' *    created: ' + datetime.strftime(datetime.utcnow().replace(tzinfo = from_zone).astimezone(to_zone), "[%Y-%m-%d %H:%M:%S]"))
 	result.append('**/')
 
