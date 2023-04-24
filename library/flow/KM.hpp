@@ -1,142 +1,107 @@
 #pragma once
 #include <vector>
+#include <algorithm>
 #include <queue>
 #include <limits>
 #include <cassert>
 
 namespace felix {
 
-// https://atcoder.jp/contests/abc247/submissions/30867023
 template<class T>
 struct KM {
-public:
 	static constexpr T INF = std::numeric_limits<T>::max();
+	
+	KM() : n(0) {}
+	explicit KM(int n) : n(n), w(n, std::vector<T>(n, -INF)), lx(n), ly(n), slack(n), xy(n), yx(n), pre(n), visx(n), visy(n) {}
 
-	T solve(int nx, int ny, std::vector<std::vector<T>> a) {
-		assert(0 <= nx && nx <= ny);
-		assert((int) a.size() == nx);
-		for(int i = 0; i < nx; ++i) {
-			assert((int) a[i].size() == ny);
-			for(auto x : a[i]) {
-				assert(x >= 0);
+	void add_edge(int u, int v, int x) {
+		w[u][v] = x;
+	}
+
+	void bfs(int s) {
+		std::fill(slack.begin(), slack.end(), INF);
+		std::fill(visx.begin(), visx.end(), false);
+		std::fill(visy.begin(), visy.end(), false);
+		std::queue<int> que;
+		que.push(s);
+		auto check = [&](int x) -> bool {
+			visx[x] = true;
+			if(xy[x] != -1) {
+				visy[xy[x]] = true;
+				que.push(xy[x]);
+				return true;
 			}
-		}
-		
-		auto update = [&](int x) {
-			for(int y = 0; y < ny; y++) {
-				if(lx[x] + ly[y] - a[x][y] < slack[y]) {
-					slack[y] = lx[x] + ly[y] - a[x][y];
-					slackx[y] = x;
-				}
+			while(x != -1) {
+				xy[x] = pre[x];
+				std::swap(x, yx[xy[x]]);
 			}
+			return false;
 		};
-		
-		costs.resize(nx + 1);
-		costs[0] = 0;
-		lx.assign(nx, INF);
-		ly.assign(ny, 0);
-		xy.assign(nx, -1);
-		yx.assign(ny, -1);
-		slackx.resize(ny);
-		for(int cur = 0; cur < nx; cur++) {
-			std::queue<int> que;
-			visx.assign(nx, false);
-			visy.assign(ny, false);
-			slack.assign(ny, INF);
-			p.assign(nx, -1);
-			for(int x = 0; x < nx; x++) {
-				if(xy[x] == -1) {
-					que.push(x);
-					visx[x] = true;
-					update(x);
-				}
-			}
-			int ex, ey;
-			bool found = false;
-			while(!found) {
-				while(!que.empty() && !found) {
-					auto x = que.front();
-					que.pop();
-					for(int y = 0; y < ny; y++) {
-						if(a[x][y] == lx[x] + ly[y] && !visy[y]) {
-							if(yx[y] == -1) {
-								ex = x;
-								ey = y;
-								found = true;
-								break;
-							}
-							que.push(yx[y]);
-							p[yx[y]] = x;
-							visy[y] = visx[yx[y]] = true;
-							update(yx[y]);
+		visy[s] = true;
+		while(true) {
+			while(!que.empty()) {
+				int y = que.front();
+				que.pop();
+				for(int x = 0; x < n; ++x) {
+					T delta = lx[x] + ly[y] - w[x][y];
+					if(!visx[x] && slack[x] >= delta) {
+						pre[x] = y;
+						if(delta > 0) {
+							slack[x] = delta;
+						} else if(!check(x)) {
+							return;
 						}
 					}
 				}
-				if(found) {
-					break;
-				}
-				T delta = INF;
-				for(int y = 0; y < ny; y++) {
-					if(!visy[y]) {
-						delta = std::min(delta, slack[y]);
-					}
-				}
-				for(int x = 0; x < nx; x++) {
-					if(visx[x]) {
-						lx[x] -= delta;
-					}
-				}
-				for(int y = 0; y < ny; y++) {
-					if(visy[y]) {
-						ly[y] += delta;
-					} else {
-						slack[y] -= delta;
-					}
-				}
-				for(int y = 0; y < ny; y++) {
-					if(!visy[y] && slack[y] == 0) {
-						if(yx[y] == -1) {
-							ex = slackx[y];
-							ey = y;
-							found = true;
-							break;
-						}
-						que.push(yx[y]);
-						p[yx[y]] = slackx[y];
-						visy[y] = visx[yx[y]] = true;
-						update(yx[y]);
-					}
+			}
+			T delta = INF;
+			for(int x = 0; x < n; x++) {
+				if(!visx[x] && delta > slack[x]) {
+					delta = slack[x];
 				}
 			}
-			costs[cur + 1] = costs[cur];
-			for(int x = ex, y = ey, ty; x != -1; x = p[x], y = ty) {
-				costs[cur + 1] += a[x][y];
-				if(xy[x] != -1) {
-					costs[cur + 1] -= a[x][xy[x]];
+			for(int x = 0; x < n; x++) {
+				if(visx[x]) {
+					lx[x] += delta;
+				} else {
+					slack[x] -= delta;
 				}
-				ty = xy[x];
-				xy[x] = y;
-				yx[y] = x;
+				if(visy[x]) {
+					ly[x] -= delta;
+				}
+			}
+			for(int x = 0; x < n; x++) {
+				if(!visx[x] && !slack[x] && !check(x)) {
+					return;
+				}
 			}
 		}
-		return costs[nx];
+	}
+	
+	T solve() {
+		std::fill(xy.begin(), xy.end(), -1);
+		std::fill(yx.begin(), yx.end(), -1);
+		std::fill(ly.begin(), ly.end(), 0);
+		for(int i = 0; i < n; ++i) {
+			lx[i] = *std::max_element(w[i].begin(), w[i].end());
+		}
+		for(int i = 0; i < n; ++i) {
+			bfs(i);
+		}
+		T ans = 0;
+		for(int i = 0; i < n; ++i) {
+			ans += w[i][xy[i]];
+		}
+		return ans;
 	}
 
-	std::vector<int> assignment() {
-		return xy;
-	}
-
-	std::pair<std::vector<T>, std::vector<T>> labels() {
-		return std::make_pair(lx, ly);
-	}
-
-	std::vector<T> weights() {
-		return costs;
-	}
+	int match(int i) const { return xy[i]; }
 
 private:
-	std::vector<T> lx, ly, slack, costs;
-	std::vector<int> xy, yx, p, slackx;
+	int n;
+	std::vector<std::vector<T>> w;
+	std::vector<T> lx, ly, slack;
+	std::vector<int> xy, yx, pre;
 	std::vector<bool> visx, visy;
 };
 
