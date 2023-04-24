@@ -11,6 +11,7 @@ template<class T>
 struct KM {
 	static constexpr T INF = std::numeric_limits<T>::max();
 	
+public:
 	KM() : n(0) {}
 	explicit KM(int n) : n(n), w(n, std::vector<T>(n, -INF)), lx(n), ly(n), slack(n), xy(n), yx(n), pre(n), visx(n), visy(n) {}
 
@@ -24,6 +25,7 @@ struct KM {
 		std::fill(visy.begin(), visy.end(), false);
 		std::queue<int> que;
 		que.push(s);
+		visy[s] = true;
 		auto check = [&](int x) -> bool {
 			visx[x] = true;
 			if(xy[x] != -1) {
@@ -37,7 +39,6 @@ struct KM {
 			}
 			return false;
 		};
-		visy[s] = true;
 		while(true) {
 			while(!que.empty()) {
 				int y = que.front();
@@ -82,20 +83,20 @@ struct KM {
 		std::fill(xy.begin(), xy.end(), -1);
 		std::fill(yx.begin(), yx.end(), -1);
 		std::fill(ly.begin(), ly.end(), 0);
-		for(int i = 0; i < n; ++i) {
-			lx[i] = *std::max_element(w[i].begin(), w[i].end());
+		for(int x = 0; x < n; x++) {
+			lx[x] = *std::max_element(w[x].begin(), w[x].end());
 		}
-		for(int i = 0; i < n; ++i) {
-			bfs(i);
+		for(int x = 0; x < n; x++) {
+			bfs(x);
 		}
 		T ans = 0;
-		for(int i = 0; i < n; ++i) {
-			ans += w[i][xy[i]];
+		for(int x = 0; x < n; x++) {
+			ans += w[x][xy[x]];
 		}
 		return ans;
 	}
 
-	int match(int i) const { return xy[i]; }
+	int match(int x) const { return xy[x]; }
 
 private:
 	int n;
