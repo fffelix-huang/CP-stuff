@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 #include <algorithm>
-#include <cassert>
+#include <iostream>
 
 namespace felix {
 
@@ -46,6 +46,7 @@ public:
 		for(Node* p = v; p != nullptr; p = p->p) {
 			splay(p);
 			p->r = last;
+			pull(p);
 			last = p;
 		}
 		splay(v);
@@ -65,9 +66,11 @@ public:
 
 	void cut(int u) {
 		access(u);
-		a[u].l->p = nullptr;
-		a[u].l = nullptr;
-		pull(&a[u]);
+		if(a[u].l != nullptr) {
+			a[u].l->p = nullptr;
+			a[u].l = nullptr;
+			pull(&a[u]);
+		}
 	}
 
 	void cut(int u, int v) {
@@ -81,6 +84,11 @@ public:
 		}
 		access(u), access(v);
 		return a[u].p != nullptr;
+	}
+
+	int get_lca(int u, int v) {
+		access(u);
+		return access(v) - &a[0];
 	}
 
 	void set(int u, const S& s) {
@@ -112,29 +120,28 @@ private:
 	std::vector<Node> a;
 
 	void rotate(Node* v) {
-		auto attach = [](Node* p, bool left, Node* v) {
-			(left ? p->l : p->r) = v;
-			if(v != nullptr) {
-				v->p = p;
+		auto attach = [&](Node* p, bool side, Node* c) {
+			(side ? p->r : p->l) = c;
+			pull(p);
+			if(c != nullptr) {
+				c->p = p;
 			}
 		};
-		Node *p = v->p, *g = p->p;
-		bool is_left = (v->p->l == v);
-		attach(p, is_left, is_left ? v->r : v->l);
-		if(!p->is_root()) {
-			attach(g, (p->p->l == p), v);
+		Node* p = v->p;
+		Node* g = p->p;
+		bool is_right = (p->r == v);
+		bool is_root = p->is_root();
+		attach(p, is_right, (is_right ? v->l : v->r));
+		attach(v, !is_right, p);
+		if(!is_root) {
+			attach(g, (g->r == p), v);
 		} else {
 			v->p = g;
 		}
-		attach(v, !is_left, p);
-		pull(p), pull(v);
 	}
 
 	void splay(Node* v) {
-		if(v->is_root()) {
-			pull(v);
-			return;
-		}
+		push(v);
 		while(!v->is_root()) {
 			auto p = v->p;
 			auto g = p->p;
@@ -169,11 +176,9 @@ private:
 			std::swap(v->l, v->r);
 			if(v->l != nullptr) {
 				v->l->rev ^= 1;
-				push(v->l);
 			}
 			if(v->r != nullptr) {
 				v->r->rev ^= 1;
-				push(v->r);
 			}
 			v->sum = reversal(v->sum);
 			v->rev = false;
