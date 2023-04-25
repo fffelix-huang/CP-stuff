@@ -6,12 +6,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/Data-Structure/Dynamic-Tree-Vertex-Add-Path-Sum.test.cpp
     title: test/yosupo/Data-Structure/Dynamic-Tree-Vertex-Add-Path-Sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/Data-Structure/Dynamic-Tree-Vertex-Set-Path-Composite.test.cpp
     title: test/yosupo/Data-Structure/Dynamic-Tree-Vertex-Set-Path-Composite.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"library/data-structure/lazy-LCT.hpp\"\n#include <vector>\r\
@@ -65,10 +65,11 @@ data:
     if(v->l != nullptr) {\r\n\t\t\t\tv->l->rev ^= 1;\r\n\t\t\t}\r\n\t\t\tif(v->r !=\
     \ nullptr) {\r\n\t\t\t\tv->r->rev ^= 1;\r\n\t\t\t}\r\n\t\t\tv->sum = reversal(v->sum);\r\
     \n\t\t\tv->rev = false;\r\n\t\t}\r\n\t}\r\n\r\n\tvoid pull(Node* v) {\r\n\t\t\
-    v->sz = 1;\r\n\t\tv->sum = v->val;\r\n\t\tif(v->l != nullptr) {\r\n\t\t\tv->sum\
-    \ = op(v->l->sum, v->sum);\r\n\t\t\tv->sz += v->l->sz;\r\n\t\t}\r\n\t\tif(v->r\
-    \ != nullptr) {\r\n\t\t\tv->sum = op(v->sum, v->r->sum);\r\n\t\t\tv->sz += v->r->sz;\r\
-    \n\t\t}\r\n\t}\r\n};\r\n\r\n} // namespace felix\r\n"
+    v->sz = 1;\r\n\t\tv->sum = v->val;\r\n\t\tif(v->l != nullptr) {\r\n\t\t\tpush(v->l);\r\
+    \n\t\t\tv->sum = op(v->l->sum, v->sum);\r\n\t\t\tv->sz += v->l->sz;\r\n\t\t}\r\
+    \n\t\tif(v->r != nullptr) {\r\n\t\t\tpush(v->r);\r\n\t\t\tv->sum = op(v->sum,\
+    \ v->r->sum);\r\n\t\t\tv->sz += v->r->sz;\r\n\t\t}\r\n\t}\r\n};\r\n\r\n} // namespace\
+    \ felix\r\n"
   code: "#pragma once\r\n#include <vector>\r\n#include <algorithm>\r\n#include <cassert>\r\
     \n\r\nnamespace felix {\r\n\r\ntemplate<class S,\r\n         S (*e)(),\r\n   \
     \      S (*op)(S, S),\r\n         S (*reversal)(S),\r\n         class F,\r\n \
@@ -119,16 +120,17 @@ data:
     if(v->l != nullptr) {\r\n\t\t\t\tv->l->rev ^= 1;\r\n\t\t\t}\r\n\t\t\tif(v->r !=\
     \ nullptr) {\r\n\t\t\t\tv->r->rev ^= 1;\r\n\t\t\t}\r\n\t\t\tv->sum = reversal(v->sum);\r\
     \n\t\t\tv->rev = false;\r\n\t\t}\r\n\t}\r\n\r\n\tvoid pull(Node* v) {\r\n\t\t\
-    v->sz = 1;\r\n\t\tv->sum = v->val;\r\n\t\tif(v->l != nullptr) {\r\n\t\t\tv->sum\
-    \ = op(v->l->sum, v->sum);\r\n\t\t\tv->sz += v->l->sz;\r\n\t\t}\r\n\t\tif(v->r\
-    \ != nullptr) {\r\n\t\t\tv->sum = op(v->sum, v->r->sum);\r\n\t\t\tv->sz += v->r->sz;\r\
-    \n\t\t}\r\n\t}\r\n};\r\n\r\n} // namespace felix\r\n"
+    v->sz = 1;\r\n\t\tv->sum = v->val;\r\n\t\tif(v->l != nullptr) {\r\n\t\t\tpush(v->l);\r\
+    \n\t\t\tv->sum = op(v->l->sum, v->sum);\r\n\t\t\tv->sz += v->l->sz;\r\n\t\t}\r\
+    \n\t\tif(v->r != nullptr) {\r\n\t\t\tpush(v->r);\r\n\t\t\tv->sum = op(v->sum,\
+    \ v->r->sum);\r\n\t\t\tv->sz += v->r->sz;\r\n\t\t}\r\n\t}\r\n};\r\n\r\n} // namespace\
+    \ felix\r\n"
   dependsOn: []
   isVerificationFile: false
   path: library/data-structure/lazy-LCT.hpp
   requiredBy: []
-  timestamp: '2023-04-25 22:51:10+08:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2023-04-25 23:19:22+08:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/Data-Structure/Dynamic-Tree-Vertex-Set-Path-Composite.test.cpp
   - test/yosupo/Data-Structure/Dynamic-Tree-Vertex-Add-Path-Sum.test.cpp

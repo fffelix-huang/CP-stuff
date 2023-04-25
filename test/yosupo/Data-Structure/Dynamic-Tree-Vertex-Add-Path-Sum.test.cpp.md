@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/data-structure/lazy-LCT.hpp
     title: Link Cut Tree
   _extendedRequiredBy: []
@@ -67,10 +67,11 @@ data:
     if(v->l != nullptr) {\r\n\t\t\t\tv->l->rev ^= 1;\r\n\t\t\t}\r\n\t\t\tif(v->r !=\
     \ nullptr) {\r\n\t\t\t\tv->r->rev ^= 1;\r\n\t\t\t}\r\n\t\t\tv->sum = reversal(v->sum);\r\
     \n\t\t\tv->rev = false;\r\n\t\t}\r\n\t}\r\n\r\n\tvoid pull(Node* v) {\r\n\t\t\
-    v->sz = 1;\r\n\t\tv->sum = v->val;\r\n\t\tif(v->l != nullptr) {\r\n\t\t\tv->sum\
-    \ = op(v->l->sum, v->sum);\r\n\t\t\tv->sz += v->l->sz;\r\n\t\t}\r\n\t\tif(v->r\
-    \ != nullptr) {\r\n\t\t\tv->sum = op(v->sum, v->r->sum);\r\n\t\t\tv->sz += v->r->sz;\r\
-    \n\t\t}\r\n\t}\r\n};\r\n\r\n} // namespace felix\r\n#line 6 \"test/yosupo/Data-Structure/Dynamic-Tree-Vertex-Add-Path-Sum.test.cpp\"\
+    v->sz = 1;\r\n\t\tv->sum = v->val;\r\n\t\tif(v->l != nullptr) {\r\n\t\t\tpush(v->l);\r\
+    \n\t\t\tv->sum = op(v->l->sum, v->sum);\r\n\t\t\tv->sz += v->l->sz;\r\n\t\t}\r\
+    \n\t\tif(v->r != nullptr) {\r\n\t\t\tpush(v->r);\r\n\t\t\tv->sum = op(v->sum,\
+    \ v->r->sum);\r\n\t\t\tv->sz += v->r->sz;\r\n\t\t}\r\n\t}\r\n};\r\n\r\n} // namespace\
+    \ felix\r\n#line 6 \"test/yosupo/Data-Structure/Dynamic-Tree-Vertex-Add-Path-Sum.test.cpp\"\
     \nusing namespace std;\nusing namespace felix;\n\nusing S = long long;\n\nS e()\
     \ { return 0; }\nS op(S a, S b) { return a + b; }\nS reversal(S s) { return s;\
     \ }\n\nusing F = long long;\n\nF id() { return 0; }\nS mapping(F f, S s) { return\
@@ -102,7 +103,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/Data-Structure/Dynamic-Tree-Vertex-Add-Path-Sum.test.cpp
   requiredBy: []
-  timestamp: '2023-04-25 22:51:10+08:00'
+  timestamp: '2023-04-25 23:19:22+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Data-Structure/Dynamic-Tree-Vertex-Add-Path-Sum.test.cpp

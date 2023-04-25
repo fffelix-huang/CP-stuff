@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/data-structure/lazy-LCT.hpp
     title: Link Cut Tree
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/inv-gcd.hpp
     title: library/math/inv-gcd.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/safe-mod.hpp
     title: library/math/safe-mod.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/modint/modint.hpp
     title: library/modint/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/random/rng.hpp
     title: library/random/rng.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/dynamic_tree_vertex_set_path_composite
@@ -160,10 +160,11 @@ data:
     if(v->l != nullptr) {\r\n\t\t\t\tv->l->rev ^= 1;\r\n\t\t\t}\r\n\t\t\tif(v->r !=\
     \ nullptr) {\r\n\t\t\t\tv->r->rev ^= 1;\r\n\t\t\t}\r\n\t\t\tv->sum = reversal(v->sum);\r\
     \n\t\t\tv->rev = false;\r\n\t\t}\r\n\t}\r\n\r\n\tvoid pull(Node* v) {\r\n\t\t\
-    v->sz = 1;\r\n\t\tv->sum = v->val;\r\n\t\tif(v->l != nullptr) {\r\n\t\t\tv->sum\
-    \ = op(v->l->sum, v->sum);\r\n\t\t\tv->sz += v->l->sz;\r\n\t\t}\r\n\t\tif(v->r\
-    \ != nullptr) {\r\n\t\t\tv->sum = op(v->sum, v->r->sum);\r\n\t\t\tv->sz += v->r->sz;\r\
-    \n\t\t}\r\n\t}\r\n};\r\n\r\n} // namespace felix\r\n#line 7 \"test/yosupo/Data-Structure/Dynamic-Tree-Vertex-Set-Path-Composite.test.cpp\"\
+    v->sz = 1;\r\n\t\tv->sum = v->val;\r\n\t\tif(v->l != nullptr) {\r\n\t\t\tpush(v->l);\r\
+    \n\t\t\tv->sum = op(v->l->sum, v->sum);\r\n\t\t\tv->sz += v->l->sz;\r\n\t\t}\r\
+    \n\t\tif(v->r != nullptr) {\r\n\t\t\tpush(v->r);\r\n\t\t\tv->sum = op(v->sum,\
+    \ v->r->sum);\r\n\t\t\tv->sz += v->r->sz;\r\n\t\t}\r\n\t}\r\n};\r\n\r\n} // namespace\
+    \ felix\r\n#line 7 \"test/yosupo/Data-Structure/Dynamic-Tree-Vertex-Set-Path-Composite.test.cpp\"\
     \nusing namespace std;\nusing namespace felix;\n\nusing mint = modint998244353;\n\
     \nstruct S {\n\tpair<mint, mint> f, g;\n\n\tS() : S(1, 0) {}\n\tS(mint a, mint\
     \ b) : f(a, b), g(a, b) {}\n\tS(pair<mint, mint> a, pair<mint, mint> b) : f(a),\
@@ -213,8 +214,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/Data-Structure/Dynamic-Tree-Vertex-Set-Path-Composite.test.cpp
   requiredBy: []
-  timestamp: '2023-04-25 22:51:10+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-04-25 23:19:22+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Data-Structure/Dynamic-Tree-Vertex-Set-Path-Composite.test.cpp
 layout: document

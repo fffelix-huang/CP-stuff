@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/safe-mod.hpp
     title: library/math/safe-mod.hpp
   _extendedRequiredBy:
@@ -17,7 +17,7 @@ data:
   - icon: ':warning:'
     path: library/math/inv-mod.hpp
     title: library/math/inv-mod.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/modint/modint.hpp
     title: library/modint/modint.hpp
   _extendedVerifiedWith:
@@ -45,7 +45,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/Data-Structure/Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
     title: test/yosupo/Data-Structure/Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/Data-Structure/Dynamic-Tree-Vertex-Set-Path-Composite.test.cpp
     title: test/yosupo/Data-Structure/Dynamic-Tree-Vertex-Set-Path-Composite.test.cpp
   - icon: ':heavy_check_mark:'
@@ -96,9 +96,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/Polynomial/Sqrt-of-Formal-Power-Series.test.cpp
     title: test/yosupo/Polynomial/Sqrt-of-Formal-Power-Series.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"library/math/safe-mod.hpp\"\n\r\nnamespace felix {\r\n\r\
@@ -132,7 +132,7 @@ data:
   - library/modint/modint.hpp
   - library/convolution/NTT.hpp
   timestamp: '2023-04-21 21:20:30+08:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/Convolution/Subset-Convolution.test.cpp
   - test/yosupo/Convolution/Bitwise-Xor-Convolution.test.cpp
