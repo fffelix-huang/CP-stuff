@@ -189,10 +189,12 @@ private:
 		v->sz = 1;
 		v->sum = v->val;
 		if(v->l != nullptr) {
+			push(v->l);
 			v->sum = op(v->l->sum, v->sum);
 			v->sz += v->l->sz;
 		}
 		if(v->r != nullptr) {
+			push(v->r);
 			v->sum = op(v->sum, v->r->sum);
 			v->sz += v->r->sz;
 		}
