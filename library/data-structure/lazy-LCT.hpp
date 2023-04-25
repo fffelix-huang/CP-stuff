@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 #include <algorithm>
-#include <iostream>
+#include <cassert>
 
 namespace felix {
 
