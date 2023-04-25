@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/data-structure/lazy-LCT.hpp
     title: Link Cut Tree
   - icon: ':question:'
@@ -213,7 +213,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/Data-Structure/Dynamic-Tree-Vertex-Set-Path-Composite.test.cpp
   requiredBy: []
-  timestamp: '2023-04-25 22:44:10+08:00'
+  timestamp: '2023-04-25 22:51:10+08:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/Data-Structure/Dynamic-Tree-Vertex-Set-Path-Composite.test.cpp

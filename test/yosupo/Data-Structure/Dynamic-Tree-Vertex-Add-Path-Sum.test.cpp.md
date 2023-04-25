@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/data-structure/lazy-LCT.hpp
     title: Link Cut Tree
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/dynamic_tree_vertex_add_path_sum
@@ -17,23 +17,23 @@ data:
   bundledCode: "#line 1 \"test/yosupo/Data-Structure/Dynamic-Tree-Vertex-Add-Path-Sum.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/dynamic_tree_vertex_add_path_sum\"\
     \n\n#include <iostream>\n#include <vector>\n#line 3 \"library/data-structure/lazy-LCT.hpp\"\
-    \n#include <algorithm>\r\n#line 5 \"library/data-structure/lazy-LCT.hpp\"\n\r\n\
-    namespace felix {\r\n\r\ntemplate<class S,\r\n         S (*e)(),\r\n         S\
-    \ (*op)(S, S),\r\n         S (*reversal)(S),\r\n         class F,\r\n        \
-    \ F (*id)(),\r\n         S (*mapping)(F, S),\r\n         F (*composition)(F, F)>\r\
-    \nstruct lazy_LCT {\r\npublic:\r\n\tstruct Node {\r\n\t\tS val = e(), sum = e();\r\
-    \n\t\tF lz = id();\r\n\t\tbool rev = false;\r\n\t\tint sz = 1;\r\n\t\tNode* l\
-    \ = nullptr;\r\n\t\tNode* r = nullptr;\r\n\t\tNode* p = nullptr;\r\n\r\n\t\tNode()\
-    \ {}\r\n\t\tNode(const S& s) : val(s), sum(s) {}\r\n\r\n\t\tbool is_root() const\
-    \ { return p == nullptr || (p->l != this && p->r != this); }\r\n\t};\r\n\r\n\t\
-    lazy_LCT() : n(0) {}\r\n\texplicit lazy_LCT(int _n) : lazy_LCT(std::vector<S>(_n,\
-    \ e())) {}\r\n\texplicit lazy_LCT(const std::vector<S>& v) : n(v.size()) {\r\n\
-    \t\ta.reserve(n);\r\n\t\tfor(int i = 0; i < n; i++) {\r\n\t\t\ta.emplace_back(v[i]);\r\
-    \n\t\t}\r\n\t}\r\n\r\n\tNode* access(int u) {\r\n\t\tassert(0 <= u && u < n);\r\
-    \n\t\tNode* v = &a[u];\r\n\t\tNode* last = nullptr;\r\n\t\tfor(Node* p = v; p\
-    \ != nullptr; p = p->p) {\r\n\t\t\tsplay(p);\r\n\t\t\tp->r = last;\r\n\t\t\tpull(p);\r\
-    \n\t\t\tlast = p;\r\n\t\t}\r\n\t\tsplay(v);\r\n\t\treturn last;\r\n\t}\r\n\r\n\
-    \tvoid make_root(int u) {\r\n\t\taccess(u);\r\n\t\ta[u].rev ^= 1;\r\n\t\tpush(&a[u]);\r\
+    \n#include <algorithm>\r\n#include <cassert>\r\n\r\nnamespace felix {\r\n\r\n\
+    template<class S,\r\n         S (*e)(),\r\n         S (*op)(S, S),\r\n       \
+    \  S (*reversal)(S),\r\n         class F,\r\n         F (*id)(),\r\n         S\
+    \ (*mapping)(F, S),\r\n         F (*composition)(F, F)>\r\nstruct lazy_LCT {\r\
+    \npublic:\r\n\tstruct Node {\r\n\t\tS val = e(), sum = e();\r\n\t\tF lz = id();\r\
+    \n\t\tbool rev = false;\r\n\t\tint sz = 1;\r\n\t\tNode* l = nullptr;\r\n\t\tNode*\
+    \ r = nullptr;\r\n\t\tNode* p = nullptr;\r\n\r\n\t\tNode() {}\r\n\t\tNode(const\
+    \ S& s) : val(s), sum(s) {}\r\n\r\n\t\tbool is_root() const { return p == nullptr\
+    \ || (p->l != this && p->r != this); }\r\n\t};\r\n\r\n\tlazy_LCT() : n(0) {}\r\
+    \n\texplicit lazy_LCT(int _n) : lazy_LCT(std::vector<S>(_n, e())) {}\r\n\texplicit\
+    \ lazy_LCT(const std::vector<S>& v) : n(v.size()) {\r\n\t\ta.reserve(n);\r\n\t\
+    \tfor(int i = 0; i < n; i++) {\r\n\t\t\ta.emplace_back(v[i]);\r\n\t\t}\r\n\t}\r\
+    \n\r\n\tNode* access(int u) {\r\n\t\tassert(0 <= u && u < n);\r\n\t\tNode* v =\
+    \ &a[u];\r\n\t\tNode* last = nullptr;\r\n\t\tfor(Node* p = v; p != nullptr; p\
+    \ = p->p) {\r\n\t\t\tsplay(p);\r\n\t\t\tp->r = last;\r\n\t\t\tpull(p);\r\n\t\t\
+    \tlast = p;\r\n\t\t}\r\n\t\tsplay(v);\r\n\t\treturn last;\r\n\t}\r\n\r\n\tvoid\
+    \ make_root(int u) {\r\n\t\taccess(u);\r\n\t\ta[u].rev ^= 1;\r\n\t\tpush(&a[u]);\r\
     \n\t}\r\n\r\n\tvoid link(int u, int v) {\r\n\t\tmake_root(v);\r\n\t\ta[v].p =\
     \ &a[u];\r\n\t}\r\n\r\n\tvoid cut(int u) {\r\n\t\taccess(u);\r\n\t\tif(a[u].l\
     \ != nullptr) {\r\n\t\t\ta[u].l->p = nullptr;\r\n\t\t\ta[u].l = nullptr;\r\n\t\
@@ -102,8 +102,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/Data-Structure/Dynamic-Tree-Vertex-Add-Path-Sum.test.cpp
   requiredBy: []
-  timestamp: '2023-04-25 22:44:10+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-04-25 22:51:10+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Data-Structure/Dynamic-Tree-Vertex-Add-Path-Sum.test.cpp
 layout: document

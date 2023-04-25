@@ -3,7 +3,7 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/Data-Structure/Dynamic-Tree-Vertex-Add-Path-Sum.test.cpp
     title: test/yosupo/Data-Structure/Dynamic-Tree-Vertex-Add-Path-Sum.test.cpp
   - icon: ':x:'
@@ -11,11 +11,11 @@ data:
     title: test/yosupo/Data-Structure/Dynamic-Tree-Vertex-Set-Path-Composite.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"library/data-structure/lazy-LCT.hpp\"\n#include <vector>\r\
-    \n#include <algorithm>\r\n#include <iostream>\r\n\r\nnamespace felix {\r\n\r\n\
+    \n#include <algorithm>\r\n#include <cassert>\r\n\r\nnamespace felix {\r\n\r\n\
     template<class S,\r\n         S (*e)(),\r\n         S (*op)(S, S),\r\n       \
     \  S (*reversal)(S),\r\n         class F,\r\n         F (*id)(),\r\n         S\
     \ (*mapping)(F, S),\r\n         F (*composition)(F, F)>\r\nstruct lazy_LCT {\r\
@@ -69,7 +69,7 @@ data:
     \ = op(v->l->sum, v->sum);\r\n\t\t\tv->sz += v->l->sz;\r\n\t\t}\r\n\t\tif(v->r\
     \ != nullptr) {\r\n\t\t\tv->sum = op(v->sum, v->r->sum);\r\n\t\t\tv->sz += v->r->sz;\r\
     \n\t\t}\r\n\t}\r\n};\r\n\r\n} // namespace felix\r\n"
-  code: "#pragma once\r\n#include <vector>\r\n#include <algorithm>\r\n#include <iostream>\r\
+  code: "#pragma once\r\n#include <vector>\r\n#include <algorithm>\r\n#include <cassert>\r\
     \n\r\nnamespace felix {\r\n\r\ntemplate<class S,\r\n         S (*e)(),\r\n   \
     \      S (*op)(S, S),\r\n         S (*reversal)(S),\r\n         class F,\r\n \
     \        F (*id)(),\r\n         S (*mapping)(F, S),\r\n         F (*composition)(F,\
@@ -127,8 +127,8 @@ data:
   isVerificationFile: false
   path: library/data-structure/lazy-LCT.hpp
   requiredBy: []
-  timestamp: '2023-04-25 22:44:10+08:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-04-25 22:51:10+08:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/Data-Structure/Dynamic-Tree-Vertex-Set-Path-Composite.test.cpp
   - test/yosupo/Data-Structure/Dynamic-Tree-Vertex-Add-Path-Sum.test.cpp

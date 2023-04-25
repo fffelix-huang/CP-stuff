@@ -29,7 +29,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/data-structure/fenwick2d.hpp
       title: library/data-structure/fenwick2d.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: library/data-structure/lazy-LCT.hpp
       title: Link Cut Tree
     - icon: ':heavy_check_mark:'
@@ -300,7 +300,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/Data-Structure/Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
       title: test/yosupo/Data-Structure/Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/Data-Structure/Dynamic-Tree-Vertex-Add-Path-Sum.test.cpp
       title: test/yosupo/Data-Structure/Dynamic-Tree-Vertex-Add-Path-Sum.test.cpp
     - icon: ':x:'
