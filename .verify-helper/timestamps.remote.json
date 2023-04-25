@@ -33,6 +33,7 @@
 "test/yosupo/Data-Structure/Associative-Array.test.cpp": "2023-04-20 12:52:42 +0800",
 "test/yosupo/Data-Structure/Deque-Operate-All-Composite.test.cpp": "2023-04-22 16:32:47 +0800",
 "test/yosupo/Data-Structure/Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp": "2023-04-22 00:13:18 +0800",
+"test/yosupo/Data-Structure/Dynamic-Tree-Vertex-Add-Path-Sum.test.cpp": "2023-04-25 22:51:10 +0800",
 "test/yosupo/Data-Structure/Line-Add-Get-Min.test.cpp": "2023-04-20 12:52:42 +0800",
 "test/yosupo/Data-Structure/Point-Add-Range-Sum.test.cpp": "2023-04-20 12:52:42 +0800",
 "test/yosupo/Data-Structure/Point-Add-Rectangle-Sum.test.cpp": "2023-04-20 12:52:42 +0800",
