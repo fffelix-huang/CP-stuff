@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/flow/KM.hpp
     title: library/flow/KM.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/assignment
@@ -17,7 +17,7 @@ data:
   bundledCode: "#line 1 \"test/yosupo/Graph/Assignment-Problem.test.cpp\"\n#define\
     \ PROBLEM \"https://judge.yosupo.jp/problem/assignment\"\r\n\r\n#include <iostream>\r\
     \n#line 2 \"library/flow/KM.hpp\"\n#include <vector>\r\n#include <algorithm>\r\
-    \n#include <queue>\r\n#include <climits>\r\n#include <cassert>\r\n\r\nnamespace\
+    \n#include <queue>\r\n#include <limits>\r\n#include <cassert>\r\n\r\nnamespace\
     \ felix {\r\n\r\ntemplate<class T>\r\nstruct KM {\r\n\tstatic constexpr T INF\
     \ = std::numeric_limits<T>::max() / 2;\r\n\t\r\npublic:\r\n\tKM() : n(0) {}\r\n\
     \texplicit KM(int n) : n(n), w(n, std::vector<T>(n, -INF)), lx(n), ly(n), slack(n),\
@@ -71,8 +71,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/Graph/Assignment-Problem.test.cpp
   requiredBy: []
-  timestamp: '2023-04-26 13:43:38+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-04-26 13:58:13+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Graph/Assignment-Problem.test.cpp
 layout: document

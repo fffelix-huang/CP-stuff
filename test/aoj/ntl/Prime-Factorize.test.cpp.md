@@ -26,7 +26,7 @@ data:
   bundledCode: "#line 1 \"test/aoj/ntl/Prime-Factorize.test.cpp\"\n#define PROBLEM\
     \ \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_1_A\"\r\n\r\n\
     #include <iostream>\r\n#line 2 \"library/math/factorize.hpp\"\n#include <vector>\n\
-    #include <cassert>\n#include <climits>\n#include <algorithm>\n#line 2 \"library/math/binary-gcd.hpp\"\
+    #include <cassert>\n#include <algorithm>\n#line 2 \"library/math/binary-gcd.hpp\"\
     \n\r\nnamespace felix {\r\n\r\ntemplate<class T>\r\ninline T binary_gcd(T a, T\
     \ b) {\r\n\tif(a == 0 || b == 0) {\r\n\t\treturn a | b;\r\n\t}\r\n\tint8_t n =\
     \ __builtin_ctzll(a);\r\n\tint8_t m = __builtin_ctzll(b);\r\n\ta >>= n;\r\n\t\
@@ -40,7 +40,7 @@ data:
     \ <chrono>\n\nnamespace felix {\n\ninline unsigned long long rng() {\n\tstatic\
     \ unsigned long long SEED = std::chrono::steady_clock::now().time_since_epoch().count();\n\
     \tSEED ^= SEED << 7;\n\tSEED ^= SEED >> 9;\n\treturn SEED & 0xFFFFFFFFULL;\n}\n\
-    \n} // namespace felix\n#line 9 \"library/math/factorize.hpp\"\n\nnamespace felix\
+    \n} // namespace felix\n#line 8 \"library/math/factorize.hpp\"\n\nnamespace felix\
     \ {\n\nbool is_prime(long long n, std::vector<long long> x) {\n\tlong long d =\
     \ n - 1;\n\td >>= __builtin_ctzll(d);\n\tfor(auto a : x) {\n\t\tif(n <= a) {\n\
     \t\t\tbreak;\n\t\t}\n\t\tlong long t = d;\n\t\tlong long y = 1, b = t;\n\t\twhile(b)\
@@ -95,7 +95,7 @@ data:
   isVerificationFile: true
   path: test/aoj/ntl/Prime-Factorize.test.cpp
   requiredBy: []
-  timestamp: '2023-04-26 12:23:37+08:00'
+  timestamp: '2023-04-26 13:58:13+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ntl/Prime-Factorize.test.cpp

@@ -55,7 +55,7 @@ data:
       title: "Wavelet Tree (\u975C\u614B\u5340\u9593\u7B2C $k$ \u5927)"
   - name: library/flow
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/flow/KM.hpp
       title: library/flow/KM.hpp
     - icon: ':heavy_check_mark:'
@@ -361,7 +361,7 @@ data:
       title: test/yosupo/Geometry/Sort-Points-by-Argument.test.cpp
   - name: test/yosupo/Graph
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/Graph/Assignment-Problem.test.cpp
       title: test/yosupo/Graph/Assignment-Problem.test.cpp
     - icon: ':heavy_check_mark:'
