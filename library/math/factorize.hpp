@@ -1,8 +1,7 @@
 #pragma once
 #include <vector>
 #include <cassert>
-#include <random>
-#include <chrono>
+#include <climits>
 #include <algorithm>
 #include "binary-gcd.hpp"
 #include "safe-mod.hpp"
@@ -55,25 +54,15 @@ T pollard_rho(T n) {
 	if(n % 2 == 0) {
 		return 2;
 	}
-	if(n % 3 == 0) {
-		return 3;
-	}
-	if(n % 5 == 0) {
-		return 5;
-	}
 	if(is_prime(n)) {
 		return n;
 	}
-	T R;
-	auto f = [&](T x) -> T {
-		return internal::safe_mod<__int128>(__int128(x) * x + R, n);
-	};
-	auto rnd_ = [&]() {
-		return rng() % (n - 2) + 2;
-	};
 	while(true) {
-		T x, y, ys, q = 1;
-		R = rnd_(), y = rnd_();
+		const T R = rng() % (n - 1) + 1;
+		auto f = [&](T x) -> T {
+			return internal::safe_mod<__int128>(__int128(x) * x + R, n);
+		};
+		T x = 1, y = 2, ys = 1, q = 1;
 		T g = 1;
 		constexpr int m = 128;
 		for(int r = 1; g == 1; r <<= 1) {
@@ -81,11 +70,11 @@ T pollard_rho(T n) {
 			for(int i = 0; i < r; i++) {
 				y = f(y);
 			}
-			for(int k = 0; g == 1 && k < r; k += m) {
+			for(int k = 0; k < r && g == 1; k += m) {
 				ys = y;
-				for(int i = 0; i < m && i < r - k; ++i) {
+				for(int i = 0; i < std::min(m, r - k); i++) {
 					y = f(y);
-					q = internal::safe_mod(x - y, n);
+					q = internal::safe_mod<__int128>(__int128(q) * internal::safe_mod(x - y, n), n);
 				}
 				g = binary_gcd(q, n);
 			}
