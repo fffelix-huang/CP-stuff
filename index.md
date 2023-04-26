@@ -170,9 +170,6 @@ data:
       path: library/string/KMP.hpp
       title: library/string/KMP.hpp
     - icon: ':heavy_check_mark:'
-      path: library/string/lcp-array.hpp
-      title: library/string/lcp-array.hpp
-    - icon: ':heavy_check_mark:'
       path: library/string/suffix-array.hpp
       title: Suffix Array
     - icon: ':heavy_check_mark:'
