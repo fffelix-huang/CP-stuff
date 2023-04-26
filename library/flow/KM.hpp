@@ -2,21 +2,21 @@
 #include <vector>
 #include <algorithm>
 #include <queue>
-#include <limits>
+#include <climits>
 #include <cassert>
 
 namespace felix {
 
 template<class T>
 struct KM {
-	static constexpr T INF = std::numeric_limits<T>::max();
+	static constexpr T INF = std::numeric_limits<T>::max() / 2;
 	
 public:
 	KM() : n(0) {}
 	explicit KM(int n) : n(n), w(n, std::vector<T>(n, -INF)), lx(n), ly(n), slack(n), xy(n), yx(n), pre(n), visx(n), visy(n) {}
 
-	void add_edge(int u, int v, int x) {
-		w[u][v] = x;
+	void add_edge(int u, int v, T x) {
+		w[u][v] = std::max(w[u][v], x);
 	}
 
 	void bfs(int s) {
