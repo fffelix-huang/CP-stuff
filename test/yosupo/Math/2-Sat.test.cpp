@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/two_sat"
 
 #include <iostream>
-#include "../../../library/graph/two-sat.hpp"
+#include "../../../library/math/two-sat.hpp"
 using namespace std;
 using namespace felix;
 
