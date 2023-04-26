@@ -2,7 +2,7 @@
 #include <vector>
 #include <algorithm>
 #include <queue>
-#include <climits>
+#include <limits>
 #include <cassert>
 
 namespace felix {

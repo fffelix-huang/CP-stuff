@@ -1,7 +1,6 @@
 #pragma once
 #include <vector>
 #include <cassert>
-#include <climits>
 #include <algorithm>
 #include "binary-gcd.hpp"
 #include "safe-mod.hpp"
