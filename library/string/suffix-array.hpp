@@ -166,4 +166,36 @@ std::vector<int> suffix_array(const std::string& s) {
 	return internal::sa_is(std::vector<int>(s.begin(), s.end()), 255);
 }
 
+template<class T>
+std::vector<int> lcp_array(const std::vector<T>& s, const std::vector<int>& sa) {
+	int n = (int) s.size();
+	assert(n >= 1);
+	std::vector<int> rnk(n);
+	for(int i = 0; i < n; i++) {
+		rnk[sa[i]] = i;
+	}
+	std::vector<int> lcp(n - 1);
+	int h = 0;
+	for(int i = 0; i < n; i++) {
+		if(h > 0) {
+			h--;
+		}
+		if(rnk[i] == 0) {
+			continue;
+		}
+		int j = sa[rnk[i] - 1];
+		for(; j + h < n && i + h < n; h++) {
+			if(s[j + h] != s[i + h]) {
+				break;
+			}
+		}
+		lcp[rnk[i] - 1] = h;
+	}
+	return lcp;
+}
+
+std::vector<int> lcp_array(const std::string& s, const std::vector<int>& sa) {
+	return lcp_array(std::vector<int>(s.begin(), s.end()), sa);
+}
+
 } // namespace felix
