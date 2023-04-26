@@ -17,7 +17,6 @@ public:
 		Edge(int u, int v, Cap_t _cap, Cost_t _cost) : from(u), to(v), cap(_cap), cost(_cost) {}
 	};
 
-	static constexpr Cap_t EPS = static_cast<Cap_t>(1e-9);
 	static constexpr Cap_t CAP_INF = std::numeric_limits<Cap_t>::max();
 	static constexpr Cost_t COST_INF = std::numeric_limits<Cost_t>::max();
 
@@ -56,7 +55,7 @@ public:
 			in_queue[u] = false;
 			for(auto& id : g[u]) {
 				const Edge& e = edges[id];
-				if(e.cap > EPS && d[u] + e.cost < d[e.to]) {
+				if(e.cap > 0 && d[u] + e.cost < d[e.to]) {
 					d[e.to] = d[u] + e.cost;
 					previous_edge[e.to] = id;
 					if(!in_queue[e.to]) {
