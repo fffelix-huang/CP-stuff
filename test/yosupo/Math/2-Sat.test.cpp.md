@@ -5,8 +5,8 @@ data:
     path: library/graph/SCC.hpp
     title: library/graph/SCC.hpp
   - icon: ':heavy_check_mark:'
-    path: library/graph/two-sat.hpp
-    title: library/graph/two-sat.hpp
+    path: library/math/two-sat.hpp
+    title: library/math/two-sat.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -18,7 +18,7 @@ data:
     links:
     - https://judge.yosupo.jp/problem/two_sat
   bundledCode: "#line 1 \"test/yosupo/Math/2-Sat.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/two_sat\"\
-    \r\n\r\n#include <iostream>\r\n#line 2 \"library/graph/two-sat.hpp\"\n#include\
+    \r\n\r\n#include <iostream>\r\n#line 2 \"library/math/two-sat.hpp\"\n#include\
     \ <vector>\n#line 3 \"library/graph/SCC.hpp\"\n#include <cassert>\n#include <algorithm>\n\
     #include <functional>\n\nnamespace felix {\n\nstruct SCC {\npublic:\n\tSCC() :\
     \ n(0) {}\n\texplicit SCC(int _n) : n(_n), g(_n), h(_n) {}\n\n\tvoid add_edge(int\
@@ -41,7 +41,7 @@ data:
     \t\tfor(int i = 0; i < sz; ++i) {\n\t\t\tstd::sort(new_g[i].begin(), new_g[i].end());\n\
     \t\t\tnew_g[i].erase(std::unique(new_g[i].begin(), new_g[i].end()), new_g[i].end());\n\
     \t\t}\n\t\treturn new_g;\n\t}\n\nprivate:\n\tint n;\n\tstd::vector<std::vector<int>>\
-    \ g, h;\n};\n\n} // namespace felix\n#line 4 \"library/graph/two-sat.hpp\"\n\n\
+    \ g, h;\n};\n\n} // namespace felix\n#line 4 \"library/math/two-sat.hpp\"\n\n\
     namespace felix {\n\nstruct two_sat {\npublic:\n\ttwo_sat() : n(0) {}\n\texplicit\
     \ two_sat(int _n) : n(_n), g(_n * 2) {}\n\n\tvoid add_implies_clause(int u, bool\
     \ x, int v, bool y) {\n\t\tg.add_edge(2 * u + x, 2 * v + y);\n\t\tg.add_edge(2\
@@ -70,7 +70,7 @@ data:
     \ * (ans[i] ? +1 : -1) << \" \";\r\n\t\t}\r\n\t\tcout << \"0\\n\";\r\n\t} else\
     \ {\r\n\t\tcout << \"s UNSATISFIABLE\\n\";\r\n\t}\r\n\treturn 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/two_sat\"\r\n\r\n#include\
-    \ <iostream>\r\n#include \"../../../library/graph/two-sat.hpp\"\r\nusing namespace\
+    \ <iostream>\r\n#include \"../../../library/math/two-sat.hpp\"\r\nusing namespace\
     \ std;\r\nusing namespace felix;\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\
     \n\tcin.tie(0);\r\n\tstring s;\r\n\tint n, m;\r\n\tcin >> s >> s >> n >> m;\r\n\
     \ttwo_sat ts(n);\r\n\tfor(int i = 0; i < m; ++i) {\r\n\t\tint u, v;\r\n\t\tcin\
@@ -81,12 +81,12 @@ data:
     \ * (ans[i] ? +1 : -1) << \" \";\r\n\t\t}\r\n\t\tcout << \"0\\n\";\r\n\t} else\
     \ {\r\n\t\tcout << \"s UNSATISFIABLE\\n\";\r\n\t}\r\n\treturn 0;\r\n}\r\n"
   dependsOn:
-  - library/graph/two-sat.hpp
+  - library/math/two-sat.hpp
   - library/graph/SCC.hpp
   isVerificationFile: true
   path: test/yosupo/Math/2-Sat.test.cpp
   requiredBy: []
-  timestamp: '2023-04-20 12:46:25+08:00'
+  timestamp: '2023-04-26 12:45:08+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Math/2-Sat.test.cpp

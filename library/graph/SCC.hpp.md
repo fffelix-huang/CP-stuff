@@ -3,8 +3,8 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
-    path: library/graph/two-sat.hpp
-    title: library/graph/two-sat.hpp
+    path: library/math/two-sat.hpp
+    title: library/math/two-sat.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/grl/Strongly-Connected-Components.test.cpp
@@ -70,7 +70,7 @@ data:
   isVerificationFile: false
   path: library/graph/SCC.hpp
   requiredBy:
-  - library/graph/two-sat.hpp
+  - library/math/two-sat.hpp
   timestamp: '2023-04-17 12:10:28+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

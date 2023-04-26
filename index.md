@@ -88,9 +88,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/graph/lowlink.hpp
       title: library/graph/lowlink.hpp
-    - icon: ':heavy_check_mark:'
-      path: library/graph/two-sat.hpp
-      title: library/graph/two-sat.hpp
   - name: library/math
     pages:
     - icon: ':heavy_check_mark:'
@@ -123,6 +120,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/safe-mod.hpp
       title: library/math/safe-mod.hpp
+    - icon: ':heavy_check_mark:'
+      path: library/math/two-sat.hpp
+      title: library/math/two-sat.hpp
     - icon: ':heavy_check_mark:'
       path: library/math/xor-basis.hpp
       title: "xor basis (\u7DDA\u6027\u57FA)"

@@ -14,12 +14,12 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"library/graph/two-sat.hpp\"\n#include <vector>\n#line 3\
-    \ \"library/graph/SCC.hpp\"\n#include <cassert>\n#include <algorithm>\n#include\
-    \ <functional>\n\nnamespace felix {\n\nstruct SCC {\npublic:\n\tSCC() : n(0) {}\n\
-    \texplicit SCC(int _n) : n(_n), g(_n), h(_n) {}\n\n\tvoid add_edge(int u, int\
-    \ v) {\n\t\tassert(0 <= u && u < n);\n\t\tassert(0 <= v && v < n);\n\t\tg[u].push_back(v);\n\
-    \t\th[v].push_back(u);\n\t}\n\n\tstd::vector<int> solve() {\n\t\tstd::vector<int>\
+  bundledCode: "#line 2 \"library/math/two-sat.hpp\"\n#include <vector>\n#line 3 \"\
+    library/graph/SCC.hpp\"\n#include <cassert>\n#include <algorithm>\n#include <functional>\n\
+    \nnamespace felix {\n\nstruct SCC {\npublic:\n\tSCC() : n(0) {}\n\texplicit SCC(int\
+    \ _n) : n(_n), g(_n), h(_n) {}\n\n\tvoid add_edge(int u, int v) {\n\t\tassert(0\
+    \ <= u && u < n);\n\t\tassert(0 <= v && v < n);\n\t\tg[u].push_back(v);\n\t\t\
+    h[v].push_back(u);\n\t}\n\n\tstd::vector<int> solve() {\n\t\tstd::vector<int>\
     \ id(n);\n\t\tstd::vector<int> top;\n\t\ttop.reserve(n);\n\t\tstd::function<void(int)>\
     \ dfs1 = [&](int u) {\n\t\t\tid[u] = 1;\n\t\t\tfor(auto v : g[u]) {\n\t\t\t\t\
     if(id[v] == 0) {\n\t\t\t\t\tdfs1(v);\n\t\t\t\t}\n\t\t\t}\n\t\t\ttop.push_back(u);\n\
@@ -36,7 +36,7 @@ data:
     \t\t\t}\n\t\t}\n\t\tfor(int i = 0; i < sz; ++i) {\n\t\t\tstd::sort(new_g[i].begin(),\
     \ new_g[i].end());\n\t\t\tnew_g[i].erase(std::unique(new_g[i].begin(), new_g[i].end()),\
     \ new_g[i].end());\n\t\t}\n\t\treturn new_g;\n\t}\n\nprivate:\n\tint n;\n\tstd::vector<std::vector<int>>\
-    \ g, h;\n};\n\n} // namespace felix\n#line 4 \"library/graph/two-sat.hpp\"\n\n\
+    \ g, h;\n};\n\n} // namespace felix\n#line 4 \"library/math/two-sat.hpp\"\n\n\
     namespace felix {\n\nstruct two_sat {\npublic:\n\ttwo_sat() : n(0) {}\n\texplicit\
     \ two_sat(int _n) : n(_n), g(_n * 2) {}\n\n\tvoid add_implies_clause(int u, bool\
     \ x, int v, bool y) {\n\t\tg.add_edge(2 * u + x, 2 * v + y);\n\t\tg.add_edge(2\
@@ -55,8 +55,8 @@ data:
     \t\tif(!built) {\n\t\t\tsatisfiable();\n\t\t}\n\t\treturn ans;\n\t}\n\nprivate:\n\
     \tint n;\n\tSCC g;\n\tbool built = false;\n\tstd::vector<bool> ans;\n};\n\n} //\
     \ namespace felix\n"
-  code: "#pragma once\n#include <vector>\n#include \"SCC.hpp\"\n\nnamespace felix\
-    \ {\n\nstruct two_sat {\npublic:\n\ttwo_sat() : n(0) {}\n\texplicit two_sat(int\
+  code: "#pragma once\n#include <vector>\n#include \"../graph/SCC.hpp\"\n\nnamespace\
+    \ felix {\n\nstruct two_sat {\npublic:\n\ttwo_sat() : n(0) {}\n\texplicit two_sat(int\
     \ _n) : n(_n), g(_n * 2) {}\n\n\tvoid add_implies_clause(int u, bool x, int v,\
     \ bool y) {\n\t\tg.add_edge(2 * u + x, 2 * v + y);\n\t\tg.add_edge(2 * v + !y,\
     \ 2 * u + !x);\n\t}\n\n\tvoid add_or_clause(int u, bool x, int v, bool y) {\n\t\
@@ -77,16 +77,16 @@ data:
   dependsOn:
   - library/graph/SCC.hpp
   isVerificationFile: false
-  path: library/graph/two-sat.hpp
+  path: library/math/two-sat.hpp
   requiredBy: []
-  timestamp: '2023-04-17 12:10:28+08:00'
+  timestamp: '2023-04-26 12:45:08+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/Math/2-Sat.test.cpp
-documentation_of: library/graph/two-sat.hpp
+documentation_of: library/math/two-sat.hpp
 layout: document
 redirect_from:
-- /library/library/graph/two-sat.hpp
-- /library/library/graph/two-sat.hpp.html
-title: library/graph/two-sat.hpp
+- /library/library/math/two-sat.hpp
+- /library/library/math/two-sat.hpp.html
+title: library/math/two-sat.hpp
 ---
