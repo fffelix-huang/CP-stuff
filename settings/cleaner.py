@@ -15,7 +15,7 @@ if __name__ == "__main__":
 
 	for line in s.splitlines():
 		T = line.strip()
-		if T.find('debug(') != -1 or T == '#include "misc/debug.hpp"':
+		if T.find('debug') != -1:
 			continue
 		result.append(line)
 
