@@ -60,14 +60,14 @@ data:
   timestamp: '2023-04-17 12:10:28+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/Data-Structure/Vertex-Add-Path-Sum.test.cpp
   - test/yosupo/Data-Structure/Point-Add-Rectangle-Sum.test.cpp
-  - test/yosupo/Data-Structure/Vertex-Add-Subtree-Sum.test.cpp
+  - test/yosupo/Data-Structure/Vertex-Add-Path-Sum.test.cpp
   - test/yosupo/Data-Structure/Point-Add-Range-Sum.test.cpp
+  - test/yosupo/Data-Structure/Vertex-Add-Subtree-Sum.test.cpp
   - test/aoj/grl/Range-Query-on-a-Tree.test.cpp
+  - test/aoj/dsl/Range-Add-Query.test.cpp
   - test/aoj/dsl/The-Maximum-Number-of-Customers.test.cpp
   - test/aoj/dsl/Range-Sum-Query.test.cpp
-  - test/aoj/dsl/Range-Add-Query.test.cpp
 documentation_of: library/data-structure/fenwick.hpp
 layout: document
 redirect_from:

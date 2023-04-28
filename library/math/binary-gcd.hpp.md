@@ -51,8 +51,8 @@ data:
   verifiedWith:
   - test/yosupo/Math/Factorize.test.cpp
   - test/yosupo/Math/Discrete-Logarithm.test.cpp
-  - test/aoj/ntl/Least-Common-Multiple.test.cpp
   - test/aoj/ntl/Prime-Factorize.test.cpp
+  - test/aoj/ntl/Least-Common-Multiple.test.cpp
 documentation_of: library/math/binary-gcd.hpp
 layout: document
 title: "Binary GCD (\u4F4D\u5143 GCD)"

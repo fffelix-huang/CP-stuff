@@ -165,14 +165,14 @@ data:
   timestamp: '2023-04-22 03:41:27+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/Tree/Lowest-Common-Ancestor.test.cpp
   - test/yosupo/Tree/Jump-on-Tree.test.cpp
+  - test/yosupo/Tree/Lowest-Common-Ancestor.test.cpp
+  - test/yosupo/Data-Structure/Vertex-Set-Path-Composite.test.cpp
   - test/yosupo/Data-Structure/Vertex-Add-Path-Sum.test.cpp
   - test/yosupo/Data-Structure/Vertex-Add-Subtree-Sum.test.cpp
-  - test/yosupo/Data-Structure/Vertex-Set-Path-Composite.test.cpp
+  - test/aoj/grl/Lowest-Common-Ancestor.test.cpp
   - test/aoj/grl/Range-Query-on-a-Tree-II.test.cpp
   - test/aoj/grl/Range-Query-on-a-Tree.test.cpp
-  - test/aoj/grl/Lowest-Common-Ancestor.test.cpp
 documentation_of: library/tree/HLD.hpp
 layout: document
 title: "Heavy Light Decomposition (\u8F15\u91CD\u93C8\u5256\u5206)"

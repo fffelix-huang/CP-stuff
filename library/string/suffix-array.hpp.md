@@ -162,8 +162,8 @@ data:
   timestamp: '2023-04-26 14:05:20+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/String/Suffix-Array.test.cpp
   - test/yosupo/String/Number-of-Substrings.test.cpp
+  - test/yosupo/String/Suffix-Array.test.cpp
 documentation_of: library/string/suffix-array.hpp
 layout: document
 title: Suffix Array

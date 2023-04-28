@@ -460,14 +460,14 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/Math/Partition-Function.test.cpp
-  - test/yosupo/Polynomial/Sqrt-of-Formal-Power-Series.test.cpp
   - test/yosupo/Polynomial/Product-of-Polynomial-Sequence.test.cpp
-  - test/yosupo/Polynomial/Multipoint-Evaluation.test.cpp
-  - test/yosupo/Polynomial/Pow-of-Formal-Power-Series.test.cpp
-  - test/yosupo/Polynomial/Log-of-Formal-Power-Series.test.cpp
+  - test/yosupo/Polynomial/Sqrt-of-Formal-Power-Series.test.cpp
   - test/yosupo/Polynomial/Inv-of-Formal-Power-Series.test.cpp
-  - test/yosupo/Polynomial/Exp-of-Formal-Power-Series.test.cpp
   - test/yosupo/Polynomial/Polynomial-Taylor-Shift.test.cpp
+  - test/yosupo/Polynomial/Pow-of-Formal-Power-Series.test.cpp
+  - test/yosupo/Polynomial/Exp-of-Formal-Power-Series.test.cpp
+  - test/yosupo/Polynomial/Log-of-Formal-Power-Series.test.cpp
+  - test/yosupo/Polynomial/Multipoint-Evaluation.test.cpp
 documentation_of: library/formal-power-series/poly.hpp
 layout: document
 redirect_from:

@@ -159,14 +159,14 @@ data:
   timestamp: '2023-04-22 00:13:18+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/Data-Structure/Range-Affine-Range-Sum.test.cpp
   - test/yosupo/Data-Structure/Range-Affine-Point-Get.test.cpp
+  - test/yosupo/Data-Structure/Range-Affine-Range-Sum.test.cpp
   - test/aoj/grl/Range-Query-on-a-Tree-II.test.cpp
+  - test/aoj/dsl/RSQ-and-RUQ.test.cpp
   - test/aoj/dsl/RMQ-and-RUQ.test.cpp
-  - test/aoj/dsl/Range-Update-Query.test.cpp
   - test/aoj/dsl/RMQ-and-RAQ.test.cpp
   - test/aoj/dsl/RSQ-and-RAQ.test.cpp
-  - test/aoj/dsl/RSQ-and-RUQ.test.cpp
+  - test/aoj/dsl/Range-Update-Query.test.cpp
 documentation_of: library/data-structure/lazy-segtree.hpp
 layout: document
 redirect_from:

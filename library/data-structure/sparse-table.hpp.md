@@ -69,15 +69,15 @@ data:
   timestamp: '2023-04-17 12:10:28+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/Tree/Lowest-Common-Ancestor.test.cpp
   - test/yosupo/Tree/Jump-on-Tree.test.cpp
-  - test/yosupo/Data-Structure/Vertex-Add-Path-Sum.test.cpp
-  - test/yosupo/Data-Structure/Vertex-Add-Subtree-Sum.test.cpp
+  - test/yosupo/Tree/Lowest-Common-Ancestor.test.cpp
   - test/yosupo/Data-Structure/Static-RMQ.test.cpp
   - test/yosupo/Data-Structure/Vertex-Set-Path-Composite.test.cpp
+  - test/yosupo/Data-Structure/Vertex-Add-Path-Sum.test.cpp
+  - test/yosupo/Data-Structure/Vertex-Add-Subtree-Sum.test.cpp
+  - test/aoj/grl/Lowest-Common-Ancestor.test.cpp
   - test/aoj/grl/Range-Query-on-a-Tree-II.test.cpp
   - test/aoj/grl/Range-Query-on-a-Tree.test.cpp
-  - test/aoj/grl/Lowest-Common-Ancestor.test.cpp
 documentation_of: library/data-structure/sparse-table.hpp
 layout: document
 redirect_from:
