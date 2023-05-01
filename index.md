@@ -61,9 +61,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/flow/MCMF.hpp
       title: library/flow/MCMF.hpp
-    - icon: ':heavy_check_mark:'
-      path: library/flow/dinic.hpp
-      title: library/flow/dinic.hpp
+    - icon: ':warning:'
+      path: library/flow/qq.hpp
+      title: library/flow/qq.hpp
   - name: library/formal-power-series
     pages:
     - icon: ':heavy_check_mark:'
@@ -235,7 +235,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/grl/Lowest-Common-Ancestor.test.cpp
       title: test/aoj/grl/Lowest-Common-Ancestor.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/grl/Maximum-Flow.test.cpp
       title: test/aoj/grl/Maximum-Flow.test.cpp
     - icon: ':heavy_check_mark:'

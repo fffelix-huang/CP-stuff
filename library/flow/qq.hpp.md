@@ -2,26 +2,24 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/grl/Maximum-Flow.test.cpp
-    title: test/aoj/grl/Maximum-Flow.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"library/flow/dinic.hpp\"\n#include <vector>\n#include <cassert>\n\
+  bundledCode: "#line 2 \"library/flow/qq.hpp\"\n#include <vector>\n#include <cassert>\n\
     #include <queue>\n#include <limits>\n\nnamespace felix {\n\ntemplate<class T>\n\
-    struct dinic {\npublic:\n\tstruct Edge {\n\t\tint from, to;\n\t\tT cap;\n\t\t\
+    struct Dinic {\npublic:\n\tstruct Edge {\n\t\tint from, to;\n\t\tT cap;\n\t\t\
     Edge(int _from, int _to, T _cap) : from(_from), to(_to), cap(_cap) {}\n\t};\n\n\
     \tstatic constexpr T INF = std::numeric_limits<T>::max();\n\t\n\tint n;\n\tstd::vector<Edge>\
     \ edges;\n\tstd::vector<std::vector<int>> g;\n\tstd::vector<int> cur, h;\n\n\t\
-    dinic() : n(0) {}\n\texplicit dinic(int _n) : n(_n), g(_n) {}\n\n\tvoid add_edge(int\
+    Dinic() : n(0) {}\n\texplicit Dinic(int _n) : n(_n), g(_n) {}\n\n\tint add_edge(int\
     \ u, int v, T c) {\n\t\tassert(0 <= u && u < n);\n\t\tassert(0 <= v && v < n);\n\
     \t\tg[u].push_back(edges.size());\n\t\tedges.emplace_back(u, v, c);\n\t\tg[v].push_back(edges.size());\n\
-    \t\tedges.emplace_back(v, u, 0);\n\t}\n\n\tbool bfs(int s, int t) {\n\t\th.assign(n,\
-    \ -1);\n\t\tstd::queue<int> que;\n\t\th[s] = 0;\n\t\tque.push(s);\n\t\twhile(!que.empty())\
+    \t\tedges.emplace_back(v, u, 0);\n\t\treturn g[u].back();\n\t}\n\n\tEdge& get_edge(int\
+    \ i) { return edges[i]; }\n\n\tbool bfs(int s, int t) {\n\t\th.assign(n, -1);\n\
+    \t\tstd::queue<int> que;\n\t\th[s] = 0;\n\t\tque.push(s);\n\t\twhile(!que.empty())\
     \ {\n\t\t\tint u = que.front();\n\t\t\tque.pop();\n\t\t\tfor(int i : g[u]) {\n\
     \t\t\t\tconst auto& e = edges[i];\n\t\t\t\tint v = e.to;\n\t\t\t\tif(e.cap > 0\
     \ && h[v] == -1) {\n\t\t\t\t\th[v] = h[u] + 1;\n\t\t\t\t\tif(v == t) {\n\t\t\t\
@@ -38,16 +36,17 @@ data:
     \ send = dfs(s, t, f);\n\t\t\tans += send;\n\t\t\tf -= send;\n\t\t}\n\t\treturn\
     \ ans;\n\t}\n};\n\n} // namespace felix\n"
   code: "#pragma once\n#include <vector>\n#include <cassert>\n#include <queue>\n#include\
-    \ <limits>\n\nnamespace felix {\n\ntemplate<class T>\nstruct dinic {\npublic:\n\
+    \ <limits>\n\nnamespace felix {\n\ntemplate<class T>\nstruct Dinic {\npublic:\n\
     \tstruct Edge {\n\t\tint from, to;\n\t\tT cap;\n\t\tEdge(int _from, int _to, T\
     \ _cap) : from(_from), to(_to), cap(_cap) {}\n\t};\n\n\tstatic constexpr T INF\
     \ = std::numeric_limits<T>::max();\n\t\n\tint n;\n\tstd::vector<Edge> edges;\n\
-    \tstd::vector<std::vector<int>> g;\n\tstd::vector<int> cur, h;\n\n\tdinic() :\
-    \ n(0) {}\n\texplicit dinic(int _n) : n(_n), g(_n) {}\n\n\tvoid add_edge(int u,\
+    \tstd::vector<std::vector<int>> g;\n\tstd::vector<int> cur, h;\n\n\tDinic() :\
+    \ n(0) {}\n\texplicit Dinic(int _n) : n(_n), g(_n) {}\n\n\tint add_edge(int u,\
     \ int v, T c) {\n\t\tassert(0 <= u && u < n);\n\t\tassert(0 <= v && v < n);\n\t\
     \tg[u].push_back(edges.size());\n\t\tedges.emplace_back(u, v, c);\n\t\tg[v].push_back(edges.size());\n\
-    \t\tedges.emplace_back(v, u, 0);\n\t}\n\n\tbool bfs(int s, int t) {\n\t\th.assign(n,\
-    \ -1);\n\t\tstd::queue<int> que;\n\t\th[s] = 0;\n\t\tque.push(s);\n\t\twhile(!que.empty())\
+    \t\tedges.emplace_back(v, u, 0);\n\t\treturn g[u].back();\n\t}\n\n\tEdge& get_edge(int\
+    \ i) { return edges[i]; }\n\n\tbool bfs(int s, int t) {\n\t\th.assign(n, -1);\n\
+    \t\tstd::queue<int> que;\n\t\th[s] = 0;\n\t\tque.push(s);\n\t\twhile(!que.empty())\
     \ {\n\t\t\tint u = que.front();\n\t\t\tque.pop();\n\t\t\tfor(int i : g[u]) {\n\
     \t\t\t\tconst auto& e = edges[i];\n\t\t\t\tint v = e.to;\n\t\t\t\tif(e.cap > 0\
     \ && h[v] == -1) {\n\t\t\t\t\th[v] = h[u] + 1;\n\t\t\t\t\tif(v == t) {\n\t\t\t\
@@ -65,16 +64,15 @@ data:
     \ ans;\n\t}\n};\n\n} // namespace felix\n"
   dependsOn: []
   isVerificationFile: false
-  path: library/flow/dinic.hpp
+  path: library/flow/qq.hpp
   requiredBy: []
-  timestamp: '2023-04-17 12:10:28+08:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/aoj/grl/Maximum-Flow.test.cpp
-documentation_of: library/flow/dinic.hpp
+  timestamp: '2023-05-01 13:55:08+08:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: library/flow/qq.hpp
 layout: document
 redirect_from:
-- /library/library/flow/dinic.hpp
-- /library/library/flow/dinic.hpp.html
-title: library/flow/dinic.hpp
+- /library/library/flow/qq.hpp
+- /library/library/flow/qq.hpp.html
+title: library/flow/qq.hpp
 ---
