@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_A"
 
 #include <iostream>
-#include "../../../library/flow/dinic.hpp"
+#include "../../../library/flow/Dinic.hpp"
 using namespace std;
 using namespace felix;
 
@@ -10,7 +10,7 @@ int main() {
 	cin.tie(0);
 	int n, m;
 	cin >> n >> m;
-	dinic<int> d(n);
+	Dinic<int> d(n);
 	for(int i = 0; i < m; i++) {
 		int u, v, w;
 		cin >> u >> v >> w;
