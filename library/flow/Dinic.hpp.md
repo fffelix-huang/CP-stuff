@@ -2,13 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/grl/Maximum-Flow.test.cpp
+    title: test/aoj/grl/Maximum-Flow.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"library/flow/qq.hpp\"\n#include <vector>\n#include <cassert>\n\
+  bundledCode: "#line 2 \"library/flow/Dinic.hpp\"\n#include <vector>\n#include <cassert>\n\
     #include <queue>\n#include <limits>\n\nnamespace felix {\n\ntemplate<class T>\n\
     struct Dinic {\npublic:\n\tstruct Edge {\n\t\tint from, to;\n\t\tT cap;\n\t\t\
     Edge(int _from, int _to, T _cap) : from(_from), to(_to), cap(_cap) {}\n\t};\n\n\
@@ -64,15 +67,16 @@ data:
     \ ans;\n\t}\n};\n\n} // namespace felix\n"
   dependsOn: []
   isVerificationFile: false
-  path: library/flow/qq.hpp
+  path: library/flow/Dinic.hpp
   requiredBy: []
-  timestamp: '2023-05-01 13:55:08+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
-documentation_of: library/flow/qq.hpp
+  timestamp: '2023-05-01 13:56:35+08:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/aoj/grl/Maximum-Flow.test.cpp
+documentation_of: library/flow/Dinic.hpp
 layout: document
 redirect_from:
-- /library/library/flow/qq.hpp
-- /library/library/flow/qq.hpp.html
-title: library/flow/qq.hpp
+- /library/library/flow/Dinic.hpp
+- /library/library/flow/Dinic.hpp.html
+title: library/flow/Dinic.hpp
 ---
