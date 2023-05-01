@@ -7,7 +7,7 @@
 namespace felix {
 
 template<class T>
-struct dinic {
+struct Dinic {
 public:
 	struct Edge {
 		int from, to;
@@ -22,17 +22,20 @@ public:
 	std::vector<std::vector<int>> g;
 	std::vector<int> cur, h;
 
-	dinic() : n(0) {}
-	explicit dinic(int _n) : n(_n), g(_n) {}
+	Dinic() : n(0) {}
+	explicit Dinic(int _n) : n(_n), g(_n) {}
 
-	void add_edge(int u, int v, T c) {
+	int add_edge(int u, int v, T c) {
 		assert(0 <= u && u < n);
 		assert(0 <= v && v < n);
 		g[u].push_back(edges.size());
 		edges.emplace_back(u, v, c);
 		g[v].push_back(edges.size());
 		edges.emplace_back(v, u, 0);
+		return g[u].back();
 	}
+
+	Edge& get_edge(int i) { return edges[i]; }
 
 	bool bfs(int s, int t) {
 		h.assign(n, -1);
