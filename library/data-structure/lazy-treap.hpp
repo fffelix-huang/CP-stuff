@@ -26,6 +26,7 @@ public:
 		int sz = 1;
 		Node* l = nullptr;
 		Node* r = nullptr;
+		Node* p = nullptr;
 
 		Node() {}
 		Node(const S& s) : val(s), sum(s) {}
@@ -36,6 +37,27 @@ public:
 
 	int size(Node* v) const { return v != nullptr ? v->sz : 0; }
 	bool empty(Node* v) const { return v == nullptr; }
+
+	Node* get_root(Node* v) {
+		while(v->p != nullptr) {
+			v = v->p;
+		}
+		return v;
+	}
+
+	int get_position(Node* v) {
+		int k = size(v->l);
+		while(v->p != nullptr) {
+			if(v == v->p->r) {
+				k++;
+				if(v->p->l != nullptr) {
+					k += v->p->l->sz;
+				}
+			}
+			v = v->p;
+		}
+		return k;
+	}
 
 	Node* merge(Node* a, Node* b) {
 		if(a == nullptr || b == nullptr) {
@@ -54,33 +76,50 @@ public:
 		}
 	}
 
-	std::pair<Node*, Node*> split(Node*& root, int k) {
+	std::pair<Node*, Node*> split(Node*& root, const std::function<bool(Node*)>& is_right) {
 		if(root == nullptr) {
 			return std::make_pair(nullptr, nullptr);
 		}
 		push(root);
-		if(k <= size(root->l)) {
-			auto p = split(root->l, k);
+		if(is_right(root)) {
+			auto p = split(root->l, is_right);
 			root->l = p.second;
+			if(p.first != nullptr) {
+				p.first->p = nullptr;
+			}
 			pull(root);
 			return std::make_pair(p.first, root);
 		} else {
-			auto p = split(root->r, k - size(root->l) - 1);
+			auto p = split(root->r, is_right);
 			root->r = p.first;
+			if(p.second != nullptr) {
+				p.second->p = nullptr;
+			}
 			pull(root);
 			return std::make_pair(root, p.second);
 		}
 	}
 
+	std::pair<Node*, Node*> split_k(Node*& root, int k) {
+		return split(root, [&](Node* u) {
+			int cnt = size(u->l) + 1;
+			if(k >= cnt) {
+				k -= cnt;
+				return false;
+			}
+			return true;
+		});
+	}
+
 	std::tuple<Node*, Node*, Node*> split_range(Node*& root, int l, int r) {
 		assert(l < r);
-		auto lhs = split(root, l);
-		auto rhs = split(lhs.second, r - l);
+		auto lhs = split_k(root, l);
+		auto rhs = split_k(lhs.second, r - l);
 		return std::make_tuple(lhs.first, rhs.first, rhs.second);
 	}
 
 	void insert(Node*& root, int pos, const S& s) {
-		auto p = split(root, pos);
+		auto p = split_k(root, pos);
 		root = merge(p.first, merge(make_node(s), p.second));
 	}
 
