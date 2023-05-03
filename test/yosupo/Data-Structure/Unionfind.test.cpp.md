@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/data-structure/DSU.hpp
-    title: "DSU (\u8DEF\u5F91\u58D3\u7E2E)"
+    title: "DSU (\u4E26\u67E5\u96C6)"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -17,12 +17,14 @@ data:
   bundledCode: "#line 1 \"test/yosupo/Data-Structure/Unionfind.test.cpp\"\n#define\
     \ PROBLEM \"https://judge.yosupo.jp/problem/unionfind\"\r\n\r\n#include <iostream>\r\
     \n#line 2 \"library/data-structure/DSU.hpp\"\n#include <vector>\n#include <cassert>\n\
-    #include <algorithm>\n\nnamespace felix {\n\nstruct DSU {\npublic:\n\tDSU() :\
-    \ DSU(0) {}\n\texplicit DSU(int _n) : n(_n), sz(n, -1) {}\n\t\n\tint leader(int\
-    \ u) {\n\t\tassert(0 <= u && u < n);\n\t\treturn (sz[u] < 0 ? u : (sz[u] = leader(sz[u])));\n\
-    \t}\n\t\n\tbool merge(int a, int b) {\n\t\ta = leader(a);\n\t\tb = leader(b);\n\
-    \t\tif(a == b) {\n\t\t\treturn false;\n\t\t}\n\t\tsz[a] += sz[b];\n\t\tsz[b] =\
-    \ a;\n\t\treturn true;\n\t}\n\t\n\tint size(int u) {\n\t\treturn -sz[leader(u)];\n\
+    #include <algorithm>\n\nnamespace felix {\n\ntemplate<bool UNION_BY_SIZE = false>\n\
+    struct DSU {\npublic:\n\tDSU() : DSU(0) {}\n\texplicit DSU(int _n) : n(_n), sz(n,\
+    \ -1) {}\n\t\n\tint leader(int u) {\n\t\tassert(0 <= u && u < n);\n\t\treturn\
+    \ (sz[u] < 0 ? u : (sz[u] = leader(sz[u])));\n\t}\n\t\n\tbool merge(int a, int\
+    \ b) {\n\t\ta = leader(a);\n\t\tb = leader(b);\n\t\tif(a == b) {\n\t\t\treturn\
+    \ false;\n\t\t}\n\t\tif constexpr(UNION_BY_SIZE) {\n\t\t\tif(-sz[a] < -sz[b])\
+    \ {\n\t\t\t\tstd::swap(a, b);\n\t\t\t}\n\t\t}\n\t\tsz[a] += sz[b];\n\t\tsz[b]\
+    \ = a;\n\t\treturn true;\n\t}\n\t\n\tint size(int u) {\n\t\treturn -sz[leader(u)];\n\
     \t}\n\n\tbool same(int a, int b) {\n\t\treturn leader(a) == leader(b);\n\t}\n\n\
     \tstd::vector<std::vector<int>> groups() {\n\t\tstd::vector<int> group_size(n);\n\
     \t\tfor(int i = 0; i < n; i++) {\n\t\t\tgroup_size[leader(i)]++;\n\t\t}\n\t\t\
@@ -49,7 +51,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/Data-Structure/Unionfind.test.cpp
   requiredBy: []
-  timestamp: '2023-04-20 12:52:42+08:00'
+  timestamp: '2023-05-04 07:27:28+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Data-Structure/Unionfind.test.cpp
