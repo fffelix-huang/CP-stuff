@@ -5,6 +5,7 @@
 
 namespace felix {
 
+template<bool UNION_BY_SIZE = false>
 struct DSU {
 public:
 	DSU() : DSU(0) {}
@@ -20,6 +21,11 @@ public:
 		b = leader(b);
 		if(a == b) {
 			return false;
+		}
+		if constexpr(UNION_BY_SIZE) {
+			if(-sz[a] < -sz[b]) {
+				std::swap(a, b);
+			}
 		}
 		sz[a] += sz[b];
 		sz[b] = a;

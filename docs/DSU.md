@@ -1,17 +1,17 @@
 ---
-title: DSU (路徑壓縮)
+title: DSU (並查集)
 documentation_of: ../library/data-structure/DSU.hpp
 ---
 
 ## 並查集
 
-只使用路徑壓縮。
 除了 `d.groups()` 以外的操作複雜度都是 $O(\log n)$。
 
 ## 使用方法
 ```cpp
 int n;
-DSU d(n);
+DSU d(n); // 只有路徑壓縮
+DSU<true> d2(n); // 啟發式合併 + 路徑壓縮
 
 int u, v;
 
