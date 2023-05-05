@@ -1,80 +1,88 @@
-template<int ALPHABET = 26, char MIN_CHAR = 'a'>
-class aho_corasick {
-public:
-	vector<array<int, ALPHABET>> trie;
-	vector<array<int, ALPHABET>> to;
-	vector<int> fail;
-	vector<int> cnt;
+// Solution of https://atcoder.jp/contests/abc268/tasks/abc268_h
+#include <bits/stdc++.h>
+using namespace std;
 
-	aho_corasick() : aho_corasick(vector<string>()) {}
-	aho_corasick(const vector<string>& S) {
-		newNode();
-		for(const auto& s : S) {
-			insert(s);
-		}
+template<int ALPHABET = 26, char MIN_CHAR = 'a'>
+struct ac_automaton {
+public:
+	struct Node {
+		int fail = 0;
+		int cnt = 0;
+		array<int, ALPHABET> go{};
+	};
+
+	ac_automaton() {
+		new_node();
 	}
 
 	int insert(const string& s) {
 		int p = 0;
-		for(const char& c : s) {
-			p = next(p, f(c));
+		for(char c : s) {
+			int v = c - MIN_CHAR;
+			if(node[p].go[v] == 0) {
+				node[p].go[v] = new_node();
+			}
+			p = node[p].go[v];
 		}
-		cnt[p] += 1;
+		node[p].cnt++;
 		return p;
 	}
 
-	inline int next(int u, int v) {
-		if(!trie[u][v]) {
-			trie[u][v] = newNode();
+	void build() {
+		que.reserve(node.size());
+		que.push_back(0);
+		for(int i = 0; i < (int) que.size(); i++) {
+			int u = que[i];
+			for(int j = 0; j < ALPHABET; j++) {
+				if(node[u].go[j] == 0) {
+					node[u].go[j] = node[node[u].fail].go[j];
+				} else {
+					int v = node[u].go[j];
+					node[v].fail = (u == 0 ? u : node[node[u].fail].go[j]);
+					que.push_back(v);
+				}
+			}
 		}
-		return trie[u][v];
+		for(auto u : que) {
+			node[u].cnt += node[node[u].fail].cnt;
+		}
 	}
 
-	void build_failure() {
-		queue<int> que;
-		for(int i = 0; i < ALPHABET; ++i) {
-			if(trie[0][i]) {
-				to[0][i] = trie[0][i];
-				que.push(trie[0][i]);
-			}
-		}
-		while(!que.empty()) {
-			int u = que.front();
-			que.pop();
-			for(int i = 0; i < 26; ++i) {
-				if(trie[u][i]) {
-					to[u][i] = trie[u][i];
-				} else {
-					to[u][i] = to[fail[u]][i];
-				}
-			}
-			for(int i = 0; i < 26; ++i) {
-				if(trie[u][i]) {
-					int p = trie[u][i];
-					int k = fail[u];
-					while(k && !trie[k][i]) {
-						k = fail[k];
-					}
-					if(trie[k][i]) {
-						k = trie[k][i];
-					}
-					fail[p] = k;
-					cnt[p] += cnt[k];
-					que.push(p);
-				}
-			}
-		}
-	}
+	Node& operator[](int i) { return node[i]; }
 
 private:
-	inline int newNode() {
-		int sz = (int) trie.size();
-		trie.emplace_back();
-		to.emplace_back();
-		fill(trie.back().begin(), trie.back().end(), 0);
-		fill(to.back().begin(), to.back().end(), 0);
-		fail.emplace_back();
-		cnt.emplace_back();
-		return sz;
+	vector<Node> node;
+	vector<int> que;
+
+	int new_node() {
+		node.emplace_back();
+		return (int) node.size() - 1;
 	}
 };
+
+int main() {
+	ios::sync_with_stdio(false);
+	cin.tie(0);
+	string s;
+	cin >> s;
+	int m;
+	cin >> m;
+	ac_automaton ac;
+	for(int i = 0; i < m; i++) {
+		string t;
+		cin >> t;
+		ac.insert(t);
+	}
+	ac.build();
+	int ans = 0, p = 0;
+	for(char c : s) {
+		int v = c - 'a';
+		p = ac[p].go[v];
+		if(ac[p].cnt > 0) {
+			p = 0;
+			ans++;
+		}
+	}
+	cout << ans << "\n";
+	return 0;
+}
