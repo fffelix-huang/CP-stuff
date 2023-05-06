@@ -28,11 +28,11 @@ data:
     \ operator()(Args &&...args) { return fun_(std::ref(*this), std::forward<Args>(args)...);\
     \ }\n};\n\ntemplate<class Fun> decltype(auto) y_combinator(Fun &&fun) { return\
     \ y_combinator_result<std::decay_t<Fun>>(std::forward<Fun>(fun)); }\n\ntemplate<class\
-    \ T> bool chmin(T& a, const T& b) { return a < b ? false : (a = b, true); }\n\
-    template<class T> bool chmax(T& a, const T& b) { return a > b ? false : (a = b,\
-    \ true); }\ntemplate<class T> std::vector<T> sort_unique(std::vector<T> v) { std::sort(v.begin(),\
-    \ v.end()), v.erase(std::unique(v.begin(), v.end()), v.end()); return v; }\n\n\
-    namespace felix {}\n"
+    \ T> bool chmin(T& a, const T& b) { return a > b ? (a = b, true) : false; }\n\
+    template<class T> bool chmax(T& a, const T& b) { return a < b ? (a = b, true)\
+    \ : false; }\ntemplate<class T> std::vector<T> sort_unique(std::vector<T> v) {\
+    \ std::sort(v.begin(), v.end()), v.erase(std::unique(v.begin(), v.end()), v.end());\
+    \ return v; }\n\nnamespace felix {}\n"
   code: "#pragma once\n#include <bits/stdc++.h>\n\n#define ALL(v) (v).begin(), (v).end()\n\
     #define RALL(v) (v).rbegin(), (v).rend()\n#define SZ(v) ((int) (v).size())\n#define\
     \ FOR(i, begin, end) for(int i = (begin), i##_end_ = (end); i < i##_end_; i++)\n\
@@ -52,16 +52,16 @@ data:
     \n\ttemplate<class ...Args> decltype(auto) operator()(Args &&...args) { return\
     \ fun_(std::ref(*this), std::forward<Args>(args)...); }\n};\n\ntemplate<class\
     \ Fun> decltype(auto) y_combinator(Fun &&fun) { return y_combinator_result<std::decay_t<Fun>>(std::forward<Fun>(fun));\
-    \ }\n\ntemplate<class T> bool chmin(T& a, const T& b) { return a < b ? false :\
-    \ (a = b, true); }\ntemplate<class T> bool chmax(T& a, const T& b) { return a\
-    \ > b ? false : (a = b, true); }\ntemplate<class T> std::vector<T> sort_unique(std::vector<T>\
+    \ }\n\ntemplate<class T> bool chmin(T& a, const T& b) { return a > b ? (a = b,\
+    \ true) : false; }\ntemplate<class T> bool chmax(T& a, const T& b) { return a\
+    \ < b ? (a = b, true) : false; }\ntemplate<class T> std::vector<T> sort_unique(std::vector<T>\
     \ v) { std::sort(v.begin(), v.end()), v.erase(std::unique(v.begin(), v.end()),\
     \ v.end()); return v; }\n\nnamespace felix {}\n"
   dependsOn: []
   isVerificationFile: false
   path: library/misc/default.hpp
   requiredBy: []
-  timestamp: '2023-04-28 14:32:43+08:00'
+  timestamp: '2023-05-06 20:48:33+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/misc/default.hpp
