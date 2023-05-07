@@ -60,6 +60,7 @@ struct bigint {
 		}
 	}
 
+	bigint(const char* s) : bigint(std::string(s)) {}
 	bigint(const std::string& s) : neg(false) {
 		assert(!s.empty());
 		if(s.size() == 1 && s[0] == '0') {
