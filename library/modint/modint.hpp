@@ -5,6 +5,7 @@
 #include <cassert>
 #include <random>
 #include <chrono>
+#include "../misc/type-traits.hpp"
 #include "../math/inv-gcd.hpp"
 #include "../random/rng.hpp"
 
@@ -55,7 +56,8 @@ public:
 	}
  
 	constexpr modint() : value(0) {} 
-	template<class T> constexpr modint(T v) : value(v >= 0 ? v % mod() : v % mod() + mod()) {}
+	template<class T, internal::is_signed_int_t<T>* = nullptr> constexpr modint(T v) : value(v >= 0 ? v % mod() : v % mod() + mod()) {}
+	template<class T, internal::is_unsigned_int_t<T>* = nullptr> constexpr modint(T v) : value(v % mod()) {}
  
 	constexpr int operator()() const { return value; }
 	template<class T> explicit constexpr operator T() const { return static_cast<T>(value); }

@@ -11,6 +11,7 @@
 namespace felix {
 
 template<class S,
+         S (*e)(),
          S (*op)(S, S),
          S (*reversal)(S),
          class F,
@@ -144,6 +145,9 @@ public:
 	}
 
 	S prod(Node*& root, int l, int r) {
+		if(l == r) {
+			return e();
+		}
 		auto [lhs, mid, rhs] = split_range(root, l, r);
 		if(mid != nullptr) {
 			push(mid);
@@ -165,6 +169,9 @@ public:
 	}
 
 	void reverse(Node*& root, int l, int r) {
+		if(l == r) {
+			return;
+		}
 		auto [lhs, mid, rhs] = split_range(root, l, r);
 		reverse(mid);
 		root = merge(lhs, merge(mid, rhs));

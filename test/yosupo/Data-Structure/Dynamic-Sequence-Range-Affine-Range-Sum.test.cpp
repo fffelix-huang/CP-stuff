@@ -1,6 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum"
 
 #include <iostream>
+#include <vector>
 #include "../../../library/modint/modint.hpp"
 #include "../../../library/data-structure/lazy-treap.hpp"
 using namespace std;
@@ -10,12 +11,13 @@ using mint = modint998244353;
 
 struct S {
 	mint sum;
-	int sz;
+	int sz = 0;
 
 	S() {}
 	S(mint x, int y = 1) : sum(x), sz(y) {}
 };
 
+S e() { return S(); }
 S op(S a, S b) { return S(a.sum + b.sum, a.sz + b.sz); }
 S reversal(S s) { return s; }
 
@@ -31,6 +33,7 @@ struct F {
 };
 
 F id() { return F(); }
+
 S mapping(F f, S s) {
 	s.sum = f.a * s.sum + f.b * s.sz;
 	return s;
@@ -48,7 +51,7 @@ int main() {
 		cin >> a[i].sum;
 		a[i].sz = 1;
 	}
-	lazy_treap<S, op, reversal, F, id, mapping, composition> tree;
+	lazy_treap<S, e, op, reversal, F, id, mapping, composition> tree;
 	auto root = tree.new_tree();
 	tree.assign(root, a);
 	while(q--) {
