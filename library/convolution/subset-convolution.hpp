@@ -2,6 +2,7 @@
 #include <vector>
 #include <algorithm>
 #include <cassert>
+#include <type_traits>
 
 namespace felix {
 
@@ -36,9 +37,15 @@ void xor_transform(std::vector<T>& a, bool inv) {
 		x = z;
 	});
 	if(inv) {
-		T z = T(1) / T(a.size());
-		for(auto& x : a) {
-			x *= z;
+		if constexpr(std::is_integral_v<T>) {
+			for(auto& x : a) {
+				x /= a.size();
+			}
+		} else {
+			T z = T(1) / T(a.size());
+			for(auto& x : a) {
+				x *= z;
+			}
 		}
 	}
 }
@@ -46,10 +53,9 @@ void xor_transform(std::vector<T>& a, bool inv) {
 template<class T>
 std::vector<T> or_convolution(std::vector<T> a, std::vector<T> b) {
 	assert(a.size() == b.size());
-	const int n = (int) a.size();
 	or_transform(a, false);
 	or_transform(b, false);
-	for(int i = 0; i < n; ++i) {
+	for(int i = 0; i < (int) a.size(); i++) {
 		a[i] *= b[i];
 	}
 	or_transform(a, true);
@@ -59,10 +65,9 @@ std::vector<T> or_convolution(std::vector<T> a, std::vector<T> b) {
 template<class T>
 std::vector<T> and_convolution(std::vector<T> a, std::vector<T> b) {
 	assert(a.size() == b.size());
-	const int n = (int) a.size();
 	and_transform(a, false);
 	and_transform(b, false);
-	for(int i = 0; i < n; ++i) {
+	for(int i = 0; i < (int) a.size(); i++) {
 		a[i] *= b[i];
 	}
 	and_transform(a, true);
@@ -72,10 +77,9 @@ std::vector<T> and_convolution(std::vector<T> a, std::vector<T> b) {
 template<class T>
 std::vector<T> xor_convolution(std::vector<T> a, std::vector<T> b) {
 	assert(a.size() == b.size());
-	const int n = (int) a.size();
 	xor_transform(a, false);
 	xor_transform(b, false);
-	for (int i = 0; i < n; ++i) {
+	for (int i = 0; i < (int) a.size(); i++) {
 		a[i] *= b[i];
 	}
 	xor_transform(a, true);
@@ -88,9 +92,8 @@ std::vector<T> subset_convolution(const std::vector<T>& f, const std::vector<T>&
 	const int n = (int) f.size();
 	assert(__builtin_popcount(n) == 1);
 	const int lg = std::__lg(n);
-	std::vector<std::vector<T>> fhat(lg + 1, std::vector<T>(n));
-	std::vector<std::vector<T>> ghat(lg + 1, std::vector<T>(n));
-	for(int mask = 0; mask < n; ++mask) {
+	std::vector<std::vector<T>> fhat(lg + 1, std::vector<T>(n)), ghat(fhat), h(fhat);
+	for(int mask = 0; mask < n; mask++) {
 		fhat[__builtin_popcount(mask)][mask] = f[mask];
 		ghat[__builtin_popcount(mask)][mask] = g[mask];
 	}
@@ -98,8 +101,7 @@ std::vector<T> subset_convolution(const std::vector<T>& f, const std::vector<T>&
 		or_transform(fhat[i], false);
 		or_transform(ghat[i], false);
 	}
-	std::vector<std::vector<T>> h(lg + 1, std::vector<T>(n));
-	for(int mask = 0; mask < n; ++mask) {
+	for(int mask = 0; mask < n; mask++) {
 		for(int i = 0; i <= lg; ++i) {
 			for(int j = 0; j <= i; ++j) {
 				h[i][mask] += fhat[j][mask] * ghat[i - j][mask];
@@ -110,7 +112,7 @@ std::vector<T> subset_convolution(const std::vector<T>& f, const std::vector<T>&
 		or_transform(h[i], true);
 	}
 	std::vector<T> result(n);
-	for(int mask = 0; mask < n; ++mask) {
+	for(int mask = 0; mask < n; mask++) {
 		result[mask] = h[__builtin_popcount(mask)][mask];
 	}
 	return result;
