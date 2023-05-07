@@ -2,13 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/convolution/NTT.hpp
     title: library/convolution/NTT.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/formal-power-series/poly.hpp
     title: library/formal-power-series/poly.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/modint/modint.hpp
     title: library/modint/modint.hpp
   _extendedVerifiedWith:
@@ -81,15 +81,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/Polynomial/Pow-of-Formal-Power-Series.test.cpp
     title: test/yosupo/Polynomial/Pow-of-Formal-Power-Series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/Polynomial/Product-of-Polynomial-Sequence.test.cpp
     title: test/yosupo/Polynomial/Product-of-Polynomial-Sequence.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/Polynomial/Sqrt-of-Formal-Power-Series.test.cpp
     title: test/yosupo/Polynomial/Sqrt-of-Formal-Power-Series.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"library/misc/type-traits.hpp\"\n#include <cassert>\r\n#include\
@@ -158,7 +158,7 @@ data:
   - library/modint/modint.hpp
   - library/convolution/NTT.hpp
   timestamp: '2023-05-07 11:40:44+08:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/Matrix/Determinant-of-Matrix.test.cpp
   - test/yosupo/Matrix/Matrix-Product.test.cpp

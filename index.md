@@ -3,7 +3,7 @@ data:
   libraryCategories:
   - name: library/convolution
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/convolution/NTT.hpp
       title: library/convolution/NTT.hpp
     - icon: ':heavy_check_mark:'
@@ -66,7 +66,7 @@ data:
       title: library/flow/MCMF.hpp
   - name: library/formal-power-series
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/formal-power-series/poly.hpp
       title: library/formal-power-series/poly.hpp
   - name: library/geometry
@@ -108,7 +108,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/integer-div.hpp
       title: Integer division ($\lfloor \frac{a}{b} \rfloor \lceil \frac{a}{b} \rceil$)
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/math/inv-gcd.hpp
       title: library/math/inv-gcd.hpp
     - icon: ':warning:'
@@ -117,7 +117,7 @@ data:
     - icon: ':warning:'
       path: library/math/pow-mod.hpp
       title: library/math/pow-mod.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/math/safe-mod.hpp
       title: library/math/safe-mod.hpp
     - icon: ':heavy_check_mark:'
@@ -142,7 +142,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/misc/fastio.hpp
       title: library/misc/fastio.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/misc/type-traits.hpp
       title: library/misc/type-traits.hpp
   - name: library/modint
@@ -150,7 +150,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/modint/barrett.hpp
       title: library/modint/barrett.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/modint/modint.hpp
       title: library/modint/modint.hpp
   - name: library/random
@@ -161,7 +161,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/random/random.hpp
       title: random_t
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/random/rng.hpp
       title: library/random/rng.hpp
     - icon: ':heavy_check_mark:'
@@ -435,10 +435,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/Polynomial/Pow-of-Formal-Power-Series.test.cpp
       title: test/yosupo/Polynomial/Pow-of-Formal-Power-Series.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/Polynomial/Product-of-Polynomial-Sequence.test.cpp
       title: test/yosupo/Polynomial/Product-of-Polynomial-Sequence.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/Polynomial/Sqrt-of-Formal-Power-Series.test.cpp
       title: test/yosupo/Polynomial/Sqrt-of-Formal-Power-Series.test.cpp
   - name: test/yosupo/String
