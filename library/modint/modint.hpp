@@ -7,7 +7,6 @@
 #include <chrono>
 #include "../misc/type-traits.hpp"
 #include "../math/inv-gcd.hpp"
-#include "../random/rng.hpp"
 
 namespace felix {
 
@@ -130,7 +129,7 @@ public:
 		return res;
 	}
 
-	bool has_sqrt() const {
+	constexpr bool has_sqrt() const {
 		if(mod() == 2 || value == 0) {
 			return true;
 		}
@@ -140,40 +139,35 @@ public:
 		return true;
 	}
 
-	modint sqrt() const {
-		using mint = modint;
-		if(mod() == 2 || value == 0) {
+	constexpr modint sqrt() const {
+		if(mod() == 2 || value < 2) {
 			return *this;
 		}
 		assert(pow((mod() - 1) / 2) == 1);
-		if(mod() % 4 == 3) {
-			return pow((mod() + 1) / 4);
+		modint b = 1;
+		while(b.pow((mod() - 1) >> 1)() == 1) {
+			b += 1;
 		}
-		int pw = (mod() - 1) / 2;
-		int K = std::__lg(pw);
-		while(true) {
-			mint t = rng();
-			mint a = 0, b = 0, c = 1;
-			for(int k = K; k >= 0; --k) {
-				a = b * b;
-				b = b * c * 2;
-				c = c * c + a * *this;
-				if(~pw >> k & 1) {
-					continue;
-				}
-				a = b;
-				b = b * t + c;
-				c = c * t + a * *this;
+		long long m = mod() - 1, e = __builtin_ctz(m);
+		m >>= e;
+		modint x = modint(value).pow((m - 1) >> 1);
+		modint y = modint(value) * x * x;
+		x *= value;
+		modint z = b.pow(m);
+		while(y() != 1) {
+			long long j = 0;
+			modint t = y;
+			while(t() != 1) {
+				t *= t;
+				j++;
 			}
-			if(b == 0) {
-				continue;
-			}
-			c -= 1;
-			c *= mint() - b.inv();
-			if(c * c == *this) {
-				return c;
-			}
+			z = z.pow(1LL << (e - j - 1));
+			x *= z;
+			z *= z;
+			y *= z;
+			e = j;
 		}
+		return x;
 	}
 
 	friend constexpr std::istream& operator>>(std::istream& in, modint& num) {
