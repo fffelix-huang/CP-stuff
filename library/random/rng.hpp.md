@@ -3,105 +3,24 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
-    path: library/convolution/NTT.hpp
-    title: library/convolution/NTT.hpp
-  - icon: ':heavy_check_mark:'
     path: library/data-structure/lazy-treap.hpp
     title: library/data-structure/lazy-treap.hpp
   - icon: ':heavy_check_mark:'
-    path: library/formal-power-series/poly.hpp
-    title: library/formal-power-series/poly.hpp
-  - icon: ':heavy_check_mark:'
     path: library/math/factorize.hpp
     title: "Integer Factorization (Pollard Rho \u8CEA\u56E0\u6578\u5206\u89E3)"
-  - icon: ':heavy_check_mark:'
-    path: library/modint/modint.hpp
-    title: library/modint/modint.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/ntl/Power.test.cpp
-    title: test/aoj/ntl/Power.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/ntl/Prime-Factorize.test.cpp
     title: test/aoj/ntl/Prime-Factorize.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/Convolution/Bitwise-And-Convolution.test.cpp
-    title: test/yosupo/Convolution/Bitwise-And-Convolution.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/Convolution/Bitwise-Xor-Convolution.test.cpp
-    title: test/yosupo/Convolution/Bitwise-Xor-Convolution.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/Convolution/Convolution-Mod-1000000007.test.cpp
-    title: test/yosupo/Convolution/Convolution-Mod-1000000007.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/Convolution/Convolution.test.cpp
-    title: test/yosupo/Convolution/Convolution.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/Convolution/Subset-Convolution.test.cpp
-    title: test/yosupo/Convolution/Subset-Convolution.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/Data-Structure/Deque-Operate-All-Composite.test.cpp
-    title: test/yosupo/Data-Structure/Deque-Operate-All-Composite.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yosupo/Data-Structure/Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
     title: test/yosupo/Data-Structure/Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/Data-Structure/Dynamic-Tree-Vertex-Set-Path-Composite.test.cpp
-    title: test/yosupo/Data-Structure/Dynamic-Tree-Vertex-Set-Path-Composite.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/Data-Structure/Queue-Operate-All-Composite.test.cpp
-    title: test/yosupo/Data-Structure/Queue-Operate-All-Composite.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/Data-Structure/Range-Affine-Point-Get.test.cpp
-    title: test/yosupo/Data-Structure/Range-Affine-Point-Get.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/Data-Structure/Range-Affine-Range-Sum.test.cpp
-    title: test/yosupo/Data-Structure/Range-Affine-Range-Sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/Data-Structure/Range-Reverse-Range-Sum.test.cpp
     title: test/yosupo/Data-Structure/Range-Reverse-Range-Sum.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/Data-Structure/Vertex-Set-Path-Composite.test.cpp
-    title: test/yosupo/Data-Structure/Vertex-Set-Path-Composite.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yosupo/Math/Factorize.test.cpp
     title: test/yosupo/Math/Factorize.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/Math/Partition-Function.test.cpp
-    title: test/yosupo/Math/Partition-Function.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/Math/Sqrt-Mod.test.cpp
-    title: test/yosupo/Math/Sqrt-Mod.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/Matrix/Determinant-of-Matrix.test.cpp
-    title: test/yosupo/Matrix/Determinant-of-Matrix.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/Matrix/Matrix-Product.test.cpp
-    title: test/yosupo/Matrix/Matrix-Product.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/Polynomial/Exp-of-Formal-Power-Series.test.cpp
-    title: test/yosupo/Polynomial/Exp-of-Formal-Power-Series.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/Polynomial/Inv-of-Formal-Power-Series.test.cpp
-    title: test/yosupo/Polynomial/Inv-of-Formal-Power-Series.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/Polynomial/Log-of-Formal-Power-Series.test.cpp
-    title: test/yosupo/Polynomial/Log-of-Formal-Power-Series.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/Polynomial/Multipoint-Evaluation.test.cpp
-    title: test/yosupo/Polynomial/Multipoint-Evaluation.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/Polynomial/Polynomial-Taylor-Shift.test.cpp
-    title: test/yosupo/Polynomial/Polynomial-Taylor-Shift.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/Polynomial/Pow-of-Formal-Power-Series.test.cpp
-    title: test/yosupo/Polynomial/Pow-of-Formal-Power-Series.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/Polynomial/Product-of-Polynomial-Sequence.test.cpp
-    title: test/yosupo/Polynomial/Product-of-Polynomial-Sequence.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/Polynomial/Sqrt-of-Formal-Power-Series.test.cpp
-    title: test/yosupo/Polynomial/Sqrt-of-Formal-Power-Series.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -120,42 +39,15 @@ data:
   isVerificationFile: false
   path: library/random/rng.hpp
   requiredBy:
-  - library/data-structure/lazy-treap.hpp
-  - library/formal-power-series/poly.hpp
-  - library/modint/modint.hpp
   - library/math/factorize.hpp
-  - library/convolution/NTT.hpp
+  - library/data-structure/lazy-treap.hpp
   timestamp: '2023-04-16 16:01:15+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/Matrix/Determinant-of-Matrix.test.cpp
-  - test/yosupo/Matrix/Matrix-Product.test.cpp
-  - test/yosupo/Convolution/Convolution-Mod-1000000007.test.cpp
-  - test/yosupo/Convolution/Bitwise-Xor-Convolution.test.cpp
-  - test/yosupo/Convolution/Convolution.test.cpp
-  - test/yosupo/Convolution/Subset-Convolution.test.cpp
-  - test/yosupo/Convolution/Bitwise-And-Convolution.test.cpp
-  - test/yosupo/Data-Structure/Range-Affine-Point-Get.test.cpp
-  - test/yosupo/Data-Structure/Range-Reverse-Range-Sum.test.cpp
-  - test/yosupo/Data-Structure/Range-Affine-Range-Sum.test.cpp
-  - test/yosupo/Data-Structure/Queue-Operate-All-Composite.test.cpp
-  - test/yosupo/Data-Structure/Deque-Operate-All-Composite.test.cpp
-  - test/yosupo/Data-Structure/Vertex-Set-Path-Composite.test.cpp
   - test/yosupo/Data-Structure/Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
-  - test/yosupo/Data-Structure/Dynamic-Tree-Vertex-Set-Path-Composite.test.cpp
+  - test/yosupo/Data-Structure/Range-Reverse-Range-Sum.test.cpp
   - test/yosupo/Math/Factorize.test.cpp
-  - test/yosupo/Math/Sqrt-Mod.test.cpp
-  - test/yosupo/Math/Partition-Function.test.cpp
-  - test/yosupo/Polynomial/Product-of-Polynomial-Sequence.test.cpp
-  - test/yosupo/Polynomial/Sqrt-of-Formal-Power-Series.test.cpp
-  - test/yosupo/Polynomial/Inv-of-Formal-Power-Series.test.cpp
-  - test/yosupo/Polynomial/Polynomial-Taylor-Shift.test.cpp
-  - test/yosupo/Polynomial/Pow-of-Formal-Power-Series.test.cpp
-  - test/yosupo/Polynomial/Exp-of-Formal-Power-Series.test.cpp
-  - test/yosupo/Polynomial/Log-of-Formal-Power-Series.test.cpp
-  - test/yosupo/Polynomial/Multipoint-Evaluation.test.cpp
   - test/aoj/ntl/Prime-Factorize.test.cpp
-  - test/aoj/ntl/Power.test.cpp
 documentation_of: library/random/rng.hpp
 layout: document
 redirect_from:

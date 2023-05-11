@@ -96,8 +96,8 @@ data:
   timestamp: '2023-04-17 12:10:28+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/Data-Structure/Queue-Operate-All-Composite.test.cpp
   - test/yosupo/Data-Structure/Deque-Operate-All-Composite.test.cpp
+  - test/yosupo/Data-Structure/Queue-Operate-All-Composite.test.cpp
   - test/yosupo/Data-Structure/Vertex-Set-Path-Composite.test.cpp
   - test/aoj/dsl/Range-Minimum-Query.test.cpp
 documentation_of: library/data-structure/segtree.hpp

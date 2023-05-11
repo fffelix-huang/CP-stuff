@@ -99,9 +99,9 @@ data:
   timestamp: '2023-05-07 10:26:10+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yosupo/Convolution/Bitwise-And-Convolution.test.cpp
   - test/yosupo/Convolution/Bitwise-Xor-Convolution.test.cpp
   - test/yosupo/Convolution/Subset-Convolution.test.cpp
-  - test/yosupo/Convolution/Bitwise-And-Convolution.test.cpp
 documentation_of: library/convolution/subset-convolution.hpp
 layout: document
 redirect_from:

@@ -130,8 +130,8 @@ data:
   timestamp: '2023-04-06 14:01:45+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/Graph/Biconnected-Components.test.cpp
   - test/yosupo/Graph/Two-Edge-Connected-Components.test.cpp
+  - test/yosupo/Graph/Biconnected-Components.test.cpp
   - test/aoj/grl/Articulation-Points.test.cpp
   - test/aoj/grl/Bridges.test.cpp
 documentation_of: library/graph/lowlink.hpp

@@ -132,8 +132,8 @@ data:
   timestamp: '2023-04-25 23:19:22+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/Data-Structure/Dynamic-Tree-Vertex-Add-Path-Sum.test.cpp
   - test/yosupo/Data-Structure/Dynamic-Tree-Vertex-Set-Path-Composite.test.cpp
+  - test/yosupo/Data-Structure/Dynamic-Tree-Vertex-Add-Path-Sum.test.cpp
 documentation_of: library/data-structure/lazy-LCT.hpp
 layout: document
 title: Link Cut Tree
