@@ -5,9 +5,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/math/discrete-log.hpp
     title: "Discrete Log (\u96E2\u6563\u5C0D\u6578 $a^x \\equiv b \\pmod m$)"
-  - icon: ':warning:'
-    path: library/math/pow-mod.hpp
-    title: library/math/pow-mod.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/Math/Discrete-Logarithm.test.cpp
@@ -45,7 +42,6 @@ data:
   isVerificationFile: false
   path: library/modint/barrett.hpp
   requiredBy:
-  - library/math/pow-mod.hpp
   - library/math/discrete-log.hpp
   timestamp: '2023-04-16 03:09:05+08:00'
   verificationStatus: LIBRARY_ALL_AC

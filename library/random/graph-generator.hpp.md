@@ -106,7 +106,17 @@ data:
     \tstd::set<std::pair<int, int>> edges;\n\twhile((int) edges.size() < m) {\n\t\t\
     int u = rnd.next(0, n - 1);\n\t\tint v = rnd.next(0, n - 1);\n\t\tif(u >= v) {\n\
     \t\t\tcontinue;\n\t\t}\n\t\tedges.emplace(u, v);\n\t}\n\tfor(auto [u, v] : edges)\
-    \ {\n\t\tadd_edge(g, u, v);\n\t}\n\treturn g;\n}\n\nGraph bipartite(int n, bool\
+    \ {\n\t\tadd_edge(g, u, v);\n\t}\n\treturn g;\n}\n\nGraph connected(int n, bool\
+    \ weighted = false, long long w_min = 1, long long w_max = 1) {\n\tset_weight(weighted,\
+    \ w_min, w_max);\n\tGraph g(n, weighted);\n\tif(n == 1) {\n\t\treturn g;\n\t}\n\
+    \tstd::set<std::pair<int, int>> s;\n\tauto perm = rnd.permutation(n);\n\tfor(int\
+    \ i = 1; i < n; i++) {\n\t\tint u = perm[rnd.next(i)];\n\t\tint v = perm[i];\n\
+    \t\tadd_edge(g, u, v);\n\t\ts.emplace(std::min(u, v), std::max(u, v));\n\t}\n\t\
+    // int m = rnd.next(n - 1, n * (n - 1) / 2) - (n - 1);\n\tint m = rnd.next(n -\
+    \ 1, 2 * n);\n\twhile(m--) {\n\t\tint u, v;\n\t\tdo {\n\t\t\tu = rnd.next(n -\
+    \ 1);\n\t\t\tv = rnd.next(u + 1, n - 1);\n\t\t} while(s.count(std::make_pair(u,\
+    \ v)));\n\t\ts.emplace(u, v);\n\t\tif(rnd.next(2)) {\n\t\t\tstd::swap(u, v);\n\
+    \t\t}\n\t\tadd_edge(g, u, v);\n\t}\n\treturn g;\n}\n\nGraph bipartite(int n, bool\
     \ weighted = false, long long w_min = 1, long long w_max = 1) {\n\tset_weight(weighted,\
     \ w_min, w_max);\n\tGraph g(n, weighted);\n\tif(n == 1) {\n\t\treturn g;\n\t}\n\
     \tauto perm = rnd.permutation(n);\n\tint l_cnt = rnd.next(1, n - 1);\n\tauto lv\
@@ -176,7 +186,17 @@ data:
     \tstd::set<std::pair<int, int>> edges;\n\twhile((int) edges.size() < m) {\n\t\t\
     int u = rnd.next(0, n - 1);\n\t\tint v = rnd.next(0, n - 1);\n\t\tif(u >= v) {\n\
     \t\t\tcontinue;\n\t\t}\n\t\tedges.emplace(u, v);\n\t}\n\tfor(auto [u, v] : edges)\
-    \ {\n\t\tadd_edge(g, u, v);\n\t}\n\treturn g;\n}\n\nGraph bipartite(int n, bool\
+    \ {\n\t\tadd_edge(g, u, v);\n\t}\n\treturn g;\n}\n\nGraph connected(int n, bool\
+    \ weighted = false, long long w_min = 1, long long w_max = 1) {\n\tset_weight(weighted,\
+    \ w_min, w_max);\n\tGraph g(n, weighted);\n\tif(n == 1) {\n\t\treturn g;\n\t}\n\
+    \tstd::set<std::pair<int, int>> s;\n\tauto perm = rnd.permutation(n);\n\tfor(int\
+    \ i = 1; i < n; i++) {\n\t\tint u = perm[rnd.next(i)];\n\t\tint v = perm[i];\n\
+    \t\tadd_edge(g, u, v);\n\t\ts.emplace(std::min(u, v), std::max(u, v));\n\t}\n\t\
+    // int m = rnd.next(n - 1, n * (n - 1) / 2) - (n - 1);\n\tint m = rnd.next(n -\
+    \ 1, 2 * n);\n\twhile(m--) {\n\t\tint u, v;\n\t\tdo {\n\t\t\tu = rnd.next(n -\
+    \ 1);\n\t\t\tv = rnd.next(u + 1, n - 1);\n\t\t} while(s.count(std::make_pair(u,\
+    \ v)));\n\t\ts.emplace(u, v);\n\t\tif(rnd.next(2)) {\n\t\t\tstd::swap(u, v);\n\
+    \t\t}\n\t\tadd_edge(g, u, v);\n\t}\n\treturn g;\n}\n\nGraph bipartite(int n, bool\
     \ weighted = false, long long w_min = 1, long long w_max = 1) {\n\tset_weight(weighted,\
     \ w_min, w_max);\n\tGraph g(n, weighted);\n\tif(n == 1) {\n\t\treturn g;\n\t}\n\
     \tauto perm = rnd.permutation(n);\n\tint l_cnt = rnd.next(1, n - 1);\n\tauto lv\
@@ -195,7 +215,7 @@ data:
   isVerificationFile: false
   path: library/random/graph-generator.hpp
   requiredBy: []
-  timestamp: '2023-04-29 17:56:44+08:00'
+  timestamp: '2023-05-13 10:23:52+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/random/graph-generator.hpp

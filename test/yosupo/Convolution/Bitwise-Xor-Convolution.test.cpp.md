@@ -30,10 +30,11 @@ data:
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/bitwise_xor_convolution\"\r\
     \n\r\n#include <iostream>\r\n#line 3 \"library/modint/modint.hpp\"\n#include <vector>\r\
     \n#include <algorithm>\r\n#include <cassert>\r\n#include <random>\r\n#include\
-    \ <chrono>\r\n#line 3 \"library/misc/type-traits.hpp\"\n#include <numeric>\r\n\
-    #include <type_traits>\r\n\r\nnamespace felix {\r\n\r\nnamespace internal {\r\n\
-    \r\n#ifndef _MSC_VER\r\ntemplate<class T> using is_signed_int128 = typename std::conditional<std::is_same<T,\
-    \ __int128_t>::value || std::is_same<T, __int128>::value, std::true_type, std::false_type>::type;\r\
+    \ <chrono>\r\n#include <type_traits>\r\n#line 3 \"library/misc/type-traits.hpp\"\
+    \n#include <numeric>\r\n#line 5 \"library/misc/type-traits.hpp\"\n\r\nnamespace\
+    \ felix {\r\n\r\nnamespace internal {\r\n\r\n#ifndef _MSC_VER\r\ntemplate<class\
+    \ T> using is_signed_int128 = typename std::conditional<std::is_same<T, __int128_t>::value\
+    \ || std::is_same<T, __int128>::value, std::true_type, std::false_type>::type;\r\
     \ntemplate<class T> using is_unsigned_int128 = typename std::conditional<std::is_same<T,\
     \ __uint128_t>::value || std::is_same<T, unsigned __int128>::value, std::true_type,\
     \ std::false_type>::type;\r\ntemplate<class T> using make_unsigned_int128 = typename\
@@ -69,7 +70,7 @@ data:
     \ m1 * u;\r\n\t\tauto tmp = s;\r\n\t\ts = t;\r\n\t\tt = tmp;\r\n\t\ttmp = m0;\r\
     \n\t\tm0 = m1;\r\n\t\tm1 = tmp;\r\n\t}\r\n\tif(m0 < 0) {\r\n\t\tm0 += b / s;\r\
     \n\t}\r\n\treturn {s, m0};\r\n}\r\n\r\n} // namespace internal\r\n\r\n} // namespace\
-    \ felix\r\n#line 10 \"library/modint/modint.hpp\"\n\r\nnamespace felix {\r\n\r\
+    \ felix\r\n#line 11 \"library/modint/modint.hpp\"\n\r\nnamespace felix {\r\n\r\
     \ntemplate<int id>\r\nstruct modint {\r\npublic:\r\n\tstatic constexpr int mod()\
     \ { return (id > 0 ? id : md); }\r\n \t\r\n\tstatic constexpr void set_mod(int\
     \ m) {\r\n\t\tif(id > 0 || md == m) {\r\n\t\t\treturn;\r\n\t\t}\r\n\t\tmd = m;\r\
@@ -136,6 +137,16 @@ data:
     \ modint<id>::facts = {1};\r\ntemplate<int id> std::vector<modint<id>> modint<id>::inv_facts\
     \ = {1};\r\ntemplate<int id> std::vector<modint<id>> modint<id>::invs = {0};\r\
     \n\r\nusing modint998244353 = modint<998244353>;\r\nusing modint1000000007 = modint<1000000007>;\r\
+    \n\r\nnamespace internal {\r\n\r\ntemplate<class T> struct is_modint : public\
+    \ std::false_type {};\r\ntemplate<int id> struct is_modint<modint<id>> : public\
+    \ std::true_type {};\r\n\r\ntemplate<class T, class ENABLE = void> struct is_static_modint\
+    \ : public std::false_type {};\r\ntemplate<int id> struct is_static_modint<modint<id>,\
+    \ std::enable_if_t<(id > 0)>> : public std::true_type {};\r\ntemplate<class T>\
+    \ using is_static_modint_t = std::enable_if_t<is_static_modint<T>::value>;\r\n\
+    \r\ntemplate<class T, class ENABLE = void> struct is_dynamic_modint : public std::false_type\
+    \ {};\r\ntemplate<int id> struct is_dynamic_modint<modint<id>, std::enable_if_t<(id\
+    \ <= 0)>> : public std::true_type {};\r\ntemplate<class T> using is_dynamic_modint_t\
+    \ = std::enable_if_t<is_dynamic_modint<T>::value>;\r\n\r\n} // namespace internal\r\
     \n\r\n} // namespace felix\r\n#line 6 \"library/convolution/subset-convolution.hpp\"\
     \n\nnamespace felix {\n\ntemplate<class T, class F>\nvoid fwht(std::vector<T>&\
     \ a, F f) {\n\tconst int n = (int) a.size();\n\tassert(__builtin_popcount(n) ==\
@@ -146,7 +157,7 @@ data:
     }\n\ntemplate<class T>\nvoid and_transform(std::vector<T>& a, bool inv) {\n\t\
     fwht(a, [&](T& x, T& y) { x += y * (inv ? -1 : +1); });\n}\n\ntemplate<class T>\n\
     void xor_transform(std::vector<T>& a, bool inv) {\n\tfwht(a, [](T& x, T& y) {\n\
-    \t\tT z = x + y;\n\t\ty = x - y;\n\t\tx = z;\n\t});\n\tif(inv) {\n\t\tif constexpr(std::is_integral_v<T>)\
+    \t\tT z = x + y;\n\t\ty = x - y;\n\t\tx = z;\n\t});\n\tif(inv) {\n\t\tif constexpr(internal::is_integral<T>::value)\
     \ {\n\t\t\tfor(auto& x : a) {\n\t\t\t\tx /= a.size();\n\t\t\t}\n\t\t} else {\n\
     \t\t\tT z = T(1) / T(a.size());\n\t\t\tfor(auto& x : a) {\n\t\t\t\tx *= z;\n\t\
     \t\t}\n\t\t}\n\t}\n}\n\ntemplate<class T>\nstd::vector<T> or_convolution(std::vector<T>\
@@ -199,7 +210,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/Convolution/Bitwise-Xor-Convolution.test.cpp
   requiredBy: []
-  timestamp: '2023-05-11 17:30:15+08:00'
+  timestamp: '2023-05-13 10:23:52+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Convolution/Bitwise-Xor-Convolution.test.cpp

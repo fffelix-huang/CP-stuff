@@ -28,6 +28,9 @@ data:
     path: test/yosupo/Convolution/Bitwise-Xor-Convolution.test.cpp
     title: test/yosupo/Convolution/Bitwise-Xor-Convolution.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/Convolution/Convolution-Large.test.cpp
+    title: test/yosupo/Convolution/Convolution-Large.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/Convolution/Convolution-Mod-1000000007.test.cpp
     title: test/yosupo/Convolution/Convolution-Mod-1000000007.test.cpp
   - icon: ':heavy_check_mark:'
@@ -63,31 +66,31 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/Math/Sqrt-Mod.test.cpp
     title: test/yosupo/Math/Sqrt-Mod.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/Matrix/Determinant-of-Matrix.test.cpp
     title: test/yosupo/Matrix/Determinant-of-Matrix.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/Matrix/Matrix-Product.test.cpp
     title: test/yosupo/Matrix/Matrix-Product.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/Polynomial/Exp-of-Formal-Power-Series.test.cpp
     title: test/yosupo/Polynomial/Exp-of-Formal-Power-Series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/Polynomial/Inv-of-Formal-Power-Series.test.cpp
     title: test/yosupo/Polynomial/Inv-of-Formal-Power-Series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/Polynomial/Log-of-Formal-Power-Series.test.cpp
     title: test/yosupo/Polynomial/Log-of-Formal-Power-Series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/Polynomial/Multipoint-Evaluation.test.cpp
     title: test/yosupo/Polynomial/Multipoint-Evaluation.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/Polynomial/Polynomial-Taylor-Shift.test.cpp
     title: test/yosupo/Polynomial/Polynomial-Taylor-Shift.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/Polynomial/Pow-of-Formal-Power-Series.test.cpp
     title: test/yosupo/Polynomial/Pow-of-Formal-Power-Series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/Polynomial/Product-of-Polynomial-Sequence.test.cpp
     title: test/yosupo/Polynomial/Product-of-Polynomial-Sequence.test.cpp
   - icon: ':x:'
@@ -100,23 +103,24 @@ data:
     links: []
   bundledCode: "#line 2 \"library/modint/modint.hpp\"\n#include <iostream>\r\n#include\
     \ <vector>\r\n#include <algorithm>\r\n#include <cassert>\r\n#include <random>\r\
-    \n#include <chrono>\r\n#line 3 \"library/misc/type-traits.hpp\"\n#include <numeric>\r\
-    \n#include <type_traits>\r\n\r\nnamespace felix {\r\n\r\nnamespace internal {\r\
-    \n\r\n#ifndef _MSC_VER\r\ntemplate<class T> using is_signed_int128 = typename\
-    \ std::conditional<std::is_same<T, __int128_t>::value || std::is_same<T, __int128>::value,\
-    \ std::true_type, std::false_type>::type;\r\ntemplate<class T> using is_unsigned_int128\
-    \ = typename std::conditional<std::is_same<T, __uint128_t>::value || std::is_same<T,\
-    \ unsigned __int128>::value, std::true_type, std::false_type>::type;\r\ntemplate<class\
-    \ T> using make_unsigned_int128 = typename std::conditional<std::is_same<T, __int128_t>::value,\
-    \ __uint128_t, unsigned __int128>;\r\ntemplate<class T> using is_integral = typename\
-    \ std::conditional<std::is_integral<T>::value || is_signed_int128<T>::value ||\
-    \ is_unsigned_int128<T>::value, std::true_type, std::false_type>::type;\r\ntemplate<class\
-    \ T> using is_signed_int = typename std::conditional<(is_integral<T>::value &&\
-    \ std::is_signed<T>::value) || is_signed_int128<T>::value, std::true_type, std::false_type>::type;\r\
-    \ntemplate<class T> using is_unsigned_int = typename std::conditional<(is_integral<T>::value\
-    \ && std::is_unsigned<T>::value) || is_unsigned_int128<T>::value, std::true_type,\
-    \ std::false_type>::type;\r\ntemplate<class T> using to_unsigned = typename std::conditional<\
-    \ is_signed_int128<T>::value, make_unsigned_int128<T>, typename std::conditional<std::is_signed<T>::value,\
+    \n#include <chrono>\r\n#include <type_traits>\r\n#line 3 \"library/misc/type-traits.hpp\"\
+    \n#include <numeric>\r\n#line 5 \"library/misc/type-traits.hpp\"\n\r\nnamespace\
+    \ felix {\r\n\r\nnamespace internal {\r\n\r\n#ifndef _MSC_VER\r\ntemplate<class\
+    \ T> using is_signed_int128 = typename std::conditional<std::is_same<T, __int128_t>::value\
+    \ || std::is_same<T, __int128>::value, std::true_type, std::false_type>::type;\r\
+    \ntemplate<class T> using is_unsigned_int128 = typename std::conditional<std::is_same<T,\
+    \ __uint128_t>::value || std::is_same<T, unsigned __int128>::value, std::true_type,\
+    \ std::false_type>::type;\r\ntemplate<class T> using make_unsigned_int128 = typename\
+    \ std::conditional<std::is_same<T, __int128_t>::value, __uint128_t, unsigned __int128>;\r\
+    \ntemplate<class T> using is_integral = typename std::conditional<std::is_integral<T>::value\
+    \ || is_signed_int128<T>::value || is_unsigned_int128<T>::value, std::true_type,\
+    \ std::false_type>::type;\r\ntemplate<class T> using is_signed_int = typename\
+    \ std::conditional<(is_integral<T>::value && std::is_signed<T>::value) || is_signed_int128<T>::value,\
+    \ std::true_type, std::false_type>::type;\r\ntemplate<class T> using is_unsigned_int\
+    \ = typename std::conditional<(is_integral<T>::value && std::is_unsigned<T>::value)\
+    \ || is_unsigned_int128<T>::value, std::true_type, std::false_type>::type;\r\n\
+    template<class T> using to_unsigned = typename std::conditional< is_signed_int128<T>::value,\
+    \ make_unsigned_int128<T>, typename std::conditional<std::is_signed<T>::value,\
     \ std::make_unsigned<T>, std::common_type<T>>::type>::type;\r\n#else\r\ntemplate<class\
     \ T> using is_integral = typename std::is_integral<T>;\r\ntemplate<class T> using\
     \ is_signed_int = typename std::conditional<is_integral<T>::value && std::is_signed<T>::value,\
@@ -139,7 +143,7 @@ data:
     \ m1 * u;\r\n\t\tauto tmp = s;\r\n\t\ts = t;\r\n\t\tt = tmp;\r\n\t\ttmp = m0;\r\
     \n\t\tm0 = m1;\r\n\t\tm1 = tmp;\r\n\t}\r\n\tif(m0 < 0) {\r\n\t\tm0 += b / s;\r\
     \n\t}\r\n\treturn {s, m0};\r\n}\r\n\r\n} // namespace internal\r\n\r\n} // namespace\
-    \ felix\r\n#line 10 \"library/modint/modint.hpp\"\n\r\nnamespace felix {\r\n\r\
+    \ felix\r\n#line 11 \"library/modint/modint.hpp\"\n\r\nnamespace felix {\r\n\r\
     \ntemplate<int id>\r\nstruct modint {\r\npublic:\r\n\tstatic constexpr int mod()\
     \ { return (id > 0 ? id : md); }\r\n \t\r\n\tstatic constexpr void set_mod(int\
     \ m) {\r\n\t\tif(id > 0 || md == m) {\r\n\t\t\treturn;\r\n\t\t}\r\n\t\tmd = m;\r\
@@ -206,49 +210,60 @@ data:
     \ modint<id>::facts = {1};\r\ntemplate<int id> std::vector<modint<id>> modint<id>::inv_facts\
     \ = {1};\r\ntemplate<int id> std::vector<modint<id>> modint<id>::invs = {0};\r\
     \n\r\nusing modint998244353 = modint<998244353>;\r\nusing modint1000000007 = modint<1000000007>;\r\
+    \n\r\nnamespace internal {\r\n\r\ntemplate<class T> struct is_modint : public\
+    \ std::false_type {};\r\ntemplate<int id> struct is_modint<modint<id>> : public\
+    \ std::true_type {};\r\n\r\ntemplate<class T, class ENABLE = void> struct is_static_modint\
+    \ : public std::false_type {};\r\ntemplate<int id> struct is_static_modint<modint<id>,\
+    \ std::enable_if_t<(id > 0)>> : public std::true_type {};\r\ntemplate<class T>\
+    \ using is_static_modint_t = std::enable_if_t<is_static_modint<T>::value>;\r\n\
+    \r\ntemplate<class T, class ENABLE = void> struct is_dynamic_modint : public std::false_type\
+    \ {};\r\ntemplate<int id> struct is_dynamic_modint<modint<id>, std::enable_if_t<(id\
+    \ <= 0)>> : public std::true_type {};\r\ntemplate<class T> using is_dynamic_modint_t\
+    \ = std::enable_if_t<is_dynamic_modint<T>::value>;\r\n\r\n} // namespace internal\r\
     \n\r\n} // namespace felix\r\n"
   code: "#pragma once\r\n#include <iostream>\r\n#include <vector>\r\n#include <algorithm>\r\
-    \n#include <cassert>\r\n#include <random>\r\n#include <chrono>\r\n#include \"\
-    ../misc/type-traits.hpp\"\r\n#include \"../math/inv-gcd.hpp\"\r\n\r\nnamespace\
-    \ felix {\r\n\r\ntemplate<int id>\r\nstruct modint {\r\npublic:\r\n\tstatic constexpr\
-    \ int mod() { return (id > 0 ? id : md); }\r\n \t\r\n\tstatic constexpr void set_mod(int\
-    \ m) {\r\n\t\tif(id > 0 || md == m) {\r\n\t\t\treturn;\r\n\t\t}\r\n\t\tmd = m;\r\
-    \n\t\tfacts.resize(1);\r\n\t\tinv_facts.resize(1);\r\n\t\tinvs.resize(1);\r\n\t\
-    }\r\n\r\n\tstatic constexpr void prepare(int n) {\r\n\t\tint sz = (int) facts.size();\r\
-    \n\t\tif(sz == mod()) {\r\n\t\t\treturn;\r\n\t\t}\r\n\t\tn = 1 << std::__lg(2\
-    \ * n - 1);\r\n\t\tif(n < sz) {\r\n\t\t\treturn;\r\n\t\t}\r\n\t\tif(n < (sz -\
-    \ 1) * 2) {\r\n\t\t\tn = std::min((sz - 1) * 2, mod() - 1);\r\n\t\t}\r\n\t\tfacts.resize(n\
-    \ + 1);\r\n\t\tinv_facts.resize(n + 1);\r\n\t\tinvs.resize(n + 1);\r\n\t\tfor(int\
-    \ i = sz; i <= n; i++) {\r\n\t\t\tfacts[i] = facts[i - 1] * i;\r\n\t\t}\r\n\t\t\
-    auto eg = internal::inv_gcd(facts.back()(), mod());\r\n\t\tassert(eg.first ==\
-    \ 1);\r\n\t\tinv_facts[n] = eg.second;\r\n\t\tfor(int i = n - 1; i >= sz; i--)\
-    \ {\r\n\t\t\tinv_facts[i] = inv_facts[i + 1] * (i + 1);\r\n\t\t}\r\n\t\tfor(int\
-    \ i = n; i >= sz; i--) {\r\n\t\t\tinvs[i] = inv_facts[i] * facts[i - 1];\r\n\t\
-    \t}\r\n\t}\r\n \r\n\tconstexpr modint() : value(0) {} \r\n\ttemplate<class T,\
-    \ internal::is_signed_int_t<T>* = nullptr> constexpr modint(T v) : value(v >=\
-    \ 0 ? v % mod() : v % mod() + mod()) {}\r\n\ttemplate<class T, internal::is_unsigned_int_t<T>*\
-    \ = nullptr> constexpr modint(T v) : value(v % mod()) {}\r\n \r\n\tconstexpr int\
-    \ operator()() const { return value; }\r\n\ttemplate<class T> explicit constexpr\
-    \ operator T() const { return static_cast<T>(value); }\r\n\r\n\tconstexpr modint\
-    \ inv() const {\r\n\t\tif(id > 0 && value < std::min(mod() >> 1, 1 << 18)) {\r\
-    \n\t\t\tprepare(value);\r\n\t\t\treturn invs[value];\r\n\t\t} else {\r\n\t\t\t\
-    auto eg = internal::inv_gcd(value, mod());\r\n\t\t\tassert(eg.first == 1);\r\n\
-    \t\t\treturn eg.second;\r\n\t\t}\r\n\t}\r\n\r\n\tconstexpr modint fact() const\
-    \ {\r\n\t\tprepare(value);\r\n\t\treturn facts[value];\r\n\t}\r\n\r\n\tconstexpr\
-    \ modint inv_fact() const {\r\n\t\tprepare(value);\r\n\t\treturn inv_facts[value];\r\
-    \n\t}\r\n \r\n\tconstexpr modint& operator+=(const modint& rhs) & {\r\n\t\tvalue\
-    \ += rhs.value;\r\n\t\tif(value >= mod()) {\r\n\t\t\tvalue -= mod();\r\n\t\t}\r\
-    \n\t\treturn *this;\r\n\t}\r\n \r\n\tconstexpr modint& operator-=(const modint&\
-    \ rhs) & {\r\n\t\tvalue -= rhs.value;\r\n\t\tif(value < 0) {\r\n\t\t\tvalue +=\
-    \ mod();\r\n\t\t}\r\n\t\treturn *this;\r\n\t}\r\n\r\n\tconstexpr modint& operator*=(const\
-    \ modint& rhs) & {\r\n\t\tvalue = 1LL * value * rhs.value % mod();\r\n\t\treturn\
-    \ *this;\r\n\t}\r\n\r\n\tconstexpr modint& operator/=(const modint& rhs) & {\r\
-    \n\t\treturn *this *= rhs.inv();\r\n\t}\r\n\r\n\tfriend constexpr modint operator+(modint\
-    \ lhs, modint rhs) { return lhs += rhs; }\r\n\tfriend constexpr modint operator-(modint\
-    \ lhs, modint rhs) { return lhs -= rhs; }\r\n\tfriend constexpr modint operator*(modint\
-    \ lhs, modint rhs) { return lhs *= rhs; }\r\n\tfriend constexpr modint operator/(modint\
-    \ lhs, modint rhs) { return lhs /= rhs; }\r\n\r\n\tconstexpr modint operator+()\
-    \ const { return *this; }\r\n\tconstexpr modint operator-() const { return modint()\
+    \n#include <cassert>\r\n#include <random>\r\n#include <chrono>\r\n#include <type_traits>\r\
+    \n#include \"../misc/type-traits.hpp\"\r\n#include \"../math/inv-gcd.hpp\"\r\n\
+    \r\nnamespace felix {\r\n\r\ntemplate<int id>\r\nstruct modint {\r\npublic:\r\n\
+    \tstatic constexpr int mod() { return (id > 0 ? id : md); }\r\n \t\r\n\tstatic\
+    \ constexpr void set_mod(int m) {\r\n\t\tif(id > 0 || md == m) {\r\n\t\t\treturn;\r\
+    \n\t\t}\r\n\t\tmd = m;\r\n\t\tfacts.resize(1);\r\n\t\tinv_facts.resize(1);\r\n\
+    \t\tinvs.resize(1);\r\n\t}\r\n\r\n\tstatic constexpr void prepare(int n) {\r\n\
+    \t\tint sz = (int) facts.size();\r\n\t\tif(sz == mod()) {\r\n\t\t\treturn;\r\n\
+    \t\t}\r\n\t\tn = 1 << std::__lg(2 * n - 1);\r\n\t\tif(n < sz) {\r\n\t\t\treturn;\r\
+    \n\t\t}\r\n\t\tif(n < (sz - 1) * 2) {\r\n\t\t\tn = std::min((sz - 1) * 2, mod()\
+    \ - 1);\r\n\t\t}\r\n\t\tfacts.resize(n + 1);\r\n\t\tinv_facts.resize(n + 1);\r\
+    \n\t\tinvs.resize(n + 1);\r\n\t\tfor(int i = sz; i <= n; i++) {\r\n\t\t\tfacts[i]\
+    \ = facts[i - 1] * i;\r\n\t\t}\r\n\t\tauto eg = internal::inv_gcd(facts.back()(),\
+    \ mod());\r\n\t\tassert(eg.first == 1);\r\n\t\tinv_facts[n] = eg.second;\r\n\t\
+    \tfor(int i = n - 1; i >= sz; i--) {\r\n\t\t\tinv_facts[i] = inv_facts[i + 1]\
+    \ * (i + 1);\r\n\t\t}\r\n\t\tfor(int i = n; i >= sz; i--) {\r\n\t\t\tinvs[i] =\
+    \ inv_facts[i] * facts[i - 1];\r\n\t\t}\r\n\t}\r\n \r\n\tconstexpr modint() :\
+    \ value(0) {} \r\n\ttemplate<class T, internal::is_signed_int_t<T>* = nullptr>\
+    \ constexpr modint(T v) : value(v >= 0 ? v % mod() : v % mod() + mod()) {}\r\n\
+    \ttemplate<class T, internal::is_unsigned_int_t<T>* = nullptr> constexpr modint(T\
+    \ v) : value(v % mod()) {}\r\n \r\n\tconstexpr int operator()() const { return\
+    \ value; }\r\n\ttemplate<class T> explicit constexpr operator T() const { return\
+    \ static_cast<T>(value); }\r\n\r\n\tconstexpr modint inv() const {\r\n\t\tif(id\
+    \ > 0 && value < std::min(mod() >> 1, 1 << 18)) {\r\n\t\t\tprepare(value);\r\n\
+    \t\t\treturn invs[value];\r\n\t\t} else {\r\n\t\t\tauto eg = internal::inv_gcd(value,\
+    \ mod());\r\n\t\t\tassert(eg.first == 1);\r\n\t\t\treturn eg.second;\r\n\t\t}\r\
+    \n\t}\r\n\r\n\tconstexpr modint fact() const {\r\n\t\tprepare(value);\r\n\t\t\
+    return facts[value];\r\n\t}\r\n\r\n\tconstexpr modint inv_fact() const {\r\n\t\
+    \tprepare(value);\r\n\t\treturn inv_facts[value];\r\n\t}\r\n \r\n\tconstexpr modint&\
+    \ operator+=(const modint& rhs) & {\r\n\t\tvalue += rhs.value;\r\n\t\tif(value\
+    \ >= mod()) {\r\n\t\t\tvalue -= mod();\r\n\t\t}\r\n\t\treturn *this;\r\n\t}\r\n\
+    \ \r\n\tconstexpr modint& operator-=(const modint& rhs) & {\r\n\t\tvalue -= rhs.value;\r\
+    \n\t\tif(value < 0) {\r\n\t\t\tvalue += mod();\r\n\t\t}\r\n\t\treturn *this;\r\
+    \n\t}\r\n\r\n\tconstexpr modint& operator*=(const modint& rhs) & {\r\n\t\tvalue\
+    \ = 1LL * value * rhs.value % mod();\r\n\t\treturn *this;\r\n\t}\r\n\r\n\tconstexpr\
+    \ modint& operator/=(const modint& rhs) & {\r\n\t\treturn *this *= rhs.inv();\r\
+    \n\t}\r\n\r\n\tfriend constexpr modint operator+(modint lhs, modint rhs) { return\
+    \ lhs += rhs; }\r\n\tfriend constexpr modint operator-(modint lhs, modint rhs)\
+    \ { return lhs -= rhs; }\r\n\tfriend constexpr modint operator*(modint lhs, modint\
+    \ rhs) { return lhs *= rhs; }\r\n\tfriend constexpr modint operator/(modint lhs,\
+    \ modint rhs) { return lhs /= rhs; }\r\n\r\n\tconstexpr modint operator+() const\
+    \ { return *this; }\r\n\tconstexpr modint operator-() const { return modint()\
     \ - *this; } \r\n\tconstexpr bool operator==(const modint& rhs) const { return\
     \ value == rhs.value; } \r\n\tconstexpr bool operator!=(const modint& rhs) const\
     \ { return value != rhs.value; }\r\n\r\n\tconstexpr modint pow(unsigned long long\
@@ -276,6 +291,16 @@ data:
     \ modint<id>::facts = {1};\r\ntemplate<int id> std::vector<modint<id>> modint<id>::inv_facts\
     \ = {1};\r\ntemplate<int id> std::vector<modint<id>> modint<id>::invs = {0};\r\
     \n\r\nusing modint998244353 = modint<998244353>;\r\nusing modint1000000007 = modint<1000000007>;\r\
+    \n\r\nnamespace internal {\r\n\r\ntemplate<class T> struct is_modint : public\
+    \ std::false_type {};\r\ntemplate<int id> struct is_modint<modint<id>> : public\
+    \ std::true_type {};\r\n\r\ntemplate<class T, class ENABLE = void> struct is_static_modint\
+    \ : public std::false_type {};\r\ntemplate<int id> struct is_static_modint<modint<id>,\
+    \ std::enable_if_t<(id > 0)>> : public std::true_type {};\r\ntemplate<class T>\
+    \ using is_static_modint_t = std::enable_if_t<is_static_modint<T>::value>;\r\n\
+    \r\ntemplate<class T, class ENABLE = void> struct is_dynamic_modint : public std::false_type\
+    \ {};\r\ntemplate<int id> struct is_dynamic_modint<modint<id>, std::enable_if_t<(id\
+    \ <= 0)>> : public std::true_type {};\r\ntemplate<class T> using is_dynamic_modint_t\
+    \ = std::enable_if_t<is_dynamic_modint<T>::value>;\r\n\r\n} // namespace internal\r\
     \n\r\n} // namespace felix\r\n"
   dependsOn:
   - library/misc/type-traits.hpp
@@ -286,12 +311,13 @@ data:
   requiredBy:
   - library/convolution/NTT.hpp
   - library/formal-power-series/poly.hpp
-  timestamp: '2023-05-11 17:30:15+08:00'
+  timestamp: '2023-05-13 10:23:52+08:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/Convolution/Bitwise-And-Convolution.test.cpp
   - test/yosupo/Convolution/Bitwise-Xor-Convolution.test.cpp
   - test/yosupo/Convolution/Convolution.test.cpp
+  - test/yosupo/Convolution/Convolution-Large.test.cpp
   - test/yosupo/Convolution/Convolution-Mod-1000000007.test.cpp
   - test/yosupo/Convolution/Subset-Convolution.test.cpp
   - test/yosupo/Data-Structure/Deque-Operate-All-Composite.test.cpp

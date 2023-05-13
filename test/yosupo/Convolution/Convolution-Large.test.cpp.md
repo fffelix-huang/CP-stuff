@@ -5,14 +5,14 @@ data:
     path: library/convolution/NTT.hpp
     title: library/convolution/NTT.hpp
   - icon: ':question:'
-    path: library/formal-power-series/poly.hpp
-    title: library/formal-power-series/poly.hpp
-  - icon: ':question:'
     path: library/math/inv-gcd.hpp
     title: library/math/inv-gcd.hpp
   - icon: ':question:'
     path: library/math/safe-mod.hpp
     title: library/math/safe-mod.hpp
+  - icon: ':heavy_check_mark:'
+    path: library/misc/fastio.hpp
+    title: library/misc/fastio.hpp
   - icon: ':question:'
     path: library/misc/type-traits.hpp
     title: library/misc/type-traits.hpp
@@ -21,21 +21,19 @@ data:
     title: library/modint/modint.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/polynomial_taylor_shift
+    PROBLEM: https://judge.yosupo.jp/problem/convolution_mod_large
     links:
-    - https://judge.yosupo.jp/problem/polynomial_taylor_shift
-  bundledCode: "#line 1 \"test/yosupo/Polynomial/Polynomial-Taylor-Shift.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/polynomial_taylor_shift\"\r\
-    \n\r\n#include <iostream>\r\n#line 2 \"library/formal-power-series/poly.hpp\"\n\
-    #include <vector>\r\n#include <initializer_list>\r\n#include <algorithm>\r\n#include\
-    \ <functional>\r\n#include <cassert>\r\n#line 6 \"library/modint/modint.hpp\"\n\
-    #include <random>\r\n#include <chrono>\r\n#include <type_traits>\r\n#line 3 \"\
-    library/misc/type-traits.hpp\"\n#include <numeric>\r\n#line 5 \"library/misc/type-traits.hpp\"\
+    - https://judge.yosupo.jp/problem/convolution_mod_large
+  bundledCode: "#line 1 \"test/yosupo/Convolution/Convolution-Large.test.cpp\"\n#define\
+    \ PROBLEM \"https://judge.yosupo.jp/problem/convolution_mod_large\"\r\n\r\n#include\
+    \ <iostream>\r\n#include <vector>\r\n#line 3 \"library/misc/fastio.hpp\"\n#include\
+    \ <cstring>\n#include <type_traits>\n#line 2 \"library/misc/type-traits.hpp\"\n\
+    #include <cassert>\r\n#include <numeric>\r\n#line 5 \"library/misc/type-traits.hpp\"\
     \n\r\nnamespace felix {\r\n\r\nnamespace internal {\r\n\r\n#ifndef _MSC_VER\r\n\
     template<class T> using is_signed_int128 = typename std::conditional<std::is_same<T,\
     \ __int128_t>::value || std::is_same<T, __int128>::value, std::true_type, std::false_type>::type;\r\
@@ -63,10 +61,62 @@ data:
     \ = std::enable_if_t<is_signed_int<T>::value>;\r\ntemplate<class T> using is_unsigned_int_t\
     \ = std::enable_if_t<is_unsigned_int<T>::value>;\r\ntemplate<class T> using to_unsigned_t\
     \ = typename to_unsigned<T>::type;\r\n\r\n}  // namespace internal\r\n\r\n}  //\
-    \ namespace felix\r\n#line 2 \"library/math/safe-mod.hpp\"\n\r\nnamespace felix\
-    \ {\r\n\r\nnamespace internal {\r\n\r\ntemplate<class T>\r\nconstexpr T safe_mod(T\
-    \ x, T m) {\r\n\tx %= m;\r\n\tif(x < 0) {\r\n\t\tx += m;\r\n\t}\r\n\treturn x;\r\
-    \n}\r\n\r\n} // namespace internal\r\n\r\n} // namespace felix\n#line 3 \"library/math/inv-gcd.hpp\"\
+    \ namespace felix\r\n#line 6 \"library/misc/fastio.hpp\"\n\nnamespace std {\n\n\
+    static struct FastInput {\n\tstatic constexpr int BUF_SIZE = 1 << 20;\n\tchar\
+    \ buf[BUF_SIZE];\n\tsize_t chars_read = 0;\n\tsize_t buf_pos = 0;\n\tFILE *in\
+    \ = stdin;\n\tchar cur = 0;\n\n\tinline char get_char() {\n\t\tif(buf_pos >= chars_read)\
+    \ {\n\t\t\tchars_read = fread(buf, 1, BUF_SIZE, in);\n\t\t\tbuf_pos = 0;\n\t\t\
+    \tbuf[0] = (chars_read == 0 ? -1 : buf[0]);\n\t\t}\n\t\treturn cur = buf[buf_pos++];\n\
+    \t\t// return cur = getchar_unlocked();\n\t}\n\n\tinline void tie(int) {}\n\n\t\
+    inline explicit operator bool() { return cur != -1; }\n\n\tinline static bool\
+    \ is_blank(char c) { return c <= ' '; }\n\n\tinline bool skip_blanks() {\n\t\t\
+    while(is_blank(cur) && cur != -1) {\n\t\t\tget_char();\n\t\t}\n\t\treturn cur\
+    \ != -1;\n\t}\n\n\tinline FastInput& operator>>(char& c) {\n\t\tskip_blanks();\n\
+    \t\tc = cur;\n\t\treturn *this;\n\t}\n\n\tinline FastInput& operator>>(std::string&\
+    \ s) {\n\t\tif(skip_blanks()) {\n\t\t\ts.clear();\n\t\t\tdo {\n\t\t\t\ts += cur;\n\
+    \t\t\t} while(!is_blank(get_char()));\n\t\t}\n\t\treturn *this;\n\t}\n\n\ttemplate<class\
+    \ T>\n\tinline FastInput& read_integer(T& n) {\n\t\t// unsafe, doesn't check that\
+    \ characters are actually digits\n\t\tn = 0;\n\t\tif(skip_blanks()) {\n\t\t\t\
+    int sign = +1;\n\t\t\tif(cur == '-') {\n\t\t\t\tsign = -1;\n\t\t\t\tget_char();\n\
+    \t\t\t}\n\t\t\tdo {\n\t\t\t\tn += n + (n << 3) + cur - '0';\n\t\t\t} while(!is_blank(get_char()));\n\
+    \t\t\tn *= sign;\n\t\t}\n\t\treturn *this;\n\t}\n\n\ttemplate<class T>\n\tinline\
+    \ typename std::enable_if<felix::internal::is_integral<T>::value, FastInput&>::type\
+    \ operator>>(T& n) {\n\t\treturn read_integer(n);\n\t}\n\n\tinline FastInput&\
+    \ operator>>(__int128& n) {\n\t\treturn read_integer(n);\n\t}\n\n\ttemplate<class\
+    \ T>\n\tinline typename std::enable_if<std::is_floating_point<T>::value, FastInput&>::type\
+    \ operator>>(T& n) {\n\t\tn = 0;\n\t\tif(skip_blanks()) {\n\t\t\tstd::string s;\n\
+    \t\t\t(*this) >> s;\n\t\t\tsscanf(s.c_str(), \"%lf\", &n);\n\t\t}\n\t\treturn\
+    \ *this;\n\t}\n} fast_input;\n\n#define istream FastInput\n#define cin fast_input\n\
+    \nstatic struct FastOutput {\n\tstatic constexpr int BUF_SIZE = 1 << 20;\n\tchar\
+    \ buf[BUF_SIZE];\n\tsize_t buf_pos = 0;\n\tstatic constexpr int TMP_SIZE = 1 <<\
+    \ 20;\n\tchar tmp[TMP_SIZE];\n\tFILE *out = stdout;\n \n\tinline void put_char(char\
+    \ c) {\n\t\tbuf[buf_pos++] = c;\n\t\tif(buf_pos == BUF_SIZE) {\n\t\t\tfwrite(buf,\
+    \ 1, buf_pos, out);\n\t\t\tbuf_pos = 0;\n\t\t}\n\t\t// putchar_unlocked(c);\n\t\
+    }\n\n\t~FastOutput() {\n\t\tfwrite(buf, 1, buf_pos, out);\n\t}\n\n\tinline FastOutput&\
+    \ operator<<(char c) {\n\t\tput_char(c);\n\t\treturn *this;\n\t}\n\n\tinline FastOutput&\
+    \ operator<<(const char* s) {\n\t\twhile(*s) {\n\t\t\tput_char(*s++);\n\t\t}\n\
+    \t\treturn *this;\n\t}\n\n\tinline FastOutput& operator<<(const std::string& s)\
+    \ {\n\t\tfor(int i = 0; i < (int) s.size(); i++) {\n\t\t\tput_char(s[i]);\n\t\t\
+    }\n\t\treturn *this;\n\t}\n\n\ttemplate<class T>\n\tinline char* integer_to_string(T\
+    \ n) {\n\t\t// beware of TMP_SIZE\n\t\tchar* p = tmp + TMP_SIZE - 1;\n\t\tif(n\
+    \ == 0) {\n\t\t\t*--p = '0';\n\t\t} else {\n\t\t\tbool is_negative = false;\n\t\
+    \t\tif(n < 0) {\n\t\t\t\tis_negative = true;\n\t\t\t\tn = -n;\n\t\t\t}\n\t\t\t\
+    while(n > 0) {\n\t\t\t\t*--p = (char) ('0' + n % 10);\n\t\t\t\tn /= 10;\n\t\t\t\
+    }\n\t\t\tif(is_negative) {\n\t\t\t\t*--p = '-';\n\t\t\t}\n\t\t}\n\t\treturn p;\n\
+    \t}\n\n\ttemplate<class T>\n\tinline typename std::enable_if<felix::internal::is_integral<T>::value,\
+    \ char*>::type stringify(T n) {\n\t\treturn integer_to_string(n);\n\t}\n\n\tinline\
+    \ char* stringify(__int128 n) {\n\t\treturn integer_to_string(n);\n\t}\n\n\ttemplate<class\
+    \ T>\n\tinline typename std::enable_if<std::is_floating_point<T>::value, char*>::type\
+    \ stringify(T n) {\n\t\tsprintf(tmp, \"%.17f\", n);\n\t\treturn tmp;\n\t}\n\n\t\
+    template<class T>\n\tinline FastOutput& operator<<(const T& n) {\n\t\tauto p =\
+    \ stringify(n);\n\t\tfor(; *p != 0; p++) {\n\t\t\tput_char(*p);\n\t\t}\n\t\treturn\
+    \ *this;\n\t}\n} fast_output;\n\n#define ostream FastOutput\n#define cout fast_output\n\
+    \n} // namespace std\n#line 4 \"library/modint/modint.hpp\"\n#include <algorithm>\r\
+    \n#line 6 \"library/modint/modint.hpp\"\n#include <random>\r\n#include <chrono>\r\
+    \n#line 2 \"library/math/safe-mod.hpp\"\n\r\nnamespace felix {\r\n\r\nnamespace\
+    \ internal {\r\n\r\ntemplate<class T>\r\nconstexpr T safe_mod(T x, T m) {\r\n\t\
+    x %= m;\r\n\tif(x < 0) {\r\n\t\tx += m;\r\n\t}\r\n\treturn x;\r\n}\r\n\r\n} //\
+    \ namespace internal\r\n\r\n} // namespace felix\n#line 3 \"library/math/inv-gcd.hpp\"\
     \n\r\nnamespace felix {\r\n\r\nnamespace internal {\r\n\r\ntemplate<class T>\r\
     \nconstexpr std::pair<T, T> inv_gcd(T a, T b) {\r\n\ta = safe_mod(a, b);\r\n\t\
     if(a == 0) {\r\n\t\treturn {b, 0};\r\n\t}\r\n\tT s = b, t = a;\r\n\tT m0 = 0,\
@@ -300,127 +350,41 @@ data:
     \n\t\tconst int offset = half_size * i;\r\n\t\tconst int jmax = std::min(n + m\
     \ - 1 - offset, max_size);\r\n\t\tfor(int j = 0; j < jmax; ++j) {\r\n\t\t\tc[offset\
     \ + j] += cs[i][j] * inv_max_size;\r\n\t\t}\r\n\t}\r\n\treturn c;\r\n}\r\n\r\n\
-    } // namespace felix\r\n#line 9 \"library/formal-power-series/poly.hpp\"\n\r\n\
-    namespace felix {\r\n\r\ntemplate<int mod>\r\nstruct Poly {\r\n\tusing mint =\
-    \ modint<mod>;\r\n\r\npublic:\r\n\tPoly() {}\r\n\texplicit Poly(int n) : a(n)\
-    \ {}\r\n\texplicit Poly(const std::vector<mint>& a) : a(a) {}\r\n\tPoly(const\
-    \ std::initializer_list<mint>& a) : a(a) {}\r\n\r\n\ttemplate<class F>\r\n\texplicit\
-    \ Poly(int n, F f) : a(n) {\r\n\t\tfor(int i = 0; i < n; i++) {\r\n\t\t\ta[i]\
-    \ = f(i);\r\n\t\t}\r\n\t}\r\n\r\n\tconstexpr int size() const {\r\n\t\treturn\
-    \ (int) a.size();\r\n\t}\r\n\r\n\tconstexpr void resize(int n) {\r\n\t\ta.resize(n);\r\
-    \n\t}\r\n\r\n\tconstexpr void shrink() {\r\n\t\twhile(size() && a.back() == 0)\
-    \ {\r\n\t\t\ta.pop_back();\r\n\t\t}\r\n\t}\r\n\r\n\tconstexpr mint operator[](int\
-    \ idx) const {\r\n\t\tif(idx >= 0 && idx < size()) {\r\n\t\t\treturn a[idx];\r\
-    \n\t\t} else {\r\n\t\t\treturn 0;\r\n\t\t}\r\n\t}\r\n\r\n\tconstexpr mint& operator[](int\
-    \ idx) {\r\n\t\treturn a[idx];\r\n\t}\r\n\r\n\tconstexpr friend Poly operator+(const\
-    \ Poly& a, const Poly& b) {\r\n\t\tPoly c(std::max(a.size(), b.size()));\r\n\t\
-    \tfor(int i = 0; i < c.size(); i++) {\r\n\t\t\tc[i] = a[i] + b[i];\r\n\t\t}\r\n\
-    \t\treturn c;\r\n\t}\r\n\r\n\tconstexpr friend Poly operator-(const Poly& a, const\
-    \ Poly& b) {\r\n\t\tPoly c(std::max(a.size(), b.size()));\r\n\t\tfor(int i = 0;\
-    \ i < c.size(); i++) {\r\n\t\t\tc[i] = a[i] - b[i];\r\n\t\t}\r\n\t\treturn c;\r\
-    \n\t}\r\n\r\n\tconstexpr friend Poly operator*(Poly a, Poly b) {\r\n\t\treturn\
-    \ Poly(convolution(a.a, b.a));\r\n\t}\r\n\r\n\tconstexpr friend Poly operator*(mint\
-    \ a, Poly b) {\r\n\t\tfor(int i = 0; i < b.size(); i++) {\r\n\t\t\tb[i] *= a;\r\
-    \n\t\t}\r\n\t\treturn b;\r\n\t}\r\n\r\n\tconstexpr friend Poly operator*(Poly\
-    \ a, mint b) {\r\n\t\tfor(int i = 0; i < a.size(); i++) {\r\n\t\t\ta[i] *= b;\r\
-    \n\t\t}\r\n\t\treturn a;\r\n\t}\r\n\r\n\tconstexpr Poly& operator+=(Poly b) {\r\
-    \n\t\treturn (*this) = (*this) + b;\r\n\t}\r\n\r\n\tconstexpr Poly& operator-=(Poly\
-    \ b) {\r\n\t\treturn (*this) = (*this) - b;\r\n\t}\r\n\r\n\tconstexpr Poly& operator*=(Poly\
-    \ b) {\r\n\t\treturn (*this) = (*this) * b;\r\n\t}\r\n\r\n\tconstexpr Poly& operator*=(mint\
-    \ b) {\r\n\t\treturn (*this) = (*this) * b;\r\n\t}\r\n\r\n\tconstexpr Poly mulxk(int\
-    \ k) const {\r\n\t\tauto b = a;\r\n\t\tb.insert(b.begin(), k, mint(0));\r\n\t\t\
-    return Poly(b);\r\n\t}\r\n\r\n\tconstexpr Poly modxk(int k) const {\r\n\t\tk =\
-    \ std::min(k, size());\r\n\t\treturn Poly(std::vector<mint>(a.begin(), a.begin()\
-    \ + k));\r\n\t}\r\n\r\n\tconstexpr Poly divxk(int k) const {\r\n\t\tif(size()\
-    \ <= k) {\r\n\t\t\treturn Poly();\r\n\t\t}\r\n\t\treturn Poly(std::vector<mint>(a.begin()\
-    \ + k, a.end()));\r\n\t}\r\n\r\n\tconstexpr Poly deriv() const {\r\n\t\tif(a.empty())\
-    \ {\r\n\t\t\treturn Poly();\r\n\t\t}\r\n\t\tPoly c(size() - 1);\r\n\t\tfor(int\
-    \ i = 0; i < size() - 1; ++i) {\r\n\t\t\tc[i] = (i + 1) * a[i + 1];\r\n\t\t}\r\
-    \n\t\treturn c;\r\n\t}\r\n\r\n\tconstexpr Poly integr() const {\r\n\t\tPoly c(size()\
-    \ + 1);\r\n\t\tfor(int i = 0; i < size(); ++i) {\r\n\t\t\tc[i + 1] = a[i] / mint(i\
-    \ + 1);\r\n\t\t}\r\n\t\treturn c;\r\n\t}\r\n\r\n\tconstexpr Poly inv(int m = -1)\
-    \ const {\r\n\t\tif(m == -1) {\r\n\t\t\tm = size();\r\n\t\t}\r\n\t\tPoly x{a[0].inv()};\r\
-    \n\t\tint k = 1;\r\n\t\twhile(k < m) {\r\n\t\t\tk *= 2;\r\n\t\t\tx = (x * (Poly{mint(2)}\
-    \ - modxk(k) * x)).modxk(k);\r\n\t\t}\r\n\t\treturn x.modxk(m);\r\n\t}\r\n\r\n\
-    \tconstexpr Poly log(int m = -1) const {\r\n\t\tif(m == -1) {\r\n\t\t\tm = size();\r\
-    \n\t\t}\r\n\t\treturn (deriv() * inv(m)).integr().modxk(m);\r\n\t}\r\n\r\n\tconstexpr\
-    \ Poly exp(int m = -1) const {\r\n\t\tif(m == -1) {\r\n\t\t\tm = size();\r\n\t\
-    \t}\r\n\t\tPoly x{mint(1)};\r\n\t\tint k = 1;\r\n\t\twhile(k < m) {\r\n\t\t\t\
-    k *= 2;\r\n\t\t\tx = (x * (Poly{mint(1)} - x.log(k) + modxk(k))).modxk(k);\r\n\
-    \t\t}\r\n\t\treturn x.modxk(m);\r\n\t}\r\n\r\n\tconstexpr Poly pow(long long k,\
-    \ int m = -1) const {\r\n\t\tif(m == -1) {\r\n\t\t\tm = size();\r\n\t\t}\r\n\t\
-    \tif(k == 0) {\r\n\t\t\tPoly b(m);\r\n\t\t\tb[0] = 1;\r\n\t\t\treturn b;\r\n\t\
-    \t}\r\n\t\tint s = 0, sz = size();\r\n\t\twhile(s < sz && a[s] == 0) {\r\n\t\t\
-    \ts += 1;\r\n\t\t}\r\n\t\tif(s == sz) {\r\n\t\t\treturn *this;\r\n\t\t}\r\n\t\t\
-    if(m > 0 && s >= (sz + k - 1) / k) {\r\n\t\t\treturn Poly(m);\r\n\t\t}\r\n\t\t\
-    if(s * k >= m) {\r\n\t\t\treturn Poly(m);\r\n\t\t}\r\n\t\treturn (((divxk(s) *\
-    \ a[s].inv()).log(m) * mint(k)).exp(m) * a[s].pow(k)).mulxk(s * k).modxk(m);\r\
-    \n\t}\r\n\r\n\tconstexpr bool has_sqrt() const {\r\n\t\tif(size() == 0) {\r\n\t\
-    \t\treturn true;\r\n\t\t}\r\n\t\tint x = 0;\r\n\t\twhile(x < size() && a[x] ==\
-    \ 0) {\r\n\t\t\tx += 1;\r\n\t\t}\r\n\t\tif(x == size()) {\r\n\t\t\treturn true;\r\
-    \n\t\t}\r\n\t\tif(x % 2 == 1) {\r\n\t\t\treturn false;\r\n\t\t}\r\n\t\tmint y\
-    \ = a[x];\r\n\t\treturn (y == 0 || y.pow((mod - 1) / 2) == 1);\r\n\t}\r\n\r\n\t\
-    constexpr Poly sqrt(int m = -1) const {\r\n\t\tif(m == -1) {\r\n\t\t\tm = size();\r\
-    \n\t\t}\r\n\t\tif(size() == 0) {\r\n\t\t\treturn Poly();\r\n\t\t}\r\n\t\tint x\
-    \ = 0;\r\n\t\twhile(x < size() && a[x] == 0) {\r\n\t\t\tx += 1;\r\n\t\t}\r\n\t\
-    \tif(x == size()) {\r\n\t\t\treturn Poly(size());\r\n\t\t}\r\n\t\tPoly f = divxk(x);\r\
-    \n\t\tPoly g({mint(f[0]).sqrt()});\r\n\t\tmint inv2 = mint(1) / 2;\r\n\t\tfor(int\
-    \ i = 1; i < m; i *= 2) {\r\n\t\t\tg = (g + f.modxk(i * 2) * g.inv(i * 2)) * inv2;\r\
-    \n\t\t}\r\n\t\treturn g.modxk(m).mulxk(x / 2);\r\n\t}\r\n\r\n\tconstexpr Poly\
-    \ shift(mint c) const {\r\n\t\tint n = size();\r\n\t\tmint::prepare(n);\r\n\t\t\
-    Poly b(*this);\r\n\t\tfor(int i = 0; i < n; i++) {\r\n\t\t\tb[i] *= mint(i).fact();\r\
-    \n\t\t}\r\n\t\tstd::reverse(b.a.begin(), b.a.end());\r\n\t\tPoly exp_cx(std::vector<mint>(n,\
-    \ mint(1)));\r\n\t\tfor(int i = 1; i < n; i++) {\r\n\t\t\texp_cx[i] = exp_cx[i\
-    \ - 1] * c / i;\r\n\t\t}\r\n\t\tb = (b * exp_cx).modxk(n);\r\n\t\tstd::reverse(b.a.begin(),\
-    \ b.a.end());\r\n\t\tfor(int i = 0; i < n; i++) {\r\n\t\t\tb[i] *= mint(i).inv_fact();\r\
-    \n\t\t}\r\n\t\treturn b;\r\n\t}\r\n\r\n\tconstexpr Poly mulT(Poly b) const {\r\
-    \n\t\tif(b.size() == 0) {\r\n\t\t\treturn Poly();\r\n\t\t}\r\n\t\tint n = b.size();\r\
-    \n\t\tstd::reverse(b.a.begin(), b.a.end());\r\n\t\treturn ((*this) * b).divxk(n\
-    \ - 1);\r\n\t}\r\n\r\n\tstd::vector<mint> eval(std::vector<mint> x) const {\r\n\
-    \t\tif(size() == 0) {\r\n\t\t\treturn std::vector<mint>(x.size(), mint(0));\r\n\
-    \t\t}\r\n\t\tconst int n = std::max((int) x.size(), size());\r\n\t\tstd::vector<Poly>\
-    \ q(4 * n);\r\n\t\tstd::vector<mint> ans(x.size());\r\n\t\tx.resize(n);\r\n\t\t\
-    std::function<void(int, int, int)> build = [&](int p, int l, int r) {\r\n\t\t\t\
-    if(r - l == 1) {\r\n\t\t\t\tq[p] = Poly{1, -x[l]};\r\n\t\t\t} else {\r\n\t\t\t\
-    \tint m = (l + r) / 2;\r\n\t\t\t\tbuild(2 * p, l, m);\r\n\t\t\t\tbuild(2 * p +\
-    \ 1, m, r);\r\n\t\t\t\tq[p] = q[2 * p] * q[2 * p + 1];\r\n\t\t\t}\r\n\t\t};\r\n\
-    \t\tbuild(1, 0, n);\r\n\t\tstd::function<void(int, int, int, const Poly&)> work\
-    \ = [&](int p, int l, int r, const Poly& num) {\r\n\t\t\tif(r - l == 1) {\r\n\t\
-    \t\t\tif(l < (int) ans.size()) {\r\n\t\t\t\t\tans[l] = num[0];\r\n\t\t\t\t}\r\n\
-    \t\t\t} else {\r\n\t\t\t\tint m = (l + r) / 2;\r\n\t\t\t\twork(2 * p, l, m, num.mulT(q[2\
-    \ * p + 1]).modxk(m - l));\r\n\t\t\t\twork(2 * p + 1, m, r, num.mulT(q[2 * p]).modxk(r\
-    \ - m));\r\n\t\t\t}\r\n\t\t};\r\n\t\twork(1, 0, n, mulT(q[1].inv(n)));\r\n\t\t\
-    return ans;\r\n\t}\r\n\r\nprivate:\r\n\tstd::vector<mint> a;\r\n};\r\n\r\n} //\
-    \ namespace felix\r\n#line 5 \"test/yosupo/Polynomial/Polynomial-Taylor-Shift.test.cpp\"\
-    \nusing namespace std;\r\nusing namespace felix;\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\
-    \n\tcin.tie(0);\r\n\tint n, c;\r\n\tcin >> n >> c;\r\n\tPoly<998244353> a(n);\r\
-    \n\tfor(int i = 0; i < n; i++) {\r\n\t\tcin >> a[i];\r\n\t}\r\n\ta = a.shift(c);\r\
-    \n\tfor(int i = 0; i < n; i++) {\r\n\t\tcout << a[i] << \" \\n\"[i == n - 1];\r\
-    \n\t}\r\n\treturn 0;\r\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/polynomial_taylor_shift\"\
-    \r\n\r\n#include <iostream>\r\n#include \"../../../library/formal-power-series/poly.hpp\"\
-    \r\nusing namespace std;\r\nusing namespace felix;\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\
-    \n\tcin.tie(0);\r\n\tint n, c;\r\n\tcin >> n >> c;\r\n\tPoly<998244353> a(n);\r\
-    \n\tfor(int i = 0; i < n; i++) {\r\n\t\tcin >> a[i];\r\n\t}\r\n\ta = a.shift(c);\r\
-    \n\tfor(int i = 0; i < n; i++) {\r\n\t\tcout << a[i] << \" \\n\"[i == n - 1];\r\
-    \n\t}\r\n\treturn 0;\r\n}"
+    } // namespace felix\r\n#line 8 \"test/yosupo/Convolution/Convolution-Large.test.cpp\"\
+    \nusing namespace std;\r\nusing namespace felix;\r\n\r\nusing mint = modint998244353;\r\
+    \n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\n\tcin.tie(0);\r\n\tint\
+    \ n, m;\r\n\tcin >> n >> m;\r\n\tvector<mint> a(n), b(m);\r\n\tfor(int i = 0;\
+    \ i < n; i++) {\r\n\t\tcin >> a[i];\r\n\t}\r\n\tfor(int i = 0; i < m; i++) {\r\
+    \n\t\tcin >> b[i];\r\n\t}\r\n\tauto ans = convolution_large(a, b);\r\n\tfor(int\
+    \ i = 0; i < n + m - 1; i++) {\r\n\t\tcout << ans[i] << \" \\n\"[i == n + m -\
+    \ 2];\r\n\t}\r\n\treturn 0;\r\n}\r\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/convolution_mod_large\"\
+    \r\n\r\n#include <iostream>\r\n#include <vector>\r\n#include \"../../../library/misc/fastio.hpp\"\
+    \r\n#include \"../../../library/modint/modint.hpp\"\r\n#include \"../../../library/convolution/NTT.hpp\"\
+    \r\nusing namespace std;\r\nusing namespace felix;\r\n\r\nusing mint = modint998244353;\r\
+    \n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\n\tcin.tie(0);\r\n\tint\
+    \ n, m;\r\n\tcin >> n >> m;\r\n\tvector<mint> a(n), b(m);\r\n\tfor(int i = 0;\
+    \ i < n; i++) {\r\n\t\tcin >> a[i];\r\n\t}\r\n\tfor(int i = 0; i < m; i++) {\r\
+    \n\t\tcin >> b[i];\r\n\t}\r\n\tauto ans = convolution_large(a, b);\r\n\tfor(int\
+    \ i = 0; i < n + m - 1; i++) {\r\n\t\tcout << ans[i] << \" \\n\"[i == n + m -\
+    \ 2];\r\n\t}\r\n\treturn 0;\r\n}\r\n"
   dependsOn:
-  - library/formal-power-series/poly.hpp
-  - library/modint/modint.hpp
+  - library/misc/fastio.hpp
   - library/misc/type-traits.hpp
+  - library/modint/modint.hpp
   - library/math/inv-gcd.hpp
   - library/math/safe-mod.hpp
   - library/convolution/NTT.hpp
   isVerificationFile: true
-  path: test/yosupo/Polynomial/Polynomial-Taylor-Shift.test.cpp
+  path: test/yosupo/Convolution/Convolution-Large.test.cpp
   requiredBy: []
   timestamp: '2023-05-13 10:23:52+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yosupo/Polynomial/Polynomial-Taylor-Shift.test.cpp
+documentation_of: test/yosupo/Convolution/Convolution-Large.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/Polynomial/Polynomial-Taylor-Shift.test.cpp
-- /verify/test/yosupo/Polynomial/Polynomial-Taylor-Shift.test.cpp.html
-title: test/yosupo/Polynomial/Polynomial-Taylor-Shift.test.cpp
+- /verify/test/yosupo/Convolution/Convolution-Large.test.cpp
+- /verify/test/yosupo/Convolution/Convolution-Large.test.cpp.html
+title: test/yosupo/Convolution/Convolution-Large.test.cpp
 ---

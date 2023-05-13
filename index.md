@@ -111,12 +111,6 @@ data:
     - icon: ':question:'
       path: library/math/inv-gcd.hpp
       title: library/math/inv-gcd.hpp
-    - icon: ':warning:'
-      path: library/math/inv-mod.hpp
-      title: library/math/inv-mod.hpp
-    - icon: ':warning:'
-      path: library/math/pow-mod.hpp
-      title: library/math/pow-mod.hpp
     - icon: ':question:'
       path: library/math/safe-mod.hpp
       title: library/math/safe-mod.hpp
@@ -128,7 +122,7 @@ data:
       title: "xor basis (\u7DDA\u6027\u57FA)"
   - name: library/matrix
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: library/matrix/matrix.hpp
       title: library/matrix/matrix.hpp
   - name: library/misc
@@ -281,6 +275,9 @@ data:
       path: test/yosupo/Convolution/Bitwise-Xor-Convolution.test.cpp
       title: test/yosupo/Convolution/Bitwise-Xor-Convolution.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/yosupo/Convolution/Convolution-Large.test.cpp
+      title: test/yosupo/Convolution/Convolution-Large.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/Convolution/Convolution-Mod-1000000007.test.cpp
       title: test/yosupo/Convolution/Convolution-Mod-1000000007.test.cpp
     - icon: ':heavy_check_mark:'
@@ -409,33 +406,33 @@ data:
       title: test/yosupo/Math/Sum-of-Floor-of-Linear.test.cpp
   - name: test/yosupo/Matrix
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/Matrix/Determinant-of-Matrix.test.cpp
       title: test/yosupo/Matrix/Determinant-of-Matrix.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/Matrix/Matrix-Product.test.cpp
       title: test/yosupo/Matrix/Matrix-Product.test.cpp
   - name: test/yosupo/Polynomial
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/Polynomial/Exp-of-Formal-Power-Series.test.cpp
       title: test/yosupo/Polynomial/Exp-of-Formal-Power-Series.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/Polynomial/Inv-of-Formal-Power-Series.test.cpp
       title: test/yosupo/Polynomial/Inv-of-Formal-Power-Series.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/Polynomial/Log-of-Formal-Power-Series.test.cpp
       title: test/yosupo/Polynomial/Log-of-Formal-Power-Series.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/Polynomial/Multipoint-Evaluation.test.cpp
       title: test/yosupo/Polynomial/Multipoint-Evaluation.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/Polynomial/Polynomial-Taylor-Shift.test.cpp
       title: test/yosupo/Polynomial/Polynomial-Taylor-Shift.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/Polynomial/Pow-of-Formal-Power-Series.test.cpp
       title: test/yosupo/Polynomial/Pow-of-Formal-Power-Series.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/Polynomial/Product-of-Polynomial-Sequence.test.cpp
       title: test/yosupo/Polynomial/Product-of-Polynomial-Sequence.test.cpp
     - icon: ':x:'

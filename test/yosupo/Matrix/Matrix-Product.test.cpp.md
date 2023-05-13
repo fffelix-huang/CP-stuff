@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: library/math/safe-mod.hpp
     title: library/math/safe-mod.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/matrix/matrix.hpp
     title: library/matrix/matrix.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: library/modint/modint.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/matrix_product
@@ -74,30 +74,30 @@ data:
     \ x;\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t}\r\n\t\treturn ret;\r\n\t}\r\n\r\nprivate:\r\
     \n\tstd::vector<std::vector<T>> a;\r\n};\r\n\r\n} // namespace felix\r\n#line\
     \ 6 \"library/modint/modint.hpp\"\n#include <random>\r\n#include <chrono>\r\n\
-    #line 3 \"library/misc/type-traits.hpp\"\n#include <numeric>\r\n#include <type_traits>\r\
-    \n\r\nnamespace felix {\r\n\r\nnamespace internal {\r\n\r\n#ifndef _MSC_VER\r\n\
-    template<class T> using is_signed_int128 = typename std::conditional<std::is_same<T,\
-    \ __int128_t>::value || std::is_same<T, __int128>::value, std::true_type, std::false_type>::type;\r\
-    \ntemplate<class T> using is_unsigned_int128 = typename std::conditional<std::is_same<T,\
-    \ __uint128_t>::value || std::is_same<T, unsigned __int128>::value, std::true_type,\
-    \ std::false_type>::type;\r\ntemplate<class T> using make_unsigned_int128 = typename\
-    \ std::conditional<std::is_same<T, __int128_t>::value, __uint128_t, unsigned __int128>;\r\
-    \ntemplate<class T> using is_integral = typename std::conditional<std::is_integral<T>::value\
-    \ || is_signed_int128<T>::value || is_unsigned_int128<T>::value, std::true_type,\
-    \ std::false_type>::type;\r\ntemplate<class T> using is_signed_int = typename\
-    \ std::conditional<(is_integral<T>::value && std::is_signed<T>::value) || is_signed_int128<T>::value,\
-    \ std::true_type, std::false_type>::type;\r\ntemplate<class T> using is_unsigned_int\
-    \ = typename std::conditional<(is_integral<T>::value && std::is_unsigned<T>::value)\
+    #include <type_traits>\r\n#line 3 \"library/misc/type-traits.hpp\"\n#include <numeric>\r\
+    \n#line 5 \"library/misc/type-traits.hpp\"\n\r\nnamespace felix {\r\n\r\nnamespace\
+    \ internal {\r\n\r\n#ifndef _MSC_VER\r\ntemplate<class T> using is_signed_int128\
+    \ = typename std::conditional<std::is_same<T, __int128_t>::value || std::is_same<T,\
+    \ __int128>::value, std::true_type, std::false_type>::type;\r\ntemplate<class\
+    \ T> using is_unsigned_int128 = typename std::conditional<std::is_same<T, __uint128_t>::value\
+    \ || std::is_same<T, unsigned __int128>::value, std::true_type, std::false_type>::type;\r\
+    \ntemplate<class T> using make_unsigned_int128 = typename std::conditional<std::is_same<T,\
+    \ __int128_t>::value, __uint128_t, unsigned __int128>;\r\ntemplate<class T> using\
+    \ is_integral = typename std::conditional<std::is_integral<T>::value || is_signed_int128<T>::value\
     \ || is_unsigned_int128<T>::value, std::true_type, std::false_type>::type;\r\n\
-    template<class T> using to_unsigned = typename std::conditional< is_signed_int128<T>::value,\
-    \ make_unsigned_int128<T>, typename std::conditional<std::is_signed<T>::value,\
-    \ std::make_unsigned<T>, std::common_type<T>>::type>::type;\r\n#else\r\ntemplate<class\
-    \ T> using is_integral = typename std::is_integral<T>;\r\ntemplate<class T> using\
-    \ is_signed_int = typename std::conditional<is_integral<T>::value && std::is_signed<T>::value,\
-    \ std::true_type, std::false_type>::type;\r\ntemplate<class T> using is_unsigned_int\
-    \ = typename std::conditional<is_integral<T>::value && std::is_unsigned<T>::value,\
+    template<class T> using is_signed_int = typename std::conditional<(is_integral<T>::value\
+    \ && std::is_signed<T>::value) || is_signed_int128<T>::value, std::true_type,\
+    \ std::false_type>::type;\r\ntemplate<class T> using is_unsigned_int = typename\
+    \ std::conditional<(is_integral<T>::value && std::is_unsigned<T>::value) || is_unsigned_int128<T>::value,\
     \ std::true_type, std::false_type>::type;\r\ntemplate<class T> using to_unsigned\
-    \ = typename std::conditional<is_signed_int<T>::value, std::make_unsigned<T>,\
+    \ = typename std::conditional< is_signed_int128<T>::value, make_unsigned_int128<T>,\
+    \ typename std::conditional<std::is_signed<T>::value, std::make_unsigned<T>, std::common_type<T>>::type>::type;\r\
+    \n#else\r\ntemplate<class T> using is_integral = typename std::is_integral<T>;\r\
+    \ntemplate<class T> using is_signed_int = typename std::conditional<is_integral<T>::value\
+    \ && std::is_signed<T>::value, std::true_type, std::false_type>::type;\r\ntemplate<class\
+    \ T> using is_unsigned_int = typename std::conditional<is_integral<T>::value &&\
+    \ std::is_unsigned<T>::value, std::true_type, std::false_type>::type;\r\ntemplate<class\
+    \ T> using to_unsigned = typename std::conditional<is_signed_int<T>::value, std::make_unsigned<T>,\
     \ std::common_type<T>>::type;\r\n#endif\r\n\r\ntemplate<class T> using is_signed_int_t\
     \ = std::enable_if_t<is_signed_int<T>::value>;\r\ntemplate<class T> using is_unsigned_int_t\
     \ = std::enable_if_t<is_unsigned_int<T>::value>;\r\ntemplate<class T> using to_unsigned_t\
@@ -113,7 +113,7 @@ data:
     \ m1 * u;\r\n\t\tauto tmp = s;\r\n\t\ts = t;\r\n\t\tt = tmp;\r\n\t\ttmp = m0;\r\
     \n\t\tm0 = m1;\r\n\t\tm1 = tmp;\r\n\t}\r\n\tif(m0 < 0) {\r\n\t\tm0 += b / s;\r\
     \n\t}\r\n\treturn {s, m0};\r\n}\r\n\r\n} // namespace internal\r\n\r\n} // namespace\
-    \ felix\r\n#line 10 \"library/modint/modint.hpp\"\n\r\nnamespace felix {\r\n\r\
+    \ felix\r\n#line 11 \"library/modint/modint.hpp\"\n\r\nnamespace felix {\r\n\r\
     \ntemplate<int id>\r\nstruct modint {\r\npublic:\r\n\tstatic constexpr int mod()\
     \ { return (id > 0 ? id : md); }\r\n \t\r\n\tstatic constexpr void set_mod(int\
     \ m) {\r\n\t\tif(id > 0 || md == m) {\r\n\t\t\treturn;\r\n\t\t}\r\n\t\tmd = m;\r\
@@ -180,6 +180,16 @@ data:
     \ modint<id>::facts = {1};\r\ntemplate<int id> std::vector<modint<id>> modint<id>::inv_facts\
     \ = {1};\r\ntemplate<int id> std::vector<modint<id>> modint<id>::invs = {0};\r\
     \n\r\nusing modint998244353 = modint<998244353>;\r\nusing modint1000000007 = modint<1000000007>;\r\
+    \n\r\nnamespace internal {\r\n\r\ntemplate<class T> struct is_modint : public\
+    \ std::false_type {};\r\ntemplate<int id> struct is_modint<modint<id>> : public\
+    \ std::true_type {};\r\n\r\ntemplate<class T, class ENABLE = void> struct is_static_modint\
+    \ : public std::false_type {};\r\ntemplate<int id> struct is_static_modint<modint<id>,\
+    \ std::enable_if_t<(id > 0)>> : public std::true_type {};\r\ntemplate<class T>\
+    \ using is_static_modint_t = std::enable_if_t<is_static_modint<T>::value>;\r\n\
+    \r\ntemplate<class T, class ENABLE = void> struct is_dynamic_modint : public std::false_type\
+    \ {};\r\ntemplate<int id> struct is_dynamic_modint<modint<id>, std::enable_if_t<(id\
+    \ <= 0)>> : public std::true_type {};\r\ntemplate<class T> using is_dynamic_modint_t\
+    \ = std::enable_if_t<is_dynamic_modint<T>::value>;\r\n\r\n} // namespace internal\r\
     \n\r\n} // namespace felix\r\n#line 6 \"test/yosupo/Matrix/Matrix-Product.test.cpp\"\
     \nusing namespace std;\r\nusing namespace felix;\r\n\r\nusing mint = modint998244353;\r\
     \n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\n\tcin.tie(0);\r\n\tint\
@@ -210,8 +220,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/Matrix/Matrix-Product.test.cpp
   requiredBy: []
-  timestamp: '2023-05-11 17:30:15+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-05-13 10:23:52+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/Matrix/Matrix-Product.test.cpp
 layout: document
