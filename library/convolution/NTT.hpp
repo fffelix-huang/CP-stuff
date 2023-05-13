@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <cassert>
 #include <type_traits>
+#include "../misc/type-traits.hpp"
 #include "../modint/modint.hpp"
 #include "../math/safe-mod.hpp"
 
@@ -255,7 +256,7 @@ std::vector<mint> convolution(const std::vector<mint>& a, const std::vector<mint
 	return internal::convolution_ntt(a, b);
 }
 
-template<int mod, class T, std::enable_if_t<std::is_integral_v<T>>* = nullptr>
+template<int mod, class T, std::enable_if_t<internal::is_integral<T>::value>* = nullptr>
 std::vector<T> convolution(const std::vector<T>& a, const std::vector<T>& b) {
 	using mint = modint<mod>;
 
