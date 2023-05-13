@@ -21,9 +21,9 @@ data:
     title: library/modint/modint.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/multipoint_evaluation
@@ -153,7 +153,7 @@ data:
     \n\r\n} // namespace felix\r\n#line 3 \"library/formal-power-series/poly.hpp\"\
     \n#include <initializer_list>\r\n#line 5 \"library/formal-power-series/poly.hpp\"\
     \n#include <functional>\r\n#line 3 \"library/convolution/NTT.hpp\"\n#include <array>\r\
-    \n#line 9 \"library/convolution/NTT.hpp\"\n\r\nnamespace felix {\r\n\r\nnamespace\
+    \n#line 10 \"library/convolution/NTT.hpp\"\n\r\nnamespace felix {\r\n\r\nnamespace\
     \ internal {\r\n\r\nconstexpr int primitive_root_constexpr(int m) {\r\n\tif(m\
     \ == 998244353) return 3;\r\n\tif(m == 167772161) return 3;\r\n\tif(m == 469762049)\
     \ return 3;\r\n\tif(m == 754974721) return 11;\r\n\tif(m == 880803841) return\
@@ -253,7 +253,7 @@ data:
     return {};\r\n\t}\r\n\tint sz = 1 << std::__lg(2 * (n + m - 1) - 1);\r\n\tassert((mint::mod()\
     \ - 1) % sz == 0);\r\n\tif(std::min(n, m) < 128) {\r\n\t\treturn n >= m ? internal::convolution_naive(a,\
     \ b) : internal::convolution_naive(b, a);\r\n\t}\r\n\treturn internal::convolution_ntt(a,\
-    \ b);\r\n}\r\n\r\ntemplate<int mod, class T, std::enable_if_t<std::is_integral_v<T>>*\
+    \ b);\r\n}\r\n\r\ntemplate<int mod, class T, std::enable_if_t<internal::is_integral<T>::value>*\
     \ = nullptr>\r\nstd::vector<T> convolution(const std::vector<T>& a, const std::vector<T>&\
     \ b) {\r\n\tusing mint = modint<mod>;\r\n\r\n\tint n = (int) a.size(), m = (int)\
     \ b.size();\r\n\tif(n == 0 || m == 0) {\r\n\t\treturn {};\r\n\t}\r\n\tint sz =\
@@ -420,8 +420,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/Polynomial/Multipoint-Evaluation.test.cpp
   requiredBy: []
-  timestamp: '2023-05-13 10:23:52+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-05-13 10:39:05+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Polynomial/Multipoint-Evaluation.test.cpp
 layout: document

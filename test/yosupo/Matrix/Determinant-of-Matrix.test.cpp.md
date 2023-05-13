@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: library/math/safe-mod.hpp
     title: library/math/safe-mod.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/matrix/matrix.hpp
     title: library/matrix/matrix.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: library/modint/modint.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/matrix_det
@@ -213,7 +213,7 @@ data:
   path: test/yosupo/Matrix/Determinant-of-Matrix.test.cpp
   requiredBy: []
   timestamp: '2023-05-13 10:23:52+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Matrix/Determinant-of-Matrix.test.cpp
 layout: document

@@ -122,7 +122,7 @@ data:
       title: "xor basis (\u7DDA\u6027\u57FA)"
   - name: library/matrix
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/matrix/matrix.hpp
       title: library/matrix/matrix.hpp
   - name: library/misc
@@ -406,30 +406,30 @@ data:
       title: test/yosupo/Math/Sum-of-Floor-of-Linear.test.cpp
   - name: test/yosupo/Matrix
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/Matrix/Determinant-of-Matrix.test.cpp
       title: test/yosupo/Matrix/Determinant-of-Matrix.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/Matrix/Matrix-Product.test.cpp
       title: test/yosupo/Matrix/Matrix-Product.test.cpp
   - name: test/yosupo/Polynomial
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/Polynomial/Exp-of-Formal-Power-Series.test.cpp
       title: test/yosupo/Polynomial/Exp-of-Formal-Power-Series.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/Polynomial/Inv-of-Formal-Power-Series.test.cpp
       title: test/yosupo/Polynomial/Inv-of-Formal-Power-Series.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/Polynomial/Log-of-Formal-Power-Series.test.cpp
       title: test/yosupo/Polynomial/Log-of-Formal-Power-Series.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/Polynomial/Multipoint-Evaluation.test.cpp
       title: test/yosupo/Polynomial/Multipoint-Evaluation.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/Polynomial/Polynomial-Taylor-Shift.test.cpp
       title: test/yosupo/Polynomial/Polynomial-Taylor-Shift.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/Polynomial/Pow-of-Formal-Power-Series.test.cpp
       title: test/yosupo/Polynomial/Pow-of-Formal-Power-Series.test.cpp
     - icon: ':x:'

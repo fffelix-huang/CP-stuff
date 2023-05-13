@@ -30,7 +30,6 @@ data:
     \ PROBLEM \"https://judge.yosupo.jp/problem/convolution_mod\"\r\n\r\n#include\
     \ <iostream>\r\n#line 2 \"library/convolution/NTT.hpp\"\n#include <vector>\r\n\
     #include <array>\r\n#include <algorithm>\r\n#include <cassert>\r\n#include <type_traits>\r\
-    \n#line 6 \"library/modint/modint.hpp\"\n#include <random>\r\n#include <chrono>\r\
     \n#line 3 \"library/misc/type-traits.hpp\"\n#include <numeric>\r\n#line 5 \"library/misc/type-traits.hpp\"\
     \n\r\nnamespace felix {\r\n\r\nnamespace internal {\r\n\r\n#ifndef _MSC_VER\r\n\
     template<class T> using is_signed_int128 = typename std::conditional<std::is_same<T,\
@@ -59,7 +58,8 @@ data:
     \ = std::enable_if_t<is_signed_int<T>::value>;\r\ntemplate<class T> using is_unsigned_int_t\
     \ = std::enable_if_t<is_unsigned_int<T>::value>;\r\ntemplate<class T> using to_unsigned_t\
     \ = typename to_unsigned<T>::type;\r\n\r\n}  // namespace internal\r\n\r\n}  //\
-    \ namespace felix\r\n#line 2 \"library/math/safe-mod.hpp\"\n\r\nnamespace felix\
+    \ namespace felix\r\n#line 6 \"library/modint/modint.hpp\"\n#include <random>\r\
+    \n#include <chrono>\r\n#line 2 \"library/math/safe-mod.hpp\"\n\r\nnamespace felix\
     \ {\r\n\r\nnamespace internal {\r\n\r\ntemplate<class T>\r\nconstexpr T safe_mod(T\
     \ x, T m) {\r\n\tx %= m;\r\n\tif(x < 0) {\r\n\t\tx += m;\r\n\t}\r\n\treturn x;\r\
     \n}\r\n\r\n} // namespace internal\r\n\r\n} // namespace felix\n#line 3 \"library/math/inv-gcd.hpp\"\
@@ -147,7 +147,7 @@ data:
     \ {};\r\ntemplate<int id> struct is_dynamic_modint<modint<id>, std::enable_if_t<(id\
     \ <= 0)>> : public std::true_type {};\r\ntemplate<class T> using is_dynamic_modint_t\
     \ = std::enable_if_t<is_dynamic_modint<T>::value>;\r\n\r\n} // namespace internal\r\
-    \n\r\n} // namespace felix\r\n#line 9 \"library/convolution/NTT.hpp\"\n\r\nnamespace\
+    \n\r\n} // namespace felix\r\n#line 10 \"library/convolution/NTT.hpp\"\n\r\nnamespace\
     \ felix {\r\n\r\nnamespace internal {\r\n\r\nconstexpr int primitive_root_constexpr(int\
     \ m) {\r\n\tif(m == 998244353) return 3;\r\n\tif(m == 167772161) return 3;\r\n\
     \tif(m == 469762049) return 3;\r\n\tif(m == 754974721) return 11;\r\n\tif(m ==\
@@ -247,7 +247,7 @@ data:
     return {};\r\n\t}\r\n\tint sz = 1 << std::__lg(2 * (n + m - 1) - 1);\r\n\tassert((mint::mod()\
     \ - 1) % sz == 0);\r\n\tif(std::min(n, m) < 128) {\r\n\t\treturn n >= m ? internal::convolution_naive(a,\
     \ b) : internal::convolution_naive(b, a);\r\n\t}\r\n\treturn internal::convolution_ntt(a,\
-    \ b);\r\n}\r\n\r\ntemplate<int mod, class T, std::enable_if_t<std::is_integral_v<T>>*\
+    \ b);\r\n}\r\n\r\ntemplate<int mod, class T, std::enable_if_t<internal::is_integral<T>::value>*\
     \ = nullptr>\r\nstd::vector<T> convolution(const std::vector<T>& a, const std::vector<T>&\
     \ b) {\r\n\tusing mint = modint<mod>;\r\n\r\n\tint n = (int) a.size(), m = (int)\
     \ b.size();\r\n\tif(n == 0 || m == 0) {\r\n\t\treturn {};\r\n\t}\r\n\tint sz =\
@@ -312,14 +312,14 @@ data:
     [i == n + m - 2];\r\n\t}\r\n\treturn 0;\r\n}\r\n"
   dependsOn:
   - library/convolution/NTT.hpp
-  - library/modint/modint.hpp
   - library/misc/type-traits.hpp
+  - library/modint/modint.hpp
   - library/math/inv-gcd.hpp
   - library/math/safe-mod.hpp
   isVerificationFile: true
   path: test/yosupo/Convolution/Convolution.test.cpp
   requiredBy: []
-  timestamp: '2023-05-13 10:23:52+08:00'
+  timestamp: '2023-05-13 10:39:05+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Convolution/Convolution.test.cpp
