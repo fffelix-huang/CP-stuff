@@ -5,6 +5,7 @@
 #include <cassert>
 #include <random>
 #include <chrono>
+#include <type_traits>
 #include "../misc/type-traits.hpp"
 #include "../math/inv-gcd.hpp"
 
@@ -194,5 +195,20 @@ template<int id> std::vector<modint<id>> modint<id>::invs = {0};
 
 using modint998244353 = modint<998244353>;
 using modint1000000007 = modint<1000000007>;
+
+namespace internal {
+
+template<class T> struct is_modint : public std::false_type {};
+template<int id> struct is_modint<modint<id>> : public std::true_type {};
+
+template<class T, class ENABLE = void> struct is_static_modint : public std::false_type {};
+template<int id> struct is_static_modint<modint<id>, std::enable_if_t<(id > 0)>> : public std::true_type {};
+template<class T> using is_static_modint_t = std::enable_if_t<is_static_modint<T>::value>;
+
+template<class T, class ENABLE = void> struct is_dynamic_modint : public std::false_type {};
+template<int id> struct is_dynamic_modint<modint<id>, std::enable_if_t<(id <= 0)>> : public std::true_type {};
+template<class T> using is_dynamic_modint_t = std::enable_if_t<is_dynamic_modint<T>::value>;
+
+} // namespace internal
 
 } // namespace felix

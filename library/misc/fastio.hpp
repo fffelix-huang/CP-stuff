@@ -2,6 +2,7 @@
 #include <iostream>
 #include <cstring>
 #include <type_traits>
+#include "type-traits.hpp"
 
 namespace std {
 
@@ -25,13 +26,9 @@ static struct FastInput {
 
 	inline void tie(int) {}
 
-	inline explicit operator bool() {
-		return cur != -1;
-	}
+	inline explicit operator bool() { return cur != -1; }
 
-	inline static bool is_blank(char c) {
-		return c <= ' ';
-	}
+	inline static bool is_blank(char c) { return c <= ' '; }
 
 	inline bool skip_blanks() {
 		while(is_blank(cur) && cur != -1) {
@@ -75,7 +72,7 @@ static struct FastInput {
 	}
 
 	template<class T>
-	inline typename std::enable_if<std::is_integral<T>::value, FastInput&>::type operator>>(T& n) {
+	inline typename std::enable_if<felix::internal::is_integral<T>::value, FastInput&>::type operator>>(T& n) {
 		return read_integer(n);
 	}
 
@@ -162,7 +159,7 @@ static struct FastOutput {
 	}
 
 	template<class T>
-	inline typename std::enable_if<std::is_integral<T>::value, char*>::type stringify(T n) {
+	inline typename std::enable_if<felix::internal::is_integral<T>::value, char*>::type stringify(T n) {
 		return integer_to_string(n);
 	}
 

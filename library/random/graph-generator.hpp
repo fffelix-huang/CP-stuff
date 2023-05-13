@@ -185,6 +185,37 @@ Graph sparse(int n, bool weighted = false, long long w_min = 1, long long w_max 
 	return g;
 }
 
+Graph connected(int n, bool weighted = false, long long w_min = 1, long long w_max = 1) {
+	set_weight(weighted, w_min, w_max);
+	Graph g(n, weighted);
+	if(n == 1) {
+		return g;
+	}
+	std::set<std::pair<int, int>> s;
+	auto perm = rnd.permutation(n);
+	for(int i = 1; i < n; i++) {
+		int u = perm[rnd.next(i)];
+		int v = perm[i];
+		add_edge(g, u, v);
+		s.emplace(std::min(u, v), std::max(u, v));
+	}
+	// int m = rnd.next(n - 1, n * (n - 1) / 2) - (n - 1);
+	int m = rnd.next(n - 1, 2 * n);
+	while(m--) {
+		int u, v;
+		do {
+			u = rnd.next(n - 1);
+			v = rnd.next(u + 1, n - 1);
+		} while(s.count(std::make_pair(u, v)));
+		s.emplace(u, v);
+		if(rnd.next(2)) {
+			std::swap(u, v);
+		}
+		add_edge(g, u, v);
+	}
+	return g;
+}
+
 Graph bipartite(int n, bool weighted = false, long long w_min = 1, long long w_max = 1) {
 	set_weight(weighted, w_min, w_max);
 	Graph g(n, weighted);

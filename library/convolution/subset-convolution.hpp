@@ -2,7 +2,7 @@
 #include <vector>
 #include <algorithm>
 #include <cassert>
-#include <type_traits>
+#include "../misc/type-traits.hpp"
 
 namespace felix {
 
@@ -37,7 +37,7 @@ void xor_transform(std::vector<T>& a, bool inv) {
 		x = z;
 	});
 	if(inv) {
-		if constexpr(std::is_integral_v<T>) {
+		if constexpr(internal::is_integral<T>::value) {
 			for(auto& x : a) {
 				x /= a.size();
 			}

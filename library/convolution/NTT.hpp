@@ -205,7 +205,7 @@ struct NTT {
 
 template<int mod> NTT_prepare<mod> NTT<mod>::info;
 
-template<class mint>
+template<class mint, internal::is_static_modint_t<mint>* = nullptr>
 std::vector<mint> convolution_naive(const std::vector<mint>& a, const std::vector<mint>& b) {
 	int n = (int) a.size(), m = (int) b.size();
 	assert(n >= m);
@@ -219,7 +219,7 @@ std::vector<mint> convolution_naive(const std::vector<mint>& a, const std::vecto
 	return ans;
 }
 
-template<class mint>
+template<class mint, internal::is_static_modint_t<mint>* = nullptr>
 std::vector<mint> convolution_ntt(std::vector<mint> a, std::vector<mint> b) {
 	int n = (int) a.size(), m = (int) b.size();
 	int sz = 1 << std::__lg(2 * (n + m - 1) - 1);
@@ -241,18 +241,18 @@ std::vector<mint> convolution_ntt(std::vector<mint> a, std::vector<mint> b) {
 
 } // namespace internal
 
-template<class mint>
+template<class mint, internal::is_static_modint_t<mint>* = nullptr>
 std::vector<mint> convolution(const std::vector<mint>& a, const std::vector<mint>& b) {
-    int n = (int) a.size(), m = (int) b.size();
-    if(n == 0 || m == 0) {
-    	return {};
-    }
-    int sz = 1 << std::__lg(2 * (n + m - 1) - 1);
-    assert((mint::mod() - 1) % sz == 0);
-    if(std::min(n, m) < 128) {
-    	return n >= m ? internal::convolution_naive(a, b) : internal::convolution_naive(b, a);
-    }
-    return internal::convolution_ntt(a, b);
+	int n = (int) a.size(), m = (int) b.size();
+	if(n == 0 || m == 0) {
+		return {};
+	}
+	int sz = 1 << std::__lg(2 * (n + m - 1) - 1);
+	assert((mint::mod() - 1) % sz == 0);
+	if(std::min(n, m) < 128) {
+		return n >= m ? internal::convolution_naive(a, b) : internal::convolution_naive(b, a);
+	}
+	return internal::convolution_ntt(a, b);
 }
 
 template<int mod, class T, std::enable_if_t<std::is_integral_v<T>>* = nullptr>
@@ -280,12 +280,9 @@ std::vector<__uint128_t> convolution_u128(const std::vector<T>& a, const std::ve
 	static constexpr int m0 = 167772161;
 	static constexpr int m1 = 469762049;
 	static constexpr int m2 = 754974721;
-	using mint0 = modint<m0>;
-	using mint1 = modint<m1>;
-	using mint2 = modint<m2>;
-	constexpr int r01 = mint1(m0).inv()();
-	constexpr int r02 = mint2(m0).inv()();
-	constexpr int r12 = mint2(m1).inv()();
+	constexpr int r01 = modint<m1>(m0).inv()();
+	constexpr int r02 = modint<m2>(m0).inv()();
+	constexpr int r12 = modint<m2>(m1).inv()();
 	constexpr int r02r12 = 1LL * (r02) * r12 % m2;
 	constexpr long long w1 = m0;
 	constexpr long long w2 = 1LL * m0 * m1;
@@ -314,6 +311,54 @@ std::vector<__uint128_t> convolution_u128(const std::vector<T>& a, const std::ve
 		ans[i] = x + y * w1 + __uint128_t(z) * w2;
 	}
 	return ans;
+}
+
+template<class mint, internal::is_static_modint_t<mint>* = nullptr>
+std::vector<mint> convolution_large(const std::vector<mint>& a, const std::vector<mint>& b) {
+	static constexpr int max_size = (mint::mod() - 1) & -(mint::mod() - 1);
+	static constexpr int half_size = max_size >> 1;
+	static constexpr int inv_max_size = internal::inv_gcd(max_size, mint::mod()).second;
+
+	const int n = (int) a.size(), m = (int) b.size();
+	if(n == 0 || m == 0) {
+		return {};
+	}
+	if(std::min(n, m) < 128 || n + m - 1 <= max_size) {
+		return convolution(a, b);
+	}
+	const int dn = (n + half_size - 1) / half_size;
+	const int dm = (m + half_size - 1) / half_size;
+	std::vector<std::vector<mint>> as(dn), bs(dm);
+	for(int i = 0; i < dn; ++i) {
+		const int offset = half_size * i;
+		as[i] = std::vector<mint>(a.begin() + offset, a.begin() + std::min(n, offset + half_size));
+		as[i].resize(max_size);
+		internal::NTT<mint::mod()>::NTT4(as[i]);
+	}
+	for(int j = 0; j < dm; ++j) {
+		const int offset = half_size * j;
+		bs[j] = std::vector<mint>(b.begin() + offset, b.begin() + std::min(m, offset + half_size));
+		bs[j].resize(max_size);
+		internal::NTT<mint::mod()>::NTT4(bs[j]);
+	}
+	std::vector<std::vector<mint>> cs(dn + dm - 1, std::vector<mint>(max_size));
+	for(int i = 0; i < dn; ++i) {
+		for(int j = 0; j < dm; ++j) {
+			for(int k = 0; k < max_size; ++k) {
+				cs[i + j][k] += as[i][k] * bs[j][k];
+			}
+		}
+	}
+	std::vector<mint> c(n + m - 1);
+	for(int i = 0; i < dn + dm - 1; ++i) {
+		internal::NTT<mint::mod()>::iNTT4(cs[i]);
+		const int offset = half_size * i;
+		const int jmax = std::min(n + m - 1 - offset, max_size);
+		for(int j = 0; j < jmax; ++j) {
+			c[offset + j] += cs[i][j] * inv_max_size;
+		}
+	}
+	return c;
 }
 
 } // namespace felix
