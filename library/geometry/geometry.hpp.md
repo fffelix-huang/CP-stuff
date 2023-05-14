@@ -4,7 +4,7 @@ data:
   - icon: ':warning:'
     path: library/geometry/line.hpp
     title: library/geometry/line.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/geometry/point.hpp
     title: library/geometry/point.hpp
   _extendedRequiredBy: []

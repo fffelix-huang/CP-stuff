@@ -47,7 +47,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/data-structure/segtree.hpp
       title: library/data-structure/segtree.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/data-structure/sparse-table.hpp
       title: library/data-structure/sparse-table.hpp
     - icon: ':heavy_check_mark:'
@@ -80,7 +80,7 @@ data:
     - icon: ':warning:'
       path: library/geometry/line.hpp
       title: library/geometry/line.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/geometry/point.hpp
       title: library/geometry/point.hpp
   - name: library/graph
@@ -183,7 +183,7 @@ data:
       title: Z Algorithm
   - name: library/tree
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/tree/HLD.hpp
       title: "Heavy Light Decomposition (\u8F15\u91CD\u93C8\u5256\u5206)"
     - icon: ':warning:'
@@ -192,7 +192,7 @@ data:
   verificationCategories:
   - name: test/aoj/cgl
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/cgl/Area.test.cpp
       title: test/aoj/cgl/Area.test.cpp
   - name: test/aoj/dsl
@@ -466,7 +466,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/Tree/Jump-on-Tree.test.cpp
       title: test/yosupo/Tree/Jump-on-Tree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/Tree/Lowest-Common-Ancestor.test.cpp
       title: test/yosupo/Tree/Lowest-Common-Ancestor.test.cpp
 layout: toppage

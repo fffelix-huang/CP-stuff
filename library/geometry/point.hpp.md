@@ -12,15 +12,15 @@ data:
     path: library/geometry/line.hpp
     title: library/geometry/line.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/cgl/Area.test.cpp
     title: test/aoj/cgl/Area.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/Geometry/Sort-Points-by-Argument.test.cpp
     title: test/yosupo/Geometry/Sort-Points-by-Argument.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"library/geometry/point.hpp\"\n#include <iostream>\n#include\
@@ -87,7 +87,7 @@ data:
   - library/geometry/closest-pair.hpp
   - library/geometry/geometry.hpp
   timestamp: '2023-05-15 01:11:19+08:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/Geometry/Sort-Points-by-Argument.test.cpp
   - test/aoj/cgl/Area.test.cpp
