@@ -1,4 +1,5 @@
 {
+"test/aoj/cgl/Area.test.cpp": "2023-05-15 01:27:21 +0800",
 "test/aoj/dsl/Disjoint-Set-Union-Find-Tree.test.cpp": "2023-05-04 07:27:28 +0800",
 "test/aoj/dsl/RMQ-and-RAQ.test.cpp": "2023-04-22 00:13:18 +0800",
 "test/aoj/dsl/RMQ-and-RUQ.test.cpp": "2023-04-22 00:13:18 +0800",
@@ -79,5 +80,6 @@
 "test/yosupo/String/Number-of-Substrings.test.cpp": "2023-04-26 14:05:20 +0800",
 "test/yosupo/String/Suffix-Array.test.cpp": "2023-04-26 14:05:20 +0800",
 "test/yosupo/String/Z-Algorithm.test.cpp": "2023-04-20 12:43:08 +0800",
-"test/yosupo/Tree/Jump-on-Tree.test.cpp": "2023-05-15 01:11:19 +0800"
+"test/yosupo/Tree/Jump-on-Tree.test.cpp": "2023-05-15 01:11:19 +0800",
+"test/yosupo/Tree/Lowest-Common-Ancestor.test.cpp": "2023-05-15 01:11:19 +0800"
 }
