@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <array>
 #include <cassert>
 #include <algorithm>
 #include <cmath>
@@ -23,11 +24,13 @@ public:
 	std::vector<int> tour;
 	std::vector<int> first_occurrence;
 	std::vector<int> id;
+	std::vector<std::pair<int, int>> euler_tour;
 	sparse_table<std::pair<int, int>, __lca_op> st;
 
 	HLD() : n(0) {}
 	explicit HLD(int _n) : n(_n), g(_n), subtree_size(_n), parent(_n), depth(_n), top(_n), first_occurrence(_n), id(_n) {
 		tour.reserve(n);
+		euler_tour.reserve(2 * n - 1);
 	}
 
 	void add_edge(int u, int v) {
@@ -41,10 +44,8 @@ public:
 		assert(0 <= root && root < n);
 		parent[root] = -1;
 		top[root] = root;
-		std::vector<std::pair<int, int>> euler_tour;
-		euler_tour.reserve(2 * n - 1);
 		dfs_sz(root);
-		dfs_link(euler_tour, root);
+		dfs_link(root);
 		st = sparse_table<std::pair<int, int>, __lca_op>(euler_tour);
 	}
 
@@ -71,6 +72,18 @@ public:
 
 	int get_distance(int u, int v) {
 		return depth[u] + depth[v] - 2 * depth[(get_lca(u, v))];
+	}
+
+	std::pair<int, std::array<int, 2>> get_diameter() const {
+		std::pair<int, int> u_max = {-1, -1};
+		std::pair<int, int> ux_max = {-1, -1};
+		std::pair<int, std::array<int, 2>> uxv_max = {-1, {-1, -1}};
+		for(auto [d, u] : euler) {
+			u_max = std::max(u_max, {d, u});
+			ux_max = std::max(ux_max, {u_max.first - 2 * d, u_max.second});
+			uxv_max = std::max(uxv_max, {ux_max.first + d, {ux_max.second, u}});
+		}
+		return uxv_max;
 	}
 
 	int get_kth_ancestor(int u, int k) {
@@ -147,14 +160,14 @@ private:
 		}
 	}
 
-	void dfs_link(std::vector<std::pair<int, int>>& euler_tour, int u) {
+	void dfs_link(int u) {
 		first_occurrence[u] = (int) euler_tour.size();
 		id[u] = (int) tour.size();
 		euler_tour.emplace_back(depth[u], u);
 		tour.push_back(u);
 		for(auto v : g[u]) {
 			top[v] = (v == g[u][0] ? top[u] : v);
-			dfs_link(euler_tour, v);
+			dfs_link(v);
 			euler_tour.emplace_back(depth[u], u);
 		}
 	}

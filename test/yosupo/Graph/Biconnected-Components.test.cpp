@@ -1,6 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/biconnected_components"
 
 #include <iostream>
+#include <vector>
 #include "../../../library/graph/lowlink.hpp"
 using namespace std;
 using namespace felix;
@@ -16,7 +17,7 @@ int main() {
 		cin >> u >> v;
 		g.add_edge(u, v);
 	}
-	auto components = g.biconnected_components_vertices();
+	auto components = g.BCCV();
 	cout << components.size() << "\n";
 	for(auto v : components) {
 		cout << v.size();

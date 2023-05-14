@@ -1,6 +1,8 @@
 #define PROBLEM "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_B"
 
 #include <iostream>
+#include <vector>
+#include <algorithm>
 #include "../../../library/graph/lowlink.hpp"
 using namespace std;
 using namespace felix;

@@ -199,18 +199,14 @@ Graph connected(int n, bool weighted = false, long long w_min = 1, long long w_m
 		add_edge(g, u, v);
 		s.emplace(std::min(u, v), std::max(u, v));
 	}
-	// int m = rnd.next(n - 1, n * (n - 1) / 2) - (n - 1);
-	int m = rnd.next(n - 1, 2 * n);
-	while(m--) {
-		int u, v;
-		do {
-			u = rnd.next(n - 1);
-			v = rnd.next(u + 1, n - 1);
-		} while(s.count(std::make_pair(u, v)));
-		s.emplace(u, v);
-		if(rnd.next(2)) {
-			std::swap(u, v);
+	int extra = rnd.next(n, 10 * n);
+	for(int i = 0; i < extra; i++) {
+		int u = rnd.next(n - 1);
+		int v = rnd.next(u + 1, n - 1);
+		if(s.count({u, v})) {
+			continue;
 		}
+		s.emplace(u, v);
 		add_edge(g, u, v);
 	}
 	return g;

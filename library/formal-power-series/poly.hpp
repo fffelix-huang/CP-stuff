@@ -133,6 +133,7 @@ public:
 
 	constexpr Poly integr() const {
 		Poly c(size() + 1);
+		mint::prepare(size());
 		for(int i = 0; i < size(); ++i) {
 			c[i + 1] = a[i] / mint(i + 1);
 		}
@@ -183,7 +184,7 @@ public:
 		}
 		int s = 0, sz = size();
 		while(s < sz && a[s] == 0) {
-			s += 1;
+			s++;
 		}
 		if(s == sz) {
 			return *this;
@@ -203,7 +204,7 @@ public:
 		}
 		int x = 0;
 		while(x < size() && a[x] == 0) {
-			x += 1;
+			x++;
 		}
 		if(x == size()) {
 			return true;
@@ -224,7 +225,7 @@ public:
 		}
 		int x = 0;
 		while(x < size() && a[x] == 0) {
-			x += 1;
+			x++;
 		}
 		if(x == size()) {
 			return Poly(size());

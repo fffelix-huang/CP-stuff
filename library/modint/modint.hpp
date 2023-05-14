@@ -59,8 +59,7 @@ public:
 	template<class T, internal::is_signed_int_t<T>* = nullptr> constexpr modint(T v) : value(v >= 0 ? v % mod() : v % mod() + mod()) {}
 	template<class T, internal::is_unsigned_int_t<T>* = nullptr> constexpr modint(T v) : value(v % mod()) {}
  
-	constexpr int operator()() const { return value; }
-	template<class T> explicit constexpr operator T() const { return static_cast<T>(value); }
+	constexpr int val() const { return value; }
 
 	constexpr modint inv() const {
 		if(id > 0 && value < std::min(mod() >> 1, 1 << 18)) {
@@ -179,7 +178,7 @@ public:
 	}
 	
 	friend constexpr std::ostream& operator<<(std::ostream& out, const modint& num) {
-		return out << num();
+		return out << num.val();
 	}
  
 private:

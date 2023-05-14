@@ -136,11 +136,11 @@ struct NTT {
 					int offset = s << (h - len);
 					for(int i = 0; i < p; i++) {
 						auto mod2 = 1ULL * mod * mod;
-						auto a0 = 1ULL * a[i + offset]();
-						auto a1 = 1ULL * a[i + offset + p]() * rot();
-						auto a2 = 1ULL * a[i + offset + 2 * p]() * rot2();
-						auto a3 = 1ULL * a[i + offset + 3 * p]() * rot3();
-						auto a1na3imag = 1ULL * mint(a1 + mod2 - a3)() * imag();
+						auto a0 = 1ULL * a[i + offset].val();
+						auto a1 = 1ULL * a[i + offset + p].val() * rot.val();
+						auto a2 = 1ULL * a[i + offset + 2 * p].val() * rot2.val();
+						auto a3 = 1ULL * a[i + offset + 3 * p].val() * rot3.val();
+						auto a1na3imag = 1ULL * mint(a1 + mod2 - a3).val() * imag.val();
 						auto na2 = mod2 - a2;
 						a[i + offset] = a0 + a2 + a1 + a3;
 						a[i + offset + 1 * p] = a0 + a2 + (2 * mod2 - (a1 + a3));
@@ -169,7 +169,7 @@ struct NTT {
 						auto l = a[i + offset];
 						auto r = a[i + offset + p];
 						a[i + offset] = l + r;
-						a[i + offset + p] = 1ULL * (mod + l() - r()) * irot();
+						a[i + offset + p] = 1ULL * (mod + l.val() - r.val()) * irot.val();
 					}
 					if(s + 1 != (1 << (len - 1))) {
 						irot *= info.irate2[__builtin_ctz(~(unsigned int) s)];
@@ -184,15 +184,15 @@ struct NTT {
 					mint irot3 = irot2 * irot;
 					int offset = s << (h - len + 2);
 					for(int i = 0; i < p; i++) {
-						auto a0 = 1ULL * a[i + offset + 0 * p]();
-						auto a1 = 1ULL * a[i + offset + 1 * p]();
-						auto a2 = 1ULL * a[i + offset + 2 * p]();
-						auto a3 = 1ULL * a[i + offset + 3 * p]();
-						auto a2na3iimag = 1ULL * mint((mod + a2 - a3) * iimag())();
+						auto a0 = 1ULL * a[i + offset + 0 * p].val();
+						auto a1 = 1ULL * a[i + offset + 1 * p].val();
+						auto a2 = 1ULL * a[i + offset + 2 * p].val();
+						auto a3 = 1ULL * a[i + offset + 3 * p].val();
+						auto a2na3iimag = 1ULL * mint((mod + a2 - a3) * iimag.val()).val();
 						a[i + offset] = a0 + a1 + a2 + a3;
-						a[i + offset + 1 * p] = (a0 + (mod - a1) + a2na3iimag) * irot();
-						a[i + offset + 2 * p] = (a0 + a1 + (mod - a2) + (mod - a3)) * irot2();
-						a[i + offset + 3 * p] = (a0 + (mod - a1) + (mod - a2na3iimag)) * irot3();
+						a[i + offset + 1 * p] = (a0 + (mod - a1) + a2na3iimag) * irot.val();
+						a[i + offset + 2 * p] = (a0 + a1 + (mod - a2) + (mod - a3)) * irot2.val();
+						a[i + offset + 3 * p] = (a0 + (mod - a1) + (mod - a2na3iimag)) * irot3.val();
 					}
 					if(s + 1 != (1 << (len - 2))) {
 						irot *= info.irate3[__builtin_ctz(~(unsigned int) s)];
@@ -271,7 +271,7 @@ std::vector<T> convolution(const std::vector<T>& a, const std::vector<T>& b) {
 	auto c2 = convolution(std::move(a2), std::move(b2));
 	std::vector<T> c(n + m - 1);
 	for(int i = 0; i < n + m - 1; i++) {
-		c[i] = c2[i]();
+		c[i] = c2[i].val();
 	}
 	return c;
 }
@@ -281,9 +281,9 @@ std::vector<__uint128_t> convolution_u128(const std::vector<T>& a, const std::ve
 	static constexpr int m0 = 167772161;
 	static constexpr int m1 = 469762049;
 	static constexpr int m2 = 754974721;
-	constexpr int r01 = modint<m1>(m0).inv()();
-	constexpr int r02 = modint<m2>(m0).inv()();
-	constexpr int r12 = modint<m2>(m1).inv()();
+	constexpr int r01 = modint<m1>(m0).inv().val();
+	constexpr int r02 = modint<m2>(m0).inv().val();
+	constexpr int r12 = modint<m2>(m1).inv().val();
 	constexpr int r02r12 = 1LL * (r02) * r12 % m2;
 	constexpr long long w1 = m0;
 	constexpr long long w2 = 1LL * m0 * m1;

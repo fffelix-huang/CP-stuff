@@ -88,7 +88,7 @@ struct lowlink {
 		}
 	}
 
-	std::vector<std::vector<int>> two_edge_connected_components() {
+	std::vector<std::vector<int>> TECC() {
 		build();
 		tecc_cnt = 0;
 		tecc_id.assign(n, -1);
@@ -119,7 +119,7 @@ struct lowlink {
 		return components;
 	}
 
-	std::vector<std::vector<int>> biconnected_components_vertices() {
+	std::vector<std::vector<int>> BCCV() {
 		build();
 		std::vector<std::vector<int>> components(tvcc_cnt);
 		for(int i = 0; i < (int) edges.size(); i++) {
@@ -138,7 +138,7 @@ struct lowlink {
 		return components;
 	}
 
-	std::vector<std::vector<int>> biconnected_components_edges() {
+	std::vector<std::vector<int>> BCCE() {
 		build();
 		std::vector<std::vector<int>> ret(tvcc_cnt);
 		for(int i = 0; i < (int) edges.size(); i++) {
