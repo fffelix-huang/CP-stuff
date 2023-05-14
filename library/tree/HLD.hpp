@@ -78,7 +78,7 @@ public:
 		std::pair<int, int> u_max = {-1, -1};
 		std::pair<int, int> ux_max = {-1, -1};
 		std::pair<int, std::array<int, 2>> uxv_max = {-1, std::array<int, 2>{-1, -1}};
-		for(auto [d, u] : euler) {
+		for(auto [d, u] : euler_tour) {
 			u_max = std::max(u_max, std::make_pair(d, u));
 			ux_max = std::max(ux_max, std::make_pair(u_max.first - 2 * d, u_max.second));
 			uxv_max = std::max(uxv_max, std::make_pair(ux_max.first + d, std::array<int, 2>{ux_max.second, u}));

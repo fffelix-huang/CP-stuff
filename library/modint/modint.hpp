@@ -3,8 +3,6 @@
 #include <vector>
 #include <algorithm>
 #include <cassert>
-#include <random>
-#include <chrono>
 #include <type_traits>
 #include "../misc/type-traits.hpp"
 #include "../math/inv-gcd.hpp"
@@ -133,7 +131,7 @@ public:
 		if(mod() == 2 || value == 0) {
 			return true;
 		}
-		if(pow((mod() - 1) / 2) != 1) {
+		if(pow((mod() - 1) / 2).val() != 1) {
 			return false;
 		}
 		return true;
@@ -143,21 +141,21 @@ public:
 		if(mod() == 2 || value < 2) {
 			return *this;
 		}
-		assert(pow((mod() - 1) / 2) == 1);
+		assert(pow((mod() - 1) / 2).val() == 1);
 		modint b = 1;
-		while(b.pow((mod() - 1) >> 1)() == 1) {
+		while(b.pow((mod() - 1) >> 1).val() == 1) {
 			b += 1;
 		}
-		long long m = mod() - 1, e = __builtin_ctz(m);
+		int m = mod() - 1, e = __builtin_ctz(m);
 		m >>= e;
-		modint x = modint(value).pow((m - 1) >> 1);
-		modint y = modint(value) * x * x;
+		modint x = modint(*this).pow((m - 1) >> 1);
+		modint y = modint(*this) * x * x;
 		x *= value;
 		modint z = b.pow(m);
-		while(y() != 1) {
-			long long j = 0;
+		while(y.val() != 1) {
+			int j = 0;
 			modint t = y;
-			while(t() != 1) {
+			while(t.val() != 1) {
 				t *= t;
 				j++;
 			}
