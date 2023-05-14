@@ -24,7 +24,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/Data-Structure/Vertex-Set-Path-Composite.test.cpp
     title: test/yosupo/Data-Structure/Vertex-Set-Path-Composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/Tree/Jump-on-Tree.test.cpp
     title: test/yosupo/Tree/Jump-on-Tree.test.cpp
   - icon: ':x:'
@@ -68,7 +68,7 @@ data:
     \n\t\t}\r\n\t\treturn st.prod(L, R).second;\r\n\t}\r\n\r\n\tbool is_ancestor(int\
     \ u, int v) {\r\n\t\tassert(0 <= u && u < n);\r\n\t\tassert(0 <= v && v < n);\r\
     \n\t\treturn id[u] <= id[v] && id[v] < id[u] + subtree_size[u];\r\n\t}\r\n\r\n\
-    \tbool on_path(int a, int b, int x) {\r\n\t\treturn (is_ancestor(x, a) || is_ancestor(x,\
+    \tbool on_path(int a, int x, int b) {\r\n\t\treturn (is_ancestor(x, a) || is_ancestor(x,\
     \ b)) && is_ancestor(get_lca(a, b), x);\r\n\t}\r\n\r\n\tint get_distance(int u,\
     \ int v) {\r\n\t\treturn depth[u] + depth[v] - 2 * depth[(get_lca(u, v))];\r\n\
     \t}\r\n\r\n\tstd::pair<int, std::array<int, 2>> get_diameter() const {\r\n\t\t\
@@ -130,7 +130,7 @@ data:
     \n\t\t}\r\n\t\treturn st.prod(L, R).second;\r\n\t}\r\n\r\n\tbool is_ancestor(int\
     \ u, int v) {\r\n\t\tassert(0 <= u && u < n);\r\n\t\tassert(0 <= v && v < n);\r\
     \n\t\treturn id[u] <= id[v] && id[v] < id[u] + subtree_size[u];\r\n\t}\r\n\r\n\
-    \tbool on_path(int a, int b, int x) {\r\n\t\treturn (is_ancestor(x, a) || is_ancestor(x,\
+    \tbool on_path(int a, int x, int b) {\r\n\t\treturn (is_ancestor(x, a) || is_ancestor(x,\
     \ b)) && is_ancestor(get_lca(a, b), x);\r\n\t}\r\n\r\n\tint get_distance(int u,\
     \ int v) {\r\n\t\treturn depth[u] + depth[v] - 2 * depth[(get_lca(u, v))];\r\n\
     \t}\r\n\r\n\tstd::pair<int, std::array<int, 2>> get_diameter() const {\r\n\t\t\
@@ -175,7 +175,7 @@ data:
   isVerificationFile: false
   path: library/tree/HLD.hpp
   requiredBy: []
-  timestamp: '2023-05-14 19:14:31+08:00'
+  timestamp: '2023-05-15 01:11:19+08:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/Data-Structure/Vertex-Add-Subtree-Sum.test.cpp
@@ -208,7 +208,7 @@ int z, k, len;
 array<int, 2> node;
 int lca = hld.get_lca(u, v); // 回傳 u 和 v 的 LCA
 bool is_anc = hld.is_ancestor(u, v); // 回傳 u 是不是 v 的祖先
-bool btw = hld.on_path(u, v, z); // 回傳 z 是不是在 u 到 v 的路徑上
+bool btw = hld.on_path(u, z, v); // 回傳 z 是不是在 u 到 v 的路徑上
 tie(len, node) = hld.get_diameter(); // 回傳樹直徑的長度和節點
 int dist = hld.get_distance(u, v); // 回傳 u 到 v 的距離
 int kth_anc = hld.get_kth_ancestor(u, k); // 回傳 u 的第 k 個祖先，或 -1 如果不存在

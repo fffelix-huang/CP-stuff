@@ -3,7 +3,7 @@ data:
   libraryCategories:
   - name: library/convolution
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/convolution/NTT.hpp
       title: library/convolution/NTT.hpp
     - icon: ':heavy_check_mark:'
@@ -66,12 +66,21 @@ data:
       title: library/flow/MCMF.hpp
   - name: library/formal-power-series
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/formal-power-series/poly.hpp
       title: library/formal-power-series/poly.hpp
   - name: library/geometry
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':warning:'
+      path: library/geometry/closest-pair.hpp
+      title: library/geometry/closest-pair.hpp
+    - icon: ':warning:'
+      path: library/geometry/geometry.hpp
+      title: library/geometry/geometry.hpp
+    - icon: ':warning:'
+      path: library/geometry/line.hpp
+      title: library/geometry/line.hpp
+    - icon: ':question:'
       path: library/geometry/point.hpp
       title: library/geometry/point.hpp
   - name: library/graph
@@ -108,10 +117,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/integer-div.hpp
       title: Integer division ($\lfloor \frac{a}{b} \rfloor \lceil \frac{a}{b} \rceil$)
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/math/inv-gcd.hpp
       title: library/math/inv-gcd.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/math/safe-mod.hpp
       title: library/math/safe-mod.hpp
     - icon: ':heavy_check_mark:'
@@ -122,7 +131,7 @@ data:
       title: "xor basis (\u7DDA\u6027\u57FA)"
   - name: library/matrix
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/matrix/matrix.hpp
       title: library/matrix/matrix.hpp
   - name: library/misc
@@ -136,7 +145,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/misc/fastio.hpp
       title: library/misc/fastio.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/misc/type-traits.hpp
       title: library/misc/type-traits.hpp
   - name: library/modint
@@ -144,7 +153,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/modint/barrett.hpp
       title: library/modint/barrett.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/modint/modint.hpp
       title: library/modint/modint.hpp
   - name: library/random
@@ -183,7 +192,7 @@ data:
   verificationCategories:
   - name: test/aoj/cgl
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/cgl/Area.test.cpp
       title: test/aoj/cgl/Area.test.cpp
   - name: test/aoj/dsl
@@ -398,10 +407,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/Math/Factorize.test.cpp
       title: test/yosupo/Math/Factorize.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/Math/Partition-Function.test.cpp
       title: test/yosupo/Math/Partition-Function.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/Math/Sqrt-Mod.test.cpp
       title: test/yosupo/Math/Sqrt-Mod.test.cpp
     - icon: ':heavy_check_mark:'
@@ -409,36 +418,36 @@ data:
       title: test/yosupo/Math/Sum-of-Floor-of-Linear.test.cpp
   - name: test/yosupo/Matrix
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/Matrix/Determinant-of-Matrix.test.cpp
       title: test/yosupo/Matrix/Determinant-of-Matrix.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/Matrix/Matrix-Product.test.cpp
       title: test/yosupo/Matrix/Matrix-Product.test.cpp
   - name: test/yosupo/Polynomial
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/Polynomial/Exp-of-Formal-Power-Series.test.cpp
       title: test/yosupo/Polynomial/Exp-of-Formal-Power-Series.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/Polynomial/Inv-of-Formal-Power-Series.test.cpp
       title: test/yosupo/Polynomial/Inv-of-Formal-Power-Series.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/Polynomial/Log-of-Formal-Power-Series.test.cpp
       title: test/yosupo/Polynomial/Log-of-Formal-Power-Series.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/Polynomial/Multipoint-Evaluation.test.cpp
       title: test/yosupo/Polynomial/Multipoint-Evaluation.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/Polynomial/Polynomial-Taylor-Shift.test.cpp
       title: test/yosupo/Polynomial/Polynomial-Taylor-Shift.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/Polynomial/Pow-of-Formal-Power-Series.test.cpp
       title: test/yosupo/Polynomial/Pow-of-Formal-Power-Series.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/Polynomial/Product-of-Polynomial-Sequence.test.cpp
       title: test/yosupo/Polynomial/Product-of-Polynomial-Sequence.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/Polynomial/Sqrt-of-Formal-Power-Series.test.cpp
       title: test/yosupo/Polynomial/Sqrt-of-Formal-Power-Series.test.cpp
   - name: test/yosupo/String
@@ -454,7 +463,7 @@ data:
       title: test/yosupo/String/Z-Algorithm.test.cpp
   - name: test/yosupo/Tree
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/Tree/Jump-on-Tree.test.cpp
       title: test/yosupo/Tree/Jump-on-Tree.test.cpp
     - icon: ':x:'

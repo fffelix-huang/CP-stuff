@@ -9,9 +9,9 @@ data:
     title: "Heavy Light Decomposition (\u8F15\u91CD\u93C8\u5256\u5206)"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/jump_on_tree
@@ -51,7 +51,7 @@ data:
     \n\t\t}\r\n\t\treturn st.prod(L, R).second;\r\n\t}\r\n\r\n\tbool is_ancestor(int\
     \ u, int v) {\r\n\t\tassert(0 <= u && u < n);\r\n\t\tassert(0 <= v && v < n);\r\
     \n\t\treturn id[u] <= id[v] && id[v] < id[u] + subtree_size[u];\r\n\t}\r\n\r\n\
-    \tbool on_path(int a, int b, int x) {\r\n\t\treturn (is_ancestor(x, a) || is_ancestor(x,\
+    \tbool on_path(int a, int x, int b) {\r\n\t\treturn (is_ancestor(x, a) || is_ancestor(x,\
     \ b)) && is_ancestor(get_lca(a, b), x);\r\n\t}\r\n\r\n\tint get_distance(int u,\
     \ int v) {\r\n\t\treturn depth[u] + depth[v] - 2 * depth[(get_lca(u, v))];\r\n\
     \t}\r\n\r\n\tstd::pair<int, std::array<int, 2>> get_diameter() const {\r\n\t\t\
@@ -111,8 +111,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/Tree/Jump-on-Tree.test.cpp
   requiredBy: []
-  timestamp: '2023-05-14 19:14:31+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-05-15 01:11:19+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Tree/Jump-on-Tree.test.cpp
 layout: document
