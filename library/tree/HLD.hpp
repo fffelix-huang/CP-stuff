@@ -77,11 +77,11 @@ public:
 	std::pair<int, std::array<int, 2>> get_diameter() const {
 		std::pair<int, int> u_max = {-1, -1};
 		std::pair<int, int> ux_max = {-1, -1};
-		std::pair<int, std::array<int, 2>> uxv_max = {-1, {-1, -1}};
+		std::pair<int, std::array<int, 2>> uxv_max = {-1, std::array<int, 2>{-1, -1}};
 		for(auto [d, u] : euler) {
-			u_max = std::max(u_max, {d, u});
-			ux_max = std::max(ux_max, {u_max.first - 2 * d, u_max.second});
-			uxv_max = std::max(uxv_max, {ux_max.first + d, {ux_max.second, u}});
+			u_max = std::max(u_max, std::make_pair(d, u));
+			ux_max = std::max(ux_max, std::make_pair(u_max.first - 2 * d, u_max.second));
+			uxv_max = std::max(uxv_max, std::make_pair(ux_max.first + d, std::array<int, 2>{ux_max.second, u}));
 		}
 		return uxv_max;
 	}
