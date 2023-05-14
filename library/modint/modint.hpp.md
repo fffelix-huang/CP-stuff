@@ -11,7 +11,7 @@ data:
     path: library/misc/type-traits.hpp
     title: library/misc/type-traits.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/convolution/NTT.hpp
     title: library/convolution/NTT.hpp
   - icon: ':x:'
@@ -24,16 +24,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/Convolution/Bitwise-And-Convolution.test.cpp
     title: test/yosupo/Convolution/Bitwise-And-Convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/Convolution/Bitwise-Xor-Convolution.test.cpp
     title: test/yosupo/Convolution/Bitwise-Xor-Convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/Convolution/Convolution-Large.test.cpp
     title: test/yosupo/Convolution/Convolution-Large.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/Convolution/Convolution-Mod-1000000007.test.cpp
     title: test/yosupo/Convolution/Convolution-Mod-1000000007.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/Convolution/Convolution.test.cpp
     title: test/yosupo/Convolution/Convolution.test.cpp
   - icon: ':heavy_check_mark:'
@@ -54,7 +54,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/Data-Structure/Range-Affine-Point-Get.test.cpp
     title: test/yosupo/Data-Structure/Range-Affine-Point-Get.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/Data-Structure/Range-Affine-Range-Sum.test.cpp
     title: test/yosupo/Data-Structure/Range-Affine-Range-Sum.test.cpp
   - icon: ':x:'
@@ -69,7 +69,7 @@ data:
   - icon: ':x:'
     path: test/yosupo/Matrix/Determinant-of-Matrix.test.cpp
     title: test/yosupo/Matrix/Determinant-of-Matrix.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/Matrix/Matrix-Product.test.cpp
     title: test/yosupo/Matrix/Matrix-Product.test.cpp
   - icon: ':x:'
@@ -154,8 +154,8 @@ data:
     \ 1) * 2) {\r\n\t\t\tn = std::min((sz - 1) * 2, mod() - 1);\r\n\t\t}\r\n\t\tfacts.resize(n\
     \ + 1);\r\n\t\tinv_facts.resize(n + 1);\r\n\t\tinvs.resize(n + 1);\r\n\t\tfor(int\
     \ i = sz; i <= n; i++) {\r\n\t\t\tfacts[i] = facts[i - 1] * i;\r\n\t\t}\r\n\t\t\
-    auto eg = internal::inv_gcd(facts.back()(), mod());\r\n\t\tassert(eg.first ==\
-    \ 1);\r\n\t\tinv_facts[n] = eg.second;\r\n\t\tfor(int i = n - 1; i >= sz; i--)\
+    auto eg = internal::inv_gcd(facts.back().val(), mod());\r\n\t\tassert(eg.first\
+    \ == 1);\r\n\t\tinv_facts[n] = eg.second;\r\n\t\tfor(int i = n - 1; i >= sz; i--)\
     \ {\r\n\t\t\tinv_facts[i] = inv_facts[i + 1] * (i + 1);\r\n\t\t}\r\n\t\tfor(int\
     \ i = n; i >= sz; i--) {\r\n\t\t\tinvs[i] = inv_facts[i] * facts[i - 1];\r\n\t\
     \t}\r\n\t}\r\n \r\n\tconstexpr modint() : value(0) {} \r\n\ttemplate<class T,\
@@ -233,7 +233,7 @@ data:
     \n\t\t}\r\n\t\tif(n < (sz - 1) * 2) {\r\n\t\t\tn = std::min((sz - 1) * 2, mod()\
     \ - 1);\r\n\t\t}\r\n\t\tfacts.resize(n + 1);\r\n\t\tinv_facts.resize(n + 1);\r\
     \n\t\tinvs.resize(n + 1);\r\n\t\tfor(int i = sz; i <= n; i++) {\r\n\t\t\tfacts[i]\
-    \ = facts[i - 1] * i;\r\n\t\t}\r\n\t\tauto eg = internal::inv_gcd(facts.back()(),\
+    \ = facts[i - 1] * i;\r\n\t\t}\r\n\t\tauto eg = internal::inv_gcd(facts.back().val(),\
     \ mod());\r\n\t\tassert(eg.first == 1);\r\n\t\tinv_facts[n] = eg.second;\r\n\t\
     \tfor(int i = n - 1; i >= sz; i--) {\r\n\t\t\tinv_facts[i] = inv_facts[i + 1]\
     \ * (i + 1);\r\n\t\t}\r\n\t\tfor(int i = n; i >= sz; i--) {\r\n\t\t\tinvs[i] =\
@@ -308,7 +308,7 @@ data:
   requiredBy:
   - library/convolution/NTT.hpp
   - library/formal-power-series/poly.hpp
-  timestamp: '2023-05-14 18:31:09+08:00'
+  timestamp: '2023-05-14 18:49:39+08:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/Convolution/Bitwise-And-Convolution.test.cpp

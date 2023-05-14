@@ -56,41 +56,41 @@ data:
     \ int v) {\r\n\t\treturn depth[u] + depth[v] - 2 * depth[(get_lca(u, v))];\r\n\
     \t}\r\n\r\n\tstd::pair<int, std::array<int, 2>> get_diameter() const {\r\n\t\t\
     std::pair<int, int> u_max = {-1, -1};\r\n\t\tstd::pair<int, int> ux_max = {-1,\
-    \ -1};\r\n\t\tstd::pair<int, std::array<int, 2>> uxv_max = {-1, {-1, -1}};\r\n\
-    \t\tfor(auto [d, u] : euler) {\r\n\t\t\tu_max = std::max(u_max, {d, u});\r\n\t\
-    \t\tux_max = std::max(ux_max, {u_max.first - 2 * d, u_max.second});\r\n\t\t\t\
-    uxv_max = std::max(uxv_max, {ux_max.first + d, {ux_max.second, u}});\r\n\t\t}\r\
-    \n\t\treturn uxv_max;\r\n\t}\r\n\r\n\tint get_kth_ancestor(int u, int k) {\r\n\
-    \t\tassert(0 <= u && u < n);\r\n\t\tif(depth[u] < k) {\r\n\t\t\treturn -1;\r\n\
-    \t\t}\r\n\t\tint d = depth[u] - k;\r\n\t\twhile(depth[top[u]] > d) {\r\n\t\t\t\
-    u = parent[top[u]];\r\n\t\t}\r\n\t\treturn tour[id[u] + d - depth[u]];\r\n\t}\r\
-    \n\r\n\tint get_kth_node_on_path(int a, int b, int k) {\r\n\t\tint z = get_lca(a,\
-    \ b);\r\n\t\tint fi = depth[a] - depth[z];\r\n\t\tint se = depth[b] - depth[z];\r\
-    \n\t\tif(k < 0 || k > fi + se) {\r\n\t\t\treturn -1;\r\n\t\t}\r\n\t\tif(k < fi)\
-    \ {\r\n\t\t\treturn get_kth_ancestor(a, k);\r\n\t\t} else {\r\n\t\t\treturn get_kth_ancestor(b,\
-    \ fi + se - k);\r\n\t\t}\r\n\t}\r\n\r\n\tstd::vector<std::pair<int, int>> get_path(int\
-    \ u, int v, bool include_lca) {\r\n\t\tif(u == v && !include_lca) {\r\n\t\t\t\
-    return {};\r\n\t\t}\r\n\t\tstd::vector<std::pair<int, int>> lhs, rhs;\r\n\t\t\
-    while(top[u] != top[v]) {\r\n\t\t\tif(depth[top[u]] > depth[top[v]]) {\r\n\t\t\
-    \t\tlhs.emplace_back(u, top[u]);\r\n\t\t\t\tu = parent[top[u]];\r\n\t\t\t} else\
-    \ {\r\n\t\t\t\trhs.emplace_back(top[v], v);\r\n\t\t\t\tv = parent[top[v]];\r\n\
-    \t\t\t}\r\n\t\t}\r\n\t\tif(u != v || include_lca) {\r\n\t\t\tif(include_lca) {\r\
-    \n\t\t\t\tlhs.emplace_back(u, v);\r\n\t\t\t} else {\r\n\t\t\t\tint d = std::abs(depth[u]\
-    \ - depth[v]);\r\n\t\t\t\tif(depth[u] < depth[v]) {\r\n\t\t\t\t\trhs.emplace_back(tour[id[v]\
-    \ - d + 1], v);\r\n\t\t\t\t} else {\r\n\t\t\t\t\tlhs.emplace_back(u, tour[id[u]\
-    \ - d + 1]);\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t}\r\n\t\tstd::reverse(rhs.begin(),\
-    \ rhs.end());\r\n\t\tlhs.insert(lhs.end(), rhs.begin(), rhs.end());\r\n\t\treturn\
-    \ lhs;\r\n\t}\r\n\r\nprivate:\r\n\tvoid dfs_sz(int u) {\r\n\t\tif(parent[u] !=\
-    \ -1) {\r\n\t\t\tg[u].erase(std::find(g[u].begin(), g[u].end(), parent[u]));\r\
-    \n\t\t}\r\n\t\tsubtree_size[u] = 1;\r\n\t\tfor(auto& v : g[u]) {\r\n\t\t\tparent[v]\
-    \ = u;\r\n\t\t\tdepth[v] = depth[u] + 1;\r\n\t\t\tdfs_sz(v);\r\n\t\t\tsubtree_size[u]\
-    \ += subtree_size[v];\r\n\t\t\tif(subtree_size[v] > subtree_size[g[u][0]]) {\r\
-    \n\t\t\t\tstd::swap(v, g[u][0]);\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n\r\n\tvoid dfs_link(int\
-    \ u) {\r\n\t\tfirst_occurrence[u] = (int) euler_tour.size();\r\n\t\tid[u] = (int)\
-    \ tour.size();\r\n\t\teuler_tour.emplace_back(depth[u], u);\r\n\t\ttour.push_back(u);\r\
-    \n\t\tfor(auto v : g[u]) {\r\n\t\t\ttop[v] = (v == g[u][0] ? top[u] : v);\r\n\t\
-    \t\tdfs_link(v);\r\n\t\t\teuler_tour.emplace_back(depth[u], u);\r\n\t\t}\r\n\t\
-    }\r\n};\r\n\r\n} // namespace felix\r\n#line 5 \"test/yosupo/Tree/Lowest-Common-Ancestor.test.cpp\"\
+    \ -1};\r\n\t\tstd::pair<int, std::array<int, 2>> uxv_max = {-1, std::array<int,\
+    \ 2>{-1, -1}};\r\n\t\tfor(auto [d, u] : euler) {\r\n\t\t\tu_max = std::max(u_max,\
+    \ std::make_pair(d, u));\r\n\t\t\tux_max = std::max(ux_max, std::make_pair(u_max.first\
+    \ - 2 * d, u_max.second));\r\n\t\t\tuxv_max = std::max(uxv_max, std::make_pair(ux_max.first\
+    \ + d, std::array<int, 2>{ux_max.second, u}));\r\n\t\t}\r\n\t\treturn uxv_max;\r\
+    \n\t}\r\n\r\n\tint get_kth_ancestor(int u, int k) {\r\n\t\tassert(0 <= u && u\
+    \ < n);\r\n\t\tif(depth[u] < k) {\r\n\t\t\treturn -1;\r\n\t\t}\r\n\t\tint d =\
+    \ depth[u] - k;\r\n\t\twhile(depth[top[u]] > d) {\r\n\t\t\tu = parent[top[u]];\r\
+    \n\t\t}\r\n\t\treturn tour[id[u] + d - depth[u]];\r\n\t}\r\n\r\n\tint get_kth_node_on_path(int\
+    \ a, int b, int k) {\r\n\t\tint z = get_lca(a, b);\r\n\t\tint fi = depth[a] -\
+    \ depth[z];\r\n\t\tint se = depth[b] - depth[z];\r\n\t\tif(k < 0 || k > fi + se)\
+    \ {\r\n\t\t\treturn -1;\r\n\t\t}\r\n\t\tif(k < fi) {\r\n\t\t\treturn get_kth_ancestor(a,\
+    \ k);\r\n\t\t} else {\r\n\t\t\treturn get_kth_ancestor(b, fi + se - k);\r\n\t\t\
+    }\r\n\t}\r\n\r\n\tstd::vector<std::pair<int, int>> get_path(int u, int v, bool\
+    \ include_lca) {\r\n\t\tif(u == v && !include_lca) {\r\n\t\t\treturn {};\r\n\t\
+    \t}\r\n\t\tstd::vector<std::pair<int, int>> lhs, rhs;\r\n\t\twhile(top[u] != top[v])\
+    \ {\r\n\t\t\tif(depth[top[u]] > depth[top[v]]) {\r\n\t\t\t\tlhs.emplace_back(u,\
+    \ top[u]);\r\n\t\t\t\tu = parent[top[u]];\r\n\t\t\t} else {\r\n\t\t\t\trhs.emplace_back(top[v],\
+    \ v);\r\n\t\t\t\tv = parent[top[v]];\r\n\t\t\t}\r\n\t\t}\r\n\t\tif(u != v || include_lca)\
+    \ {\r\n\t\t\tif(include_lca) {\r\n\t\t\t\tlhs.emplace_back(u, v);\r\n\t\t\t} else\
+    \ {\r\n\t\t\t\tint d = std::abs(depth[u] - depth[v]);\r\n\t\t\t\tif(depth[u] <\
+    \ depth[v]) {\r\n\t\t\t\t\trhs.emplace_back(tour[id[v] - d + 1], v);\r\n\t\t\t\
+    \t} else {\r\n\t\t\t\t\tlhs.emplace_back(u, tour[id[u] - d + 1]);\r\n\t\t\t\t\
+    }\r\n\t\t\t}\r\n\t\t}\r\n\t\tstd::reverse(rhs.begin(), rhs.end());\r\n\t\tlhs.insert(lhs.end(),\
+    \ rhs.begin(), rhs.end());\r\n\t\treturn lhs;\r\n\t}\r\n\r\nprivate:\r\n\tvoid\
+    \ dfs_sz(int u) {\r\n\t\tif(parent[u] != -1) {\r\n\t\t\tg[u].erase(std::find(g[u].begin(),\
+    \ g[u].end(), parent[u]));\r\n\t\t}\r\n\t\tsubtree_size[u] = 1;\r\n\t\tfor(auto&\
+    \ v : g[u]) {\r\n\t\t\tparent[v] = u;\r\n\t\t\tdepth[v] = depth[u] + 1;\r\n\t\t\
+    \tdfs_sz(v);\r\n\t\t\tsubtree_size[u] += subtree_size[v];\r\n\t\t\tif(subtree_size[v]\
+    \ > subtree_size[g[u][0]]) {\r\n\t\t\t\tstd::swap(v, g[u][0]);\r\n\t\t\t}\r\n\t\
+    \t}\r\n\t}\r\n\r\n\tvoid dfs_link(int u) {\r\n\t\tfirst_occurrence[u] = (int)\
+    \ euler_tour.size();\r\n\t\tid[u] = (int) tour.size();\r\n\t\teuler_tour.emplace_back(depth[u],\
+    \ u);\r\n\t\ttour.push_back(u);\r\n\t\tfor(auto v : g[u]) {\r\n\t\t\ttop[v] =\
+    \ (v == g[u][0] ? top[u] : v);\r\n\t\t\tdfs_link(v);\r\n\t\t\teuler_tour.emplace_back(depth[u],\
+    \ u);\r\n\t\t}\r\n\t}\r\n};\r\n\r\n} // namespace felix\r\n#line 5 \"test/yosupo/Tree/Lowest-Common-Ancestor.test.cpp\"\
     \nusing namespace std;\r\nusing namespace felix;\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\
     \n\tcin.tie(0);\r\n\tint n, q;\r\n\tcin >> n >> q;\r\n\tHLD hld(n);\r\n\tfor(int\
     \ i = 1; i < n; i++) {\r\n\t\tint p;\r\n\t\tcin >> p;\r\n\t\thld.add_edge(i, p);\r\
@@ -111,7 +111,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/Tree/Lowest-Common-Ancestor.test.cpp
   requiredBy: []
-  timestamp: '2023-05-14 18:31:09+08:00'
+  timestamp: '2023-05-14 18:49:39+08:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/Tree/Lowest-Common-Ancestor.test.cpp

@@ -6,12 +6,12 @@ data:
   - icon: ':x:'
     path: test/yosupo/Matrix/Determinant-of-Matrix.test.cpp
     title: test/yosupo/Matrix/Determinant-of-Matrix.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/Matrix/Matrix-Product.test.cpp
     title: test/yosupo/Matrix/Matrix-Product.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"library/matrix/matrix.hpp\"\n#include <vector>\r\n#include\
@@ -110,7 +110,7 @@ data:
   path: library/matrix/matrix.hpp
   requiredBy: []
   timestamp: '2023-04-22 00:13:18+08:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/Matrix/Matrix-Product.test.cpp
   - test/yosupo/Matrix/Determinant-of-Matrix.test.cpp
