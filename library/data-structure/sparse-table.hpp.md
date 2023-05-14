@@ -2,29 +2,29 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/tree/HLD.hpp
     title: "Heavy Light Decomposition (\u8F15\u91CD\u93C8\u5256\u5206)"
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/grl/Lowest-Common-Ancestor.test.cpp
     title: test/aoj/grl/Lowest-Common-Ancestor.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/grl/Range-Query-on-a-Tree-II.test.cpp
     title: test/aoj/grl/Range-Query-on-a-Tree-II.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/grl/Range-Query-on-a-Tree.test.cpp
     title: test/aoj/grl/Range-Query-on-a-Tree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/Data-Structure/Static-RMQ.test.cpp
     title: test/yosupo/Data-Structure/Static-RMQ.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/Data-Structure/Vertex-Add-Path-Sum.test.cpp
     title: test/yosupo/Data-Structure/Vertex-Add-Path-Sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/Data-Structure/Vertex-Add-Subtree-Sum.test.cpp
     title: test/yosupo/Data-Structure/Vertex-Add-Subtree-Sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/Data-Structure/Vertex-Set-Path-Composite.test.cpp
     title: test/yosupo/Data-Structure/Vertex-Set-Path-Composite.test.cpp
   - icon: ':x:'

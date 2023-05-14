@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/data-structure/fenwick.hpp
     title: library/data-structure/fenwick.hpp
   - icon: ':question:'
     path: library/data-structure/sparse-table.hpp
     title: library/data-structure/sparse-table.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/tree/HLD.hpp
     title: "Heavy Light Decomposition (\u8F15\u91CD\u93C8\u5256\u5206)"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_add_path_sum
@@ -69,7 +69,7 @@ data:
     \t}\r\n\r\n\tstd::pair<int, std::array<int, 2>> get_diameter() const {\r\n\t\t\
     std::pair<int, int> u_max = {-1, -1};\r\n\t\tstd::pair<int, int> ux_max = {-1,\
     \ -1};\r\n\t\tstd::pair<int, std::array<int, 2>> uxv_max = {-1, std::array<int,\
-    \ 2>{-1, -1}};\r\n\t\tfor(auto [d, u] : euler) {\r\n\t\t\tu_max = std::max(u_max,\
+    \ 2>{-1, -1}};\r\n\t\tfor(auto [d, u] : euler_tour) {\r\n\t\t\tu_max = std::max(u_max,\
     \ std::make_pair(d, u));\r\n\t\t\tux_max = std::max(ux_max, std::make_pair(u_max.first\
     \ - 2 * d, u_max.second));\r\n\t\t\tuxv_max = std::max(uxv_max, std::make_pair(ux_max.first\
     \ + d, std::array<int, 2>{ux_max.second, u}));\r\n\t\t}\r\n\t\treturn uxv_max;\r\
@@ -139,8 +139,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/Data-Structure/Vertex-Add-Path-Sum.test.cpp
   requiredBy: []
-  timestamp: '2023-05-14 18:49:39+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-05-14 19:14:31+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Data-Structure/Vertex-Add-Path-Sum.test.cpp
 layout: document

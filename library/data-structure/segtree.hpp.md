@@ -12,12 +12,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/Data-Structure/Queue-Operate-All-Composite.test.cpp
     title: test/yosupo/Data-Structure/Queue-Operate-All-Composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/Data-Structure/Vertex-Set-Path-Composite.test.cpp
     title: test/yosupo/Data-Structure/Vertex-Set-Path-Composite.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"library/data-structure/segtree.hpp\"\n#include <vector>\n\
@@ -94,7 +94,7 @@ data:
   path: library/data-structure/segtree.hpp
   requiredBy: []
   timestamp: '2023-04-17 12:10:28+08:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/Data-Structure/Deque-Operate-All-Composite.test.cpp
   - test/yosupo/Data-Structure/Queue-Operate-All-Composite.test.cpp

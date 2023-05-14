@@ -32,12 +32,11 @@ data:
   bundledCode: "#line 1 \"test/yosupo/Data-Structure/Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum\"\
     \n\n#include <iostream>\n#include <vector>\n#line 4 \"library/modint/modint.hpp\"\
-    \n#include <algorithm>\r\n#include <cassert>\r\n#include <random>\r\n#include\
-    \ <chrono>\r\n#include <type_traits>\r\n#line 3 \"library/misc/type-traits.hpp\"\
-    \n#include <numeric>\r\n#line 5 \"library/misc/type-traits.hpp\"\n\r\nnamespace\
-    \ felix {\r\n\r\nnamespace internal {\r\n\r\n#ifndef _MSC_VER\r\ntemplate<class\
-    \ T> using is_signed_int128 = typename std::conditional<std::is_same<T, __int128_t>::value\
-    \ || std::is_same<T, __int128>::value, std::true_type, std::false_type>::type;\r\
+    \n#include <algorithm>\r\n#include <cassert>\r\n#include <type_traits>\r\n#line\
+    \ 3 \"library/misc/type-traits.hpp\"\n#include <numeric>\r\n#line 5 \"library/misc/type-traits.hpp\"\
+    \n\r\nnamespace felix {\r\n\r\nnamespace internal {\r\n\r\n#ifndef _MSC_VER\r\n\
+    template<class T> using is_signed_int128 = typename std::conditional<std::is_same<T,\
+    \ __int128_t>::value || std::is_same<T, __int128>::value, std::true_type, std::false_type>::type;\r\
     \ntemplate<class T> using is_unsigned_int128 = typename std::conditional<std::is_same<T,\
     \ __uint128_t>::value || std::is_same<T, unsigned __int128>::value, std::true_type,\
     \ std::false_type>::type;\r\ntemplate<class T> using make_unsigned_int128 = typename\
@@ -73,8 +72,8 @@ data:
     \ m1 * u;\r\n\t\tauto tmp = s;\r\n\t\ts = t;\r\n\t\tt = tmp;\r\n\t\ttmp = m0;\r\
     \n\t\tm0 = m1;\r\n\t\tm1 = tmp;\r\n\t}\r\n\tif(m0 < 0) {\r\n\t\tm0 += b / s;\r\
     \n\t}\r\n\treturn {s, m0};\r\n}\r\n\r\n} // namespace internal\r\n\r\n} // namespace\
-    \ felix\r\n#line 11 \"library/modint/modint.hpp\"\n\r\nnamespace felix {\r\n\r\
-    \ntemplate<int id>\r\nstruct modint {\r\npublic:\r\n\tstatic constexpr int mod()\
+    \ felix\r\n#line 9 \"library/modint/modint.hpp\"\n\r\nnamespace felix {\r\n\r\n\
+    template<int id>\r\nstruct modint {\r\npublic:\r\n\tstatic constexpr int mod()\
     \ { return (id > 0 ? id : md); }\r\n \t\r\n\tstatic constexpr void set_mod(int\
     \ m) {\r\n\t\tif(id > 0 || md == m) {\r\n\t\t\treturn;\r\n\t\t}\r\n\t\tmd = m;\r\
     \n\t\tfacts.resize(1);\r\n\t\tinv_facts.resize(1);\r\n\t\tinvs.resize(1);\r\n\t\
@@ -119,23 +118,23 @@ data:
     \ 1) {\r\n\t\t\t\tres *= a;\r\n\t\t\t}\r\n\t\t\ta *= a;\r\n\t\t\tp >>= 1;\r\n\t\
     \t}\r\n\t\treturn res;\r\n\t}\r\n\r\n\tconstexpr bool has_sqrt() const {\r\n\t\
     \tif(mod() == 2 || value == 0) {\r\n\t\t\treturn true;\r\n\t\t}\r\n\t\tif(pow((mod()\
-    \ - 1) / 2) != 1) {\r\n\t\t\treturn false;\r\n\t\t}\r\n\t\treturn true;\r\n\t\
-    }\r\n\r\n\tconstexpr modint sqrt() const {\r\n\t\tif(mod() == 2 || value < 2)\
-    \ {\r\n\t\t\treturn *this;\r\n\t\t}\r\n\t\tassert(pow((mod() - 1) / 2) == 1);\r\
-    \n\t\tmodint b = 1;\r\n\t\twhile(b.pow((mod() - 1) >> 1)() == 1) {\r\n\t\t\tb\
-    \ += 1;\r\n\t\t}\r\n\t\tlong long m = mod() - 1, e = __builtin_ctz(m);\r\n\t\t\
-    m >>= e;\r\n\t\tmodint x = modint(value).pow((m - 1) >> 1);\r\n\t\tmodint y =\
-    \ modint(value) * x * x;\r\n\t\tx *= value;\r\n\t\tmodint z = b.pow(m);\r\n\t\t\
-    while(y() != 1) {\r\n\t\t\tlong long j = 0;\r\n\t\t\tmodint t = y;\r\n\t\t\twhile(t()\
-    \ != 1) {\r\n\t\t\t\tt *= t;\r\n\t\t\t\tj++;\r\n\t\t\t}\r\n\t\t\tz = z.pow(1LL\
-    \ << (e - j - 1));\r\n\t\t\tx *= z;\r\n\t\t\tz *= z;\r\n\t\t\ty *= z;\r\n\t\t\t\
-    e = j;\r\n\t\t}\r\n\t\treturn x;\r\n\t}\r\n\r\n\tfriend constexpr std::istream&\
-    \ operator>>(std::istream& in, modint& num) {\r\n\t\tlong long x;\r\n\t\tin >>\
-    \ x;\r\n\t\tnum = modint<id>(x);\r\n\t\treturn in;\r\n\t}\r\n\t\r\n\tfriend constexpr\
-    \ std::ostream& operator<<(std::ostream& out, const modint& num) {\r\n\t\treturn\
-    \ out << num.val();\r\n\t}\r\n \r\nprivate:\r\n\tint value;\r\n\tstatic int md;\r\
-    \n\tstatic std::vector<modint> facts, inv_facts, invs;\r\n};\r\n\r\ntemplate<int\
-    \ id> int modint<id>::md = 998244353;\r\ntemplate<int id> std::vector<modint<id>>\
+    \ - 1) / 2).val() != 1) {\r\n\t\t\treturn false;\r\n\t\t}\r\n\t\treturn true;\r\
+    \n\t}\r\n\r\n\tconstexpr modint sqrt() const {\r\n\t\tif(mod() == 2 || value <\
+    \ 2) {\r\n\t\t\treturn *this;\r\n\t\t}\r\n\t\tassert(pow((mod() - 1) / 2).val()\
+    \ == 1);\r\n\t\tmodint b = 1;\r\n\t\twhile(b.pow((mod() - 1) >> 1).val() == 1)\
+    \ {\r\n\t\t\tb += 1;\r\n\t\t}\r\n\t\tint m = mod() - 1, e = __builtin_ctz(m);\r\
+    \n\t\tm >>= e;\r\n\t\tmodint x = modint(*this).pow((m - 1) >> 1);\r\n\t\tmodint\
+    \ y = modint(*this) * x * x;\r\n\t\tx *= value;\r\n\t\tmodint z = b.pow(m);\r\n\
+    \t\twhile(y.val() != 1) {\r\n\t\t\tint j = 0;\r\n\t\t\tmodint t = y;\r\n\t\t\t\
+    while(t.val() != 1) {\r\n\t\t\t\tt *= t;\r\n\t\t\t\tj++;\r\n\t\t\t}\r\n\t\t\t\
+    z = z.pow(1LL << (e - j - 1));\r\n\t\t\tx *= z;\r\n\t\t\tz *= z;\r\n\t\t\ty *=\
+    \ z;\r\n\t\t\te = j;\r\n\t\t}\r\n\t\treturn x;\r\n\t}\r\n\r\n\tfriend constexpr\
+    \ std::istream& operator>>(std::istream& in, modint& num) {\r\n\t\tlong long x;\r\
+    \n\t\tin >> x;\r\n\t\tnum = modint<id>(x);\r\n\t\treturn in;\r\n\t}\r\n\t\r\n\t\
+    friend constexpr std::ostream& operator<<(std::ostream& out, const modint& num)\
+    \ {\r\n\t\treturn out << num.val();\r\n\t}\r\n \r\nprivate:\r\n\tint value;\r\n\
+    \tstatic int md;\r\n\tstatic std::vector<modint> facts, inv_facts, invs;\r\n};\r\
+    \n\r\ntemplate<int id> int modint<id>::md = 998244353;\r\ntemplate<int id> std::vector<modint<id>>\
     \ modint<id>::facts = {1};\r\ntemplate<int id> std::vector<modint<id>> modint<id>::inv_facts\
     \ = {1};\r\ntemplate<int id> std::vector<modint<id>> modint<id>::invs = {0};\r\
     \n\r\nusing modint998244353 = modint<998244353>;\r\nusing modint1000000007 = modint<1000000007>;\r\
@@ -149,28 +148,28 @@ data:
     \ {};\r\ntemplate<int id> struct is_dynamic_modint<modint<id>, std::enable_if_t<(id\
     \ <= 0)>> : public std::true_type {};\r\ntemplate<class T> using is_dynamic_modint_t\
     \ = std::enable_if_t<is_dynamic_modint<T>::value>;\r\n\r\n} // namespace internal\r\
-    \n\r\n} // namespace felix\r\n#line 7 \"library/data-structure/lazy-treap.hpp\"\
-    \n#include <functional>\n#include <tuple>\n#line 3 \"library/random/rng.hpp\"\n\
-    \nnamespace felix {\n\ninline unsigned long long rng() {\n\tstatic unsigned long\
-    \ long SEED = std::chrono::steady_clock::now().time_since_epoch().count();\n\t\
-    SEED ^= SEED << 7;\n\tSEED ^= SEED >> 9;\n\treturn SEED & 0xFFFFFFFFULL;\n}\n\n\
-    } // namespace felix\n#line 10 \"library/data-structure/lazy-treap.hpp\"\n\nnamespace\
-    \ felix {\n\ntemplate<class S,\n         S (*e)(),\n         S (*op)(S, S),\n\
-    \         S (*reversal)(S),\n         class F,\n         F (*id)(),\n        \
-    \ S (*mapping)(F, S),\n         F (*composition)(F, F)>\nstruct lazy_treap {\n\
-    public:\n\tstruct Node {\n\t\tS val, sum;\n\t\tF lz = id();\n\t\tbool rev = false;\n\
-    \t\tint sz = 1;\n\t\tNode* l = nullptr;\n\t\tNode* r = nullptr;\n\t\tNode* p =\
-    \ nullptr;\n\n\t\tNode() {}\n\t\tNode(const S& s) : val(s), sum(s) {}\n\t};\n\n\
-    \tNode* new_tree() { return nullptr; }\n\tNode* make_node(const S& s) { return\
-    \ new Node(s); }\n\n\tint size(Node* v) const { return v != nullptr ? v->sz :\
-    \ 0; }\n\tbool empty(Node* v) const { return v == nullptr; }\n\n\tNode* get_root(Node*\
-    \ v) {\n\t\twhile(v->p != nullptr) {\n\t\t\tv = v->p;\n\t\t}\n\t\treturn v;\n\t\
-    }\n\n\tint get_position(Node* v) {\n\t\tint k = size(v->l);\n\t\twhile(v->p !=\
-    \ nullptr) {\n\t\t\tif(v == v->p->r) {\n\t\t\t\tk++;\n\t\t\t\tif(v->p->l != nullptr)\
-    \ {\n\t\t\t\t\tk += v->p->l->sz;\n\t\t\t\t}\n\t\t\t}\n\t\t\tv = v->p;\n\t\t}\n\
-    \t\treturn k;\n\t}\n\n\tNode* merge(Node* a, Node* b) {\n\t\tif(a == nullptr ||\
-    \ b == nullptr) {\n\t\t\treturn a != nullptr ? a : b;\n\t\t}\n\t\tif((int) ((rng()\
-    \ * (a->sz + b->sz)) >> 32) < a->sz) {\n\t\t\tpush(a);\n\t\t\ta->r = merge(a->r,\
+    \n\r\n} // namespace felix\r\n#line 6 \"library/data-structure/lazy-treap.hpp\"\
+    \n#include <chrono>\n#include <functional>\n#include <tuple>\n#line 3 \"library/random/rng.hpp\"\
+    \n\nnamespace felix {\n\ninline unsigned long long rng() {\n\tstatic unsigned\
+    \ long long SEED = std::chrono::steady_clock::now().time_since_epoch().count();\n\
+    \tSEED ^= SEED << 7;\n\tSEED ^= SEED >> 9;\n\treturn SEED & 0xFFFFFFFFULL;\n}\n\
+    \n} // namespace felix\n#line 10 \"library/data-structure/lazy-treap.hpp\"\n\n\
+    namespace felix {\n\ntemplate<class S,\n         S (*e)(),\n         S (*op)(S,\
+    \ S),\n         S (*reversal)(S),\n         class F,\n         F (*id)(),\n  \
+    \       S (*mapping)(F, S),\n         F (*composition)(F, F)>\nstruct lazy_treap\
+    \ {\npublic:\n\tstruct Node {\n\t\tS val, sum;\n\t\tF lz = id();\n\t\tbool rev\
+    \ = false;\n\t\tint sz = 1;\n\t\tNode* l = nullptr;\n\t\tNode* r = nullptr;\n\t\
+    \tNode* p = nullptr;\n\n\t\tNode() {}\n\t\tNode(const S& s) : val(s), sum(s) {}\n\
+    \t};\n\n\tNode* new_tree() { return nullptr; }\n\tNode* make_node(const S& s)\
+    \ { return new Node(s); }\n\n\tint size(Node* v) const { return v != nullptr ?\
+    \ v->sz : 0; }\n\tbool empty(Node* v) const { return v == nullptr; }\n\n\tNode*\
+    \ get_root(Node* v) {\n\t\twhile(v->p != nullptr) {\n\t\t\tv = v->p;\n\t\t}\n\t\
+    \treturn v;\n\t}\n\n\tint get_position(Node* v) {\n\t\tint k = size(v->l);\n\t\
+    \twhile(v->p != nullptr) {\n\t\t\tif(v == v->p->r) {\n\t\t\t\tk++;\n\t\t\t\tif(v->p->l\
+    \ != nullptr) {\n\t\t\t\t\tk += v->p->l->sz;\n\t\t\t\t}\n\t\t\t}\n\t\t\tv = v->p;\n\
+    \t\t}\n\t\treturn k;\n\t}\n\n\tNode* merge(Node* a, Node* b) {\n\t\tif(a == nullptr\
+    \ || b == nullptr) {\n\t\t\treturn a != nullptr ? a : b;\n\t\t}\n\t\tif((int)\
+    \ ((rng() * (a->sz + b->sz)) >> 32) < a->sz) {\n\t\t\tpush(a);\n\t\t\ta->r = merge(a->r,\
     \ b);\n\t\t\tpull(a);\n\t\t\treturn a;\n\t\t} else {\n\t\t\tpush(b);\n\t\t\tb->l\
     \ = merge(a, b->l);\n\t\t\tpull(b);\n\t\t\treturn b;\n\t\t}\n\t}\n\n\tstd::pair<Node*,\
     \ Node*> split(Node*& root, const std::function<bool(Node*)>& is_right) {\n\t\t\
@@ -277,7 +276,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/Data-Structure/Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
   requiredBy: []
-  timestamp: '2023-05-14 18:49:39+08:00'
+  timestamp: '2023-05-14 19:14:31+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Data-Structure/Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp

@@ -23,7 +23,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/data-structure/binary-trie.hpp
       title: library/data-structure/binary-trie.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/data-structure/fenwick.hpp
       title: library/data-structure/fenwick.hpp
     - icon: ':heavy_check_mark:'
@@ -32,7 +32,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/data-structure/lazy-LCT.hpp
       title: Link Cut Tree
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/data-structure/lazy-segtree.hpp
       title: library/data-structure/lazy-segtree.hpp
     - icon: ':heavy_check_mark:'
@@ -44,7 +44,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/data-structure/rectangle-sum.hpp
       title: library/data-structure/rectangle-sum.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/data-structure/segtree.hpp
       title: library/data-structure/segtree.hpp
     - icon: ':question:'
@@ -174,7 +174,7 @@ data:
       title: Z Algorithm
   - name: library/tree
     pages:
-    - icon: ':x:'
+    - icon: ':question:'
       path: library/tree/HLD.hpp
       title: "Heavy Light Decomposition (\u8F15\u91CD\u93C8\u5256\u5206)"
     - icon: ':warning:'
@@ -232,7 +232,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/grl/Bridges.test.cpp
       title: test/aoj/grl/Bridges.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/grl/Lowest-Common-Ancestor.test.cpp
       title: test/aoj/grl/Lowest-Common-Ancestor.test.cpp
     - icon: ':heavy_check_mark:'
@@ -241,10 +241,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/grl/Minimum-Cost-Flow.test.cpp
       title: test/aoj/grl/Minimum-Cost-Flow.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/grl/Range-Query-on-a-Tree-II.test.cpp
       title: test/aoj/grl/Range-Query-on-a-Tree-II.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/grl/Range-Query-on-a-Tree.test.cpp
       title: test/aoj/grl/Range-Query-on-a-Tree.test.cpp
     - icon: ':heavy_check_mark:'
@@ -324,7 +324,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/Data-Structure/Range-Affine-Point-Get.test.cpp
       title: test/yosupo/Data-Structure/Range-Affine-Point-Get.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/Data-Structure/Range-Affine-Range-Sum.test.cpp
       title: test/yosupo/Data-Structure/Range-Affine-Range-Sum.test.cpp
     - icon: ':heavy_check_mark:'
@@ -348,13 +348,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/Data-Structure/Unionfind.test.cpp
       title: test/yosupo/Data-Structure/Unionfind.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/Data-Structure/Vertex-Add-Path-Sum.test.cpp
       title: test/yosupo/Data-Structure/Vertex-Add-Path-Sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/Data-Structure/Vertex-Add-Subtree-Sum.test.cpp
       title: test/yosupo/Data-Structure/Vertex-Add-Subtree-Sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/Data-Structure/Vertex-Set-Path-Composite.test.cpp
       title: test/yosupo/Data-Structure/Vertex-Set-Path-Composite.test.cpp
   - name: test/yosupo/Geometry

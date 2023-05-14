@@ -15,7 +15,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/dsl/The-Maximum-Number-of-Customers.test.cpp
     title: test/aoj/dsl/The-Maximum-Number-of-Customers.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/grl/Range-Query-on-a-Tree.test.cpp
     title: test/aoj/grl/Range-Query-on-a-Tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -24,15 +24,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/Data-Structure/Point-Add-Rectangle-Sum.test.cpp
     title: test/yosupo/Data-Structure/Point-Add-Rectangle-Sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/Data-Structure/Vertex-Add-Path-Sum.test.cpp
     title: test/yosupo/Data-Structure/Vertex-Add-Path-Sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/Data-Structure/Vertex-Add-Subtree-Sum.test.cpp
     title: test/yosupo/Data-Structure/Vertex-Add-Subtree-Sum.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"library/data-structure/fenwick.hpp\"\n#include <vector>\n\
@@ -58,7 +58,7 @@ data:
   requiredBy:
   - library/data-structure/rectangle-sum.hpp
   timestamp: '2023-04-17 12:10:28+08:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/Data-Structure/Vertex-Add-Subtree-Sum.test.cpp
   - test/yosupo/Data-Structure/Vertex-Add-Path-Sum.test.cpp

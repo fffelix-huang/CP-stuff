@@ -6,22 +6,22 @@ data:
     title: library/data-structure/sparse-table.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/grl/Lowest-Common-Ancestor.test.cpp
     title: test/aoj/grl/Lowest-Common-Ancestor.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/grl/Range-Query-on-a-Tree-II.test.cpp
     title: test/aoj/grl/Range-Query-on-a-Tree-II.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/grl/Range-Query-on-a-Tree.test.cpp
     title: test/aoj/grl/Range-Query-on-a-Tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/Data-Structure/Vertex-Add-Path-Sum.test.cpp
     title: test/yosupo/Data-Structure/Vertex-Add-Path-Sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/Data-Structure/Vertex-Add-Subtree-Sum.test.cpp
     title: test/yosupo/Data-Structure/Vertex-Add-Subtree-Sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/Data-Structure/Vertex-Set-Path-Composite.test.cpp
     title: test/yosupo/Data-Structure/Vertex-Set-Path-Composite.test.cpp
   - icon: ':x:'
@@ -32,7 +32,7 @@ data:
     title: test/yosupo/Tree/Lowest-Common-Ancestor.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"library/tree/HLD.hpp\"\n#include <vector>\r\n#include <array>\r\
@@ -74,7 +74,7 @@ data:
     \t}\r\n\r\n\tstd::pair<int, std::array<int, 2>> get_diameter() const {\r\n\t\t\
     std::pair<int, int> u_max = {-1, -1};\r\n\t\tstd::pair<int, int> ux_max = {-1,\
     \ -1};\r\n\t\tstd::pair<int, std::array<int, 2>> uxv_max = {-1, std::array<int,\
-    \ 2>{-1, -1}};\r\n\t\tfor(auto [d, u] : euler) {\r\n\t\t\tu_max = std::max(u_max,\
+    \ 2>{-1, -1}};\r\n\t\tfor(auto [d, u] : euler_tour) {\r\n\t\t\tu_max = std::max(u_max,\
     \ std::make_pair(d, u));\r\n\t\t\tux_max = std::max(ux_max, std::make_pair(u_max.first\
     \ - 2 * d, u_max.second));\r\n\t\t\tuxv_max = std::max(uxv_max, std::make_pair(ux_max.first\
     \ + d, std::array<int, 2>{ux_max.second, u}));\r\n\t\t}\r\n\t\treturn uxv_max;\r\
@@ -136,7 +136,7 @@ data:
     \t}\r\n\r\n\tstd::pair<int, std::array<int, 2>> get_diameter() const {\r\n\t\t\
     std::pair<int, int> u_max = {-1, -1};\r\n\t\tstd::pair<int, int> ux_max = {-1,\
     \ -1};\r\n\t\tstd::pair<int, std::array<int, 2>> uxv_max = {-1, std::array<int,\
-    \ 2>{-1, -1}};\r\n\t\tfor(auto [d, u] : euler) {\r\n\t\t\tu_max = std::max(u_max,\
+    \ 2>{-1, -1}};\r\n\t\tfor(auto [d, u] : euler_tour) {\r\n\t\t\tu_max = std::max(u_max,\
     \ std::make_pair(d, u));\r\n\t\t\tux_max = std::max(ux_max, std::make_pair(u_max.first\
     \ - 2 * d, u_max.second));\r\n\t\t\tuxv_max = std::max(uxv_max, std::make_pair(ux_max.first\
     \ + d, std::array<int, 2>{ux_max.second, u}));\r\n\t\t}\r\n\t\treturn uxv_max;\r\
@@ -175,8 +175,8 @@ data:
   isVerificationFile: false
   path: library/tree/HLD.hpp
   requiredBy: []
-  timestamp: '2023-05-14 18:49:39+08:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-05-14 19:14:31+08:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/Data-Structure/Vertex-Add-Subtree-Sum.test.cpp
   - test/yosupo/Data-Structure/Vertex-Add-Path-Sum.test.cpp
