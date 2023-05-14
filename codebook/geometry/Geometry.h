@@ -37,11 +37,22 @@ Point<T> intersection_at(Point<T> a, Point<T> b, Point<T> c, Point<T> d) {
 }
 
 template<class T>
+Point<T> vec(Line<T> L) {
+	return L.B - L.A;
+}
+
+template<class T>
+Point<T> projection(Point<T> p, Line<T> L) {
+	auto v = L.vectorize();
+	return L.A + v / v.abs() * dot(p - L.A, v) / v.abs();
+}
+
+// -1 ON
+//  0 OUT
+// +1 IN
+// Convex Hull must be sorted in counter-clockwise order
+template<class T>
 int point_in_convex_hull(const vector<Point<T>>& a, const Point<T>& p) {
-	// -1 ON
-	//  0 OUT
-	// +1 IN
-	// Convex Hull must be sorted in counter-clockwise order
 	int n = (int) a.size();
 	if(between(a[0], a[1], p) || between(a[0], a[n - 1], p)) {
 		return -1;

@@ -6,6 +6,7 @@
 #include "../../../library/geometry/point.hpp"
 using namespace std;
 using namespace felix;
+using namespace geometry;
 
 using P = Point<long long>;
 

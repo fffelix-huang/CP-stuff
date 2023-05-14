@@ -66,7 +66,7 @@ public:
 		return id[u] <= id[v] && id[v] < id[u] + subtree_size[u];
 	}
 
-	bool on_path(int a, int b, int x) {
+	bool on_path(int a, int x, int b) {
 		return (is_ancestor(x, a) || is_ancestor(x, b)) && is_ancestor(get_lca(a, b), x);
 	}
 

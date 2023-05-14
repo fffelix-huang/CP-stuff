@@ -4,6 +4,8 @@
 
 namespace felix {
 
+namespace geometry {
+
 template<class T>
 struct Point {
 	T x, y;
@@ -48,16 +50,24 @@ struct Point {
 	constexpr bool operator==(const Point& rhs) const { return x == rhs.x && y == rhs.y; }
 	constexpr bool operator!=(const Point& rhs) const { return !(*this == rhs); }
 
-	constexpr T dist2() const { return x * x + y * y; }
-	constexpr long double dist() const { return std::sqrt(dist2()); }
-	constexpr long double angle() const { return std::atan2(y, x); }
+	// rotate counter-clockwise
+	constexpr Point rotate(T theta) const {
+		T sint = std::sin(theta);
+		T cost = std::cos(theta);
+		return Point(x * cost - y * sint, x * sint + y * cost);
+	}
+
+	friend constexpr T abs2(Point p) { return p.x * p.x + p.y * p.y; }
+	friend constexpr long double abs(Point p) { return std::sqrt(abs2(p)); }
+	friend constexpr long double angle(Point p) { return std::atan2(p.y, p.x); }
 	friend constexpr T dot(Point lhs, Point rhs) { return lhs.x * rhs.x + lhs.y * rhs.y; }
 	friend constexpr T cross(Point lhs, Point rhs) { return lhs.x * rhs.y - lhs.y * rhs.x; }
-	friend constexpr Point dot_cross(Point lhs, Point rhs) { return Point(dot(lhs, rhs), cross(lhs, rhs)); }
 
 	friend constexpr std::istream& operator>>(std::istream& in, Point& p) {
 		return in >> p.x >> p.y;
 	}
 };
+
+} // namespace geometry
 
 } // namespace felix
