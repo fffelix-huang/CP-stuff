@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/data-structure/segtree.hpp
     title: library/data-structure/segtree.hpp
   _extendedRequiredBy: []

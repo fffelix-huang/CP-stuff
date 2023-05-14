@@ -3,10 +3,10 @@ data:
   libraryCategories:
   - name: library/convolution
     pages:
-    - icon: ':question:'
+    - icon: ':x:'
       path: library/convolution/NTT.hpp
       title: library/convolution/NTT.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/convolution/subset-convolution.hpp
       title: library/convolution/subset-convolution.hpp
   - name: library/data-structure
@@ -23,7 +23,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/data-structure/binary-trie.hpp
       title: library/data-structure/binary-trie.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/data-structure/fenwick.hpp
       title: library/data-structure/fenwick.hpp
     - icon: ':heavy_check_mark:'
@@ -32,7 +32,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/data-structure/lazy-LCT.hpp
       title: Link Cut Tree
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/data-structure/lazy-segtree.hpp
       title: library/data-structure/lazy-segtree.hpp
     - icon: ':heavy_check_mark:'
@@ -44,10 +44,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/data-structure/rectangle-sum.hpp
       title: library/data-structure/rectangle-sum.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/data-structure/segtree.hpp
       title: library/data-structure/segtree.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/data-structure/sparse-table.hpp
       title: library/data-structure/sparse-table.hpp
     - icon: ':heavy_check_mark:'
@@ -66,7 +66,7 @@ data:
       title: library/flow/MCMF.hpp
   - name: library/formal-power-series
     pages:
-    - icon: ':question:'
+    - icon: ':x:'
       path: library/formal-power-series/poly.hpp
       title: library/formal-power-series/poly.hpp
   - name: library/geometry
@@ -122,7 +122,7 @@ data:
       title: "xor basis (\u7DDA\u6027\u57FA)"
   - name: library/matrix
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/matrix/matrix.hpp
       title: library/matrix/matrix.hpp
   - name: library/misc
@@ -133,7 +133,7 @@ data:
     - icon: ':warning:'
       path: library/misc/default.hpp
       title: library/misc/default.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/misc/fastio.hpp
       title: library/misc/fastio.hpp
     - icon: ':question:'
@@ -174,9 +174,12 @@ data:
       title: Z Algorithm
   - name: library/tree
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: library/tree/HLD.hpp
       title: "Heavy Light Decomposition (\u8F15\u91CD\u93C8\u5256\u5206)"
+    - icon: ':warning:'
+      path: library/tree/prufer.hpp
+      title: library/tree/prufer.hpp
   verificationCategories:
   - name: test/aoj/cgl
     pages:
@@ -229,7 +232,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/grl/Bridges.test.cpp
       title: test/aoj/grl/Bridges.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/grl/Lowest-Common-Ancestor.test.cpp
       title: test/aoj/grl/Lowest-Common-Ancestor.test.cpp
     - icon: ':heavy_check_mark:'
@@ -238,10 +241,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/grl/Minimum-Cost-Flow.test.cpp
       title: test/aoj/grl/Minimum-Cost-Flow.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/grl/Range-Query-on-a-Tree-II.test.cpp
       title: test/aoj/grl/Range-Query-on-a-Tree-II.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/grl/Range-Query-on-a-Tree.test.cpp
       title: test/aoj/grl/Range-Query-on-a-Tree.test.cpp
     - icon: ':heavy_check_mark:'
@@ -271,16 +274,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/Convolution/Bitwise-And-Convolution.test.cpp
       title: test/yosupo/Convolution/Bitwise-And-Convolution.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/Convolution/Bitwise-Xor-Convolution.test.cpp
       title: test/yosupo/Convolution/Bitwise-Xor-Convolution.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/Convolution/Convolution-Large.test.cpp
       title: test/yosupo/Convolution/Convolution-Large.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/Convolution/Convolution-Mod-1000000007.test.cpp
       title: test/yosupo/Convolution/Convolution-Mod-1000000007.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/Convolution/Convolution.test.cpp
       title: test/yosupo/Convolution/Convolution.test.cpp
     - icon: ':heavy_check_mark:'
@@ -345,13 +348,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/Data-Structure/Unionfind.test.cpp
       title: test/yosupo/Data-Structure/Unionfind.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/Data-Structure/Vertex-Add-Path-Sum.test.cpp
       title: test/yosupo/Data-Structure/Vertex-Add-Path-Sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/Data-Structure/Vertex-Add-Subtree-Sum.test.cpp
       title: test/yosupo/Data-Structure/Vertex-Add-Subtree-Sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/Data-Structure/Vertex-Set-Path-Composite.test.cpp
       title: test/yosupo/Data-Structure/Vertex-Set-Path-Composite.test.cpp
   - name: test/yosupo/Geometry
@@ -395,10 +398,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/Math/Factorize.test.cpp
       title: test/yosupo/Math/Factorize.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/Math/Partition-Function.test.cpp
       title: test/yosupo/Math/Partition-Function.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/Math/Sqrt-Mod.test.cpp
       title: test/yosupo/Math/Sqrt-Mod.test.cpp
     - icon: ':heavy_check_mark:'
@@ -406,7 +409,7 @@ data:
       title: test/yosupo/Math/Sum-of-Floor-of-Linear.test.cpp
   - name: test/yosupo/Matrix
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/Matrix/Determinant-of-Matrix.test.cpp
       title: test/yosupo/Matrix/Determinant-of-Matrix.test.cpp
     - icon: ':heavy_check_mark:'
@@ -414,22 +417,22 @@ data:
       title: test/yosupo/Matrix/Matrix-Product.test.cpp
   - name: test/yosupo/Polynomial
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/Polynomial/Exp-of-Formal-Power-Series.test.cpp
       title: test/yosupo/Polynomial/Exp-of-Formal-Power-Series.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/Polynomial/Inv-of-Formal-Power-Series.test.cpp
       title: test/yosupo/Polynomial/Inv-of-Formal-Power-Series.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/Polynomial/Log-of-Formal-Power-Series.test.cpp
       title: test/yosupo/Polynomial/Log-of-Formal-Power-Series.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/Polynomial/Multipoint-Evaluation.test.cpp
       title: test/yosupo/Polynomial/Multipoint-Evaluation.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/Polynomial/Polynomial-Taylor-Shift.test.cpp
       title: test/yosupo/Polynomial/Polynomial-Taylor-Shift.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/Polynomial/Pow-of-Formal-Power-Series.test.cpp
       title: test/yosupo/Polynomial/Pow-of-Formal-Power-Series.test.cpp
     - icon: ':x:'
@@ -451,10 +454,10 @@ data:
       title: test/yosupo/String/Z-Algorithm.test.cpp
   - name: test/yosupo/Tree
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/Tree/Jump-on-Tree.test.cpp
       title: test/yosupo/Tree/Jump-on-Tree.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/Tree/Lowest-Common-Ancestor.test.cpp
       title: test/yosupo/Tree/Lowest-Common-Ancestor.test.cpp
 layout: toppage

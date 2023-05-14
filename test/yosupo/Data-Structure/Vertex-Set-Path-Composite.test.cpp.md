@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/data-structure/segtree.hpp
     title: library/data-structure/segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/data-structure/sparse-table.hpp
     title: library/data-structure/sparse-table.hpp
   - icon: ':question:'
@@ -19,14 +19,14 @@ data:
   - icon: ':question:'
     path: library/modint/modint.hpp
     title: library/modint/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/tree/HLD.hpp
     title: "Heavy Light Decomposition (\u8F15\u91CD\u93C8\u5256\u5206)"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_set_path_composite
@@ -68,57 +68,64 @@ data:
     \t\t\t\t}\n\t\t\t\t}\n\t\t\t\treturn r + 1 - size;\n\t\t\t}\n\t\t\tsm = op(st[r],\
     \ sm);\n\t\t} while((r & -r) != r);\n\t\treturn 0;\n\t}\n\t\nprivate:\n\tint n,\
     \ size, log;\n\tstd::vector<S> st;\n\n\tvoid update(int v) {\n\t\tst[v] = op(st[v\
-    \ * 2], st[v * 2 + 1]);\n\t}\n};\n\n} // namespace felix\n#line 4 \"library/tree/HLD.hpp\"\
-    \n#include <algorithm>\r\n#include <cmath>\r\n#line 4 \"library/data-structure/sparse-table.hpp\"\
-    \n\nnamespace felix {\n\ntemplate<class T, T (*op)(T, T)>\nstruct sparse_table\
-    \ {\npublic:\n\tsparse_table() {}\n\texplicit sparse_table(const std::vector<T>&\
-    \ a) {\n\t\tn = (int) a.size();\n\t\tint max_log = std::__lg(n) + 1;\n\t\tmat.resize(max_log);\n\
+    \ * 2], st[v * 2 + 1]);\n\t}\n};\n\n} // namespace felix\n#line 3 \"library/tree/HLD.hpp\"\
+    \n#include <array>\r\n#line 5 \"library/tree/HLD.hpp\"\n#include <algorithm>\r\
+    \n#include <cmath>\r\n#line 4 \"library/data-structure/sparse-table.hpp\"\n\n\
+    namespace felix {\n\ntemplate<class T, T (*op)(T, T)>\nstruct sparse_table {\n\
+    public:\n\tsparse_table() {}\n\texplicit sparse_table(const std::vector<T>& a)\
+    \ {\n\t\tn = (int) a.size();\n\t\tint max_log = std::__lg(n) + 1;\n\t\tmat.resize(max_log);\n\
     \t\tmat[0] = a;\n\t\tfor(int j = 1; j < max_log; ++j) {\n\t\t\tmat[j].resize(n\
     \ - (1 << j) + 1);\n\t\t\tfor(int i = 0; i <= n - (1 << j); ++i) {\n\t\t\t\tmat[j][i]\
     \ = op(mat[j - 1][i], mat[j - 1][i + (1 << (j - 1))]);\n\t\t\t}\n\t\t}\n\t}\n\n\
     \tinline T prod(int from, int to) const {\n\t\tassert(0 <= from && from <= to\
     \ && to <= n - 1);\n\t\tint lg = std::__lg(to - from + 1);\n\t\treturn op(mat[lg][from],\
     \ mat[lg][to - (1 << lg) + 1]);\n\t}\n\nprivate:\n\tint n;\n\tstd::vector<std::vector<T>>\
-    \ mat;\n};\n\n} // namespace felix\n#line 7 \"library/tree/HLD.hpp\"\n\r\nnamespace\
+    \ mat;\n};\n\n} // namespace felix\n#line 8 \"library/tree/HLD.hpp\"\n\r\nnamespace\
     \ felix {\r\n\r\nstruct HLD {\r\nprivate:\r\n\tstatic constexpr std::pair<int,\
     \ int> __lca_op(std::pair<int, int> a, std::pair<int, int> b) {\r\n\t\treturn\
     \ std::min(a, b);\r\n\t}\r\n\r\npublic:\r\n\tint n;\r\n\tstd::vector<std::vector<int>>\
     \ g;\r\n\tstd::vector<int> subtree_size;\r\n\tstd::vector<int> parent;\r\n\tstd::vector<int>\
     \ depth;\r\n\tstd::vector<int> top;\r\n\tstd::vector<int> tour;\r\n\tstd::vector<int>\
-    \ first_occurrence;\r\n\tstd::vector<int> id;\r\n\tsparse_table<std::pair<int,\
-    \ int>, __lca_op> st;\r\n\r\n\tHLD() : n(0) {}\r\n\texplicit HLD(int _n) : n(_n),\
-    \ g(_n), subtree_size(_n), parent(_n), depth(_n), top(_n), first_occurrence(_n),\
-    \ id(_n) {\r\n\t\ttour.reserve(n);\r\n\t}\r\n\r\n\tvoid add_edge(int u, int v)\
-    \ {\r\n\t\tassert(0 <= u && u < n);\r\n\t\tassert(0 <= v && v < n);\r\n\t\tg[u].push_back(v);\r\
-    \n\t\tg[v].push_back(u);\r\n\t}\r\n\r\n\tvoid build(int root = 0) {\r\n\t\tassert(0\
-    \ <= root && root < n);\r\n\t\tparent[root] = -1;\r\n\t\ttop[root] = root;\r\n\
-    \t\tstd::vector<std::pair<int, int>> euler_tour;\r\n\t\teuler_tour.reserve(2 *\
-    \ n - 1);\r\n\t\tdfs_sz(root);\r\n\t\tdfs_link(euler_tour, root);\r\n\t\tst =\
-    \ sparse_table<std::pair<int, int>, __lca_op>(euler_tour);\r\n\t}\r\n\r\n\tint\
-    \ get_lca(int u, int v) {\r\n\t\tassert(0 <= u && u < n);\r\n\t\tassert(0 <= v\
-    \ && v < n);\r\n\t\tint L = first_occurrence[u];\r\n\t\tint R = first_occurrence[v];\r\
-    \n\t\tif(L > R) {\r\n\t\t\tstd::swap(L, R);\r\n\t\t}\r\n\t\treturn st.prod(L,\
-    \ R).second;\r\n\t}\r\n\r\n\tbool is_ancestor(int u, int v) {\r\n\t\tassert(0\
-    \ <= u && u < n);\r\n\t\tassert(0 <= v && v < n);\r\n\t\treturn id[u] <= id[v]\
-    \ && id[v] < id[u] + subtree_size[u];\r\n\t}\r\n\r\n\tbool on_path(int a, int\
-    \ b, int x) {\r\n\t\treturn (is_ancestor(x, a) || is_ancestor(x, b)) && is_ancestor(get_lca(a,\
-    \ b), x);\r\n\t}\r\n\r\n\tint get_distance(int u, int v) {\r\n\t\treturn depth[u]\
-    \ + depth[v] - 2 * depth[(get_lca(u, v))];\r\n\t}\r\n\r\n\tint get_kth_ancestor(int\
-    \ u, int k) {\r\n\t\tassert(0 <= u && u < n);\r\n\t\tif(depth[u] < k) {\r\n\t\t\
-    \treturn -1;\r\n\t\t}\r\n\t\tint d = depth[u] - k;\r\n\t\twhile(depth[top[u]]\
-    \ > d) {\r\n\t\t\tu = parent[top[u]];\r\n\t\t}\r\n\t\treturn tour[id[u] + d -\
-    \ depth[u]];\r\n\t}\r\n\r\n\tint get_kth_node_on_path(int a, int b, int k) {\r\
-    \n\t\tint z = get_lca(a, b);\r\n\t\tint fi = depth[a] - depth[z];\r\n\t\tint se\
-    \ = depth[b] - depth[z];\r\n\t\tif(k < 0 || k > fi + se) {\r\n\t\t\treturn -1;\r\
-    \n\t\t}\r\n\t\tif(k < fi) {\r\n\t\t\treturn get_kth_ancestor(a, k);\r\n\t\t} else\
-    \ {\r\n\t\t\treturn get_kth_ancestor(b, fi + se - k);\r\n\t\t}\r\n\t}\r\n\r\n\t\
-    std::vector<std::pair<int, int>> get_path(int u, int v, bool include_lca) {\r\n\
-    \t\tif(u == v && !include_lca) {\r\n\t\t\treturn {};\r\n\t\t}\r\n\t\tstd::vector<std::pair<int,\
-    \ int>> lhs, rhs;\r\n\t\twhile(top[u] != top[v]) {\r\n\t\t\tif(depth[top[u]] >\
-    \ depth[top[v]]) {\r\n\t\t\t\tlhs.emplace_back(u, top[u]);\r\n\t\t\t\tu = parent[top[u]];\r\
-    \n\t\t\t} else {\r\n\t\t\t\trhs.emplace_back(top[v], v);\r\n\t\t\t\tv = parent[top[v]];\r\
-    \n\t\t\t}\r\n\t\t}\r\n\t\tif(u != v || include_lca) {\r\n\t\t\tif(include_lca)\
-    \ {\r\n\t\t\t\tlhs.emplace_back(u, v);\r\n\t\t\t} else {\r\n\t\t\t\tint d = std::abs(depth[u]\
+    \ first_occurrence;\r\n\tstd::vector<int> id;\r\n\tstd::vector<std::pair<int,\
+    \ int>> euler_tour;\r\n\tsparse_table<std::pair<int, int>, __lca_op> st;\r\n\r\
+    \n\tHLD() : n(0) {}\r\n\texplicit HLD(int _n) : n(_n), g(_n), subtree_size(_n),\
+    \ parent(_n), depth(_n), top(_n), first_occurrence(_n), id(_n) {\r\n\t\ttour.reserve(n);\r\
+    \n\t\teuler_tour.reserve(2 * n - 1);\r\n\t}\r\n\r\n\tvoid add_edge(int u, int\
+    \ v) {\r\n\t\tassert(0 <= u && u < n);\r\n\t\tassert(0 <= v && v < n);\r\n\t\t\
+    g[u].push_back(v);\r\n\t\tg[v].push_back(u);\r\n\t}\r\n\r\n\tvoid build(int root\
+    \ = 0) {\r\n\t\tassert(0 <= root && root < n);\r\n\t\tparent[root] = -1;\r\n\t\
+    \ttop[root] = root;\r\n\t\tdfs_sz(root);\r\n\t\tdfs_link(root);\r\n\t\tst = sparse_table<std::pair<int,\
+    \ int>, __lca_op>(euler_tour);\r\n\t}\r\n\r\n\tint get_lca(int u, int v) {\r\n\
+    \t\tassert(0 <= u && u < n);\r\n\t\tassert(0 <= v && v < n);\r\n\t\tint L = first_occurrence[u];\r\
+    \n\t\tint R = first_occurrence[v];\r\n\t\tif(L > R) {\r\n\t\t\tstd::swap(L, R);\r\
+    \n\t\t}\r\n\t\treturn st.prod(L, R).second;\r\n\t}\r\n\r\n\tbool is_ancestor(int\
+    \ u, int v) {\r\n\t\tassert(0 <= u && u < n);\r\n\t\tassert(0 <= v && v < n);\r\
+    \n\t\treturn id[u] <= id[v] && id[v] < id[u] + subtree_size[u];\r\n\t}\r\n\r\n\
+    \tbool on_path(int a, int b, int x) {\r\n\t\treturn (is_ancestor(x, a) || is_ancestor(x,\
+    \ b)) && is_ancestor(get_lca(a, b), x);\r\n\t}\r\n\r\n\tint get_distance(int u,\
+    \ int v) {\r\n\t\treturn depth[u] + depth[v] - 2 * depth[(get_lca(u, v))];\r\n\
+    \t}\r\n\r\n\tstd::pair<int, std::array<int, 2>> get_diameter() const {\r\n\t\t\
+    std::pair<int, int> u_max = {-1, -1};\r\n\t\tstd::pair<int, int> ux_max = {-1,\
+    \ -1};\r\n\t\tstd::pair<int, std::array<int, 2>> uxv_max = {-1, {-1, -1}};\r\n\
+    \t\tfor(auto [d, u] : euler) {\r\n\t\t\tu_max = std::max(u_max, {d, u});\r\n\t\
+    \t\tux_max = std::max(ux_max, {u_max.first - 2 * d, u_max.second});\r\n\t\t\t\
+    uxv_max = std::max(uxv_max, {ux_max.first + d, {ux_max.second, u}});\r\n\t\t}\r\
+    \n\t\treturn uxv_max;\r\n\t}\r\n\r\n\tint get_kth_ancestor(int u, int k) {\r\n\
+    \t\tassert(0 <= u && u < n);\r\n\t\tif(depth[u] < k) {\r\n\t\t\treturn -1;\r\n\
+    \t\t}\r\n\t\tint d = depth[u] - k;\r\n\t\twhile(depth[top[u]] > d) {\r\n\t\t\t\
+    u = parent[top[u]];\r\n\t\t}\r\n\t\treturn tour[id[u] + d - depth[u]];\r\n\t}\r\
+    \n\r\n\tint get_kth_node_on_path(int a, int b, int k) {\r\n\t\tint z = get_lca(a,\
+    \ b);\r\n\t\tint fi = depth[a] - depth[z];\r\n\t\tint se = depth[b] - depth[z];\r\
+    \n\t\tif(k < 0 || k > fi + se) {\r\n\t\t\treturn -1;\r\n\t\t}\r\n\t\tif(k < fi)\
+    \ {\r\n\t\t\treturn get_kth_ancestor(a, k);\r\n\t\t} else {\r\n\t\t\treturn get_kth_ancestor(b,\
+    \ fi + se - k);\r\n\t\t}\r\n\t}\r\n\r\n\tstd::vector<std::pair<int, int>> get_path(int\
+    \ u, int v, bool include_lca) {\r\n\t\tif(u == v && !include_lca) {\r\n\t\t\t\
+    return {};\r\n\t\t}\r\n\t\tstd::vector<std::pair<int, int>> lhs, rhs;\r\n\t\t\
+    while(top[u] != top[v]) {\r\n\t\t\tif(depth[top[u]] > depth[top[v]]) {\r\n\t\t\
+    \t\tlhs.emplace_back(u, top[u]);\r\n\t\t\t\tu = parent[top[u]];\r\n\t\t\t} else\
+    \ {\r\n\t\t\t\trhs.emplace_back(top[v], v);\r\n\t\t\t\tv = parent[top[v]];\r\n\
+    \t\t\t}\r\n\t\t}\r\n\t\tif(u != v || include_lca) {\r\n\t\t\tif(include_lca) {\r\
+    \n\t\t\t\tlhs.emplace_back(u, v);\r\n\t\t\t} else {\r\n\t\t\t\tint d = std::abs(depth[u]\
     \ - depth[v]);\r\n\t\t\t\tif(depth[u] < depth[v]) {\r\n\t\t\t\t\trhs.emplace_back(tour[id[v]\
     \ - d + 1], v);\r\n\t\t\t\t} else {\r\n\t\t\t\t\tlhs.emplace_back(u, tour[id[u]\
     \ - d + 1]);\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t}\r\n\t\tstd::reverse(rhs.begin(),\
@@ -128,14 +135,14 @@ data:
     \n\t\t}\r\n\t\tsubtree_size[u] = 1;\r\n\t\tfor(auto& v : g[u]) {\r\n\t\t\tparent[v]\
     \ = u;\r\n\t\t\tdepth[v] = depth[u] + 1;\r\n\t\t\tdfs_sz(v);\r\n\t\t\tsubtree_size[u]\
     \ += subtree_size[v];\r\n\t\t\tif(subtree_size[v] > subtree_size[g[u][0]]) {\r\
-    \n\t\t\t\tstd::swap(v, g[u][0]);\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n\r\n\tvoid dfs_link(std::vector<std::pair<int,\
-    \ int>>& euler_tour, int u) {\r\n\t\tfirst_occurrence[u] = (int) euler_tour.size();\r\
-    \n\t\tid[u] = (int) tour.size();\r\n\t\teuler_tour.emplace_back(depth[u], u);\r\
-    \n\t\ttour.push_back(u);\r\n\t\tfor(auto v : g[u]) {\r\n\t\t\ttop[v] = (v == g[u][0]\
-    \ ? top[u] : v);\r\n\t\t\tdfs_link(euler_tour, v);\r\n\t\t\teuler_tour.emplace_back(depth[u],\
-    \ u);\r\n\t\t}\r\n\t}\r\n};\r\n\r\n} // namespace felix\r\n#line 6 \"library/modint/modint.hpp\"\
-    \n#include <random>\r\n#include <chrono>\r\n#include <type_traits>\r\n#line 3\
-    \ \"library/misc/type-traits.hpp\"\n#include <numeric>\r\n#line 5 \"library/misc/type-traits.hpp\"\
+    \n\t\t\t\tstd::swap(v, g[u][0]);\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n\r\n\tvoid dfs_link(int\
+    \ u) {\r\n\t\tfirst_occurrence[u] = (int) euler_tour.size();\r\n\t\tid[u] = (int)\
+    \ tour.size();\r\n\t\teuler_tour.emplace_back(depth[u], u);\r\n\t\ttour.push_back(u);\r\
+    \n\t\tfor(auto v : g[u]) {\r\n\t\t\ttop[v] = (v == g[u][0] ? top[u] : v);\r\n\t\
+    \t\tdfs_link(v);\r\n\t\t\teuler_tour.emplace_back(depth[u], u);\r\n\t\t}\r\n\t\
+    }\r\n};\r\n\r\n} // namespace felix\r\n#line 6 \"library/modint/modint.hpp\"\n\
+    #include <random>\r\n#include <chrono>\r\n#include <type_traits>\r\n#line 3 \"\
+    library/misc/type-traits.hpp\"\n#include <numeric>\r\n#line 5 \"library/misc/type-traits.hpp\"\
     \n\r\nnamespace felix {\r\n\r\nnamespace internal {\r\n\r\n#ifndef _MSC_VER\r\n\
     template<class T> using is_signed_int128 = typename std::conditional<std::is_same<T,\
     \ __int128_t>::value || std::is_same<T, __int128>::value, std::true_type, std::false_type>::type;\r\
@@ -193,27 +200,26 @@ data:
     \ internal::is_signed_int_t<T>* = nullptr> constexpr modint(T v) : value(v >=\
     \ 0 ? v % mod() : v % mod() + mod()) {}\r\n\ttemplate<class T, internal::is_unsigned_int_t<T>*\
     \ = nullptr> constexpr modint(T v) : value(v % mod()) {}\r\n \r\n\tconstexpr int\
-    \ operator()() const { return value; }\r\n\ttemplate<class T> explicit constexpr\
-    \ operator T() const { return static_cast<T>(value); }\r\n\r\n\tconstexpr modint\
-    \ inv() const {\r\n\t\tif(id > 0 && value < std::min(mod() >> 1, 1 << 18)) {\r\
-    \n\t\t\tprepare(value);\r\n\t\t\treturn invs[value];\r\n\t\t} else {\r\n\t\t\t\
-    auto eg = internal::inv_gcd(value, mod());\r\n\t\t\tassert(eg.first == 1);\r\n\
-    \t\t\treturn eg.second;\r\n\t\t}\r\n\t}\r\n\r\n\tconstexpr modint fact() const\
-    \ {\r\n\t\tprepare(value);\r\n\t\treturn facts[value];\r\n\t}\r\n\r\n\tconstexpr\
-    \ modint inv_fact() const {\r\n\t\tprepare(value);\r\n\t\treturn inv_facts[value];\r\
-    \n\t}\r\n \r\n\tconstexpr modint& operator+=(const modint& rhs) & {\r\n\t\tvalue\
-    \ += rhs.value;\r\n\t\tif(value >= mod()) {\r\n\t\t\tvalue -= mod();\r\n\t\t}\r\
-    \n\t\treturn *this;\r\n\t}\r\n \r\n\tconstexpr modint& operator-=(const modint&\
-    \ rhs) & {\r\n\t\tvalue -= rhs.value;\r\n\t\tif(value < 0) {\r\n\t\t\tvalue +=\
-    \ mod();\r\n\t\t}\r\n\t\treturn *this;\r\n\t}\r\n\r\n\tconstexpr modint& operator*=(const\
-    \ modint& rhs) & {\r\n\t\tvalue = 1LL * value * rhs.value % mod();\r\n\t\treturn\
-    \ *this;\r\n\t}\r\n\r\n\tconstexpr modint& operator/=(const modint& rhs) & {\r\
-    \n\t\treturn *this *= rhs.inv();\r\n\t}\r\n\r\n\tfriend constexpr modint operator+(modint\
-    \ lhs, modint rhs) { return lhs += rhs; }\r\n\tfriend constexpr modint operator-(modint\
-    \ lhs, modint rhs) { return lhs -= rhs; }\r\n\tfriend constexpr modint operator*(modint\
-    \ lhs, modint rhs) { return lhs *= rhs; }\r\n\tfriend constexpr modint operator/(modint\
-    \ lhs, modint rhs) { return lhs /= rhs; }\r\n\r\n\tconstexpr modint operator+()\
-    \ const { return *this; }\r\n\tconstexpr modint operator-() const { return modint()\
+    \ val() const { return value; }\r\n\r\n\tconstexpr modint inv() const {\r\n\t\t\
+    if(id > 0 && value < std::min(mod() >> 1, 1 << 18)) {\r\n\t\t\tprepare(value);\r\
+    \n\t\t\treturn invs[value];\r\n\t\t} else {\r\n\t\t\tauto eg = internal::inv_gcd(value,\
+    \ mod());\r\n\t\t\tassert(eg.first == 1);\r\n\t\t\treturn eg.second;\r\n\t\t}\r\
+    \n\t}\r\n\r\n\tconstexpr modint fact() const {\r\n\t\tprepare(value);\r\n\t\t\
+    return facts[value];\r\n\t}\r\n\r\n\tconstexpr modint inv_fact() const {\r\n\t\
+    \tprepare(value);\r\n\t\treturn inv_facts[value];\r\n\t}\r\n \r\n\tconstexpr modint&\
+    \ operator+=(const modint& rhs) & {\r\n\t\tvalue += rhs.value;\r\n\t\tif(value\
+    \ >= mod()) {\r\n\t\t\tvalue -= mod();\r\n\t\t}\r\n\t\treturn *this;\r\n\t}\r\n\
+    \ \r\n\tconstexpr modint& operator-=(const modint& rhs) & {\r\n\t\tvalue -= rhs.value;\r\
+    \n\t\tif(value < 0) {\r\n\t\t\tvalue += mod();\r\n\t\t}\r\n\t\treturn *this;\r\
+    \n\t}\r\n\r\n\tconstexpr modint& operator*=(const modint& rhs) & {\r\n\t\tvalue\
+    \ = 1LL * value * rhs.value % mod();\r\n\t\treturn *this;\r\n\t}\r\n\r\n\tconstexpr\
+    \ modint& operator/=(const modint& rhs) & {\r\n\t\treturn *this *= rhs.inv();\r\
+    \n\t}\r\n\r\n\tfriend constexpr modint operator+(modint lhs, modint rhs) { return\
+    \ lhs += rhs; }\r\n\tfriend constexpr modint operator-(modint lhs, modint rhs)\
+    \ { return lhs -= rhs; }\r\n\tfriend constexpr modint operator*(modint lhs, modint\
+    \ rhs) { return lhs *= rhs; }\r\n\tfriend constexpr modint operator/(modint lhs,\
+    \ modint rhs) { return lhs /= rhs; }\r\n\r\n\tconstexpr modint operator+() const\
+    \ { return *this; }\r\n\tconstexpr modint operator-() const { return modint()\
     \ - *this; } \r\n\tconstexpr bool operator==(const modint& rhs) const { return\
     \ value == rhs.value; } \r\n\tconstexpr bool operator!=(const modint& rhs) const\
     \ { return value != rhs.value; }\r\n\r\n\tconstexpr modint pow(unsigned long long\
@@ -235,8 +241,8 @@ data:
     \ operator>>(std::istream& in, modint& num) {\r\n\t\tlong long x;\r\n\t\tin >>\
     \ x;\r\n\t\tnum = modint<id>(x);\r\n\t\treturn in;\r\n\t}\r\n\t\r\n\tfriend constexpr\
     \ std::ostream& operator<<(std::ostream& out, const modint& num) {\r\n\t\treturn\
-    \ out << num();\r\n\t}\r\n \r\nprivate:\r\n\tint value;\r\n\tstatic int md;\r\n\
-    \tstatic std::vector<modint> facts, inv_facts, invs;\r\n};\r\n\r\ntemplate<int\
+    \ out << num.val();\r\n\t}\r\n \r\nprivate:\r\n\tint value;\r\n\tstatic int md;\r\
+    \n\tstatic std::vector<modint> facts, inv_facts, invs;\r\n};\r\n\r\ntemplate<int\
     \ id> int modint<id>::md = 998244353;\r\ntemplate<int id> std::vector<modint<id>>\
     \ modint<id>::facts = {1};\r\ntemplate<int id> std::vector<modint<id>> modint<id>::inv_facts\
     \ = {1};\r\ntemplate<int id> std::vector<modint<id>> modint<id>::invs = {0};\r\
@@ -306,8 +312,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/Data-Structure/Vertex-Set-Path-Composite.test.cpp
   requiredBy: []
-  timestamp: '2023-05-13 10:23:52+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-05-14 18:31:09+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/Data-Structure/Vertex-Set-Path-Composite.test.cpp
 layout: document

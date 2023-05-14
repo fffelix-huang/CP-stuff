@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/convolution/NTT.hpp
     title: library/convolution/NTT.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/formal-power-series/poly.hpp
     title: library/formal-power-series/poly.hpp
   - icon: ':question:'
@@ -21,9 +21,9 @@ data:
     title: library/modint/modint.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/partition_function
@@ -93,27 +93,26 @@ data:
     \ internal::is_signed_int_t<T>* = nullptr> constexpr modint(T v) : value(v >=\
     \ 0 ? v % mod() : v % mod() + mod()) {}\r\n\ttemplate<class T, internal::is_unsigned_int_t<T>*\
     \ = nullptr> constexpr modint(T v) : value(v % mod()) {}\r\n \r\n\tconstexpr int\
-    \ operator()() const { return value; }\r\n\ttemplate<class T> explicit constexpr\
-    \ operator T() const { return static_cast<T>(value); }\r\n\r\n\tconstexpr modint\
-    \ inv() const {\r\n\t\tif(id > 0 && value < std::min(mod() >> 1, 1 << 18)) {\r\
-    \n\t\t\tprepare(value);\r\n\t\t\treturn invs[value];\r\n\t\t} else {\r\n\t\t\t\
-    auto eg = internal::inv_gcd(value, mod());\r\n\t\t\tassert(eg.first == 1);\r\n\
-    \t\t\treturn eg.second;\r\n\t\t}\r\n\t}\r\n\r\n\tconstexpr modint fact() const\
-    \ {\r\n\t\tprepare(value);\r\n\t\treturn facts[value];\r\n\t}\r\n\r\n\tconstexpr\
-    \ modint inv_fact() const {\r\n\t\tprepare(value);\r\n\t\treturn inv_facts[value];\r\
-    \n\t}\r\n \r\n\tconstexpr modint& operator+=(const modint& rhs) & {\r\n\t\tvalue\
-    \ += rhs.value;\r\n\t\tif(value >= mod()) {\r\n\t\t\tvalue -= mod();\r\n\t\t}\r\
-    \n\t\treturn *this;\r\n\t}\r\n \r\n\tconstexpr modint& operator-=(const modint&\
-    \ rhs) & {\r\n\t\tvalue -= rhs.value;\r\n\t\tif(value < 0) {\r\n\t\t\tvalue +=\
-    \ mod();\r\n\t\t}\r\n\t\treturn *this;\r\n\t}\r\n\r\n\tconstexpr modint& operator*=(const\
-    \ modint& rhs) & {\r\n\t\tvalue = 1LL * value * rhs.value % mod();\r\n\t\treturn\
-    \ *this;\r\n\t}\r\n\r\n\tconstexpr modint& operator/=(const modint& rhs) & {\r\
-    \n\t\treturn *this *= rhs.inv();\r\n\t}\r\n\r\n\tfriend constexpr modint operator+(modint\
-    \ lhs, modint rhs) { return lhs += rhs; }\r\n\tfriend constexpr modint operator-(modint\
-    \ lhs, modint rhs) { return lhs -= rhs; }\r\n\tfriend constexpr modint operator*(modint\
-    \ lhs, modint rhs) { return lhs *= rhs; }\r\n\tfriend constexpr modint operator/(modint\
-    \ lhs, modint rhs) { return lhs /= rhs; }\r\n\r\n\tconstexpr modint operator+()\
-    \ const { return *this; }\r\n\tconstexpr modint operator-() const { return modint()\
+    \ val() const { return value; }\r\n\r\n\tconstexpr modint inv() const {\r\n\t\t\
+    if(id > 0 && value < std::min(mod() >> 1, 1 << 18)) {\r\n\t\t\tprepare(value);\r\
+    \n\t\t\treturn invs[value];\r\n\t\t} else {\r\n\t\t\tauto eg = internal::inv_gcd(value,\
+    \ mod());\r\n\t\t\tassert(eg.first == 1);\r\n\t\t\treturn eg.second;\r\n\t\t}\r\
+    \n\t}\r\n\r\n\tconstexpr modint fact() const {\r\n\t\tprepare(value);\r\n\t\t\
+    return facts[value];\r\n\t}\r\n\r\n\tconstexpr modint inv_fact() const {\r\n\t\
+    \tprepare(value);\r\n\t\treturn inv_facts[value];\r\n\t}\r\n \r\n\tconstexpr modint&\
+    \ operator+=(const modint& rhs) & {\r\n\t\tvalue += rhs.value;\r\n\t\tif(value\
+    \ >= mod()) {\r\n\t\t\tvalue -= mod();\r\n\t\t}\r\n\t\treturn *this;\r\n\t}\r\n\
+    \ \r\n\tconstexpr modint& operator-=(const modint& rhs) & {\r\n\t\tvalue -= rhs.value;\r\
+    \n\t\tif(value < 0) {\r\n\t\t\tvalue += mod();\r\n\t\t}\r\n\t\treturn *this;\r\
+    \n\t}\r\n\r\n\tconstexpr modint& operator*=(const modint& rhs) & {\r\n\t\tvalue\
+    \ = 1LL * value * rhs.value % mod();\r\n\t\treturn *this;\r\n\t}\r\n\r\n\tconstexpr\
+    \ modint& operator/=(const modint& rhs) & {\r\n\t\treturn *this *= rhs.inv();\r\
+    \n\t}\r\n\r\n\tfriend constexpr modint operator+(modint lhs, modint rhs) { return\
+    \ lhs += rhs; }\r\n\tfriend constexpr modint operator-(modint lhs, modint rhs)\
+    \ { return lhs -= rhs; }\r\n\tfriend constexpr modint operator*(modint lhs, modint\
+    \ rhs) { return lhs *= rhs; }\r\n\tfriend constexpr modint operator/(modint lhs,\
+    \ modint rhs) { return lhs /= rhs; }\r\n\r\n\tconstexpr modint operator+() const\
+    \ { return *this; }\r\n\tconstexpr modint operator-() const { return modint()\
     \ - *this; } \r\n\tconstexpr bool operator==(const modint& rhs) const { return\
     \ value == rhs.value; } \r\n\tconstexpr bool operator!=(const modint& rhs) const\
     \ { return value != rhs.value; }\r\n\r\n\tconstexpr modint pow(unsigned long long\
@@ -135,8 +134,8 @@ data:
     \ operator>>(std::istream& in, modint& num) {\r\n\t\tlong long x;\r\n\t\tin >>\
     \ x;\r\n\t\tnum = modint<id>(x);\r\n\t\treturn in;\r\n\t}\r\n\t\r\n\tfriend constexpr\
     \ std::ostream& operator<<(std::ostream& out, const modint& num) {\r\n\t\treturn\
-    \ out << num();\r\n\t}\r\n \r\nprivate:\r\n\tint value;\r\n\tstatic int md;\r\n\
-    \tstatic std::vector<modint> facts, inv_facts, invs;\r\n};\r\n\r\ntemplate<int\
+    \ out << num.val();\r\n\t}\r\n \r\nprivate:\r\n\tint value;\r\n\tstatic int md;\r\
+    \n\tstatic std::vector<modint> facts, inv_facts, invs;\r\n};\r\n\r\ntemplate<int\
     \ id> int modint<id>::md = 998244353;\r\ntemplate<int id> std::vector<modint<id>>\
     \ modint<id>::facts = {1};\r\ntemplate<int id> std::vector<modint<id>> modint<id>::inv_facts\
     \ = {1};\r\ntemplate<int id> std::vector<modint<id>> modint<id>::invs = {0};\r\
@@ -198,73 +197,75 @@ data:
     \n\t\t\t\tfor(int s = 0; s < (1 << len); s++) {\r\n\t\t\t\t\tmint rot2 = rot *\
     \ rot;\r\n\t\t\t\t\tmint rot3 = rot2 * rot;\r\n\t\t\t\t\tint offset = s << (h\
     \ - len);\r\n\t\t\t\t\tfor(int i = 0; i < p; i++) {\r\n\t\t\t\t\t\tauto mod2 =\
-    \ 1ULL * mod * mod;\r\n\t\t\t\t\t\tauto a0 = 1ULL * a[i + offset]();\r\n\t\t\t\
-    \t\t\tauto a1 = 1ULL * a[i + offset + p]() * rot();\r\n\t\t\t\t\t\tauto a2 = 1ULL\
-    \ * a[i + offset + 2 * p]() * rot2();\r\n\t\t\t\t\t\tauto a3 = 1ULL * a[i + offset\
-    \ + 3 * p]() * rot3();\r\n\t\t\t\t\t\tauto a1na3imag = 1ULL * mint(a1 + mod2 -\
-    \ a3)() * imag();\r\n\t\t\t\t\t\tauto na2 = mod2 - a2;\r\n\t\t\t\t\t\ta[i + offset]\
-    \ = a0 + a2 + a1 + a3;\r\n\t\t\t\t\t\ta[i + offset + 1 * p] = a0 + a2 + (2 * mod2\
-    \ - (a1 + a3));\r\n\t\t\t\t\t\ta[i + offset + 2 * p] = a0 + na2 + a1na3imag;\r\
-    \n\t\t\t\t\t\ta[i + offset + 3 * p] = a0 + na2 + (mod2 - a1na3imag);\r\n\t\t\t\
-    \t\t}\r\n\t\t\t\t\tif(s + 1 != (1 << len))\r\n\t\t\t\t\t\trot *= info.rate3[__builtin_ctz(~(unsigned\
-    \ int) s)];\r\n\t\t\t\t}\r\n\t\t\t\tlen += 2;\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n\r\
-    \n\tstatic void iNTT4(std::vector<mint>& a) {\r\n\t\tint n = (int) a.size();\r\
-    \n\t\tint h = __builtin_ctz(n);\r\n\t\tint len = h;\r\n\t\twhile(len) {\r\n\t\t\
-    \tif(len == 1) {\r\n\t\t\t\tint p = 1 << (h - len);\r\n\t\t\t\tmint irot = 1;\r\
-    \n\t\t\t\tfor(int s = 0; s < (1 << (len - 1)); s++) {\r\n\t\t\t\t\tint offset\
-    \ = s << (h - len + 1);\r\n\t\t\t\t\tfor(int i = 0; i < p; i++) {\r\n\t\t\t\t\t\
-    \tauto l = a[i + offset];\r\n\t\t\t\t\t\tauto r = a[i + offset + p];\r\n\t\t\t\
-    \t\t\ta[i + offset] = l + r;\r\n\t\t\t\t\t\ta[i + offset + p] = 1ULL * (mod +\
-    \ l() - r()) * irot();\r\n\t\t\t\t\t}\r\n\t\t\t\t\tif(s + 1 != (1 << (len - 1)))\
-    \ {\r\n\t\t\t\t\t\tirot *= info.irate2[__builtin_ctz(~(unsigned int) s)];\r\n\t\
-    \t\t\t\t}\r\n\t\t\t\t}\r\n\t\t\t\tlen--;\r\n\t\t\t} else {\r\n\t\t\t\tint p =\
-    \ 1 << (h - len);\r\n\t\t\t\tmint irot = 1, iimag = info.iroot[2];\r\n\t\t\t\t\
-    for(int s = 0; s < (1 << (len - 2)); s++) {\r\n\t\t\t\t\tmint irot2 = irot * irot;\r\
-    \n\t\t\t\t\tmint irot3 = irot2 * irot;\r\n\t\t\t\t\tint offset = s << (h - len\
-    \ + 2);\r\n\t\t\t\t\tfor(int i = 0; i < p; i++) {\r\n\t\t\t\t\t\tauto a0 = 1ULL\
-    \ * a[i + offset + 0 * p]();\r\n\t\t\t\t\t\tauto a1 = 1ULL * a[i + offset + 1\
-    \ * p]();\r\n\t\t\t\t\t\tauto a2 = 1ULL * a[i + offset + 2 * p]();\r\n\t\t\t\t\
-    \t\tauto a3 = 1ULL * a[i + offset + 3 * p]();\r\n\t\t\t\t\t\tauto a2na3iimag =\
-    \ 1ULL * mint((mod + a2 - a3) * iimag())();\r\n\t\t\t\t\t\ta[i + offset] = a0\
-    \ + a1 + a2 + a3;\r\n\t\t\t\t\t\ta[i + offset + 1 * p] = (a0 + (mod - a1) + a2na3iimag)\
-    \ * irot();\r\n\t\t\t\t\t\ta[i + offset + 2 * p] = (a0 + a1 + (mod - a2) + (mod\
-    \ - a3)) * irot2();\r\n\t\t\t\t\t\ta[i + offset + 3 * p] = (a0 + (mod - a1) +\
-    \ (mod - a2na3iimag)) * irot3();\r\n\t\t\t\t\t}\r\n\t\t\t\t\tif(s + 1 != (1 <<\
-    \ (len - 2))) {\r\n\t\t\t\t\t\tirot *= info.irate3[__builtin_ctz(~(unsigned int)\
-    \ s)];\r\n\t\t\t\t\t}\r\n\t\t\t\t}\r\n\t\t\t\tlen -= 2;\r\n\t\t\t}\r\n\t\t}\r\n\
-    \t}\r\n};\r\n\r\ntemplate<int mod> NTT_prepare<mod> NTT<mod>::info;\r\n\r\ntemplate<class\
-    \ mint, internal::is_static_modint_t<mint>* = nullptr>\r\nstd::vector<mint> convolution_naive(const\
-    \ std::vector<mint>& a, const std::vector<mint>& b) {\r\n\tint n = (int) a.size(),\
-    \ m = (int) b.size();\r\n\tassert(n >= m);\r\n\tint len = n + m - 1;\r\n\tstd::vector<mint>\
-    \ ans(len);\r\n\tfor(int i = 0; i < n; i++) {\r\n\t\tfor(int j = 0; j < m; j++)\
-    \ {\r\n\t\t\tans[i + j] += a[i] * b[j];\r\n\t\t}\r\n\t}\r\n\treturn ans;\r\n}\r\
-    \n\r\ntemplate<class mint, internal::is_static_modint_t<mint>* = nullptr>\r\n\
-    std::vector<mint> convolution_ntt(std::vector<mint> a, std::vector<mint> b) {\r\
-    \n\tint n = (int) a.size(), m = (int) b.size();\r\n\tint sz = 1 << std::__lg(2\
-    \ * (n + m - 1) - 1);\r\n\ta.resize(sz);\r\n\tb.resize(sz);\r\n\tNTT<mint::mod()>::NTT4(a);\r\
-    \n\tNTT<mint::mod()>::NTT4(b);\r\n\tfor(int i = 0; i < sz; i++) {\r\n\t\ta[i]\
-    \ *= b[i];\r\n\t}\r\n\tNTT<mint::mod()>::iNTT4(a);\r\n\ta.resize(n + m - 1);\r\
-    \n\tmint iz = mint(sz).inv();\r\n\tfor(int i = 0; i < n + m - 1; i++) {\r\n\t\t\
-    a[i] *= iz;\r\n\t}\r\n\treturn a;\r\n}\r\n\r\n} // namespace internal\r\n\r\n\
-    template<class mint, internal::is_static_modint_t<mint>* = nullptr>\r\nstd::vector<mint>\
-    \ convolution(const std::vector<mint>& a, const std::vector<mint>& b) {\r\n\t\
-    int n = (int) a.size(), m = (int) b.size();\r\n\tif(n == 0 || m == 0) {\r\n\t\t\
-    return {};\r\n\t}\r\n\tint sz = 1 << std::__lg(2 * (n + m - 1) - 1);\r\n\tassert((mint::mod()\
-    \ - 1) % sz == 0);\r\n\tif(std::min(n, m) < 128) {\r\n\t\treturn n >= m ? internal::convolution_naive(a,\
-    \ b) : internal::convolution_naive(b, a);\r\n\t}\r\n\treturn internal::convolution_ntt(a,\
-    \ b);\r\n}\r\n\r\ntemplate<int mod, class T, std::enable_if_t<internal::is_integral<T>::value>*\
-    \ = nullptr>\r\nstd::vector<T> convolution(const std::vector<T>& a, const std::vector<T>&\
-    \ b) {\r\n\tusing mint = modint<mod>;\r\n\r\n\tint n = (int) a.size(), m = (int)\
+    \ 1ULL * mod * mod;\r\n\t\t\t\t\t\tauto a0 = 1ULL * a[i + offset].val();\r\n\t\
+    \t\t\t\t\tauto a1 = 1ULL * a[i + offset + p].val() * rot.val();\r\n\t\t\t\t\t\t\
+    auto a2 = 1ULL * a[i + offset + 2 * p].val() * rot2.val();\r\n\t\t\t\t\t\tauto\
+    \ a3 = 1ULL * a[i + offset + 3 * p].val() * rot3.val();\r\n\t\t\t\t\t\tauto a1na3imag\
+    \ = 1ULL * mint(a1 + mod2 - a3).val() * imag.val();\r\n\t\t\t\t\t\tauto na2 =\
+    \ mod2 - a2;\r\n\t\t\t\t\t\ta[i + offset] = a0 + a2 + a1 + a3;\r\n\t\t\t\t\t\t\
+    a[i + offset + 1 * p] = a0 + a2 + (2 * mod2 - (a1 + a3));\r\n\t\t\t\t\t\ta[i +\
+    \ offset + 2 * p] = a0 + na2 + a1na3imag;\r\n\t\t\t\t\t\ta[i + offset + 3 * p]\
+    \ = a0 + na2 + (mod2 - a1na3imag);\r\n\t\t\t\t\t}\r\n\t\t\t\t\tif(s + 1 != (1\
+    \ << len))\r\n\t\t\t\t\t\trot *= info.rate3[__builtin_ctz(~(unsigned int) s)];\r\
+    \n\t\t\t\t}\r\n\t\t\t\tlen += 2;\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n\r\n\tstatic void\
+    \ iNTT4(std::vector<mint>& a) {\r\n\t\tint n = (int) a.size();\r\n\t\tint h =\
+    \ __builtin_ctz(n);\r\n\t\tint len = h;\r\n\t\twhile(len) {\r\n\t\t\tif(len ==\
+    \ 1) {\r\n\t\t\t\tint p = 1 << (h - len);\r\n\t\t\t\tmint irot = 1;\r\n\t\t\t\t\
+    for(int s = 0; s < (1 << (len - 1)); s++) {\r\n\t\t\t\t\tint offset = s << (h\
+    \ - len + 1);\r\n\t\t\t\t\tfor(int i = 0; i < p; i++) {\r\n\t\t\t\t\t\tauto l\
+    \ = a[i + offset];\r\n\t\t\t\t\t\tauto r = a[i + offset + p];\r\n\t\t\t\t\t\t\
+    a[i + offset] = l + r;\r\n\t\t\t\t\t\ta[i + offset + p] = 1ULL * (mod + l.val()\
+    \ - r.val()) * irot.val();\r\n\t\t\t\t\t}\r\n\t\t\t\t\tif(s + 1 != (1 << (len\
+    \ - 1))) {\r\n\t\t\t\t\t\tirot *= info.irate2[__builtin_ctz(~(unsigned int) s)];\r\
+    \n\t\t\t\t\t}\r\n\t\t\t\t}\r\n\t\t\t\tlen--;\r\n\t\t\t} else {\r\n\t\t\t\tint\
+    \ p = 1 << (h - len);\r\n\t\t\t\tmint irot = 1, iimag = info.iroot[2];\r\n\t\t\
+    \t\tfor(int s = 0; s < (1 << (len - 2)); s++) {\r\n\t\t\t\t\tmint irot2 = irot\
+    \ * irot;\r\n\t\t\t\t\tmint irot3 = irot2 * irot;\r\n\t\t\t\t\tint offset = s\
+    \ << (h - len + 2);\r\n\t\t\t\t\tfor(int i = 0; i < p; i++) {\r\n\t\t\t\t\t\t\
+    auto a0 = 1ULL * a[i + offset + 0 * p].val();\r\n\t\t\t\t\t\tauto a1 = 1ULL *\
+    \ a[i + offset + 1 * p].val();\r\n\t\t\t\t\t\tauto a2 = 1ULL * a[i + offset +\
+    \ 2 * p].val();\r\n\t\t\t\t\t\tauto a3 = 1ULL * a[i + offset + 3 * p].val();\r\
+    \n\t\t\t\t\t\tauto a2na3iimag = 1ULL * mint((mod + a2 - a3) * iimag.val()).val();\r\
+    \n\t\t\t\t\t\ta[i + offset] = a0 + a1 + a2 + a3;\r\n\t\t\t\t\t\ta[i + offset +\
+    \ 1 * p] = (a0 + (mod - a1) + a2na3iimag) * irot.val();\r\n\t\t\t\t\t\ta[i + offset\
+    \ + 2 * p] = (a0 + a1 + (mod - a2) + (mod - a3)) * irot2.val();\r\n\t\t\t\t\t\t\
+    a[i + offset + 3 * p] = (a0 + (mod - a1) + (mod - a2na3iimag)) * irot3.val();\r\
+    \n\t\t\t\t\t}\r\n\t\t\t\t\tif(s + 1 != (1 << (len - 2))) {\r\n\t\t\t\t\t\tirot\
+    \ *= info.irate3[__builtin_ctz(~(unsigned int) s)];\r\n\t\t\t\t\t}\r\n\t\t\t\t\
+    }\r\n\t\t\t\tlen -= 2;\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n};\r\n\r\ntemplate<int mod>\
+    \ NTT_prepare<mod> NTT<mod>::info;\r\n\r\ntemplate<class mint, internal::is_static_modint_t<mint>*\
+    \ = nullptr>\r\nstd::vector<mint> convolution_naive(const std::vector<mint>& a,\
+    \ const std::vector<mint>& b) {\r\n\tint n = (int) a.size(), m = (int) b.size();\r\
+    \n\tassert(n >= m);\r\n\tint len = n + m - 1;\r\n\tstd::vector<mint> ans(len);\r\
+    \n\tfor(int i = 0; i < n; i++) {\r\n\t\tfor(int j = 0; j < m; j++) {\r\n\t\t\t\
+    ans[i + j] += a[i] * b[j];\r\n\t\t}\r\n\t}\r\n\treturn ans;\r\n}\r\n\r\ntemplate<class\
+    \ mint, internal::is_static_modint_t<mint>* = nullptr>\r\nstd::vector<mint> convolution_ntt(std::vector<mint>\
+    \ a, std::vector<mint> b) {\r\n\tint n = (int) a.size(), m = (int) b.size();\r\
+    \n\tint sz = 1 << std::__lg(2 * (n + m - 1) - 1);\r\n\ta.resize(sz);\r\n\tb.resize(sz);\r\
+    \n\tNTT<mint::mod()>::NTT4(a);\r\n\tNTT<mint::mod()>::NTT4(b);\r\n\tfor(int i\
+    \ = 0; i < sz; i++) {\r\n\t\ta[i] *= b[i];\r\n\t}\r\n\tNTT<mint::mod()>::iNTT4(a);\r\
+    \n\ta.resize(n + m - 1);\r\n\tmint iz = mint(sz).inv();\r\n\tfor(int i = 0; i\
+    \ < n + m - 1; i++) {\r\n\t\ta[i] *= iz;\r\n\t}\r\n\treturn a;\r\n}\r\n\r\n} //\
+    \ namespace internal\r\n\r\ntemplate<class mint, internal::is_static_modint_t<mint>*\
+    \ = nullptr>\r\nstd::vector<mint> convolution(const std::vector<mint>& a, const\
+    \ std::vector<mint>& b) {\r\n\tint n = (int) a.size(), m = (int) b.size();\r\n\
+    \tif(n == 0 || m == 0) {\r\n\t\treturn {};\r\n\t}\r\n\tint sz = 1 << std::__lg(2\
+    \ * (n + m - 1) - 1);\r\n\tassert((mint::mod() - 1) % sz == 0);\r\n\tif(std::min(n,\
+    \ m) < 128) {\r\n\t\treturn n >= m ? internal::convolution_naive(a, b) : internal::convolution_naive(b,\
+    \ a);\r\n\t}\r\n\treturn internal::convolution_ntt(a, b);\r\n}\r\n\r\ntemplate<int\
+    \ mod, class T, std::enable_if_t<internal::is_integral<T>::value>* = nullptr>\r\
+    \nstd::vector<T> convolution(const std::vector<T>& a, const std::vector<T>& b)\
+    \ {\r\n\tusing mint = modint<mod>;\r\n\r\n\tint n = (int) a.size(), m = (int)\
     \ b.size();\r\n\tif(n == 0 || m == 0) {\r\n\t\treturn {};\r\n\t}\r\n\tint sz =\
     \ 1 << std::__lg(2 * (n + m - 1) - 1);\r\n\tassert((mod - 1) % sz == 0);\r\n\t\
     std::vector<mint> a2(a.begin(), a.end());\r\n\tstd::vector<mint> b2(b.begin(),\
     \ b.end());\r\n\tauto c2 = convolution(std::move(a2), std::move(b2));\r\n\tstd::vector<T>\
-    \ c(n + m - 1);\r\n\tfor(int i = 0; i < n + m - 1; i++) {\r\n\t\tc[i] = c2[i]();\r\
+    \ c(n + m - 1);\r\n\tfor(int i = 0; i < n + m - 1; i++) {\r\n\t\tc[i] = c2[i].val();\r\
     \n\t}\r\n\treturn c;\r\n}\r\n\r\ntemplate<class T>\r\nstd::vector<__uint128_t>\
     \ convolution_u128(const std::vector<T>& a, const std::vector<T>& b) {\r\n\tstatic\
     \ constexpr int m0 = 167772161;\r\n\tstatic constexpr int m1 = 469762049;\r\n\t\
-    static constexpr int m2 = 754974721;\r\n\tconstexpr int r01 = modint<m1>(m0).inv()();\r\
-    \n\tconstexpr int r02 = modint<m2>(m0).inv()();\r\n\tconstexpr int r12 = modint<m2>(m1).inv()();\r\
+    static constexpr int m2 = 754974721;\r\n\tconstexpr int r01 = modint<m1>(m0).inv().val();\r\
+    \n\tconstexpr int r02 = modint<m2>(m0).inv().val();\r\n\tconstexpr int r12 = modint<m2>(m1).inv().val();\r\
     \n\tconstexpr int r02r12 = 1LL * (r02) * r12 % m2;\r\n\tconstexpr long long w1\
     \ = m0;\r\n\tconstexpr long long w2 = 1LL * m0 * m1;\r\n\r\n\tif(a.empty() ||\
     \ b.empty()) {\r\n\t\treturn {};\r\n\t}\r\n\tstd::vector<__uint128_t> ans(a.size()\
@@ -337,71 +338,71 @@ data:
     \ {\r\n\t\t\treturn Poly();\r\n\t\t}\r\n\t\tPoly c(size() - 1);\r\n\t\tfor(int\
     \ i = 0; i < size() - 1; ++i) {\r\n\t\t\tc[i] = (i + 1) * a[i + 1];\r\n\t\t}\r\
     \n\t\treturn c;\r\n\t}\r\n\r\n\tconstexpr Poly integr() const {\r\n\t\tPoly c(size()\
-    \ + 1);\r\n\t\tfor(int i = 0; i < size(); ++i) {\r\n\t\t\tc[i + 1] = a[i] / mint(i\
-    \ + 1);\r\n\t\t}\r\n\t\treturn c;\r\n\t}\r\n\r\n\tconstexpr Poly inv(int m = -1)\
-    \ const {\r\n\t\tif(m == -1) {\r\n\t\t\tm = size();\r\n\t\t}\r\n\t\tPoly x{a[0].inv()};\r\
-    \n\t\tint k = 1;\r\n\t\twhile(k < m) {\r\n\t\t\tk *= 2;\r\n\t\t\tx = (x * (Poly{mint(2)}\
-    \ - modxk(k) * x)).modxk(k);\r\n\t\t}\r\n\t\treturn x.modxk(m);\r\n\t}\r\n\r\n\
-    \tconstexpr Poly log(int m = -1) const {\r\n\t\tif(m == -1) {\r\n\t\t\tm = size();\r\
-    \n\t\t}\r\n\t\treturn (deriv() * inv(m)).integr().modxk(m);\r\n\t}\r\n\r\n\tconstexpr\
-    \ Poly exp(int m = -1) const {\r\n\t\tif(m == -1) {\r\n\t\t\tm = size();\r\n\t\
-    \t}\r\n\t\tPoly x{mint(1)};\r\n\t\tint k = 1;\r\n\t\twhile(k < m) {\r\n\t\t\t\
-    k *= 2;\r\n\t\t\tx = (x * (Poly{mint(1)} - x.log(k) + modxk(k))).modxk(k);\r\n\
-    \t\t}\r\n\t\treturn x.modxk(m);\r\n\t}\r\n\r\n\tconstexpr Poly pow(long long k,\
-    \ int m = -1) const {\r\n\t\tif(m == -1) {\r\n\t\t\tm = size();\r\n\t\t}\r\n\t\
-    \tif(k == 0) {\r\n\t\t\tPoly b(m);\r\n\t\t\tb[0] = 1;\r\n\t\t\treturn b;\r\n\t\
-    \t}\r\n\t\tint s = 0, sz = size();\r\n\t\twhile(s < sz && a[s] == 0) {\r\n\t\t\
-    \ts += 1;\r\n\t\t}\r\n\t\tif(s == sz) {\r\n\t\t\treturn *this;\r\n\t\t}\r\n\t\t\
-    if(m > 0 && s >= (sz + k - 1) / k) {\r\n\t\t\treturn Poly(m);\r\n\t\t}\r\n\t\t\
-    if(s * k >= m) {\r\n\t\t\treturn Poly(m);\r\n\t\t}\r\n\t\treturn (((divxk(s) *\
-    \ a[s].inv()).log(m) * mint(k)).exp(m) * a[s].pow(k)).mulxk(s * k).modxk(m);\r\
-    \n\t}\r\n\r\n\tconstexpr bool has_sqrt() const {\r\n\t\tif(size() == 0) {\r\n\t\
-    \t\treturn true;\r\n\t\t}\r\n\t\tint x = 0;\r\n\t\twhile(x < size() && a[x] ==\
-    \ 0) {\r\n\t\t\tx += 1;\r\n\t\t}\r\n\t\tif(x == size()) {\r\n\t\t\treturn true;\r\
-    \n\t\t}\r\n\t\tif(x % 2 == 1) {\r\n\t\t\treturn false;\r\n\t\t}\r\n\t\tmint y\
-    \ = a[x];\r\n\t\treturn (y == 0 || y.pow((mod - 1) / 2) == 1);\r\n\t}\r\n\r\n\t\
-    constexpr Poly sqrt(int m = -1) const {\r\n\t\tif(m == -1) {\r\n\t\t\tm = size();\r\
-    \n\t\t}\r\n\t\tif(size() == 0) {\r\n\t\t\treturn Poly();\r\n\t\t}\r\n\t\tint x\
-    \ = 0;\r\n\t\twhile(x < size() && a[x] == 0) {\r\n\t\t\tx += 1;\r\n\t\t}\r\n\t\
-    \tif(x == size()) {\r\n\t\t\treturn Poly(size());\r\n\t\t}\r\n\t\tPoly f = divxk(x);\r\
-    \n\t\tPoly g({mint(f[0]).sqrt()});\r\n\t\tmint inv2 = mint(1) / 2;\r\n\t\tfor(int\
-    \ i = 1; i < m; i *= 2) {\r\n\t\t\tg = (g + f.modxk(i * 2) * g.inv(i * 2)) * inv2;\r\
-    \n\t\t}\r\n\t\treturn g.modxk(m).mulxk(x / 2);\r\n\t}\r\n\r\n\tconstexpr Poly\
-    \ shift(mint c) const {\r\n\t\tint n = size();\r\n\t\tmint::prepare(n);\r\n\t\t\
-    Poly b(*this);\r\n\t\tfor(int i = 0; i < n; i++) {\r\n\t\t\tb[i] *= mint(i).fact();\r\
-    \n\t\t}\r\n\t\tstd::reverse(b.a.begin(), b.a.end());\r\n\t\tPoly exp_cx(std::vector<mint>(n,\
-    \ mint(1)));\r\n\t\tfor(int i = 1; i < n; i++) {\r\n\t\t\texp_cx[i] = exp_cx[i\
-    \ - 1] * c / i;\r\n\t\t}\r\n\t\tb = (b * exp_cx).modxk(n);\r\n\t\tstd::reverse(b.a.begin(),\
-    \ b.a.end());\r\n\t\tfor(int i = 0; i < n; i++) {\r\n\t\t\tb[i] *= mint(i).inv_fact();\r\
-    \n\t\t}\r\n\t\treturn b;\r\n\t}\r\n\r\n\tconstexpr Poly mulT(Poly b) const {\r\
-    \n\t\tif(b.size() == 0) {\r\n\t\t\treturn Poly();\r\n\t\t}\r\n\t\tint n = b.size();\r\
-    \n\t\tstd::reverse(b.a.begin(), b.a.end());\r\n\t\treturn ((*this) * b).divxk(n\
-    \ - 1);\r\n\t}\r\n\r\n\tstd::vector<mint> eval(std::vector<mint> x) const {\r\n\
-    \t\tif(size() == 0) {\r\n\t\t\treturn std::vector<mint>(x.size(), mint(0));\r\n\
-    \t\t}\r\n\t\tconst int n = std::max((int) x.size(), size());\r\n\t\tstd::vector<Poly>\
-    \ q(4 * n);\r\n\t\tstd::vector<mint> ans(x.size());\r\n\t\tx.resize(n);\r\n\t\t\
-    std::function<void(int, int, int)> build = [&](int p, int l, int r) {\r\n\t\t\t\
-    if(r - l == 1) {\r\n\t\t\t\tq[p] = Poly{1, -x[l]};\r\n\t\t\t} else {\r\n\t\t\t\
-    \tint m = (l + r) / 2;\r\n\t\t\t\tbuild(2 * p, l, m);\r\n\t\t\t\tbuild(2 * p +\
-    \ 1, m, r);\r\n\t\t\t\tq[p] = q[2 * p] * q[2 * p + 1];\r\n\t\t\t}\r\n\t\t};\r\n\
-    \t\tbuild(1, 0, n);\r\n\t\tstd::function<void(int, int, int, const Poly&)> work\
-    \ = [&](int p, int l, int r, const Poly& num) {\r\n\t\t\tif(r - l == 1) {\r\n\t\
-    \t\t\tif(l < (int) ans.size()) {\r\n\t\t\t\t\tans[l] = num[0];\r\n\t\t\t\t}\r\n\
-    \t\t\t} else {\r\n\t\t\t\tint m = (l + r) / 2;\r\n\t\t\t\twork(2 * p, l, m, num.mulT(q[2\
-    \ * p + 1]).modxk(m - l));\r\n\t\t\t\twork(2 * p + 1, m, r, num.mulT(q[2 * p]).modxk(r\
-    \ - m));\r\n\t\t\t}\r\n\t\t};\r\n\t\twork(1, 0, n, mulT(q[1].inv(n)));\r\n\t\t\
-    return ans;\r\n\t}\r\n\r\nprivate:\r\n\tstd::vector<mint> a;\r\n};\r\n\r\n} //\
-    \ namespace felix\r\n#line 5 \"test/yosupo/Math/Partition-Function.test.cpp\"\n\
-    using namespace std;\r\nusing namespace felix;\r\n\r\ntemplate<int mod>\r\nPoly<mod>\
-    \ PartitionFunction(int n) {\r\n\tPoly<mod> p(n + 1);\r\n\tp[0] = 1;\r\n\tfor(int\
-    \ i = 1; i <= n; i++) {\r\n\t\tlong long x = 1LL * i * (3 * i + 1) / 2;\r\n\t\t\
-    long long y = 1LL * i * (3 * i - 1) / 2;\r\n\t\tif(x <= n) {\r\n\t\t\tp[x] +=\
-    \ (i % 2 == 0 ? +1 : -1);\r\n\t\t}\r\n\t\tif(y <= n) {\r\n\t\t\tp[y] += (i % 2\
-    \ == 0 ? +1 : -1);\r\n\t\t}\r\n\t}\r\n\treturn p.inv();\r\n}\r\n\r\nint main()\
-    \ {\r\n\tios::sync_with_stdio(false);\r\n\tcin.tie(0);\r\n\tint n;\r\n\tcin >>\
-    \ n;\r\n\tauto ans = PartitionFunction<998244353>(n);\r\n\tfor(int i = 0; i <=\
-    \ n; i++) {\r\n\t\tcout << ans[i] << \" \\n\"[i == n];\r\n\t}\r\n\treturn 0;\r\
-    \n}\r\n"
+    \ + 1);\r\n\t\tmint::prepare(size());\r\n\t\tfor(int i = 0; i < size(); ++i) {\r\
+    \n\t\t\tc[i + 1] = a[i] / mint(i + 1);\r\n\t\t}\r\n\t\treturn c;\r\n\t}\r\n\r\n\
+    \tconstexpr Poly inv(int m = -1) const {\r\n\t\tif(m == -1) {\r\n\t\t\tm = size();\r\
+    \n\t\t}\r\n\t\tPoly x{a[0].inv()};\r\n\t\tint k = 1;\r\n\t\twhile(k < m) {\r\n\
+    \t\t\tk *= 2;\r\n\t\t\tx = (x * (Poly{mint(2)} - modxk(k) * x)).modxk(k);\r\n\t\
+    \t}\r\n\t\treturn x.modxk(m);\r\n\t}\r\n\r\n\tconstexpr Poly log(int m = -1) const\
+    \ {\r\n\t\tif(m == -1) {\r\n\t\t\tm = size();\r\n\t\t}\r\n\t\treturn (deriv()\
+    \ * inv(m)).integr().modxk(m);\r\n\t}\r\n\r\n\tconstexpr Poly exp(int m = -1)\
+    \ const {\r\n\t\tif(m == -1) {\r\n\t\t\tm = size();\r\n\t\t}\r\n\t\tPoly x{mint(1)};\r\
+    \n\t\tint k = 1;\r\n\t\twhile(k < m) {\r\n\t\t\tk *= 2;\r\n\t\t\tx = (x * (Poly{mint(1)}\
+    \ - x.log(k) + modxk(k))).modxk(k);\r\n\t\t}\r\n\t\treturn x.modxk(m);\r\n\t}\r\
+    \n\r\n\tconstexpr Poly pow(long long k, int m = -1) const {\r\n\t\tif(m == -1)\
+    \ {\r\n\t\t\tm = size();\r\n\t\t}\r\n\t\tif(k == 0) {\r\n\t\t\tPoly b(m);\r\n\t\
+    \t\tb[0] = 1;\r\n\t\t\treturn b;\r\n\t\t}\r\n\t\tint s = 0, sz = size();\r\n\t\
+    \twhile(s < sz && a[s] == 0) {\r\n\t\t\ts++;\r\n\t\t}\r\n\t\tif(s == sz) {\r\n\
+    \t\t\treturn *this;\r\n\t\t}\r\n\t\tif(m > 0 && s >= (sz + k - 1) / k) {\r\n\t\
+    \t\treturn Poly(m);\r\n\t\t}\r\n\t\tif(s * k >= m) {\r\n\t\t\treturn Poly(m);\r\
+    \n\t\t}\r\n\t\treturn (((divxk(s) * a[s].inv()).log(m) * mint(k)).exp(m) * a[s].pow(k)).mulxk(s\
+    \ * k).modxk(m);\r\n\t}\r\n\r\n\tconstexpr bool has_sqrt() const {\r\n\t\tif(size()\
+    \ == 0) {\r\n\t\t\treturn true;\r\n\t\t}\r\n\t\tint x = 0;\r\n\t\twhile(x < size()\
+    \ && a[x] == 0) {\r\n\t\t\tx++;\r\n\t\t}\r\n\t\tif(x == size()) {\r\n\t\t\treturn\
+    \ true;\r\n\t\t}\r\n\t\tif(x % 2 == 1) {\r\n\t\t\treturn false;\r\n\t\t}\r\n\t\
+    \tmint y = a[x];\r\n\t\treturn (y == 0 || y.pow((mod - 1) / 2) == 1);\r\n\t}\r\
+    \n\r\n\tconstexpr Poly sqrt(int m = -1) const {\r\n\t\tif(m == -1) {\r\n\t\t\t\
+    m = size();\r\n\t\t}\r\n\t\tif(size() == 0) {\r\n\t\t\treturn Poly();\r\n\t\t\
+    }\r\n\t\tint x = 0;\r\n\t\twhile(x < size() && a[x] == 0) {\r\n\t\t\tx++;\r\n\t\
+    \t}\r\n\t\tif(x == size()) {\r\n\t\t\treturn Poly(size());\r\n\t\t}\r\n\t\tPoly\
+    \ f = divxk(x);\r\n\t\tPoly g({mint(f[0]).sqrt()});\r\n\t\tmint inv2 = mint(1)\
+    \ / 2;\r\n\t\tfor(int i = 1; i < m; i *= 2) {\r\n\t\t\tg = (g + f.modxk(i * 2)\
+    \ * g.inv(i * 2)) * inv2;\r\n\t\t}\r\n\t\treturn g.modxk(m).mulxk(x / 2);\r\n\t\
+    }\r\n\r\n\tconstexpr Poly shift(mint c) const {\r\n\t\tint n = size();\r\n\t\t\
+    mint::prepare(n);\r\n\t\tPoly b(*this);\r\n\t\tfor(int i = 0; i < n; i++) {\r\n\
+    \t\t\tb[i] *= mint(i).fact();\r\n\t\t}\r\n\t\tstd::reverse(b.a.begin(), b.a.end());\r\
+    \n\t\tPoly exp_cx(std::vector<mint>(n, mint(1)));\r\n\t\tfor(int i = 1; i < n;\
+    \ i++) {\r\n\t\t\texp_cx[i] = exp_cx[i - 1] * c / i;\r\n\t\t}\r\n\t\tb = (b *\
+    \ exp_cx).modxk(n);\r\n\t\tstd::reverse(b.a.begin(), b.a.end());\r\n\t\tfor(int\
+    \ i = 0; i < n; i++) {\r\n\t\t\tb[i] *= mint(i).inv_fact();\r\n\t\t}\r\n\t\treturn\
+    \ b;\r\n\t}\r\n\r\n\tconstexpr Poly mulT(Poly b) const {\r\n\t\tif(b.size() ==\
+    \ 0) {\r\n\t\t\treturn Poly();\r\n\t\t}\r\n\t\tint n = b.size();\r\n\t\tstd::reverse(b.a.begin(),\
+    \ b.a.end());\r\n\t\treturn ((*this) * b).divxk(n - 1);\r\n\t}\r\n\r\n\tstd::vector<mint>\
+    \ eval(std::vector<mint> x) const {\r\n\t\tif(size() == 0) {\r\n\t\t\treturn std::vector<mint>(x.size(),\
+    \ mint(0));\r\n\t\t}\r\n\t\tconst int n = std::max((int) x.size(), size());\r\n\
+    \t\tstd::vector<Poly> q(4 * n);\r\n\t\tstd::vector<mint> ans(x.size());\r\n\t\t\
+    x.resize(n);\r\n\t\tstd::function<void(int, int, int)> build = [&](int p, int\
+    \ l, int r) {\r\n\t\t\tif(r - l == 1) {\r\n\t\t\t\tq[p] = Poly{1, -x[l]};\r\n\t\
+    \t\t} else {\r\n\t\t\t\tint m = (l + r) / 2;\r\n\t\t\t\tbuild(2 * p, l, m);\r\n\
+    \t\t\t\tbuild(2 * p + 1, m, r);\r\n\t\t\t\tq[p] = q[2 * p] * q[2 * p + 1];\r\n\
+    \t\t\t}\r\n\t\t};\r\n\t\tbuild(1, 0, n);\r\n\t\tstd::function<void(int, int, int,\
+    \ const Poly&)> work = [&](int p, int l, int r, const Poly& num) {\r\n\t\t\tif(r\
+    \ - l == 1) {\r\n\t\t\t\tif(l < (int) ans.size()) {\r\n\t\t\t\t\tans[l] = num[0];\r\
+    \n\t\t\t\t}\r\n\t\t\t} else {\r\n\t\t\t\tint m = (l + r) / 2;\r\n\t\t\t\twork(2\
+    \ * p, l, m, num.mulT(q[2 * p + 1]).modxk(m - l));\r\n\t\t\t\twork(2 * p + 1,\
+    \ m, r, num.mulT(q[2 * p]).modxk(r - m));\r\n\t\t\t}\r\n\t\t};\r\n\t\twork(1,\
+    \ 0, n, mulT(q[1].inv(n)));\r\n\t\treturn ans;\r\n\t}\r\n\r\nprivate:\r\n\tstd::vector<mint>\
+    \ a;\r\n};\r\n\r\n} // namespace felix\r\n#line 5 \"test/yosupo/Math/Partition-Function.test.cpp\"\
+    \nusing namespace std;\r\nusing namespace felix;\r\n\r\ntemplate<int mod>\r\n\
+    Poly<mod> PartitionFunction(int n) {\r\n\tPoly<mod> p(n + 1);\r\n\tp[0] = 1;\r\
+    \n\tfor(int i = 1; i <= n; i++) {\r\n\t\tlong long x = 1LL * i * (3 * i + 1) /\
+    \ 2;\r\n\t\tlong long y = 1LL * i * (3 * i - 1) / 2;\r\n\t\tif(x <= n) {\r\n\t\
+    \t\tp[x] += (i % 2 == 0 ? +1 : -1);\r\n\t\t}\r\n\t\tif(y <= n) {\r\n\t\t\tp[y]\
+    \ += (i % 2 == 0 ? +1 : -1);\r\n\t\t}\r\n\t}\r\n\treturn p.inv();\r\n}\r\n\r\n\
+    int main() {\r\n\tios::sync_with_stdio(false);\r\n\tcin.tie(0);\r\n\tint n;\r\n\
+    \tcin >> n;\r\n\tauto ans = PartitionFunction<998244353>(n);\r\n\tfor(int i =\
+    \ 0; i <= n; i++) {\r\n\t\tcout << ans[i] << \" \\n\"[i == n];\r\n\t}\r\n\treturn\
+    \ 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/partition_function\"\r\n\
     \r\n#include <iostream>\r\n#include \"../../../library/formal-power-series/poly.hpp\"\
     \r\nusing namespace std;\r\nusing namespace felix;\r\n\r\ntemplate<int mod>\r\n\
@@ -424,8 +425,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/Math/Partition-Function.test.cpp
   requiredBy: []
-  timestamp: '2023-05-13 10:39:05+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-05-14 18:31:09+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/Math/Partition-Function.test.cpp
 layout: document

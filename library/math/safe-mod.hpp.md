@@ -2,10 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/convolution/NTT.hpp
     title: library/convolution/NTT.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/formal-power-series/poly.hpp
     title: library/formal-power-series/poly.hpp
   - icon: ':warning:'
@@ -30,16 +30,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/Convolution/Bitwise-And-Convolution.test.cpp
     title: test/yosupo/Convolution/Bitwise-And-Convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/Convolution/Bitwise-Xor-Convolution.test.cpp
     title: test/yosupo/Convolution/Bitwise-Xor-Convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/Convolution/Convolution-Large.test.cpp
     title: test/yosupo/Convolution/Convolution-Large.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/Convolution/Convolution-Mod-1000000007.test.cpp
     title: test/yosupo/Convolution/Convolution-Mod-1000000007.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/Convolution/Convolution.test.cpp
     title: test/yosupo/Convolution/Convolution.test.cpp
   - icon: ':heavy_check_mark:'
@@ -63,40 +63,40 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/Data-Structure/Range-Affine-Range-Sum.test.cpp
     title: test/yosupo/Data-Structure/Range-Affine-Range-Sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/Data-Structure/Vertex-Set-Path-Composite.test.cpp
     title: test/yosupo/Data-Structure/Vertex-Set-Path-Composite.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/Math/Factorize.test.cpp
     title: test/yosupo/Math/Factorize.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/Math/Partition-Function.test.cpp
     title: test/yosupo/Math/Partition-Function.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/Math/Sqrt-Mod.test.cpp
     title: test/yosupo/Math/Sqrt-Mod.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/Matrix/Determinant-of-Matrix.test.cpp
     title: test/yosupo/Matrix/Determinant-of-Matrix.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/Matrix/Matrix-Product.test.cpp
     title: test/yosupo/Matrix/Matrix-Product.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/Polynomial/Exp-of-Formal-Power-Series.test.cpp
     title: test/yosupo/Polynomial/Exp-of-Formal-Power-Series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/Polynomial/Inv-of-Formal-Power-Series.test.cpp
     title: test/yosupo/Polynomial/Inv-of-Formal-Power-Series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/Polynomial/Log-of-Formal-Power-Series.test.cpp
     title: test/yosupo/Polynomial/Log-of-Formal-Power-Series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/Polynomial/Multipoint-Evaluation.test.cpp
     title: test/yosupo/Polynomial/Multipoint-Evaluation.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/Polynomial/Polynomial-Taylor-Shift.test.cpp
     title: test/yosupo/Polynomial/Polynomial-Taylor-Shift.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/Polynomial/Pow-of-Formal-Power-Series.test.cpp
     title: test/yosupo/Polynomial/Pow-of-Formal-Power-Series.test.cpp
   - icon: ':x:'

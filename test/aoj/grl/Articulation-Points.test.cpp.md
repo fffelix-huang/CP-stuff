@@ -46,7 +46,7 @@ data:
     \ {\r\n\t\t\tif(id[i] < 0) {\r\n\t\t\t\tdfs(i);\r\n\t\t\t}\r\n\t\t}\r\n\t\tfor(int\
     \ i = 0; i < (int) edges.size(); i++) {\r\n\t\t\tauto [u, v] = edges[i];\r\n\t\
     \t\tif(id[u] > id[v]) {\r\n\t\t\t\tstd::swap(u, v);\r\n\t\t\t}\r\n\t\t\tis_bridge[i]\
-    \ = (id[u] < low[v]);\r\n\t\t}\r\n\t}\r\n\r\n\tstd::vector<std::vector<int>> two_edge_connected_components()\
+    \ = (id[u] < low[v]);\r\n\t\t}\r\n\t}\r\n\r\n\tstd::vector<std::vector<int>> TECC()\
     \ {\r\n\t\tbuild();\r\n\t\ttecc_cnt = 0;\r\n\t\ttecc_id.assign(n, -1);\r\n\t\t\
     std::vector<int> stk;\r\n\t\tfor(int i = 0; i < n; i++) {\r\n\t\t\tif(tecc_id[i]\
     \ != -1) {\r\n\t\t\t\tcontinue;\r\n\t\t\t}\r\n\t\t\ttecc_id[i] = tecc_cnt;\r\n\
@@ -57,18 +57,17 @@ data:
     \t}\r\n\t\t\t}\r\n\t\t\ttecc_cnt += 1;\r\n\t\t}\r\n\t\tstd::vector<std::vector<int>>\
     \ components(tecc_cnt);\r\n\t\tfor(int i = 0; i < n; i++) {\r\n\t\t\tcomponents[tecc_id[i]].push_back(i);\r\
     \n\t\t}\r\n\t\treturn components;\r\n\t}\r\n\r\n\tstd::vector<std::vector<int>>\
-    \ biconnected_components_vertices() {\r\n\t\tbuild();\r\n\t\tstd::vector<std::vector<int>>\
-    \ components(tvcc_cnt);\r\n\t\tfor(int i = 0; i < (int) edges.size(); i++) {\r\
-    \n\t\t\tcomponents[tvcc_id[i]].push_back(edges[i].first);\r\n\t\t\tcomponents[tvcc_id[i]].push_back(edges[i].second);\r\
-    \n\t\t}\r\n\t\tfor(auto& v : components) {\r\n\t\t\tstd::sort(v.begin(), v.end());\r\
-    \n\t\t\tv.erase(std::unique(v.begin(), v.end()), v.end());\r\n\t\t}\r\n\t\tfor(int\
-    \ i = 0; i < n; i++) {\r\n\t\t\tif(g[i].empty()) {\r\n\t\t\t\tcomponents.push_back({i});\r\
-    \n\t\t\t}\r\n\t\t}\r\n\t\treturn components;\r\n\t}\r\n\r\n\tstd::vector<std::vector<int>>\
-    \ biconnected_components_edges() {\r\n\t\tbuild();\r\n\t\tstd::vector<std::vector<int>>\
-    \ ret(tvcc_cnt);\r\n\t\tfor(int i = 0; i < (int) edges.size(); i++) {\r\n\t\t\t\
-    ret[tvcc_id[i]].push_back(i);\r\n\t\t}\r\n\t\treturn ret;\r\n\t}\r\n};\r\n\r\n\
-    } // namespace felix\r\n#line 5 \"test/aoj/grl/Articulation-Points.test.cpp\"\n\
-    using namespace std;\r\nusing namespace felix;\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\
+    \ BCCV() {\r\n\t\tbuild();\r\n\t\tstd::vector<std::vector<int>> components(tvcc_cnt);\r\
+    \n\t\tfor(int i = 0; i < (int) edges.size(); i++) {\r\n\t\t\tcomponents[tvcc_id[i]].push_back(edges[i].first);\r\
+    \n\t\t\tcomponents[tvcc_id[i]].push_back(edges[i].second);\r\n\t\t}\r\n\t\tfor(auto&\
+    \ v : components) {\r\n\t\t\tstd::sort(v.begin(), v.end());\r\n\t\t\tv.erase(std::unique(v.begin(),\
+    \ v.end()), v.end());\r\n\t\t}\r\n\t\tfor(int i = 0; i < n; i++) {\r\n\t\t\tif(g[i].empty())\
+    \ {\r\n\t\t\t\tcomponents.push_back({i});\r\n\t\t\t}\r\n\t\t}\r\n\t\treturn components;\r\
+    \n\t}\r\n\r\n\tstd::vector<std::vector<int>> BCCE() {\r\n\t\tbuild();\r\n\t\t\
+    std::vector<std::vector<int>> ret(tvcc_cnt);\r\n\t\tfor(int i = 0; i < (int) edges.size();\
+    \ i++) {\r\n\t\t\tret[tvcc_id[i]].push_back(i);\r\n\t\t}\r\n\t\treturn ret;\r\n\
+    \t}\r\n};\r\n\r\n} // namespace felix\r\n#line 5 \"test/aoj/grl/Articulation-Points.test.cpp\"\
+    \nusing namespace std;\r\nusing namespace felix;\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\
     \n\tcin.tie(0);\r\n\tint n, m;\r\n\tcin >> n >> m;\r\n\tlowlink g(n);\r\n\tfor(int\
     \ i = 0; i < m; i++) {\r\n\t\tint u, v;\r\n\t\tcin >> u >> v;\r\n\t\tg.add_edge(u,\
     \ v);\r\n\t}\r\n\tg.build();\r\n\tfor(int i = 0; i < n; i++) {\r\n\t\tif(g.is_articulation[i])\
@@ -85,7 +84,7 @@ data:
   isVerificationFile: true
   path: test/aoj/grl/Articulation-Points.test.cpp
   requiredBy: []
-  timestamp: '2023-04-20 12:37:07+08:00'
+  timestamp: '2023-05-14 18:31:09+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/grl/Articulation-Points.test.cpp

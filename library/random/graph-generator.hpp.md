@@ -112,23 +112,21 @@ data:
     \tstd::set<std::pair<int, int>> s;\n\tauto perm = rnd.permutation(n);\n\tfor(int\
     \ i = 1; i < n; i++) {\n\t\tint u = perm[rnd.next(i)];\n\t\tint v = perm[i];\n\
     \t\tadd_edge(g, u, v);\n\t\ts.emplace(std::min(u, v), std::max(u, v));\n\t}\n\t\
-    // int m = rnd.next(n - 1, n * (n - 1) / 2) - (n - 1);\n\tint m = rnd.next(n -\
-    \ 1, 2 * n);\n\twhile(m--) {\n\t\tint u, v;\n\t\tdo {\n\t\t\tu = rnd.next(n -\
-    \ 1);\n\t\t\tv = rnd.next(u + 1, n - 1);\n\t\t} while(s.count(std::make_pair(u,\
-    \ v)));\n\t\ts.emplace(u, v);\n\t\tif(rnd.next(2)) {\n\t\t\tstd::swap(u, v);\n\
-    \t\t}\n\t\tadd_edge(g, u, v);\n\t}\n\treturn g;\n}\n\nGraph bipartite(int n, bool\
-    \ weighted = false, long long w_min = 1, long long w_max = 1) {\n\tset_weight(weighted,\
-    \ w_min, w_max);\n\tGraph g(n, weighted);\n\tif(n == 1) {\n\t\treturn g;\n\t}\n\
-    \tauto perm = rnd.permutation(n);\n\tint l_cnt = rnd.next(1, n - 1);\n\tauto lv\
-    \ = std::vector<int>(perm.begin(), perm.begin() + l_cnt);\n\tauto rv = std::vector<int>(perm.begin()\
-    \ + l_cnt, perm.end());\n\tfor(auto u : lv) {\n\t\tfor(auto v : rv) {\n\t\t\t\
-    if(rnd.next(0, 1)) {\n\t\t\t\tadd_edge(g, u, v);\n\t\t\t}\n\t\t}\n\t}\n\treturn\
-    \ g;\n}\n\nGraph generate(int n, bool is_tree = false, bool weighted = false,\
-    \ long long w_min = 1, long long w_max = 1) {\n\tusing F = std::function<Graph(int,\
-    \ bool, long long, long long)>;\n\tstd::vector<F> f{tree, path, star, perfect,\
-    \ simple, namori, sparse, bipartite};\n\tint mx = (is_tree ? 2 : (int) f.size());\n\
-    \treturn f[rnd.next(0, mx)](n, weighted, w_min, w_max);\n}\n\n} // namespace GraphGenerator\n\
-    \n} // namespace felix\n"
+    int extra = rnd.next(n, 10 * n);\n\tfor(int i = 0; i < extra; i++) {\n\t\tint\
+    \ u = rnd.next(n - 1);\n\t\tint v = rnd.next(u + 1, n - 1);\n\t\tif(s.count({u,\
+    \ v})) {\n\t\t\tcontinue;\n\t\t}\n\t\ts.emplace(u, v);\n\t\tadd_edge(g, u, v);\n\
+    \t}\n\treturn g;\n}\n\nGraph bipartite(int n, bool weighted = false, long long\
+    \ w_min = 1, long long w_max = 1) {\n\tset_weight(weighted, w_min, w_max);\n\t\
+    Graph g(n, weighted);\n\tif(n == 1) {\n\t\treturn g;\n\t}\n\tauto perm = rnd.permutation(n);\n\
+    \tint l_cnt = rnd.next(1, n - 1);\n\tauto lv = std::vector<int>(perm.begin(),\
+    \ perm.begin() + l_cnt);\n\tauto rv = std::vector<int>(perm.begin() + l_cnt, perm.end());\n\
+    \tfor(auto u : lv) {\n\t\tfor(auto v : rv) {\n\t\t\tif(rnd.next(0, 1)) {\n\t\t\
+    \t\tadd_edge(g, u, v);\n\t\t\t}\n\t\t}\n\t}\n\treturn g;\n}\n\nGraph generate(int\
+    \ n, bool is_tree = false, bool weighted = false, long long w_min = 1, long long\
+    \ w_max = 1) {\n\tusing F = std::function<Graph(int, bool, long long, long long)>;\n\
+    \tstd::vector<F> f{tree, path, star, perfect, simple, namori, sparse, bipartite};\n\
+    \tint mx = (is_tree ? 2 : (int) f.size());\n\treturn f[rnd.next(0, mx)](n, weighted,\
+    \ w_min, w_max);\n}\n\n} // namespace GraphGenerator\n\n} // namespace felix\n"
   code: "#pragma once\n#include <iostream>\n#include <vector>\n#include <algorithm>\n\
     #include <functional>\n#include <set>\n#include <cassert>\n#include \"random.hpp\"\
     \n\nnamespace felix {\n\nnamespace GraphGenerator {\n\nstruct Graph {\n\tstruct\
@@ -192,30 +190,28 @@ data:
     \tstd::set<std::pair<int, int>> s;\n\tauto perm = rnd.permutation(n);\n\tfor(int\
     \ i = 1; i < n; i++) {\n\t\tint u = perm[rnd.next(i)];\n\t\tint v = perm[i];\n\
     \t\tadd_edge(g, u, v);\n\t\ts.emplace(std::min(u, v), std::max(u, v));\n\t}\n\t\
-    // int m = rnd.next(n - 1, n * (n - 1) / 2) - (n - 1);\n\tint m = rnd.next(n -\
-    \ 1, 2 * n);\n\twhile(m--) {\n\t\tint u, v;\n\t\tdo {\n\t\t\tu = rnd.next(n -\
-    \ 1);\n\t\t\tv = rnd.next(u + 1, n - 1);\n\t\t} while(s.count(std::make_pair(u,\
-    \ v)));\n\t\ts.emplace(u, v);\n\t\tif(rnd.next(2)) {\n\t\t\tstd::swap(u, v);\n\
-    \t\t}\n\t\tadd_edge(g, u, v);\n\t}\n\treturn g;\n}\n\nGraph bipartite(int n, bool\
-    \ weighted = false, long long w_min = 1, long long w_max = 1) {\n\tset_weight(weighted,\
-    \ w_min, w_max);\n\tGraph g(n, weighted);\n\tif(n == 1) {\n\t\treturn g;\n\t}\n\
-    \tauto perm = rnd.permutation(n);\n\tint l_cnt = rnd.next(1, n - 1);\n\tauto lv\
-    \ = std::vector<int>(perm.begin(), perm.begin() + l_cnt);\n\tauto rv = std::vector<int>(perm.begin()\
-    \ + l_cnt, perm.end());\n\tfor(auto u : lv) {\n\t\tfor(auto v : rv) {\n\t\t\t\
-    if(rnd.next(0, 1)) {\n\t\t\t\tadd_edge(g, u, v);\n\t\t\t}\n\t\t}\n\t}\n\treturn\
-    \ g;\n}\n\nGraph generate(int n, bool is_tree = false, bool weighted = false,\
-    \ long long w_min = 1, long long w_max = 1) {\n\tusing F = std::function<Graph(int,\
-    \ bool, long long, long long)>;\n\tstd::vector<F> f{tree, path, star, perfect,\
-    \ simple, namori, sparse, bipartite};\n\tint mx = (is_tree ? 2 : (int) f.size());\n\
-    \treturn f[rnd.next(0, mx)](n, weighted, w_min, w_max);\n}\n\n} // namespace GraphGenerator\n\
-    \n} // namespace felix\n"
+    int extra = rnd.next(n, 10 * n);\n\tfor(int i = 0; i < extra; i++) {\n\t\tint\
+    \ u = rnd.next(n - 1);\n\t\tint v = rnd.next(u + 1, n - 1);\n\t\tif(s.count({u,\
+    \ v})) {\n\t\t\tcontinue;\n\t\t}\n\t\ts.emplace(u, v);\n\t\tadd_edge(g, u, v);\n\
+    \t}\n\treturn g;\n}\n\nGraph bipartite(int n, bool weighted = false, long long\
+    \ w_min = 1, long long w_max = 1) {\n\tset_weight(weighted, w_min, w_max);\n\t\
+    Graph g(n, weighted);\n\tif(n == 1) {\n\t\treturn g;\n\t}\n\tauto perm = rnd.permutation(n);\n\
+    \tint l_cnt = rnd.next(1, n - 1);\n\tauto lv = std::vector<int>(perm.begin(),\
+    \ perm.begin() + l_cnt);\n\tauto rv = std::vector<int>(perm.begin() + l_cnt, perm.end());\n\
+    \tfor(auto u : lv) {\n\t\tfor(auto v : rv) {\n\t\t\tif(rnd.next(0, 1)) {\n\t\t\
+    \t\tadd_edge(g, u, v);\n\t\t\t}\n\t\t}\n\t}\n\treturn g;\n}\n\nGraph generate(int\
+    \ n, bool is_tree = false, bool weighted = false, long long w_min = 1, long long\
+    \ w_max = 1) {\n\tusing F = std::function<Graph(int, bool, long long, long long)>;\n\
+    \tstd::vector<F> f{tree, path, star, perfect, simple, namori, sparse, bipartite};\n\
+    \tint mx = (is_tree ? 2 : (int) f.size());\n\treturn f[rnd.next(0, mx)](n, weighted,\
+    \ w_min, w_max);\n}\n\n} // namespace GraphGenerator\n\n} // namespace felix\n"
   dependsOn:
   - library/random/random.hpp
   - library/random/splitmix64.hpp
   isVerificationFile: false
   path: library/random/graph-generator.hpp
   requiredBy: []
-  timestamp: '2023-05-13 10:23:52+08:00'
+  timestamp: '2023-05-14 18:31:09+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/random/graph-generator.hpp

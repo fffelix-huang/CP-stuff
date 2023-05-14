@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/convolution/subset-convolution.hpp
     title: library/convolution/subset-convolution.hpp
   - icon: ':question:'
@@ -89,27 +89,26 @@ data:
     \ internal::is_signed_int_t<T>* = nullptr> constexpr modint(T v) : value(v >=\
     \ 0 ? v % mod() : v % mod() + mod()) {}\r\n\ttemplate<class T, internal::is_unsigned_int_t<T>*\
     \ = nullptr> constexpr modint(T v) : value(v % mod()) {}\r\n \r\n\tconstexpr int\
-    \ operator()() const { return value; }\r\n\ttemplate<class T> explicit constexpr\
-    \ operator T() const { return static_cast<T>(value); }\r\n\r\n\tconstexpr modint\
-    \ inv() const {\r\n\t\tif(id > 0 && value < std::min(mod() >> 1, 1 << 18)) {\r\
-    \n\t\t\tprepare(value);\r\n\t\t\treturn invs[value];\r\n\t\t} else {\r\n\t\t\t\
-    auto eg = internal::inv_gcd(value, mod());\r\n\t\t\tassert(eg.first == 1);\r\n\
-    \t\t\treturn eg.second;\r\n\t\t}\r\n\t}\r\n\r\n\tconstexpr modint fact() const\
-    \ {\r\n\t\tprepare(value);\r\n\t\treturn facts[value];\r\n\t}\r\n\r\n\tconstexpr\
-    \ modint inv_fact() const {\r\n\t\tprepare(value);\r\n\t\treturn inv_facts[value];\r\
-    \n\t}\r\n \r\n\tconstexpr modint& operator+=(const modint& rhs) & {\r\n\t\tvalue\
-    \ += rhs.value;\r\n\t\tif(value >= mod()) {\r\n\t\t\tvalue -= mod();\r\n\t\t}\r\
-    \n\t\treturn *this;\r\n\t}\r\n \r\n\tconstexpr modint& operator-=(const modint&\
-    \ rhs) & {\r\n\t\tvalue -= rhs.value;\r\n\t\tif(value < 0) {\r\n\t\t\tvalue +=\
-    \ mod();\r\n\t\t}\r\n\t\treturn *this;\r\n\t}\r\n\r\n\tconstexpr modint& operator*=(const\
-    \ modint& rhs) & {\r\n\t\tvalue = 1LL * value * rhs.value % mod();\r\n\t\treturn\
-    \ *this;\r\n\t}\r\n\r\n\tconstexpr modint& operator/=(const modint& rhs) & {\r\
-    \n\t\treturn *this *= rhs.inv();\r\n\t}\r\n\r\n\tfriend constexpr modint operator+(modint\
-    \ lhs, modint rhs) { return lhs += rhs; }\r\n\tfriend constexpr modint operator-(modint\
-    \ lhs, modint rhs) { return lhs -= rhs; }\r\n\tfriend constexpr modint operator*(modint\
-    \ lhs, modint rhs) { return lhs *= rhs; }\r\n\tfriend constexpr modint operator/(modint\
-    \ lhs, modint rhs) { return lhs /= rhs; }\r\n\r\n\tconstexpr modint operator+()\
-    \ const { return *this; }\r\n\tconstexpr modint operator-() const { return modint()\
+    \ val() const { return value; }\r\n\r\n\tconstexpr modint inv() const {\r\n\t\t\
+    if(id > 0 && value < std::min(mod() >> 1, 1 << 18)) {\r\n\t\t\tprepare(value);\r\
+    \n\t\t\treturn invs[value];\r\n\t\t} else {\r\n\t\t\tauto eg = internal::inv_gcd(value,\
+    \ mod());\r\n\t\t\tassert(eg.first == 1);\r\n\t\t\treturn eg.second;\r\n\t\t}\r\
+    \n\t}\r\n\r\n\tconstexpr modint fact() const {\r\n\t\tprepare(value);\r\n\t\t\
+    return facts[value];\r\n\t}\r\n\r\n\tconstexpr modint inv_fact() const {\r\n\t\
+    \tprepare(value);\r\n\t\treturn inv_facts[value];\r\n\t}\r\n \r\n\tconstexpr modint&\
+    \ operator+=(const modint& rhs) & {\r\n\t\tvalue += rhs.value;\r\n\t\tif(value\
+    \ >= mod()) {\r\n\t\t\tvalue -= mod();\r\n\t\t}\r\n\t\treturn *this;\r\n\t}\r\n\
+    \ \r\n\tconstexpr modint& operator-=(const modint& rhs) & {\r\n\t\tvalue -= rhs.value;\r\
+    \n\t\tif(value < 0) {\r\n\t\t\tvalue += mod();\r\n\t\t}\r\n\t\treturn *this;\r\
+    \n\t}\r\n\r\n\tconstexpr modint& operator*=(const modint& rhs) & {\r\n\t\tvalue\
+    \ = 1LL * value * rhs.value % mod();\r\n\t\treturn *this;\r\n\t}\r\n\r\n\tconstexpr\
+    \ modint& operator/=(const modint& rhs) & {\r\n\t\treturn *this *= rhs.inv();\r\
+    \n\t}\r\n\r\n\tfriend constexpr modint operator+(modint lhs, modint rhs) { return\
+    \ lhs += rhs; }\r\n\tfriend constexpr modint operator-(modint lhs, modint rhs)\
+    \ { return lhs -= rhs; }\r\n\tfriend constexpr modint operator*(modint lhs, modint\
+    \ rhs) { return lhs *= rhs; }\r\n\tfriend constexpr modint operator/(modint lhs,\
+    \ modint rhs) { return lhs /= rhs; }\r\n\r\n\tconstexpr modint operator+() const\
+    \ { return *this; }\r\n\tconstexpr modint operator-() const { return modint()\
     \ - *this; } \r\n\tconstexpr bool operator==(const modint& rhs) const { return\
     \ value == rhs.value; } \r\n\tconstexpr bool operator!=(const modint& rhs) const\
     \ { return value != rhs.value; }\r\n\r\n\tconstexpr modint pow(unsigned long long\
@@ -131,8 +130,8 @@ data:
     \ operator>>(std::istream& in, modint& num) {\r\n\t\tlong long x;\r\n\t\tin >>\
     \ x;\r\n\t\tnum = modint<id>(x);\r\n\t\treturn in;\r\n\t}\r\n\t\r\n\tfriend constexpr\
     \ std::ostream& operator<<(std::ostream& out, const modint& num) {\r\n\t\treturn\
-    \ out << num();\r\n\t}\r\n \r\nprivate:\r\n\tint value;\r\n\tstatic int md;\r\n\
-    \tstatic std::vector<modint> facts, inv_facts, invs;\r\n};\r\n\r\ntemplate<int\
+    \ out << num.val();\r\n\t}\r\n \r\nprivate:\r\n\tint value;\r\n\tstatic int md;\r\
+    \n\tstatic std::vector<modint> facts, inv_facts, invs;\r\n};\r\n\r\ntemplate<int\
     \ id> int modint<id>::md = 998244353;\r\ntemplate<int id> std::vector<modint<id>>\
     \ modint<id>::facts = {1};\r\ntemplate<int id> std::vector<modint<id>> modint<id>::inv_facts\
     \ = {1};\r\ntemplate<int id> std::vector<modint<id>> modint<id>::invs = {0};\r\
@@ -214,7 +213,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/Convolution/Bitwise-And-Convolution.test.cpp
   requiredBy: []
-  timestamp: '2023-05-13 10:23:52+08:00'
+  timestamp: '2023-05-14 18:31:09+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Convolution/Bitwise-And-Convolution.test.cpp
