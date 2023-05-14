@@ -5,6 +5,7 @@
 #include "../../../library/geometry/point.hpp"
 using namespace std;
 using namespace felix;
+using namespace geometry;
 
 int main() {
 	ios::sync_with_stdio(false);
