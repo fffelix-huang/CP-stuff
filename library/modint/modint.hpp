@@ -64,9 +64,6 @@ public:
 			prepare(value);
 			return invs[value];
 		} else {
-			if(value < (int) invs.size()) {
-				return invs[value];
-			}
 			auto eg = internal::inv_gcd(value, mod());
 			assert(eg.first == 1);
 			return eg.second;
