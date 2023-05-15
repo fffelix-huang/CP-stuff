@@ -19,6 +19,6 @@ int main() {
 	for(int i = 0; i < n; i++) {
 		cin >> a[i];
 	}
-	cout << fixed << setprecision(15) << sqrt(closest_pair(a)) << "\n";
+	cout << fixed << setprecision(6) << sqrt(closest_pair(a)) << "\n";
 	return 0;
 }

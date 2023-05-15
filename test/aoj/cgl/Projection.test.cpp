@@ -20,7 +20,7 @@ int main() {
 		Point<long double> p;
 		cin >> p;
 		auto ans = projection(l, p);
-		cout << fixed << setprecision(15) << ans.x << " " << ans.y << "\n";
+		cout << fixed << setprecision(8) << ans.x << " " << ans.y << "\n";
 	}
 	return 0;
 }
