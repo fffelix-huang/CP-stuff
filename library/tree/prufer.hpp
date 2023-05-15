@@ -30,7 +30,7 @@ std::vector<std::pair<int, int>> prufer(const std::vector<int>& a) {
 		}
 	}
 	assert(leaf.size() == 2);
-	edges.emplace_back(*leaf.begin() + 1, *std::next(leaf.begin()) + 1);
+	edges.emplace_back(*leaf.begin(), *std::next(leaf.begin()));
 	return edges;
 }
 

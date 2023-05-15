@@ -8,18 +8,19 @@ namespace felix {
 
 namespace line_container_internal {
 
+template<class T>
 struct line_t {
-	mutable long long k, m, p;
+	mutable T k, m, p;
 
-	inline bool operator<(const line_t& o) const { return k < o.k; }
-	inline bool operator<(long long x) const { return p < x; }
+	bool operator<(const line_t& o) const { return k < o.k; }
+	bool operator<(long long x) const { return p < x; }
 };
 
 } // line_container_internal
 
-template<bool MAX>
-struct line_container : std::multiset<line_container_internal::line_t, std::less<>> {
-	static const long long INF = std::numeric_limits<long long>::max();
+template<class T, bool MAX>
+struct line_container : std::multiset<line_container_internal::line_t<T>, std::less<>> {
+	static constexpr T INF = std::numeric_limits<T>::max();
 
 	bool isect(iterator x, iterator y) {
 		if(y == end()) {
@@ -34,8 +35,8 @@ struct line_container : std::multiset<line_container_internal::line_t, std::less
 		return x->p >= y->p;
 	}
 
-	void add_line(long long k, long long m) {
-		if(!MAX) {
+	void add_line(T k, T m) {
+		if constexpr(!MAX) {
 			k = -k;
 			m = -m;
 		}
@@ -51,10 +52,14 @@ struct line_container : std::multiset<line_container_internal::line_t, std::less
 		}
 	}
 
-	long long get(long long x) {
+	T get(T x) {
 		assert(!empty());
 		auto l = *lower_bound(x);
-		return (l.k * x + l.m) * (MAX ? +1 : -1);
+		T ans = l.k * x + l.m;
+		if constexpr(!MAX) {
+			ans = -ans;
+		}
+		return ans;
 	}
 };
 

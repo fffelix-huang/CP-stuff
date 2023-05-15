@@ -1,6 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/line_add_get_min"
 
 #include <iostream>
+#include <cassert>
 #include "../../../library/data-structure/line-container.hpp"
 using namespace std;
 using namespace felix;
@@ -10,8 +11,8 @@ int main() {
 	cin.tie(0);
 	int n, q;
 	cin >> n >> q;
-	line_container<true> mx;
-	line_container<false> mn;
+	line_container<long long, true> mx;
+	line_container<long long, false> mn;
 	for(int i = 0; i < n; i++) {
 		long long a, b;
 		cin >> a >> b;
