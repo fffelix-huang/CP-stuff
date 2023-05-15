@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/geometry/line.hpp
     title: library/geometry/line.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/geometry/point.hpp
     title: library/geometry/point.hpp
   _extendedRequiredBy: []
@@ -16,20 +16,11 @@ data:
     path: test/aoj/cgl/Counter-Clockwise.test.cpp
     title: test/aoj/cgl/Counter-Clockwise.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/aoj/cgl/Cross-Point.test.cpp
-    title: test/aoj/cgl/Cross-Point.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/aoj/cgl/Intersection.test.cpp
     title: test/aoj/cgl/Intersection.test.cpp
-  - icon: ':x:'
-    path: test/aoj/cgl/Projection.test.cpp
-    title: test/aoj/cgl/Projection.test.cpp
-  - icon: ':x:'
-    path: test/aoj/cgl/Reflection.test.cpp
-    title: test/aoj/cgl/Reflection.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"library/geometry/geometry.hpp\"\n#include <vector>\n#include\
@@ -156,13 +147,10 @@ data:
   path: library/geometry/geometry.hpp
   requiredBy: []
   timestamp: '2023-05-15 14:09:28+08:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/cgl/Convex-Hull.test.cpp
-  - test/aoj/cgl/Reflection.test.cpp
   - test/aoj/cgl/Counter-Clockwise.test.cpp
-  - test/aoj/cgl/Cross-Point.test.cpp
-  - test/aoj/cgl/Projection.test.cpp
   - test/aoj/cgl/Intersection.test.cpp
 documentation_of: library/geometry/geometry.hpp
 layout: document

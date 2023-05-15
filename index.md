@@ -71,16 +71,16 @@ data:
       title: library/formal-power-series/poly.hpp
   - name: library/geometry
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':warning:'
       path: library/geometry/closest-pair.hpp
       title: library/geometry/closest-pair.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/geometry/geometry.hpp
       title: library/geometry/geometry.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/geometry/line.hpp
       title: library/geometry/line.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/geometry/point.hpp
       title: library/geometry/point.hpp
   - name: library/graph
@@ -201,26 +201,14 @@ data:
       path: test/aoj/cgl/Area.test.cpp
       title: test/aoj/cgl/Area.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/aoj/cgl/Closest-Pair.test.cpp
-      title: test/aoj/cgl/Closest-Pair.test.cpp
-    - icon: ':heavy_check_mark:'
       path: test/aoj/cgl/Convex-Hull.test.cpp
       title: test/aoj/cgl/Convex-Hull.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/cgl/Counter-Clockwise.test.cpp
       title: test/aoj/cgl/Counter-Clockwise.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/aoj/cgl/Cross-Point.test.cpp
-      title: test/aoj/cgl/Cross-Point.test.cpp
-    - icon: ':heavy_check_mark:'
       path: test/aoj/cgl/Intersection.test.cpp
       title: test/aoj/cgl/Intersection.test.cpp
-    - icon: ':x:'
-      path: test/aoj/cgl/Projection.test.cpp
-      title: test/aoj/cgl/Projection.test.cpp
-    - icon: ':x:'
-      path: test/aoj/cgl/Reflection.test.cpp
-      title: test/aoj/cgl/Reflection.test.cpp
   - name: test/aoj/dsl
     pages:
     - icon: ':heavy_check_mark:'

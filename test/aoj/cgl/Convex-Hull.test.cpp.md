@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/geometry/geometry.hpp
     title: library/geometry/geometry.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/geometry/line.hpp
     title: library/geometry/line.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/geometry/point.hpp
     title: library/geometry/point.hpp
   _extendedRequiredBy: []

@@ -1,17 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/geometry/point.hpp
     title: library/geometry/point.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/cgl/Closest-Pair.test.cpp
-    title: test/aoj/cgl/Closest-Pair.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"library/geometry/closest-pair.hpp\"\n#include <vector>\n\
@@ -80,9 +77,8 @@ data:
   path: library/geometry/closest-pair.hpp
   requiredBy: []
   timestamp: '2023-05-15 01:11:19+08:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/aoj/cgl/Closest-Pair.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: library/geometry/closest-pair.hpp
 layout: document
 redirect_from:
