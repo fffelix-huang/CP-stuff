@@ -2,6 +2,7 @@
 #include <limits>
 #include <cassert>
 #include <set>
+#include <functional>
 #include "../math/integer-div.hpp"
 
 namespace felix {
@@ -13,13 +14,21 @@ struct line_t {
 	mutable T k, m, p;
 
 	bool operator<(const line_t& o) const { return k < o.k; }
-	bool operator<(long long x) const { return p < x; }
+	bool operator<(T x) const { return p < x; }
 };
 
 } // line_container_internal
 
 template<class T, bool MAX>
-struct line_container : std::multiset<line_container_internal::line_t<T>, std::less<>> {
+struct line_container : public std::multiset<line_container_internal::line_t<T>, std::less<>> {
+	using typename std::multiset<line_container_internal::line_t<T>, std::less<>>::iterator;
+	using std::multiset<line_container_internal::line_t<T>, std::less<>>::begin;
+	using std::multiset<line_container_internal::line_t<T>, std::less<>>::end;
+	using std::multiset<line_container_internal::line_t<T>, std::less<>>::lower_bound;
+	using std::multiset<line_container_internal::line_t<T>, std::less<>>::insert;
+	using std::multiset<line_container_internal::line_t<T>, std::less<>>::erase;
+	using std::multiset<line_container_internal::line_t<T>, std::less<>>::empty;
+
 	static constexpr T INF = std::numeric_limits<T>::max();
 
 	bool isect(iterator x, iterator y) {

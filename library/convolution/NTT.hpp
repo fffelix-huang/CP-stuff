@@ -7,6 +7,7 @@
 #include "../misc/type-traits.hpp"
 #include "../modint/modint.hpp"
 #include "../math/safe-mod.hpp"
+#include "../math/pow-mod-constexpr.hpp"
 
 namespace felix {
 
@@ -40,16 +41,7 @@ constexpr int primitive_root_constexpr(int m) {
 	for(int g = 2;; g++) {
 		bool ok = true;
 		for(int i = 0; i < cnt; i++) {
-			unsigned long long y = safe_mod(g, m), r = 1;
-			long long n = (m - 1) / divs[i];
-			while(n) {
-				if(n & 1) {
-					r = r * y % m;
-				}
-				y = y * y % m;
-				n >>= 1;
-			}
-			if(r == 1) {
+			if(pow_mod_constexpr<unsigned long long, int>(g, (m - 1) / divs[i], m) == 1) {
 				ok = false;
 				break;
 			}
