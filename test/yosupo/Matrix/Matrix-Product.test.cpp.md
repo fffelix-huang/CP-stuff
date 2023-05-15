@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/inv-gcd.hpp
     title: library/math/inv-gcd.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/safe-mod.hpp
     title: library/math/safe-mod.hpp
   - icon: ':heavy_check_mark:'
     path: library/matrix/matrix.hpp
     title: library/matrix/matrix.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/misc/type-traits.hpp
     title: library/misc/type-traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/modint/modint.hpp
     title: library/modint/modint.hpp
   _extendedRequiredBy: []
@@ -134,7 +134,8 @@ data:
     \ = nullptr> constexpr modint(T v) : value(v % mod()) {}\r\n \r\n\tconstexpr int\
     \ val() const { return value; }\r\n\r\n\tconstexpr modint inv() const {\r\n\t\t\
     if(id > 0 && value < std::min(mod() >> 1, 1 << 18)) {\r\n\t\t\tprepare(value);\r\
-    \n\t\t\treturn invs[value];\r\n\t\t} else {\r\n\t\t\tauto eg = internal::inv_gcd(value,\
+    \n\t\t\treturn invs[value];\r\n\t\t} else {\r\n\t\t\tif(value < (int) invs.size())\
+    \ {\r\n\t\t\t\treturn invs[value];\r\n\t\t\t}\r\n\t\t\tauto eg = internal::inv_gcd(value,\
     \ mod());\r\n\t\t\tassert(eg.first == 1);\r\n\t\t\treturn eg.second;\r\n\t\t}\r\
     \n\t}\r\n\r\n\tconstexpr modint fact() const {\r\n\t\tprepare(value);\r\n\t\t\
     return facts[value];\r\n\t}\r\n\r\n\tconstexpr modint inv_fact() const {\r\n\t\
@@ -219,7 +220,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/Matrix/Matrix-Product.test.cpp
   requiredBy: []
-  timestamp: '2023-05-14 19:14:31+08:00'
+  timestamp: '2023-05-16 02:04:08+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Matrix/Matrix-Product.test.cpp

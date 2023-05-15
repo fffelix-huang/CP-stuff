@@ -3,7 +3,7 @@ data:
   libraryCategories:
   - name: library/convolution
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/convolution/NTT.hpp
       title: library/convolution/NTT.hpp
     - icon: ':heavy_check_mark:'
@@ -38,7 +38,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/data-structure/lazy-treap.hpp
       title: library/data-structure/lazy-treap.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/data-structure/line-container.hpp
       title: library/data-structure/line-container.hpp
     - icon: ':heavy_check_mark:'
@@ -99,7 +99,7 @@ data:
       title: library/graph/lowlink.hpp
   - name: library/math
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/math/binary-gcd.hpp
       title: "Binary GCD (\u4F4D\u5143 GCD)"
     - icon: ':warning:'
@@ -108,19 +108,25 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/discrete-log.hpp
       title: "Discrete Log (\u96E2\u6563\u5C0D\u6578 $a^x \\equiv b \\pmod m$)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: library/math/factorize.hpp
       title: "Integer Factorization (Pollard Rho \u8CEA\u56E0\u6578\u5206\u89E3)"
     - icon: ':heavy_check_mark:'
       path: library/math/floor-sum.hpp
       title: Sum of floor linear ($\sum_{i = 0}^{n - 1} \lfloor \frac{ai + b}{m} \rfloor$)
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/math/integer-div.hpp
       title: Integer division ($\lfloor \frac{a}{b} \rfloor \lceil \frac{a}{b} \rceil$)
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/math/inv-gcd.hpp
       title: library/math/inv-gcd.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
+      path: library/math/is-prime.hpp
+      title: library/math/is-prime.hpp
+    - icon: ':question:'
+      path: library/math/pow-mod-constexpr.hpp
+      title: library/math/pow-mod-constexpr.hpp
+    - icon: ':question:'
       path: library/math/safe-mod.hpp
       title: library/math/safe-mod.hpp
     - icon: ':heavy_check_mark:'
@@ -145,7 +151,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/misc/fastio.hpp
       title: library/misc/fastio.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/misc/type-traits.hpp
       title: library/misc/type-traits.hpp
   - name: library/modint
@@ -153,7 +159,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/modint/barrett.hpp
       title: library/modint/barrett.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/modint/modint.hpp
       title: library/modint/modint.hpp
   - name: library/random
@@ -164,7 +170,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/random/random.hpp
       title: random_t
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/random/rng.hpp
       title: library/random/rng.hpp
     - icon: ':heavy_check_mark:'
@@ -281,7 +287,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/ntl/Power.test.cpp
       title: test/aoj/ntl/Power.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/ntl/Prime-Factorize.test.cpp
       title: test/aoj/ntl/Prime-Factorize.test.cpp
   - name: test/unit-test
@@ -303,7 +309,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/Convolution/Convolution-Large.test.cpp
       title: test/yosupo/Convolution/Convolution-Large.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/Convolution/Convolution-Mod-1000000007.test.cpp
       title: test/yosupo/Convolution/Convolution-Mod-1000000007.test.cpp
     - icon: ':heavy_check_mark:'
@@ -329,7 +335,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/Data-Structure/Dynamic-Tree-Vertex-Set-Path-Composite.test.cpp
       title: test/yosupo/Data-Structure/Dynamic-Tree-Vertex-Set-Path-Composite.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/Data-Structure/Line-Add-Get-Min.test.cpp
       title: test/yosupo/Data-Structure/Line-Add-Get-Min.test.cpp
     - icon: ':heavy_check_mark:'
@@ -418,7 +424,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/Math/Discrete-Logarithm.test.cpp
       title: test/yosupo/Math/Discrete-Logarithm.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/Math/Factorize.test.cpp
       title: test/yosupo/Math/Factorize.test.cpp
     - icon: ':heavy_check_mark:'

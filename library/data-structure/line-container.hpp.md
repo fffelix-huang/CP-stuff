@@ -1,31 +1,38 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/integer-div.hpp
     title: Integer division ($\lfloor \frac{a}{b} \rfloor \lceil \frac{a}{b} \rceil$)
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/Data-Structure/Line-Add-Get-Min.test.cpp
     title: test/yosupo/Data-Structure/Line-Add-Get-Min.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"library/data-structure/line-container.hpp\"\n#include <limits>\n\
-    #include <cassert>\n#include <set>\n#line 2 \"library/math/integer-div.hpp\"\n\
-    \r\nnamespace felix {\r\n\r\ntemplate<class T>\r\nT floor_div(T a, T b) {\r\n\t\
-    return a / b - ((a ^ b) < 0 && a % b != 0);\r\n}\r\n\r\ntemplate<class T>\r\n\
+    #include <cassert>\n#include <set>\n#include <functional>\n#line 2 \"library/math/integer-div.hpp\"\
+    \n\r\nnamespace felix {\r\n\r\ntemplate<class T>\r\nT floor_div(T a, T b) {\r\n\
+    \treturn a / b - ((a ^ b) < 0 && a % b != 0);\r\n}\r\n\r\ntemplate<class T>\r\n\
     T ceil_div(T a, T b) {\r\n\treturn a / b + ((a ^ b) > 0 && a % b != 0);\r\n}\r\
-    \n\r\n} // namespace felix\r\n#line 6 \"library/data-structure/line-container.hpp\"\
+    \n\r\n} // namespace felix\r\n#line 7 \"library/data-structure/line-container.hpp\"\
     \n\nnamespace felix {\n\nnamespace line_container_internal {\n\ntemplate<class\
     \ T>\nstruct line_t {\n\tmutable T k, m, p;\n\n\tbool operator<(const line_t&\
-    \ o) const { return k < o.k; }\n\tbool operator<(long long x) const { return p\
-    \ < x; }\n};\n\n} // line_container_internal\n\ntemplate<class T, bool MAX>\n\
-    struct line_container : std::multiset<line_container_internal::line_t<T>, std::less<>>\
-    \ {\n\tstatic constexpr T INF = std::numeric_limits<T>::max();\n\n\tbool isect(iterator\
+    \ o) const { return k < o.k; }\n\tbool operator<(T x) const { return p < x; }\n\
+    };\n\n} // line_container_internal\n\ntemplate<class T, bool MAX>\nstruct line_container\
+    \ : public std::multiset<line_container_internal::line_t<T>, std::less<>> {\n\t\
+    using typename std::multiset<line_container_internal::line_t<T>, std::less<>>::iterator;\n\
+    \tusing std::multiset<line_container_internal::line_t<T>, std::less<>>::begin;\n\
+    \tusing std::multiset<line_container_internal::line_t<T>, std::less<>>::end;\n\
+    \tusing std::multiset<line_container_internal::line_t<T>, std::less<>>::lower_bound;\n\
+    \tusing std::multiset<line_container_internal::line_t<T>, std::less<>>::insert;\n\
+    \tusing std::multiset<line_container_internal::line_t<T>, std::less<>>::erase;\n\
+    \tusing std::multiset<line_container_internal::line_t<T>, std::less<>>::empty;\n\
+    \n\tstatic constexpr T INF = std::numeric_limits<T>::max();\n\n\tbool isect(iterator\
     \ x, iterator y) {\n\t\tif(y == end()) {\n\t\t\tx->p = INF;\n\t\t\treturn 0;\n\
     \t\t}\n\t\tif(x->k == y->k) {\n\t\t\tx->p = (x->m > y->m ? INF : -INF);\n\t\t\
     } else {\n\t\t\tx->p = floor_div(y->m - x->m, x->k - y->k);\n\t\t}\n\t\treturn\
@@ -38,13 +45,20 @@ data:
     \ = l.k * x + l.m;\n\t\tif constexpr(!MAX) {\n\t\t\tans = -ans;\n\t\t}\n\t\treturn\
     \ ans;\n\t}\n};\n\n} // namespace felix\n"
   code: "#pragma once\n#include <limits>\n#include <cassert>\n#include <set>\n#include\
-    \ \"../math/integer-div.hpp\"\n\nnamespace felix {\n\nnamespace line_container_internal\
-    \ {\n\ntemplate<class T>\nstruct line_t {\n\tmutable T k, m, p;\n\n\tbool operator<(const\
-    \ line_t& o) const { return k < o.k; }\n\tbool operator<(long long x) const {\
-    \ return p < x; }\n};\n\n} // line_container_internal\n\ntemplate<class T, bool\
-    \ MAX>\nstruct line_container : std::multiset<line_container_internal::line_t<T>,\
-    \ std::less<>> {\n\tstatic constexpr T INF = std::numeric_limits<T>::max();\n\n\
-    \tbool isect(iterator x, iterator y) {\n\t\tif(y == end()) {\n\t\t\tx->p = INF;\n\
+    \ <functional>\n#include \"../math/integer-div.hpp\"\n\nnamespace felix {\n\n\
+    namespace line_container_internal {\n\ntemplate<class T>\nstruct line_t {\n\t\
+    mutable T k, m, p;\n\n\tbool operator<(const line_t& o) const { return k < o.k;\
+    \ }\n\tbool operator<(T x) const { return p < x; }\n};\n\n} // line_container_internal\n\
+    \ntemplate<class T, bool MAX>\nstruct line_container : public std::multiset<line_container_internal::line_t<T>,\
+    \ std::less<>> {\n\tusing typename std::multiset<line_container_internal::line_t<T>,\
+    \ std::less<>>::iterator;\n\tusing std::multiset<line_container_internal::line_t<T>,\
+    \ std::less<>>::begin;\n\tusing std::multiset<line_container_internal::line_t<T>,\
+    \ std::less<>>::end;\n\tusing std::multiset<line_container_internal::line_t<T>,\
+    \ std::less<>>::lower_bound;\n\tusing std::multiset<line_container_internal::line_t<T>,\
+    \ std::less<>>::insert;\n\tusing std::multiset<line_container_internal::line_t<T>,\
+    \ std::less<>>::erase;\n\tusing std::multiset<line_container_internal::line_t<T>,\
+    \ std::less<>>::empty;\n\n\tstatic constexpr T INF = std::numeric_limits<T>::max();\n\
+    \n\tbool isect(iterator x, iterator y) {\n\t\tif(y == end()) {\n\t\t\tx->p = INF;\n\
     \t\t\treturn 0;\n\t\t}\n\t\tif(x->k == y->k) {\n\t\t\tx->p = (x->m > y->m ? INF\
     \ : -INF);\n\t\t} else {\n\t\t\tx->p = floor_div(y->m - x->m, x->k - y->k);\n\t\
     \t}\n\t\treturn x->p >= y->p;\n\t}\n\n\tvoid add_line(T k, T m) {\n\t\tif constexpr(!MAX)\
@@ -60,8 +74,8 @@ data:
   isVerificationFile: false
   path: library/data-structure/line-container.hpp
   requiredBy: []
-  timestamp: '2023-05-16 00:21:35+08:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-05-16 02:04:08+08:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/Data-Structure/Line-Add-Get-Min.test.cpp
 documentation_of: library/data-structure/line-container.hpp
