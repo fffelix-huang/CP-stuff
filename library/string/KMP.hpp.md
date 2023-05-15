@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/alds1/String-Search.test.cpp
+    title: test/aoj/alds1/String-Search.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"library/string/KMP.hpp\"\n#include <vector>\r\n#include\
@@ -30,8 +33,9 @@ data:
   path: library/string/KMP.hpp
   requiredBy: []
   timestamp: '2023-04-17 09:05:42+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/aoj/alds1/String-Search.test.cpp
 documentation_of: library/string/KMP.hpp
 layout: document
 redirect_from:

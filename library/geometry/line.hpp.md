@@ -1,17 +1,35 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/geometry/point.hpp
     title: library/geometry/point.hpp
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':question:'
     path: library/geometry/geometry.hpp
     title: library/geometry/geometry.hpp
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/cgl/Convex-Hull.test.cpp
+    title: test/aoj/cgl/Convex-Hull.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/cgl/Counter-Clockwise.test.cpp
+    title: test/aoj/cgl/Counter-Clockwise.test.cpp
+  - icon: ':x:'
+    path: test/aoj/cgl/Cross-Point.test.cpp
+    title: test/aoj/cgl/Cross-Point.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/cgl/Intersection.test.cpp
+    title: test/aoj/cgl/Intersection.test.cpp
+  - icon: ':x:'
+    path: test/aoj/cgl/Projection.test.cpp
+    title: test/aoj/cgl/Projection.test.cpp
+  - icon: ':x:'
+    path: test/aoj/cgl/Reflection.test.cpp
+    title: test/aoj/cgl/Reflection.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"library/geometry/line.hpp\"\n#include <iostream>\n#line\
@@ -61,8 +79,14 @@ data:
   requiredBy:
   - library/geometry/geometry.hpp
   timestamp: '2023-05-15 01:11:19+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_SOME_WA
+  verifiedWith:
+  - test/aoj/cgl/Convex-Hull.test.cpp
+  - test/aoj/cgl/Reflection.test.cpp
+  - test/aoj/cgl/Counter-Clockwise.test.cpp
+  - test/aoj/cgl/Cross-Point.test.cpp
+  - test/aoj/cgl/Projection.test.cpp
+  - test/aoj/cgl/Intersection.test.cpp
 documentation_of: library/geometry/line.hpp
 layout: document
 redirect_from:

@@ -71,16 +71,16 @@ data:
       title: library/formal-power-series/poly.hpp
   - name: library/geometry
     pages:
-    - icon: ':warning:'
+    - icon: ':x:'
       path: library/geometry/closest-pair.hpp
       title: library/geometry/closest-pair.hpp
-    - icon: ':warning:'
+    - icon: ':question:'
       path: library/geometry/geometry.hpp
       title: library/geometry/geometry.hpp
-    - icon: ':warning:'
+    - icon: ':question:'
       path: library/geometry/line.hpp
       title: library/geometry/line.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/geometry/point.hpp
       title: library/geometry/point.hpp
   - name: library/graph
@@ -172,7 +172,7 @@ data:
       title: library/random/splitmix64.hpp
   - name: library/string
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: library/string/KMP.hpp
       title: library/string/KMP.hpp
     - icon: ':heavy_check_mark:'
@@ -190,11 +190,37 @@ data:
       path: library/tree/prufer.hpp
       title: library/tree/prufer.hpp
   verificationCategories:
+  - name: test/aoj/alds1
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/alds1/String-Search.test.cpp
+      title: test/aoj/alds1/String-Search.test.cpp
   - name: test/aoj/cgl
     pages:
     - icon: ':heavy_check_mark:'
       path: test/aoj/cgl/Area.test.cpp
       title: test/aoj/cgl/Area.test.cpp
+    - icon: ':x:'
+      path: test/aoj/cgl/Closest-Pair.test.cpp
+      title: test/aoj/cgl/Closest-Pair.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/cgl/Convex-Hull.test.cpp
+      title: test/aoj/cgl/Convex-Hull.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/cgl/Counter-Clockwise.test.cpp
+      title: test/aoj/cgl/Counter-Clockwise.test.cpp
+    - icon: ':x:'
+      path: test/aoj/cgl/Cross-Point.test.cpp
+      title: test/aoj/cgl/Cross-Point.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/cgl/Intersection.test.cpp
+      title: test/aoj/cgl/Intersection.test.cpp
+    - icon: ':x:'
+      path: test/aoj/cgl/Projection.test.cpp
+      title: test/aoj/cgl/Projection.test.cpp
+    - icon: ':x:'
+      path: test/aoj/cgl/Reflection.test.cpp
+      title: test/aoj/cgl/Reflection.test.cpp
   - name: test/aoj/dsl
     pages:
     - icon: ':heavy_check_mark:'

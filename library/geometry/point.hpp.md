@@ -2,25 +2,46 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':x:'
     path: library/geometry/closest-pair.hpp
     title: library/geometry/closest-pair.hpp
-  - icon: ':warning:'
+  - icon: ':question:'
     path: library/geometry/geometry.hpp
     title: library/geometry/geometry.hpp
-  - icon: ':warning:'
+  - icon: ':question:'
     path: library/geometry/line.hpp
     title: library/geometry/line.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/cgl/Area.test.cpp
     title: test/aoj/cgl/Area.test.cpp
+  - icon: ':x:'
+    path: test/aoj/cgl/Closest-Pair.test.cpp
+    title: test/aoj/cgl/Closest-Pair.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/cgl/Convex-Hull.test.cpp
+    title: test/aoj/cgl/Convex-Hull.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/cgl/Counter-Clockwise.test.cpp
+    title: test/aoj/cgl/Counter-Clockwise.test.cpp
+  - icon: ':x:'
+    path: test/aoj/cgl/Cross-Point.test.cpp
+    title: test/aoj/cgl/Cross-Point.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/cgl/Intersection.test.cpp
+    title: test/aoj/cgl/Intersection.test.cpp
+  - icon: ':x:'
+    path: test/aoj/cgl/Projection.test.cpp
+    title: test/aoj/cgl/Projection.test.cpp
+  - icon: ':x:'
+    path: test/aoj/cgl/Reflection.test.cpp
+    title: test/aoj/cgl/Reflection.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/Geometry/Sort-Points-by-Argument.test.cpp
     title: test/yosupo/Geometry/Sort-Points-by-Argument.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"library/geometry/point.hpp\"\n#include <iostream>\n#include\
@@ -87,10 +108,17 @@ data:
   - library/geometry/closest-pair.hpp
   - library/geometry/geometry.hpp
   timestamp: '2023-05-15 01:11:19+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/Geometry/Sort-Points-by-Argument.test.cpp
+  - test/aoj/cgl/Closest-Pair.test.cpp
   - test/aoj/cgl/Area.test.cpp
+  - test/aoj/cgl/Convex-Hull.test.cpp
+  - test/aoj/cgl/Reflection.test.cpp
+  - test/aoj/cgl/Counter-Clockwise.test.cpp
+  - test/aoj/cgl/Cross-Point.test.cpp
+  - test/aoj/cgl/Projection.test.cpp
+  - test/aoj/cgl/Intersection.test.cpp
 documentation_of: library/geometry/point.hpp
 layout: document
 redirect_from:
