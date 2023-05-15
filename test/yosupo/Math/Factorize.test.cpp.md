@@ -46,25 +46,25 @@ data:
     \n#line 4 \"library/math/pow-mod-constexpr.hpp\"\n\r\nnamespace felix {\r\n\r\n\
     namespace internal {\r\n\r\ntemplate<class V, class M>\r\nconstexpr V pow_mod_constexpr(V\
     \ x, long long n, M m) {\r\n\tusing T = typename std::make_unsigned<V>::type;\r\
-    \n\tusing U = typename std::make_unsigned<M>::type;\r\n    if(m == 1) {\r\n  \
-    \  \treturn 0;\r\n    }\r\n    U _m = (U) m;\r\n    T r = 1;\r\n    T y = safe_mod<V>(x,\
-    \ m);\r\n    while(n) {\r\n        if(n & 1) {\r\n        \tr = (r * y) % _m;\r\
-    \n        }\r\n        y = (y * y) % _m;\r\n        n >>= 1;\r\n    }\r\n    return\
-    \ r;\r\n}\r\n\r\n} // namespace internal\r\n\r\n} // namespace felix\r\n#line\
-    \ 4 \"library/math/is-prime.hpp\"\n\r\nnamespace felix {\r\n\r\nnamespace internal\
-    \ {\r\n\r\nbool is_prime(long long n, std::vector<long long> x) {\r\n\tlong long\
-    \ d = n - 1;\r\n\td >>= __builtin_ctzll(d);\r\n\tfor(auto a : x) {\r\n\t\tif(n\
-    \ <= a) {\r\n\t\t\tbreak;\r\n\t\t}\r\n\t\tlong long t = d;\r\n\t\tlong long y\
-    \ = pow_mod_constexpr<__int128, long long>(a, d, n);\r\n\t\twhile(t != n - 1 &&\
-    \ y != 1 && y != n - 1) {\r\n\t\t\ty = __int128(y) * y % n;\r\n\t\t\tt <<= 1;\r\
-    \n\t\t}\r\n\t\tif(y != n - 1 && t % 2 == 0) {\r\n\t\t\treturn false;\r\n\t\t}\r\
-    \n\t}\r\n\treturn true;\r\n}\r\n\r\n} // namespace internal\r\n\r\nbool is_prime(long\
-    \ long n) {\r\n\tif(n <= 1) {\r\n\t\treturn false;\r\n\t}\r\n\tif(n % 2 == 0)\
-    \ {\r\n\t\treturn n == 2;\r\n\t}\r\n\tif(n < (1LL << 30)) {\r\n\t\treturn internal::is_prime(n,\
-    \ {2, 7, 61});\r\n\t}\r\n\treturn internal::is_prime(n, {2, 325, 9375, 28178,\
-    \ 450775, 9780504, 1795265022});\r\n}\r\n\r\n} // namespace felix\n#line 2 \"\
-    library/random/rng.hpp\"\n#include <chrono>\n\nnamespace felix {\n\ninline unsigned\
-    \ long long rng() {\n\tstatic unsigned long long SEED = std::chrono::steady_clock::now().time_since_epoch().count();\n\
+    \n\tusing U = typename std::make_unsigned<M>::type;\r\n\tif(m == 1) {\r\n\t\t\
+    return 0;\r\n\t}\r\n\tU _m = (U) m;\r\n\tT r = 1;\r\n\tT y = safe_mod<V>(x, m);\r\
+    \n\twhile(n) {\r\n\t\tif(n & 1) {\r\n\t\t\tr = (r * y) % _m;\r\n\t\t}\r\n\t\t\
+    y = (y * y) % _m;\r\n\t\tn >>= 1;\r\n\t}\r\n\treturn r;\r\n}\r\n\r\n} // namespace\
+    \ internal\r\n\r\n} // namespace felix\r\n#line 4 \"library/math/is-prime.hpp\"\
+    \n\r\nnamespace felix {\r\n\r\nnamespace internal {\r\n\r\nbool is_prime(long\
+    \ long n, std::vector<long long> x) {\r\n\tlong long d = n - 1;\r\n\td >>= __builtin_ctzll(d);\r\
+    \n\tfor(auto a : x) {\r\n\t\tif(n <= a) {\r\n\t\t\tbreak;\r\n\t\t}\r\n\t\tlong\
+    \ long t = d;\r\n\t\tlong long y = pow_mod_constexpr<__int128, long long>(a, d,\
+    \ n);\r\n\t\twhile(t != n - 1 && y != 1 && y != n - 1) {\r\n\t\t\ty = __int128(y)\
+    \ * y % n;\r\n\t\t\tt <<= 1;\r\n\t\t}\r\n\t\tif(y != n - 1 && t % 2 == 0) {\r\n\
+    \t\t\treturn false;\r\n\t\t}\r\n\t}\r\n\treturn true;\r\n}\r\n\r\n} // namespace\
+    \ internal\r\n\r\nbool is_prime(long long n) {\r\n\tif(n <= 1) {\r\n\t\treturn\
+    \ false;\r\n\t}\r\n\tif(n % 2 == 0) {\r\n\t\treturn n == 2;\r\n\t}\r\n\tif(n <\
+    \ (1LL << 30)) {\r\n\t\treturn internal::is_prime(n, {2, 7, 61});\r\n\t}\r\n\t\
+    return internal::is_prime(n, {2, 325, 9375, 28178, 450775, 9780504, 1795265022});\r\
+    \n}\r\n\r\n} // namespace felix\n#line 2 \"library/random/rng.hpp\"\n#include\
+    \ <chrono>\n\nnamespace felix {\n\ninline unsigned long long rng() {\n\tstatic\
+    \ unsigned long long SEED = std::chrono::steady_clock::now().time_since_epoch().count();\n\
     \tSEED ^= SEED << 7;\n\tSEED ^= SEED >> 9;\n\treturn SEED & 0xFFFFFFFFULL;\n}\n\
     \n} // namespace felix\n#line 9 \"library/math/factorize.hpp\"\n\nnamespace felix\
     \ {\n\ntemplate<class T>\nT pollard_rho(T n) {\n\tif(n % 2 == 0) {\n\t\treturn\
@@ -115,7 +115,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/Math/Factorize.test.cpp
   requiredBy: []
-  timestamp: '2023-05-16 02:04:08+08:00'
+  timestamp: '2023-05-16 05:38:44+08:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/Math/Factorize.test.cpp

@@ -3,7 +3,7 @@ data:
   libraryCategories:
   - name: library/convolution
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/convolution/NTT.hpp
       title: library/convolution/NTT.hpp
     - icon: ':heavy_check_mark:'
@@ -117,7 +117,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/integer-div.hpp
       title: Integer division ($\lfloor \frac{a}{b} \rfloor \lceil \frac{a}{b} \rceil$)
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/math/inv-gcd.hpp
       title: library/math/inv-gcd.hpp
     - icon: ':x:'
@@ -151,7 +151,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/misc/fastio.hpp
       title: library/misc/fastio.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/misc/type-traits.hpp
       title: library/misc/type-traits.hpp
   - name: library/modint
@@ -159,7 +159,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/modint/barrett.hpp
       title: library/modint/barrett.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/modint/modint.hpp
       title: library/modint/modint.hpp
   - name: library/random
@@ -309,7 +309,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/Convolution/Convolution-Large.test.cpp
       title: test/yosupo/Convolution/Convolution-Large.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/Convolution/Convolution-Mod-1000000007.test.cpp
       title: test/yosupo/Convolution/Convolution-Mod-1000000007.test.cpp
     - icon: ':heavy_check_mark:'

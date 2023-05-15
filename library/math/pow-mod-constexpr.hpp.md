@@ -5,7 +5,7 @@ data:
     path: library/math/safe-mod.hpp
     title: library/math/safe-mod.hpp
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/convolution/NTT.hpp
     title: library/convolution/NTT.hpp
   - icon: ':heavy_check_mark:'
@@ -24,7 +24,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/Convolution/Convolution-Large.test.cpp
     title: test/yosupo/Convolution/Convolution-Large.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/Convolution/Convolution-Mod-1000000007.test.cpp
     title: test/yosupo/Convolution/Convolution-Mod-1000000007.test.cpp
   - icon: ':heavy_check_mark:'
@@ -73,20 +73,18 @@ data:
     \n\r\nnamespace felix {\r\n\r\nnamespace internal {\r\n\r\ntemplate<class V, class\
     \ M>\r\nconstexpr V pow_mod_constexpr(V x, long long n, M m) {\r\n\tusing T =\
     \ typename std::make_unsigned<V>::type;\r\n\tusing U = typename std::make_unsigned<M>::type;\r\
-    \n    if(m == 1) {\r\n    \treturn 0;\r\n    }\r\n    U _m = (U) m;\r\n    T r\
-    \ = 1;\r\n    T y = safe_mod<V>(x, m);\r\n    while(n) {\r\n        if(n & 1)\
-    \ {\r\n        \tr = (r * y) % _m;\r\n        }\r\n        y = (y * y) % _m;\r\
-    \n        n >>= 1;\r\n    }\r\n    return r;\r\n}\r\n\r\n} // namespace internal\r\
-    \n\r\n} // namespace felix\r\n"
+    \n\tif(m == 1) {\r\n\t\treturn 0;\r\n\t}\r\n\tU _m = (U) m;\r\n\tT r = 1;\r\n\t\
+    T y = safe_mod<V>(x, m);\r\n\twhile(n) {\r\n\t\tif(n & 1) {\r\n\t\t\tr = (r *\
+    \ y) % _m;\r\n\t\t}\r\n\t\ty = (y * y) % _m;\r\n\t\tn >>= 1;\r\n\t}\r\n\treturn\
+    \ r;\r\n}\r\n\r\n} // namespace internal\r\n\r\n} // namespace felix\r\n"
   code: "#pragma once\r\n#include <type_traits>\r\n#include \"safe-mod.hpp\"\r\n\r\
     \nnamespace felix {\r\n\r\nnamespace internal {\r\n\r\ntemplate<class V, class\
     \ M>\r\nconstexpr V pow_mod_constexpr(V x, long long n, M m) {\r\n\tusing T =\
     \ typename std::make_unsigned<V>::type;\r\n\tusing U = typename std::make_unsigned<M>::type;\r\
-    \n    if(m == 1) {\r\n    \treturn 0;\r\n    }\r\n    U _m = (U) m;\r\n    T r\
-    \ = 1;\r\n    T y = safe_mod<V>(x, m);\r\n    while(n) {\r\n        if(n & 1)\
-    \ {\r\n        \tr = (r * y) % _m;\r\n        }\r\n        y = (y * y) % _m;\r\
-    \n        n >>= 1;\r\n    }\r\n    return r;\r\n}\r\n\r\n} // namespace internal\r\
-    \n\r\n} // namespace felix\r\n"
+    \n\tif(m == 1) {\r\n\t\treturn 0;\r\n\t}\r\n\tU _m = (U) m;\r\n\tT r = 1;\r\n\t\
+    T y = safe_mod<V>(x, m);\r\n\twhile(n) {\r\n\t\tif(n & 1) {\r\n\t\t\tr = (r *\
+    \ y) % _m;\r\n\t\t}\r\n\t\ty = (y * y) % _m;\r\n\t\tn >>= 1;\r\n\t}\r\n\treturn\
+    \ r;\r\n}\r\n\r\n} // namespace internal\r\n\r\n} // namespace felix\r\n"
   dependsOn:
   - library/math/safe-mod.hpp
   isVerificationFile: false
@@ -96,7 +94,7 @@ data:
   - library/math/factorize.hpp
   - library/math/is-prime.hpp
   - library/formal-power-series/poly.hpp
-  timestamp: '2023-05-16 02:04:08+08:00'
+  timestamp: '2023-05-16 05:38:44+08:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/Convolution/Convolution.test.cpp

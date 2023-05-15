@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/convolution/NTT.hpp
     title: library/convolution/NTT.hpp
   - icon: ':heavy_check_mark:'
@@ -14,7 +14,7 @@ data:
   - icon: ':x:'
     path: library/math/factorize.hpp
     title: "Integer Factorization (Pollard Rho \u8CEA\u56E0\u6578\u5206\u89E3)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/inv-gcd.hpp
     title: library/math/inv-gcd.hpp
   - icon: ':x:'
@@ -23,7 +23,7 @@ data:
   - icon: ':question:'
     path: library/math/pow-mod-constexpr.hpp
     title: library/math/pow-mod-constexpr.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/modint/modint.hpp
     title: library/modint/modint.hpp
   _extendedVerifiedWith:
@@ -42,7 +42,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/Convolution/Convolution-Large.test.cpp
     title: test/yosupo/Convolution/Convolution-Large.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/Convolution/Convolution-Mod-1000000007.test.cpp
     title: test/yosupo/Convolution/Convolution-Mod-1000000007.test.cpp
   - icon: ':heavy_check_mark:'
