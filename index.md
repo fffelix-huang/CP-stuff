@@ -38,7 +38,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/data-structure/lazy-treap.hpp
       title: library/data-structure/lazy-treap.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: library/data-structure/line-container.hpp
       title: library/data-structure/line-container.hpp
     - icon: ':heavy_check_mark:'
@@ -114,7 +114,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/floor-sum.hpp
       title: Sum of floor linear ($\sum_{i = 0}^{n - 1} \lfloor \frac{ai + b}{m} \rfloor$)
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/math/integer-div.hpp
       title: Integer division ($\lfloor \frac{a}{b} \rfloor \lceil \frac{a}{b} \rceil$)
     - icon: ':heavy_check_mark:'
@@ -329,7 +329,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/Data-Structure/Dynamic-Tree-Vertex-Set-Path-Composite.test.cpp
       title: test/yosupo/Data-Structure/Dynamic-Tree-Vertex-Set-Path-Composite.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/Data-Structure/Line-Add-Get-Min.test.cpp
       title: test/yosupo/Data-Structure/Line-Add-Get-Min.test.cpp
     - icon: ':heavy_check_mark:'

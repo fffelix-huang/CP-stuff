@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/integer-div.hpp
     title: Integer division ($\lfloor \frac{a}{b} \rfloor \lceil \frac{a}{b} \rceil$)
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/Data-Structure/Line-Add-Get-Min.test.cpp
     title: test/yosupo/Data-Structure/Line-Add-Get-Min.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"library/data-structure/line-container.hpp\"\n#include <limits>\n\
@@ -20,47 +20,48 @@ data:
     return a / b - ((a ^ b) < 0 && a % b != 0);\r\n}\r\n\r\ntemplate<class T>\r\n\
     T ceil_div(T a, T b) {\r\n\treturn a / b + ((a ^ b) > 0 && a % b != 0);\r\n}\r\
     \n\r\n} // namespace felix\r\n#line 6 \"library/data-structure/line-container.hpp\"\
-    \n\nnamespace felix {\n\nnamespace line_container_internal {\n\nstruct line_t\
-    \ {\n\tmutable long long k, m, p;\n\n\tinline bool operator<(const line_t& o)\
-    \ const { return k < o.k; }\n\tinline bool operator<(long long x) const { return\
-    \ p < x; }\n};\n\n} // line_container_internal\n\ntemplate<bool MAX>\nstruct line_container\
-    \ : std::multiset<line_container_internal::line_t, std::less<>> {\n\tstatic const\
-    \ long long INF = std::numeric_limits<long long>::max();\n\n\tbool isect(iterator\
+    \n\nnamespace felix {\n\nnamespace line_container_internal {\n\ntemplate<class\
+    \ T>\nstruct line_t {\n\tmutable T k, m, p;\n\n\tbool operator<(const line_t&\
+    \ o) const { return k < o.k; }\n\tbool operator<(long long x) const { return p\
+    \ < x; }\n};\n\n} // line_container_internal\n\ntemplate<class T, bool MAX>\n\
+    struct line_container : std::multiset<line_container_internal::line_t<T>, std::less<>>\
+    \ {\n\tstatic constexpr T INF = std::numeric_limits<T>::max();\n\n\tbool isect(iterator\
     \ x, iterator y) {\n\t\tif(y == end()) {\n\t\t\tx->p = INF;\n\t\t\treturn 0;\n\
     \t\t}\n\t\tif(x->k == y->k) {\n\t\t\tx->p = (x->m > y->m ? INF : -INF);\n\t\t\
     } else {\n\t\t\tx->p = floor_div(y->m - x->m, x->k - y->k);\n\t\t}\n\t\treturn\
-    \ x->p >= y->p;\n\t}\n\n\tvoid add_line(long long k, long long m) {\n\t\tif(!MAX)\
+    \ x->p >= y->p;\n\t}\n\n\tvoid add_line(T k, T m) {\n\t\tif constexpr(!MAX) {\n\
+    \t\t\tk = -k;\n\t\t\tm = -m;\n\t\t}\n\t\tauto z = insert({k, m, 0}), y = z++,\
+    \ x = y;\n\t\twhile(isect(y, z)) {\n\t\t\tz = erase(z);\n\t\t}\n\t\tif(x != begin()\
+    \ && isect(--x, y)) {\n\t\t\tisect(x, y = erase(y));\n\t\t}\n\t\twhile((y = x)\
+    \ != begin() && (--x)->p >= y->p) {\n\t\t\tisect(x, erase(y));\n\t\t}\n\t}\n\n\
+    \tT get(T x) {\n\t\tassert(!empty());\n\t\tauto l = *lower_bound(x);\n\t\tT ans\
+    \ = l.k * x + l.m;\n\t\tif constexpr(!MAX) {\n\t\t\tans = -ans;\n\t\t}\n\t\treturn\
+    \ ans;\n\t}\n};\n\n} // namespace felix\n"
+  code: "#pragma once\n#include <limits>\n#include <cassert>\n#include <set>\n#include\
+    \ \"../math/integer-div.hpp\"\n\nnamespace felix {\n\nnamespace line_container_internal\
+    \ {\n\ntemplate<class T>\nstruct line_t {\n\tmutable T k, m, p;\n\n\tbool operator<(const\
+    \ line_t& o) const { return k < o.k; }\n\tbool operator<(long long x) const {\
+    \ return p < x; }\n};\n\n} // line_container_internal\n\ntemplate<class T, bool\
+    \ MAX>\nstruct line_container : std::multiset<line_container_internal::line_t<T>,\
+    \ std::less<>> {\n\tstatic constexpr T INF = std::numeric_limits<T>::max();\n\n\
+    \tbool isect(iterator x, iterator y) {\n\t\tif(y == end()) {\n\t\t\tx->p = INF;\n\
+    \t\t\treturn 0;\n\t\t}\n\t\tif(x->k == y->k) {\n\t\t\tx->p = (x->m > y->m ? INF\
+    \ : -INF);\n\t\t} else {\n\t\t\tx->p = floor_div(y->m - x->m, x->k - y->k);\n\t\
+    \t}\n\t\treturn x->p >= y->p;\n\t}\n\n\tvoid add_line(T k, T m) {\n\t\tif constexpr(!MAX)\
     \ {\n\t\t\tk = -k;\n\t\t\tm = -m;\n\t\t}\n\t\tauto z = insert({k, m, 0}), y =\
     \ z++, x = y;\n\t\twhile(isect(y, z)) {\n\t\t\tz = erase(z);\n\t\t}\n\t\tif(x\
     \ != begin() && isect(--x, y)) {\n\t\t\tisect(x, y = erase(y));\n\t\t}\n\t\twhile((y\
     \ = x) != begin() && (--x)->p >= y->p) {\n\t\t\tisect(x, erase(y));\n\t\t}\n\t\
-    }\n\n\tlong long get(long long x) {\n\t\tassert(!empty());\n\t\tauto l = *lower_bound(x);\n\
-    \t\treturn (l.k * x + l.m) * (MAX ? +1 : -1);\n\t}\n};\n\n} // namespace felix\n"
-  code: "#pragma once\n#include <limits>\n#include <cassert>\n#include <set>\n#include\
-    \ \"../math/integer-div.hpp\"\n\nnamespace felix {\n\nnamespace line_container_internal\
-    \ {\n\nstruct line_t {\n\tmutable long long k, m, p;\n\n\tinline bool operator<(const\
-    \ line_t& o) const { return k < o.k; }\n\tinline bool operator<(long long x) const\
-    \ { return p < x; }\n};\n\n} // line_container_internal\n\ntemplate<bool MAX>\n\
-    struct line_container : std::multiset<line_container_internal::line_t, std::less<>>\
-    \ {\n\tstatic const long long INF = std::numeric_limits<long long>::max();\n\n\
-    \tbool isect(iterator x, iterator y) {\n\t\tif(y == end()) {\n\t\t\tx->p = INF;\n\
-    \t\t\treturn 0;\n\t\t}\n\t\tif(x->k == y->k) {\n\t\t\tx->p = (x->m > y->m ? INF\
-    \ : -INF);\n\t\t} else {\n\t\t\tx->p = floor_div(y->m - x->m, x->k - y->k);\n\t\
-    \t}\n\t\treturn x->p >= y->p;\n\t}\n\n\tvoid add_line(long long k, long long m)\
-    \ {\n\t\tif(!MAX) {\n\t\t\tk = -k;\n\t\t\tm = -m;\n\t\t}\n\t\tauto z = insert({k,\
-    \ m, 0}), y = z++, x = y;\n\t\twhile(isect(y, z)) {\n\t\t\tz = erase(z);\n\t\t\
-    }\n\t\tif(x != begin() && isect(--x, y)) {\n\t\t\tisect(x, y = erase(y));\n\t\t\
-    }\n\t\twhile((y = x) != begin() && (--x)->p >= y->p) {\n\t\t\tisect(x, erase(y));\n\
-    \t\t}\n\t}\n\n\tlong long get(long long x) {\n\t\tassert(!empty());\n\t\tauto\
-    \ l = *lower_bound(x);\n\t\treturn (l.k * x + l.m) * (MAX ? +1 : -1);\n\t}\n};\n\
-    \n} // namespace felix\n"
+    }\n\n\tT get(T x) {\n\t\tassert(!empty());\n\t\tauto l = *lower_bound(x);\n\t\t\
+    T ans = l.k * x + l.m;\n\t\tif constexpr(!MAX) {\n\t\t\tans = -ans;\n\t\t}\n\t\
+    \treturn ans;\n\t}\n};\n\n} // namespace felix\n"
   dependsOn:
   - library/math/integer-div.hpp
   isVerificationFile: false
   path: library/data-structure/line-container.hpp
   requiredBy: []
-  timestamp: '2023-04-13 06:05:35+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-05-16 00:21:35+08:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/Data-Structure/Line-Add-Get-Min.test.cpp
 documentation_of: library/data-structure/line-container.hpp
