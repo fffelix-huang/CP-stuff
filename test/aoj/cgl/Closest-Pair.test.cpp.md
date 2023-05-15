@@ -66,7 +66,7 @@ data:
     \nusing namespace std;\nusing namespace felix;\nusing namespace geometry;\n\n\
     int main() {\n\tios::sync_with_stdio(false);\n\tcin.tie(0);\n\tint n;\n\tcin >>\
     \ n;\n\tvector<Point<long double>> a(n);\n\tfor(int i = 0; i < n; i++) {\n\t\t\
-    cin >> a[i];\n\t}\n\tcout << fixed << setprecision(15) << sqrt(closest_pair(a))\
+    cin >> a[i];\n\t}\n\tcout << fixed << setprecision(6) << sqrt(closest_pair(a))\
     \ << \"\\n\";\n\treturn 0;\n}\n"
   code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_5_A\"\
     \n\n#include <iostream>\n#include <vector>\n#include <iomanip>\n#include <cmath>\n\
@@ -74,7 +74,7 @@ data:
     \nusing namespace std;\nusing namespace felix;\nusing namespace geometry;\n\n\
     int main() {\n\tios::sync_with_stdio(false);\n\tcin.tie(0);\n\tint n;\n\tcin >>\
     \ n;\n\tvector<Point<long double>> a(n);\n\tfor(int i = 0; i < n; i++) {\n\t\t\
-    cin >> a[i];\n\t}\n\tcout << fixed << setprecision(15) << sqrt(closest_pair(a))\
+    cin >> a[i];\n\t}\n\tcout << fixed << setprecision(6) << sqrt(closest_pair(a))\
     \ << \"\\n\";\n\treturn 0;\n}\n"
   dependsOn:
   - library/geometry/point.hpp
@@ -82,7 +82,7 @@ data:
   isVerificationFile: true
   path: test/aoj/cgl/Closest-Pair.test.cpp
   requiredBy: []
-  timestamp: '2023-05-15 14:09:28+08:00'
+  timestamp: '2023-05-15 14:41:04+08:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/cgl/Closest-Pair.test.cpp
