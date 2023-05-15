@@ -12,9 +12,9 @@ data:
     title: library/geometry/point.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_C
@@ -22,23 +22,23 @@ data:
     - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_C
   bundledCode: "#line 1 \"test/aoj/cgl/Cross-Point.test.cpp\"\n#define PROBLEM \"\
     https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_C\"\n\n#include\
-    \ <iostream>\n#include <iomanip>\n#line 3 \"library/geometry/point.hpp\"\n#include\
-    \ <cmath>\n\nnamespace felix {\n\nnamespace geometry {\n\ntemplate<class T>\n\
-    struct Point {\n\tT x, y;\n\n\tPoint(T a = 0, T b = 0) : x(a), y(b) {}\n\tPoint(const\
-    \ std::pair<T, T>& p) : x(p.first), y(p.second) {}\n\n\texplicit constexpr operator\
-    \ std::pair<T, T>() const {\n\t\treturn std::pair<T, T>(x, y);\n\t}\n\n\tconstexpr\
-    \ Point& operator+=(const Point& rhs) & {\n\t\tx += rhs.x;\n\t\ty += rhs.y;\n\t\
-    \treturn *this;\n\t}\n\n\tconstexpr Point& operator-=(const Point& rhs) & {\n\t\
-    \tx -= rhs.x;\n\t\ty -= rhs.y;\n\t\treturn *this;\n\t}\n\n\tconstexpr Point& operator*=(const\
-    \ T& rhs) & {\n\t\tx *= rhs;\n\t\ty *= rhs;\n\t\treturn *this;\n\t}\n\n\tconstexpr\
-    \ Point& operator/=(const T& rhs) & {\n\t\tx /= rhs;\n\t\ty /= rhs;\n\t\treturn\
-    \ *this;\n\t}\n\n\tconstexpr Point operator+() const { return *this; }\n\tconstexpr\
-    \ Point operator-() const { return Point(-x, -y); }\n\tfriend constexpr Point\
-    \ operator+(Point lhs, Point rhs) { return lhs += rhs; }\n\tfriend constexpr Point\
-    \ operator-(Point lhs, Point rhs) { return lhs -= rhs; }\n\tfriend constexpr Point\
-    \ operator*(Point lhs, T rhs) { return lhs *= rhs; }\n\tfriend constexpr Point\
-    \ operator/(Point lhs, T rhs) { return lhs /= rhs; }\n\tconstexpr bool operator==(const\
-    \ Point& rhs) const { return x == rhs.x && y == rhs.y; }\n\tconstexpr bool operator!=(const\
+    \ <iostream>\n#include <iomanip>\n#include <cmath>\n#line 4 \"library/geometry/point.hpp\"\
+    \n\nnamespace felix {\n\nnamespace geometry {\n\ntemplate<class T>\nstruct Point\
+    \ {\n\tT x, y;\n\n\tPoint(T a = 0, T b = 0) : x(a), y(b) {}\n\tPoint(const std::pair<T,\
+    \ T>& p) : x(p.first), y(p.second) {}\n\n\texplicit constexpr operator std::pair<T,\
+    \ T>() const {\n\t\treturn std::pair<T, T>(x, y);\n\t}\n\n\tconstexpr Point& operator+=(const\
+    \ Point& rhs) & {\n\t\tx += rhs.x;\n\t\ty += rhs.y;\n\t\treturn *this;\n\t}\n\n\
+    \tconstexpr Point& operator-=(const Point& rhs) & {\n\t\tx -= rhs.x;\n\t\ty -=\
+    \ rhs.y;\n\t\treturn *this;\n\t}\n\n\tconstexpr Point& operator*=(const T& rhs)\
+    \ & {\n\t\tx *= rhs;\n\t\ty *= rhs;\n\t\treturn *this;\n\t}\n\n\tconstexpr Point&\
+    \ operator/=(const T& rhs) & {\n\t\tx /= rhs;\n\t\ty /= rhs;\n\t\treturn *this;\n\
+    \t}\n\n\tconstexpr Point operator+() const { return *this; }\n\tconstexpr Point\
+    \ operator-() const { return Point(-x, -y); }\n\tfriend constexpr Point operator+(Point\
+    \ lhs, Point rhs) { return lhs += rhs; }\n\tfriend constexpr Point operator-(Point\
+    \ lhs, Point rhs) { return lhs -= rhs; }\n\tfriend constexpr Point operator*(Point\
+    \ lhs, T rhs) { return lhs *= rhs; }\n\tfriend constexpr Point operator/(Point\
+    \ lhs, T rhs) { return lhs /= rhs; }\n\tconstexpr bool operator==(const Point&\
+    \ rhs) const { return x == rhs.x && y == rhs.y; }\n\tconstexpr bool operator!=(const\
     \ Point& rhs) const { return !(*this == rhs); }\n\n\t// rotate counter-clockwise\n\
     \tconstexpr Point rotate(T theta) const {\n\t\tT sint = std::sin(theta);\n\t\t\
     T cost = std::cos(theta);\n\t\treturn Point(x * cost - y * sint, x * sint + y\
@@ -96,20 +96,24 @@ data:
     \tif(a1 >= 0 && a2 <= 0) {\n\t\t\tauto res = cross(a[(m + 1) % n] - a[m], p -\
     \ a[m]);\n\t\t\treturn res > 0 ? 1 : (res >= 0 ? -1 : 0);\n\t\t}\n\t\tif(a1 <\
     \ 0) {\n\t\t\tr = m - 1;\n\t\t} else {\n\t\t\tl = m + 1;\n\t\t}\n\t}\n\treturn\
-    \ 0;\n}\n\n} // namespace geometry\n\n} // namespace felix\n#line 8 \"test/aoj/cgl/Cross-Point.test.cpp\"\
+    \ 0;\n}\n\n} // namespace geometry\n\n} // namespace felix\n#line 9 \"test/aoj/cgl/Cross-Point.test.cpp\"\
     \nusing namespace std;\nusing namespace felix;\nusing namespace geometry;\n\n\
-    int main() {\n\tios::sync_with_stdio(false);\n\tcin.tie(0);\n\tint tt;\n\tcin\
-    \ >> tt;\n\twhile(tt--) {\n\t\tLine<long double> a, b;\n\t\tcin >> a >> b;\n\t\
-    \tauto ans = line_intersection(a, b);\n\t\tcout << fixed << setprecision(10) <<\
-    \ ans.x << \" \" << ans.y << \"\\n\";\n\t}\n\treturn 0;\n}\n"
+    const long double EPS = 1E-9;\n\nint main() {\n\tios::sync_with_stdio(false);\n\
+    \tcin.tie(0);\n\tint tt;\n\tcin >> tt;\n\twhile(tt--) {\n\t\tLine<long double>\
+    \ a, b;\n\t\tcin >> a >> b;\n\t\tauto ans = line_intersection(a, b);\n\t\tif(abs(ans.x)\
+    \ < EPS) {\n\t\t\tans.x = 0;\n\t\t}\n\t\tif(abs(ans.y) < EPS) {\n\t\t\tans.y =\
+    \ 0;\n\t\t}\n\t\tcout << fixed << setprecision(10) << ans.x << \" \" << ans.y\
+    \ << \"\\n\";\n\t}\n\treturn 0;\n}\n"
   code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_C\"\
-    \n\n#include <iostream>\n#include <iomanip>\n#include \"../../../library/geometry/point.hpp\"\
+    \n\n#include <iostream>\n#include <iomanip>\n#include <cmath>\n#include \"../../../library/geometry/point.hpp\"\
     \n#include \"../../../library/geometry/line.hpp\"\n#include \"../../../library/geometry/geometry.hpp\"\
     \nusing namespace std;\nusing namespace felix;\nusing namespace geometry;\n\n\
-    int main() {\n\tios::sync_with_stdio(false);\n\tcin.tie(0);\n\tint tt;\n\tcin\
-    \ >> tt;\n\twhile(tt--) {\n\t\tLine<long double> a, b;\n\t\tcin >> a >> b;\n\t\
-    \tauto ans = line_intersection(a, b);\n\t\tcout << fixed << setprecision(10) <<\
-    \ ans.x << \" \" << ans.y << \"\\n\";\n\t}\n\treturn 0;\n}\n"
+    const long double EPS = 1E-9;\n\nint main() {\n\tios::sync_with_stdio(false);\n\
+    \tcin.tie(0);\n\tint tt;\n\tcin >> tt;\n\twhile(tt--) {\n\t\tLine<long double>\
+    \ a, b;\n\t\tcin >> a >> b;\n\t\tauto ans = line_intersection(a, b);\n\t\tif(abs(ans.x)\
+    \ < EPS) {\n\t\t\tans.x = 0;\n\t\t}\n\t\tif(abs(ans.y) < EPS) {\n\t\t\tans.y =\
+    \ 0;\n\t\t}\n\t\tcout << fixed << setprecision(10) << ans.x << \" \" << ans.y\
+    \ << \"\\n\";\n\t}\n\treturn 0;\n}\n"
   dependsOn:
   - library/geometry/point.hpp
   - library/geometry/line.hpp
@@ -117,8 +121,8 @@ data:
   isVerificationFile: true
   path: test/aoj/cgl/Cross-Point.test.cpp
   requiredBy: []
-  timestamp: '2023-05-15 15:14:41+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-05-15 20:58:50+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/cgl/Cross-Point.test.cpp
 layout: document

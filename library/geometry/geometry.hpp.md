@@ -15,7 +15,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/cgl/Counter-Clockwise.test.cpp
     title: test/aoj/cgl/Counter-Clockwise.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/cgl/Cross-Point.test.cpp
     title: test/aoj/cgl/Cross-Point.test.cpp
   - icon: ':heavy_check_mark:'
