@@ -100,7 +100,7 @@ data:
     \nusing namespace std;\nusing namespace felix;\nusing namespace geometry;\n\n\
     int main() {\n\tios::sync_with_stdio(false);\n\tcin.tie(0);\n\tint tt;\n\tcin\
     \ >> tt;\n\twhile(tt--) {\n\t\tLine<long double> a, b;\n\t\tcin >> a >> b;\n\t\
-    \tauto ans = line_intersection(a, b);\n\t\tcout << fixed << setprecision(8) <<\
+    \tauto ans = line_intersection(a, b);\n\t\tcout << fixed << setprecision(10) <<\
     \ ans.x << \" \" << ans.y << \"\\n\";\n\t}\n\treturn 0;\n}\n"
   code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_C\"\
     \n\n#include <iostream>\n#include <iomanip>\n#include \"../../../library/geometry/point.hpp\"\
@@ -108,7 +108,7 @@ data:
     \nusing namespace std;\nusing namespace felix;\nusing namespace geometry;\n\n\
     int main() {\n\tios::sync_with_stdio(false);\n\tcin.tie(0);\n\tint tt;\n\tcin\
     \ >> tt;\n\twhile(tt--) {\n\t\tLine<long double> a, b;\n\t\tcin >> a >> b;\n\t\
-    \tauto ans = line_intersection(a, b);\n\t\tcout << fixed << setprecision(8) <<\
+    \tauto ans = line_intersection(a, b);\n\t\tcout << fixed << setprecision(10) <<\
     \ ans.x << \" \" << ans.y << \"\\n\";\n\t}\n\treturn 0;\n}\n"
   dependsOn:
   - library/geometry/point.hpp
@@ -117,7 +117,7 @@ data:
   isVerificationFile: true
   path: test/aoj/cgl/Cross-Point.test.cpp
   requiredBy: []
-  timestamp: '2023-05-15 14:41:04+08:00'
+  timestamp: '2023-05-15 15:14:41+08:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/cgl/Cross-Point.test.cpp

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/geometry/closest-pair.hpp
     title: library/geometry/closest-pair.hpp
   - icon: ':question:'
@@ -9,9 +9,9 @@ data:
     title: library/geometry/point.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_5_A
@@ -66,7 +66,7 @@ data:
     \nusing namespace std;\nusing namespace felix;\nusing namespace geometry;\n\n\
     int main() {\n\tios::sync_with_stdio(false);\n\tcin.tie(0);\n\tint n;\n\tcin >>\
     \ n;\n\tvector<Point<long double>> a(n);\n\tfor(int i = 0; i < n; i++) {\n\t\t\
-    cin >> a[i];\n\t}\n\tcout << fixed << setprecision(6) << sqrt(closest_pair(a))\
+    cin >> a[i];\n\t}\n\tcout << fixed << setprecision(10) << sqrt(closest_pair(a))\
     \ << \"\\n\";\n\treturn 0;\n}\n"
   code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_5_A\"\
     \n\n#include <iostream>\n#include <vector>\n#include <iomanip>\n#include <cmath>\n\
@@ -74,7 +74,7 @@ data:
     \nusing namespace std;\nusing namespace felix;\nusing namespace geometry;\n\n\
     int main() {\n\tios::sync_with_stdio(false);\n\tcin.tie(0);\n\tint n;\n\tcin >>\
     \ n;\n\tvector<Point<long double>> a(n);\n\tfor(int i = 0; i < n; i++) {\n\t\t\
-    cin >> a[i];\n\t}\n\tcout << fixed << setprecision(6) << sqrt(closest_pair(a))\
+    cin >> a[i];\n\t}\n\tcout << fixed << setprecision(10) << sqrt(closest_pair(a))\
     \ << \"\\n\";\n\treturn 0;\n}\n"
   dependsOn:
   - library/geometry/point.hpp
@@ -82,8 +82,8 @@ data:
   isVerificationFile: true
   path: test/aoj/cgl/Closest-Pair.test.cpp
   requiredBy: []
-  timestamp: '2023-05-15 14:41:04+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-05-15 15:14:41+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/cgl/Closest-Pair.test.cpp
 layout: document

@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/geometry/closest-pair.hpp
     title: library/geometry/closest-pair.hpp
   - icon: ':question:'
@@ -15,7 +15,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/cgl/Area.test.cpp
     title: test/aoj/cgl/Area.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/cgl/Closest-Pair.test.cpp
     title: test/aoj/cgl/Closest-Pair.test.cpp
   - icon: ':heavy_check_mark:'

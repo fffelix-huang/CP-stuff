@@ -100,7 +100,7 @@ data:
     \ felix;\nusing namespace geometry;\n\nint main() {\n\tios::sync_with_stdio(false);\n\
     \tcin.tie(0);\n\tLine<long double> l;\n\tcin >> l;\n\tint q;\n\tcin >> q;\n\t\
     while(q--) {\n\t\tPoint<long double> p;\n\t\tcin >> p;\n\t\tauto ans = reflection(l,\
-    \ p);\n\t\tcout << fixed << setprecision(8) << ans.x << \" \" << ans.y << \"\\\
+    \ p);\n\t\tcout << fixed << setprecision(10) << ans.x << \" \" << ans.y << \"\\\
     n\";\n\t}\n\treturn 0;\n}\n"
   code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_B\"\
     \n\n#include <iostream>\n#include <iomanip>\n#include \"../../../library/geometry/point.hpp\"\
@@ -108,7 +108,7 @@ data:
     \nusing namespace std;\nusing namespace felix;\nusing namespace geometry;\n\n\
     int main() {\n\tios::sync_with_stdio(false);\n\tcin.tie(0);\n\tLine<long double>\
     \ l;\n\tcin >> l;\n\tint q;\n\tcin >> q;\n\twhile(q--) {\n\t\tPoint<long double>\
-    \ p;\n\t\tcin >> p;\n\t\tauto ans = reflection(l, p);\n\t\tcout << fixed << setprecision(8)\
+    \ p;\n\t\tcin >> p;\n\t\tauto ans = reflection(l, p);\n\t\tcout << fixed << setprecision(10)\
     \ << ans.x << \" \" << ans.y << \"\\n\";\n\t}\n\treturn 0;\n}\n"
   dependsOn:
   - library/geometry/point.hpp
@@ -117,7 +117,7 @@ data:
   isVerificationFile: true
   path: test/aoj/cgl/Reflection.test.cpp
   requiredBy: []
-  timestamp: '2023-05-15 14:41:04+08:00'
+  timestamp: '2023-05-15 15:14:41+08:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/cgl/Reflection.test.cpp
