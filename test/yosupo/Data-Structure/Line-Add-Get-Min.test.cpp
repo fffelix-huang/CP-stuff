@@ -11,8 +11,8 @@ int main() {
 	cin.tie(0);
 	int n, q;
 	cin >> n >> q;
-	line_container<long long, true> mx;
-	line_container<long long, false> mn;
+	max_line_container<long long> mx;
+	min_line_container<long long> mn;
 	for(int i = 0; i < n; i++) {
 		long long a, b;
 		cin >> a >> b;

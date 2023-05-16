@@ -1,268 +1,199 @@
 #pragma once
-#include <vector>
-#include <algorithm>
-#include <cassert>
-#include <limits>
 
-namespace felix {
+struct segtree_beats {
+  using i64 = long long;
+  static constexpr i64 INF = numeric_limits<i64>::max() / 2.1;
 
-class segtree_beats {
-	// MEMO: values for queries (max, min, lazy_add, and lazy_update) already apply to the current node; but not for children
-	typedef struct {
-		long long max;
-		long long max_second;
-		int max_count;
-		long long min;
-		long long min_second;
-		int min_count;
-		long long lazy_add;
-		long long lazy_update;
-		long long sum;
-	} value_type;
+  struct alignas(32) Node {
+    i64 sum = 0, g1 = 0, l1 = 0;
+    i64 g2 = -INF, gc = 1, l2 = INF, lc = 1, add = 0;
+  };
 
-	int n;
-	std::vector<value_type> a;
+  vector<Node> v;
+  i64 n, log;
 
-public:
-	segtree_beats() = default;
+  segtree_beats() {}
+  segtree_beats(int _n) : segtree_beats(vector<i64>(_n)) {}
+  segtree_beats(const vector<i64>& vc) {
+    n = 1, log = 0;
+    while (n < (int)vc.size()) n <<= 1, log++;
+    v.resize(2 * n);
+    for (i64 i = 0; i < (int)vc.size(); ++i) {
+      v[i + n].sum = v[i + n].g1 = v[i + n].l1 = vc[i];
+    }
+    for (i64 i = n - 1; i; --i) update(i);
+  }
 
-	segtree_beats(int n_) {
-		n = 1 << std::__lg(2 * n_ - 1);
-		a.resize(2 * n - 1);
-		tag<UPDATE>(0, 0);
-	}
+  void range_chmin(int l, int r, i64 x) { inner_apply<1>(l, r, x); }
+  void range_chmax(int l, int r, i64 x) { inner_apply<2>(l, r, x); }
+  void range_add(int l, int r, i64 x) { inner_apply<3>(l, r, x); }
+  void range_update(int l, int r, i64 x) { inner_apply<4>(l, r, x); }
+  i64 range_min(int l, int r) { return inner_fold<1>(l, r); }
+  i64 range_max(int l, int r) { return inner_fold<2>(l, r); }
+  i64 range_sum(int l, int r) { return inner_fold<3>(l, r); }
 
-	template<class T>
-	segtree_beats(const std::vector<T>& v) {
-		n = 1 << __lg(2 * v.size() - 1);
-		a.resize(2 * n - 1);
-		for(int i = 0; i < (int) v.size(); ++i) {
-			tag<UPDATE>(n - 1 + i, v[i]);
-		}
-		for(int i = (int) v.size(); i < n; ++i) {
-			tag<UPDATE>(n - 1 + i, 0);
-		}
-		for(int i = n - 2; i >= 0; --i) {
-			update(i);
-		}
-	}
+ private:
+  void update(int k) {
+    Node& p = v[k];
+    Node& l = v[k * 2 + 0];
+    Node& r = v[k * 2 + 1];
 
-	void range_chmin(int l, int r, long long value) {  // 0-based, [l, r)
-		assert(0 <= l && l <= r && r <= n);
-		range_apply<CHMIN>(0, 0, n, l, r, value);
-	}
-	void range_chmax(int l, int r, long long value) {  // 0-based, [l, r)
-		assert(0 <= l && l <= r && r <= n);
-		range_apply<CHMAX>(0, 0, n, l, r, value);
-	}
-	void range_add(int l, int r, long long value) {  // 0-based, [l, r)
-		assert(0 <= l && l <= r && r <= n);
-		range_apply<ADD>(0, 0, n, l, r, value);
-	}
-	void range_update(int l, int r, long long value) {  // 0-based, [l, r)
-		assert(0 <= l && l <= r && r <= n);
-		range_apply<UPDATE>(0, 0, n, l, r, value);
-	}
+    p.sum = l.sum + r.sum;
 
-	long long range_min(int l, int r) {  // 0-based, [l, r)
-		assert(0 <= l && l <= r && r <= n);
-		return range_get<MIN>(0, 0, n, l, r);
-	}
-	long long range_max(int l, int r) {  // 0-based, [l, r)
-		assert(0 <= l && l <= r && r <= n);
-		return range_get<MAX>(0, 0, n, l, r);
-	}
-	long long range_sum(int l, int r) {  // 0-based, [l, r)
-		assert(0 <= l && l <= r && r <= n);
-		return range_get<SUM>(0, 0, n, l, r);
-	}
+    if (l.g1 == r.g1) {
+      p.g1 = l.g1;
+      p.g2 = max(l.g2, r.g2);
+      p.gc = l.gc + r.gc;
+    } else {
+      bool f = l.g1 > r.g1;
+      p.g1 = f ? l.g1 : r.g1;
+      p.gc = f ? l.gc : r.gc;
+      p.g2 = max(f ? r.g1 : l.g1, f ? l.g2 : r.g2);
+    }
 
-private:
-	static constexpr char CHMIN = 0;
-	static constexpr char CHMAX = 1;
-	static constexpr char ADD = 2;
-	static constexpr char UPDATE = 3;
-	static constexpr char MIN = 10;
-	static constexpr char MAX = 11;
-	static constexpr char SUM = 12;
+    if (l.l1 == r.l1) {
+      p.l1 = l.l1;
+      p.l2 = min(l.l2, r.l2);
+      p.lc = l.lc + r.lc;
+    } else {
+      bool f = l.l1 < r.l1;
+      p.l1 = f ? l.l1 : r.l1;
+      p.lc = f ? l.lc : r.lc;
+      p.l2 = min(f ? r.l1 : l.l1, f ? l.l2 : r.l2);
+    }
+  }
 
-	template<char TYPE>
-	void range_apply(int i, int il, int ir, int l, int r, long long g) {
-		if(ir <= l || r <= il || break_condition<TYPE>(i, g)) {
-			// break
-		} else if(l <= il && ir <= r && tag_condition<TYPE>(i, g)) {
-			tag<TYPE>(i, g);
-		} else {
-			pushdown(i);
-			range_apply<TYPE>(2 * i + 1, il, (il + ir) / 2, l, r, g);
-			range_apply<TYPE>(2 * i + 2, (il + ir) / 2, ir, l, r, g);
-			update(i);
-		}
-	}
-	template<char TYPE>
-	inline bool break_condition(int i, long long g) {
-		switch(TYPE) {
-			case CHMIN: return a[i].max <= g;
-			case CHMAX: return g <= a[i].min;
-			case ADD: return false;
-			case UPDATE: return false;
-			default: assert(false);
-		}
-	}
-	template<char TYPE>
-	inline bool tag_condition(int i, long long g) {
-		switch(TYPE) {
-			case CHMIN: return a[i].max_second < g && g < a[i].max;
-			case CHMAX: return a[i].min < g && g < a[i].min_second;
-			case ADD: return true;
-			case UPDATE: return true;
-			default: assert(false);
-		}
-	}
-	template<char TYPE>
-	inline void tag(int i, long long g) {
-		int length = n >> (32 - __builtin_clz(i + 1) - 1);
-		if(TYPE == CHMIN) {
-			if(a[i].max == a[i].min || g <= a[i].min) {
-				tag<UPDATE>(i, g);
-				return;
-			}
-			if(a[i].max != INT64_MIN) {
-				a[i].sum -= a[i].max * a[i].max_count;
-			}
-			a[i].max = g;
-			a[i].min_second = std::min(a[i].min_second, g);
-			if(a[i].lazy_update != std::numeric_limits<long long>::max()) {
-				a[i].lazy_update = std::min(a[i].lazy_update, g);
-			}
-			a[i].sum += g * a[i].max_count;
-		} else if(TYPE == CHMAX) {
-			if(a[i].max == a[i].min || a[i].max <= g) {
-				tag<UPDATE>(i, g);
-				return;
-			}
-			if(a[i].min != std::numeric_limits<long long>::max()) {
-				a[i].sum -= a[i].min * a[i].min_count;
-			}
-			a[i].min = g;
-			a[i].max_second = std::max(a[i].max_second, g);
-			if(a[i].lazy_update != std::numeric_limits<long long>::max()) {
-				a[i].lazy_update = std::max(a[i].lazy_update, g);
-			}
-			a[i].sum += g * a[i].min_count;
-		} else if(TYPE == ADD) {
-			if(a[i].max != std::numeric_limits<long long>::max()) {
-				a[i].max += g;
-			}
-			if(a[i].max_second != INT64_MIN) {
-				a[i].max_second += g;
-			}
-			if(a[i].min != INT64_MIN) {
-				a[i].min += g;
-			}
-			if(a[i].min_second != std::numeric_limits<long long>::max()) {
-				a[i].min_second += g;
-			}
-			a[i].lazy_add += g;
-			if(a[i].lazy_update != std::numeric_limits<long long>::max()) {
-				a[i].lazy_update += g;
-			}
-			a[i].sum += g * length;
-		} else if(TYPE == UPDATE) {
-			a[i].max = g;
-			a[i].max_second = INT64_MIN;
-			a[i].max_count = length;
-			a[i].min = g;
-			a[i].min_second = std::numeric_limits<long long>::max();
-			a[i].min_count = length;
-			a[i].lazy_add = 0;
-			a[i].lazy_update = std::numeric_limits<long long>::max();
-			a[i].sum = g * length;
-		} else {
-			assert(false);
-		}
-	}
-	void pushdown(int i) {
-		int l = 2 * i + 1;
-		int r = 2 * i + 2;
-		// update
-		if(a[i].lazy_update != std::numeric_limits<long long>::max()) {
-			tag<UPDATE>(l, a[i].lazy_update);
-			tag<UPDATE>(r, a[i].lazy_update);
-			a[i].lazy_update = std::numeric_limits<long long>::max();
-			return;
-		}
-		// add
-		if(a[i].lazy_add != 0) {
-			tag<ADD>(l, a[i].lazy_add);
-			tag<ADD>(r, a[i].lazy_add);
-			a[i].lazy_add = 0;
-		}
-		// chmin
-		if(a[i].max < a[l].max) {
-			tag<CHMIN>(l, a[i].max);
-		}
-		if(a[i].max < a[r].max) {
-			tag<CHMIN>(r, a[i].max);
-		}
-		// chmax
-		if(a[l].min < a[i].min) {
-			tag<CHMAX>(l, a[i].min);
-		}
-		if(a[r].min < a[i].min) {
-			tag<CHMAX>(r, a[i].min);
-		}
-	}
-	void update(int i) {
-		int l = 2 * i + 1;
-		int r = 2 * i + 2;
-		// chmin
-		std::vector<long long> b = {a[l].max, a[l].max_second, a[r].max, a[r].max_second};
-		std::sort(b.rbegin(), b.rend());
-		b.erase(unique(b.begin(), b.end()), b.end());
-		a[i].max = b[0];
-		a[i].max_second = b[1];
-		a[i].max_count = (b[0] == a[l].max ? a[l].max_count : 0) + (b[0] == a[r].max ? a[r].max_count : 0);
-		// chmax
-		std::vector<long long> c = {a[l].min, a[l].min_second, a[r].min, a[r].min_second};
-		std::sort(c.begin(), c.end());
-		c.erase(unique(c.begin(), c.end()), c.end());
-		a[i].min = c[0];
-		a[i].min_second = c[1];
-		a[i].min_count = (c[0] == a[l].min ? a[l].min_count : 0) + (c[0] == a[r].min ? a[r].min_count : 0);
-		// add
-		a[i].lazy_add = 0;
-		// update
-		a[i].lazy_update = std::numeric_limits<long long>::max();
-		// sum
-		a[i].sum = a[l].sum + a[r].sum;
-	}
+  void push_add(int k, i64 x) {
+    Node& p = v[k];
+    p.sum += x << (log + __builtin_clz(k) - 31);
+    p.g1 += x;
+    p.l1 += x;
+    if (p.g2 != -INF) p.g2 += x;
+    if (p.l2 != INF) p.l2 += x;
+    p.add += x;
+  }
+  void push_min(int k, i64 x) {
+    Node& p = v[k];
+    p.sum += (x - p.g1) * p.gc;
+    if (p.l1 == p.g1) p.l1 = x;
+    if (p.l2 == p.g1) p.l2 = x;
+    p.g1 = x;
+  }
+  void push_max(int k, i64 x) {
+    Node& p = v[k];
+    p.sum += (x - p.l1) * p.lc;
+    if (p.g1 == p.l1) p.g1 = x;
+    if (p.g2 == p.l1) p.g2 = x;
+    p.l1 = x;
+  }
+  void push(int k) {
+    Node& p = v[k];
+    if (p.add != 0) {
+      push_add(k * 2 + 0, p.add);
+      push_add(k * 2 + 1, p.add);
+      p.add = 0;
+    }
+    if (p.g1 < v[k * 2 + 0].g1) push_min(k * 2 + 0, p.g1);
+    if (p.l1 > v[k * 2 + 0].l1) push_max(k * 2 + 0, p.l1);
 
-	template<char TYPE>
-	long long range_get(int i, int il, int ir, int l, int r) {
-		if(ir <= l || r <= il) {
-			return 0;
-		} else if(l <= il && ir <= r) {
-			// base
-			switch(TYPE) {
-				case MIN: return a[i].min;
-				case MAX: return a[i].max;
-				case SUM: return a[i].sum;
-				default: assert(false);
-			}
-		} else {
-			pushdown(i);
-			long long value_l = range_get<TYPE>(2 * i + 1, il, (il + ir) / 2, l, r);
-			long long value_r = range_get<TYPE>(2 * i + 2, (il + ir) / 2, ir, l, r);
-			// mult
-			switch(TYPE) {
-				case MIN: return std::min(value_l, value_r);
-				case MAX: return std::max(value_l, value_r);
-				case SUM: return value_l + value_r;
-				default: assert(false);
-			}
-		}
-	}
+    if (p.g1 < v[k * 2 + 1].g1) push_min(k * 2 + 1, p.g1);
+    if (p.l1 > v[k * 2 + 1].l1) push_max(k * 2 + 1, p.l1);
+  }
+
+  void subtree_chmin(int k, i64 x) {
+    if (v[k].g1 <= x) return;
+    if (v[k].g2 < x) {
+      push_min(k, x);
+      return;
+    }
+    push(k);
+    subtree_chmin(k * 2 + 0, x);
+    subtree_chmin(k * 2 + 1, x);
+    update(k);
+  }
+
+  void subtree_chmax(int k, i64 x) {
+    if (x <= v[k].l1) return;
+    if (x < v[k].l2) {
+      push_max(k, x);
+      return;
+    }
+    push(k);
+    subtree_chmax(k * 2 + 0, x);
+    subtree_chmax(k * 2 + 1, x);
+    update(k);
+  }
+
+  template <int cmd>
+  inline void _apply(int k, i64 x) {
+    if constexpr (cmd == 1) subtree_chmin(k, x);
+    if constexpr (cmd == 2) subtree_chmax(k, x);
+    if constexpr (cmd == 3) push_add(k, x);
+    if constexpr (cmd == 4) subtree_chmin(k, x), subtree_chmax(k, x);
+  }
+
+  template <int cmd>
+  void inner_apply(int l, int r, i64 x) {
+    if (l == r) return;
+    l += n, r += n;
+    for (int i = log; i >= 1; i--) {
+      if (((l >> i) << i) != l) push(l >> i);
+      if (((r >> i) << i) != r) push((r - 1) >> i);
+    }
+    {
+      int l2 = l, r2 = r;
+      while (l < r) {
+        if (l & 1) _apply<cmd>(l++, x);
+        if (r & 1) _apply<cmd>(--r, x);
+        l >>= 1;
+        r >>= 1;
+      }
+      l = l2;
+      r = r2;
+    }
+    for (int i = 1; i <= log; i++) {
+      if (((l >> i) << i) != l) update(l >> i);
+      if (((r >> i) << i) != r) update((r - 1) >> i);
+    }
+  }
+
+  template <int cmd>
+  inline i64 e() {
+    if constexpr (cmd == 1) return INF;
+    if constexpr (cmd == 2) return -INF;
+    return 0;
+  }
+
+  template <int cmd>
+  inline void op(i64& a, const Node& b) {
+    if constexpr (cmd == 1) a = min(a, b.l1);
+    if constexpr (cmd == 2) a = max(a, b.g1);
+    if constexpr (cmd == 3) a += b.sum;
+  }
+
+  template <int cmd>
+  i64 inner_fold(int l, int r) {
+    if (l == r) return e<cmd>();
+    l += n, r += n;
+    for (int i = log; i >= 1; i--) {
+      if (((l >> i) << i) != l) push(l >> i);
+      if (((r >> i) << i) != r) push((r - 1) >> i);
+    }
+    i64 lx = e<cmd>(), rx = e<cmd>();
+    while (l < r) {
+      if (l & 1) op<cmd>(lx, v[l++]);
+      if (r & 1) op<cmd>(rx, v[--r]);
+      l >>= 1;
+      r >>= 1;
+    }
+    if constexpr (cmd == 1) lx = min(lx, rx);
+    if constexpr (cmd == 2) lx = max(lx, rx);
+    if constexpr (cmd == 3) lx += rx;
+    return lx;
+  }
 };
 
-} // namespace felix
+/**
+ * @brief Range Chmin Chmax Add Update Range Min Max Sum Segment Tree Beats!
+ * @docs docs/segment-tree/segment-tree-beats.md
+ */

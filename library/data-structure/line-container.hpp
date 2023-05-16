@@ -17,17 +17,11 @@ struct line_t {
 	bool operator<(T x) const { return p < x; }
 };
 
-} // line_container_internal
-
 template<class T, bool MAX>
-struct line_container : public std::multiset<line_container_internal::line_t<T>, std::less<>> {
-	using typename std::multiset<line_container_internal::line_t<T>, std::less<>>::iterator;
-	using std::multiset<line_container_internal::line_t<T>, std::less<>>::begin;
-	using std::multiset<line_container_internal::line_t<T>, std::less<>>::end;
-	using std::multiset<line_container_internal::line_t<T>, std::less<>>::lower_bound;
-	using std::multiset<line_container_internal::line_t<T>, std::less<>>::insert;
-	using std::multiset<line_container_internal::line_t<T>, std::less<>>::erase;
-	using std::multiset<line_container_internal::line_t<T>, std::less<>>::empty;
+struct line_container : std::multiset<line_t<T>, std::less<>> {
+	using S = std::multiset<line_t<T>, std::less<>>;
+	using typename S::iterator;
+	using S::begin, S::end, S::insert, S::erase, S::empty, S::lower_bound;
 
 	static constexpr T INF = std::numeric_limits<T>::max();
 
@@ -71,5 +65,10 @@ struct line_container : public std::multiset<line_container_internal::line_t<T>,
 		return ans;
 	}
 };
+
+} // line_container_internal
+
+template<class T> using min_line_container = line_container_internal::line_container<T, false>;
+template<class T> using max_line_container = line_container_internal::line_container<T, true>;
 
 } // namespace felix
