@@ -1,26 +1,22 @@
 #pragma once
-#include <type_traits>
 #include "safe-mod.hpp"
 
 namespace felix {
 
 namespace internal {
 
-template<class V, class M>
-constexpr V pow_mod_constexpr(V x, long long n, M m) {
-	using T = typename std::make_unsigned<V>::type;
-	using U = typename std::make_unsigned<M>::type;
+template<class T, class U>
+constexpr T pow_mod_constexpr(T x, long long n, U m) {
 	if(m == 1) {
 		return 0;
 	}
-	U _m = (U) m;
+	x = safe_mod<T>(x, m);
 	T r = 1;
-	T y = safe_mod<V>(x, m);
 	while(n) {
 		if(n & 1) {
-			r = (r * y) % _m;
+			r = (r * x) % m;
 		}
-		y = (y * y) % _m;
+		x = (x * x) % m;
 		n >>= 1;
 	}
 	return r;
