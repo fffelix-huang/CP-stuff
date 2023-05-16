@@ -10,10 +10,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/math/inv-gcd.hpp
     title: library/math/inv-gcd.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/pow-mod-constexpr.hpp
     title: library/math/pow-mod-constexpr.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/safe-mod.hpp
     title: library/math/safe-mod.hpp
   - icon: ':heavy_check_mark:'
@@ -153,15 +153,14 @@ data:
     \ <= 0)>> : public std::true_type {};\r\ntemplate<class T> using is_dynamic_modint_t\
     \ = std::enable_if_t<is_dynamic_modint<T>::value>;\r\n\r\n} // namespace internal\r\
     \n\r\n} // namespace felix\r\n#line 3 \"library/convolution/NTT.hpp\"\n#include\
-    \ <array>\r\n#line 4 \"library/math/pow-mod-constexpr.hpp\"\n\r\nnamespace felix\
-    \ {\r\n\r\nnamespace internal {\r\n\r\ntemplate<class V, class M>\r\nconstexpr\
-    \ V pow_mod_constexpr(V x, long long n, M m) {\r\n\tusing T = typename std::make_unsigned<V>::type;\r\
-    \n\tusing U = typename std::make_unsigned<M>::type;\r\n\tif(m == 1) {\r\n\t\t\
-    return 0;\r\n\t}\r\n\tU _m = (U) m;\r\n\tT r = 1;\r\n\tT y = safe_mod<V>(x, m);\r\
-    \n\twhile(n) {\r\n\t\tif(n & 1) {\r\n\t\t\tr = (r * y) % _m;\r\n\t\t}\r\n\t\t\
-    y = (y * y) % _m;\r\n\t\tn >>= 1;\r\n\t}\r\n\treturn r;\r\n}\r\n\r\n} // namespace\
-    \ internal\r\n\r\n} // namespace felix\r\n#line 11 \"library/convolution/NTT.hpp\"\
-    \n\r\nnamespace felix {\r\n\r\nnamespace internal {\r\n\r\nconstexpr int primitive_root_constexpr(int\
+    \ <array>\r\n#line 3 \"library/math/pow-mod-constexpr.hpp\"\n\r\nnamespace felix\
+    \ {\r\n\r\nnamespace internal {\r\n\r\ntemplate<class T, class U>\r\nconstexpr\
+    \ T pow_mod_constexpr(T x, long long n, U m) {\r\n\tif(m == 1) {\r\n\t\treturn\
+    \ 0;\r\n\t}\r\n\tx = safe_mod<T>(x, m);\r\n\tT r = 1;\r\n\twhile(n) {\r\n\t\t\
+    if(n & 1) {\r\n\t\t\tr = (r * x) % m;\r\n\t\t}\r\n\t\tx = (x * x) % m;\r\n\t\t\
+    n >>= 1;\r\n\t}\r\n\treturn r;\r\n}\r\n\r\n} // namespace internal\r\n\r\n} //\
+    \ namespace felix\r\n#line 11 \"library/convolution/NTT.hpp\"\n\r\nnamespace felix\
+    \ {\r\n\r\nnamespace internal {\r\n\r\nconstexpr int primitive_root_constexpr(int\
     \ m) {\r\n\tif(m == 998244353) return 3;\r\n\tif(m == 167772161) return 3;\r\n\
     \tif(m == 469762049) return 3;\r\n\tif(m == 754974721) return 11;\r\n\tif(m ==\
     \ 880803841) return 26;\r\n\tif(m == 1045430273) return 3;\r\n\tif(m == 1051721729)\
@@ -423,7 +422,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/Polynomial/Log-of-Formal-Power-Series.test.cpp
   requiredBy: []
-  timestamp: '2023-05-16 05:38:44+08:00'
+  timestamp: '2023-05-16 23:01:59+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Polynomial/Log-of-Formal-Power-Series.test.cpp

@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/binary-gcd.hpp
     title: "Binary GCD (\u4F4D\u5143 GCD)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/math/factorize.hpp
     title: "Integer Factorization (Pollard Rho \u8CEA\u56E0\u6578\u5206\u89E3)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/math/is-prime.hpp
     title: library/math/is-prime.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/pow-mod-constexpr.hpp
     title: library/math/pow-mod-constexpr.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/safe-mod.hpp
     title: library/math/safe-mod.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/random/rng.hpp
     title: library/random/rng.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/factorize
@@ -42,15 +42,12 @@ data:
     \n\r\nnamespace felix {\r\n\r\nnamespace internal {\r\n\r\ntemplate<class T>\r\
     \nconstexpr T safe_mod(T x, T m) {\r\n\tx %= m;\r\n\tif(x < 0) {\r\n\t\tx += m;\r\
     \n\t}\r\n\treturn x;\r\n}\r\n\r\n} // namespace internal\r\n\r\n} // namespace\
-    \ felix\n#line 2 \"library/math/pow-mod-constexpr.hpp\"\n#include <type_traits>\r\
-    \n#line 4 \"library/math/pow-mod-constexpr.hpp\"\n\r\nnamespace felix {\r\n\r\n\
-    namespace internal {\r\n\r\ntemplate<class V, class M>\r\nconstexpr V pow_mod_constexpr(V\
-    \ x, long long n, M m) {\r\n\tusing T = typename std::make_unsigned<V>::type;\r\
-    \n\tusing U = typename std::make_unsigned<M>::type;\r\n\tif(m == 1) {\r\n\t\t\
-    return 0;\r\n\t}\r\n\tU _m = (U) m;\r\n\tT r = 1;\r\n\tT y = safe_mod<V>(x, m);\r\
-    \n\twhile(n) {\r\n\t\tif(n & 1) {\r\n\t\t\tr = (r * y) % _m;\r\n\t\t}\r\n\t\t\
-    y = (y * y) % _m;\r\n\t\tn >>= 1;\r\n\t}\r\n\treturn r;\r\n}\r\n\r\n} // namespace\
-    \ internal\r\n\r\n} // namespace felix\r\n#line 4 \"library/math/is-prime.hpp\"\
+    \ felix\n#line 3 \"library/math/pow-mod-constexpr.hpp\"\n\r\nnamespace felix {\r\
+    \n\r\nnamespace internal {\r\n\r\ntemplate<class T, class U>\r\nconstexpr T pow_mod_constexpr(T\
+    \ x, long long n, U m) {\r\n\tif(m == 1) {\r\n\t\treturn 0;\r\n\t}\r\n\tx = safe_mod<T>(x,\
+    \ m);\r\n\tT r = 1;\r\n\twhile(n) {\r\n\t\tif(n & 1) {\r\n\t\t\tr = (r * x) %\
+    \ m;\r\n\t\t}\r\n\t\tx = (x * x) % m;\r\n\t\tn >>= 1;\r\n\t}\r\n\treturn r;\r\n\
+    }\r\n\r\n} // namespace internal\r\n\r\n} // namespace felix\r\n#line 4 \"library/math/is-prime.hpp\"\
     \n\r\nnamespace felix {\r\n\r\nnamespace internal {\r\n\r\nbool is_prime(long\
     \ long n, std::vector<long long> x) {\r\n\tlong long d = n - 1;\r\n\td >>= __builtin_ctzll(d);\r\
     \n\tfor(auto a : x) {\r\n\t\tif(n <= a) {\r\n\t\t\tbreak;\r\n\t\t}\r\n\t\tlong\
@@ -115,8 +112,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/Math/Factorize.test.cpp
   requiredBy: []
-  timestamp: '2023-05-16 05:38:44+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-05-16 23:01:59+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Math/Factorize.test.cpp
 layout: document
