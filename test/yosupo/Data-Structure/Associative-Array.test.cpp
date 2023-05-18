@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/associative_array"
 
 #include <iostream>
-#include "../../../library/data-structure/PBDS.hpp"
+#include "../../../library/data-structure/pbds.hpp"
 using namespace std;
 using namespace felix;
 

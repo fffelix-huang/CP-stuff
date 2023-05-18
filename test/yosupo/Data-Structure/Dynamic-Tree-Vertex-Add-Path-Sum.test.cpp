@@ -15,7 +15,7 @@ S reversal(S s) { return s; }
 using F = long long;
 
 F id() { return 0; }
-S mapping(F f, S s) { return s += f; }
+S mapping(F f, S s) { return s + f; }
 F composition(F a, F b) { return a + b; }
 
 int main() {
