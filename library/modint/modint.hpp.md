@@ -12,8 +12,8 @@ data:
     title: library/misc/type-traits.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
-    path: library/convolution/NTT.hpp
-    title: library/convolution/NTT.hpp
+    path: library/convolution/ntt.hpp
+    title: library/convolution/ntt.hpp
   - icon: ':heavy_check_mark:'
     path: library/formal-power-series/poly.hpp
     title: library/formal-power-series/poly.hpp
@@ -304,7 +304,7 @@ data:
   isVerificationFile: false
   path: library/modint/modint.hpp
   requiredBy:
-  - library/convolution/NTT.hpp
+  - library/convolution/ntt.hpp
   - library/formal-power-series/poly.hpp
   timestamp: '2023-05-16 05:38:44+08:00'
   verificationStatus: LIBRARY_SOME_WA

@@ -4,29 +4,14 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/random/splitmix64.hpp
     title: library/random/splitmix64.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: library/math/discrete-log.hpp
-    title: "Discrete Log (\u96E2\u6563\u5C0D\u6578 $a^x \\equiv b \\pmod m$)"
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/Data-Structure/Associative-Array.test.cpp
-    title: test/yosupo/Data-Structure/Associative-Array.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/Data-Structure/Static-Range-Frequency.test.cpp
-    title: test/yosupo/Data-Structure/Static-Range-Frequency.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/Data-Structure/Static-Range-Sum.test.cpp
-    title: test/yosupo/Data-Structure/Static-Range-Sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/Math/Discrete-Logarithm.test.cpp
-    title: test/yosupo/Math/Discrete-Logarithm.test.cpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"library/data-structure/PBDS.hpp\"\n#include <ext/pb_ds/assoc_container.hpp>\n\
+  bundledCode: "#line 2 \"library/data-structure/pbds.hpp\"\n#include <ext/pb_ds/assoc_container.hpp>\n\
     #line 2 \"library/random/splitmix64.hpp\"\n#include <chrono>\r\n\r\nnamespace\
     \ felix {\r\n\r\nnamespace internal {\r\n\r\nstruct splitmix64_hash {\r\n\t//\
     \ http://xoshiro.di.unimi.it/splitmix64.c\r\n\tstatic unsigned long long splitmix64(unsigned\
@@ -35,7 +20,7 @@ data:
     return x ^ (x >> 31);\r\n\t}\r\n \r\n\tunsigned long long operator()(unsigned\
     \ long long x) const {\r\n\t\tstatic const unsigned long long FIXED_RANDOM = std::chrono::steady_clock::now().time_since_epoch().count();\r\
     \n\t\treturn splitmix64(x + FIXED_RANDOM);\r\n\t}\r\n};\r\n\r\n} // namespace\
-    \ internal\r\n\r\n} // namespace felix\r\n#line 4 \"library/data-structure/PBDS.hpp\"\
+    \ internal\r\n\r\n} // namespace felix\r\n#line 4 \"library/data-structure/pbds.hpp\"\
     \n\nnamespace felix {\n\ntemplate<class T, class U, class H = internal::splitmix64_hash>\
     \ using hash_map = __gnu_pbds::gp_hash_table<T, U, H>;\ntemplate<class T, class\
     \ H = internal::splitmix64_hash> using hash_set = hash_map<T, __gnu_pbds::null_type,\
@@ -72,20 +57,15 @@ data:
   dependsOn:
   - library/random/splitmix64.hpp
   isVerificationFile: false
-  path: library/data-structure/PBDS.hpp
-  requiredBy:
-  - library/math/discrete-log.hpp
-  timestamp: '2023-04-05 16:22:46+08:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/yosupo/Data-Structure/Associative-Array.test.cpp
-  - test/yosupo/Data-Structure/Static-Range-Frequency.test.cpp
-  - test/yosupo/Data-Structure/Static-Range-Sum.test.cpp
-  - test/yosupo/Math/Discrete-Logarithm.test.cpp
-documentation_of: library/data-structure/PBDS.hpp
+  path: library/data-structure/pbds.hpp
+  requiredBy: []
+  timestamp: '2023-05-19 01:47:33+08:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: library/data-structure/pbds.hpp
 layout: document
 redirect_from:
-- /library/library/data-structure/PBDS.hpp
-- /library/library/data-structure/PBDS.hpp.html
-title: library/data-structure/PBDS.hpp
+- /library/library/data-structure/pbds.hpp
+- /library/library/data-structure/pbds.hpp.html
+title: library/data-structure/pbds.hpp
 ---

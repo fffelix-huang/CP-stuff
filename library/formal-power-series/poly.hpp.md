@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: library/convolution/NTT.hpp
-    title: library/convolution/NTT.hpp
+    path: library/convolution/ntt.hpp
+    title: library/convolution/ntt.hpp
   - icon: ':question:'
     path: library/math/inv-gcd.hpp
     title: library/math/inv-gcd.hpp
@@ -172,14 +172,14 @@ data:
     \ {};\r\ntemplate<int id> struct is_dynamic_modint<modint<id>, std::enable_if_t<(id\
     \ <= 0)>> : public std::true_type {};\r\ntemplate<class T> using is_dynamic_modint_t\
     \ = std::enable_if_t<is_dynamic_modint<T>::value>;\r\n\r\n} // namespace internal\r\
-    \n\r\n} // namespace felix\r\n#line 3 \"library/convolution/NTT.hpp\"\n#include\
+    \n\r\n} // namespace felix\r\n#line 3 \"library/convolution/ntt.hpp\"\n#include\
     \ <array>\r\n#line 3 \"library/math/pow-mod-constexpr.hpp\"\n\r\nnamespace felix\
     \ {\r\n\r\nnamespace internal {\r\n\r\ntemplate<class T, class U>\r\nconstexpr\
     \ T pow_mod_constexpr(T x, long long n, U m) {\r\n\tif(m == 1) {\r\n\t\treturn\
     \ 0;\r\n\t}\r\n\tx = safe_mod<T>(x, m);\r\n\tT r = 1;\r\n\twhile(n) {\r\n\t\t\
     if(n & 1) {\r\n\t\t\tr = (r * x) % m;\r\n\t\t}\r\n\t\tx = (x * x) % m;\r\n\t\t\
     n >>= 1;\r\n\t}\r\n\treturn r;\r\n}\r\n\r\n} // namespace internal\r\n\r\n} //\
-    \ namespace felix\r\n#line 11 \"library/convolution/NTT.hpp\"\n\r\nnamespace felix\
+    \ namespace felix\r\n#line 11 \"library/convolution/ntt.hpp\"\n\r\nnamespace felix\
     \ {\r\n\r\nnamespace internal {\r\n\r\nconstexpr int primitive_root_constexpr(int\
     \ m) {\r\n\tif(m == 998244353) return 3;\r\n\tif(m == 167772161) return 3;\r\n\
     \tif(m == 469762049) return 3;\r\n\tif(m == 754974721) return 11;\r\n\tif(m ==\
@@ -421,7 +421,7 @@ data:
     \ a;\r\n};\r\n\r\n} // namespace felix\r\n"
   code: "#pragma once\r\n#include <vector>\r\n#include <initializer_list>\r\n#include\
     \ <algorithm>\r\n#include <functional>\r\n#include <cassert>\r\n#include \"../modint/modint.hpp\"\
-    \r\n#include \"../convolution/NTT.hpp\"\r\n\r\nnamespace felix {\r\n\r\ntemplate<int\
+    \r\n#include \"../convolution/ntt.hpp\"\r\n\r\nnamespace felix {\r\n\r\ntemplate<int\
     \ mod>\r\nstruct Poly {\r\n\tusing mint = modint<mod>;\r\n\r\npublic:\r\n\tPoly()\
     \ {}\r\n\texplicit Poly(int n) : a(n) {}\r\n\texplicit Poly(const std::vector<mint>&\
     \ a) : a(a) {}\r\n\tPoly(const std::initializer_list<mint>& a) : a(a) {}\r\n\r\
@@ -518,12 +518,12 @@ data:
   - library/misc/type-traits.hpp
   - library/math/inv-gcd.hpp
   - library/math/safe-mod.hpp
-  - library/convolution/NTT.hpp
+  - library/convolution/ntt.hpp
   - library/math/pow-mod-constexpr.hpp
   isVerificationFile: false
   path: library/formal-power-series/poly.hpp
   requiredBy: []
-  timestamp: '2023-05-16 23:01:59+08:00'
+  timestamp: '2023-05-19 01:47:33+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/Math/Partition-Function.test.cpp

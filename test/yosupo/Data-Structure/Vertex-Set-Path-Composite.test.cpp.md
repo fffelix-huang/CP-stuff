@@ -20,8 +20,8 @@ data:
     path: library/modint/modint.hpp
     title: library/modint/modint.hpp
   - icon: ':heavy_check_mark:'
-    path: library/tree/HLD.hpp
-    title: "Heavy Light Decomposition (\u8F15\u91CD\u93C8\u5256\u5206)"
+    path: library/tree/heavy-light-decomposition.hpp
+    title: library/tree/heavy-light-decomposition.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -68,22 +68,22 @@ data:
     \t\t\t\t}\n\t\t\t\t}\n\t\t\t\treturn r + 1 - size;\n\t\t\t}\n\t\t\tsm = op(st[r],\
     \ sm);\n\t\t} while((r & -r) != r);\n\t\treturn 0;\n\t}\n\t\nprivate:\n\tint n,\
     \ size, log;\n\tstd::vector<S> st;\n\n\tvoid update(int v) {\n\t\tst[v] = op(st[v\
-    \ * 2], st[v * 2 + 1]);\n\t}\n};\n\n} // namespace felix\n#line 3 \"library/tree/HLD.hpp\"\
-    \n#include <array>\r\n#line 5 \"library/tree/HLD.hpp\"\n#include <algorithm>\r\
-    \n#include <cmath>\r\n#line 4 \"library/data-structure/sparse-table.hpp\"\n\n\
-    namespace felix {\n\ntemplate<class T, T (*op)(T, T)>\nstruct sparse_table {\n\
-    public:\n\tsparse_table() {}\n\texplicit sparse_table(const std::vector<T>& a)\
-    \ {\n\t\tn = (int) a.size();\n\t\tint max_log = std::__lg(n) + 1;\n\t\tmat.resize(max_log);\n\
+    \ * 2], st[v * 2 + 1]);\n\t}\n};\n\n} // namespace felix\n#line 3 \"library/tree/heavy-light-decomposition.hpp\"\
+    \n#include <array>\r\n#line 5 \"library/tree/heavy-light-decomposition.hpp\"\n\
+    #include <algorithm>\r\n#include <cmath>\r\n#line 4 \"library/data-structure/sparse-table.hpp\"\
+    \n\nnamespace felix {\n\ntemplate<class T, T (*op)(T, T)>\nstruct sparse_table\
+    \ {\npublic:\n\tsparse_table() {}\n\texplicit sparse_table(const std::vector<T>&\
+    \ a) {\n\t\tn = (int) a.size();\n\t\tint max_log = std::__lg(n) + 1;\n\t\tmat.resize(max_log);\n\
     \t\tmat[0] = a;\n\t\tfor(int j = 1; j < max_log; ++j) {\n\t\t\tmat[j].resize(n\
     \ - (1 << j) + 1);\n\t\t\tfor(int i = 0; i <= n - (1 << j); ++i) {\n\t\t\t\tmat[j][i]\
     \ = op(mat[j - 1][i], mat[j - 1][i + (1 << (j - 1))]);\n\t\t\t}\n\t\t}\n\t}\n\n\
     \tinline T prod(int from, int to) const {\n\t\tassert(0 <= from && from <= to\
     \ && to <= n - 1);\n\t\tint lg = std::__lg(to - from + 1);\n\t\treturn op(mat[lg][from],\
     \ mat[lg][to - (1 << lg) + 1]);\n\t}\n\nprivate:\n\tint n;\n\tstd::vector<std::vector<T>>\
-    \ mat;\n};\n\n} // namespace felix\n#line 8 \"library/tree/HLD.hpp\"\n\r\nnamespace\
-    \ felix {\r\n\r\nstruct HLD {\r\nprivate:\r\n\tstatic constexpr std::pair<int,\
-    \ int> __lca_op(std::pair<int, int> a, std::pair<int, int> b) {\r\n\t\treturn\
-    \ std::min(a, b);\r\n\t}\r\n\r\npublic:\r\n\tint n;\r\n\tstd::vector<std::vector<int>>\
+    \ mat;\n};\n\n} // namespace felix\n#line 8 \"library/tree/heavy-light-decomposition.hpp\"\
+    \n\r\nnamespace felix {\r\n\r\nstruct HLD {\r\nprivate:\r\n\tstatic constexpr\
+    \ std::pair<int, int> __lca_op(std::pair<int, int> a, std::pair<int, int> b) {\r\
+    \n\t\treturn std::min(a, b);\r\n\t}\r\n\r\npublic:\r\n\tint n;\r\n\tstd::vector<std::vector<int>>\
     \ g;\r\n\tstd::vector<int> subtree_size;\r\n\tstd::vector<int> parent;\r\n\tstd::vector<int>\
     \ depth;\r\n\tstd::vector<int> top;\r\n\tstd::vector<int> tour;\r\n\tstd::vector<int>\
     \ first_occurrence;\r\n\tstd::vector<int> id;\r\n\tstd::vector<std::pair<int,\
@@ -280,30 +280,30 @@ data:
     \ \"\\n\";\r\n\t\t}\r\n\t}\r\n\treturn 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/vertex_set_path_composite\"\
     \r\n\r\n#include <iostream>\r\n#include <vector>\r\n#include \"../../../library/data-structure/segtree.hpp\"\
-    \r\n#include \"../../../library/tree/HLD.hpp\"\r\n#include \"../../../library/modint/modint.hpp\"\
-    \r\nusing namespace std;\r\nusing namespace felix;\r\n\r\nusing mint = modint998244353;\r\
-    \n\r\nstruct S {\r\n\tpair<mint, mint> f, g;\r\n\r\n\tS() : S(1, 0) {}\r\n\tS(mint\
-    \ a, mint b) : f(a, b), g(a, b) {}\r\n\tS(pair<mint, mint> a, pair<mint, mint>\
-    \ b) : f(a), g(b) {}\r\n};\r\n\r\npair<mint, mint> composition(pair<mint, mint>\
-    \ f, pair<mint, mint> g) { return {f.first * g.first, f.first * g.second + f.second};\
-    \ }\r\n\r\nS e() { return S(); }\r\nS op(S a, S b) { return S(composition(a.f,\
-    \ b.f), composition(b.g, a.g)); }\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\
-    \n\tcin.tie(0);\r\n\tint n, q;\r\n\tcin >> n >> q;\r\n\tvector<S> a(n);\r\n\t\
-    for(int i = 0; i < n; i++) {\r\n\t\tmint c, d;\r\n\t\tcin >> c >> d;\r\n\t\ta[i]\
-    \ = S(c, d);\r\n\t}\r\n\tHLD hld(n);\r\n\tfor(int i = 0; i < n - 1; i++) {\r\n\
-    \t\tint u, v;\r\n\t\tcin >> u >> v;\r\n\t\thld.add_edge(u, v);\r\n\t}\r\n\thld.build();\r\
-    \n\tsegtree<S, e, op> seg(n);\r\n\tfor(int i = 0; i < n; i++) {\r\n\t\tseg.set(hld.id[i],\
-    \ a[i]);\r\n\t}\r\n\twhile(q--) {\r\n\t\tint type, x, y, z;\r\n\t\tcin >> type\
-    \ >> x >> y >> z;\r\n\t\tif(type == 0) {\r\n\t\t\tseg.set(hld.id[x], S(y, z));\r\
-    \n\t\t} else {\r\n\t\t\tpair<mint, mint> res = {1, 0};\r\n\t\t\tfor(auto [u, v]\
-    \ : hld.get_path(x, y, true)) {\r\n\t\t\t\tif(hld.id[u] <= hld.id[v]) {\r\n\t\t\
-    \t\t\tres = composition(seg.prod(hld.id[u], hld.id[v] + 1).g, res);\r\n\t\t\t\t\
-    } else {\r\n\t\t\t\t\tres = composition(seg.prod(hld.id[v], hld.id[u] + 1).f,\
-    \ res);\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t\tcout << res.first * z + res.second <<\
-    \ \"\\n\";\r\n\t\t}\r\n\t}\r\n\treturn 0;\r\n}\r\n"
+    \r\n#include \"../../../library/tree/heavy-light-decomposition.hpp\"\r\n#include\
+    \ \"../../../library/modint/modint.hpp\"\r\nusing namespace std;\r\nusing namespace\
+    \ felix;\r\n\r\nusing mint = modint998244353;\r\n\r\nstruct S {\r\n\tpair<mint,\
+    \ mint> f, g;\r\n\r\n\tS() : S(1, 0) {}\r\n\tS(mint a, mint b) : f(a, b), g(a,\
+    \ b) {}\r\n\tS(pair<mint, mint> a, pair<mint, mint> b) : f(a), g(b) {}\r\n};\r\
+    \n\r\npair<mint, mint> composition(pair<mint, mint> f, pair<mint, mint> g) { return\
+    \ {f.first * g.first, f.first * g.second + f.second}; }\r\n\r\nS e() { return\
+    \ S(); }\r\nS op(S a, S b) { return S(composition(a.f, b.f), composition(b.g,\
+    \ a.g)); }\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\n\tcin.tie(0);\r\
+    \n\tint n, q;\r\n\tcin >> n >> q;\r\n\tvector<S> a(n);\r\n\tfor(int i = 0; i <\
+    \ n; i++) {\r\n\t\tmint c, d;\r\n\t\tcin >> c >> d;\r\n\t\ta[i] = S(c, d);\r\n\
+    \t}\r\n\tHLD hld(n);\r\n\tfor(int i = 0; i < n - 1; i++) {\r\n\t\tint u, v;\r\n\
+    \t\tcin >> u >> v;\r\n\t\thld.add_edge(u, v);\r\n\t}\r\n\thld.build();\r\n\tsegtree<S,\
+    \ e, op> seg(n);\r\n\tfor(int i = 0; i < n; i++) {\r\n\t\tseg.set(hld.id[i], a[i]);\r\
+    \n\t}\r\n\twhile(q--) {\r\n\t\tint type, x, y, z;\r\n\t\tcin >> type >> x >> y\
+    \ >> z;\r\n\t\tif(type == 0) {\r\n\t\t\tseg.set(hld.id[x], S(y, z));\r\n\t\t}\
+    \ else {\r\n\t\t\tpair<mint, mint> res = {1, 0};\r\n\t\t\tfor(auto [u, v] : hld.get_path(x,\
+    \ y, true)) {\r\n\t\t\t\tif(hld.id[u] <= hld.id[v]) {\r\n\t\t\t\t\tres = composition(seg.prod(hld.id[u],\
+    \ hld.id[v] + 1).g, res);\r\n\t\t\t\t} else {\r\n\t\t\t\t\tres = composition(seg.prod(hld.id[v],\
+    \ hld.id[u] + 1).f, res);\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t\tcout << res.first *\
+    \ z + res.second << \"\\n\";\r\n\t\t}\r\n\t}\r\n\treturn 0;\r\n}\r\n"
   dependsOn:
   - library/data-structure/segtree.hpp
-  - library/tree/HLD.hpp
+  - library/tree/heavy-light-decomposition.hpp
   - library/data-structure/sparse-table.hpp
   - library/modint/modint.hpp
   - library/misc/type-traits.hpp
@@ -312,7 +312,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/Data-Structure/Vertex-Set-Path-Composite.test.cpp
   requiredBy: []
-  timestamp: '2023-05-16 05:38:44+08:00'
+  timestamp: '2023-05-19 01:47:33+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Data-Structure/Vertex-Set-Path-Composite.test.cpp

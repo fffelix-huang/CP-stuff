@@ -8,8 +8,8 @@ data:
     path: library/data-structure/sparse-table.hpp
     title: library/data-structure/sparse-table.hpp
   - icon: ':heavy_check_mark:'
-    path: library/tree/HLD.hpp
-    title: "Heavy Light Decomposition (\u8F15\u91CD\u93C8\u5256\u5206)"
+    path: library/tree/heavy-light-decomposition.hpp
+    title: library/tree/heavy-light-decomposition.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -23,21 +23,22 @@ data:
   bundledCode: "#line 1 \"test/aoj/grl/Range-Query-on-a-Tree-II.test.cpp\"\n#define\
     \ PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_5_E\"\
     \r\n\r\n#include <iostream>\r\n#include <vector>\r\n#include <algorithm>\r\n#line\
-    \ 3 \"library/tree/HLD.hpp\"\n#include <array>\r\n#include <cassert>\r\n#line\
-    \ 6 \"library/tree/HLD.hpp\"\n#include <cmath>\r\n#line 4 \"library/data-structure/sparse-table.hpp\"\
-    \n\nnamespace felix {\n\ntemplate<class T, T (*op)(T, T)>\nstruct sparse_table\
-    \ {\npublic:\n\tsparse_table() {}\n\texplicit sparse_table(const std::vector<T>&\
-    \ a) {\n\t\tn = (int) a.size();\n\t\tint max_log = std::__lg(n) + 1;\n\t\tmat.resize(max_log);\n\
+    \ 3 \"library/tree/heavy-light-decomposition.hpp\"\n#include <array>\r\n#include\
+    \ <cassert>\r\n#line 6 \"library/tree/heavy-light-decomposition.hpp\"\n#include\
+    \ <cmath>\r\n#line 4 \"library/data-structure/sparse-table.hpp\"\n\nnamespace\
+    \ felix {\n\ntemplate<class T, T (*op)(T, T)>\nstruct sparse_table {\npublic:\n\
+    \tsparse_table() {}\n\texplicit sparse_table(const std::vector<T>& a) {\n\t\t\
+    n = (int) a.size();\n\t\tint max_log = std::__lg(n) + 1;\n\t\tmat.resize(max_log);\n\
     \t\tmat[0] = a;\n\t\tfor(int j = 1; j < max_log; ++j) {\n\t\t\tmat[j].resize(n\
     \ - (1 << j) + 1);\n\t\t\tfor(int i = 0; i <= n - (1 << j); ++i) {\n\t\t\t\tmat[j][i]\
     \ = op(mat[j - 1][i], mat[j - 1][i + (1 << (j - 1))]);\n\t\t\t}\n\t\t}\n\t}\n\n\
     \tinline T prod(int from, int to) const {\n\t\tassert(0 <= from && from <= to\
     \ && to <= n - 1);\n\t\tint lg = std::__lg(to - from + 1);\n\t\treturn op(mat[lg][from],\
     \ mat[lg][to - (1 << lg) + 1]);\n\t}\n\nprivate:\n\tint n;\n\tstd::vector<std::vector<T>>\
-    \ mat;\n};\n\n} // namespace felix\n#line 8 \"library/tree/HLD.hpp\"\n\r\nnamespace\
-    \ felix {\r\n\r\nstruct HLD {\r\nprivate:\r\n\tstatic constexpr std::pair<int,\
-    \ int> __lca_op(std::pair<int, int> a, std::pair<int, int> b) {\r\n\t\treturn\
-    \ std::min(a, b);\r\n\t}\r\n\r\npublic:\r\n\tint n;\r\n\tstd::vector<std::vector<int>>\
+    \ mat;\n};\n\n} // namespace felix\n#line 8 \"library/tree/heavy-light-decomposition.hpp\"\
+    \n\r\nnamespace felix {\r\n\r\nstruct HLD {\r\nprivate:\r\n\tstatic constexpr\
+    \ std::pair<int, int> __lca_op(std::pair<int, int> a, std::pair<int, int> b) {\r\
+    \n\t\treturn std::min(a, b);\r\n\t}\r\n\r\npublic:\r\n\tint n;\r\n\tstd::vector<std::vector<int>>\
     \ g;\r\n\tstd::vector<int> subtree_size;\r\n\tstd::vector<int> parent;\r\n\tstd::vector<int>\
     \ depth;\r\n\tstd::vector<int> top;\r\n\tstd::vector<int> tour;\r\n\tstd::vector<int>\
     \ first_occurrence;\r\n\tstd::vector<int> id;\r\n\tstd::vector<std::pair<int,\
@@ -175,7 +176,7 @@ data:
     \t\t\tcout << ans.sum << \"\\n\";\r\n\t\t}\r\n\t}\r\n\treturn 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_5_E\"\
     \r\n\r\n#include <iostream>\r\n#include <vector>\r\n#include <algorithm>\r\n#include\
-    \ \"../../../library/tree/HLD.hpp\"\r\n#include \"../../../library/data-structure/lazy-segtree.hpp\"\
+    \ \"../../../library/tree/heavy-light-decomposition.hpp\"\r\n#include \"../../../library/data-structure/lazy-segtree.hpp\"\
     \r\nusing namespace std;\r\nusing namespace felix;\r\n\r\nstruct S {\r\n\tlong\
     \ long sum = 0;\r\n\tint sz = 0;\r\n\r\n\tS() {}\r\n\tS(long long a, int b) :\
     \ sum(a), sz(b) {}\r\n};\r\n\r\nS e() { return S(); }\r\nS op(S a, S b) { return\
@@ -197,13 +198,13 @@ data:
     \ hld.id[y] + 1));\r\n\t\t\t}\r\n\t\t\tcout << ans.sum << \"\\n\";\r\n\t\t}\r\n\
     \t}\r\n\treturn 0;\r\n}\r\n"
   dependsOn:
-  - library/tree/HLD.hpp
+  - library/tree/heavy-light-decomposition.hpp
   - library/data-structure/sparse-table.hpp
   - library/data-structure/lazy-segtree.hpp
   isVerificationFile: true
   path: test/aoj/grl/Range-Query-on-a-Tree-II.test.cpp
   requiredBy: []
-  timestamp: '2023-05-15 01:11:19+08:00'
+  timestamp: '2023-05-19 01:47:33+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/grl/Range-Query-on-a-Tree-II.test.cpp

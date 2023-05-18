@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: library/convolution/NTT.hpp
-    title: library/convolution/NTT.hpp
+    path: library/convolution/ntt.hpp
+    title: library/convolution/ntt.hpp
   - icon: ':question:'
     path: library/math/inv-gcd.hpp
     title: library/math/inv-gcd.hpp
@@ -31,7 +31,7 @@ data:
     - https://judge.yosupo.jp/problem/convolution_mod
   bundledCode: "#line 1 \"test/yosupo/Convolution/Convolution.test.cpp\"\n#define\
     \ PROBLEM \"https://judge.yosupo.jp/problem/convolution_mod\"\r\n\r\n#include\
-    \ <iostream>\r\n#line 2 \"library/convolution/NTT.hpp\"\n#include <vector>\r\n\
+    \ <iostream>\r\n#line 2 \"library/convolution/ntt.hpp\"\n#include <vector>\r\n\
     #include <array>\r\n#include <algorithm>\r\n#include <cassert>\r\n#include <type_traits>\r\
     \n#line 3 \"library/misc/type-traits.hpp\"\n#include <numeric>\r\n#line 5 \"library/misc/type-traits.hpp\"\
     \n\r\nnamespace felix {\r\n\r\nnamespace internal {\r\n\r\n#ifndef _MSC_VER\r\n\
@@ -154,7 +154,7 @@ data:
     \ {\r\n\t\treturn 0;\r\n\t}\r\n\tx = safe_mod<T>(x, m);\r\n\tT r = 1;\r\n\twhile(n)\
     \ {\r\n\t\tif(n & 1) {\r\n\t\t\tr = (r * x) % m;\r\n\t\t}\r\n\t\tx = (x * x) %\
     \ m;\r\n\t\tn >>= 1;\r\n\t}\r\n\treturn r;\r\n}\r\n\r\n} // namespace internal\r\
-    \n\r\n} // namespace felix\r\n#line 11 \"library/convolution/NTT.hpp\"\n\r\nnamespace\
+    \n\r\n} // namespace felix\r\n#line 11 \"library/convolution/ntt.hpp\"\n\r\nnamespace\
     \ felix {\r\n\r\nnamespace internal {\r\n\r\nconstexpr int primitive_root_constexpr(int\
     \ m) {\r\n\tif(m == 998244353) return 3;\r\n\tif(m == 167772161) return 3;\r\n\
     \tif(m == 469762049) return 3;\r\n\tif(m == 754974721) return 11;\r\n\tif(m ==\
@@ -310,7 +310,7 @@ data:
     \ b);\r\n\tfor(int i = 0; i < n + m - 1; i++) {\r\n\t\tcout << c[i] << \" \\n\"\
     [i == n + m - 2];\r\n\t}\r\n\treturn 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/convolution_mod\"\r\n\r\
-    \n#include <iostream>\r\n#include \"../../../library/convolution/NTT.hpp\"\r\n\
+    \n#include <iostream>\r\n#include \"../../../library/convolution/ntt.hpp\"\r\n\
     using namespace std;\r\nusing namespace felix;\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\
     \n\tcin.tie(0);\r\n\tint n, m;\r\n\tcin >> n >> m;\r\n\tvector<int> a(n), b(m);\r\
     \n\tfor(int i = 0; i < n; i++) {\r\n\t\tcin >> a[i];\r\n\t}\r\n\tfor(int i = 0;\
@@ -318,7 +318,7 @@ data:
     \ b);\r\n\tfor(int i = 0; i < n + m - 1; i++) {\r\n\t\tcout << c[i] << \" \\n\"\
     [i == n + m - 2];\r\n\t}\r\n\treturn 0;\r\n}\r\n"
   dependsOn:
-  - library/convolution/NTT.hpp
+  - library/convolution/ntt.hpp
   - library/misc/type-traits.hpp
   - library/modint/modint.hpp
   - library/math/inv-gcd.hpp
@@ -327,7 +327,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/Convolution/Convolution.test.cpp
   requiredBy: []
-  timestamp: '2023-05-16 23:01:59+08:00'
+  timestamp: '2023-05-19 01:47:33+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Convolution/Convolution.test.cpp

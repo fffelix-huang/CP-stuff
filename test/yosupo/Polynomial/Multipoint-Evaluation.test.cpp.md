@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: library/convolution/NTT.hpp
-    title: library/convolution/NTT.hpp
+    path: library/convolution/ntt.hpp
+    title: library/convolution/ntt.hpp
   - icon: ':heavy_check_mark:'
     path: library/formal-power-series/poly.hpp
     title: library/formal-power-series/poly.hpp
@@ -153,13 +153,13 @@ data:
     \ = std::enable_if_t<is_dynamic_modint<T>::value>;\r\n\r\n} // namespace internal\r\
     \n\r\n} // namespace felix\r\n#line 3 \"library/formal-power-series/poly.hpp\"\
     \n#include <initializer_list>\r\n#line 5 \"library/formal-power-series/poly.hpp\"\
-    \n#include <functional>\r\n#line 3 \"library/convolution/NTT.hpp\"\n#include <array>\r\
+    \n#include <functional>\r\n#line 3 \"library/convolution/ntt.hpp\"\n#include <array>\r\
     \n#line 3 \"library/math/pow-mod-constexpr.hpp\"\n\r\nnamespace felix {\r\n\r\n\
     namespace internal {\r\n\r\ntemplate<class T, class U>\r\nconstexpr T pow_mod_constexpr(T\
     \ x, long long n, U m) {\r\n\tif(m == 1) {\r\n\t\treturn 0;\r\n\t}\r\n\tx = safe_mod<T>(x,\
     \ m);\r\n\tT r = 1;\r\n\twhile(n) {\r\n\t\tif(n & 1) {\r\n\t\t\tr = (r * x) %\
     \ m;\r\n\t\t}\r\n\t\tx = (x * x) % m;\r\n\t\tn >>= 1;\r\n\t}\r\n\treturn r;\r\n\
-    }\r\n\r\n} // namespace internal\r\n\r\n} // namespace felix\r\n#line 11 \"library/convolution/NTT.hpp\"\
+    }\r\n\r\n} // namespace internal\r\n\r\n} // namespace felix\r\n#line 11 \"library/convolution/ntt.hpp\"\
     \n\r\nnamespace felix {\r\n\r\nnamespace internal {\r\n\r\nconstexpr int primitive_root_constexpr(int\
     \ m) {\r\n\tif(m == 998244353) return 3;\r\n\tif(m == 167772161) return 3;\r\n\
     \tif(m == 469762049) return 3;\r\n\tif(m == 754974721) return 11;\r\n\tif(m ==\
@@ -422,12 +422,12 @@ data:
   - library/math/inv-gcd.hpp
   - library/math/safe-mod.hpp
   - library/formal-power-series/poly.hpp
-  - library/convolution/NTT.hpp
+  - library/convolution/ntt.hpp
   - library/math/pow-mod-constexpr.hpp
   isVerificationFile: true
   path: test/yosupo/Polynomial/Multipoint-Evaluation.test.cpp
   requiredBy: []
-  timestamp: '2023-05-16 23:01:59+08:00'
+  timestamp: '2023-05-19 01:47:33+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Polynomial/Multipoint-Evaluation.test.cpp

@@ -1,17 +1,11 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: library/math/discrete-log.hpp
-    title: "Discrete Log (\u96E2\u6563\u5C0D\u6578 $a^x \\equiv b \\pmod m$)"
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/Math/Discrete-Logarithm.test.cpp
-    title: test/yosupo/Math/Discrete-Logarithm.test.cpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links:
     - https://en.wikipedia.org/wiki/Barrett_reduction
@@ -41,12 +35,10 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: library/modint/barrett.hpp
-  requiredBy:
-  - library/math/discrete-log.hpp
+  requiredBy: []
   timestamp: '2023-04-16 03:09:05+08:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/yosupo/Math/Discrete-Logarithm.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: library/modint/barrett.hpp
 layout: document
 redirect_from:

@@ -3,8 +3,8 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
-    path: library/tree/HLD.hpp
-    title: "Heavy Light Decomposition (\u8F15\u91CD\u93C8\u5256\u5206)"
+    path: library/tree/heavy-light-decomposition.hpp
+    title: library/tree/heavy-light-decomposition.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/grl/Lowest-Common-Ancestor.test.cpp
@@ -65,7 +65,7 @@ data:
   isVerificationFile: false
   path: library/data-structure/sparse-table.hpp
   requiredBy:
-  - library/tree/HLD.hpp
+  - library/tree/heavy-light-decomposition.hpp
   timestamp: '2023-04-17 12:10:28+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

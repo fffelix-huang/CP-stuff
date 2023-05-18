@@ -207,19 +207,19 @@ data:
     \n\r\n} // namespace felix\r\n#line 7 \"test/yosupo/Data-Structure/Range-Affine-Point-Get.test.cpp\"\
     \nusing namespace std;\r\nusing namespace felix;\r\n\r\nusing mint = modint998244353;\r\
     \n\r\nstruct S {\r\n\tmint sum;\r\n\tint size = 0;\r\n\r\n\tS() {}\r\n\tS(mint\
-    \ a, int b = 1) : sum(a), size(b) {}\r\n};\r\n\r\nS e() {\r\n\treturn S();\r\n\
-    }\r\n\r\nS op(S a, S b) {\r\n\ta.sum += b.sum;\r\n\ta.size += b.size;\r\n\treturn\
-    \ a;\r\n}\r\n\r\nstruct F {\r\n\tmint a, b;\r\n\tbool bad = true;\r\n\r\n\tF()\
-    \ {}\r\n\tF(mint x, mint y) : a(x), b(y), bad(false) {}\r\n};\r\n\r\nF id() {\r\
-    \n\treturn F();\r\n}\r\n\r\nS mapping(F f, S s) {\r\n\tif(f.bad || s.size == 0)\
-    \ {\r\n\t\treturn s;\r\n\t}\r\n\ts.sum = f.a * s.sum + f.b * s.size;\r\n\treturn\
-    \ s;\r\n}\r\n\r\nF composition(F f, F g) {\r\n\tif(f.bad || g.bad) {\r\n\t\treturn\
-    \ f.bad ? g : f;\r\n\t}\r\n\treturn F(f.a * g.a, f.a * g.b + f.b);\r\n}\r\n\r\n\
-    int main() {\r\n\tios::sync_with_stdio(false);\r\n\tcin.tie(0);\r\n\tint n, q;\r\
-    \n\tcin >> n >> q;\r\n\tvector<S> a(n);\r\n\tfor(int i = 0; i < n; i++) {\r\n\t\
-    \tcin >> a[i].sum;\r\n\t\ta[i].size = 1;\r\n\t}\r\n\tlazy_segtree<S, e, op, F,\
-    \ id, mapping, composition> seg(a);\r\n\twhile(q--) {\r\n\t\tint type, l;\r\n\t\
-    \tcin >> type >> l;\r\n\t\tif(type == 0) {\r\n\t\t\tint r;\r\n\t\t\tmint a, b;\r\
+    \ a, int b = 1) : sum(a), size(b) {}\r\n};\r\n\r\nS e() { return S(); }\r\n\r\n\
+    S op(S a, S b) {\r\n\ta.sum += b.sum;\r\n\ta.size += b.size;\r\n\treturn a;\r\n\
+    }\r\n\r\nstruct F {\r\n\tmint a, b;\r\n\tbool bad = true;\r\n\r\n\tF() {}\r\n\t\
+    F(mint x, mint y) : a(x), b(y), bad(false) {}\r\n};\r\n\r\nF id() { return F();\
+    \ }\r\n\r\nS mapping(F f, S s) {\r\n\tif(f.bad || s.size == 0) {\r\n\t\treturn\
+    \ s;\r\n\t}\r\n\ts.sum = f.a * s.sum + f.b * s.size;\r\n\treturn s;\r\n}\r\n\r\
+    \nF composition(F f, F g) {\r\n\tif(f.bad || g.bad) {\r\n\t\treturn f.bad ? g\
+    \ : f;\r\n\t}\r\n\treturn F(f.a * g.a, f.a * g.b + f.b);\r\n}\r\n\r\nint main()\
+    \ {\r\n\tios::sync_with_stdio(false);\r\n\tcin.tie(0);\r\n\tint n, q;\r\n\tcin\
+    \ >> n >> q;\r\n\tvector<S> a(n);\r\n\tfor(int i = 0; i < n; i++) {\r\n\t\tcin\
+    \ >> a[i].sum;\r\n\t\ta[i].size = 1;\r\n\t}\r\n\tlazy_segtree<S, e, op, F, id,\
+    \ mapping, composition> seg(a);\r\n\twhile(q--) {\r\n\t\tint type, l;\r\n\t\t\
+    cin >> type >> l;\r\n\t\tif(type == 0) {\r\n\t\t\tint r;\r\n\t\t\tmint a, b;\r\
     \n\t\t\tcin >> r >> a >> b;\r\n\t\t\tseg.apply(l, r, F(a, b));\r\n\t\t} else {\r\
     \n\t\t\tcout << seg[l].sum << \"\\n\";\r\n\t\t}\r\n\t}\r\n\treturn 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_affine_point_get\"\
@@ -227,14 +227,14 @@ data:
     \r\n#include \"../../../library/modint/modint.hpp\"\r\nusing namespace std;\r\n\
     using namespace felix;\r\n\r\nusing mint = modint998244353;\r\n\r\nstruct S {\r\
     \n\tmint sum;\r\n\tint size = 0;\r\n\r\n\tS() {}\r\n\tS(mint a, int b = 1) : sum(a),\
-    \ size(b) {}\r\n};\r\n\r\nS e() {\r\n\treturn S();\r\n}\r\n\r\nS op(S a, S b)\
-    \ {\r\n\ta.sum += b.sum;\r\n\ta.size += b.size;\r\n\treturn a;\r\n}\r\n\r\nstruct\
-    \ F {\r\n\tmint a, b;\r\n\tbool bad = true;\r\n\r\n\tF() {}\r\n\tF(mint x, mint\
-    \ y) : a(x), b(y), bad(false) {}\r\n};\r\n\r\nF id() {\r\n\treturn F();\r\n}\r\
-    \n\r\nS mapping(F f, S s) {\r\n\tif(f.bad || s.size == 0) {\r\n\t\treturn s;\r\
-    \n\t}\r\n\ts.sum = f.a * s.sum + f.b * s.size;\r\n\treturn s;\r\n}\r\n\r\nF composition(F\
-    \ f, F g) {\r\n\tif(f.bad || g.bad) {\r\n\t\treturn f.bad ? g : f;\r\n\t}\r\n\t\
-    return F(f.a * g.a, f.a * g.b + f.b);\r\n}\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\
+    \ size(b) {}\r\n};\r\n\r\nS e() { return S(); }\r\n\r\nS op(S a, S b) {\r\n\t\
+    a.sum += b.sum;\r\n\ta.size += b.size;\r\n\treturn a;\r\n}\r\n\r\nstruct F {\r\
+    \n\tmint a, b;\r\n\tbool bad = true;\r\n\r\n\tF() {}\r\n\tF(mint x, mint y) :\
+    \ a(x), b(y), bad(false) {}\r\n};\r\n\r\nF id() { return F(); }\r\n\r\nS mapping(F\
+    \ f, S s) {\r\n\tif(f.bad || s.size == 0) {\r\n\t\treturn s;\r\n\t}\r\n\ts.sum\
+    \ = f.a * s.sum + f.b * s.size;\r\n\treturn s;\r\n}\r\n\r\nF composition(F f,\
+    \ F g) {\r\n\tif(f.bad || g.bad) {\r\n\t\treturn f.bad ? g : f;\r\n\t}\r\n\treturn\
+    \ F(f.a * g.a, f.a * g.b + f.b);\r\n}\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\
     \n\tcin.tie(0);\r\n\tint n, q;\r\n\tcin >> n >> q;\r\n\tvector<S> a(n);\r\n\t\
     for(int i = 0; i < n; i++) {\r\n\t\tcin >> a[i].sum;\r\n\t\ta[i].size = 1;\r\n\
     \t}\r\n\tlazy_segtree<S, e, op, F, id, mapping, composition> seg(a);\r\n\twhile(q--)\
@@ -251,7 +251,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/Data-Structure/Range-Affine-Point-Get.test.cpp
   requiredBy: []
-  timestamp: '2023-05-16 05:38:44+08:00'
+  timestamp: '2023-05-19 01:47:33+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Data-Structure/Range-Affine-Point-Get.test.cpp

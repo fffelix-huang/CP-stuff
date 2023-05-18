@@ -6,8 +6,8 @@ data:
     title: library/math/safe-mod.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
-    path: library/convolution/NTT.hpp
-    title: library/convolution/NTT.hpp
+    path: library/convolution/ntt.hpp
+    title: library/convolution/ntt.hpp
   - icon: ':heavy_check_mark:'
     path: library/formal-power-series/poly.hpp
     title: library/formal-power-series/poly.hpp
@@ -86,7 +86,7 @@ data:
   isVerificationFile: false
   path: library/math/pow-mod-constexpr.hpp
   requiredBy:
-  - library/convolution/NTT.hpp
+  - library/convolution/ntt.hpp
   - library/math/factorize.hpp
   - library/math/is-prime.hpp
   - library/formal-power-series/poly.hpp

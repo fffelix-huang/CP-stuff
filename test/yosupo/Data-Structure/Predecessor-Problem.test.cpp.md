@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: library/data-structure/VEBtree.hpp
-    title: Van Emde Boas Tree
+    path: library/data-structure/vebtree.hpp
+    title: library/data-structure/vebtree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -16,7 +16,7 @@ data:
     - https://judge.yosupo.jp/problem/predecessor_problem
   bundledCode: "#line 1 \"test/yosupo/Data-Structure/Predecessor-Problem.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/predecessor_problem\"\r\n\r\
-    \n#include <iostream>\r\n#line 2 \"library/data-structure/VEBtree.hpp\"\n#include\
+    \n#include <iostream>\r\n#line 2 \"library/data-structure/vebtree.hpp\"\n#include\
     \ <array>\r\n#include <type_traits>\r\n\r\nnamespace felix {\r\n\r\ntemplate<int\
     \ B, typename ENABLE = void>\r\nstruct VEBtree {\r\nprivate:\r\n\tconstexpr static\
     \ int K = B / 2, R = (B + 1) / 2, M = (1 << B);\r\n\tconstexpr static int S =\
@@ -69,7 +69,7 @@ data:
     \tans = -1;\r\n\t\t\t}\r\n\t\t\tcout << ans << \"\\n\";\r\n\t\t} else {\r\n\t\t\
     \tcout << tree.find_prev(x) << \"\\n\";\r\n\t\t}\r\n\t}\r\n\treturn 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/predecessor_problem\"\r\
-    \n\r\n#include <iostream>\r\n#include \"../../../library/data-structure/VEBtree.hpp\"\
+    \n\r\n#include <iostream>\r\n#include \"../../../library/data-structure/vebtree.hpp\"\
     \r\nusing namespace std;\r\nusing namespace felix;\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\
     \n\tcin.tie(0);\r\n\tint n, q;\r\n\tcin >> n >> q;\r\n\tVEBtree<24> tree;\r\n\t\
     string s;\r\n\tcin >> s;\r\n\tfor(int i = 0; i < n; i++) {\r\n\t\tif(s[i] == '1')\
@@ -81,11 +81,11 @@ data:
     \tans = -1;\r\n\t\t\t}\r\n\t\t\tcout << ans << \"\\n\";\r\n\t\t} else {\r\n\t\t\
     \tcout << tree.find_prev(x) << \"\\n\";\r\n\t\t}\r\n\t}\r\n\treturn 0;\r\n}\r\n"
   dependsOn:
-  - library/data-structure/VEBtree.hpp
+  - library/data-structure/vebtree.hpp
   isVerificationFile: true
   path: test/yosupo/Data-Structure/Predecessor-Problem.test.cpp
   requiredBy: []
-  timestamp: '2023-05-16 00:21:35+08:00'
+  timestamp: '2023-05-19 01:47:33+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Data-Structure/Predecessor-Problem.test.cpp

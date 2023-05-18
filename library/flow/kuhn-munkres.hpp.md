@@ -11,14 +11,14 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"library/flow/KM.hpp\"\n#include <vector>\r\n#include <algorithm>\r\
-    \n#include <queue>\r\n#include <limits>\r\n#include <cassert>\r\n\r\nnamespace\
-    \ felix {\r\n\r\ntemplate<class T>\r\nstruct KM {\r\n\tstatic constexpr T INF\
-    \ = std::numeric_limits<T>::max() / 2;\r\n\t\r\npublic:\r\n\tKM() : n(0) {}\r\n\
-    \texplicit KM(int n) : n(n), w(n, std::vector<T>(n, -INF)), lx(n), ly(n), slack(n),\
-    \ xy(n), yx(n), pre(n), visx(n), visy(n) {}\r\n\r\n\tvoid add_edge(int u, int\
-    \ v, T x) {\r\n\t\tw[u][v] = std::max(w[u][v], x);\r\n\t}\r\n\r\n\tvoid bfs(int\
-    \ s) {\r\n\t\tstd::fill(slack.begin(), slack.end(), INF);\r\n\t\tstd::fill(visx.begin(),\
+  bundledCode: "#line 2 \"library/flow/kuhn-munkres.hpp\"\n#include <vector>\r\n#include\
+    \ <algorithm>\r\n#include <queue>\r\n#include <limits>\r\n#include <cassert>\r\
+    \n\r\nnamespace felix {\r\n\r\ntemplate<class T>\r\nstruct KM {\r\n\tstatic constexpr\
+    \ T INF = std::numeric_limits<T>::max() / 2;\r\n\t\r\npublic:\r\n\tKM() : n(0)\
+    \ {}\r\n\texplicit KM(int n) : n(n), w(n, std::vector<T>(n, -INF)), lx(n), ly(n),\
+    \ slack(n), xy(n), yx(n), pre(n), visx(n), visy(n) {}\r\n\r\n\tvoid add_edge(int\
+    \ u, int v, T x) {\r\n\t\tw[u][v] = std::max(w[u][v], x);\r\n\t}\r\n\r\n\tvoid\
+    \ bfs(int s) {\r\n\t\tstd::fill(slack.begin(), slack.end(), INF);\r\n\t\tstd::fill(visx.begin(),\
     \ visx.end(), false);\r\n\t\tstd::fill(visy.begin(), visy.end(), false);\r\n\t\
     \tstd::queue<int> que;\r\n\t\tque.push(s);\r\n\t\tvisy[s] = true;\r\n\t\tauto\
     \ check = [&](int x) -> bool {\r\n\t\t\tvisx[x] = true;\r\n\t\t\tif(xy[x] != -1)\
@@ -84,16 +84,16 @@ data:
     \ visy;\r\n};\r\n\r\n} // namespace felix\r\n"
   dependsOn: []
   isVerificationFile: false
-  path: library/flow/KM.hpp
+  path: library/flow/kuhn-munkres.hpp
   requiredBy: []
-  timestamp: '2023-04-26 13:58:13+08:00'
+  timestamp: '2023-05-19 01:26:35+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/Graph/Assignment-Problem.test.cpp
-documentation_of: library/flow/KM.hpp
+documentation_of: library/flow/kuhn-munkres.hpp
 layout: document
 redirect_from:
-- /library/library/flow/KM.hpp
-- /library/library/flow/KM.hpp.html
-title: library/flow/KM.hpp
+- /library/library/flow/kuhn-munkres.hpp
+- /library/library/flow/kuhn-munkres.hpp.html
+title: library/flow/kuhn-munkres.hpp
 ---

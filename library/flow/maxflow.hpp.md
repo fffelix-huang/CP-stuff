@@ -11,14 +11,14 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"library/flow/Dinic.hpp\"\n#include <vector>\n#include <cassert>\n\
-    #include <queue>\n#include <limits>\n\nnamespace felix {\n\ntemplate <class Cap_t>\n\
-    struct Dinic {\npublic:\n\tDinic() : n(0) {}\n\texplicit Dinic(int _n) : n(_n),\
-    \ g(_n), level(_n), iter(_n) {}\n\n\tint add_edge(int from, int to, Cap_t cap)\
-    \ {\n\t\tassert(0 <= from && from < n);\n\t\tassert(0 <= to && to < n);\n\t\t\
-    assert(0 <= cap);\n\t\tint m = (int) pos.size();\n\t\tpos.push_back({from, (int)\
-    \ g[from].size()});\n\t\tint from_id = (int) g[from].size();\n\t\tint to_id =\
-    \ (int) g[to].size();\n\t\tif(from == to) to_id++;\n\t\tg[from].push_back(_edge{to,\
+  bundledCode: "#line 2 \"library/flow/maxflow.hpp\"\n#include <vector>\n#include\
+    \ <cassert>\n#include <queue>\n#include <limits>\n\nnamespace felix {\n\ntemplate\
+    \ <class Cap_t>\nstruct maxflow {\npublic:\n\tmaxflow() : n(0) {}\n\texplicit\
+    \ maxflow(int _n) : n(_n), g(_n), level(_n), iter(_n) {}\n\n\tint add_edge(int\
+    \ from, int to, Cap_t cap) {\n\t\tassert(0 <= from && from < n);\n\t\tassert(0\
+    \ <= to && to < n);\n\t\tassert(0 <= cap);\n\t\tint m = (int) pos.size();\n\t\t\
+    pos.push_back({from, (int) g[from].size()});\n\t\tint from_id = (int) g[from].size();\n\
+    \t\tint to_id = (int) g[to].size();\n\t\tif(from == to) to_id++;\n\t\tg[from].push_back(_edge{to,\
     \ to_id, cap});\n\t\tg[to].push_back(_edge{from, from_id, 0});\n\t\treturn m;\n\
     \t}\n\n\tstruct edge {\n\t\tint from, to;\n\t\tCap_t cap, flow;\n\t};\n\n\tedge\
     \ get_edge(int i) {\n\t\tint m = (int) pos.size();\n\t\tassert(0 <= i && i < m);\n\
@@ -58,18 +58,18 @@ data:
     \ int>> pos;\n\tstd::vector<std::vector<_edge>> g;\n\tstd::vector<int> level,\
     \ iter;\n};\n\n} // namespace felix\n"
   code: "#pragma once\n#include <vector>\n#include <cassert>\n#include <queue>\n#include\
-    \ <limits>\n\nnamespace felix {\n\ntemplate <class Cap_t>\nstruct Dinic {\npublic:\n\
-    \tDinic() : n(0) {}\n\texplicit Dinic(int _n) : n(_n), g(_n), level(_n), iter(_n)\
-    \ {}\n\n\tint add_edge(int from, int to, Cap_t cap) {\n\t\tassert(0 <= from &&\
-    \ from < n);\n\t\tassert(0 <= to && to < n);\n\t\tassert(0 <= cap);\n\t\tint m\
-    \ = (int) pos.size();\n\t\tpos.push_back({from, (int) g[from].size()});\n\t\t\
-    int from_id = (int) g[from].size();\n\t\tint to_id = (int) g[to].size();\n\t\t\
-    if(from == to) to_id++;\n\t\tg[from].push_back(_edge{to, to_id, cap});\n\t\tg[to].push_back(_edge{from,\
-    \ from_id, 0});\n\t\treturn m;\n\t}\n\n\tstruct edge {\n\t\tint from, to;\n\t\t\
-    Cap_t cap, flow;\n\t};\n\n\tedge get_edge(int i) {\n\t\tint m = (int) pos.size();\n\
-    \t\tassert(0 <= i && i < m);\n\t\tauto _e = g[pos[i].first][pos[i].second];\n\t\
-    \tauto _re = g[_e.to][_e.rev];\n\t\treturn edge{pos[i].first, _e.to, _e.cap +\
-    \ _re.cap, _re.cap};\n\t}\n\n\tstd::vector<edge> edges() {\n\t\tint m = (int)\
+    \ <limits>\n\nnamespace felix {\n\ntemplate <class Cap_t>\nstruct maxflow {\n\
+    public:\n\tmaxflow() : n(0) {}\n\texplicit maxflow(int _n) : n(_n), g(_n), level(_n),\
+    \ iter(_n) {}\n\n\tint add_edge(int from, int to, Cap_t cap) {\n\t\tassert(0 <=\
+    \ from && from < n);\n\t\tassert(0 <= to && to < n);\n\t\tassert(0 <= cap);\n\t\
+    \tint m = (int) pos.size();\n\t\tpos.push_back({from, (int) g[from].size()});\n\
+    \t\tint from_id = (int) g[from].size();\n\t\tint to_id = (int) g[to].size();\n\
+    \t\tif(from == to) to_id++;\n\t\tg[from].push_back(_edge{to, to_id, cap});\n\t\
+    \tg[to].push_back(_edge{from, from_id, 0});\n\t\treturn m;\n\t}\n\n\tstruct edge\
+    \ {\n\t\tint from, to;\n\t\tCap_t cap, flow;\n\t};\n\n\tedge get_edge(int i) {\n\
+    \t\tint m = (int) pos.size();\n\t\tassert(0 <= i && i < m);\n\t\tauto _e = g[pos[i].first][pos[i].second];\n\
+    \t\tauto _re = g[_e.to][_e.rev];\n\t\treturn edge{pos[i].first, _e.to, _e.cap\
+    \ + _re.cap, _re.cap};\n\t}\n\n\tstd::vector<edge> edges() {\n\t\tint m = (int)\
     \ pos.size();\n\t\tstd::vector<edge> result;\n\t\tfor(int i = 0; i < m; i++) {\
     \ result.push_back(get_edge(i)); }\n\t\treturn result;\n\t}\n\n\tvoid change_edge(int\
     \ i, Cap_t new_cap, Cap_t new_flow) {\n\t\tint m = (int) pos.size();\n\t\tassert(0\
@@ -105,16 +105,16 @@ data:
     \ iter;\n};\n\n} // namespace felix\n"
   dependsOn: []
   isVerificationFile: false
-  path: library/flow/Dinic.hpp
+  path: library/flow/maxflow.hpp
   requiredBy: []
-  timestamp: '2023-05-01 21:24:33+08:00'
+  timestamp: '2023-05-19 01:26:35+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/grl/Maximum-Flow.test.cpp
-documentation_of: library/flow/Dinic.hpp
+documentation_of: library/flow/maxflow.hpp
 layout: document
 redirect_from:
-- /library/library/flow/Dinic.hpp
-- /library/library/flow/Dinic.hpp.html
-title: library/flow/Dinic.hpp
+- /library/library/flow/maxflow.hpp
+- /library/library/flow/maxflow.hpp.html
+title: library/flow/maxflow.hpp
 ---

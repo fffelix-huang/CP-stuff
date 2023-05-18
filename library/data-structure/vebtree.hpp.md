@@ -11,7 +11,7 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"library/data-structure/VEBtree.hpp\"\n#include <array>\r\
+  bundledCode: "#line 2 \"library/data-structure/vebtree.hpp\"\n#include <array>\r\
     \n#include <type_traits>\r\n\r\nnamespace felix {\r\n\r\ntemplate<int B, typename\
     \ ENABLE = void>\r\nstruct VEBtree {\r\nprivate:\r\n\tconstexpr static int K =\
     \ B / 2, R = (B + 1) / 2, M = (1 << B);\r\n\tconstexpr static int S = 1 << K,\
@@ -96,35 +96,16 @@ data:
     \n\t}\r\n};\r\n\r\n} // namespace felix\r\n"
   dependsOn: []
   isVerificationFile: false
-  path: library/data-structure/VEBtree.hpp
+  path: library/data-structure/vebtree.hpp
   requiredBy: []
-  timestamp: '2023-05-16 00:21:35+08:00'
+  timestamp: '2023-05-19 01:47:33+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/Data-Structure/Predecessor-Problem.test.cpp
-documentation_of: library/data-structure/VEBtree.hpp
+documentation_of: library/data-structure/vebtree.hpp
 layout: document
-title: Van Emde Boas Tree
+redirect_from:
+- /library/library/data-structure/vebtree.hpp
+- /library/library/data-structure/vebtree.hpp.html
+title: library/data-structure/vebtree.hpp
 ---
-
-## 簡介
-
-操作與 `std::set<int>` 相同，但操作的複雜度為 $O(\log \log n)$，其中 $n$ 是數字的值域。
-
-## 使用方法
-```cpp
-VEBtree<24> tree; // [0, 2^24)
-
-int a;
-tree.insert(a);
-tree.erase(a);
-bool has_a = tree.contains(a);
-bool is_empty = tree.empty();
-tree.clear();
-
-int prev = tree.find_prev(a); // <= a 的最大元素 (-1 代表不存在)
-int next = tree.find_next(a); // >= a 的最小元素 (N 代表不存在)
-```
-
-## Reference
-[算法导论-van Emde Boas树](https://blog.csdn.net/hxlove123456/article/details/78324114)

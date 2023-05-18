@@ -5,8 +5,8 @@ data:
     path: library/data-structure/sparse-table.hpp
     title: library/data-structure/sparse-table.hpp
   - icon: ':heavy_check_mark:'
-    path: library/tree/HLD.hpp
-    title: "Heavy Light Decomposition (\u8F15\u91CD\u93C8\u5256\u5206)"
+    path: library/tree/heavy-light-decomposition.hpp
+    title: library/tree/heavy-light-decomposition.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -19,22 +19,22 @@ data:
     - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_5_C
   bundledCode: "#line 1 \"test/aoj/grl/Lowest-Common-Ancestor.test.cpp\"\n#define\
     \ PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_5_C\"\
-    \r\n\r\n#include <iostream>\r\n#line 2 \"library/tree/HLD.hpp\"\n#include <vector>\r\
-    \n#include <array>\r\n#include <cassert>\r\n#include <algorithm>\r\n#include <cmath>\r\
-    \n#line 4 \"library/data-structure/sparse-table.hpp\"\n\nnamespace felix {\n\n\
-    template<class T, T (*op)(T, T)>\nstruct sparse_table {\npublic:\n\tsparse_table()\
-    \ {}\n\texplicit sparse_table(const std::vector<T>& a) {\n\t\tn = (int) a.size();\n\
-    \t\tint max_log = std::__lg(n) + 1;\n\t\tmat.resize(max_log);\n\t\tmat[0] = a;\n\
-    \t\tfor(int j = 1; j < max_log; ++j) {\n\t\t\tmat[j].resize(n - (1 << j) + 1);\n\
-    \t\t\tfor(int i = 0; i <= n - (1 << j); ++i) {\n\t\t\t\tmat[j][i] = op(mat[j -\
-    \ 1][i], mat[j - 1][i + (1 << (j - 1))]);\n\t\t\t}\n\t\t}\n\t}\n\n\tinline T prod(int\
-    \ from, int to) const {\n\t\tassert(0 <= from && from <= to && to <= n - 1);\n\
-    \t\tint lg = std::__lg(to - from + 1);\n\t\treturn op(mat[lg][from], mat[lg][to\
-    \ - (1 << lg) + 1]);\n\t}\n\nprivate:\n\tint n;\n\tstd::vector<std::vector<T>>\
-    \ mat;\n};\n\n} // namespace felix\n#line 8 \"library/tree/HLD.hpp\"\n\r\nnamespace\
-    \ felix {\r\n\r\nstruct HLD {\r\nprivate:\r\n\tstatic constexpr std::pair<int,\
-    \ int> __lca_op(std::pair<int, int> a, std::pair<int, int> b) {\r\n\t\treturn\
-    \ std::min(a, b);\r\n\t}\r\n\r\npublic:\r\n\tint n;\r\n\tstd::vector<std::vector<int>>\
+    \r\n\r\n#include <iostream>\r\n#line 2 \"library/tree/heavy-light-decomposition.hpp\"\
+    \n#include <vector>\r\n#include <array>\r\n#include <cassert>\r\n#include <algorithm>\r\
+    \n#include <cmath>\r\n#line 4 \"library/data-structure/sparse-table.hpp\"\n\n\
+    namespace felix {\n\ntemplate<class T, T (*op)(T, T)>\nstruct sparse_table {\n\
+    public:\n\tsparse_table() {}\n\texplicit sparse_table(const std::vector<T>& a)\
+    \ {\n\t\tn = (int) a.size();\n\t\tint max_log = std::__lg(n) + 1;\n\t\tmat.resize(max_log);\n\
+    \t\tmat[0] = a;\n\t\tfor(int j = 1; j < max_log; ++j) {\n\t\t\tmat[j].resize(n\
+    \ - (1 << j) + 1);\n\t\t\tfor(int i = 0; i <= n - (1 << j); ++i) {\n\t\t\t\tmat[j][i]\
+    \ = op(mat[j - 1][i], mat[j - 1][i + (1 << (j - 1))]);\n\t\t\t}\n\t\t}\n\t}\n\n\
+    \tinline T prod(int from, int to) const {\n\t\tassert(0 <= from && from <= to\
+    \ && to <= n - 1);\n\t\tint lg = std::__lg(to - from + 1);\n\t\treturn op(mat[lg][from],\
+    \ mat[lg][to - (1 << lg) + 1]);\n\t}\n\nprivate:\n\tint n;\n\tstd::vector<std::vector<T>>\
+    \ mat;\n};\n\n} // namespace felix\n#line 8 \"library/tree/heavy-light-decomposition.hpp\"\
+    \n\r\nnamespace felix {\r\n\r\nstruct HLD {\r\nprivate:\r\n\tstatic constexpr\
+    \ std::pair<int, int> __lca_op(std::pair<int, int> a, std::pair<int, int> b) {\r\
+    \n\t\treturn std::min(a, b);\r\n\t}\r\n\r\npublic:\r\n\tint n;\r\n\tstd::vector<std::vector<int>>\
     \ g;\r\n\tstd::vector<int> subtree_size;\r\n\tstd::vector<int> parent;\r\n\tstd::vector<int>\
     \ depth;\r\n\tstd::vector<int> top;\r\n\tstd::vector<int> tour;\r\n\tstd::vector<int>\
     \ first_occurrence;\r\n\tstd::vector<int> id;\r\n\tstd::vector<std::pair<int,\
@@ -100,8 +100,8 @@ data:
     int u, v;\r\n\t\tcin >> u >> v;\r\n\t\tcout << hld.get_lca(u, v) << \"\\n\";\r\
     \n\t}\r\n\treturn 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_5_C\"\
-    \r\n\r\n#include <iostream>\r\n#include \"../../../library/tree/HLD.hpp\"\r\n\
-    using namespace std;\r\nusing namespace felix;\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\
+    \r\n\r\n#include <iostream>\r\n#include \"../../../library/tree/heavy-light-decomposition.hpp\"\
+    \r\nusing namespace std;\r\nusing namespace felix;\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\
     \n\tcin.tie(0);\r\n\tint n;\r\n\tcin >> n;\r\n\tHLD hld(n);\r\n\tfor(int i = 0;\
     \ i < n; i++) {\r\n\t\tint m;\r\n\t\tcin >> m;\r\n\t\tfor(int j = 0; j < m; j++)\
     \ {\r\n\t\t\tint x;\r\n\t\t\tcin >> x;\r\n\t\t\thld.add_edge(i, x);\r\n\t\t}\r\
@@ -109,12 +109,12 @@ data:
     int u, v;\r\n\t\tcin >> u >> v;\r\n\t\tcout << hld.get_lca(u, v) << \"\\n\";\r\
     \n\t}\r\n\treturn 0;\r\n}\r\n"
   dependsOn:
-  - library/tree/HLD.hpp
+  - library/tree/heavy-light-decomposition.hpp
   - library/data-structure/sparse-table.hpp
   isVerificationFile: true
   path: test/aoj/grl/Lowest-Common-Ancestor.test.cpp
   requiredBy: []
-  timestamp: '2023-05-15 01:11:19+08:00'
+  timestamp: '2023-05-19 01:47:33+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/grl/Lowest-Common-Ancestor.test.cpp

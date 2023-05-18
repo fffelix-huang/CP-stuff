@@ -1,33 +1,16 @@
 ---
 data:
   libraryCategories:
-  - name: library/DSU
-    pages:
-    - icon: ':heavy_check_mark:'
-      path: library/DSU/DSU.hpp
-      title: library/DSU/DSU.hpp
-    - icon: ':warning:'
-      path: library/DSU/rollback-DSU.hpp
-      title: library/DSU/rollback-DSU.hpp
-    - icon: ':warning:'
-      path: library/DSU/weighted-DSU.hpp
-      title: library/DSU/weighted-DSU.hpp
   - name: library/convolution
     pages:
     - icon: ':heavy_check_mark:'
-      path: library/convolution/NTT.hpp
-      title: library/convolution/NTT.hpp
+      path: library/convolution/ntt.hpp
+      title: library/convolution/ntt.hpp
     - icon: ':heavy_check_mark:'
       path: library/convolution/subset-convolution.hpp
       title: library/convolution/subset-convolution.hpp
   - name: library/data-structure
     pages:
-    - icon: ':heavy_check_mark:'
-      path: library/data-structure/PBDS.hpp
-      title: library/data-structure/PBDS.hpp
-    - icon: ':heavy_check_mark:'
-      path: library/data-structure/VEBtree.hpp
-      title: Van Emde Boas Tree
     - icon: ':heavy_check_mark:'
       path: library/data-structure/binary-trie.hpp
       title: library/data-structure/binary-trie.hpp
@@ -52,6 +35,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/data-structure/offline-rectangle-sum.hpp
       title: library/data-structure/offline-rectangle-sum.hpp
+    - icon: ':warning:'
+      path: library/data-structure/pbds.hpp
+      title: library/data-structure/pbds.hpp
     - icon: ':heavy_check_mark:'
       path: library/data-structure/segtree.hpp
       title: library/data-structure/segtree.hpp
@@ -59,19 +45,19 @@ data:
       path: library/data-structure/sparse-table.hpp
       title: library/data-structure/sparse-table.hpp
     - icon: ':heavy_check_mark:'
+      path: library/data-structure/vebtree.hpp
+      title: library/data-structure/vebtree.hpp
+    - icon: ':heavy_check_mark:'
       path: library/data-structure/wavelet-tree.hpp
       title: "Wavelet Tree (\u975C\u614B\u5340\u9593\u7B2C $k$ \u5927)"
   - name: library/flow
     pages:
     - icon: ':heavy_check_mark:'
-      path: library/flow/Dinic.hpp
-      title: library/flow/Dinic.hpp
+      path: library/flow/kuhn-munkres.hpp
+      title: library/flow/kuhn-munkres.hpp
     - icon: ':heavy_check_mark:'
-      path: library/flow/KM.hpp
-      title: library/flow/KM.hpp
-    - icon: ':heavy_check_mark:'
-      path: library/flow/MCMF.hpp
-      title: library/flow/MCMF.hpp
+      path: library/flow/maxflow.hpp
+      title: library/flow/maxflow.hpp
   - name: library/formal-power-series
     pages:
     - icon: ':heavy_check_mark:'
@@ -94,9 +80,6 @@ data:
   - name: library/graph
     pages:
     - icon: ':heavy_check_mark:'
-      path: library/graph/SCC.hpp
-      title: library/graph/SCC.hpp
-    - icon: ':heavy_check_mark:'
       path: library/graph/bipartite-matching.hpp
       title: library/graph/bipartite-matching.hpp
     - icon: ':heavy_check_mark:'
@@ -105,6 +88,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/graph/lowlink.hpp
       title: library/graph/lowlink.hpp
+    - icon: ':heavy_check_mark:'
+      path: library/graph/strongly-connected-components.hpp
+      title: library/graph/strongly-connected-components.hpp
   - name: library/math
     pages:
     - icon: ':heavy_check_mark:'
@@ -113,7 +99,7 @@ data:
     - icon: ':warning:'
       path: library/math/crt.hpp
       title: "Chinese Remainder Theorem (\u4E2D\u570B\u5269\u9918\u5B9A\u7406)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':warning:'
       path: library/math/discrete-log.hpp
       title: "Discrete Log (\u96E2\u6563\u5C0D\u6578 $a^x \\equiv b \\pmod m$)"
     - icon: ':heavy_check_mark:'
@@ -164,7 +150,7 @@ data:
       title: library/misc/type-traits.hpp
   - name: library/modint
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':warning:'
       path: library/modint/barrett.hpp
       title: library/modint/barrett.hpp
     - icon: ':question:'
@@ -187,9 +173,6 @@ data:
   - name: library/string
     pages:
     - icon: ':heavy_check_mark:'
-      path: library/string/KMP.hpp
-      title: library/string/KMP.hpp
-    - icon: ':heavy_check_mark:'
       path: library/string/suffix-array.hpp
       title: Suffix Array
     - icon: ':heavy_check_mark:'
@@ -198,15 +181,15 @@ data:
   - name: library/tree
     pages:
     - icon: ':heavy_check_mark:'
-      path: library/tree/HLD.hpp
-      title: "Heavy Light Decomposition (\u8F15\u91CD\u93C8\u5256\u5206)"
+      path: library/tree/heavy-light-decomposition.hpp
+      title: library/tree/heavy-light-decomposition.hpp
     - icon: ':warning:'
       path: library/tree/prufer.hpp
       title: library/tree/prufer.hpp
   verificationCategories:
   - name: test/aoj/alds1
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/alds1/String-Search.test.cpp
       title: test/aoj/alds1/String-Search.test.cpp
   - name: test/aoj/cgl
@@ -225,7 +208,7 @@ data:
       title: test/aoj/cgl/Intersection.test.cpp
   - name: test/aoj/dsl
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/dsl/Disjoint-Set-Union-Find-Tree.test.cpp
       title: test/aoj/dsl/Disjoint-Set-Union-Find-Tree.test.cpp
     - icon: ':heavy_check_mark:'
@@ -275,7 +258,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/grl/Maximum-Flow.test.cpp
       title: test/aoj/grl/Maximum-Flow.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/grl/Minimum-Cost-Flow.test.cpp
       title: test/aoj/grl/Minimum-Cost-Flow.test.cpp
     - icon: ':heavy_check_mark:'
@@ -328,7 +311,7 @@ data:
       title: test/yosupo/Convolution/Subset-Convolution.test.cpp
   - name: test/yosupo/Data-Structure
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/Data-Structure/Associative-Array.test.cpp
       title: test/yosupo/Data-Structure/Associative-Array.test.cpp
     - icon: ':heavy_check_mark:'
@@ -376,13 +359,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/Data-Structure/Static-RMQ.test.cpp
       title: test/yosupo/Data-Structure/Static-RMQ.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/Data-Structure/Static-Range-Frequency.test.cpp
       title: test/yosupo/Data-Structure/Static-Range-Frequency.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/Data-Structure/Static-Range-Sum.test.cpp
       title: test/yosupo/Data-Structure/Static-Range-Sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/Data-Structure/Unionfind.test.cpp
       title: test/yosupo/Data-Structure/Unionfind.test.cpp
     - icon: ':heavy_check_mark:'
@@ -429,7 +412,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/Math/2-Sat.test.cpp
       title: test/yosupo/Math/2-Sat.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/Math/Discrete-Logarithm.test.cpp
       title: test/yosupo/Math/Discrete-Logarithm.test.cpp
     - icon: ':heavy_check_mark:'

@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: library/flow/KM.hpp
-    title: library/flow/KM.hpp
+    path: library/flow/kuhn-munkres.hpp
+    title: library/flow/kuhn-munkres.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -16,7 +16,7 @@ data:
     - https://judge.yosupo.jp/problem/assignment
   bundledCode: "#line 1 \"test/yosupo/Graph/Assignment-Problem.test.cpp\"\n#define\
     \ PROBLEM \"https://judge.yosupo.jp/problem/assignment\"\r\n\r\n#include <iostream>\r\
-    \n#line 2 \"library/flow/KM.hpp\"\n#include <vector>\r\n#include <algorithm>\r\
+    \n#line 2 \"library/flow/kuhn-munkres.hpp\"\n#include <vector>\r\n#include <algorithm>\r\
     \n#include <queue>\r\n#include <limits>\r\n#include <cassert>\r\n\r\nnamespace\
     \ felix {\r\n\r\ntemplate<class T>\r\nstruct KM {\r\n\tstatic constexpr T INF\
     \ = std::numeric_limits<T>::max() / 2;\r\n\t\r\npublic:\r\n\tKM() : n(0) {}\r\n\
@@ -59,19 +59,19 @@ data:
     \ << \"\\n\";\r\n\tfor(int i = 0; i < n; ++i) {\r\n\t\tcout << g.match(i) << \"\
     \ \\n\"[i == n - 1];\r\n\t}\r\n\treturn 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/assignment\"\r\n\r\n#include\
-    \ <iostream>\r\n#include \"../../../library/flow/KM.hpp\"\r\nusing namespace std;\r\
-    \nusing namespace felix;\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\
+    \ <iostream>\r\n#include \"../../../library/flow/kuhn-munkres.hpp\"\r\nusing namespace\
+    \ std;\r\nusing namespace felix;\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\
     \n\tcin.tie(0);\r\n\tint n;\r\n\tcin >> n;\r\n\tKM<long long> g(n);\r\n\tfor(int\
     \ i = 0; i < n; ++i) {\r\n\t\tfor(int j = 0; j < n; ++j) {\r\n\t\t\tint x;\r\n\
     \t\t\tcin >> x;\r\n\t\t\tg.add_edge(i, j, -x);\r\n\t\t}\r\n\t}\r\n\tcout << -g.solve()\
     \ << \"\\n\";\r\n\tfor(int i = 0; i < n; ++i) {\r\n\t\tcout << g.match(i) << \"\
     \ \\n\"[i == n - 1];\r\n\t}\r\n\treturn 0;\r\n}\r\n"
   dependsOn:
-  - library/flow/KM.hpp
+  - library/flow/kuhn-munkres.hpp
   isVerificationFile: true
   path: test/yosupo/Graph/Assignment-Problem.test.cpp
   requiredBy: []
-  timestamp: '2023-04-26 13:58:13+08:00'
+  timestamp: '2023-05-19 01:47:33+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Graph/Assignment-Problem.test.cpp

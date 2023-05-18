@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: library/flow/Dinic.hpp
-    title: library/flow/Dinic.hpp
+    path: library/flow/maxflow.hpp
+    title: library/flow/maxflow.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -16,14 +16,14 @@ data:
     - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_A
   bundledCode: "#line 1 \"test/aoj/grl/Maximum-Flow.test.cpp\"\n#define PROBLEM \"\
     https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_A\"\r\n\r\n#include\
-    \ <iostream>\r\n#line 2 \"library/flow/Dinic.hpp\"\n#include <vector>\n#include\
+    \ <iostream>\r\n#line 2 \"library/flow/maxflow.hpp\"\n#include <vector>\n#include\
     \ <cassert>\n#include <queue>\n#include <limits>\n\nnamespace felix {\n\ntemplate\
-    \ <class Cap_t>\nstruct Dinic {\npublic:\n\tDinic() : n(0) {}\n\texplicit Dinic(int\
-    \ _n) : n(_n), g(_n), level(_n), iter(_n) {}\n\n\tint add_edge(int from, int to,\
-    \ Cap_t cap) {\n\t\tassert(0 <= from && from < n);\n\t\tassert(0 <= to && to <\
-    \ n);\n\t\tassert(0 <= cap);\n\t\tint m = (int) pos.size();\n\t\tpos.push_back({from,\
-    \ (int) g[from].size()});\n\t\tint from_id = (int) g[from].size();\n\t\tint to_id\
-    \ = (int) g[to].size();\n\t\tif(from == to) to_id++;\n\t\tg[from].push_back(_edge{to,\
+    \ <class Cap_t>\nstruct maxflow {\npublic:\n\tmaxflow() : n(0) {}\n\texplicit\
+    \ maxflow(int _n) : n(_n), g(_n), level(_n), iter(_n) {}\n\n\tint add_edge(int\
+    \ from, int to, Cap_t cap) {\n\t\tassert(0 <= from && from < n);\n\t\tassert(0\
+    \ <= to && to < n);\n\t\tassert(0 <= cap);\n\t\tint m = (int) pos.size();\n\t\t\
+    pos.push_back({from, (int) g[from].size()});\n\t\tint from_id = (int) g[from].size();\n\
+    \t\tint to_id = (int) g[to].size();\n\t\tif(from == to) to_id++;\n\t\tg[from].push_back(_edge{to,\
     \ to_id, cap});\n\t\tg[to].push_back(_edge{from, from_id, 0});\n\t\treturn m;\n\
     \t}\n\n\tstruct edge {\n\t\tint from, to;\n\t\tCap_t cap, flow;\n\t};\n\n\tedge\
     \ get_edge(int i) {\n\t\tint m = (int) pos.size();\n\t\tassert(0 <= i && i < m);\n\
@@ -63,23 +63,23 @@ data:
     \ int>> pos;\n\tstd::vector<std::vector<_edge>> g;\n\tstd::vector<int> level,\
     \ iter;\n};\n\n} // namespace felix\n#line 5 \"test/aoj/grl/Maximum-Flow.test.cpp\"\
     \nusing namespace std;\r\nusing namespace felix;\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\
-    \n\tcin.tie(0);\r\n\tint n, m;\r\n\tcin >> n >> m;\r\n\tDinic<int> d(n);\r\n\t\
-    for(int i = 0; i < m; i++) {\r\n\t\tint u, v, w;\r\n\t\tcin >> u >> v >> w;\r\n\
-    \t\td.add_edge(u, v, w);\r\n\t}\r\n\tcout << d.flow(0, n - 1) << \"\\n\";\r\n\t\
-    return 0;\r\n}\r\n"
+    \n\tcin.tie(0);\r\n\tint n, m;\r\n\tcin >> n >> m;\r\n\tmaxflow<int> f(n);\r\n\
+    \tfor(int i = 0; i < m; i++) {\r\n\t\tint u, v, w;\r\n\t\tcin >> u >> v >> w;\r\
+    \n\t\tf.add_edge(u, v, w);\r\n\t}\r\n\tcout << f.flow(0, n - 1) << \"\\n\";\r\n\
+    \treturn 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_A\"\
-    \r\n\r\n#include <iostream>\r\n#include \"../../../library/flow/Dinic.hpp\"\r\n\
-    using namespace std;\r\nusing namespace felix;\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\
-    \n\tcin.tie(0);\r\n\tint n, m;\r\n\tcin >> n >> m;\r\n\tDinic<int> d(n);\r\n\t\
-    for(int i = 0; i < m; i++) {\r\n\t\tint u, v, w;\r\n\t\tcin >> u >> v >> w;\r\n\
-    \t\td.add_edge(u, v, w);\r\n\t}\r\n\tcout << d.flow(0, n - 1) << \"\\n\";\r\n\t\
-    return 0;\r\n}\r\n"
+    \r\n\r\n#include <iostream>\r\n#include \"../../../library/flow/maxflow.hpp\"\r\
+    \nusing namespace std;\r\nusing namespace felix;\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\
+    \n\tcin.tie(0);\r\n\tint n, m;\r\n\tcin >> n >> m;\r\n\tmaxflow<int> f(n);\r\n\
+    \tfor(int i = 0; i < m; i++) {\r\n\t\tint u, v, w;\r\n\t\tcin >> u >> v >> w;\r\
+    \n\t\tf.add_edge(u, v, w);\r\n\t}\r\n\tcout << f.flow(0, n - 1) << \"\\n\";\r\n\
+    \treturn 0;\r\n}\r\n"
   dependsOn:
-  - library/flow/Dinic.hpp
+  - library/flow/maxflow.hpp
   isVerificationFile: true
   path: test/aoj/grl/Maximum-Flow.test.cpp
   requiredBy: []
-  timestamp: '2023-05-01 21:24:33+08:00'
+  timestamp: '2023-05-19 01:47:33+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/grl/Maximum-Flow.test.cpp

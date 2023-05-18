@@ -3,8 +3,8 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
-    path: library/convolution/NTT.hpp
-    title: library/convolution/NTT.hpp
+    path: library/convolution/ntt.hpp
+    title: library/convolution/ntt.hpp
   - icon: ':heavy_check_mark:'
     path: library/convolution/subset-convolution.hpp
     title: library/convolution/subset-convolution.hpp
@@ -167,8 +167,8 @@ data:
   path: library/misc/type-traits.hpp
   requiredBy:
   - library/misc/fastio.hpp
+  - library/convolution/ntt.hpp
   - library/convolution/subset-convolution.hpp
-  - library/convolution/NTT.hpp
   - library/modint/modint.hpp
   - library/formal-power-series/poly.hpp
   timestamp: '2023-05-07 11:40:44+08:00'

@@ -62,7 +62,7 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"library/convolution/NTT.hpp\"\n#include <vector>\r\n#include\
+  bundledCode: "#line 2 \"library/convolution/ntt.hpp\"\n#include <vector>\r\n#include\
     \ <array>\r\n#include <algorithm>\r\n#include <cassert>\r\n#include <type_traits>\r\
     \n#line 3 \"library/misc/type-traits.hpp\"\n#include <numeric>\r\n#line 5 \"library/misc/type-traits.hpp\"\
     \n\r\nnamespace felix {\r\n\r\nnamespace internal {\r\n\r\n#ifndef _MSC_VER\r\n\
@@ -186,7 +186,7 @@ data:
     \ {\r\n\t\treturn 0;\r\n\t}\r\n\tx = safe_mod<T>(x, m);\r\n\tT r = 1;\r\n\twhile(n)\
     \ {\r\n\t\tif(n & 1) {\r\n\t\t\tr = (r * x) % m;\r\n\t\t}\r\n\t\tx = (x * x) %\
     \ m;\r\n\t\tn >>= 1;\r\n\t}\r\n\treturn r;\r\n}\r\n\r\n} // namespace internal\r\
-    \n\r\n} // namespace felix\r\n#line 11 \"library/convolution/NTT.hpp\"\n\r\nnamespace\
+    \n\r\n} // namespace felix\r\n#line 11 \"library/convolution/ntt.hpp\"\n\r\nnamespace\
     \ felix {\r\n\r\nnamespace internal {\r\n\r\nconstexpr int primitive_root_constexpr(int\
     \ m) {\r\n\tif(m == 998244353) return 3;\r\n\tif(m == 167772161) return 3;\r\n\
     \tif(m == 469762049) return 3;\r\n\tif(m == 754974721) return 11;\r\n\tif(m ==\
@@ -493,10 +493,10 @@ data:
   - library/math/safe-mod.hpp
   - library/math/pow-mod-constexpr.hpp
   isVerificationFile: false
-  path: library/convolution/NTT.hpp
+  path: library/convolution/ntt.hpp
   requiredBy:
   - library/formal-power-series/poly.hpp
-  timestamp: '2023-05-16 23:01:59+08:00'
+  timestamp: '2023-05-19 01:29:26+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/Convolution/Convolution.test.cpp
@@ -511,10 +511,10 @@ data:
   - test/yosupo/Polynomial/Log-of-Formal-Power-Series.test.cpp
   - test/yosupo/Polynomial/Inv-of-Formal-Power-Series.test.cpp
   - test/yosupo/Polynomial/Pow-of-Formal-Power-Series.test.cpp
-documentation_of: library/convolution/NTT.hpp
+documentation_of: library/convolution/ntt.hpp
 layout: document
 redirect_from:
-- /library/library/convolution/NTT.hpp
-- /library/library/convolution/NTT.hpp.html
-title: library/convolution/NTT.hpp
+- /library/library/convolution/ntt.hpp
+- /library/library/convolution/ntt.hpp.html
+title: library/convolution/ntt.hpp
 ---
