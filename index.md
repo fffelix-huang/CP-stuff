@@ -35,7 +35,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/data-structure/offline-rectangle-sum.hpp
       title: library/data-structure/offline-rectangle-sum.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: library/data-structure/pbds.hpp
       title: library/data-structure/pbds.hpp
     - icon: ':heavy_check_mark:'
@@ -50,6 +50,17 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/data-structure/wavelet-tree.hpp
       title: "Wavelet Tree (\u975C\u614B\u5340\u9593\u7B2C $k$ \u5927)"
+  - name: library/dsu
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: library/dsu/dsu.hpp
+      title: library/dsu/dsu.hpp
+    - icon: ':warning:'
+      path: library/dsu/rollback-dsu.hpp
+      title: library/dsu/rollback-dsu.hpp
+    - icon: ':warning:'
+      path: library/dsu/weighted-dsu.hpp
+      title: library/dsu/weighted-dsu.hpp
   - name: library/flow
     pages:
     - icon: ':heavy_check_mark:'
@@ -58,6 +69,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/flow/maxflow.hpp
       title: library/flow/maxflow.hpp
+    - icon: ':heavy_check_mark:'
+      path: library/flow/mincostflow.hpp
+      title: library/flow/mincostflow.hpp
   - name: library/formal-power-series
     pages:
     - icon: ':heavy_check_mark:'
@@ -208,7 +222,7 @@ data:
       title: test/aoj/cgl/Intersection.test.cpp
   - name: test/aoj/dsl
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/dsl/Disjoint-Set-Union-Find-Tree.test.cpp
       title: test/aoj/dsl/Disjoint-Set-Union-Find-Tree.test.cpp
     - icon: ':heavy_check_mark:'
@@ -258,7 +272,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/grl/Maximum-Flow.test.cpp
       title: test/aoj/grl/Maximum-Flow.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/grl/Minimum-Cost-Flow.test.cpp
       title: test/aoj/grl/Minimum-Cost-Flow.test.cpp
     - icon: ':heavy_check_mark:'
@@ -311,7 +325,7 @@ data:
       title: test/yosupo/Convolution/Subset-Convolution.test.cpp
   - name: test/yosupo/Data-Structure
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/Data-Structure/Associative-Array.test.cpp
       title: test/yosupo/Data-Structure/Associative-Array.test.cpp
     - icon: ':heavy_check_mark:'
@@ -359,13 +373,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/Data-Structure/Static-RMQ.test.cpp
       title: test/yosupo/Data-Structure/Static-RMQ.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/Data-Structure/Static-Range-Frequency.test.cpp
       title: test/yosupo/Data-Structure/Static-Range-Frequency.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/Data-Structure/Static-Range-Sum.test.cpp
       title: test/yosupo/Data-Structure/Static-Range-Sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/Data-Structure/Unionfind.test.cpp
       title: test/yosupo/Data-Structure/Unionfind.test.cpp
     - icon: ':heavy_check_mark:'

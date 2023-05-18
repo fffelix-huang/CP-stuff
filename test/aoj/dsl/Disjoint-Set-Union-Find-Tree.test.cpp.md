@@ -1,24 +1,41 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':heavy_check_mark:'
+    path: library/dsu/dsu.hpp
+    title: library/dsu/dsu.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
-  attributes: {}
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.11.3/x64/lib/python3.11/site-packages/onlinejudge_verify/documentation/build.py\"\
-    , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n          \
-    \         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\
-    \  File \"/opt/hostedtoolcache/Python/3.11.3/x64/lib/python3.11/site-packages/onlinejudge_verify/languages/cplusplus.py\"\
-    , line 187, in bundle\n    bundler.update(path)\n  File \"/opt/hostedtoolcache/Python/3.11.3/x64/lib/python3.11/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
-    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
-    \                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n \
-    \ File \"/opt/hostedtoolcache/Python/3.11.3/x64/lib/python3.11/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
-    , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
-    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: ../../../library/dsu/dsu.hpp:\
-    \ line -1: no such header\n"
+  _verificationStatusIcon: ':heavy_check_mark:'
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_1_A
+    links:
+    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_1_A
+  bundledCode: "#line 1 \"test/aoj/dsl/Disjoint-Set-Union-Find-Tree.test.cpp\"\n#define\
+    \ PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_1_A\"\
+    \n\n#include <iostream>\n#line 2 \"library/dsu/dsu.hpp\"\n#include <vector>\n\
+    #include <cassert>\n#include <algorithm>\n\nnamespace felix {\n\ntemplate<bool\
+    \ UNION_BY_SIZE = false>\nstruct DSU {\npublic:\n\tDSU() : DSU(0) {}\n\texplicit\
+    \ DSU(int _n) : n(_n), sz(n, -1) {}\n\t\n\tint leader(int u) {\n\t\tassert(0 <=\
+    \ u && u < n);\n\t\treturn (sz[u] < 0 ? u : (sz[u] = leader(sz[u])));\n\t}\n\t\
+    \n\tbool merge(int a, int b) {\n\t\tif((a = leader(a)) == (b = leader(b))) {\n\
+    \t\t\treturn false;\n\t\t}\n\t\tif constexpr(UNION_BY_SIZE) {\n\t\t\tif(-sz[a]\
+    \ < -sz[b]) {\n\t\t\t\tstd::swap(a, b);\n\t\t\t}\n\t\t}\n\t\tsz[a] += sz[b];\n\
+    \t\tsz[b] = a;\n\t\treturn true;\n\t}\n\t\n\tint size(int u) { return -sz[leader(u)];\
+    \ }\n\tbool same(int a, int b) { return leader(a) == leader(b); }\n\n\tstd::vector<std::vector<int>>\
+    \ groups() {\n\t\tstd::vector<std::vector<int>> result(n);\n\t\tfor(int i = 0;\
+    \ i < n; i++) {\n\t\t\tresult[leader(i)].push_back(i);\n\t\t}\n\t\tresult.erase(std::remove_if(result.begin(),\
+    \ result.end(), [](const std::vector<int>& v) {\n\t\t\treturn v.empty();\n\t\t\
+    }), result.end());\n\t\treturn result;\n\t}\n\nprivate:\n\tint n;\n\tstd::vector<int>\
+    \ sz;\n};\n\n} // namespace felix\n#line 5 \"test/aoj/dsl/Disjoint-Set-Union-Find-Tree.test.cpp\"\
+    \nusing namespace std;\nusing namespace felix;\n\nint main() {\n\tios::sync_with_stdio(false);\n\
+    \tcin.tie(0);\n\tint n, q;\n\tcin >> n >> q;\n\tDSU<true> d(n);\n\twhile(q--)\
+    \ {\n\t\tint type, x, y;\n\t\tcin >> type >> x >> y;\n\t\tif(type == 0) {\n\t\t\
+    \td.merge(x, y);\n\t\t} else {\n\t\t\tcout << d.same(x, y) << \"\\n\";\n\t\t}\n\
+    \t}\n\treturn 0;\n}\n"
   code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_1_A\"\
     \n\n#include <iostream>\n#include \"../../../library/dsu/dsu.hpp\"\nusing namespace\
     \ std;\nusing namespace felix;\n\nint main() {\n\tios::sync_with_stdio(false);\n\
@@ -26,12 +43,13 @@ data:
     \ {\n\t\tint type, x, y;\n\t\tcin >> type >> x >> y;\n\t\tif(type == 0) {\n\t\t\
     \td.merge(x, y);\n\t\t} else {\n\t\t\tcout << d.same(x, y) << \"\\n\";\n\t\t}\n\
     \t}\n\treturn 0;\n}\n"
-  dependsOn: []
+  dependsOn:
+  - library/dsu/dsu.hpp
   isVerificationFile: true
   path: test/aoj/dsl/Disjoint-Set-Union-Find-Tree.test.cpp
   requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-05-19 02:19:53+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/dsl/Disjoint-Set-Union-Find-Tree.test.cpp
 layout: document

@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: library/data-structure/pbds.hpp
     title: library/data-structure/pbds.hpp
   - icon: ':warning:'
@@ -15,6 +15,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/unit-test/xor-basis.test.cpp
     title: test/unit-test/xor-basis.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/Data-Structure/Associative-Array.test.cpp
+    title: test/yosupo/Data-Structure/Associative-Array.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/Data-Structure/Static-Range-Frequency.test.cpp
+    title: test/yosupo/Data-Structure/Static-Range-Frequency.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/Data-Structure/Static-Range-Sum.test.cpp
+    title: test/yosupo/Data-Structure/Static-Range-Sum.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -49,6 +58,9 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/unit-test/xor-basis.test.cpp
+  - test/yosupo/Data-Structure/Associative-Array.test.cpp
+  - test/yosupo/Data-Structure/Static-Range-Frequency.test.cpp
+  - test/yosupo/Data-Structure/Static-Range-Sum.test.cpp
 documentation_of: library/random/splitmix64.hpp
 layout: document
 redirect_from:

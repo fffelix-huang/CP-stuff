@@ -5,10 +5,19 @@ data:
     path: library/random/splitmix64.hpp
     title: library/random/splitmix64.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/Data-Structure/Associative-Array.test.cpp
+    title: test/yosupo/Data-Structure/Associative-Array.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/Data-Structure/Static-Range-Frequency.test.cpp
+    title: test/yosupo/Data-Structure/Static-Range-Frequency.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/Data-Structure/Static-Range-Sum.test.cpp
+    title: test/yosupo/Data-Structure/Static-Range-Sum.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"library/data-structure/pbds.hpp\"\n#include <ext/pb_ds/assoc_container.hpp>\n\
@@ -60,8 +69,11 @@ data:
   path: library/data-structure/pbds.hpp
   requiredBy: []
   timestamp: '2023-05-19 01:47:33+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/yosupo/Data-Structure/Associative-Array.test.cpp
+  - test/yosupo/Data-Structure/Static-Range-Frequency.test.cpp
+  - test/yosupo/Data-Structure/Static-Range-Sum.test.cpp
 documentation_of: library/data-structure/pbds.hpp
 layout: document
 redirect_from:

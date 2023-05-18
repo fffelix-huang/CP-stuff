@@ -75,7 +75,7 @@ data:
     \nusing namespace std;\nusing namespace felix;\n\nusing S = long long;\n\nS e()\
     \ { return 0; }\nS op(S a, S b) { return a + b; }\nS reversal(S s) { return s;\
     \ }\n\nusing F = long long;\n\nF id() { return 0; }\nS mapping(F f, S s) { return\
-    \ s += f; }\nF composition(F a, F b) { return a + b; }\n\nint main() {\n\tios::sync_with_stdio(false);\n\
+    \ s + f; }\nF composition(F a, F b) { return a + b; }\n\nint main() {\n\tios::sync_with_stdio(false);\n\
     \tcin.tie(0);\n\tint n, q;\n\tcin >> n >> q;\n\tvector<S> a(n);\n\tfor(int i =\
     \ 0; i < n; i++) {\n\t\tcin >> a[i];\n\t}\n\tlazy_lct<S, e, op, reversal, F, id,\
     \ mapping, composition> lct(a);\n\tfor(int i = 0; i < n - 1; i++) {\n\t\tint u,\
@@ -89,7 +89,7 @@ data:
     \nusing namespace std;\nusing namespace felix;\n\nusing S = long long;\n\nS e()\
     \ { return 0; }\nS op(S a, S b) { return a + b; }\nS reversal(S s) { return s;\
     \ }\n\nusing F = long long;\n\nF id() { return 0; }\nS mapping(F f, S s) { return\
-    \ s += f; }\nF composition(F a, F b) { return a + b; }\n\nint main() {\n\tios::sync_with_stdio(false);\n\
+    \ s + f; }\nF composition(F a, F b) { return a + b; }\n\nint main() {\n\tios::sync_with_stdio(false);\n\
     \tcin.tie(0);\n\tint n, q;\n\tcin >> n >> q;\n\tvector<S> a(n);\n\tfor(int i =\
     \ 0; i < n; i++) {\n\t\tcin >> a[i];\n\t}\n\tlazy_lct<S, e, op, reversal, F, id,\
     \ mapping, composition> lct(a);\n\tfor(int i = 0; i < n - 1; i++) {\n\t\tint u,\
@@ -103,7 +103,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/Data-Structure/Dynamic-Tree-Vertex-Add-Path-Sum.test.cpp
   requiredBy: []
-  timestamp: '2023-05-19 00:54:11+08:00'
+  timestamp: '2023-05-19 02:19:53+08:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/Data-Structure/Dynamic-Tree-Vertex-Add-Path-Sum.test.cpp
