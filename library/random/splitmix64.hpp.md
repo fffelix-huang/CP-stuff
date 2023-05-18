@@ -5,6 +5,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/data-structure/pbds.hpp
     title: library/data-structure/pbds.hpp
+  - icon: ':heavy_check_mark:'
+    path: library/math/discrete-log.hpp
+    title: "Discrete Log (\u96E2\u6563\u5C0D\u6578 $a^x \\equiv b \\pmod m$)"
   - icon: ':warning:'
     path: library/random/graph-generator.hpp
     title: Random Graph Generator
@@ -24,6 +27,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/Data-Structure/Static-Range-Sum.test.cpp
     title: test/yosupo/Data-Structure/Static-Range-Sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/Math/Discrete-Logarithm.test.cpp
+    title: test/yosupo/Math/Discrete-Logarithm.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -51,6 +57,7 @@ data:
   isVerificationFile: false
   path: library/random/splitmix64.hpp
   requiredBy:
+  - library/math/discrete-log.hpp
   - library/data-structure/pbds.hpp
   - library/random/random.hpp
   - library/random/graph-generator.hpp
@@ -61,6 +68,7 @@ data:
   - test/yosupo/Data-Structure/Associative-Array.test.cpp
   - test/yosupo/Data-Structure/Static-Range-Frequency.test.cpp
   - test/yosupo/Data-Structure/Static-Range-Sum.test.cpp
+  - test/yosupo/Math/Discrete-Logarithm.test.cpp
 documentation_of: library/random/splitmix64.hpp
 layout: document
 redirect_from:

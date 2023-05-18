@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/data-structure/lazy-lct.hpp
     title: library/data-structure/lazy-lct.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/dynamic_tree_vertex_add_path_sum
@@ -26,7 +26,7 @@ data:
     \ r = nullptr;\r\n\t\tNode* p = nullptr;\r\n\r\n\t\tNode() {}\r\n\t\tNode(const\
     \ S& s) : val(s), sum(s) {}\r\n\r\n\t\tbool is_root() const { return p == nullptr\
     \ || (p->l != this && p->r != this); }\r\n\t};\r\n\r\n\tlazy_lct() : n(0) {}\r\
-    \n\texplicit lazy_lct(int _n) : lazy_LCT(std::vector<S>(_n, e())) {}\r\n\texplicit\
+    \n\texplicit lazy_lct(int _n) : lazy_lct(std::vector<S>(_n, e())) {}\r\n\texplicit\
     \ lazy_lct(const std::vector<S>& v) : n(v.size()) {\r\n\t\ta.reserve(n);\r\n\t\
     \tfor(int i = 0; i < n; i++) {\r\n\t\t\ta.emplace_back(v[i]);\r\n\t\t}\r\n\t}\r\
     \n\r\n\tNode* access(int u) {\r\n\t\tassert(0 <= u && u < n);\r\n\t\tNode* v =\
@@ -103,8 +103,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/Data-Structure/Dynamic-Tree-Vertex-Add-Path-Sum.test.cpp
   requiredBy: []
-  timestamp: '2023-05-19 02:19:53+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-05-19 02:28:25+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Data-Structure/Dynamic-Tree-Vertex-Add-Path-Sum.test.cpp
 layout: document
