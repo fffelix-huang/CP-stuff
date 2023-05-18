@@ -2,7 +2,7 @@
 #include <vector>
 #include <cmath>
 #include <cassert>
-#include "../data-structure/PBDS.hpp"
+#include "../data-structure/pbds.hpp"
 #include "../modint/barrett.hpp"
 #include "binary-gcd.hpp"
 

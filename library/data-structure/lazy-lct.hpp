@@ -31,7 +31,7 @@ public:
 	};
 
 	lazy_lct() : n(0) {}
-	explicit lazy_lct(int _n) : lazy_LCT(std::vector<S>(_n, e())) {}
+	explicit lazy_lct(int _n) : lazy_lct(std::vector<S>(_n, e())) {}
 	explicit lazy_lct(const std::vector<S>& v) : n(v.size()) {
 		a.reserve(n);
 		for(int i = 0; i < n; i++) {
