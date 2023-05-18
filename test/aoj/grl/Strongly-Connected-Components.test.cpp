@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_C"
 
 #include <iostream>
-#include "../../../library/graph/SCC.hpp"
+#include "../../../library/graph/strongly-connected-components.hpp"
 using namespace std;
 using namespace felix;
 

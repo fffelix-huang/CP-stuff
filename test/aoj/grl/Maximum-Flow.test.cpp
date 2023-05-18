@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_A"
 
 #include <iostream>
-#include "../../../library/flow/Dinic.hpp"
+#include "../../../library/flow/maxflow.hpp"
 using namespace std;
 using namespace felix;
 
@@ -10,12 +10,12 @@ int main() {
 	cin.tie(0);
 	int n, m;
 	cin >> n >> m;
-	Dinic<int> d(n);
+	maxflow<int> f(n);
 	for(int i = 0; i < m; i++) {
 		int u, v, w;
 		cin >> u >> v >> w;
-		d.add_edge(u, v, w);
+		f.add_edge(u, v, w);
 	}
-	cout << d.flow(0, n - 1) << "\n";
+	cout << f.flow(0, n - 1) << "\n";
 	return 0;
 }

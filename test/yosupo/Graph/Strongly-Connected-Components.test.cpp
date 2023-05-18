@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/scc"
 
 #include <iostream>
-#include "../../../library/graph/SCC.hpp"
+#include "../../../library/graph/strongly-connected-components.hpp"
 using namespace std;
 using namespace felix;
 

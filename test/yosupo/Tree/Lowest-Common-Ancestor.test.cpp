@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/lca"
 
 #include <iostream>
-#include "../../../library/tree/HLD.hpp"
+#include "../../../library/tree/heavy-light-decomposition.hpp"
 using namespace std;
 using namespace felix;
 

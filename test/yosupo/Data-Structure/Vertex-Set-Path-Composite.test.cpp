@@ -3,7 +3,7 @@
 #include <iostream>
 #include <vector>
 #include "../../../library/data-structure/segtree.hpp"
-#include "../../../library/tree/HLD.hpp"
+#include "../../../library/tree/heavy-light-decomposition.hpp"
 #include "../../../library/modint/modint.hpp"
 using namespace std;
 using namespace felix;

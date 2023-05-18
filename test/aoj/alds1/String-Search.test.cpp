@@ -3,7 +3,7 @@
 #include <iostream>
 #include <cstring>
 #include <vector>
-#include "../../../library/string/KMP.hpp"
+#include "../../../library/string/kmp.hpp"
 using namespace std;
 using namespace felix;
 

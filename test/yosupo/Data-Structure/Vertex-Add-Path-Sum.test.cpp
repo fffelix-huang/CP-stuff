@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include "../../../library/data-structure/fenwick.hpp"
-#include "../../../library/tree/HLD.hpp"
+#include "../../../library/tree/heavy-light-decomposition.hpp"
 using namespace std;
 using namespace felix;
 

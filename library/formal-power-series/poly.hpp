@@ -5,7 +5,7 @@
 #include <functional>
 #include <cassert>
 #include "../modint/modint.hpp"
-#include "../convolution/NTT.hpp"
+#include "../convolution/ntt.hpp"
 
 namespace felix {
 

@@ -17,9 +17,7 @@ struct S {
 	S(mint a, int b = 1) : sum(a), size(b) {}
 };
 
-S e() {
-	return S();
-}
+S e() { return S(); }
 
 S op(S a, S b) {
 	a.sum += b.sum;
@@ -35,9 +33,7 @@ struct F {
 	F(mint x, mint y) : a(x), b(y), bad(false) {}
 };
 
-F id() {
-	return F();
-}
+F id() { return F(); }
 
 S mapping(F f, S s) {
 	if(f.bad || s.size == 0) {

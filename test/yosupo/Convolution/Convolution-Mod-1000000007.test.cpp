@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include "../../../library/modint/modint.hpp"
-#include "../../../library/convolution/NTT.hpp"
+#include "../../../library/convolution/ntt.hpp"
 using namespace std;
 using namespace felix;
 

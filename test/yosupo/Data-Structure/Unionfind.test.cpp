@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/unionfind"
 
 #include <iostream>
-#include "../../../library/DSU/DSU.hpp"
+#include "../../../library/dsu/dsu.hpp"
 using namespace std;
 using namespace felix;
 

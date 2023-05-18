@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/convolution_mod"
 
 #include <iostream>
-#include "../../../library/convolution/NTT.hpp"
+#include "../../../library/convolution/ntt.hpp"
 using namespace std;
 using namespace felix;
 
