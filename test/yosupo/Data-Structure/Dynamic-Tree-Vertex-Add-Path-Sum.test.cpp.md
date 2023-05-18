@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: library/data-structure/lazy-LCT.hpp
-    title: Link Cut Tree
+  - icon: ':x:'
+    path: library/data-structure/lazy-lct.hpp
+    title: library/data-structure/lazy-lct.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/dynamic_tree_vertex_add_path_sum
@@ -16,18 +16,18 @@ data:
     - https://judge.yosupo.jp/problem/dynamic_tree_vertex_add_path_sum
   bundledCode: "#line 1 \"test/yosupo/Data-Structure/Dynamic-Tree-Vertex-Add-Path-Sum.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/dynamic_tree_vertex_add_path_sum\"\
-    \n\n#include <iostream>\n#include <vector>\n#line 3 \"library/data-structure/lazy-LCT.hpp\"\
+    \n\n#include <iostream>\n#include <vector>\n#line 3 \"library/data-structure/lazy-lct.hpp\"\
     \n#include <algorithm>\r\n#include <cassert>\r\n\r\nnamespace felix {\r\n\r\n\
     template<class S,\r\n         S (*e)(),\r\n         S (*op)(S, S),\r\n       \
     \  S (*reversal)(S),\r\n         class F,\r\n         F (*id)(),\r\n         S\
-    \ (*mapping)(F, S),\r\n         F (*composition)(F, F)>\r\nstruct lazy_LCT {\r\
+    \ (*mapping)(F, S),\r\n         F (*composition)(F, F)>\r\nstruct lazy_lct {\r\
     \npublic:\r\n\tstruct Node {\r\n\t\tS val = e(), sum = e();\r\n\t\tF lz = id();\r\
     \n\t\tbool rev = false;\r\n\t\tint sz = 1;\r\n\t\tNode* l = nullptr;\r\n\t\tNode*\
     \ r = nullptr;\r\n\t\tNode* p = nullptr;\r\n\r\n\t\tNode() {}\r\n\t\tNode(const\
     \ S& s) : val(s), sum(s) {}\r\n\r\n\t\tbool is_root() const { return p == nullptr\
-    \ || (p->l != this && p->r != this); }\r\n\t};\r\n\r\n\tlazy_LCT() : n(0) {}\r\
-    \n\texplicit lazy_LCT(int _n) : lazy_LCT(std::vector<S>(_n, e())) {}\r\n\texplicit\
-    \ lazy_LCT(const std::vector<S>& v) : n(v.size()) {\r\n\t\ta.reserve(n);\r\n\t\
+    \ || (p->l != this && p->r != this); }\r\n\t};\r\n\r\n\tlazy_lct() : n(0) {}\r\
+    \n\texplicit lazy_lct(int _n) : lazy_LCT(std::vector<S>(_n, e())) {}\r\n\texplicit\
+    \ lazy_lct(const std::vector<S>& v) : n(v.size()) {\r\n\t\ta.reserve(n);\r\n\t\
     \tfor(int i = 0; i < n; i++) {\r\n\t\t\ta.emplace_back(v[i]);\r\n\t\t}\r\n\t}\r\
     \n\r\n\tNode* access(int u) {\r\n\t\tassert(0 <= u && u < n);\r\n\t\tNode* v =\
     \ &a[u];\r\n\t\tNode* last = nullptr;\r\n\t\tfor(Node* p = v; p != nullptr; p\
@@ -77,7 +77,7 @@ data:
     \ }\n\nusing F = long long;\n\nF id() { return 0; }\nS mapping(F f, S s) { return\
     \ s += f; }\nF composition(F a, F b) { return a + b; }\n\nint main() {\n\tios::sync_with_stdio(false);\n\
     \tcin.tie(0);\n\tint n, q;\n\tcin >> n >> q;\n\tvector<S> a(n);\n\tfor(int i =\
-    \ 0; i < n; i++) {\n\t\tcin >> a[i];\n\t}\n\tlazy_LCT<S, e, op, reversal, F, id,\
+    \ 0; i < n; i++) {\n\t\tcin >> a[i];\n\t}\n\tlazy_lct<S, e, op, reversal, F, id,\
     \ mapping, composition> lct(a);\n\tfor(int i = 0; i < n - 1; i++) {\n\t\tint u,\
     \ v;\n\t\tcin >> u >> v;\n\t\tlct.link(u, v);\n\t}\n\twhile(q--) {\n\t\tint type,\
     \ x, y;\n\t\tcin >> type >> x >> y;\n\t\tif(type == 0) {\n\t\t\tint u, v;\n\t\t\
@@ -85,13 +85,13 @@ data:
     \ == 1) {\n\t\t\tlct.apply(x, x, F{y});\n\t\t} else {\n\t\t\tcout << lct.prod(x,\
     \ y) << \"\\n\";\n\t\t}\n\t}\n\treturn 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/dynamic_tree_vertex_add_path_sum\"\
-    \n\n#include <iostream>\n#include <vector>\n#include \"../../../library/data-structure/lazy-LCT.hpp\"\
+    \n\n#include <iostream>\n#include <vector>\n#include \"../../../library/data-structure/lazy-lct.hpp\"\
     \nusing namespace std;\nusing namespace felix;\n\nusing S = long long;\n\nS e()\
     \ { return 0; }\nS op(S a, S b) { return a + b; }\nS reversal(S s) { return s;\
     \ }\n\nusing F = long long;\n\nF id() { return 0; }\nS mapping(F f, S s) { return\
     \ s += f; }\nF composition(F a, F b) { return a + b; }\n\nint main() {\n\tios::sync_with_stdio(false);\n\
     \tcin.tie(0);\n\tint n, q;\n\tcin >> n >> q;\n\tvector<S> a(n);\n\tfor(int i =\
-    \ 0; i < n; i++) {\n\t\tcin >> a[i];\n\t}\n\tlazy_LCT<S, e, op, reversal, F, id,\
+    \ 0; i < n; i++) {\n\t\tcin >> a[i];\n\t}\n\tlazy_lct<S, e, op, reversal, F, id,\
     \ mapping, composition> lct(a);\n\tfor(int i = 0; i < n - 1; i++) {\n\t\tint u,\
     \ v;\n\t\tcin >> u >> v;\n\t\tlct.link(u, v);\n\t}\n\twhile(q--) {\n\t\tint type,\
     \ x, y;\n\t\tcin >> type >> x >> y;\n\t\tif(type == 0) {\n\t\t\tint u, v;\n\t\t\
@@ -99,12 +99,12 @@ data:
     \ == 1) {\n\t\t\tlct.apply(x, x, F{y});\n\t\t} else {\n\t\t\tcout << lct.prod(x,\
     \ y) << \"\\n\";\n\t\t}\n\t}\n\treturn 0;\n}\n"
   dependsOn:
-  - library/data-structure/lazy-LCT.hpp
+  - library/data-structure/lazy-lct.hpp
   isVerificationFile: true
   path: test/yosupo/Data-Structure/Dynamic-Tree-Vertex-Add-Path-Sum.test.cpp
   requiredBy: []
-  timestamp: '2023-04-25 23:19:22+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-05-19 00:54:11+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/Data-Structure/Dynamic-Tree-Vertex-Add-Path-Sum.test.cpp
 layout: document

@@ -3,29 +3,29 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/Data-Structure/Dynamic-Tree-Vertex-Add-Path-Sum.test.cpp
     title: test/yosupo/Data-Structure/Dynamic-Tree-Vertex-Add-Path-Sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/Data-Structure/Dynamic-Tree-Vertex-Set-Path-Composite.test.cpp
     title: test/yosupo/Data-Structure/Dynamic-Tree-Vertex-Set-Path-Composite.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"library/data-structure/lazy-LCT.hpp\"\n#include <vector>\r\
+  bundledCode: "#line 2 \"library/data-structure/lazy-lct.hpp\"\n#include <vector>\r\
     \n#include <algorithm>\r\n#include <cassert>\r\n\r\nnamespace felix {\r\n\r\n\
     template<class S,\r\n         S (*e)(),\r\n         S (*op)(S, S),\r\n       \
     \  S (*reversal)(S),\r\n         class F,\r\n         F (*id)(),\r\n         S\
-    \ (*mapping)(F, S),\r\n         F (*composition)(F, F)>\r\nstruct lazy_LCT {\r\
+    \ (*mapping)(F, S),\r\n         F (*composition)(F, F)>\r\nstruct lazy_lct {\r\
     \npublic:\r\n\tstruct Node {\r\n\t\tS val = e(), sum = e();\r\n\t\tF lz = id();\r\
     \n\t\tbool rev = false;\r\n\t\tint sz = 1;\r\n\t\tNode* l = nullptr;\r\n\t\tNode*\
     \ r = nullptr;\r\n\t\tNode* p = nullptr;\r\n\r\n\t\tNode() {}\r\n\t\tNode(const\
     \ S& s) : val(s), sum(s) {}\r\n\r\n\t\tbool is_root() const { return p == nullptr\
-    \ || (p->l != this && p->r != this); }\r\n\t};\r\n\r\n\tlazy_LCT() : n(0) {}\r\
-    \n\texplicit lazy_LCT(int _n) : lazy_LCT(std::vector<S>(_n, e())) {}\r\n\texplicit\
-    \ lazy_LCT(const std::vector<S>& v) : n(v.size()) {\r\n\t\ta.reserve(n);\r\n\t\
+    \ || (p->l != this && p->r != this); }\r\n\t};\r\n\r\n\tlazy_lct() : n(0) {}\r\
+    \n\texplicit lazy_lct(int _n) : lazy_LCT(std::vector<S>(_n, e())) {}\r\n\texplicit\
+    \ lazy_lct(const std::vector<S>& v) : n(v.size()) {\r\n\t\ta.reserve(n);\r\n\t\
     \tfor(int i = 0; i < n; i++) {\r\n\t\t\ta.emplace_back(v[i]);\r\n\t\t}\r\n\t}\r\
     \n\r\n\tNode* access(int u) {\r\n\t\tassert(0 <= u && u < n);\r\n\t\tNode* v =\
     \ &a[u];\r\n\t\tNode* last = nullptr;\r\n\t\tfor(Node* p = v; p != nullptr; p\
@@ -74,13 +74,13 @@ data:
     \n\r\nnamespace felix {\r\n\r\ntemplate<class S,\r\n         S (*e)(),\r\n   \
     \      S (*op)(S, S),\r\n         S (*reversal)(S),\r\n         class F,\r\n \
     \        F (*id)(),\r\n         S (*mapping)(F, S),\r\n         F (*composition)(F,\
-    \ F)>\r\nstruct lazy_LCT {\r\npublic:\r\n\tstruct Node {\r\n\t\tS val = e(), sum\
+    \ F)>\r\nstruct lazy_lct {\r\npublic:\r\n\tstruct Node {\r\n\t\tS val = e(), sum\
     \ = e();\r\n\t\tF lz = id();\r\n\t\tbool rev = false;\r\n\t\tint sz = 1;\r\n\t\
     \tNode* l = nullptr;\r\n\t\tNode* r = nullptr;\r\n\t\tNode* p = nullptr;\r\n\r\
     \n\t\tNode() {}\r\n\t\tNode(const S& s) : val(s), sum(s) {}\r\n\r\n\t\tbool is_root()\
     \ const { return p == nullptr || (p->l != this && p->r != this); }\r\n\t};\r\n\
-    \r\n\tlazy_LCT() : n(0) {}\r\n\texplicit lazy_LCT(int _n) : lazy_LCT(std::vector<S>(_n,\
-    \ e())) {}\r\n\texplicit lazy_LCT(const std::vector<S>& v) : n(v.size()) {\r\n\
+    \r\n\tlazy_lct() : n(0) {}\r\n\texplicit lazy_lct(int _n) : lazy_LCT(std::vector<S>(_n,\
+    \ e())) {}\r\n\texplicit lazy_lct(const std::vector<S>& v) : n(v.size()) {\r\n\
     \t\ta.reserve(n);\r\n\t\tfor(int i = 0; i < n; i++) {\r\n\t\t\ta.emplace_back(v[i]);\r\
     \n\t\t}\r\n\t}\r\n\r\n\tNode* access(int u) {\r\n\t\tassert(0 <= u && u < n);\r\
     \n\t\tNode* v = &a[u];\r\n\t\tNode* last = nullptr;\r\n\t\tfor(Node* p = v; p\
@@ -127,39 +127,17 @@ data:
     \ felix\r\n"
   dependsOn: []
   isVerificationFile: false
-  path: library/data-structure/lazy-LCT.hpp
+  path: library/data-structure/lazy-lct.hpp
   requiredBy: []
-  timestamp: '2023-04-25 23:19:22+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-05-19 00:54:11+08:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/Data-Structure/Dynamic-Tree-Vertex-Set-Path-Composite.test.cpp
   - test/yosupo/Data-Structure/Dynamic-Tree-Vertex-Add-Path-Sum.test.cpp
-documentation_of: library/data-structure/lazy-LCT.hpp
+documentation_of: library/data-structure/lazy-lct.hpp
 layout: document
-title: Link Cut Tree
+redirect_from:
+- /library/library/data-structure/lazy-lct.hpp
+- /library/library/data-structure/lazy-lct.hpp.html
+title: library/data-structure/lazy-lct.hpp
 ---
-
-## 使用方法
-```cpp
-int n;
-lazy_LCT<S, e, op, reversal, F, id, mapping, composition> lct(n);
-
-int u, v;
-
-lct.link(u, v);
-lct.cut(u, v);
-bool connected = lct.is_connected(u, v);
-lct.set(u, S{});
-S val = lct.get(u);
-lct.apply(u, v, F{});
-S res = lct.prod(u, v);
-```
-
-## References
-[CF - Link Cut Tree implementation](https://codeforces.com/blog/entry/75885)
-
-[CF - Maintain subtree information using link/cut trees](https://codeforces.com/blog/entry/67637))
-
-[https://judge.yosupo.jp/submission/7137](https://judge.yosupo.jp/submission/7137)
-
-[https://hitonanode.github.io/cplib-cpp/data_structure/link_cut_tree.hpp](https://hitonanode.github.io/cplib-cpp/data_structure/link_cut_tree.hpp)

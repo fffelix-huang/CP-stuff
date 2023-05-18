@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: library/data-structure/lazy-LCT.hpp
-    title: Link Cut Tree
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: library/data-structure/lazy-lct.hpp
+    title: library/data-structure/lazy-lct.hpp
+  - icon: ':question:'
     path: library/math/inv-gcd.hpp
     title: library/math/inv-gcd.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/safe-mod.hpp
     title: library/math/safe-mod.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/misc/type-traits.hpp
     title: library/misc/type-traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/modint/modint.hpp
     title: library/modint/modint.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/dynamic_tree_vertex_set_path_composite
@@ -145,17 +145,17 @@ data:
     \ {};\r\ntemplate<int id> struct is_dynamic_modint<modint<id>, std::enable_if_t<(id\
     \ <= 0)>> : public std::true_type {};\r\ntemplate<class T> using is_dynamic_modint_t\
     \ = std::enable_if_t<is_dynamic_modint<T>::value>;\r\n\r\n} // namespace internal\r\
-    \n\r\n} // namespace felix\r\n#line 5 \"library/data-structure/lazy-LCT.hpp\"\n\
+    \n\r\n} // namespace felix\r\n#line 5 \"library/data-structure/lazy-lct.hpp\"\n\
     \r\nnamespace felix {\r\n\r\ntemplate<class S,\r\n         S (*e)(),\r\n     \
     \    S (*op)(S, S),\r\n         S (*reversal)(S),\r\n         class F,\r\n   \
     \      F (*id)(),\r\n         S (*mapping)(F, S),\r\n         F (*composition)(F,\
-    \ F)>\r\nstruct lazy_LCT {\r\npublic:\r\n\tstruct Node {\r\n\t\tS val = e(), sum\
+    \ F)>\r\nstruct lazy_lct {\r\npublic:\r\n\tstruct Node {\r\n\t\tS val = e(), sum\
     \ = e();\r\n\t\tF lz = id();\r\n\t\tbool rev = false;\r\n\t\tint sz = 1;\r\n\t\
     \tNode* l = nullptr;\r\n\t\tNode* r = nullptr;\r\n\t\tNode* p = nullptr;\r\n\r\
     \n\t\tNode() {}\r\n\t\tNode(const S& s) : val(s), sum(s) {}\r\n\r\n\t\tbool is_root()\
     \ const { return p == nullptr || (p->l != this && p->r != this); }\r\n\t};\r\n\
-    \r\n\tlazy_LCT() : n(0) {}\r\n\texplicit lazy_LCT(int _n) : lazy_LCT(std::vector<S>(_n,\
-    \ e())) {}\r\n\texplicit lazy_LCT(const std::vector<S>& v) : n(v.size()) {\r\n\
+    \r\n\tlazy_lct() : n(0) {}\r\n\texplicit lazy_lct(int _n) : lazy_LCT(std::vector<S>(_n,\
+    \ e())) {}\r\n\texplicit lazy_lct(const std::vector<S>& v) : n(v.size()) {\r\n\
     \t\ta.reserve(n);\r\n\t\tfor(int i = 0; i < n; i++) {\r\n\t\t\ta.emplace_back(v[i]);\r\
     \n\t\t}\r\n\t}\r\n\r\n\tNode* access(int u) {\r\n\t\tassert(0 <= u && u < n);\r\
     \n\t\tNode* v = &a[u];\r\n\t\tNode* last = nullptr;\r\n\t\tfor(Node* p = v; p\
@@ -210,7 +210,7 @@ data:
     \ { return false; }\nS mapping(F f, S s) { return s; }\nF composition(F a, F b)\
     \ { return false; }\n\nint main() {\n\tios::sync_with_stdio(false);\n\tcin.tie(0);\n\
     \tint n, q;\n\tcin >> n >> q;\n\tvector<S> a(n);\n\tfor(int i = 0; i < n; i++)\
-    \ {\n\t\tmint x, y;\n\t\tcin >> x >> y;\n\t\ta[i] = S(x, y);\n\t}\n\tlazy_LCT<S,\
+    \ {\n\t\tmint x, y;\n\t\tcin >> x >> y;\n\t\ta[i] = S(x, y);\n\t}\n\tlazy_lct<S,\
     \ e, op, reversal, F, id, mapping, composition> lct(a);\n\tfor(int i = 0; i <\
     \ n - 1; i++) {\n\t\tint u, v;\n\t\tcin >> u >> v;\n\t\tlct.link(u, v);\n\t}\n\
     \twhile(q--) {\n\t\tint type, x, y;\n\t\tcin >> type >> x >> y;\n\t\tif(type ==\
@@ -221,7 +221,7 @@ data:
     return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/dynamic_tree_vertex_set_path_composite\"\
     \n\n#include <iostream>\n#include <vector>\n#include \"../../../library/modint/modint.hpp\"\
-    \n#include \"../../../library/data-structure/lazy-LCT.hpp\"\nusing namespace std;\n\
+    \n#include \"../../../library/data-structure/lazy-lct.hpp\"\nusing namespace std;\n\
     using namespace felix;\n\nusing mint = modint998244353;\n\nstruct S {\n\tpair<mint,\
     \ mint> f, g;\n\n\tS() : S(1, 0) {}\n\tS(mint a, mint b) : f(a, b), g(a, b) {}\n\
     \tS(pair<mint, mint> a, pair<mint, mint> b) : f(a), g(b) {}\n};\n\npair<mint,\
@@ -232,7 +232,7 @@ data:
     \ f, S s) { return s; }\nF composition(F a, F b) { return false; }\n\nint main()\
     \ {\n\tios::sync_with_stdio(false);\n\tcin.tie(0);\n\tint n, q;\n\tcin >> n >>\
     \ q;\n\tvector<S> a(n);\n\tfor(int i = 0; i < n; i++) {\n\t\tmint x, y;\n\t\t\
-    cin >> x >> y;\n\t\ta[i] = S(x, y);\n\t}\n\tlazy_LCT<S, e, op, reversal, F, id,\
+    cin >> x >> y;\n\t\ta[i] = S(x, y);\n\t}\n\tlazy_lct<S, e, op, reversal, F, id,\
     \ mapping, composition> lct(a);\n\tfor(int i = 0; i < n - 1; i++) {\n\t\tint u,\
     \ v;\n\t\tcin >> u >> v;\n\t\tlct.link(u, v);\n\t}\n\twhile(q--) {\n\t\tint type,\
     \ x, y;\n\t\tcin >> type >> x >> y;\n\t\tif(type == 0) {\n\t\t\tint u, v;\n\t\t\
@@ -245,12 +245,12 @@ data:
   - library/misc/type-traits.hpp
   - library/math/inv-gcd.hpp
   - library/math/safe-mod.hpp
-  - library/data-structure/lazy-LCT.hpp
+  - library/data-structure/lazy-lct.hpp
   isVerificationFile: true
   path: test/yosupo/Data-Structure/Dynamic-Tree-Vertex-Set-Path-Composite.test.cpp
   requiredBy: []
-  timestamp: '2023-05-16 05:38:44+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-05-19 00:54:11+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/Data-Structure/Dynamic-Tree-Vertex-Set-Path-Composite.test.cpp
 layout: document

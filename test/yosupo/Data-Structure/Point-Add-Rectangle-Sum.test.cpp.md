@@ -5,8 +5,8 @@ data:
     path: library/data-structure/fenwick.hpp
     title: library/data-structure/fenwick.hpp
   - icon: ':heavy_check_mark:'
-    path: library/data-structure/rectangle-sum.hpp
-    title: library/data-structure/rectangle-sum.hpp
+    path: library/data-structure/offline-rectangle-sum.hpp
+    title: library/data-structure/offline-rectangle-sum.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -19,8 +19,8 @@ data:
     - https://judge.yosupo.jp/problem/point_add_rectangle_sum
   bundledCode: "#line 1 \"test/yosupo/Data-Structure/Point-Add-Rectangle-Sum.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/point_add_rectangle_sum\"\n\
-    \n#include <iostream>\n#line 2 \"library/data-structure/rectangle-sum.hpp\"\n\
-    #include <vector>\n#include <algorithm>\n#line 3 \"library/data-structure/fenwick.hpp\"\
+    \n#include <iostream>\n#line 2 \"library/data-structure/offline-rectangle-sum.hpp\"\
+    \n#include <vector>\n#include <algorithm>\n#line 3 \"library/data-structure/fenwick.hpp\"\
     \n#include <cassert>\n\nnamespace felix {\n\ntemplate<class T>\nstruct fenwick\
     \ {\npublic:\n\tfenwick() : n(0) {}\n\texplicit fenwick(int _n) : n(_n), data(_n)\
     \ {}\n\n\tvoid add(int p, T x) {\n\t\tassert(0 <= p);\n\t\twhile(p < n) {\n\t\t\
@@ -28,8 +28,8 @@ data:
     \ < n);\n\t\tT res{};\n\t\twhile(p >= 0) {\n\t\t\tres += data[p];\n\t\t\tp = (p\
     \ & (p + 1)) - 1;\n\t\t}\n\t\treturn res;\n\t}\n\n\tT sum(int l, int r) {\n\t\t\
     return get(r) - (l ? get(l - 1) : T{});\n\t}\n\nprivate:\n\tint n;\n\tstd::vector<T>\
-    \ data;\n};\n\n} // namespace felix\n#line 5 \"library/data-structure/rectangle-sum.hpp\"\
-    \n\nnamespace felix {\n\ntemplate<class T, class Weight_t>\nstruct RectangleSum\
+    \ data;\n};\n\n} // namespace felix\n#line 5 \"library/data-structure/offline-rectangle-sum.hpp\"\
+    \n\nnamespace felix {\n\ntemplate<class T, class Weight_t>\nstruct offline_rectangle_sum\
     \ {\n\tstruct Query {\n\t\tT x, y;\n\t\tWeight_t w;\n\t\tint id;\n\n\t\tQuery()\
     \ {}\n\t\tQuery(T _x, T _y, Weight_t _w, int _id) : x(_x), y(_y), w(_w), id(_id)\
     \ {}\n\t};\n\n\tvoid add_point(T x, T y, Weight_t w) {\n\t\tqueries.emplace_back(x,\
@@ -55,32 +55,32 @@ data:
     \ + r, [](const Query& a, const Query& b) {\n\t\t\treturn a.x > b.x;\n\t\t});\n\
     \t}\n};\n\n} // namespace felix\n#line 5 \"test/yosupo/Data-Structure/Point-Add-Rectangle-Sum.test.cpp\"\
     \nusing namespace std;\nusing namespace felix;\n\nint main() {\n\tios::sync_with_stdio(false);\n\
-    \tcin.tie(0);\n\tint n, q;\n\tcin >> n >> q;\n\tRectangleSum<int, long long> solver;\n\
-    \tfor(int i = 0; i < n; i++) {\n\t\tint x, y;\n\t\tlong long w;\n\t\tcin >> x\
-    \ >> y >> w;\n\t\tsolver.add_point(x, y, w);\n\t}\n\twhile(q--) {\n\t\tint type,\
-    \ x, y;\n\t\tcin >> type >> x >> y;\n\t\tif(type == 0) {\n\t\t\tlong long w;\n\
-    \t\t\tcin >> w;\n\t\t\tsolver.add_point(x, y, w);\n\t\t} else {\n\t\t\tint x2,\
-    \ y2;\n\t\t\tcin >> x2 >> y2;\n\t\t\tsolver.add_query(x, y, x2, y2);\n\t\t}\n\t\
-    }\n\tauto ans = solver.solve();\n\tfor(auto x : ans) {\n\t\tcout << x << \"\\\
-    n\";\n\t}\n\treturn 0;\n}\n"
+    \tcin.tie(0);\n\tint n, q;\n\tcin >> n >> q;\n\toffline_rectangle_sum<int, long\
+    \ long> solver;\n\tfor(int i = 0; i < n; i++) {\n\t\tint x, y;\n\t\tlong long\
+    \ w;\n\t\tcin >> x >> y >> w;\n\t\tsolver.add_point(x, y, w);\n\t}\n\twhile(q--)\
+    \ {\n\t\tint type, x, y;\n\t\tcin >> type >> x >> y;\n\t\tif(type == 0) {\n\t\t\
+    \tlong long w;\n\t\t\tcin >> w;\n\t\t\tsolver.add_point(x, y, w);\n\t\t} else\
+    \ {\n\t\t\tint x2, y2;\n\t\t\tcin >> x2 >> y2;\n\t\t\tsolver.add_query(x, y, x2,\
+    \ y2);\n\t\t}\n\t}\n\tauto ans = solver.solve();\n\tfor(auto x : ans) {\n\t\t\
+    cout << x << \"\\n\";\n\t}\n\treturn 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_add_rectangle_sum\"\
-    \n\n#include <iostream>\n#include \"../../../library/data-structure/rectangle-sum.hpp\"\
+    \n\n#include <iostream>\n#include \"../../../library/data-structure/offline-rectangle-sum.hpp\"\
     \nusing namespace std;\nusing namespace felix;\n\nint main() {\n\tios::sync_with_stdio(false);\n\
-    \tcin.tie(0);\n\tint n, q;\n\tcin >> n >> q;\n\tRectangleSum<int, long long> solver;\n\
-    \tfor(int i = 0; i < n; i++) {\n\t\tint x, y;\n\t\tlong long w;\n\t\tcin >> x\
-    \ >> y >> w;\n\t\tsolver.add_point(x, y, w);\n\t}\n\twhile(q--) {\n\t\tint type,\
-    \ x, y;\n\t\tcin >> type >> x >> y;\n\t\tif(type == 0) {\n\t\t\tlong long w;\n\
-    \t\t\tcin >> w;\n\t\t\tsolver.add_point(x, y, w);\n\t\t} else {\n\t\t\tint x2,\
-    \ y2;\n\t\t\tcin >> x2 >> y2;\n\t\t\tsolver.add_query(x, y, x2, y2);\n\t\t}\n\t\
-    }\n\tauto ans = solver.solve();\n\tfor(auto x : ans) {\n\t\tcout << x << \"\\\
-    n\";\n\t}\n\treturn 0;\n}\n"
+    \tcin.tie(0);\n\tint n, q;\n\tcin >> n >> q;\n\toffline_rectangle_sum<int, long\
+    \ long> solver;\n\tfor(int i = 0; i < n; i++) {\n\t\tint x, y;\n\t\tlong long\
+    \ w;\n\t\tcin >> x >> y >> w;\n\t\tsolver.add_point(x, y, w);\n\t}\n\twhile(q--)\
+    \ {\n\t\tint type, x, y;\n\t\tcin >> type >> x >> y;\n\t\tif(type == 0) {\n\t\t\
+    \tlong long w;\n\t\t\tcin >> w;\n\t\t\tsolver.add_point(x, y, w);\n\t\t} else\
+    \ {\n\t\t\tint x2, y2;\n\t\t\tcin >> x2 >> y2;\n\t\t\tsolver.add_query(x, y, x2,\
+    \ y2);\n\t\t}\n\t}\n\tauto ans = solver.solve();\n\tfor(auto x : ans) {\n\t\t\
+    cout << x << \"\\n\";\n\t}\n\treturn 0;\n}\n"
   dependsOn:
-  - library/data-structure/rectangle-sum.hpp
+  - library/data-structure/offline-rectangle-sum.hpp
   - library/data-structure/fenwick.hpp
   isVerificationFile: true
   path: test/yosupo/Data-Structure/Point-Add-Rectangle-Sum.test.cpp
   requiredBy: []
-  timestamp: '2023-04-20 12:52:42+08:00'
+  timestamp: '2023-05-19 00:54:11+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Data-Structure/Point-Add-Rectangle-Sum.test.cpp

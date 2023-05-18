@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/math/pow-mod-constexpr.hpp
     title: library/math/pow-mod-constexpr.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/safe-mod.hpp
     title: library/math/safe-mod.hpp
   - icon: ':heavy_check_mark:'

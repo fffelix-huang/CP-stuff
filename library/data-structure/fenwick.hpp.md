@@ -3,8 +3,8 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
-    path: library/data-structure/rectangle-sum.hpp
-    title: library/data-structure/rectangle-sum.hpp
+    path: library/data-structure/offline-rectangle-sum.hpp
+    title: library/data-structure/offline-rectangle-sum.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/dsl/Range-Add-Query.test.cpp
@@ -56,7 +56,7 @@ data:
   isVerificationFile: false
   path: library/data-structure/fenwick.hpp
   requiredBy:
-  - library/data-structure/rectangle-sum.hpp
+  - library/data-structure/offline-rectangle-sum.hpp
   timestamp: '2023-04-17 12:10:28+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

@@ -14,17 +14,17 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"library/data-structure/rectangle-sum.hpp\"\n#include <vector>\n\
-    #include <algorithm>\n#line 3 \"library/data-structure/fenwick.hpp\"\n#include\
-    \ <cassert>\n\nnamespace felix {\n\ntemplate<class T>\nstruct fenwick {\npublic:\n\
-    \tfenwick() : n(0) {}\n\texplicit fenwick(int _n) : n(_n), data(_n) {}\n\n\tvoid\
-    \ add(int p, T x) {\n\t\tassert(0 <= p);\n\t\twhile(p < n) {\n\t\t\tdata[p] +=\
-    \ x;\n\t\t\tp |= (p + 1);\n\t\t}\n\t}\n\n\tT get(int p) {\n\t\tassert(p < n);\n\
-    \t\tT res{};\n\t\twhile(p >= 0) {\n\t\t\tres += data[p];\n\t\t\tp = (p & (p +\
-    \ 1)) - 1;\n\t\t}\n\t\treturn res;\n\t}\n\n\tT sum(int l, int r) {\n\t\treturn\
-    \ get(r) - (l ? get(l - 1) : T{});\n\t}\n\nprivate:\n\tint n;\n\tstd::vector<T>\
-    \ data;\n};\n\n} // namespace felix\n#line 5 \"library/data-structure/rectangle-sum.hpp\"\
-    \n\nnamespace felix {\n\ntemplate<class T, class Weight_t>\nstruct RectangleSum\
+  bundledCode: "#line 2 \"library/data-structure/offline-rectangle-sum.hpp\"\n#include\
+    \ <vector>\n#include <algorithm>\n#line 3 \"library/data-structure/fenwick.hpp\"\
+    \n#include <cassert>\n\nnamespace felix {\n\ntemplate<class T>\nstruct fenwick\
+    \ {\npublic:\n\tfenwick() : n(0) {}\n\texplicit fenwick(int _n) : n(_n), data(_n)\
+    \ {}\n\n\tvoid add(int p, T x) {\n\t\tassert(0 <= p);\n\t\twhile(p < n) {\n\t\t\
+    \tdata[p] += x;\n\t\t\tp |= (p + 1);\n\t\t}\n\t}\n\n\tT get(int p) {\n\t\tassert(p\
+    \ < n);\n\t\tT res{};\n\t\twhile(p >= 0) {\n\t\t\tres += data[p];\n\t\t\tp = (p\
+    \ & (p + 1)) - 1;\n\t\t}\n\t\treturn res;\n\t}\n\n\tT sum(int l, int r) {\n\t\t\
+    return get(r) - (l ? get(l - 1) : T{});\n\t}\n\nprivate:\n\tint n;\n\tstd::vector<T>\
+    \ data;\n};\n\n} // namespace felix\n#line 5 \"library/data-structure/offline-rectangle-sum.hpp\"\
+    \n\nnamespace felix {\n\ntemplate<class T, class Weight_t>\nstruct offline_rectangle_sum\
     \ {\n\tstruct Query {\n\t\tT x, y;\n\t\tWeight_t w;\n\t\tint id;\n\n\t\tQuery()\
     \ {}\n\t\tQuery(T _x, T _y, Weight_t _w, int _id) : x(_x), y(_y), w(_w), id(_id)\
     \ {}\n\t};\n\n\tvoid add_point(T x, T y, Weight_t w) {\n\t\tqueries.emplace_back(x,\
@@ -50,7 +50,7 @@ data:
     \ + r, [](const Query& a, const Query& b) {\n\t\t\treturn a.x > b.x;\n\t\t});\n\
     \t}\n};\n\n} // namespace felix\n"
   code: "#pragma once\n#include <vector>\n#include <algorithm>\n#include \"fenwick.hpp\"\
-    \n\nnamespace felix {\n\ntemplate<class T, class Weight_t>\nstruct RectangleSum\
+    \n\nnamespace felix {\n\ntemplate<class T, class Weight_t>\nstruct offline_rectangle_sum\
     \ {\n\tstruct Query {\n\t\tT x, y;\n\t\tWeight_t w;\n\t\tint id;\n\n\t\tQuery()\
     \ {}\n\t\tQuery(T _x, T _y, Weight_t _w, int _id) : x(_x), y(_y), w(_w), id(_id)\
     \ {}\n\t};\n\n\tvoid add_point(T x, T y, Weight_t w) {\n\t\tqueries.emplace_back(x,\
@@ -78,16 +78,16 @@ data:
   dependsOn:
   - library/data-structure/fenwick.hpp
   isVerificationFile: false
-  path: library/data-structure/rectangle-sum.hpp
+  path: library/data-structure/offline-rectangle-sum.hpp
   requiredBy: []
-  timestamp: '2023-04-17 12:10:28+08:00'
+  timestamp: '2023-05-19 00:54:11+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/Data-Structure/Point-Add-Rectangle-Sum.test.cpp
-documentation_of: library/data-structure/rectangle-sum.hpp
+documentation_of: library/data-structure/offline-rectangle-sum.hpp
 layout: document
 redirect_from:
-- /library/library/data-structure/rectangle-sum.hpp
-- /library/library/data-structure/rectangle-sum.hpp.html
-title: library/data-structure/rectangle-sum.hpp
+- /library/library/data-structure/offline-rectangle-sum.hpp
+- /library/library/data-structure/offline-rectangle-sum.hpp.html
+title: library/data-structure/offline-rectangle-sum.hpp
 ---

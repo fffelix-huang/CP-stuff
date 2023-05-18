@@ -1,6 +1,17 @@
 ---
 data:
   libraryCategories:
+  - name: library/DSU
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: library/DSU/DSU.hpp
+      title: library/DSU/DSU.hpp
+    - icon: ':warning:'
+      path: library/DSU/rollback-DSU.hpp
+      title: library/DSU/rollback-DSU.hpp
+    - icon: ':warning:'
+      path: library/DSU/weighted-DSU.hpp
+      title: library/DSU/weighted-DSU.hpp
   - name: library/convolution
     pages:
     - icon: ':heavy_check_mark:'
@@ -11,9 +22,6 @@ data:
       title: library/convolution/subset-convolution.hpp
   - name: library/data-structure
     pages:
-    - icon: ':heavy_check_mark:'
-      path: library/data-structure/DSU.hpp
-      title: "DSU (\u4E26\u67E5\u96C6)"
     - icon: ':heavy_check_mark:'
       path: library/data-structure/PBDS.hpp
       title: library/data-structure/PBDS.hpp
@@ -29,9 +37,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/data-structure/fenwick2d.hpp
       title: library/data-structure/fenwick2d.hpp
-    - icon: ':heavy_check_mark:'
-      path: library/data-structure/lazy-LCT.hpp
-      title: Link Cut Tree
+    - icon: ':x:'
+      path: library/data-structure/lazy-lct.hpp
+      title: library/data-structure/lazy-lct.hpp
     - icon: ':heavy_check_mark:'
       path: library/data-structure/lazy-segtree.hpp
       title: library/data-structure/lazy-segtree.hpp
@@ -42,8 +50,8 @@ data:
       path: library/data-structure/line-container.hpp
       title: library/data-structure/line-container.hpp
     - icon: ':heavy_check_mark:'
-      path: library/data-structure/rectangle-sum.hpp
-      title: library/data-structure/rectangle-sum.hpp
+      path: library/data-structure/offline-rectangle-sum.hpp
+      title: library/data-structure/offline-rectangle-sum.hpp
     - icon: ':heavy_check_mark:'
       path: library/data-structure/segtree.hpp
       title: library/data-structure/segtree.hpp
@@ -117,7 +125,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/integer-div.hpp
       title: Integer division ($\lfloor \frac{a}{b} \rfloor \lceil \frac{a}{b} \rceil$)
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/math/inv-gcd.hpp
       title: library/math/inv-gcd.hpp
     - icon: ':heavy_check_mark:'
@@ -126,7 +134,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/pow-mod-constexpr.hpp
       title: library/math/pow-mod-constexpr.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/math/safe-mod.hpp
       title: library/math/safe-mod.hpp
     - icon: ':heavy_check_mark:'
@@ -151,7 +159,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/misc/fastio.hpp
       title: library/misc/fastio.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/misc/type-traits.hpp
       title: library/misc/type-traits.hpp
   - name: library/modint
@@ -159,7 +167,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/modint/barrett.hpp
       title: library/modint/barrett.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/modint/modint.hpp
       title: library/modint/modint.hpp
   - name: library/random
@@ -329,10 +337,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/Data-Structure/Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
       title: test/yosupo/Data-Structure/Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/Data-Structure/Dynamic-Tree-Vertex-Add-Path-Sum.test.cpp
       title: test/yosupo/Data-Structure/Dynamic-Tree-Vertex-Add-Path-Sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/Data-Structure/Dynamic-Tree-Vertex-Set-Path-Composite.test.cpp
       title: test/yosupo/Data-Structure/Dynamic-Tree-Vertex-Set-Path-Composite.test.cpp
     - icon: ':heavy_check_mark:'
