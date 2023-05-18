@@ -17,9 +17,7 @@ public:
 	}
 	
 	bool merge(int a, int b) {
-		a = leader(a);
-		b = leader(b);
-		if(a == b) {
+		if((a = leader(a)) == (b = leader(b))) {
 			return false;
 		}
 		if constexpr(UNION_BY_SIZE) {
@@ -32,23 +30,11 @@ public:
 		return true;
 	}
 	
-	int size(int u) {
-		return -sz[leader(u)];
-	}
-
-	bool same(int a, int b) {
-		return leader(a) == leader(b);
-	}
+	int size(int u) { return -sz[leader(u)]; }
+	bool same(int a, int b) { return leader(a) == leader(b); }
 
 	std::vector<std::vector<int>> groups() {
-		std::vector<int> group_size(n);
-		for(int i = 0; i < n; i++) {
-			group_size[leader(i)]++;
-		}
 		std::vector<std::vector<int>> result(n);
-		for(int i = 0; i < n; i++) {
-			result[i].reserve(group_size[i]);
-		}
 		for(int i = 0; i < n; i++) {
 			result[leader(i)].push_back(i);
 		}

@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_1_A"
 
 #include <iostream>
-#include "../../../library/data-structure/DSU.hpp"
+#include "../../../library/DSU/DSU.hpp"
 using namespace std;
 using namespace felix;
 
@@ -10,7 +10,7 @@ int main() {
 	cin.tie(0);
 	int n, q;
 	cin >> n >> q;
-	DSU d(n);
+	DSU<true> d(n);
 	while(q--) {
 		int type, x, y;
 		cin >> type >> x >> y;

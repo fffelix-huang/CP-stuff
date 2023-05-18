@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include <vector>
-#include "../../../library/data-structure/lazy-LCT.hpp"
+#include "../../../library/data-structure/lazy-lct.hpp"
 using namespace std;
 using namespace felix;
 
@@ -27,7 +27,7 @@ int main() {
 	for(int i = 0; i < n; i++) {
 		cin >> a[i];
 	}
-	lazy_LCT<S, e, op, reversal, F, id, mapping, composition> lct(a);
+	lazy_lct<S, e, op, reversal, F, id, mapping, composition> lct(a);
 	for(int i = 0; i < n - 1; i++) {
 		int u, v;
 		cin >> u >> v;

@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/unionfind"
 
 #include <iostream>
-#include "../../../library/data-structure/DSU.hpp"
+#include "../../../library/DSU/DSU.hpp"
 using namespace std;
 using namespace felix;
 
@@ -10,7 +10,7 @@ int main() {
 	cin.tie(0);
 	int n, q;
 	cin >> n >> q;
-	DSU d(n);
+	DSU<true> d(n);
 	while(q--) {
 		int type, u, v;
 		cin >> type >> u >> v;

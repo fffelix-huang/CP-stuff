@@ -13,7 +13,7 @@ template<class S,
          F (*id)(),
          S (*mapping)(F, S),
          F (*composition)(F, F)>
-struct lazy_LCT {
+struct lazy_lct {
 public:
 	struct Node {
 		S val = e(), sum = e();
@@ -30,9 +30,9 @@ public:
 		bool is_root() const { return p == nullptr || (p->l != this && p->r != this); }
 	};
 
-	lazy_LCT() : n(0) {}
-	explicit lazy_LCT(int _n) : lazy_LCT(std::vector<S>(_n, e())) {}
-	explicit lazy_LCT(const std::vector<S>& v) : n(v.size()) {
+	lazy_lct() : n(0) {}
+	explicit lazy_lct(int _n) : lazy_LCT(std::vector<S>(_n, e())) {}
+	explicit lazy_lct(const std::vector<S>& v) : n(v.size()) {
 		a.reserve(n);
 		for(int i = 0; i < n; i++) {
 			a.emplace_back(v[i]);
