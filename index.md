@@ -187,6 +187,9 @@ data:
   - name: library/string
     pages:
     - icon: ':heavy_check_mark:'
+      path: library/string/kmp.hpp
+      title: library/string/kmp.hpp
+    - icon: ':heavy_check_mark:'
       path: library/string/suffix-array.hpp
       title: Suffix Array
     - icon: ':heavy_check_mark:'
@@ -203,7 +206,7 @@ data:
   verificationCategories:
   - name: test/aoj/alds1
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/alds1/String-Search.test.cpp
       title: test/aoj/alds1/String-Search.test.cpp
   - name: test/aoj/cgl
