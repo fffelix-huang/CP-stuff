@@ -7,10 +7,10 @@
 namespace felix {
 
 template <class Cap_t>
-struct Dinic {
+struct maxflow {
 public:
-	Dinic() : n(0) {}
-	explicit Dinic(int _n) : n(_n), g(_n), level(_n), iter(_n) {}
+	maxflow() : n(0) {}
+	explicit maxflow(int _n) : n(_n), g(_n), level(_n), iter(_n) {}
 
 	int add_edge(int from, int to, Cap_t cap) {
 		assert(0 <= from && from < n);
