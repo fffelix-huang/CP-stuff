@@ -6,7 +6,7 @@
 namespace felix {
 
 template<class T, class Weight_t>
-struct RectangleSum {
+struct offline_rectangle_sum {
 	struct Query {
 		T x, y;
 		Weight_t w;

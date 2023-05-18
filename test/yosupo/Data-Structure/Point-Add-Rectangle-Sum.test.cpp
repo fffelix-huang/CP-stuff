@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/point_add_rectangle_sum"
 
 #include <iostream>
-#include "../../../library/data-structure/rectangle-sum.hpp"
+#include "../../../library/data-structure/offline-rectangle-sum.hpp"
 using namespace std;
 using namespace felix;
 
@@ -10,7 +10,7 @@ int main() {
 	cin.tie(0);
 	int n, q;
 	cin >> n >> q;
-	RectangleSum<int, long long> solver;
+	offline_rectangle_sum<int, long long> solver;
 	for(int i = 0; i < n; i++) {
 		int x, y;
 		long long w;
