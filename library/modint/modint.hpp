@@ -19,13 +19,13 @@ public:
 			return;
 		}
 		md = m;
-		facts.resize(1);
-		inv_facts.resize(1);
+		fact.resize(1);
+		inv_fact.resize(1);
 		invs.resize(1);
 	}
 
 	static constexpr void prepare(int n) {
-		int sz = (int) facts.size();
+		int sz = (int) fact.size();
 		if(sz == mod()) {
 			return;
 		}
@@ -36,20 +36,20 @@ public:
 		if(n < (sz - 1) * 2) {
 			n = std::min((sz - 1) * 2, mod() - 1);
 		}
-		facts.resize(n + 1);
-		inv_facts.resize(n + 1);
+		fact.resize(n + 1);
+		inv_fact.resize(n + 1);
 		invs.resize(n + 1);
 		for(int i = sz; i <= n; i++) {
-			facts[i] = facts[i - 1] * i;
+			fact[i] = fact[i - 1] * i;
 		}
-		auto eg = internal::inv_gcd(facts.back().val(), mod());
+		auto eg = internal::inv_gcd(fact.back().val(), mod());
 		assert(eg.first == 1);
-		inv_facts[n] = eg.second;
+		inv_fact[n] = eg.second;
 		for(int i = n - 1; i >= sz; i--) {
-			inv_facts[i] = inv_facts[i + 1] * (i + 1);
+			inv_fact[i] = inv_fact[i + 1] * (i + 1);
 		}
 		for(int i = n; i >= sz; i--) {
-			invs[i] = inv_facts[i] * facts[i - 1];
+			invs[i] = inv_fact[i] * fact[i - 1];
 		}
 	}
  
@@ -68,16 +68,6 @@ public:
 			assert(eg.first == 1);
 			return eg.second;
 		}
-	}
-
-	constexpr modint fact() const {
-		prepare(value);
-		return facts[value];
-	}
-
-	constexpr modint inv_fact() const {
-		prepare(value);
-		return inv_facts[value];
 	}
  
 	constexpr modint& operator+=(const modint& rhs) & {
@@ -178,16 +168,18 @@ public:
 	friend constexpr std::ostream& operator<<(std::ostream& out, const modint& num) {
 		return out << num.val();
 	}
+
+public:
+	static std::vector<modint> fact, inv_fact, invs;
  
 private:
 	int value;
 	static int md;
-	static std::vector<modint> facts, inv_facts, invs;
 };
 
 template<int id> int modint<id>::md = 998244353;
-template<int id> std::vector<modint<id>> modint<id>::facts = {1};
-template<int id> std::vector<modint<id>> modint<id>::inv_facts = {1};
+template<int id> std::vector<modint<id>> modint<id>::fact = {1};
+template<int id> std::vector<modint<id>> modint<id>::inv_fact = {1};
 template<int id> std::vector<modint<id>> modint<id>::invs = {0};
 
 using modint998244353 = modint<998244353>;

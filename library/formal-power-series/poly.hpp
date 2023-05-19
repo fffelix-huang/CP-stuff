@@ -244,7 +244,7 @@ public:
 		mint::prepare(n);
 		Poly b(*this);
 		for(int i = 0; i < n; i++) {
-			b[i] *= mint(i).fact();
+			b[i] *= mint::fact[i];
 		}
 		std::reverse(b.a.begin(), b.a.end());
 		Poly exp_cx(std::vector<mint>(n, mint(1)));
@@ -254,7 +254,7 @@ public:
 		b = (b * exp_cx).modxk(n);
 		std::reverse(b.a.begin(), b.a.end());
 		for(int i = 0; i < n; i++) {
-			b[i] *= mint(i).inv_fact();
+			b[i] *= mint::inv_fact[i];
 		}
 		return b;
 	}
