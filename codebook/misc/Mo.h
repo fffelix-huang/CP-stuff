@@ -83,12 +83,11 @@ struct Mo {
 			}
 		}
 	}
-
-	int dist(int i, int j) {
-		return std::abs(L[i] - L[j]) + std::abs(R[i] - R[j]);
-	}
 	
 	void climb(int iter = 3, int interval = 5) {
+		auto dist = [&](int i, int j) {
+			return std::abs(L[i] - L[j]) + std::abs(R[i] - R[j]);
+		};
 		std::vector<int> d(Q - 1);
 		for(int i = 0; i < Q - 1; i++) {
 			d[i] = dist(order[i], order[i + 1]);

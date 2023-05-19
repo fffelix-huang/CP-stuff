@@ -2,12 +2,14 @@ mint binom(int n, int k) {
 	if(k < 0 || k > n) {
 		return 0;
 	}
-	return mint(n).fact() * mint(k).inv_fact() * mint(n - k).inv_fact();
+	mint::prepare(n);
+	return mint::fact[n] * mint::inv_fact[k] * mint::inv_fact[n - k];
 }
 
 mint permute(int n, int k) {
 	if(k < 0 || k > n) {
 		return 0;
 	}
-	return mint(n).fact() * mint(n - k).inv_fact();
+	mint::prepare(n);
+	return mint::fact[n] * mint::inv_fact[n - k];
 }
