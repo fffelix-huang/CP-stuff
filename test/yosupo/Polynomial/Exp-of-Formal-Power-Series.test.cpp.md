@@ -80,28 +80,25 @@ data:
     template<int id>\r\nstruct modint {\r\npublic:\r\n\tstatic constexpr int mod()\
     \ { return (id > 0 ? id : md); }\r\n \t\r\n\tstatic constexpr void set_mod(int\
     \ m) {\r\n\t\tif(id > 0 || md == m) {\r\n\t\t\treturn;\r\n\t\t}\r\n\t\tmd = m;\r\
-    \n\t\tfacts.resize(1);\r\n\t\tinv_facts.resize(1);\r\n\t\tinvs.resize(1);\r\n\t\
-    }\r\n\r\n\tstatic constexpr void prepare(int n) {\r\n\t\tint sz = (int) facts.size();\r\
+    \n\t\tfact.resize(1);\r\n\t\tinv_fact.resize(1);\r\n\t\tinvs.resize(1);\r\n\t\
+    }\r\n\r\n\tstatic constexpr void prepare(int n) {\r\n\t\tint sz = (int) fact.size();\r\
     \n\t\tif(sz == mod()) {\r\n\t\t\treturn;\r\n\t\t}\r\n\t\tn = 1 << std::__lg(2\
     \ * n - 1);\r\n\t\tif(n < sz) {\r\n\t\t\treturn;\r\n\t\t}\r\n\t\tif(n < (sz -\
-    \ 1) * 2) {\r\n\t\t\tn = std::min((sz - 1) * 2, mod() - 1);\r\n\t\t}\r\n\t\tfacts.resize(n\
-    \ + 1);\r\n\t\tinv_facts.resize(n + 1);\r\n\t\tinvs.resize(n + 1);\r\n\t\tfor(int\
-    \ i = sz; i <= n; i++) {\r\n\t\t\tfacts[i] = facts[i - 1] * i;\r\n\t\t}\r\n\t\t\
-    auto eg = internal::inv_gcd(facts.back().val(), mod());\r\n\t\tassert(eg.first\
-    \ == 1);\r\n\t\tinv_facts[n] = eg.second;\r\n\t\tfor(int i = n - 1; i >= sz; i--)\
-    \ {\r\n\t\t\tinv_facts[i] = inv_facts[i + 1] * (i + 1);\r\n\t\t}\r\n\t\tfor(int\
-    \ i = n; i >= sz; i--) {\r\n\t\t\tinvs[i] = inv_facts[i] * facts[i - 1];\r\n\t\
-    \t}\r\n\t}\r\n \r\n\tconstexpr modint() : value(0) {} \r\n\ttemplate<class T,\
-    \ internal::is_signed_int_t<T>* = nullptr> constexpr modint(T v) : value(v >=\
-    \ 0 ? v % mod() : v % mod() + mod()) {}\r\n\ttemplate<class T, internal::is_unsigned_int_t<T>*\
-    \ = nullptr> constexpr modint(T v) : value(v % mod()) {}\r\n \r\n\tconstexpr int\
-    \ val() const { return value; }\r\n\r\n\tconstexpr modint inv() const {\r\n\t\t\
-    if(id > 0 && value < std::min(mod() >> 1, 1 << 18)) {\r\n\t\t\tprepare(value);\r\
-    \n\t\t\treturn invs[value];\r\n\t\t} else {\r\n\t\t\tauto eg = internal::inv_gcd(value,\
-    \ mod());\r\n\t\t\tassert(eg.first == 1);\r\n\t\t\treturn eg.second;\r\n\t\t}\r\
-    \n\t}\r\n\r\n\tconstexpr modint fact() const {\r\n\t\tprepare(value);\r\n\t\t\
-    return facts[value];\r\n\t}\r\n\r\n\tconstexpr modint inv_fact() const {\r\n\t\
-    \tprepare(value);\r\n\t\treturn inv_facts[value];\r\n\t}\r\n \r\n\tconstexpr modint&\
+    \ 1) * 2) {\r\n\t\t\tn = std::min((sz - 1) * 2, mod() - 1);\r\n\t\t}\r\n\t\tfact.resize(n\
+    \ + 1);\r\n\t\tinv_fact.resize(n + 1);\r\n\t\tinvs.resize(n + 1);\r\n\t\tfor(int\
+    \ i = sz; i <= n; i++) {\r\n\t\t\tfact[i] = fact[i - 1] * i;\r\n\t\t}\r\n\t\t\
+    auto eg = internal::inv_gcd(fact.back().val(), mod());\r\n\t\tassert(eg.first\
+    \ == 1);\r\n\t\tinv_fact[n] = eg.second;\r\n\t\tfor(int i = n - 1; i >= sz; i--)\
+    \ {\r\n\t\t\tinv_fact[i] = inv_fact[i + 1] * (i + 1);\r\n\t\t}\r\n\t\tfor(int\
+    \ i = n; i >= sz; i--) {\r\n\t\t\tinvs[i] = inv_fact[i] * fact[i - 1];\r\n\t\t\
+    }\r\n\t}\r\n \r\n\tconstexpr modint() : value(0) {} \r\n\ttemplate<class T, internal::is_signed_int_t<T>*\
+    \ = nullptr> constexpr modint(T v) : value(v >= 0 ? v % mod() : v % mod() + mod())\
+    \ {}\r\n\ttemplate<class T, internal::is_unsigned_int_t<T>* = nullptr> constexpr\
+    \ modint(T v) : value(v % mod()) {}\r\n \r\n\tconstexpr int val() const { return\
+    \ value; }\r\n\r\n\tconstexpr modint inv() const {\r\n\t\tif(id > 0 && value <\
+    \ std::min(mod() >> 1, 1 << 18)) {\r\n\t\t\tprepare(value);\r\n\t\t\treturn invs[value];\r\
+    \n\t\t} else {\r\n\t\t\tauto eg = internal::inv_gcd(value, mod());\r\n\t\t\tassert(eg.first\
+    \ == 1);\r\n\t\t\treturn eg.second;\r\n\t\t}\r\n\t}\r\n \r\n\tconstexpr modint&\
     \ operator+=(const modint& rhs) & {\r\n\t\tvalue += rhs.value;\r\n\t\tif(value\
     \ >= mod()) {\r\n\t\t\tvalue -= mod();\r\n\t\t}\r\n\t\treturn *this;\r\n\t}\r\n\
     \ \r\n\tconstexpr modint& operator-=(const modint& rhs) & {\r\n\t\tvalue -= rhs.value;\r\
@@ -136,16 +133,16 @@ data:
     \ std::istream& operator>>(std::istream& in, modint& num) {\r\n\t\tlong long x;\r\
     \n\t\tin >> x;\r\n\t\tnum = modint<id>(x);\r\n\t\treturn in;\r\n\t}\r\n\t\r\n\t\
     friend constexpr std::ostream& operator<<(std::ostream& out, const modint& num)\
-    \ {\r\n\t\treturn out << num.val();\r\n\t}\r\n \r\nprivate:\r\n\tint value;\r\n\
-    \tstatic int md;\r\n\tstatic std::vector<modint> facts, inv_facts, invs;\r\n};\r\
-    \n\r\ntemplate<int id> int modint<id>::md = 998244353;\r\ntemplate<int id> std::vector<modint<id>>\
-    \ modint<id>::facts = {1};\r\ntemplate<int id> std::vector<modint<id>> modint<id>::inv_facts\
-    \ = {1};\r\ntemplate<int id> std::vector<modint<id>> modint<id>::invs = {0};\r\
-    \n\r\nusing modint998244353 = modint<998244353>;\r\nusing modint1000000007 = modint<1000000007>;\r\
-    \n\r\nnamespace internal {\r\n\r\ntemplate<class T> struct is_modint : public\
-    \ std::false_type {};\r\ntemplate<int id> struct is_modint<modint<id>> : public\
-    \ std::true_type {};\r\n\r\ntemplate<class T, class ENABLE = void> struct is_static_modint\
-    \ : public std::false_type {};\r\ntemplate<int id> struct is_static_modint<modint<id>,\
+    \ {\r\n\t\treturn out << num.val();\r\n\t}\r\n\r\npublic:\r\n\tstatic std::vector<modint>\
+    \ fact, inv_fact, invs;\r\n \r\nprivate:\r\n\tint value;\r\n\tstatic int md;\r\
+    \n};\r\n\r\ntemplate<int id> int modint<id>::md = 998244353;\r\ntemplate<int id>\
+    \ std::vector<modint<id>> modint<id>::fact = {1};\r\ntemplate<int id> std::vector<modint<id>>\
+    \ modint<id>::inv_fact = {1};\r\ntemplate<int id> std::vector<modint<id>> modint<id>::invs\
+    \ = {0};\r\n\r\nusing modint998244353 = modint<998244353>;\r\nusing modint1000000007\
+    \ = modint<1000000007>;\r\n\r\nnamespace internal {\r\n\r\ntemplate<class T> struct\
+    \ is_modint : public std::false_type {};\r\ntemplate<int id> struct is_modint<modint<id>>\
+    \ : public std::true_type {};\r\n\r\ntemplate<class T, class ENABLE = void> struct\
+    \ is_static_modint : public std::false_type {};\r\ntemplate<int id> struct is_static_modint<modint<id>,\
     \ std::enable_if_t<(id > 0)>> : public std::true_type {};\r\ntemplate<class T>\
     \ using is_static_modint_t = std::enable_if_t<is_static_modint<T>::value>;\r\n\
     \r\ntemplate<class T, class ENABLE = void> struct is_dynamic_modint : public std::false_type\
@@ -376,11 +373,11 @@ data:
     \ * g.inv(i * 2)) * inv2;\r\n\t\t}\r\n\t\treturn g.modxk(m).mulxk(x / 2);\r\n\t\
     }\r\n\r\n\tconstexpr Poly shift(mint c) const {\r\n\t\tint n = size();\r\n\t\t\
     mint::prepare(n);\r\n\t\tPoly b(*this);\r\n\t\tfor(int i = 0; i < n; i++) {\r\n\
-    \t\t\tb[i] *= mint(i).fact();\r\n\t\t}\r\n\t\tstd::reverse(b.a.begin(), b.a.end());\r\
+    \t\t\tb[i] *= mint::fact[i];\r\n\t\t}\r\n\t\tstd::reverse(b.a.begin(), b.a.end());\r\
     \n\t\tPoly exp_cx(std::vector<mint>(n, mint(1)));\r\n\t\tfor(int i = 1; i < n;\
     \ i++) {\r\n\t\t\texp_cx[i] = exp_cx[i - 1] * c / i;\r\n\t\t}\r\n\t\tb = (b *\
     \ exp_cx).modxk(n);\r\n\t\tstd::reverse(b.a.begin(), b.a.end());\r\n\t\tfor(int\
-    \ i = 0; i < n; i++) {\r\n\t\t\tb[i] *= mint(i).inv_fact();\r\n\t\t}\r\n\t\treturn\
+    \ i = 0; i < n; i++) {\r\n\t\t\tb[i] *= mint::inv_fact[i];\r\n\t\t}\r\n\t\treturn\
     \ b;\r\n\t}\r\n\r\n\tconstexpr Poly mulT(Poly b) const {\r\n\t\tif(b.size() ==\
     \ 0) {\r\n\t\t\treturn Poly();\r\n\t\t}\r\n\t\tint n = b.size();\r\n\t\tstd::reverse(b.a.begin(),\
     \ b.a.end());\r\n\t\treturn ((*this) * b).divxk(n - 1);\r\n\t}\r\n\r\n\tstd::vector<mint>\
@@ -422,7 +419,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/Polynomial/Exp-of-Formal-Power-Series.test.cpp
   requiredBy: []
-  timestamp: '2023-05-19 01:47:33+08:00'
+  timestamp: '2023-05-19 19:01:09+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Polynomial/Exp-of-Formal-Power-Series.test.cpp
