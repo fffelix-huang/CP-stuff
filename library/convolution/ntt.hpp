@@ -6,6 +6,7 @@
 #include <type_traits>
 #include "../misc/type-traits.hpp"
 #include "../modint/modint.hpp"
+#include "../math/primitive-root.hpp"
 
 namespace felix {
 
