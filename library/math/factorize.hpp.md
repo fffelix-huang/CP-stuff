@@ -7,10 +7,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/math/is-prime.hpp
     title: library/math/is-prime.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/pow-mod.hpp
     title: library/math/pow-mod.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/safe-mod.hpp
     title: library/math/safe-mod.hpp
   - icon: ':heavy_check_mark:'

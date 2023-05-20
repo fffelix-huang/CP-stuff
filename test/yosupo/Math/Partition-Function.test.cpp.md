@@ -1,28 +1,28 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/convolution/ntt.hpp
     title: library/convolution/ntt.hpp
   - icon: ':heavy_check_mark:'
     path: library/formal-power-series/poly.hpp
     title: library/formal-power-series/poly.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/inv-gcd.hpp
     title: library/math/inv-gcd.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/pow-mod.hpp
     title: library/math/pow-mod.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/primitive-root.hpp
     title: library/math/primitive-root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/safe-mod.hpp
     title: library/math/safe-mod.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/misc/type-traits.hpp
     title: library/misc/type-traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/modint/modint.hpp
     title: library/modint/modint.hpp
   _extendedRequiredBy: []
@@ -171,7 +171,7 @@ data:
     \ i = 0; i < cnt; i++) {\n\t\t\tif(pow_mod_constexpr<unsigned long long, int>(g,\
     \ (m - 1) / divs[i], m) == 1) {\n\t\t\t\tok = false;\n\t\t\t\tbreak;\n\t\t\t}\n\
     \t\t}\n\t\tif(ok) {\n\t\t\treturn g;\n\t\t}\n\t}\n\tassert(false);\n}\n\n} //\
-    \ namespace internal\n\n} // namespace felix\n#line 10 \"library/convolution/ntt.hpp\"\
+    \ namespace internal\n\n} // namespace felix\n#line 11 \"library/convolution/ntt.hpp\"\
     \n\r\nnamespace felix {\r\n\r\nnamespace internal {\r\n\r\ntemplate<int mod>\r\
     \nstruct NTT_prepare {\r\n\tusing mint = modint<mod>;\r\n\r\n\tstatic constexpr\
     \ int primitive_root = primitive_root_constexpr(mod);\r\n\tstatic constexpr int\
@@ -269,47 +269,53 @@ data:
     \ c(n + m - 1);\r\n\tfor(int i = 0; i < n + m - 1; i++) {\r\n\t\tc[i] = c2[i].val();\r\
     \n\t}\r\n\treturn c;\r\n}\r\n\r\ntemplate<class T>\r\nstd::vector<__uint128_t>\
     \ convolution_u128(const std::vector<T>& a, const std::vector<T>& b) {\r\n\tstatic\
-    \ constexpr int m0 = 167772161;\r\n\tstatic constexpr int m1 = 469762049;\r\n\t\
-    static constexpr int m2 = 754974721;\r\n\tconstexpr int r01 = modint<m1>(m0).inv().val();\r\
-    \n\tconstexpr int r02 = modint<m2>(m0).inv().val();\r\n\tconstexpr int r12 = modint<m2>(m1).inv().val();\r\
-    \n\tconstexpr int r02r12 = 1LL * (r02) * r12 % m2;\r\n\tconstexpr long long w1\
-    \ = m0;\r\n\tconstexpr long long w2 = 1LL * m0 * m1;\r\n\r\n\tif(a.empty() ||\
-    \ b.empty()) {\r\n\t\treturn {};\r\n\t}\r\n\tstd::vector<__uint128_t> ans(a.size()\
-    \ + b.size() - 1);\r\n\tif(std::min(a.size(), b.size()) < 128) {\r\n\t\tfor(int\
-    \ i = 0; i < (int) a.size(); i++) {\r\n\t\t\tfor(int j = 0; j < (int) b.size();\
-    \ j++) {\r\n\t\t\t\tans[i + j] += 1LL * a[i] * b[j];\r\n\t\t\t}\r\n\t\t}\r\n\t\
-    \treturn ans;\r\n\t}\r\n\tauto c0 = convolution<m0>(a, b);\r\n\tauto c1 = convolution<m1>(a,\
-    \ b);\r\n\tauto c2 = convolution<m2>(a, b);\r\n\tint n = (int) c0.size();\r\n\t\
-    for(int i = 0; i < n; i++) {\r\n\t\tlong long n1 = c1[i], n2 = c2[i];\r\n\t\t\
-    long long x = c0[i];\r\n\t\tlong long y = (n1 + m1 - x) * r01 % m1;\r\n\t\tlong\
-    \ long z = ((n2 + m2 - x) * r02r12 + (m2 - y) * r12) % m2;\r\n\t\tans[i] = x +\
-    \ y * w1 + __uint128_t(z) * w2;\r\n\t}\r\n\treturn ans;\r\n}\r\n\r\ntemplate<class\
-    \ mint, internal::is_static_modint_t<mint>* = nullptr>\r\nstd::vector<mint> convolution_large(const\
-    \ std::vector<mint>& a, const std::vector<mint>& b) {\r\n\tstatic constexpr int\
-    \ max_size = (mint::mod() - 1) & -(mint::mod() - 1);\r\n\tstatic constexpr int\
-    \ half_size = max_size >> 1;\r\n\tstatic constexpr int inv_max_size = internal::inv_gcd(max_size,\
-    \ mint::mod()).second;\r\n\r\n\tconst int n = (int) a.size(), m = (int) b.size();\r\
-    \n\tif(n == 0 || m == 0) {\r\n\t\treturn {};\r\n\t}\r\n\tif(std::min(n, m) < 128\
-    \ || n + m - 1 <= max_size) {\r\n\t\treturn convolution(a, b);\r\n\t}\r\n\tconst\
-    \ int dn = (n + half_size - 1) / half_size;\r\n\tconst int dm = (m + half_size\
-    \ - 1) / half_size;\r\n\tstd::vector<std::vector<mint>> as(dn), bs(dm);\r\n\t\
-    for(int i = 0; i < dn; ++i) {\r\n\t\tconst int offset = half_size * i;\r\n\t\t\
-    as[i] = std::vector<mint>(a.begin() + offset, a.begin() + std::min(n, offset +\
-    \ half_size));\r\n\t\tas[i].resize(max_size);\r\n\t\tinternal::NTT<mint::mod()>::NTT4(as[i]);\r\
-    \n\t}\r\n\tfor(int j = 0; j < dm; ++j) {\r\n\t\tconst int offset = half_size *\
-    \ j;\r\n\t\tbs[j] = std::vector<mint>(b.begin() + offset, b.begin() + std::min(m,\
-    \ offset + half_size));\r\n\t\tbs[j].resize(max_size);\r\n\t\tinternal::NTT<mint::mod()>::NTT4(bs[j]);\r\
-    \n\t}\r\n\tstd::vector<std::vector<mint>> cs(dn + dm - 1, std::vector<mint>(max_size));\r\
-    \n\tfor(int i = 0; i < dn; ++i) {\r\n\t\tfor(int j = 0; j < dm; ++j) {\r\n\t\t\
-    \tfor(int k = 0; k < max_size; ++k) {\r\n\t\t\t\tcs[i + j][k] += as[i][k] * bs[j][k];\r\
-    \n\t\t\t}\r\n\t\t}\r\n\t}\r\n\tstd::vector<mint> c(n + m - 1);\r\n\tfor(int i\
-    \ = 0; i < dn + dm - 1; ++i) {\r\n\t\tinternal::NTT<mint::mod()>::iNTT4(cs[i]);\r\
-    \n\t\tconst int offset = half_size * i;\r\n\t\tconst int jmax = std::min(n + m\
-    \ - 1 - offset, max_size);\r\n\t\tfor(int j = 0; j < jmax; ++j) {\r\n\t\t\tc[offset\
-    \ + j] += cs[i][j] * inv_max_size;\r\n\t\t}\r\n\t}\r\n\treturn c;\r\n}\r\n\r\n\
-    } // namespace felix\r\n#line 9 \"library/formal-power-series/poly.hpp\"\n\r\n\
-    namespace felix {\r\n\r\ntemplate<int mod>\r\nstruct Poly {\r\n\tusing mint =\
-    \ modint<mod>;\r\n\r\npublic:\r\n\tPoly() {}\r\n\texplicit Poly(int n) : a(n)\
+    \ constexpr int m0 = 754974721; // 2^24\r\n\tstatic constexpr int m1 = 167772161;\
+    \ // 2^25\r\n\tstatic constexpr int m2 = 469762049; // 2^26\r\n\tstatic constexpr\
+    \ int r01 = internal::inv_gcd(m0, m1).second;\r\n\tstatic constexpr int r02 =\
+    \ internal::inv_gcd(m0, m2).second;\r\n\tstatic constexpr int r12 = internal::inv_gcd(m1,\
+    \ m2).second;\r\n\tstatic constexpr int r02r12 = 1LL * r02 * r12 % m2;\r\n\tstatic\
+    \ constexpr long long w1 = m0;\r\n\tstatic constexpr long long w2 = 1LL * m0 *\
+    \ m1;\r\n\r\n\tint n = (int) a.size(), m = (int) b.size();\r\n\tif(n == 0 || m\
+    \ == 0) {\r\n\t\treturn {};\r\n\t}\r\n\tstd::vector<__uint128_t> c(n + m - 1);\r\
+    \n\tif(std::min(n, m) < 128) {\r\n\t\tfor(int i = 0; i < n; i++) {\r\n\t\t\tfor(int\
+    \ j = 0; j < m; j++) {\r\n\t\t\t\tc[i + j] += 1LL * a[i] * b[j];\r\n\t\t\t}\r\n\
+    \t\t}\r\n\t\treturn c;\r\n\t}\r\n\r\n\tstatic constexpr int MAX_AB_BIT = 24;\r\
+    \n    static_assert(m0 % (1ULL << MAX_AB_BIT) == 1, \"m0 isn't enough to support\
+    \ an array length of 2^24.\");\r\n    static_assert(m1 % (1ULL << MAX_AB_BIT)\
+    \ == 1, \"m1 isn't enough to support an array length of 2^24.\");\r\n    static_assert(m2\
+    \ % (1ULL << MAX_AB_BIT) == 1, \"m2 isn't enough to support an array length of\
+    \ 2^24.\");\r\n    assert(n + m - 1 <= (1 << MAX_AB_BIT));\r\n\r\n\tauto c0 =\
+    \ convolution<m0>(a, b);\r\n\tauto c1 = convolution<m1>(a, b);\r\n\tauto c2 =\
+    \ convolution<m2>(a, b);\r\n\tfor(int i = 0; i < n + m - 1; i++) {\r\n\t\tlong\
+    \ long n1 = c1[i], n2 = c2[i];\r\n\t\tlong long x = c0[i];\r\n\t\tlong long y\
+    \ = (n1 + m1 - x) * r01 % m1;\r\n\t\tlong long z = ((n2 + m2 - x) * r02r12 + (m2\
+    \ - y) * r12) % m2;\r\n\t\tc[i] = x + y * w1 + __uint128_t(z) * w2;\r\n\t}\r\n\
+    \treturn c;\r\n}\r\n\r\ntemplate<class mint, internal::is_static_modint_t<mint>*\
+    \ = nullptr>\r\nstd::vector<mint> convolution_large(const std::vector<mint>& a,\
+    \ const std::vector<mint>& b) {\r\n\tstatic constexpr int max_size = (mint::mod()\
+    \ - 1) & -(mint::mod() - 1);\r\n\tstatic constexpr int half_size = max_size >>\
+    \ 1;\r\n\tstatic constexpr int inv_max_size = internal::inv_gcd(max_size, mint::mod()).second;\r\
+    \n\r\n\tconst int n = (int) a.size(), m = (int) b.size();\r\n\tif(n == 0 || m\
+    \ == 0) {\r\n\t\treturn {};\r\n\t}\r\n\tif(std::min(n, m) < 128 || n + m - 1 <=\
+    \ max_size) {\r\n\t\treturn convolution(a, b);\r\n\t}\r\n\tconst int dn = (n +\
+    \ half_size - 1) / half_size;\r\n\tconst int dm = (m + half_size - 1) / half_size;\r\
+    \n\tstd::vector<std::vector<mint>> as(dn), bs(dm);\r\n\tfor(int i = 0; i < dn;\
+    \ ++i) {\r\n\t\tconst int offset = half_size * i;\r\n\t\tas[i] = std::vector<mint>(a.begin()\
+    \ + offset, a.begin() + std::min(n, offset + half_size));\r\n\t\tas[i].resize(max_size);\r\
+    \n\t\tinternal::NTT<mint::mod()>::NTT4(as[i]);\r\n\t}\r\n\tfor(int j = 0; j <\
+    \ dm; ++j) {\r\n\t\tconst int offset = half_size * j;\r\n\t\tbs[j] = std::vector<mint>(b.begin()\
+    \ + offset, b.begin() + std::min(m, offset + half_size));\r\n\t\tbs[j].resize(max_size);\r\
+    \n\t\tinternal::NTT<mint::mod()>::NTT4(bs[j]);\r\n\t}\r\n\tstd::vector<std::vector<mint>>\
+    \ cs(dn + dm - 1, std::vector<mint>(max_size));\r\n\tfor(int i = 0; i < dn; ++i)\
+    \ {\r\n\t\tfor(int j = 0; j < dm; ++j) {\r\n\t\t\tfor(int k = 0; k < max_size;\
+    \ ++k) {\r\n\t\t\t\tcs[i + j][k] += as[i][k] * bs[j][k];\r\n\t\t\t}\r\n\t\t}\r\
+    \n\t}\r\n\tstd::vector<mint> c(n + m - 1);\r\n\tfor(int i = 0; i < dn + dm - 1;\
+    \ ++i) {\r\n\t\tinternal::NTT<mint::mod()>::iNTT4(cs[i]);\r\n\t\tconst int offset\
+    \ = half_size * i;\r\n\t\tconst int jmax = std::min(n + m - 1 - offset, max_size);\r\
+    \n\t\tfor(int j = 0; j < jmax; ++j) {\r\n\t\t\tc[offset + j] += cs[i][j] * inv_max_size;\r\
+    \n\t\t}\r\n\t}\r\n\treturn c;\r\n}\r\n\r\n} // namespace felix\r\n#line 9 \"library/formal-power-series/poly.hpp\"\
+    \n\r\nnamespace felix {\r\n\r\ntemplate<int mod>\r\nstruct Poly {\r\n\tusing mint\
+    \ = modint<mod>;\r\n\r\npublic:\r\n\tPoly() {}\r\n\texplicit Poly(int n) : a(n)\
     \ {}\r\n\texplicit Poly(const std::vector<mint>& a) : a(a) {}\r\n\tPoly(const\
     \ std::initializer_list<mint>& a) : a(a) {}\r\n\r\n\ttemplate<class F>\r\n\texplicit\
     \ Poly(int n, F f) : a(n) {\r\n\t\tfor(int i = 0; i < n; i++) {\r\n\t\t\ta[i]\
@@ -433,7 +439,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/Math/Partition-Function.test.cpp
   requiredBy: []
-  timestamp: '2023-05-21 01:03:04+08:00'
+  timestamp: '2023-05-21 03:01:40+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Math/Partition-Function.test.cpp

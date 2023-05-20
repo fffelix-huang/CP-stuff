@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/convolution/ntt.hpp
     title: library/convolution/ntt.hpp
   - icon: ':heavy_check_mark:'
@@ -14,19 +14,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/math/factorize.hpp
     title: "Integer Factorization (Pollard Rho \u8CEA\u56E0\u6578\u5206\u89E3)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/inv-gcd.hpp
     title: library/math/inv-gcd.hpp
   - icon: ':heavy_check_mark:'
     path: library/math/is-prime.hpp
     title: library/math/is-prime.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/pow-mod.hpp
     title: library/math/pow-mod.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/primitive-root.hpp
     title: library/math/primitive-root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/modint/modint.hpp
     title: library/modint/modint.hpp
   _extendedVerifiedWith:
@@ -45,7 +45,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/Convolution/Convolution-Large.test.cpp
     title: test/yosupo/Convolution/Convolution-Large.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/Convolution/Convolution-Mod-1000000007.test.cpp
     title: test/yosupo/Convolution/Convolution-Mod-1000000007.test.cpp
   - icon: ':heavy_check_mark:'
@@ -114,9 +114,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/Polynomial/Sqrt-of-Formal-Power-Series.test.cpp
     title: test/yosupo/Polynomial/Sqrt-of-Formal-Power-Series.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"library/math/safe-mod.hpp\"\n\r\nnamespace felix {\r\n\r\
@@ -141,7 +141,7 @@ data:
   - library/modint/modint.hpp
   - library/formal-power-series/poly.hpp
   timestamp: '2023-04-21 21:20:30+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/Convolution/Bitwise-And-Convolution.test.cpp
   - test/yosupo/Convolution/Bitwise-Xor-Convolution.test.cpp
