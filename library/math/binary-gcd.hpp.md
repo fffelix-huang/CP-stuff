@@ -5,25 +5,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/math/discrete-log.hpp
     title: "Discrete Log (\u96E2\u6563\u5C0D\u6578 $a^x \\equiv b \\pmod m$)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/math/factorize.hpp
     title: "Integer Factorization (Pollard Rho \u8CEA\u56E0\u6578\u5206\u89E3)"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ntl/Least-Common-Multiple.test.cpp
     title: test/aoj/ntl/Least-Common-Multiple.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ntl/Prime-Factorize.test.cpp
     title: test/aoj/ntl/Prime-Factorize.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/Math/Discrete-Logarithm.test.cpp
     title: test/yosupo/Math/Discrete-Logarithm.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/Math/Factorize.test.cpp
     title: test/yosupo/Math/Factorize.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"library/math/binary-gcd.hpp\"\n\r\nnamespace felix {\r\n\
@@ -47,7 +47,7 @@ data:
   - library/math/factorize.hpp
   - library/math/discrete-log.hpp
   timestamp: '2023-04-03 17:58:04+08:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/Math/Factorize.test.cpp
   - test/yosupo/Math/Discrete-Logarithm.test.cpp

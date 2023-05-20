@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/misc/type-traits.hpp
     title: library/misc/type-traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/Convolution/Convolution-Large.test.cpp
     title: test/yosupo/Convolution/Convolution-Large.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/Many-A+B-128-bit.test.cpp
     title: test/yosupo/Many-A+B-128-bit.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"library/misc/fastio.hpp\"\n#include <iostream>\n#include\
@@ -155,7 +155,7 @@ data:
   path: library/misc/fastio.hpp
   requiredBy: []
   timestamp: '2023-05-13 10:23:52+08:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/Convolution/Convolution-Large.test.cpp
   - test/yosupo/Many-A+B-128-bit.test.cpp
