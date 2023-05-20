@@ -3,7 +3,7 @@ data:
   libraryCategories:
   - name: library/convolution
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: library/convolution/ntt.hpp
       title: library/convolution/ntt.hpp
     - icon: ':heavy_check_mark:'
@@ -74,7 +74,7 @@ data:
       title: library/flow/mincostflow.hpp
   - name: library/formal-power-series
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: library/formal-power-series/poly.hpp
       title: library/formal-power-series/poly.hpp
   - name: library/geometry
@@ -107,7 +107,7 @@ data:
       title: library/graph/strongly-connected-components.hpp
   - name: library/math
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/math/binary-gcd.hpp
       title: "Binary GCD (\u4F4D\u5143 GCD)"
     - icon: ':warning:'
@@ -116,7 +116,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/discrete-log.hpp
       title: "Discrete Log (\u96E2\u6563\u5C0D\u6578 $a^x \\equiv b \\pmod m$)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: library/math/factorize.hpp
       title: "Integer Factorization (Pollard Rho \u8CEA\u56E0\u6578\u5206\u89E3)"
     - icon: ':heavy_check_mark:'
@@ -125,16 +125,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/integer-div.hpp
       title: Integer division ($\lfloor \frac{a}{b} \rfloor \lceil \frac{a}{b} \rceil$)
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/math/inv-gcd.hpp
       title: library/math/inv-gcd.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: library/math/is-prime.hpp
       title: library/math/is-prime.hpp
-    - icon: ':heavy_check_mark:'
-      path: library/math/pow-mod-constexpr.hpp
-      title: library/math/pow-mod-constexpr.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
+      path: library/math/pow-mod.hpp
+      title: library/math/pow-mod.hpp
+    - icon: ':warning:'
+      path: library/math/primitive-root.hpp
+      title: library/math/primitive-root.hpp
+    - icon: ':question:'
       path: library/math/safe-mod.hpp
       title: library/math/safe-mod.hpp
     - icon: ':heavy_check_mark:'
@@ -156,10 +159,10 @@ data:
     - icon: ':warning:'
       path: library/misc/default.hpp
       title: library/misc/default.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/misc/fastio.hpp
       title: library/misc/fastio.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/misc/type-traits.hpp
       title: library/misc/type-traits.hpp
   - name: library/modint
@@ -167,7 +170,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/modint/barrett.hpp
       title: library/modint/barrett.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/modint/modint.hpp
       title: library/modint/modint.hpp
   - name: library/random
@@ -178,7 +181,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/random/random.hpp
       title: random_t
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/random/rng.hpp
       title: library/random/rng.hpp
     - icon: ':heavy_check_mark:'
@@ -295,7 +298,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/ntl/Power.test.cpp
       title: test/aoj/ntl/Power.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/ntl/Prime-Factorize.test.cpp
       title: test/aoj/ntl/Prime-Factorize.test.cpp
   - name: test/unit-test
@@ -314,13 +317,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/Convolution/Bitwise-Xor-Convolution.test.cpp
       title: test/yosupo/Convolution/Bitwise-Xor-Convolution.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/Convolution/Convolution-Large.test.cpp
       title: test/yosupo/Convolution/Convolution-Large.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/Convolution/Convolution-Mod-1000000007.test.cpp
       title: test/yosupo/Convolution/Convolution-Mod-1000000007.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/Convolution/Convolution.test.cpp
       title: test/yosupo/Convolution/Convolution.test.cpp
     - icon: ':heavy_check_mark:'
@@ -432,10 +435,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/Math/Discrete-Logarithm.test.cpp
       title: test/yosupo/Math/Discrete-Logarithm.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/Math/Factorize.test.cpp
       title: test/yosupo/Math/Factorize.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/Math/Partition-Function.test.cpp
       title: test/yosupo/Math/Partition-Function.test.cpp
     - icon: ':heavy_check_mark:'
@@ -454,28 +457,28 @@ data:
       title: test/yosupo/Matrix/Matrix-Product.test.cpp
   - name: test/yosupo/Polynomial
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/Polynomial/Exp-of-Formal-Power-Series.test.cpp
       title: test/yosupo/Polynomial/Exp-of-Formal-Power-Series.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/Polynomial/Inv-of-Formal-Power-Series.test.cpp
       title: test/yosupo/Polynomial/Inv-of-Formal-Power-Series.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/Polynomial/Log-of-Formal-Power-Series.test.cpp
       title: test/yosupo/Polynomial/Log-of-Formal-Power-Series.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/Polynomial/Multipoint-Evaluation.test.cpp
       title: test/yosupo/Polynomial/Multipoint-Evaluation.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/Polynomial/Polynomial-Taylor-Shift.test.cpp
       title: test/yosupo/Polynomial/Polynomial-Taylor-Shift.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/Polynomial/Pow-of-Formal-Power-Series.test.cpp
       title: test/yosupo/Polynomial/Pow-of-Formal-Power-Series.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/Polynomial/Product-of-Polynomial-Sequence.test.cpp
       title: test/yosupo/Polynomial/Product-of-Polynomial-Sequence.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/Polynomial/Sqrt-of-Formal-Power-Series.test.cpp
       title: test/yosupo/Polynomial/Sqrt-of-Formal-Power-Series.test.cpp
   - name: test/yosupo/String

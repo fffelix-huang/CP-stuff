@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/data-structure/pbds.hpp
     title: library/data-structure/pbds.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/binary-gcd.hpp
     title: "Binary GCD (\u4F4D\u5143 GCD)"
   - icon: ':heavy_check_mark:'

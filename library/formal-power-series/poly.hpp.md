@@ -1,56 +1,53 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/convolution/ntt.hpp
     title: library/convolution/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/inv-gcd.hpp
     title: library/math/inv-gcd.hpp
-  - icon: ':heavy_check_mark:'
-    path: library/math/pow-mod-constexpr.hpp
-    title: library/math/pow-mod-constexpr.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/safe-mod.hpp
     title: library/math/safe-mod.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/misc/type-traits.hpp
     title: library/misc/type-traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/modint/modint.hpp
     title: library/modint/modint.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/Math/Partition-Function.test.cpp
     title: test/yosupo/Math/Partition-Function.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/Polynomial/Exp-of-Formal-Power-Series.test.cpp
     title: test/yosupo/Polynomial/Exp-of-Formal-Power-Series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/Polynomial/Inv-of-Formal-Power-Series.test.cpp
     title: test/yosupo/Polynomial/Inv-of-Formal-Power-Series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/Polynomial/Log-of-Formal-Power-Series.test.cpp
     title: test/yosupo/Polynomial/Log-of-Formal-Power-Series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/Polynomial/Multipoint-Evaluation.test.cpp
     title: test/yosupo/Polynomial/Multipoint-Evaluation.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/Polynomial/Polynomial-Taylor-Shift.test.cpp
     title: test/yosupo/Polynomial/Polynomial-Taylor-Shift.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/Polynomial/Pow-of-Formal-Power-Series.test.cpp
     title: test/yosupo/Polynomial/Pow-of-Formal-Power-Series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/Polynomial/Product-of-Polynomial-Sequence.test.cpp
     title: test/yosupo/Polynomial/Product-of-Polynomial-Sequence.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/Polynomial/Sqrt-of-Formal-Power-Series.test.cpp
     title: test/yosupo/Polynomial/Sqrt-of-Formal-Power-Series.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"library/formal-power-series/poly.hpp\"\n#include <vector>\r\
@@ -170,53 +167,34 @@ data:
     \ <= 0)>> : public std::true_type {};\r\ntemplate<class T> using is_dynamic_modint_t\
     \ = std::enable_if_t<is_dynamic_modint<T>::value>;\r\n\r\n} // namespace internal\r\
     \n\r\n} // namespace felix\r\n#line 3 \"library/convolution/ntt.hpp\"\n#include\
-    \ <array>\r\n#line 3 \"library/math/pow-mod-constexpr.hpp\"\n\r\nnamespace felix\
-    \ {\r\n\r\nnamespace internal {\r\n\r\ntemplate<class T, class U>\r\nconstexpr\
-    \ T pow_mod_constexpr(T x, long long n, U m) {\r\n\tif(m == 1) {\r\n\t\treturn\
-    \ 0;\r\n\t}\r\n\tx = safe_mod<T>(x, m);\r\n\tT r = 1;\r\n\twhile(n) {\r\n\t\t\
-    if(n & 1) {\r\n\t\t\tr = (r * x) % m;\r\n\t\t}\r\n\t\tx = (x * x) % m;\r\n\t\t\
-    n >>= 1;\r\n\t}\r\n\treturn r;\r\n}\r\n\r\n} // namespace internal\r\n\r\n} //\
-    \ namespace felix\r\n#line 11 \"library/convolution/ntt.hpp\"\n\r\nnamespace felix\
-    \ {\r\n\r\nnamespace internal {\r\n\r\nconstexpr int primitive_root_constexpr(int\
-    \ m) {\r\n\tif(m == 998244353) return 3;\r\n\tif(m == 167772161) return 3;\r\n\
-    \tif(m == 469762049) return 3;\r\n\tif(m == 754974721) return 11;\r\n\tif(m ==\
-    \ 880803841) return 26;\r\n\tif(m == 1045430273) return 3;\r\n\tif(m == 1051721729)\
-    \ return 6;\r\n\tif(m == 1053818881) return 7;\r\n\tint divs[20] = {};\r\n\tdivs[0]\
-    \ = 2;\r\n\tint cnt = 1;\r\n\tint x = (m - 1) / 2;\r\n\tx >>= __builtin_ctz(x);\r\
-    \n\tfor(int i = 3; 1LL * i * i <= x; i += 2) {\r\n\t\tif(x % i == 0) {\r\n\t\t\
-    \tdivs[cnt++] = i;\r\n\t\t\twhile(x % i == 0) {\r\n\t\t\t\tx /= i;\r\n\t\t\t}\r\
-    \n\t\t}\r\n\t}\r\n\tif(x > 1) {\r\n\t\tdivs[cnt++] = x;\r\n\t}\r\n\tfor(int g\
-    \ = 2;; g++) {\r\n\t\tbool ok = true;\r\n\t\tfor(int i = 0; i < cnt; i++) {\r\n\
-    \t\t\tif(pow_mod_constexpr<unsigned long long, int>(g, (m - 1) / divs[i], m) ==\
-    \ 1) {\r\n\t\t\t\tok = false;\r\n\t\t\t\tbreak;\r\n\t\t\t}\r\n\t\t}\r\n\t\tif(ok)\
-    \ {\r\n\t\t\treturn g;\r\n\t\t}\r\n\t}\r\n\tassert(false);\r\n}\r\n\r\ntemplate<int\
-    \ mod>\r\nstruct NTT_prepare {\r\n\tusing mint = modint<mod>;\r\n\r\n\tstatic\
-    \ constexpr int primitive_root = primitive_root_constexpr(mod);\r\n\tstatic constexpr\
-    \ int level = __builtin_ctz(mod - 1);\r\n\r\n\tstd::array<mint, level + 1> root,\
-    \ iroot;\r\n\tstd::array<mint, std::max(0, level - 2 + 1)> rate2, irate2;\r\n\t\
-    std::array<mint, std::max(0, level - 3 + 1)> rate3, irate3;\r\n\r\n\tconstexpr\
-    \ NTT_prepare() {\r\n\t\troot[level] = mint(primitive_root).pow((mod - 1) >> level);\r\
-    \n\t\tiroot[level] = root[level].inv();\r\n\t\tfor(int i = level - 1; i >= 0;\
-    \ i--) {\r\n\t\t\troot[i] = root[i + 1] * root[i + 1];\r\n\t\t\tiroot[i] = iroot[i\
-    \ + 1] * iroot[i + 1];\r\n\t\t}\r\n\t\t{\r\n\t\t\tmint prod = 1, iprod = 1;\r\n\
-    \t\t\tfor(int i = 0; i <= level - 2; i++) {\r\n\t\t\t\trate2[i] = root[i + 2]\
-    \ * prod;\r\n\t\t\t\tirate2[i] = iroot[i + 2] * iprod;\r\n\t\t\t\tprod *= iroot[i\
-    \ + 2];\r\n\t\t\t\tiprod *= root[i + 2];\r\n\t\t\t}\r\n\t\t}\r\n\t\t{\r\n\t\t\t\
-    mint prod = 1, iprod = 1;\r\n\t\t\tfor(int i = 0; i <= level - 3; i++) {\r\n\t\
-    \t\t\trate3[i] = root[i + 3] * prod;\r\n\t\t\t\tirate3[i] = iroot[i + 3] * iprod;\r\
-    \n\t\t\t\tprod *= iroot[i + 3];\r\n\t\t\t\tiprod *= root[i + 3];\r\n\t\t\t}\r\n\
-    \t\t}\r\n\t}\r\n};\r\n\r\ntemplate<int mod>\r\nstruct NTT {\r\n\tusing mint =\
-    \ modint<mod>;\r\n\r\n\tstatic NTT_prepare<mod> info;\r\n\r\n\tstatic void NTT4(std::vector<mint>&\
-    \ a) {\r\n\t\tint n = (int) a.size();\r\n\t\tint h = __builtin_ctz(n);\r\n\t\t\
-    int len = 0;\r\n\t\twhile(len < h) {\r\n\t\t\tif(h - len == 1) {\r\n\t\t\t\tint\
-    \ p = 1 << (h - len - 1);\r\n\t\t\t\tmint rot = 1;\r\n\t\t\t\tfor(int s = 0; s\
-    \ < (1 << len); s++) {\r\n\t\t\t\t\tint offset = s << (h - len);\r\n\t\t\t\t\t\
-    for(int i = 0; i < p; i++) {\r\n\t\t\t\t\t\tauto l = a[i + offset];\r\n\t\t\t\t\
-    \t\tauto r = a[i + offset + p] * rot;\r\n\t\t\t\t\t\ta[i + offset] = l + r;\r\n\
-    \t\t\t\t\t\ta[i + offset + p] = l - r;\r\n\t\t\t\t\t}\r\n\t\t\t\t\tif(s + 1 !=\
-    \ (1 << len)) {\r\n\t\t\t\t\t\trot *= info.rate2[__builtin_ctz(~(unsigned int)\
-    \ s)];\r\n\t\t\t\t\t}\r\n\t\t\t\t}\r\n\t\t\t\tlen++;\r\n\t\t\t} else {\r\n\t\t\
-    \t\tint p = 1 << (h - len - 2);\r\n\t\t\t\tmint rot = 1, imag = info.root[2];\r\
+    \ <array>\r\n#line 9 \"library/convolution/ntt.hpp\"\n\r\nnamespace felix {\r\n\
+    \r\nnamespace internal {\r\n\r\ntemplate<int mod>\r\nstruct NTT_prepare {\r\n\t\
+    using mint = modint<mod>;\r\n\r\n\tstatic constexpr int primitive_root = primitive_root_constexpr(mod);\r\
+    \n\tstatic constexpr int level = __builtin_ctz(mod - 1);\r\n\r\n\tstd::array<mint,\
+    \ level + 1> root, iroot;\r\n\tstd::array<mint, std::max(0, level - 2 + 1)> rate2,\
+    \ irate2;\r\n\tstd::array<mint, std::max(0, level - 3 + 1)> rate3, irate3;\r\n\
+    \r\n\tconstexpr NTT_prepare() {\r\n\t\troot[level] = mint(primitive_root).pow((mod\
+    \ - 1) >> level);\r\n\t\tiroot[level] = root[level].inv();\r\n\t\tfor(int i =\
+    \ level - 1; i >= 0; i--) {\r\n\t\t\troot[i] = root[i + 1] * root[i + 1];\r\n\t\
+    \t\tiroot[i] = iroot[i + 1] * iroot[i + 1];\r\n\t\t}\r\n\t\t{\r\n\t\t\tmint prod\
+    \ = 1, iprod = 1;\r\n\t\t\tfor(int i = 0; i <= level - 2; i++) {\r\n\t\t\t\trate2[i]\
+    \ = root[i + 2] * prod;\r\n\t\t\t\tirate2[i] = iroot[i + 2] * iprod;\r\n\t\t\t\
+    \tprod *= iroot[i + 2];\r\n\t\t\t\tiprod *= root[i + 2];\r\n\t\t\t}\r\n\t\t}\r\
+    \n\t\t{\r\n\t\t\tmint prod = 1, iprod = 1;\r\n\t\t\tfor(int i = 0; i <= level\
+    \ - 3; i++) {\r\n\t\t\t\trate3[i] = root[i + 3] * prod;\r\n\t\t\t\tirate3[i] =\
+    \ iroot[i + 3] * iprod;\r\n\t\t\t\tprod *= iroot[i + 3];\r\n\t\t\t\tiprod *= root[i\
+    \ + 3];\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n};\r\n\r\ntemplate<int mod>\r\nstruct NTT\
+    \ {\r\n\tusing mint = modint<mod>;\r\n\r\n\tstatic NTT_prepare<mod> info;\r\n\r\
+    \n\tstatic void NTT4(std::vector<mint>& a) {\r\n\t\tint n = (int) a.size();\r\n\
+    \t\tint h = __builtin_ctz(n);\r\n\t\tint len = 0;\r\n\t\twhile(len < h) {\r\n\t\
+    \t\tif(h - len == 1) {\r\n\t\t\t\tint p = 1 << (h - len - 1);\r\n\t\t\t\tmint\
+    \ rot = 1;\r\n\t\t\t\tfor(int s = 0; s < (1 << len); s++) {\r\n\t\t\t\t\tint offset\
+    \ = s << (h - len);\r\n\t\t\t\t\tfor(int i = 0; i < p; i++) {\r\n\t\t\t\t\t\t\
+    auto l = a[i + offset];\r\n\t\t\t\t\t\tauto r = a[i + offset + p] * rot;\r\n\t\
+    \t\t\t\t\ta[i + offset] = l + r;\r\n\t\t\t\t\t\ta[i + offset + p] = l - r;\r\n\
+    \t\t\t\t\t}\r\n\t\t\t\t\tif(s + 1 != (1 << len)) {\r\n\t\t\t\t\t\trot *= info.rate2[__builtin_ctz(~(unsigned\
+    \ int) s)];\r\n\t\t\t\t\t}\r\n\t\t\t\t}\r\n\t\t\t\tlen++;\r\n\t\t\t} else {\r\n\
+    \t\t\t\tint p = 1 << (h - len - 2);\r\n\t\t\t\tmint rot = 1, imag = info.root[2];\r\
     \n\t\t\t\tfor(int s = 0; s < (1 << len); s++) {\r\n\t\t\t\t\tmint rot2 = rot *\
     \ rot;\r\n\t\t\t\t\tmint rot3 = rot2 * rot;\r\n\t\t\t\t\tint offset = s << (h\
     \ - len);\r\n\t\t\t\t\tfor(int i = 0; i < p; i++) {\r\n\t\t\t\t\t\tauto mod2 =\
@@ -516,12 +494,11 @@ data:
   - library/math/inv-gcd.hpp
   - library/math/safe-mod.hpp
   - library/convolution/ntt.hpp
-  - library/math/pow-mod-constexpr.hpp
   isVerificationFile: false
   path: library/formal-power-series/poly.hpp
   requiredBy: []
-  timestamp: '2023-05-19 19:01:09+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-05-21 00:28:23+08:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/Math/Partition-Function.test.cpp
   - test/yosupo/Polynomial/Exp-of-Formal-Power-Series.test.cpp

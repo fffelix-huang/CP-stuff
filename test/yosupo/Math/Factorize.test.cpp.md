@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/binary-gcd.hpp
     title: "Binary GCD (\u4F4D\u5143 GCD)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/math/factorize.hpp
     title: "Integer Factorization (Pollard Rho \u8CEA\u56E0\u6578\u5206\u89E3)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/math/is-prime.hpp
     title: library/math/is-prime.hpp
-  - icon: ':heavy_check_mark:'
-    path: library/math/pow-mod-constexpr.hpp
-    title: library/math/pow-mod-constexpr.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: library/math/pow-mod.hpp
+    title: library/math/pow-mod.hpp
+  - icon: ':question:'
     path: library/math/safe-mod.hpp
     title: library/math/safe-mod.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/random/rng.hpp
     title: library/random/rng.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/factorize
@@ -42,8 +42,8 @@ data:
     \n\r\nnamespace felix {\r\n\r\nnamespace internal {\r\n\r\ntemplate<class T>\r\
     \nconstexpr T safe_mod(T x, T m) {\r\n\tx %= m;\r\n\tif(x < 0) {\r\n\t\tx += m;\r\
     \n\t}\r\n\treturn x;\r\n}\r\n\r\n} // namespace internal\r\n\r\n} // namespace\
-    \ felix\n#line 3 \"library/math/pow-mod-constexpr.hpp\"\n\r\nnamespace felix {\r\
-    \n\r\nnamespace internal {\r\n\r\ntemplate<class T, class U>\r\nconstexpr T pow_mod_constexpr(T\
+    \ felix\n#line 3 \"library/math/pow-mod.hpp\"\n\r\nnamespace felix {\r\n\r\nnamespace\
+    \ internal {\r\n\r\ntemplate<class T, class U>\r\nconstexpr T pow_mod_constexpr(T\
     \ x, long long n, U m) {\r\n\tif(m == 1) {\r\n\t\treturn 0;\r\n\t}\r\n\tx = safe_mod<T>(x,\
     \ m);\r\n\tT r = 1;\r\n\twhile(n) {\r\n\t\tif(n & 1) {\r\n\t\t\tr = (r * x) %\
     \ m;\r\n\t\t}\r\n\t\tx = (x * x) % m;\r\n\t\tn >>= 1;\r\n\t}\r\n\treturn r;\r\n\
@@ -78,8 +78,8 @@ data:
     \ == 1);\n\t\t}\n\t\tif(g != n) {\n\t\t\treturn g;\n\t\t}\n\t}\n\tassert(false);\n\
     }\n\ntemplate<class T>\nstd::vector<T> factorize(T n) {\n\tif(n <= 1) {\n\t\t\
     return {};\n\t}\n\tstd::vector<T> res = {n};\n\tfor(int i = 0; i < (int) res.size();\
-    \ i++) {\n\t\tT p = pollard_rho(res[i]);\n\t\tif(p != res[i]) {\n\t\t\tres[i]\
-    \ /= p;\n\t\t\tres.push_back(p);\n\t\t\ti -= 1;\n\t\t}\n\t}\n\tstd::sort(res.begin(),\
+    \ i++) {\n\t\tT p = internal::pollard_rho(res[i]);\n\t\tif(p != res[i]) {\n\t\t\
+    \tres[i] /= p;\n\t\t\tres.push_back(p);\n\t\t\ti -= 1;\n\t\t}\n\t}\n\tstd::sort(res.begin(),\
     \ res.end());\n\treturn res;\n}\n\ntemplate<class T>\nstd::vector<T> get_divisors(T\
     \ n) {\n\tif(n == 0) {\n\t\treturn {};\n\t}\n\tstd::vector<std::pair<T, int>>\
     \ v;\n\tfor(auto p : factorize(n)) {\n\t\tif(v.empty() || v.back().first != p)\
@@ -107,13 +107,13 @@ data:
   - library/math/binary-gcd.hpp
   - library/math/safe-mod.hpp
   - library/math/is-prime.hpp
-  - library/math/pow-mod-constexpr.hpp
+  - library/math/pow-mod.hpp
   - library/random/rng.hpp
   isVerificationFile: true
   path: test/yosupo/Math/Factorize.test.cpp
   requiredBy: []
-  timestamp: '2023-05-16 23:01:59+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-05-21 00:28:23+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/Math/Factorize.test.cpp
 layout: document
