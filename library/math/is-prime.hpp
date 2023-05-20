@@ -1,6 +1,6 @@
 #pragma once
 #include <vector>
-#include "pow-mod-constexpr.hpp"
+#include "pow-mod.hpp"
 
 namespace felix {
 

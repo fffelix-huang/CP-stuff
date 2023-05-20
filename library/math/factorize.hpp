@@ -60,7 +60,7 @@ std::vector<T> factorize(T n) {
 	}
 	std::vector<T> res = {n};
 	for(int i = 0; i < (int) res.size(); i++) {
-		T p = pollard_rho(res[i]);
+		T p = internal::pollard_rho(res[i]);
 		if(p != res[i]) {
 			res[i] /= p;
 			res.push_back(p);

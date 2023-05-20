@@ -9,6 +9,38 @@ namespace felix {
 
 namespace internal {
 
+std::vector<int> sa_naive(const std::vector<int>& s) {
+	std::vector<int> sa(s.size());
+	std::iota(sa.begin(), sa.end(), 0);
+	std::sort(sa.begin(), sa.end(), [&](int i, int j) {
+		return std::lexicographical_compare(s.begin() + i, s.end(), s.begin() + j, s.end());
+	});
+	return sa;
+}
+
+std::vector<int> sa_doubling(const std::vector<int>& s) {
+	int n = (int) s.size();
+	std::vector<int> rnk(s), tmp(n), sa(n);
+	std::iota(sa.begin(), sa.end(), 0);
+	for(int k = 1; k < n; k *= 2) {
+		auto cmp = [&](int x, int y) {
+			if(rnk[x] != rnk[y]) {
+				return rnk[x] < rnk[y];
+			}
+			int rx = x + k < n ? rnk[x + k] : -1;
+			int ry = y + k < n ? rnk[y + k] : -1;
+			return rx < ry;
+		};
+		std::sort(sa.begin(), sa.end(), cmp);
+		tmp[sa[0]] = 0;
+		for(int i = 1; i < n; i++) {
+			tmp[sa[i]] = tmp[sa[i - 1]] + cmp(sa[i - 1], sa[i]);
+		}
+		std::swap(tmp, rnk);
+	}
+	return sa;
+}
+
 std::vector<int> sa_is(const std::vector<int>& s, int upper) {
 	int n = (int) s.size();
 	if(n == 0) {
@@ -24,32 +56,11 @@ std::vector<int> sa_is(const std::vector<int>& s, int upper) {
 			return {1, 0};
 		}
 	}
-	std::vector<int> sa(n);
 	if(n < 10) {
-		std::iota(sa.begin(), sa.end(), 0);
-		std::sort(sa.begin(), sa.end(), [&](int i, int j) {
-			return std::lexicographical_compare(s.begin() + i, s.end(), s.begin() + j, s.end());
-		});
-		return sa;
+		return sa_naive(s);
 	}
 	if(n < 40) {
-		std::vector<int> rnk = s, tmp(n);
-		std::iota(sa.begin(), sa.end(), 0);
-		for(int k = 1; k < n; k *= 2) {
-			auto cmp = [&](int x, int y) {
-				if(rnk[x] != rnk[y]) return rnk[x] < rnk[y];
-				int rx = x + k < n ? rnk[x + k] : -1;
-				int ry = y + k < n ? rnk[y + k] : -1;
-				return rx < ry;
-			};
-			std::sort(sa.begin(), sa.end(), cmp);
-			tmp[sa[0]] = 0;
-			for(int i = 1; i < n; i++) {
-				tmp[sa[i]] = tmp[sa[i - 1]] + cmp(sa[i - 1], sa[i]);
-			}
-			std::swap(tmp, rnk);
-		}
-		return sa;
+		return sa_doubling(s);
 	}
 	std::vector<bool> ls(n);
 	for(int i = n - 2; i >= 0; i--) {
@@ -66,7 +77,7 @@ std::vector<int> sa_is(const std::vector<int>& s, int upper) {
 			sum_l[i + 1] += sum_s[i];
 		}
 	}
-	std::vector<int> buf(upper + 1);
+	std::vector<int> sa(n), buf(upper + 1);
 	auto induce = [&](const std::vector<int>& lms) {
 		std::fill(sa.begin(), sa.end(), -1);
 		std::copy(sum_s.begin(), sum_s.end(), buf.begin());
