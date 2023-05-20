@@ -6,6 +6,7 @@
 #include <type_traits>
 #include "../misc/type-traits.hpp"
 #include "../modint/modint.hpp"
+#include "../math/inv-gcd.hpp"
 #include "../math/primitive-root.hpp"
 
 namespace felix {
@@ -229,40 +230,47 @@ std::vector<T> convolution(const std::vector<T>& a, const std::vector<T>& b) {
 
 template<class T>
 std::vector<__uint128_t> convolution_u128(const std::vector<T>& a, const std::vector<T>& b) {
-	static constexpr int m0 = 167772161;
-	static constexpr int m1 = 469762049;
-	static constexpr int m2 = 754974721;
-	constexpr int r01 = modint<m1>(m0).inv().val();
-	constexpr int r02 = modint<m2>(m0).inv().val();
-	constexpr int r12 = modint<m2>(m1).inv().val();
-	constexpr int r02r12 = 1LL * (r02) * r12 % m2;
-	constexpr long long w1 = m0;
-	constexpr long long w2 = 1LL * m0 * m1;
+	static constexpr int m0 = 754974721; // 2^24
+	static constexpr int m1 = 167772161; // 2^25
+	static constexpr int m2 = 469762049; // 2^26
+	static constexpr int r01 = internal::inv_gcd(m0, m1).second;
+	static constexpr int r02 = internal::inv_gcd(m0, m2).second;
+	static constexpr int r12 = internal::inv_gcd(m1, m2).second;
+	static constexpr int r02r12 = 1LL * r02 * r12 % m2;
+	static constexpr long long w1 = m0;
+	static constexpr long long w2 = 1LL * m0 * m1;
 
-	if(a.empty() || b.empty()) {
+	int n = (int) a.size(), m = (int) b.size();
+	if(n == 0 || m == 0) {
 		return {};
 	}
-	std::vector<__uint128_t> ans(a.size() + b.size() - 1);
-	if(std::min(a.size(), b.size()) < 128) {
-		for(int i = 0; i < (int) a.size(); i++) {
-			for(int j = 0; j < (int) b.size(); j++) {
-				ans[i + j] += 1LL * a[i] * b[j];
+	std::vector<__uint128_t> c(n + m - 1);
+	if(std::min(n, m) < 128) {
+		for(int i = 0; i < n; i++) {
+			for(int j = 0; j < m; j++) {
+				c[i + j] += 1LL * a[i] * b[j];
 			}
 		}
-		return ans;
+		return c;
 	}
+
+	static constexpr int MAX_AB_BIT = 24;
+    static_assert(m0 % (1ULL << MAX_AB_BIT) == 1, "m0 isn't enough to support an array length of 2^24.");
+    static_assert(m1 % (1ULL << MAX_AB_BIT) == 1, "m1 isn't enough to support an array length of 2^24.");
+    static_assert(m2 % (1ULL << MAX_AB_BIT) == 1, "m2 isn't enough to support an array length of 2^24.");
+    assert(n + m - 1 <= (1 << MAX_AB_BIT));
+
 	auto c0 = convolution<m0>(a, b);
 	auto c1 = convolution<m1>(a, b);
 	auto c2 = convolution<m2>(a, b);
-	int n = (int) c0.size();
-	for(int i = 0; i < n; i++) {
+	for(int i = 0; i < n + m - 1; i++) {
 		long long n1 = c1[i], n2 = c2[i];
 		long long x = c0[i];
 		long long y = (n1 + m1 - x) * r01 % m1;
 		long long z = ((n2 + m2 - x) * r02r12 + (m2 - y) * r12) % m2;
-		ans[i] = x + y * w1 + __uint128_t(z) * w2;
+		c[i] = x + y * w1 + __uint128_t(z) * w2;
 	}
-	return ans;
+	return c;
 }
 
 template<class mint, internal::is_static_modint_t<mint>* = nullptr>
