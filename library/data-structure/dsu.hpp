@@ -17,7 +17,8 @@ public:
 	}
 	
 	bool merge(int a, int b) {
-		if((a = leader(a)) == (b = leader(b))) {
+		a = leader(a), b = leader(b);
+		if(a == b) {
 			return false;
 		}
 		if constexpr(UNION_BY_SIZE) {

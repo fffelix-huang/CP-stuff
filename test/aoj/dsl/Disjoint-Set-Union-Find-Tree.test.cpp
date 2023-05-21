@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_1_A"
 
 #include <iostream>
-#include "../../../library/dsu/dsu.hpp"
+#include "../../../library/data-structure/dsu.hpp"
 using namespace std;
 using namespace felix;
 
