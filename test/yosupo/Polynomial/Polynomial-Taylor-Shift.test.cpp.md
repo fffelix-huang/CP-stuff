@@ -1,28 +1,28 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/convolution/ntt.hpp
     title: library/convolution/ntt.hpp
   - icon: ':heavy_check_mark:'
     path: library/formal-power-series/poly.hpp
     title: library/formal-power-series/poly.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/inv-gcd.hpp
     title: library/math/inv-gcd.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/pow-mod.hpp
     title: library/math/pow-mod.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/primitive-root.hpp
     title: library/math/primitive-root.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/safe-mod.hpp
     title: library/math/safe-mod.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/misc/type-traits.hpp
     title: library/misc/type-traits.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/modint/modint.hpp
     title: library/modint/modint.hpp
   _extendedRequiredBy: []
@@ -131,21 +131,21 @@ data:
     \ y = modint(*this) * x * x;\r\n\t\tx *= value;\r\n\t\tmodint z = b.pow(m);\r\n\
     \t\twhile(y.val() != 1) {\r\n\t\t\tint j = 0;\r\n\t\t\tmodint t = y;\r\n\t\t\t\
     while(t.val() != 1) {\r\n\t\t\t\tt *= t;\r\n\t\t\t\tj++;\r\n\t\t\t}\r\n\t\t\t\
-    z = z.pow(1LL << (e - j - 1));\r\n\t\t\tx *= z;\r\n\t\t\tz *= z;\r\n\t\t\ty *=\
-    \ z;\r\n\t\t\te = j;\r\n\t\t}\r\n\t\treturn x;\r\n\t}\r\n\r\n\tfriend constexpr\
-    \ std::istream& operator>>(std::istream& in, modint& num) {\r\n\t\tlong long x;\r\
-    \n\t\tin >> x;\r\n\t\tnum = modint<id>(x);\r\n\t\treturn in;\r\n\t}\r\n\t\r\n\t\
-    friend constexpr std::ostream& operator<<(std::ostream& out, const modint& num)\
-    \ {\r\n\t\treturn out << num.val();\r\n\t}\r\n\r\npublic:\r\n\tstatic std::vector<modint>\
-    \ fact, inv_fact, invs;\r\n \r\nprivate:\r\n\tint value;\r\n\tstatic int md;\r\
-    \n};\r\n\r\ntemplate<int id> int modint<id>::md = 998244353;\r\ntemplate<int id>\
-    \ std::vector<modint<id>> modint<id>::fact = {1};\r\ntemplate<int id> std::vector<modint<id>>\
-    \ modint<id>::inv_fact = {1};\r\ntemplate<int id> std::vector<modint<id>> modint<id>::invs\
-    \ = {0};\r\n\r\nusing modint998244353 = modint<998244353>;\r\nusing modint1000000007\
-    \ = modint<1000000007>;\r\n\r\nnamespace internal {\r\n\r\ntemplate<class T> struct\
-    \ is_modint : public std::false_type {};\r\ntemplate<int id> struct is_modint<modint<id>>\
-    \ : public std::true_type {};\r\n\r\ntemplate<class T, class ENABLE = void> struct\
-    \ is_static_modint : public std::false_type {};\r\ntemplate<int id> struct is_static_modint<modint<id>,\
+    z = z.pow(1LL << (e - j - 1));\r\n\t\t\tx *= z, z *= z, y *= z;\r\n\t\t\te = j;\r\
+    \n\t\t}\r\n\t\treturn x;\r\n\t}\r\n\r\n\tfriend constexpr std::istream& operator>>(std::istream&\
+    \ in, modint& num) {\r\n\t\tlong long x;\r\n\t\tin >> x;\r\n\t\tnum = modint<id>(x);\r\
+    \n\t\treturn in;\r\n\t}\r\n\t\r\n\tfriend constexpr std::ostream& operator<<(std::ostream&\
+    \ out, const modint& num) {\r\n\t\treturn out << num.val();\r\n\t}\r\n\r\npublic:\r\
+    \n\tstatic std::vector<modint> fact, inv_fact, invs;\r\n \r\nprivate:\r\n\tint\
+    \ value;\r\n\tstatic int md;\r\n};\r\n\r\ntemplate<int id> int modint<id>::md\
+    \ = 998244353;\r\ntemplate<int id> std::vector<modint<id>> modint<id>::fact =\
+    \ {1};\r\ntemplate<int id> std::vector<modint<id>> modint<id>::inv_fact = {1};\r\
+    \ntemplate<int id> std::vector<modint<id>> modint<id>::invs = {0};\r\n\r\nusing\
+    \ modint998244353 = modint<998244353>;\r\nusing modint1000000007 = modint<1000000007>;\r\
+    \n\r\nnamespace internal {\r\n\r\ntemplate<class T> struct is_modint : public\
+    \ std::false_type {};\r\ntemplate<int id> struct is_modint<modint<id>> : public\
+    \ std::true_type {};\r\n\r\ntemplate<class T, class ENABLE = void> struct is_static_modint\
+    \ : public std::false_type {};\r\ntemplate<int id> struct is_static_modint<modint<id>,\
     \ std::enable_if_t<(id > 0)>> : public std::true_type {};\r\ntemplate<class T>\
     \ using is_static_modint_t = std::enable_if_t<is_static_modint<T>::value>;\r\n\
     \r\ntemplate<class T, class ENABLE = void> struct is_dynamic_modint : public std::false_type\
@@ -239,26 +239,27 @@ data:
     \n\t\t\t\t\t}\r\n\t\t\t\t\tif(s + 1 != (1 << (len - 2))) {\r\n\t\t\t\t\t\tirot\
     \ *= info.irate3[__builtin_ctz(~(unsigned int) s)];\r\n\t\t\t\t\t}\r\n\t\t\t\t\
     }\r\n\t\t\t\tlen -= 2;\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n};\r\n\r\ntemplate<int mod>\
-    \ NTT_prepare<mod> NTT<mod>::info;\r\n\r\ntemplate<class mint, internal::is_static_modint_t<mint>*\
-    \ = nullptr>\r\nstd::vector<mint> convolution_naive(const std::vector<mint>& a,\
-    \ const std::vector<mint>& b) {\r\n\tint n = (int) a.size(), m = (int) b.size();\r\
-    \n\tassert(n >= m);\r\n\tint len = n + m - 1;\r\n\tstd::vector<mint> ans(len);\r\
-    \n\tfor(int i = 0; i < n; i++) {\r\n\t\tfor(int j = 0; j < m; j++) {\r\n\t\t\t\
-    ans[i + j] += a[i] * b[j];\r\n\t\t}\r\n\t}\r\n\treturn ans;\r\n}\r\n\r\ntemplate<class\
-    \ mint, internal::is_static_modint_t<mint>* = nullptr>\r\nstd::vector<mint> convolution_ntt(std::vector<mint>\
-    \ a, std::vector<mint> b) {\r\n\tint n = (int) a.size(), m = (int) b.size();\r\
-    \n\tint sz = 1 << std::__lg(2 * (n + m - 1) - 1);\r\n\ta.resize(sz);\r\n\tb.resize(sz);\r\
-    \n\tNTT<mint::mod()>::NTT4(a);\r\n\tNTT<mint::mod()>::NTT4(b);\r\n\tfor(int i\
-    \ = 0; i < sz; i++) {\r\n\t\ta[i] *= b[i];\r\n\t}\r\n\tNTT<mint::mod()>::iNTT4(a);\r\
-    \n\ta.resize(n + m - 1);\r\n\tmint iz = mint(sz).inv();\r\n\tfor(int i = 0; i\
-    \ < n + m - 1; i++) {\r\n\t\ta[i] *= iz;\r\n\t}\r\n\treturn a;\r\n}\r\n\r\n} //\
-    \ namespace internal\r\n\r\ntemplate<class mint, internal::is_static_modint_t<mint>*\
-    \ = nullptr>\r\nstd::vector<mint> convolution(const std::vector<mint>& a, const\
-    \ std::vector<mint>& b) {\r\n\tint n = (int) a.size(), m = (int) b.size();\r\n\
-    \tif(n == 0 || m == 0) {\r\n\t\treturn {};\r\n\t}\r\n\tint sz = 1 << std::__lg(2\
-    \ * (n + m - 1) - 1);\r\n\tassert((mint::mod() - 1) % sz == 0);\r\n\tif(std::min(n,\
-    \ m) < 128) {\r\n\t\treturn n >= m ? internal::convolution_naive(a, b) : internal::convolution_naive(b,\
-    \ a);\r\n\t}\r\n\treturn internal::convolution_ntt(a, b);\r\n}\r\n\r\ntemplate<int\
+    \ NTT_prepare<mod> NTT<mod>::info;\r\n\r\ntemplate<class T>\r\nstd::vector<T>\
+    \ convolution_naive(const std::vector<T>& a, const std::vector<T>& b) {\r\n\t\
+    int n = (int) a.size(), m = (int) b.size();\r\n\tstd::vector<T> ans(n + m - 1);\r\
+    \n\tif(n >= m) {\r\n\t\tfor(int i = 0; i < n; i++) {\r\n\t\t\tfor(int j = 0; j\
+    \ < m; j++) {\r\n\t\t\t\tans[i + j] += a[i] * b[j];\r\n\t\t\t}\r\n\t\t}\r\n\t\
+    } else {\r\n\t\tfor(int j = 0; j < m; j++) {\r\n\t\t\tfor(int i = 0; i < n; i++)\
+    \ {\r\n\t\t\t\tans[i + j] += a[i] * b[j];\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n\treturn\
+    \ ans;\r\n}\r\n\r\ntemplate<class mint, internal::is_static_modint_t<mint>* =\
+    \ nullptr>\r\nstd::vector<mint> convolution_ntt(std::vector<mint> a, std::vector<mint>\
+    \ b) {\r\n\tint n = (int) a.size(), m = (int) b.size();\r\n\tint sz = 1 << std::__lg(2\
+    \ * (n + m - 1) - 1);\r\n\ta.resize(sz);\r\n\tb.resize(sz);\r\n\tNTT<mint::mod()>::NTT4(a);\r\
+    \n\tNTT<mint::mod()>::NTT4(b);\r\n\tfor(int i = 0; i < sz; i++) {\r\n\t\ta[i]\
+    \ *= b[i];\r\n\t}\r\n\tNTT<mint::mod()>::iNTT4(a);\r\n\ta.resize(n + m - 1);\r\
+    \n\tmint iz = mint(sz).inv();\r\n\tfor(int i = 0; i < n + m - 1; i++) {\r\n\t\t\
+    a[i] *= iz;\r\n\t}\r\n\treturn a;\r\n}\r\n\r\n} // namespace internal\r\n\r\n\
+    template<class mint, internal::is_static_modint_t<mint>* = nullptr>\r\nstd::vector<mint>\
+    \ convolution(const std::vector<mint>& a, const std::vector<mint>& b) {\r\n\t\
+    int n = (int) a.size(), m = (int) b.size();\r\n\tif(n == 0 || m == 0) {\r\n\t\t\
+    return {};\r\n\t}\r\n\tint sz = 1 << std::__lg(2 * (n + m - 1) - 1);\r\n\tassert((mint::mod()\
+    \ - 1) % sz == 0);\r\n\tif(std::min(n, m) < 128) {\r\n\t\treturn internal::convolution_naive(a,\
+    \ b);\r\n\t}\r\n\treturn internal::convolution_ntt(a, b);\r\n}\r\n\r\ntemplate<int\
     \ mod, class T, std::enable_if_t<internal::is_integral<T>::value>* = nullptr>\r\
     \nstd::vector<T> convolution(const std::vector<T>& a, const std::vector<T>& b)\
     \ {\r\n\tusing mint = modint<mod>;\r\n\r\n\tint n = (int) a.size(), m = (int)\
@@ -269,18 +270,18 @@ data:
     \ c(n + m - 1);\r\n\tfor(int i = 0; i < n + m - 1; i++) {\r\n\t\tc[i] = c2[i].val();\r\
     \n\t}\r\n\treturn c;\r\n}\r\n\r\ntemplate<class T>\r\nstd::vector<__uint128_t>\
     \ convolution_u128(const std::vector<T>& a, const std::vector<T>& b) {\r\n\tstatic\
-    \ constexpr int m0 = 754974721; // 2^24\r\n\tstatic constexpr int m1 = 167772161;\
-    \ // 2^25\r\n\tstatic constexpr int m2 = 469762049; // 2^26\r\n\tstatic constexpr\
+    \ constexpr int m0 = 167772161; // 2^25\r\n\tstatic constexpr int m1 = 469762049;\
+    \ // 2^26\r\n\tstatic constexpr int m2 = 754974721; // 2^24\r\n\tstatic constexpr\
     \ int r01 = internal::inv_gcd(m0, m1).second;\r\n\tstatic constexpr int r02 =\
     \ internal::inv_gcd(m0, m2).second;\r\n\tstatic constexpr int r12 = internal::inv_gcd(m1,\
     \ m2).second;\r\n\tstatic constexpr int r02r12 = 1LL * r02 * r12 % m2;\r\n\tstatic\
     \ constexpr long long w1 = m0;\r\n\tstatic constexpr long long w2 = 1LL * m0 *\
     \ m1;\r\n\r\n\tint n = (int) a.size(), m = (int) b.size();\r\n\tif(n == 0 || m\
     \ == 0) {\r\n\t\treturn {};\r\n\t}\r\n\tstd::vector<__uint128_t> c(n + m - 1);\r\
-    \n\tif(std::min(n, m) < 128) {\r\n\t\tfor(int i = 0; i < n; i++) {\r\n\t\t\tfor(int\
-    \ j = 0; j < m; j++) {\r\n\t\t\t\tc[i + j] += 1LL * a[i] * b[j];\r\n\t\t\t}\r\n\
-    \t\t}\r\n\t\treturn c;\r\n\t}\r\n\r\n\tstatic constexpr int MAX_AB_BIT = 24;\r\
-    \n    static_assert(m0 % (1ULL << MAX_AB_BIT) == 1, \"m0 isn't enough to support\
+    \n\tif(std::min(n, m) < 128) {\r\n\t\tstd::vector<__uint128_t> a2(a.begin(), a.end());\r\
+    \n\t\tstd::vector<__uint128_t> b2(b.begin(), b.end());\r\n\t\treturn internal::convolution_naive(std::move(a2),\
+    \ std::move(b2));\r\n\t}\r\n\r\n\tstatic constexpr int MAX_AB_BIT = 24;\r\n  \
+    \  static_assert(m0 % (1ULL << MAX_AB_BIT) == 1, \"m0 isn't enough to support\
     \ an array length of 2^24.\");\r\n    static_assert(m1 % (1ULL << MAX_AB_BIT)\
     \ == 1, \"m1 isn't enough to support an array length of 2^24.\");\r\n    static_assert(m2\
     \ % (1ULL << MAX_AB_BIT) == 1, \"m2 isn't enough to support an array length of\
@@ -297,25 +298,26 @@ data:
     \ 1;\r\n\tstatic constexpr int inv_max_size = internal::inv_gcd(max_size, mint::mod()).second;\r\
     \n\r\n\tconst int n = (int) a.size(), m = (int) b.size();\r\n\tif(n == 0 || m\
     \ == 0) {\r\n\t\treturn {};\r\n\t}\r\n\tif(std::min(n, m) < 128 || n + m - 1 <=\
-    \ max_size) {\r\n\t\treturn convolution(a, b);\r\n\t}\r\n\tconst int dn = (n +\
-    \ half_size - 1) / half_size;\r\n\tconst int dm = (m + half_size - 1) / half_size;\r\
-    \n\tstd::vector<std::vector<mint>> as(dn), bs(dm);\r\n\tfor(int i = 0; i < dn;\
-    \ ++i) {\r\n\t\tconst int offset = half_size * i;\r\n\t\tas[i] = std::vector<mint>(a.begin()\
-    \ + offset, a.begin() + std::min(n, offset + half_size));\r\n\t\tas[i].resize(max_size);\r\
-    \n\t\tinternal::NTT<mint::mod()>::NTT4(as[i]);\r\n\t}\r\n\tfor(int j = 0; j <\
-    \ dm; ++j) {\r\n\t\tconst int offset = half_size * j;\r\n\t\tbs[j] = std::vector<mint>(b.begin()\
-    \ + offset, b.begin() + std::min(m, offset + half_size));\r\n\t\tbs[j].resize(max_size);\r\
-    \n\t\tinternal::NTT<mint::mod()>::NTT4(bs[j]);\r\n\t}\r\n\tstd::vector<std::vector<mint>>\
-    \ cs(dn + dm - 1, std::vector<mint>(max_size));\r\n\tfor(int i = 0; i < dn; ++i)\
-    \ {\r\n\t\tfor(int j = 0; j < dm; ++j) {\r\n\t\t\tfor(int k = 0; k < max_size;\
-    \ ++k) {\r\n\t\t\t\tcs[i + j][k] += as[i][k] * bs[j][k];\r\n\t\t\t}\r\n\t\t}\r\
-    \n\t}\r\n\tstd::vector<mint> c(n + m - 1);\r\n\tfor(int i = 0; i < dn + dm - 1;\
-    \ ++i) {\r\n\t\tinternal::NTT<mint::mod()>::iNTT4(cs[i]);\r\n\t\tconst int offset\
-    \ = half_size * i;\r\n\t\tconst int jmax = std::min(n + m - 1 - offset, max_size);\r\
-    \n\t\tfor(int j = 0; j < jmax; ++j) {\r\n\t\t\tc[offset + j] += cs[i][j] * inv_max_size;\r\
-    \n\t\t}\r\n\t}\r\n\treturn c;\r\n}\r\n\r\n} // namespace felix\r\n#line 9 \"library/formal-power-series/poly.hpp\"\
-    \n\r\nnamespace felix {\r\n\r\ntemplate<int mod>\r\nstruct Poly {\r\n\tusing mint\
-    \ = modint<mod>;\r\n\r\npublic:\r\n\tPoly() {}\r\n\texplicit Poly(int n) : a(n)\
+    \ max_size) {\r\n\t\treturn internal::convolution_naive(a, b);\r\n\t}\r\n\tconst\
+    \ int dn = (n + half_size - 1) / half_size;\r\n\tconst int dm = (m + half_size\
+    \ - 1) / half_size;\r\n\tstd::vector<std::vector<mint>> as(dn), bs(dm);\r\n\t\
+    for(int i = 0; i < dn; ++i) {\r\n\t\tconst int offset = half_size * i;\r\n\t\t\
+    as[i] = std::vector<mint>(a.begin() + offset, a.begin() + std::min(n, offset +\
+    \ half_size));\r\n\t\tas[i].resize(max_size);\r\n\t\tinternal::NTT<mint::mod()>::NTT4(as[i]);\r\
+    \n\t}\r\n\tfor(int j = 0; j < dm; ++j) {\r\n\t\tconst int offset = half_size *\
+    \ j;\r\n\t\tbs[j] = std::vector<mint>(b.begin() + offset, b.begin() + std::min(m,\
+    \ offset + half_size));\r\n\t\tbs[j].resize(max_size);\r\n\t\tinternal::NTT<mint::mod()>::NTT4(bs[j]);\r\
+    \n\t}\r\n\tstd::vector<std::vector<mint>> cs(dn + dm - 1, std::vector<mint>(max_size));\r\
+    \n\tfor(int i = 0; i < dn; ++i) {\r\n\t\tfor(int j = 0; j < dm; ++j) {\r\n\t\t\
+    \tfor(int k = 0; k < max_size; ++k) {\r\n\t\t\t\tcs[i + j][k] += as[i][k] * bs[j][k];\r\
+    \n\t\t\t}\r\n\t\t}\r\n\t}\r\n\tstd::vector<mint> c(n + m - 1);\r\n\tfor(int i\
+    \ = 0; i < dn + dm - 1; ++i) {\r\n\t\tinternal::NTT<mint::mod()>::iNTT4(cs[i]);\r\
+    \n\t\tconst int offset = half_size * i;\r\n\t\tconst int jmax = std::min(n + m\
+    \ - 1 - offset, max_size);\r\n\t\tfor(int j = 0; j < jmax; ++j) {\r\n\t\t\tc[offset\
+    \ + j] += cs[i][j] * inv_max_size;\r\n\t\t}\r\n\t}\r\n\treturn c;\r\n}\r\n\r\n\
+    } // namespace felix\r\n#line 9 \"library/formal-power-series/poly.hpp\"\n\r\n\
+    namespace felix {\r\n\r\ntemplate<int mod>\r\nstruct Poly {\r\n\tusing mint =\
+    \ modint<mod>;\r\n\r\npublic:\r\n\tPoly() {}\r\n\texplicit Poly(int n) : a(n)\
     \ {}\r\n\texplicit Poly(const std::vector<mint>& a) : a(a) {}\r\n\tPoly(const\
     \ std::initializer_list<mint>& a) : a(a) {}\r\n\r\n\ttemplate<class F>\r\n\texplicit\
     \ Poly(int n, F f) : a(n) {\r\n\t\tfor(int i = 0; i < n; i++) {\r\n\t\t\ta[i]\
@@ -429,7 +431,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/Polynomial/Polynomial-Taylor-Shift.test.cpp
   requiredBy: []
-  timestamp: '2023-05-21 03:01:40+08:00'
+  timestamp: '2023-05-21 14:57:42+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Polynomial/Polynomial-Taylor-Shift.test.cpp
