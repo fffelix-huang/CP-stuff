@@ -15,6 +15,9 @@ data:
       path: library/data-structure/binary-trie.hpp
       title: library/data-structure/binary-trie.hpp
     - icon: ':heavy_check_mark:'
+      path: library/data-structure/dsu.hpp
+      title: library/data-structure/dsu.hpp
+    - icon: ':heavy_check_mark:'
       path: library/data-structure/fenwick.hpp
       title: library/data-structure/fenwick.hpp
     - icon: ':heavy_check_mark:'
@@ -50,17 +53,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/data-structure/wavelet-tree.hpp
       title: "Wavelet Tree (\u975C\u614B\u5340\u9593\u7B2C $k$ \u5927)"
-  - name: library/dsu
-    pages:
-    - icon: ':heavy_check_mark:'
-      path: library/dsu/dsu.hpp
-      title: library/dsu/dsu.hpp
-    - icon: ':warning:'
-      path: library/dsu/rollback-dsu.hpp
-      title: library/dsu/rollback-dsu.hpp
-    - icon: ':warning:'
-      path: library/dsu/weighted-dsu.hpp
-      title: library/dsu/weighted-dsu.hpp
   - name: library/flow
     pages:
     - icon: ':heavy_check_mark:'
