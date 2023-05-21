@@ -158,15 +158,21 @@ struct NTT {
 
 template<int mod> NTT_prepare<mod> NTT<mod>::info;
 
-template<class mint, internal::is_static_modint_t<mint>* = nullptr>
-std::vector<mint> convolution_naive(const std::vector<mint>& a, const std::vector<mint>& b) {
+template<class T>
+std::vector<T> convolution_naive(const std::vector<T>& a, const std::vector<T>& b) {
 	int n = (int) a.size(), m = (int) b.size();
-	assert(n >= m);
-	int len = n + m - 1;
-	std::vector<mint> ans(len);
-	for(int i = 0; i < n; i++) {
+	std::vector<T> ans(n + m - 1);
+	if(n >= m) {
+		for(int i = 0; i < n; i++) {
+			for(int j = 0; j < m; j++) {
+				ans[i + j] += a[i] * b[j];
+			}
+		}
+	} else {
 		for(int j = 0; j < m; j++) {
-			ans[i + j] += a[i] * b[j];
+			for(int i = 0; i < n; i++) {
+				ans[i + j] += a[i] * b[j];
+			}
 		}
 	}
 	return ans;
@@ -203,7 +209,7 @@ std::vector<mint> convolution(const std::vector<mint>& a, const std::vector<mint
 	int sz = 1 << std::__lg(2 * (n + m - 1) - 1);
 	assert((mint::mod() - 1) % sz == 0);
 	if(std::min(n, m) < 128) {
-		return n >= m ? internal::convolution_naive(a, b) : internal::convolution_naive(b, a);
+		return internal::convolution_naive(a, b);
 	}
 	return internal::convolution_ntt(a, b);
 }
@@ -230,9 +236,9 @@ std::vector<T> convolution(const std::vector<T>& a, const std::vector<T>& b) {
 
 template<class T>
 std::vector<__uint128_t> convolution_u128(const std::vector<T>& a, const std::vector<T>& b) {
-	static constexpr int m0 = 754974721; // 2^24
-	static constexpr int m1 = 167772161; // 2^25
-	static constexpr int m2 = 469762049; // 2^26
+	static constexpr int m0 = 167772161; // 2^25
+	static constexpr int m1 = 469762049; // 2^26
+	static constexpr int m2 = 754974721; // 2^24
 	static constexpr int r01 = internal::inv_gcd(m0, m1).second;
 	static constexpr int r02 = internal::inv_gcd(m0, m2).second;
 	static constexpr int r12 = internal::inv_gcd(m1, m2).second;
@@ -246,12 +252,9 @@ std::vector<__uint128_t> convolution_u128(const std::vector<T>& a, const std::ve
 	}
 	std::vector<__uint128_t> c(n + m - 1);
 	if(std::min(n, m) < 128) {
-		for(int i = 0; i < n; i++) {
-			for(int j = 0; j < m; j++) {
-				c[i + j] += 1LL * a[i] * b[j];
-			}
-		}
-		return c;
+		std::vector<__uint128_t> a2(a.begin(), a.end());
+		std::vector<__uint128_t> b2(b.begin(), b.end());
+		return internal::convolution_naive(std::move(a2), std::move(b2));
 	}
 
 	static constexpr int MAX_AB_BIT = 24;
@@ -284,7 +287,7 @@ std::vector<mint> convolution_large(const std::vector<mint>& a, const std::vecto
 		return {};
 	}
 	if(std::min(n, m) < 128 || n + m - 1 <= max_size) {
-		return convolution(a, b);
+		return internal::convolution_naive(a, b);
 	}
 	const int dn = (n + half_size - 1) / half_size;
 	const int dm = (m + half_size - 1) / half_size;

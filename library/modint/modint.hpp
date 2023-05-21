@@ -150,9 +150,7 @@ public:
 				j++;
 			}
 			z = z.pow(1LL << (e - j - 1));
-			x *= z;
-			z *= z;
-			y *= z;
+			x *= z, z *= z, y *= z;
 			e = j;
 		}
 		return x;
