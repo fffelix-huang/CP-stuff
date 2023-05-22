@@ -2,6 +2,7 @@
 #include <vector>
 #include <cassert>
 #include <algorithm>
+#include "../misc/type-traits.hpp"
 #include "binary-gcd.hpp"
 #include "safe-mod.hpp"
 #include "is-prime.hpp"
@@ -11,6 +12,7 @@ namespace felix {
 
 template<class T>
 T pollard_rho(T n) {
+	using U = internal::safely_multipliable_t<T>;
 	if(n % 2 == 0) {
 		return 2;
 	}
@@ -20,7 +22,7 @@ T pollard_rho(T n) {
 	while(true) {
 		const T R = rng() % (n - 1) + 1;
 		auto f = [&](T x) -> T {
-			return internal::safe_mod<__int128>(__int128(x) * x + R, n);
+			return internal::safe_mod<U>(U(x) * x + R, n);
 		};
 		T x = 1, y = 2, ys = 1, q = 1, g = 1;
 		constexpr int m = 128;
@@ -33,7 +35,7 @@ T pollard_rho(T n) {
 				ys = y;
 				for(int i = 0; i < std::min(m, r - k); i++) {
 					y = f(y);
-					q = internal::safe_mod<__int128>(__int128(q) * internal::safe_mod(x - y, n), n);
+					q = internal::safe_mod<U>(U(q) * internal::safe_mod(x - y, n), n);
 				}
 				g = binary_gcd(q, n);
 			}

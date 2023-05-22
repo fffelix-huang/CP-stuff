@@ -3,7 +3,7 @@
 #include <iostream>
 #include <algorithm>
 #include "../../../library/geometry/point.hpp"
-#include "../../../library/geometry/geometry.hpp"
+#include "../../../library/geometry/convex-hull.hpp"
 using namespace std;
 using namespace felix;
 using namespace geometry;

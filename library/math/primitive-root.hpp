@@ -34,7 +34,7 @@ constexpr int primitive_root_constexpr(int m) {
 	for(int g = 2;; g++) {
 		bool ok = true;
 		for(int i = 0; i < cnt; i++) {
-			if(pow_mod_constexpr<unsigned long long, unsigned int>(g, (m - 1) / divs[i], m) == 1) {
+			if(pow_mod_constexpr(g, (m - 1) / divs[i], m) == 1) {
 				ok = false;
 				break;
 			}
@@ -60,7 +60,7 @@ long long primitive_root(long long n) {
 	for(long long g = 2;; g++) {
 		bool ok = true;
 		for(auto d : f) {
-			if(internal::pow_mod_constexpr<__uint128_t, unsigned long long>(g, (n - 1) / d, n) == 1) {
+			if(internal::pow_mod_constexpr(g, (n - 1) / d, n) == 1) {
 				ok = false;
 				break;
 			}

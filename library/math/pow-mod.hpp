@@ -1,22 +1,23 @@
 #pragma once
+#include "../misc/type-traits.hpp"
 #include "safe-mod.hpp"
 
 namespace felix {
 
 namespace internal {
 
-template<class T, class U>
-constexpr T pow_mod_constexpr(T x, long long n, U m) {
+template<class T>
+constexpr T pow_mod_constexpr(T x, long long n, T m) {
+	using U = safely_multipliable_t<T>;
 	if(m == 1) {
 		return 0;
 	}
-	x = safe_mod<T>(x, m);
-	T r = 1;
+	U r = 1, y = safe_mod(x, m);
 	while(n) {
 		if(n & 1) {
-			r = (r * x) % m;
+			r = (r * y) % m;
 		}
-		x = (x * x) % m;
+		y = (y * y) % m;
 		n >>= 1;
 	}
 	return r;

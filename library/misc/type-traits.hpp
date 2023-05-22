@@ -26,6 +26,20 @@ template<class T> using is_signed_int_t = std::enable_if_t<is_signed_int<T>::val
 template<class T> using is_unsigned_int_t = std::enable_if_t<is_unsigned_int<T>::value>;
 template<class T> using to_unsigned_t = typename to_unsigned<T>::type;
 
+template<class T> struct safely_multipliable {};
+template<> struct safely_multipliable<short> { using type = int; };
+template<> struct safely_multipliable<unsigned short> { using type = unsigned int; };
+template<> struct safely_multipliable<int> { using type = long long; };
+template<> struct safely_multipliable<unsigned int> { using type = unsigned long long; };
+template<> struct safely_multipliable<long long> { using type = __int128; };
+template<> struct safely_multipliable<unsigned long long> { using type = __uint128_t; };
+template<> struct safely_multipliable<float> { using type = float; };
+template<> struct safely_multipliable<double> { using type = double; };
+template<> struct safely_multipliable<long double> { using type = long double; };
+template<> struct safely_multipliable<__float128> { using type = __float128; };
+
+template<class T> using safely_multipliable_t = typename safely_multipliable<T>::type;
+
 }  // namespace internal
 
 }  // namespace felix
