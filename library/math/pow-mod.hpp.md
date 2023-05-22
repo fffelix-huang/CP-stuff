@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/safe-mod.hpp
     title: library/math/safe-mod.hpp
   _extendedRequiredBy:
@@ -11,13 +11,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/formal-power-series/poly.hpp
     title: library/formal-power-series/poly.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/factorize.hpp
     title: "Integer Factorization (Pollard Rho \u8CEA\u56E0\u6578\u5206\u89E3)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/is-prime.hpp
     title: library/math/is-prime.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/primitive-root.hpp
     title: library/math/primitive-root.hpp
   _extendedVerifiedWith:
@@ -39,6 +39,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/Math/Partition-Function.test.cpp
     title: test/yosupo/Math/Partition-Function.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/Math/Primality-Test.test.cpp
+    title: test/yosupo/Math/Primality-Test.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/Math/Primitive-Root.test.cpp
+    title: test/yosupo/Math/Primitive-Root.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/Polynomial/Exp-of-Formal-Power-Series.test.cpp
     title: test/yosupo/Polynomial/Exp-of-Formal-Power-Series.test.cpp
@@ -63,9 +69,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/Polynomial/Sqrt-of-Formal-Power-Series.test.cpp
     title: test/yosupo/Polynomial/Sqrt-of-Formal-Power-Series.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"library/math/safe-mod.hpp\"\n\r\nnamespace felix {\r\n\r\
@@ -95,13 +101,15 @@ data:
   - library/math/primitive-root.hpp
   - library/formal-power-series/poly.hpp
   timestamp: '2023-05-21 00:28:23+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/Convolution/Convolution.test.cpp
   - test/yosupo/Convolution/Convolution-Large.test.cpp
   - test/yosupo/Convolution/Convolution-Mod-1000000007.test.cpp
+  - test/yosupo/Math/Primitive-Root.test.cpp
   - test/yosupo/Math/Partition-Function.test.cpp
   - test/yosupo/Math/Factorize.test.cpp
+  - test/yosupo/Math/Primality-Test.test.cpp
   - test/yosupo/Polynomial/Exp-of-Formal-Power-Series.test.cpp
   - test/yosupo/Polynomial/Sqrt-of-Formal-Power-Series.test.cpp
   - test/yosupo/Polynomial/Product-of-Polynomial-Sequence.test.cpp

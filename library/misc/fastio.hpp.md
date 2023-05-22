@@ -34,7 +34,7 @@ data:
     \ std::true_type, std::false_type>::type;\r\ntemplate<class T> using is_unsigned_int\
     \ = typename std::conditional<(is_integral<T>::value && std::is_unsigned<T>::value)\
     \ || is_unsigned_int128<T>::value, std::true_type, std::false_type>::type;\r\n\
-    template<class T> using to_unsigned = typename std::conditional< is_signed_int128<T>::value,\
+    template<class T> using to_unsigned = typename std::conditional<is_signed_int128<T>::value,\
     \ make_unsigned_int128<T>, typename std::conditional<std::is_signed<T>::value,\
     \ std::make_unsigned<T>, std::common_type<T>>::type>::type;\r\n#else\r\ntemplate<class\
     \ T> using is_integral = typename std::is_integral<T>;\r\ntemplate<class T> using\
@@ -154,7 +154,7 @@ data:
   isVerificationFile: false
   path: library/misc/fastio.hpp
   requiredBy: []
-  timestamp: '2023-05-13 10:23:52+08:00'
+  timestamp: '2023-05-22 17:42:25+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/Convolution/Convolution-Large.test.cpp

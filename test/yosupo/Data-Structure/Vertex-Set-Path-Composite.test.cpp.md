@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/math/inv-gcd.hpp
     title: library/math/inv-gcd.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/safe-mod.hpp
     title: library/math/safe-mod.hpp
   - icon: ':heavy_check_mark:'
@@ -157,7 +157,7 @@ data:
     \ std::true_type, std::false_type>::type;\r\ntemplate<class T> using is_unsigned_int\
     \ = typename std::conditional<(is_integral<T>::value && std::is_unsigned<T>::value)\
     \ || is_unsigned_int128<T>::value, std::true_type, std::false_type>::type;\r\n\
-    template<class T> using to_unsigned = typename std::conditional< is_signed_int128<T>::value,\
+    template<class T> using to_unsigned = typename std::conditional<is_signed_int128<T>::value,\
     \ make_unsigned_int128<T>, typename std::conditional<std::is_signed<T>::value,\
     \ std::make_unsigned<T>, std::common_type<T>>::type>::type;\r\n#else\r\ntemplate<class\
     \ T> using is_integral = typename std::is_integral<T>;\r\ntemplate<class T> using\
@@ -309,7 +309,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/Data-Structure/Vertex-Set-Path-Composite.test.cpp
   requiredBy: []
-  timestamp: '2023-05-21 14:57:42+08:00'
+  timestamp: '2023-05-22 17:42:25+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Data-Structure/Vertex-Set-Path-Composite.test.cpp

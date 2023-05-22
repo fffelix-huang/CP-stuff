@@ -99,7 +99,7 @@ data:
       title: library/graph/strongly-connected-components.hpp
   - name: library/math
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/math/binary-gcd.hpp
       title: "Binary GCD (\u4F4D\u5143 GCD)"
     - icon: ':warning:'
@@ -108,7 +108,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/discrete-log.hpp
       title: "Discrete Log (\u96E2\u6563\u5C0D\u6578 $a^x \\equiv b \\pmod m$)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/math/factorize.hpp
       title: "Integer Factorization (Pollard Rho \u8CEA\u56E0\u6578\u5206\u89E3)"
     - icon: ':heavy_check_mark:'
@@ -120,16 +120,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/inv-gcd.hpp
       title: library/math/inv-gcd.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/math/is-prime.hpp
       title: library/math/is-prime.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/math/pow-mod.hpp
       title: library/math/pow-mod.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/math/primitive-root.hpp
       title: library/math/primitive-root.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/math/safe-mod.hpp
       title: library/math/safe-mod.hpp
     - icon: ':heavy_check_mark:'
@@ -173,7 +173,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/random/random.hpp
       title: random_t
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/random/rng.hpp
       title: library/random/rng.hpp
     - icon: ':heavy_check_mark:'
@@ -433,6 +433,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/Math/Partition-Function.test.cpp
       title: test/yosupo/Math/Partition-Function.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/Math/Primality-Test.test.cpp
+      title: test/yosupo/Math/Primality-Test.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/Math/Primitive-Root.test.cpp
+      title: test/yosupo/Math/Primitive-Root.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/Math/Sqrt-Mod.test.cpp
       title: test/yosupo/Math/Sqrt-Mod.test.cpp

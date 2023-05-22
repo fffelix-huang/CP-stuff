@@ -4,16 +4,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/convolution/ntt.hpp
     title: library/convolution/ntt.hpp
+  - icon: ':question:'
+    path: library/math/binary-gcd.hpp
+    title: "Binary GCD (\u4F4D\u5143 GCD)"
+  - icon: ':question:'
+    path: library/math/factorize.hpp
+    title: "Integer Factorization (Pollard Rho \u8CEA\u56E0\u6578\u5206\u89E3)"
   - icon: ':heavy_check_mark:'
     path: library/math/inv-gcd.hpp
     title: library/math/inv-gcd.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: library/math/is-prime.hpp
+    title: library/math/is-prime.hpp
+  - icon: ':question:'
     path: library/math/pow-mod.hpp
     title: library/math/pow-mod.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/primitive-root.hpp
     title: library/math/primitive-root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/safe-mod.hpp
     title: library/math/safe-mod.hpp
   - icon: ':heavy_check_mark:'
@@ -25,6 +34,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/modint/modint.hpp
     title: library/modint/modint.hpp
+  - icon: ':question:'
+    path: library/random/rng.hpp
+    title: library/random/rng.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -54,7 +66,7 @@ data:
     \ std::true_type, std::false_type>::type;\r\ntemplate<class T> using is_unsigned_int\
     \ = typename std::conditional<(is_integral<T>::value && std::is_unsigned<T>::value)\
     \ || is_unsigned_int128<T>::value, std::true_type, std::false_type>::type;\r\n\
-    template<class T> using to_unsigned = typename std::conditional< is_signed_int128<T>::value,\
+    template<class T> using to_unsigned = typename std::conditional<is_signed_int128<T>::value,\
     \ make_unsigned_int128<T>, typename std::conditional<std::is_signed<T>::value,\
     \ std::make_unsigned<T>, std::common_type<T>>::type>::type;\r\n#else\r\ntemplate<class\
     \ T> using is_integral = typename std::is_integral<T>;\r\ntemplate<class T> using\
@@ -208,48 +220,101 @@ data:
     \ x, long long n, U m) {\r\n\tif(m == 1) {\r\n\t\treturn 0;\r\n\t}\r\n\tx = safe_mod<T>(x,\
     \ m);\r\n\tT r = 1;\r\n\twhile(n) {\r\n\t\tif(n & 1) {\r\n\t\t\tr = (r * x) %\
     \ m;\r\n\t\t}\r\n\t\tx = (x * x) % m;\r\n\t\tn >>= 1;\r\n\t}\r\n\treturn r;\r\n\
-    }\r\n\r\n} // namespace internal\r\n\r\n} // namespace felix\r\n#line 4 \"library/math/primitive-root.hpp\"\
-    \n\nnamespace felix {\n\nnamespace internal {\n\nconstexpr int primitive_root_constexpr(int\
-    \ m) {\n\tif(m == 998244353) return 3;\n\tif(m == 167772161) return 3;\n\tif(m\
-    \ == 469762049) return 3;\n\tif(m == 754974721) return 11;\n\tif(m == 880803841)\
-    \ return 26;\n\tif(m == 1045430273) return 3;\n\tif(m == 1051721729) return 6;\n\
-    \tif(m == 1053818881) return 7;\n\tint divs[20] = {};\n\tdivs[0] = 2;\n\tint cnt\
-    \ = 1;\n\tint x = (m - 1) / 2;\n\tx >>= __builtin_ctz(x);\n\tfor(int i = 3; 1LL\
-    \ * i * i <= x; i += 2) {\n\t\tif(x % i == 0) {\n\t\t\tdivs[cnt++] = i;\n\t\t\t\
-    while(x % i == 0) {\n\t\t\t\tx /= i;\n\t\t\t}\n\t\t}\n\t}\n\tif(x > 1) {\n\t\t\
-    divs[cnt++] = x;\n\t}\n\tfor(int g = 2;; g++) {\n\t\tbool ok = true;\n\t\tfor(int\
-    \ i = 0; i < cnt; i++) {\n\t\t\tif(pow_mod_constexpr<unsigned long long, int>(g,\
-    \ (m - 1) / divs[i], m) == 1) {\n\t\t\t\tok = false;\n\t\t\t\tbreak;\n\t\t\t}\n\
-    \t\t}\n\t\tif(ok) {\n\t\t\treturn g;\n\t\t}\n\t}\n\tassert(false);\n}\n\n} //\
-    \ namespace internal\n\n} // namespace felix\n#line 11 \"library/convolution/ntt.hpp\"\
-    \n\r\nnamespace felix {\r\n\r\nnamespace internal {\r\n\r\ntemplate<int mod>\r\
-    \nstruct NTT_prepare {\r\n\tusing mint = modint<mod>;\r\n\r\n\tstatic constexpr\
-    \ int primitive_root = primitive_root_constexpr(mod);\r\n\tstatic constexpr int\
-    \ level = __builtin_ctz(mod - 1);\r\n\r\n\tstd::array<mint, level + 1> root, iroot;\r\
-    \n\tstd::array<mint, std::max(0, level - 2 + 1)> rate2, irate2;\r\n\tstd::array<mint,\
-    \ std::max(0, level - 3 + 1)> rate3, irate3;\r\n\r\n\tconstexpr NTT_prepare()\
-    \ {\r\n\t\troot[level] = mint(primitive_root).pow((mod - 1) >> level);\r\n\t\t\
-    iroot[level] = root[level].inv();\r\n\t\tfor(int i = level - 1; i >= 0; i--) {\r\
-    \n\t\t\troot[i] = root[i + 1] * root[i + 1];\r\n\t\t\tiroot[i] = iroot[i + 1]\
-    \ * iroot[i + 1];\r\n\t\t}\r\n\t\t{\r\n\t\t\tmint prod = 1, iprod = 1;\r\n\t\t\
-    \tfor(int i = 0; i <= level - 2; i++) {\r\n\t\t\t\trate2[i] = root[i + 2] * prod;\r\
-    \n\t\t\t\tirate2[i] = iroot[i + 2] * iprod;\r\n\t\t\t\tprod *= iroot[i + 2];\r\
-    \n\t\t\t\tiprod *= root[i + 2];\r\n\t\t\t}\r\n\t\t}\r\n\t\t{\r\n\t\t\tmint prod\
-    \ = 1, iprod = 1;\r\n\t\t\tfor(int i = 0; i <= level - 3; i++) {\r\n\t\t\t\trate3[i]\
-    \ = root[i + 3] * prod;\r\n\t\t\t\tirate3[i] = iroot[i + 3] * iprod;\r\n\t\t\t\
-    \tprod *= iroot[i + 3];\r\n\t\t\t\tiprod *= root[i + 3];\r\n\t\t\t}\r\n\t\t}\r\
-    \n\t}\r\n};\r\n\r\ntemplate<int mod>\r\nstruct NTT {\r\n\tusing mint = modint<mod>;\r\
-    \n\r\n\tstatic NTT_prepare<mod> info;\r\n\r\n\tstatic void NTT4(std::vector<mint>&\
-    \ a) {\r\n\t\tint n = (int) a.size();\r\n\t\tint h = __builtin_ctz(n);\r\n\t\t\
-    int len = 0;\r\n\t\twhile(len < h) {\r\n\t\t\tif(h - len == 1) {\r\n\t\t\t\tint\
-    \ p = 1 << (h - len - 1);\r\n\t\t\t\tmint rot = 1;\r\n\t\t\t\tfor(int s = 0; s\
-    \ < (1 << len); s++) {\r\n\t\t\t\t\tint offset = s << (h - len);\r\n\t\t\t\t\t\
-    for(int i = 0; i < p; i++) {\r\n\t\t\t\t\t\tauto l = a[i + offset];\r\n\t\t\t\t\
-    \t\tauto r = a[i + offset + p] * rot;\r\n\t\t\t\t\t\ta[i + offset] = l + r;\r\n\
-    \t\t\t\t\t\ta[i + offset + p] = l - r;\r\n\t\t\t\t\t}\r\n\t\t\t\t\tif(s + 1 !=\
-    \ (1 << len)) {\r\n\t\t\t\t\t\trot *= info.rate2[__builtin_ctz(~(unsigned int)\
-    \ s)];\r\n\t\t\t\t\t}\r\n\t\t\t\t}\r\n\t\t\t\tlen++;\r\n\t\t\t} else {\r\n\t\t\
-    \t\tint p = 1 << (h - len - 2);\r\n\t\t\t\tmint rot = 1, imag = info.root[2];\r\
+    }\r\n\r\n} // namespace internal\r\n\r\n} // namespace felix\r\n#line 2 \"library/math/binary-gcd.hpp\"\
+    \n\r\nnamespace felix {\r\n\r\ntemplate<class T>\r\ninline T binary_gcd(T a, T\
+    \ b) {\r\n\tif(a == 0 || b == 0) {\r\n\t\treturn a | b;\r\n\t}\r\n\tint8_t n =\
+    \ __builtin_ctzll(a);\r\n\tint8_t m = __builtin_ctzll(b);\r\n\ta >>= n;\r\n\t\
+    b >>= m;\r\n\twhile(a != b) {\r\n\t\tT d = a - b;\r\n\t\tint8_t s = __builtin_ctzll(d);\r\
+    \n\t\tbool f = a > b;\r\n\t\tb = f ? b : a;\r\n\t\ta = (f ? d : -d) >> s;\r\n\t\
+    }\r\n\treturn a << (n < m ? n : m);\r\n}\r\n\r\n} // namespace felix\r\n#line\
+    \ 4 \"library/math/is-prime.hpp\"\n\r\nnamespace felix {\r\n\r\nnamespace internal\
+    \ {\r\n\r\ntemplate<class T, class U>\r\nbool is_prime(U n, std::vector<U> x)\
+    \ {\r\n\tT d = n - 1;\r\n\td >>= __builtin_ctzll(d);\r\n\tfor(auto a : x) {\r\n\
+    \t\tif(n <= a) {\r\n\t\t\treturn true;\r\n\t\t}\r\n\t\tU t = d;\r\n\t\tU y = pow_mod_constexpr<T,\
+    \ U>(a, d, n);\r\n\t\twhile(t != n - 1 && y != 1 && y != n - 1) {\r\n\t\t\ty =\
+    \ T(y) * y % n;\r\n\t\t\tt <<= 1;\r\n\t\t}\r\n\t\tif(y != n - 1 && t % 2 == 0)\
+    \ {\r\n\t\t\treturn false;\r\n\t\t}\r\n\t}\r\n\treturn true;\r\n}\r\n\r\n} //\
+    \ namespace internal\r\n\r\nbool is_prime(long long n) {\r\n\tif(n <= 1) {\r\n\
+    \t\treturn false;\r\n\t}\r\n\tif(n % 2 == 0) {\r\n\t\treturn n == 2;\r\n\t}\r\n\
+    \tif(n < (1LL << 30)) {\r\n\t\treturn internal::is_prime<unsigned long long, unsigned\
+    \ int>(n, {2, 7, 61});\r\n\t}\r\n\treturn internal::is_prime<__uint128_t, unsigned\
+    \ long long>(n, {2, 325, 9375, 28178, 450775, 9780504, 1795265022});\r\n}\r\n\r\
+    \n} // namespace felix\n#line 2 \"library/random/rng.hpp\"\n#include <chrono>\n\
+    \nnamespace felix {\n\ninline unsigned long long rng() {\n\tstatic unsigned long\
+    \ long SEED = std::chrono::steady_clock::now().time_since_epoch().count();\n\t\
+    SEED ^= SEED << 7;\n\tSEED ^= SEED >> 9;\n\treturn SEED & 0xFFFFFFFFULL;\n}\n\n\
+    } // namespace felix\n#line 9 \"library/math/factorize.hpp\"\n\nnamespace felix\
+    \ {\n\ntemplate<class T>\nT pollard_rho(T n) {\n\tif(n % 2 == 0) {\n\t\treturn\
+    \ 2;\n\t}\n\tif(is_prime(n)) {\n\t\treturn n;\n\t}\n\twhile(true) {\n\t\tconst\
+    \ T R = rng() % (n - 1) + 1;\n\t\tauto f = [&](T x) -> T {\n\t\t\treturn internal::safe_mod<__int128>(__int128(x)\
+    \ * x + R, n);\n\t\t};\n\t\tT x = 1, y = 2, ys = 1, q = 1, g = 1;\n\t\tconstexpr\
+    \ int m = 128;\n\t\tfor(int r = 1; g == 1; r <<= 1) {\n\t\t\tx = y;\n\t\t\tfor(int\
+    \ i = 0; i < r; i++) {\n\t\t\t\ty = f(y);\n\t\t\t}\n\t\t\tfor(int k = 0; k < r\
+    \ && g == 1; k += m) {\n\t\t\t\tys = y;\n\t\t\t\tfor(int i = 0; i < std::min(m,\
+    \ r - k); i++) {\n\t\t\t\t\ty = f(y);\n\t\t\t\t\tq = internal::safe_mod<__int128>(__int128(q)\
+    \ * internal::safe_mod(x - y, n), n);\n\t\t\t\t}\n\t\t\t\tg = binary_gcd(q, n);\n\
+    \t\t\t}\n\t\t}\n\t\tif(g == n) {\n\t\t\tdo {\n\t\t\t\tys = f(ys);\n\t\t\t\tT x2\
+    \ = internal::safe_mod(x - ys, n);\n\t\t\t\tg = binary_gcd(x2, n);\n\t\t\t} while(g\
+    \ == 1);\n\t\t}\n\t\tif(g != n) {\n\t\t\treturn g;\n\t\t}\n\t}\n\tassert(false);\n\
+    }\n\ntemplate<class T>\nstd::vector<T> factorize(T n) {\n\tif(n <= 1) {\n\t\t\
+    return {};\n\t}\n\tstd::vector<T> res = {n};\n\tfor(int i = 0; i < (int) res.size();\
+    \ i++) {\n\t\tT p = pollard_rho(res[i]);\n\t\tif(p != res[i]) {\n\t\t\tres[i]\
+    \ /= p;\n\t\t\tres.push_back(p);\n\t\t\ti--;\n\t\t}\n\t}\n\tstd::sort(res.begin(),\
+    \ res.end());\n\treturn res;\n}\n\ntemplate<class T>\nstd::vector<T> get_divisors(T\
+    \ n) {\n\tif(n == 0) {\n\t\treturn {};\n\t}\n\tstd::vector<std::pair<T, int>>\
+    \ v;\n\tfor(auto p : factorize(n)) {\n\t\tif(v.empty() || v.back().first != p)\
+    \ {\n\t\t\tv.emplace_back(p, 1);\n\t\t} else {\n\t\t\tv.back().second++;\n\t\t\
+    }\n\t}\n\tstd::vector<T> res;\n\tauto f = [&](auto f, int i, T x) -> void {\n\t\
+    \tif(i == (int) v.size()) {\n\t\t\tres.push_back(x);\n\t\t\treturn;\n\t\t}\n\t\
+    \tfor(int j = v[i].second; ; j--) {\n\t\t\tf(f, i + 1, x);\n\t\t\tif(j == 0) {\n\
+    \t\t\t\tbreak;\n\t\t\t}\n\t\t\tx *= v[i].first;\n\t\t}\n\t};\n\tf(f, 0, 1);\n\t\
+    std::sort(res.begin(), res.end());\n\treturn res;\n}\n\n} // namespace felix\n\
+    #line 7 \"library/math/primitive-root.hpp\"\n\nnamespace felix {\n\nnamespace\
+    \ internal {\n\nconstexpr int primitive_root_constexpr(int m) {\n\tif(m == 998244353)\
+    \ return 3;\n\tif(m == 167772161) return 3;\n\tif(m == 469762049) return 3;\n\t\
+    if(m == 754974721) return 11;\n\tif(m == 2) return 1;\n\tint divs[20] = {};\n\t\
+    divs[0] = 2;\n\tint cnt = 1;\n\tint x = (m - 1) / 2;\n\tx >>= __builtin_ctz(x);\n\
+    \tfor(int i = 3; 1LL * i * i <= x; i += 2) {\n\t\tif(x % i == 0) {\n\t\t\tdivs[cnt++]\
+    \ = i;\n\t\t\twhile(x % i == 0) {\n\t\t\t\tx /= i;\n\t\t\t}\n\t\t}\n\t}\n\tif(x\
+    \ > 1) {\n\t\tdivs[cnt++] = x;\n\t}\n\tfor(int g = 2;; g++) {\n\t\tbool ok = true;\n\
+    \t\tfor(int i = 0; i < cnt; i++) {\n\t\t\tif(pow_mod_constexpr<unsigned long long,\
+    \ unsigned int>(g, (m - 1) / divs[i], m) == 1) {\n\t\t\t\tok = false;\n\t\t\t\t\
+    break;\n\t\t\t}\n\t\t}\n\t\tif(ok) {\n\t\t\treturn g;\n\t\t}\n\t}\n\tassert(false);\n\
+    }\n\n} // namespace internal\n\nlong long primitive_root(long long n) {\n\tif(n\
+    \ == 2) {\n\t\treturn 1;\n\t}\n\tlong long x = (n - 1) / 2;\n\tx >>= __builtin_ctzll(x);\n\
+    \tauto f = factorize(x);\n\tf.erase(std::unique(f.begin(), f.end()), f.end());\n\
+    \tf.push_back(2);\n\tfor(long long g = 2;; g++) {\n\t\tbool ok = true;\n\t\tfor(auto\
+    \ d : f) {\n\t\t\tif(internal::pow_mod_constexpr<__uint128_t, unsigned long long>(g,\
+    \ (n - 1) / d, n) == 1) {\n\t\t\t\tok = false;\n\t\t\t\tbreak;\n\t\t\t}\n\t\t\
+    }\n\t\tif(ok) {\n\t\t\treturn g;\n\t\t}\n\t}\n\tassert(false);\n}\n\n} // namespace\
+    \ felix\n#line 11 \"library/convolution/ntt.hpp\"\n\r\nnamespace felix {\r\n\r\
+    \nnamespace internal {\r\n\r\ntemplate<int mod>\r\nstruct NTT_prepare {\r\n\t\
+    using mint = modint<mod>;\r\n\r\n\tstatic constexpr int primitive_root = primitive_root_constexpr(mod);\r\
+    \n\tstatic constexpr int level = __builtin_ctz(mod - 1);\r\n\r\n\tstd::array<mint,\
+    \ level + 1> root, iroot;\r\n\tstd::array<mint, std::max(0, level - 2 + 1)> rate2,\
+    \ irate2;\r\n\tstd::array<mint, std::max(0, level - 3 + 1)> rate3, irate3;\r\n\
+    \r\n\tconstexpr NTT_prepare() {\r\n\t\troot[level] = mint(primitive_root).pow((mod\
+    \ - 1) >> level);\r\n\t\tiroot[level] = root[level].inv();\r\n\t\tfor(int i =\
+    \ level - 1; i >= 0; i--) {\r\n\t\t\troot[i] = root[i + 1] * root[i + 1];\r\n\t\
+    \t\tiroot[i] = iroot[i + 1] * iroot[i + 1];\r\n\t\t}\r\n\t\t{\r\n\t\t\tmint prod\
+    \ = 1, iprod = 1;\r\n\t\t\tfor(int i = 0; i <= level - 2; i++) {\r\n\t\t\t\trate2[i]\
+    \ = root[i + 2] * prod;\r\n\t\t\t\tirate2[i] = iroot[i + 2] * iprod;\r\n\t\t\t\
+    \tprod *= iroot[i + 2];\r\n\t\t\t\tiprod *= root[i + 2];\r\n\t\t\t}\r\n\t\t}\r\
+    \n\t\t{\r\n\t\t\tmint prod = 1, iprod = 1;\r\n\t\t\tfor(int i = 0; i <= level\
+    \ - 3; i++) {\r\n\t\t\t\trate3[i] = root[i + 3] * prod;\r\n\t\t\t\tirate3[i] =\
+    \ iroot[i + 3] * iprod;\r\n\t\t\t\tprod *= iroot[i + 3];\r\n\t\t\t\tiprod *= root[i\
+    \ + 3];\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n};\r\n\r\ntemplate<int mod>\r\nstruct NTT\
+    \ {\r\n\tusing mint = modint<mod>;\r\n\r\n\tstatic NTT_prepare<mod> info;\r\n\r\
+    \n\tstatic void NTT4(std::vector<mint>& a) {\r\n\t\tint n = (int) a.size();\r\n\
+    \t\tint h = __builtin_ctz(n);\r\n\t\tint len = 0;\r\n\t\twhile(len < h) {\r\n\t\
+    \t\tif(h - len == 1) {\r\n\t\t\t\tint p = 1 << (h - len - 1);\r\n\t\t\t\tmint\
+    \ rot = 1;\r\n\t\t\t\tfor(int s = 0; s < (1 << len); s++) {\r\n\t\t\t\t\tint offset\
+    \ = s << (h - len);\r\n\t\t\t\t\tfor(int i = 0; i < p; i++) {\r\n\t\t\t\t\t\t\
+    auto l = a[i + offset];\r\n\t\t\t\t\t\tauto r = a[i + offset + p] * rot;\r\n\t\
+    \t\t\t\t\ta[i + offset] = l + r;\r\n\t\t\t\t\t\ta[i + offset + p] = l - r;\r\n\
+    \t\t\t\t\t}\r\n\t\t\t\t\tif(s + 1 != (1 << len)) {\r\n\t\t\t\t\t\trot *= info.rate2[__builtin_ctz(~(unsigned\
+    \ int) s)];\r\n\t\t\t\t\t}\r\n\t\t\t\t}\r\n\t\t\t\tlen++;\r\n\t\t\t} else {\r\n\
+    \t\t\t\tint p = 1 << (h - len - 2);\r\n\t\t\t\tmint rot = 1, imag = info.root[2];\r\
     \n\t\t\t\tfor(int s = 0; s < (1 << len); s++) {\r\n\t\t\t\t\tmint rot2 = rot *\
     \ rot;\r\n\t\t\t\t\tmint rot3 = rot2 * rot;\r\n\t\t\t\t\tint offset = s << (h\
     \ - len);\r\n\t\t\t\t\tfor(int i = 0; i < p; i++) {\r\n\t\t\t\t\t\tauto mod2 =\
@@ -392,10 +457,14 @@ data:
   - library/convolution/ntt.hpp
   - library/math/primitive-root.hpp
   - library/math/pow-mod.hpp
+  - library/math/factorize.hpp
+  - library/math/binary-gcd.hpp
+  - library/math/is-prime.hpp
+  - library/random/rng.hpp
   isVerificationFile: true
   path: test/yosupo/Convolution/Convolution-Large.test.cpp
   requiredBy: []
-  timestamp: '2023-05-21 14:57:42+08:00'
+  timestamp: '2023-05-22 17:42:25+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Convolution/Convolution-Large.test.cpp
