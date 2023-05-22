@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/primality_test"
+#define PROBLEM "https://judge.yosupo.jp/problem/primitive_root"
 
 #include <iostream>
 #include "../../../library/math/primitive-root.hpp"
