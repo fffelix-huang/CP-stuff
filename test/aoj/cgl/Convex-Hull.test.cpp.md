@@ -2,11 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: library/geometry/geometry.hpp
-    title: library/geometry/geometry.hpp
-  - icon: ':heavy_check_mark:'
-    path: library/geometry/line.hpp
-    title: library/geometry/line.hpp
+    path: library/geometry/convex-hull.hpp
+    title: library/geometry/convex-hull.hpp
   - icon: ':heavy_check_mark:'
     path: library/geometry/point.hpp
     title: library/geometry/point.hpp
@@ -49,54 +46,22 @@ data:
     \ * rhs.y; }\n\tfriend constexpr T cross(Point lhs, Point rhs) { return lhs.x\
     \ * rhs.y - lhs.y * rhs.x; }\n\n\tfriend constexpr std::istream& operator>>(std::istream&\
     \ in, Point& p) {\n\t\treturn in >> p.x >> p.y;\n\t}\n};\n\n} // namespace geometry\n\
-    \n} // namespace felix\n#line 2 \"library/geometry/geometry.hpp\"\n#include <vector>\n\
-    #line 4 \"library/geometry/line.hpp\"\n\nnamespace felix {\n\nnamespace geometry\
-    \ {\n\ntemplate<class T>\nstruct Line {\n\tPoint<T> a, b;\n \t\n \tLine() {}\n\
-    \tLine(Point<T> _a, Point<T> _b) : a(_a), b(_b) {}\n\n\tconstexpr Point<T> vectorize()\
-    \ const { return b - a; }\n\n\tfriend constexpr std::istream& operator>>(std::istream&\
-    \ in, Line& l) {\n\t\treturn in >> l.a >> l.b;\n\t}\n};\n\n} // namespace geometry\n\
-    \n} // namespace felix\n#line 6 \"library/geometry/geometry.hpp\"\n\nnamespace\
-    \ felix {\n\nnamespace geometry {\n\nnamespace internal {\n\ntemplate<class T>\
-    \ constexpr int sign(T x) { return x == 0 ? 0 : (x < 0 ? -1 : +1); }\n\n} // namespace\
-    \ internal\n\n// LEFT: +1, RIGHT: -1, STRAIGHT: 0\ntemplate<class T>\nint orientation(Point<T>\
-    \ a, Point<T> b, Point<T> c) {\n\treturn internal::sign(cross(b - a, c - a));\n\
-    }\n\ntemplate<class T>\nbool collinearity(Point<T> a, Point<T> b, Point<T> c)\
-    \ {\n\treturn internal::sign(cross(a - c, b - c)) == 0;\n}\n\ntemplate<class T>\n\
-    bool between(Point<T> a, Point<T> b, Point<T> c) {\n\treturn collinearity(a, c,\
-    \ b) && internal::sign(dot(a - b, c - b)) <= 0;\n}\n\ntemplate<class T>\nbool\
-    \ segment_intersection(Line<T> a, Line<T> b) {\n\tint a123 = orientation(a.a,\
-    \ a.b, b.a);\n\tint a124 = orientation(a.a, a.b, b.b);\n\tint a341 = orientation(b.a,\
-    \ b.b, a.a);\n\tint a342 = orientation(b.a, b.b, a.b);\n\tif(a123 == 0 && a124\
-    \ == 0) {\n\t\treturn between(a.a, b.a, a.b) || between(a.a, b.b, a.b) || between(b.a,\
-    \ a.a, b.b) || between(b.a, a.b, b.b);\n\t}\n\treturn a123 * a124 <= 0 && a341\
-    \ * a342 <= 0;\n}\n\ntemplate<class T>\nPoint<T> line_intersection(Line<T> a,\
-    \ Line<T> b) {\n\tT a123 = cross(a.vectorize(), b.a - a.a);\n\tT a124 = cross(a.vectorize(),\
-    \ b.b - a.a);\n\treturn (b.b * a123 - b.a * a124) / (a123 - a124);\n}\n\ntemplate<class\
-    \ T>\nPoint<T> projection(Line<T> L, Point<T> p) {\n\tauto v = L.vectorize();\n\
-    \tT x = abs(v);\n\treturn L.a + v / x * dot(p - L.a, v) / x;\n}\n\ntemplate<class\
-    \ T>\nPoint<T> reflection(Line<T> L, Point<T> p) {\n\tauto proj = projection(L,\
-    \ p);\n\treturn p + (proj - p) * 2;\n}\n\n// counter-clockwise order\ntemplate<class\
-    \ T>\nstd::vector<Point<T>> convex_hull(std::vector<Point<T>> p) {\n\tint n =\
-    \ (int) p.size();\n\tstd::sort(p.begin(), p.end(), [](const Point<T>& a, const\
-    \ Point<T>& b) {\n\t\treturn a.x == b.x ? (a.y < b.y) : (a.x < b.x);\n\t});\n\t\
-    auto build = [&]() {\n\t\tstd::vector<Point<T>> upper = {p[0], p[1]};\n\t\tfor(int\
-    \ i = 2; i < n; ++i) {\n\t\t\twhile(upper.size() >= 2) {\n\t\t\t\tif(cross(upper.end()[-1]\
-    \ - upper.end()[-2], p[i] - upper.end()[-1]) > 0) {\n\t\t\t\t\tupper.pop_back();\n\
-    \t\t\t\t} else {\n\t\t\t\t\tbreak;\n\t\t\t\t}\n\t\t\t}\n\t\t\tupper.push_back(p[i]);\n\
-    \t\t}\n\t\treturn upper;\n\t};\n\tstd::vector<Point<T>> upper = build();\n\tstd::reverse(p.begin(),\
-    \ p.end());\n\tstd::vector<Point<T>> lower = build();\n\tlower.pop_back();\n\t\
-    upper.insert(upper.end(), lower.begin() + 1, lower.end());\n\tstd::reverse(upper.begin(),\
-    \ upper.end());\n\treturn upper;\n}\n\n// Convex Hull must be sorted in counter-clockwise\
-    \ order\n// ON: -1, IN: +1, OUT: 0\ntemplate<class T>\nint point_in_convex_hull(const\
-    \ std::vector<Point<T>>& a, const Point<T>& p) {\n\tint n = (int) a.size();\n\t\
-    if(between(a[0], a[1], p) || between(a[0], a[n - 1], p)) {\n\t\treturn -1;\n\t\
-    }\n\tint l = 0, r = n - 1;\n\twhile(l <= r) {\n\t\tint m = (l + r) / 2;\n\t\t\
-    auto a1 = cross(a[m] - a[0], p - a[0]);\n\t\tauto a2 = cross(a[(m + 1) % n] -\
-    \ a[0], p - a[0]);\n\t\tif(a1 >= 0 && a2 <= 0) {\n\t\t\tauto res = cross(a[(m\
-    \ + 1) % n] - a[m], p - a[m]);\n\t\t\treturn res > 0 ? 1 : (res >= 0 ? -1 : 0);\n\
-    \t\t}\n\t\tif(a1 < 0) {\n\t\t\tr = m - 1;\n\t\t} else {\n\t\t\tl = m + 1;\n\t\t\
-    }\n\t}\n\treturn 0;\n}\n\n} // namespace geometry\n\n} // namespace felix\n#line\
-    \ 7 \"test/aoj/cgl/Convex-Hull.test.cpp\"\nusing namespace std;\nusing namespace\
+    \n} // namespace felix\n#line 2 \"library/geometry/convex-hull.hpp\"\n#include\
+    \ <vector>\n#line 4 \"library/geometry/convex-hull.hpp\"\n#include <functional>\n\
+    #line 6 \"library/geometry/convex-hull.hpp\"\n\nnamespace felix {\n\nnamespace\
+    \ geometry {\n\n// counter-clockwise order\ntemplate<class T>\nstd::vector<Point<T>>\
+    \ convex_hull(std::vector<Point<T>> p) {\n\tint n = (int) p.size();\n\tstd::sort(p.begin(),\
+    \ p.end(), [](const Point<T>& a, const Point<T>& b) {\n\t\treturn a.x == b.x ?\
+    \ (a.y < b.y) : (a.x < b.x);\n\t});\n\tauto build = [&]() {\n\t\tstd::vector<Point<T>>\
+    \ upper = {p[0], p[1]};\n\t\tfor(int i = 2; i < n; ++i) {\n\t\t\twhile(upper.size()\
+    \ >= 2) {\n\t\t\t\tif(cross(upper.end()[-1] - upper.end()[-2], p[i] - upper.end()[-1])\
+    \ > 0) {\n\t\t\t\t\tupper.pop_back();\n\t\t\t\t} else {\n\t\t\t\t\tbreak;\n\t\t\
+    \t\t}\n\t\t\t}\n\t\t\tupper.push_back(p[i]);\n\t\t}\n\t\treturn upper;\n\t};\n\
+    \tstd::vector<Point<T>> upper = build();\n\tstd::reverse(p.begin(), p.end());\n\
+    \tstd::vector<Point<T>> lower = build();\n\tlower.pop_back();\n\tupper.insert(upper.end(),\
+    \ lower.begin() + 1, lower.end());\n\tstd::reverse(upper.begin(), upper.end());\n\
+    \treturn upper;\n}\n\n} // namespace geometry\n\n} // namespace felix\n#line 7\
+    \ \"test/aoj/cgl/Convex-Hull.test.cpp\"\nusing namespace std;\nusing namespace\
     \ felix;\nusing namespace geometry;\n\nint main() {\n\tios::sync_with_stdio(false);\n\
     \tcin.tie(0);\n\tint n;\n\tcin >> n;\n\tvector<Point<long long>> a(n);\n\tfor(int\
     \ i = 0; i < n; i++) {\n\t\tcin >> a[i];\n\t}\n\tauto ans = convex_hull(a);\n\t\
@@ -107,7 +72,7 @@ data:
     }\n\treturn 0;\n}\n"
   code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_4_A\"\
     \n\n#include <iostream>\n#include <algorithm>\n#include \"../../../library/geometry/point.hpp\"\
-    \n#include \"../../../library/geometry/geometry.hpp\"\nusing namespace std;\n\
+    \n#include \"../../../library/geometry/convex-hull.hpp\"\nusing namespace std;\n\
     using namespace felix;\nusing namespace geometry;\n\nint main() {\n\tios::sync_with_stdio(false);\n\
     \tcin.tie(0);\n\tint n;\n\tcin >> n;\n\tvector<Point<long long>> a(n);\n\tfor(int\
     \ i = 0; i < n; i++) {\n\t\tcin >> a[i];\n\t}\n\tauto ans = convex_hull(a);\n\t\
@@ -118,12 +83,11 @@ data:
     }\n\treturn 0;\n}\n"
   dependsOn:
   - library/geometry/point.hpp
-  - library/geometry/geometry.hpp
-  - library/geometry/line.hpp
+  - library/geometry/convex-hull.hpp
   isVerificationFile: true
   path: test/aoj/cgl/Convex-Hull.test.cpp
   requiredBy: []
-  timestamp: '2023-05-15 14:09:28+08:00'
+  timestamp: '2023-05-23 03:18:50+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/cgl/Convex-Hull.test.cpp

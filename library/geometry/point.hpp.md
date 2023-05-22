@@ -6,11 +6,17 @@ data:
     path: library/geometry/closest-pair.hpp
     title: library/geometry/closest-pair.hpp
   - icon: ':heavy_check_mark:'
+    path: library/geometry/convex-hull.hpp
+    title: library/geometry/convex-hull.hpp
+  - icon: ':heavy_check_mark:'
     path: library/geometry/geometry.hpp
     title: library/geometry/geometry.hpp
   - icon: ':heavy_check_mark:'
     path: library/geometry/line.hpp
     title: library/geometry/line.hpp
+  - icon: ':warning:'
+    path: library/geometry/point-in-convex-hull.hpp
+    title: library/geometry/point-in-convex-hull.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/cgl/Area.test.cpp
@@ -93,7 +99,9 @@ data:
   path: library/geometry/point.hpp
   requiredBy:
   - library/geometry/line.hpp
+  - library/geometry/point-in-convex-hull.hpp
   - library/geometry/closest-pair.hpp
+  - library/geometry/convex-hull.hpp
   - library/geometry/geometry.hpp
   timestamp: '2023-05-15 01:11:19+08:00'
   verificationStatus: LIBRARY_ALL_AC

@@ -12,6 +12,18 @@ data:
     path: library/formal-power-series/poly.hpp
     title: library/formal-power-series/poly.hpp
   - icon: ':heavy_check_mark:'
+    path: library/math/factorize.hpp
+    title: "Integer Factorization (Pollard Rho \u8CEA\u56E0\u6578\u5206\u89E3)"
+  - icon: ':heavy_check_mark:'
+    path: library/math/is-prime.hpp
+    title: library/math/is-prime.hpp
+  - icon: ':heavy_check_mark:'
+    path: library/math/pow-mod.hpp
+    title: library/math/pow-mod.hpp
+  - icon: ':heavy_check_mark:'
+    path: library/math/primitive-root.hpp
+    title: library/math/primitive-root.hpp
+  - icon: ':heavy_check_mark:'
     path: library/misc/fastio.hpp
     title: library/misc/fastio.hpp
   - icon: ':heavy_check_mark:'
@@ -21,6 +33,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ntl/Power.test.cpp
     title: test/aoj/ntl/Power.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/ntl/Prime-Factorize.test.cpp
+    title: test/aoj/ntl/Prime-Factorize.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/Convolution/Bitwise-And-Convolution.test.cpp
     title: test/yosupo/Convolution/Bitwise-And-Convolution.test.cpp
@@ -64,8 +79,17 @@ data:
     path: test/yosupo/Many-A+B-128-bit.test.cpp
     title: test/yosupo/Many-A+B-128-bit.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/Math/Factorize.test.cpp
+    title: test/yosupo/Math/Factorize.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/Math/Partition-Function.test.cpp
     title: test/yosupo/Math/Partition-Function.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/Math/Primality-Test.test.cpp
+    title: test/yosupo/Math/Primality-Test.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/Math/Primitive-Root.test.cpp
+    title: test/yosupo/Math/Primitive-Root.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/Math/Sqrt-Mod.test.cpp
     title: test/yosupo/Math/Sqrt-Mod.test.cpp
@@ -131,8 +155,20 @@ data:
     \ std::common_type<T>>::type;\r\n#endif\r\n\r\ntemplate<class T> using is_signed_int_t\
     \ = std::enable_if_t<is_signed_int<T>::value>;\r\ntemplate<class T> using is_unsigned_int_t\
     \ = std::enable_if_t<is_unsigned_int<T>::value>;\r\ntemplate<class T> using to_unsigned_t\
-    \ = typename to_unsigned<T>::type;\r\n\r\n}  // namespace internal\r\n\r\n}  //\
-    \ namespace felix\r\n"
+    \ = typename to_unsigned<T>::type;\r\n\r\ntemplate<class T> struct safely_multipliable\
+    \ {};\r\ntemplate<> struct safely_multipliable<short> { using type = int; };\r\
+    \ntemplate<> struct safely_multipliable<unsigned short> { using type = unsigned\
+    \ int; };\r\ntemplate<> struct safely_multipliable<int> { using type = long long;\
+    \ };\r\ntemplate<> struct safely_multipliable<unsigned int> { using type = unsigned\
+    \ long long; };\r\ntemplate<> struct safely_multipliable<long long> { using type\
+    \ = __int128; };\r\ntemplate<> struct safely_multipliable<unsigned long long>\
+    \ { using type = __uint128_t; };\r\ntemplate<> struct safely_multipliable<float>\
+    \ { using type = float; };\r\ntemplate<> struct safely_multipliable<double> {\
+    \ using type = double; };\r\ntemplate<> struct safely_multipliable<long double>\
+    \ { using type = long double; };\r\ntemplate<> struct safely_multipliable<__float128>\
+    \ { using type = __float128; };\r\n\r\ntemplate<class T> using safely_multipliable_t\
+    \ = typename safely_multipliable<T>::type;\r\n\r\n}  // namespace internal\r\n\
+    \r\n}  // namespace felix\r\n"
   code: "#pragma once\r\n#include <cassert>\r\n#include <numeric>\r\n#include <type_traits>\r\
     \n\r\nnamespace felix {\r\n\r\nnamespace internal {\r\n\r\n#ifndef _MSC_VER\r\n\
     template<class T> using is_signed_int128 = typename std::conditional<std::is_same<T,\
@@ -160,8 +196,20 @@ data:
     \ std::common_type<T>>::type;\r\n#endif\r\n\r\ntemplate<class T> using is_signed_int_t\
     \ = std::enable_if_t<is_signed_int<T>::value>;\r\ntemplate<class T> using is_unsigned_int_t\
     \ = std::enable_if_t<is_unsigned_int<T>::value>;\r\ntemplate<class T> using to_unsigned_t\
-    \ = typename to_unsigned<T>::type;\r\n\r\n}  // namespace internal\r\n\r\n}  //\
-    \ namespace felix\r\n"
+    \ = typename to_unsigned<T>::type;\r\n\r\ntemplate<class T> struct safely_multipliable\
+    \ {};\r\ntemplate<> struct safely_multipliable<short> { using type = int; };\r\
+    \ntemplate<> struct safely_multipliable<unsigned short> { using type = unsigned\
+    \ int; };\r\ntemplate<> struct safely_multipliable<int> { using type = long long;\
+    \ };\r\ntemplate<> struct safely_multipliable<unsigned int> { using type = unsigned\
+    \ long long; };\r\ntemplate<> struct safely_multipliable<long long> { using type\
+    \ = __int128; };\r\ntemplate<> struct safely_multipliable<unsigned long long>\
+    \ { using type = __uint128_t; };\r\ntemplate<> struct safely_multipliable<float>\
+    \ { using type = float; };\r\ntemplate<> struct safely_multipliable<double> {\
+    \ using type = double; };\r\ntemplate<> struct safely_multipliable<long double>\
+    \ { using type = long double; };\r\ntemplate<> struct safely_multipliable<__float128>\
+    \ { using type = __float128; };\r\n\r\ntemplate<class T> using safely_multipliable_t\
+    \ = typename safely_multipliable<T>::type;\r\n\r\n}  // namespace internal\r\n\
+    \r\n}  // namespace felix\r\n"
   dependsOn: []
   isVerificationFile: false
   path: library/misc/type-traits.hpp
@@ -169,9 +217,13 @@ data:
   - library/misc/fastio.hpp
   - library/convolution/ntt.hpp
   - library/convolution/subset-convolution.hpp
+  - library/math/factorize.hpp
+  - library/math/is-prime.hpp
+  - library/math/pow-mod.hpp
+  - library/math/primitive-root.hpp
   - library/modint/modint.hpp
   - library/formal-power-series/poly.hpp
-  timestamp: '2023-05-22 17:42:25+08:00'
+  timestamp: '2023-05-23 03:18:50+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/Convolution/Bitwise-And-Convolution.test.cpp
@@ -190,7 +242,10 @@ data:
   - test/yosupo/Matrix/Matrix-Product.test.cpp
   - test/yosupo/Matrix/Determinant-of-Matrix.test.cpp
   - test/yosupo/Math/Sqrt-Mod.test.cpp
+  - test/yosupo/Math/Primitive-Root.test.cpp
   - test/yosupo/Math/Partition-Function.test.cpp
+  - test/yosupo/Math/Factorize.test.cpp
+  - test/yosupo/Math/Primality-Test.test.cpp
   - test/yosupo/Polynomial/Exp-of-Formal-Power-Series.test.cpp
   - test/yosupo/Polynomial/Sqrt-of-Formal-Power-Series.test.cpp
   - test/yosupo/Polynomial/Product-of-Polynomial-Sequence.test.cpp
@@ -200,6 +255,7 @@ data:
   - test/yosupo/Polynomial/Inv-of-Formal-Power-Series.test.cpp
   - test/yosupo/Polynomial/Pow-of-Formal-Power-Series.test.cpp
   - test/yosupo/Many-A+B-128-bit.test.cpp
+  - test/aoj/ntl/Prime-Factorize.test.cpp
   - test/aoj/ntl/Power.test.cpp
 documentation_of: library/misc/type-traits.hpp
 layout: document

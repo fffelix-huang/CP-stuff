@@ -99,72 +99,85 @@ data:
     \ std::common_type<T>>::type;\r\n#endif\r\n\r\ntemplate<class T> using is_signed_int_t\
     \ = std::enable_if_t<is_signed_int<T>::value>;\r\ntemplate<class T> using is_unsigned_int_t\
     \ = std::enable_if_t<is_unsigned_int<T>::value>;\r\ntemplate<class T> using to_unsigned_t\
-    \ = typename to_unsigned<T>::type;\r\n\r\n}  // namespace internal\r\n\r\n}  //\
-    \ namespace felix\r\n#line 2 \"library/math/safe-mod.hpp\"\n\r\nnamespace felix\
-    \ {\r\n\r\nnamespace internal {\r\n\r\ntemplate<class T>\r\nconstexpr T safe_mod(T\
-    \ x, T m) {\r\n\tx %= m;\r\n\tif(x < 0) {\r\n\t\tx += m;\r\n\t}\r\n\treturn x;\r\
-    \n}\r\n\r\n} // namespace internal\r\n\r\n} // namespace felix\n#line 3 \"library/math/inv-gcd.hpp\"\
-    \n\r\nnamespace felix {\r\n\r\nnamespace internal {\r\n\r\ntemplate<class T>\r\
-    \nconstexpr std::pair<T, T> inv_gcd(T a, T b) {\r\n\ta = safe_mod(a, b);\r\n\t\
-    if(a == 0) {\r\n\t\treturn {b, 0};\r\n\t}\r\n\tT s = b, t = a;\r\n\tT m0 = 0,\
-    \ m1 = 1;\r\n\twhile(t) {\r\n\t\tT u = s / t;\r\n\t\ts -= t * u;\r\n\t\tm0 -=\
-    \ m1 * u;\r\n\t\tauto tmp = s;\r\n\t\ts = t;\r\n\t\tt = tmp;\r\n\t\ttmp = m0;\r\
-    \n\t\tm0 = m1;\r\n\t\tm1 = tmp;\r\n\t}\r\n\tif(m0 < 0) {\r\n\t\tm0 += b / s;\r\
-    \n\t}\r\n\treturn {s, m0};\r\n}\r\n\r\n} // namespace internal\r\n\r\n} // namespace\
-    \ felix\r\n#line 9 \"library/modint/modint.hpp\"\n\r\nnamespace felix {\r\n\r\n\
-    template<int id>\r\nstruct modint {\r\npublic:\r\n\tstatic constexpr int mod()\
-    \ { return (id > 0 ? id : md); }\r\n \t\r\n\tstatic constexpr void set_mod(int\
-    \ m) {\r\n\t\tif(id > 0 || md == m) {\r\n\t\t\treturn;\r\n\t\t}\r\n\t\tmd = m;\r\
-    \n\t\tfact.resize(1);\r\n\t\tinv_fact.resize(1);\r\n\t\tinvs.resize(1);\r\n\t\
-    }\r\n\r\n\tstatic constexpr void prepare(int n) {\r\n\t\tint sz = (int) fact.size();\r\
-    \n\t\tif(sz == mod()) {\r\n\t\t\treturn;\r\n\t\t}\r\n\t\tn = 1 << std::__lg(2\
-    \ * n - 1);\r\n\t\tif(n < sz) {\r\n\t\t\treturn;\r\n\t\t}\r\n\t\tif(n < (sz -\
-    \ 1) * 2) {\r\n\t\t\tn = std::min((sz - 1) * 2, mod() - 1);\r\n\t\t}\r\n\t\tfact.resize(n\
-    \ + 1);\r\n\t\tinv_fact.resize(n + 1);\r\n\t\tinvs.resize(n + 1);\r\n\t\tfor(int\
-    \ i = sz; i <= n; i++) {\r\n\t\t\tfact[i] = fact[i - 1] * i;\r\n\t\t}\r\n\t\t\
-    auto eg = internal::inv_gcd(fact.back().val(), mod());\r\n\t\tassert(eg.first\
-    \ == 1);\r\n\t\tinv_fact[n] = eg.second;\r\n\t\tfor(int i = n - 1; i >= sz; i--)\
-    \ {\r\n\t\t\tinv_fact[i] = inv_fact[i + 1] * (i + 1);\r\n\t\t}\r\n\t\tfor(int\
-    \ i = n; i >= sz; i--) {\r\n\t\t\tinvs[i] = inv_fact[i] * fact[i - 1];\r\n\t\t\
-    }\r\n\t}\r\n \r\n\tconstexpr modint() : value(0) {} \r\n\ttemplate<class T, internal::is_signed_int_t<T>*\
-    \ = nullptr> constexpr modint(T v) : value(v >= 0 ? v % mod() : v % mod() + mod())\
-    \ {}\r\n\ttemplate<class T, internal::is_unsigned_int_t<T>* = nullptr> constexpr\
-    \ modint(T v) : value(v % mod()) {}\r\n \r\n\tconstexpr int val() const { return\
-    \ value; }\r\n\r\n\tconstexpr modint inv() const {\r\n\t\tif(id > 0 && value <\
-    \ std::min(mod() >> 1, 1 << 18)) {\r\n\t\t\tprepare(value);\r\n\t\t\treturn invs[value];\r\
-    \n\t\t} else {\r\n\t\t\tauto eg = internal::inv_gcd(value, mod());\r\n\t\t\tassert(eg.first\
-    \ == 1);\r\n\t\t\treturn eg.second;\r\n\t\t}\r\n\t}\r\n \r\n\tconstexpr modint&\
-    \ operator+=(const modint& rhs) & {\r\n\t\tvalue += rhs.value;\r\n\t\tif(value\
-    \ >= mod()) {\r\n\t\t\tvalue -= mod();\r\n\t\t}\r\n\t\treturn *this;\r\n\t}\r\n\
-    \ \r\n\tconstexpr modint& operator-=(const modint& rhs) & {\r\n\t\tvalue -= rhs.value;\r\
-    \n\t\tif(value < 0) {\r\n\t\t\tvalue += mod();\r\n\t\t}\r\n\t\treturn *this;\r\
-    \n\t}\r\n\r\n\tconstexpr modint& operator*=(const modint& rhs) & {\r\n\t\tvalue\
-    \ = 1LL * value * rhs.value % mod();\r\n\t\treturn *this;\r\n\t}\r\n\r\n\tconstexpr\
-    \ modint& operator/=(const modint& rhs) & {\r\n\t\treturn *this *= rhs.inv();\r\
-    \n\t}\r\n\r\n\tfriend constexpr modint operator+(modint lhs, modint rhs) { return\
-    \ lhs += rhs; }\r\n\tfriend constexpr modint operator-(modint lhs, modint rhs)\
-    \ { return lhs -= rhs; }\r\n\tfriend constexpr modint operator*(modint lhs, modint\
-    \ rhs) { return lhs *= rhs; }\r\n\tfriend constexpr modint operator/(modint lhs,\
-    \ modint rhs) { return lhs /= rhs; }\r\n\r\n\tconstexpr modint operator+() const\
-    \ { return *this; }\r\n\tconstexpr modint operator-() const { return modint()\
-    \ - *this; } \r\n\tconstexpr bool operator==(const modint& rhs) const { return\
-    \ value == rhs.value; } \r\n\tconstexpr bool operator!=(const modint& rhs) const\
-    \ { return value != rhs.value; }\r\n\r\n\tconstexpr modint pow(unsigned long long\
-    \ p) const {\r\n\t\tmodint a(*this), res(1);\r\n\t\twhile(p) {\r\n\t\t\tif(p &\
-    \ 1) {\r\n\t\t\t\tres *= a;\r\n\t\t\t}\r\n\t\t\ta *= a;\r\n\t\t\tp >>= 1;\r\n\t\
-    \t}\r\n\t\treturn res;\r\n\t}\r\n\r\n\tconstexpr bool has_sqrt() const {\r\n\t\
-    \tif(mod() == 2 || value == 0) {\r\n\t\t\treturn true;\r\n\t\t}\r\n\t\tif(pow((mod()\
-    \ - 1) / 2).val() != 1) {\r\n\t\t\treturn false;\r\n\t\t}\r\n\t\treturn true;\r\
-    \n\t}\r\n\r\n\tconstexpr modint sqrt() const {\r\n\t\tif(mod() == 2 || value <\
-    \ 2) {\r\n\t\t\treturn *this;\r\n\t\t}\r\n\t\tassert(pow((mod() - 1) / 2).val()\
-    \ == 1);\r\n\t\tmodint b = 1;\r\n\t\twhile(b.pow((mod() - 1) >> 1).val() == 1)\
-    \ {\r\n\t\t\tb += 1;\r\n\t\t}\r\n\t\tint m = mod() - 1, e = __builtin_ctz(m);\r\
-    \n\t\tm >>= e;\r\n\t\tmodint x = modint(*this).pow((m - 1) >> 1);\r\n\t\tmodint\
-    \ y = modint(*this) * x * x;\r\n\t\tx *= value;\r\n\t\tmodint z = b.pow(m);\r\n\
-    \t\twhile(y.val() != 1) {\r\n\t\t\tint j = 0;\r\n\t\t\tmodint t = y;\r\n\t\t\t\
-    while(t.val() != 1) {\r\n\t\t\t\tt *= t;\r\n\t\t\t\tj++;\r\n\t\t\t}\r\n\t\t\t\
-    z = z.pow(1LL << (e - j - 1));\r\n\t\t\tx *= z, z *= z, y *= z;\r\n\t\t\te = j;\r\
-    \n\t\t}\r\n\t\treturn x;\r\n\t}\r\n\r\n\tfriend constexpr std::istream& operator>>(std::istream&\
+    \ = typename to_unsigned<T>::type;\r\n\r\ntemplate<class T> struct safely_multipliable\
+    \ {};\r\ntemplate<> struct safely_multipliable<short> { using type = int; };\r\
+    \ntemplate<> struct safely_multipliable<unsigned short> { using type = unsigned\
+    \ int; };\r\ntemplate<> struct safely_multipliable<int> { using type = long long;\
+    \ };\r\ntemplate<> struct safely_multipliable<unsigned int> { using type = unsigned\
+    \ long long; };\r\ntemplate<> struct safely_multipliable<long long> { using type\
+    \ = __int128; };\r\ntemplate<> struct safely_multipliable<unsigned long long>\
+    \ { using type = __uint128_t; };\r\ntemplate<> struct safely_multipliable<float>\
+    \ { using type = float; };\r\ntemplate<> struct safely_multipliable<double> {\
+    \ using type = double; };\r\ntemplate<> struct safely_multipliable<long double>\
+    \ { using type = long double; };\r\ntemplate<> struct safely_multipliable<__float128>\
+    \ { using type = __float128; };\r\n\r\ntemplate<class T> using safely_multipliable_t\
+    \ = typename safely_multipliable<T>::type;\r\n\r\n}  // namespace internal\r\n\
+    \r\n}  // namespace felix\r\n#line 2 \"library/math/safe-mod.hpp\"\n\r\nnamespace\
+    \ felix {\r\n\r\nnamespace internal {\r\n\r\ntemplate<class T>\r\nconstexpr T\
+    \ safe_mod(T x, T m) {\r\n\tx %= m;\r\n\tif(x < 0) {\r\n\t\tx += m;\r\n\t}\r\n\
+    \treturn x;\r\n}\r\n\r\n} // namespace internal\r\n\r\n} // namespace felix\n\
+    #line 3 \"library/math/inv-gcd.hpp\"\n\r\nnamespace felix {\r\n\r\nnamespace internal\
+    \ {\r\n\r\ntemplate<class T>\r\nconstexpr std::pair<T, T> inv_gcd(T a, T b) {\r\
+    \n\ta = safe_mod(a, b);\r\n\tif(a == 0) {\r\n\t\treturn {b, 0};\r\n\t}\r\n\tT\
+    \ s = b, t = a;\r\n\tT m0 = 0, m1 = 1;\r\n\twhile(t) {\r\n\t\tT u = s / t;\r\n\
+    \t\ts -= t * u;\r\n\t\tm0 -= m1 * u;\r\n\t\tauto tmp = s;\r\n\t\ts = t;\r\n\t\t\
+    t = tmp;\r\n\t\ttmp = m0;\r\n\t\tm0 = m1;\r\n\t\tm1 = tmp;\r\n\t}\r\n\tif(m0 <\
+    \ 0) {\r\n\t\tm0 += b / s;\r\n\t}\r\n\treturn {s, m0};\r\n}\r\n\r\n} // namespace\
+    \ internal\r\n\r\n} // namespace felix\r\n#line 9 \"library/modint/modint.hpp\"\
+    \n\r\nnamespace felix {\r\n\r\ntemplate<int id>\r\nstruct modint {\r\npublic:\r\
+    \n\tstatic constexpr int mod() { return (id > 0 ? id : md); }\r\n \t\r\n\tstatic\
+    \ constexpr void set_mod(int m) {\r\n\t\tif(id > 0 || md == m) {\r\n\t\t\treturn;\r\
+    \n\t\t}\r\n\t\tmd = m;\r\n\t\tfact.resize(1);\r\n\t\tinv_fact.resize(1);\r\n\t\
+    \tinvs.resize(1);\r\n\t}\r\n\r\n\tstatic constexpr void prepare(int n) {\r\n\t\
+    \tint sz = (int) fact.size();\r\n\t\tif(sz == mod()) {\r\n\t\t\treturn;\r\n\t\t\
+    }\r\n\t\tn = 1 << std::__lg(2 * n - 1);\r\n\t\tif(n < sz) {\r\n\t\t\treturn;\r\
+    \n\t\t}\r\n\t\tif(n < (sz - 1) * 2) {\r\n\t\t\tn = std::min((sz - 1) * 2, mod()\
+    \ - 1);\r\n\t\t}\r\n\t\tfact.resize(n + 1);\r\n\t\tinv_fact.resize(n + 1);\r\n\
+    \t\tinvs.resize(n + 1);\r\n\t\tfor(int i = sz; i <= n; i++) {\r\n\t\t\tfact[i]\
+    \ = fact[i - 1] * i;\r\n\t\t}\r\n\t\tauto eg = internal::inv_gcd(fact.back().val(),\
+    \ mod());\r\n\t\tassert(eg.first == 1);\r\n\t\tinv_fact[n] = eg.second;\r\n\t\t\
+    for(int i = n - 1; i >= sz; i--) {\r\n\t\t\tinv_fact[i] = inv_fact[i + 1] * (i\
+    \ + 1);\r\n\t\t}\r\n\t\tfor(int i = n; i >= sz; i--) {\r\n\t\t\tinvs[i] = inv_fact[i]\
+    \ * fact[i - 1];\r\n\t\t}\r\n\t}\r\n \r\n\tconstexpr modint() : value(0) {} \r\
+    \n\ttemplate<class T, internal::is_signed_int_t<T>* = nullptr> constexpr modint(T\
+    \ v) : value(v >= 0 ? v % mod() : v % mod() + mod()) {}\r\n\ttemplate<class T,\
+    \ internal::is_unsigned_int_t<T>* = nullptr> constexpr modint(T v) : value(v %\
+    \ mod()) {}\r\n \r\n\tconstexpr int val() const { return value; }\r\n\r\n\tconstexpr\
+    \ modint inv() const {\r\n\t\tif(id > 0 && value < std::min(mod() >> 1, 1 << 18))\
+    \ {\r\n\t\t\tprepare(value);\r\n\t\t\treturn invs[value];\r\n\t\t} else {\r\n\t\
+    \t\tauto eg = internal::inv_gcd(value, mod());\r\n\t\t\tassert(eg.first == 1);\r\
+    \n\t\t\treturn eg.second;\r\n\t\t}\r\n\t}\r\n \r\n\tconstexpr modint& operator+=(const\
+    \ modint& rhs) & {\r\n\t\tvalue += rhs.value;\r\n\t\tif(value >= mod()) {\r\n\t\
+    \t\tvalue -= mod();\r\n\t\t}\r\n\t\treturn *this;\r\n\t}\r\n \r\n\tconstexpr modint&\
+    \ operator-=(const modint& rhs) & {\r\n\t\tvalue -= rhs.value;\r\n\t\tif(value\
+    \ < 0) {\r\n\t\t\tvalue += mod();\r\n\t\t}\r\n\t\treturn *this;\r\n\t}\r\n\r\n\
+    \tconstexpr modint& operator*=(const modint& rhs) & {\r\n\t\tvalue = 1LL * value\
+    \ * rhs.value % mod();\r\n\t\treturn *this;\r\n\t}\r\n\r\n\tconstexpr modint&\
+    \ operator/=(const modint& rhs) & {\r\n\t\treturn *this *= rhs.inv();\r\n\t}\r\
+    \n\r\n\tfriend constexpr modint operator+(modint lhs, modint rhs) { return lhs\
+    \ += rhs; }\r\n\tfriend constexpr modint operator-(modint lhs, modint rhs) { return\
+    \ lhs -= rhs; }\r\n\tfriend constexpr modint operator*(modint lhs, modint rhs)\
+    \ { return lhs *= rhs; }\r\n\tfriend constexpr modint operator/(modint lhs, modint\
+    \ rhs) { return lhs /= rhs; }\r\n\r\n\tconstexpr modint operator+() const { return\
+    \ *this; }\r\n\tconstexpr modint operator-() const { return modint() - *this;\
+    \ } \r\n\tconstexpr bool operator==(const modint& rhs) const { return value ==\
+    \ rhs.value; } \r\n\tconstexpr bool operator!=(const modint& rhs) const { return\
+    \ value != rhs.value; }\r\n\r\n\tconstexpr modint pow(unsigned long long p) const\
+    \ {\r\n\t\tmodint a(*this), res(1);\r\n\t\twhile(p) {\r\n\t\t\tif(p & 1) {\r\n\
+    \t\t\t\tres *= a;\r\n\t\t\t}\r\n\t\t\ta *= a;\r\n\t\t\tp >>= 1;\r\n\t\t}\r\n\t\
+    \treturn res;\r\n\t}\r\n\r\n\tconstexpr bool has_sqrt() const {\r\n\t\tif(mod()\
+    \ == 2 || value == 0) {\r\n\t\t\treturn true;\r\n\t\t}\r\n\t\tif(pow((mod() -\
+    \ 1) / 2).val() != 1) {\r\n\t\t\treturn false;\r\n\t\t}\r\n\t\treturn true;\r\n\
+    \t}\r\n\r\n\tconstexpr modint sqrt() const {\r\n\t\tif(mod() == 2 || value < 2)\
+    \ {\r\n\t\t\treturn *this;\r\n\t\t}\r\n\t\tassert(pow((mod() - 1) / 2).val() ==\
+    \ 1);\r\n\t\tmodint b = 1;\r\n\t\twhile(b.pow((mod() - 1) >> 1).val() == 1) {\r\
+    \n\t\t\tb += 1;\r\n\t\t}\r\n\t\tint m = mod() - 1, e = __builtin_ctz(m);\r\n\t\
+    \tm >>= e;\r\n\t\tmodint x = modint(*this).pow((m - 1) >> 1);\r\n\t\tmodint y\
+    \ = modint(*this) * x * x;\r\n\t\tx *= value;\r\n\t\tmodint z = b.pow(m);\r\n\t\
+    \twhile(y.val() != 1) {\r\n\t\t\tint j = 0;\r\n\t\t\tmodint t = y;\r\n\t\t\twhile(t.val()\
+    \ != 1) {\r\n\t\t\t\tt *= t;\r\n\t\t\t\tj++;\r\n\t\t\t}\r\n\t\t\tz = z.pow(1LL\
+    \ << (e - j - 1));\r\n\t\t\tx *= z, z *= z, y *= z;\r\n\t\t\te = j;\r\n\t\t}\r\
+    \n\t\treturn x;\r\n\t}\r\n\r\n\tfriend constexpr std::istream& operator>>(std::istream&\
     \ in, modint& num) {\r\n\t\tlong long x;\r\n\t\tin >> x;\r\n\t\tnum = modint<id>(x);\r\
     \n\t\treturn in;\r\n\t}\r\n\t\r\n\tfriend constexpr std::ostream& operator<<(std::ostream&\
     \ out, const modint& num) {\r\n\t\treturn out << num.val();\r\n\t}\r\n\r\npublic:\r\
@@ -185,76 +198,75 @@ data:
     \ <= 0)>> : public std::true_type {};\r\ntemplate<class T> using is_dynamic_modint_t\
     \ = std::enable_if_t<is_dynamic_modint<T>::value>;\r\n\r\n} // namespace internal\r\
     \n\r\n} // namespace felix\r\n#line 3 \"library/convolution/ntt.hpp\"\n#include\
-    \ <array>\r\n#line 3 \"library/math/pow-mod.hpp\"\n\r\nnamespace felix {\r\n\r\
-    \nnamespace internal {\r\n\r\ntemplate<class T, class U>\r\nconstexpr T pow_mod_constexpr(T\
-    \ x, long long n, U m) {\r\n\tif(m == 1) {\r\n\t\treturn 0;\r\n\t}\r\n\tx = safe_mod<T>(x,\
-    \ m);\r\n\tT r = 1;\r\n\twhile(n) {\r\n\t\tif(n & 1) {\r\n\t\t\tr = (r * x) %\
-    \ m;\r\n\t\t}\r\n\t\tx = (x * x) % m;\r\n\t\tn >>= 1;\r\n\t}\r\n\treturn r;\r\n\
-    }\r\n\r\n} // namespace internal\r\n\r\n} // namespace felix\r\n#line 2 \"library/math/binary-gcd.hpp\"\
-    \n\r\nnamespace felix {\r\n\r\ntemplate<class T>\r\ninline T binary_gcd(T a, T\
-    \ b) {\r\n\tif(a == 0 || b == 0) {\r\n\t\treturn a | b;\r\n\t}\r\n\tint8_t n =\
-    \ __builtin_ctzll(a);\r\n\tint8_t m = __builtin_ctzll(b);\r\n\ta >>= n;\r\n\t\
-    b >>= m;\r\n\twhile(a != b) {\r\n\t\tT d = a - b;\r\n\t\tint8_t s = __builtin_ctzll(d);\r\
-    \n\t\tbool f = a > b;\r\n\t\tb = f ? b : a;\r\n\t\ta = (f ? d : -d) >> s;\r\n\t\
-    }\r\n\treturn a << (n < m ? n : m);\r\n}\r\n\r\n} // namespace felix\r\n#line\
-    \ 4 \"library/math/is-prime.hpp\"\n\r\nnamespace felix {\r\n\r\nnamespace internal\
-    \ {\r\n\r\ntemplate<class T, class U>\r\nbool is_prime(U n, std::vector<U> x)\
-    \ {\r\n\tT d = n - 1;\r\n\td >>= __builtin_ctzll(d);\r\n\tfor(auto a : x) {\r\n\
-    \t\tif(n <= a) {\r\n\t\t\treturn true;\r\n\t\t}\r\n\t\tU t = d;\r\n\t\tU y = pow_mod_constexpr<T,\
-    \ U>(a, d, n);\r\n\t\twhile(t != n - 1 && y != 1 && y != n - 1) {\r\n\t\t\ty =\
-    \ T(y) * y % n;\r\n\t\t\tt <<= 1;\r\n\t\t}\r\n\t\tif(y != n - 1 && t % 2 == 0)\
-    \ {\r\n\t\t\treturn false;\r\n\t\t}\r\n\t}\r\n\treturn true;\r\n}\r\n\r\n} //\
-    \ namespace internal\r\n\r\nbool is_prime(long long n) {\r\n\tif(n <= 1) {\r\n\
-    \t\treturn false;\r\n\t}\r\n\tif(n % 2 == 0) {\r\n\t\treturn n == 2;\r\n\t}\r\n\
-    \tif(n < (1LL << 30)) {\r\n\t\treturn internal::is_prime<unsigned long long, unsigned\
-    \ int>(n, {2, 7, 61});\r\n\t}\r\n\treturn internal::is_prime<__uint128_t, unsigned\
-    \ long long>(n, {2, 325, 9375, 28178, 450775, 9780504, 1795265022});\r\n}\r\n\r\
-    \n} // namespace felix\n#line 2 \"library/random/rng.hpp\"\n#include <chrono>\n\
-    \nnamespace felix {\n\ninline unsigned long long rng() {\n\tstatic unsigned long\
-    \ long SEED = std::chrono::steady_clock::now().time_since_epoch().count();\n\t\
-    SEED ^= SEED << 7;\n\tSEED ^= SEED >> 9;\n\treturn SEED & 0xFFFFFFFFULL;\n}\n\n\
-    } // namespace felix\n#line 9 \"library/math/factorize.hpp\"\n\nnamespace felix\
-    \ {\n\ntemplate<class T>\nT pollard_rho(T n) {\n\tif(n % 2 == 0) {\n\t\treturn\
-    \ 2;\n\t}\n\tif(is_prime(n)) {\n\t\treturn n;\n\t}\n\twhile(true) {\n\t\tconst\
-    \ T R = rng() % (n - 1) + 1;\n\t\tauto f = [&](T x) -> T {\n\t\t\treturn internal::safe_mod<__int128>(__int128(x)\
-    \ * x + R, n);\n\t\t};\n\t\tT x = 1, y = 2, ys = 1, q = 1, g = 1;\n\t\tconstexpr\
-    \ int m = 128;\n\t\tfor(int r = 1; g == 1; r <<= 1) {\n\t\t\tx = y;\n\t\t\tfor(int\
-    \ i = 0; i < r; i++) {\n\t\t\t\ty = f(y);\n\t\t\t}\n\t\t\tfor(int k = 0; k < r\
-    \ && g == 1; k += m) {\n\t\t\t\tys = y;\n\t\t\t\tfor(int i = 0; i < std::min(m,\
-    \ r - k); i++) {\n\t\t\t\t\ty = f(y);\n\t\t\t\t\tq = internal::safe_mod<__int128>(__int128(q)\
-    \ * internal::safe_mod(x - y, n), n);\n\t\t\t\t}\n\t\t\t\tg = binary_gcd(q, n);\n\
-    \t\t\t}\n\t\t}\n\t\tif(g == n) {\n\t\t\tdo {\n\t\t\t\tys = f(ys);\n\t\t\t\tT x2\
-    \ = internal::safe_mod(x - ys, n);\n\t\t\t\tg = binary_gcd(x2, n);\n\t\t\t} while(g\
-    \ == 1);\n\t\t}\n\t\tif(g != n) {\n\t\t\treturn g;\n\t\t}\n\t}\n\tassert(false);\n\
-    }\n\ntemplate<class T>\nstd::vector<T> factorize(T n) {\n\tif(n <= 1) {\n\t\t\
-    return {};\n\t}\n\tstd::vector<T> res = {n};\n\tfor(int i = 0; i < (int) res.size();\
-    \ i++) {\n\t\tT p = pollard_rho(res[i]);\n\t\tif(p != res[i]) {\n\t\t\tres[i]\
-    \ /= p;\n\t\t\tres.push_back(p);\n\t\t\ti--;\n\t\t}\n\t}\n\tstd::sort(res.begin(),\
-    \ res.end());\n\treturn res;\n}\n\ntemplate<class T>\nstd::vector<T> get_divisors(T\
-    \ n) {\n\tif(n == 0) {\n\t\treturn {};\n\t}\n\tstd::vector<std::pair<T, int>>\
-    \ v;\n\tfor(auto p : factorize(n)) {\n\t\tif(v.empty() || v.back().first != p)\
-    \ {\n\t\t\tv.emplace_back(p, 1);\n\t\t} else {\n\t\t\tv.back().second++;\n\t\t\
-    }\n\t}\n\tstd::vector<T> res;\n\tauto f = [&](auto f, int i, T x) -> void {\n\t\
-    \tif(i == (int) v.size()) {\n\t\t\tres.push_back(x);\n\t\t\treturn;\n\t\t}\n\t\
-    \tfor(int j = v[i].second; ; j--) {\n\t\t\tf(f, i + 1, x);\n\t\t\tif(j == 0) {\n\
-    \t\t\t\tbreak;\n\t\t\t}\n\t\t\tx *= v[i].first;\n\t\t}\n\t};\n\tf(f, 0, 1);\n\t\
-    std::sort(res.begin(), res.end());\n\treturn res;\n}\n\n} // namespace felix\n\
-    #line 7 \"library/math/primitive-root.hpp\"\n\nnamespace felix {\n\nnamespace\
-    \ internal {\n\nconstexpr int primitive_root_constexpr(int m) {\n\tif(m == 998244353)\
-    \ return 3;\n\tif(m == 167772161) return 3;\n\tif(m == 469762049) return 3;\n\t\
-    if(m == 754974721) return 11;\n\tif(m == 2) return 1;\n\tint divs[20] = {};\n\t\
-    divs[0] = 2;\n\tint cnt = 1;\n\tint x = (m - 1) / 2;\n\tx >>= __builtin_ctz(x);\n\
-    \tfor(int i = 3; 1LL * i * i <= x; i += 2) {\n\t\tif(x % i == 0) {\n\t\t\tdivs[cnt++]\
-    \ = i;\n\t\t\twhile(x % i == 0) {\n\t\t\t\tx /= i;\n\t\t\t}\n\t\t}\n\t}\n\tif(x\
-    \ > 1) {\n\t\tdivs[cnt++] = x;\n\t}\n\tfor(int g = 2;; g++) {\n\t\tbool ok = true;\n\
-    \t\tfor(int i = 0; i < cnt; i++) {\n\t\t\tif(pow_mod_constexpr<unsigned long long,\
-    \ unsigned int>(g, (m - 1) / divs[i], m) == 1) {\n\t\t\t\tok = false;\n\t\t\t\t\
-    break;\n\t\t\t}\n\t\t}\n\t\tif(ok) {\n\t\t\treturn g;\n\t\t}\n\t}\n\tassert(false);\n\
-    }\n\n} // namespace internal\n\nlong long primitive_root(long long n) {\n\tif(n\
-    \ == 2) {\n\t\treturn 1;\n\t}\n\tlong long x = (n - 1) / 2;\n\tx >>= __builtin_ctzll(x);\n\
-    \tauto f = factorize(x);\n\tf.erase(std::unique(f.begin(), f.end()), f.end());\n\
-    \tf.push_back(2);\n\tfor(long long g = 2;; g++) {\n\t\tbool ok = true;\n\t\tfor(auto\
-    \ d : f) {\n\t\t\tif(internal::pow_mod_constexpr<__uint128_t, unsigned long long>(g,\
+    \ <array>\r\n#line 4 \"library/math/pow-mod.hpp\"\n\r\nnamespace felix {\r\n\r\
+    \nnamespace internal {\r\n\r\ntemplate<class T>\r\nconstexpr T pow_mod_constexpr(T\
+    \ x, long long n, T m) {\r\n\tusing U = safely_multipliable_t<T>;\r\n\tif(m ==\
+    \ 1) {\r\n\t\treturn 0;\r\n\t}\r\n\tU r = 1, y = safe_mod(x, m);\r\n\twhile(n)\
+    \ {\r\n\t\tif(n & 1) {\r\n\t\t\tr = (r * y) % m;\r\n\t\t}\r\n\t\ty = (y * y) %\
+    \ m;\r\n\t\tn >>= 1;\r\n\t}\r\n\treturn r;\r\n}\r\n\r\n} // namespace internal\r\
+    \n\r\n} // namespace felix\r\n#line 2 \"library/math/binary-gcd.hpp\"\n\r\nnamespace\
+    \ felix {\r\n\r\ntemplate<class T>\r\ninline T binary_gcd(T a, T b) {\r\n\tif(a\
+    \ == 0 || b == 0) {\r\n\t\treturn a | b;\r\n\t}\r\n\tint8_t n = __builtin_ctzll(a);\r\
+    \n\tint8_t m = __builtin_ctzll(b);\r\n\ta >>= n;\r\n\tb >>= m;\r\n\twhile(a !=\
+    \ b) {\r\n\t\tT d = a - b;\r\n\t\tint8_t s = __builtin_ctzll(d);\r\n\t\tbool f\
+    \ = a > b;\r\n\t\tb = f ? b : a;\r\n\t\ta = (f ? d : -d) >> s;\r\n\t}\r\n\treturn\
+    \ a << (n < m ? n : m);\r\n}\r\n\r\n} // namespace felix\r\n#line 4 \"library/math/is-prime.hpp\"\
+    \n\r\nnamespace felix {\r\n\r\nnamespace internal {\r\n\r\nbool is_prime(long\
+    \ long n, std::vector<long long> x) {\r\n\tlong long d = n - 1;\r\n\td >>= __builtin_ctzll(d);\r\
+    \n\tfor(auto a : x) {\r\n\t\tif(n <= a) {\r\n\t\t\treturn true;\r\n\t\t}\r\n\t\
+    \tlong long t = d;\r\n\t\tlong long y = pow_mod_constexpr(a, d, n);\r\n\t\twhile(t\
+    \ != n - 1 && y != 1 && y != n - 1) {\r\n\t\t\ty = __int128(y) * y % n;\r\n\t\t\
+    \tt <<= 1;\r\n\t\t}\r\n\t\tif(y != n - 1 && t % 2 == 0) {\r\n\t\t\treturn false;\r\
+    \n\t\t}\r\n\t}\r\n\treturn true;\r\n}\r\n\r\n} // namespace internal\r\n\r\nbool\
+    \ is_prime(long long n) {\r\n\tif(n <= 1) {\r\n\t\treturn false;\r\n\t}\r\n\t\
+    if(n % 2 == 0) {\r\n\t\treturn n == 2;\r\n\t}\r\n\tif(n < (1LL << 30)) {\r\n\t\
+    \treturn internal::is_prime(n, {2, 7, 61});\r\n\t}\r\n\treturn internal::is_prime(n,\
+    \ {2, 325, 9375, 28178, 450775, 9780504, 1795265022});\r\n}\r\n\r\n} // namespace\
+    \ felix\n#line 2 \"library/random/rng.hpp\"\n#include <chrono>\n\nnamespace felix\
+    \ {\n\ninline unsigned long long rng() {\n\tstatic unsigned long long SEED = std::chrono::steady_clock::now().time_since_epoch().count();\n\
+    \tSEED ^= SEED << 7;\n\tSEED ^= SEED >> 9;\n\treturn SEED & 0xFFFFFFFFULL;\n}\n\
+    \n} // namespace felix\n#line 10 \"library/math/factorize.hpp\"\n\nnamespace felix\
+    \ {\n\ntemplate<class T>\nT pollard_rho(T n) {\n\tusing U = internal::safely_multipliable_t<T>;\n\
+    \tif(n % 2 == 0) {\n\t\treturn 2;\n\t}\n\tif(is_prime(n)) {\n\t\treturn n;\n\t\
+    }\n\twhile(true) {\n\t\tconst T R = rng() % (n - 1) + 1;\n\t\tauto f = [&](T x)\
+    \ -> T {\n\t\t\treturn internal::safe_mod<U>(U(x) * x + R, n);\n\t\t};\n\t\tT\
+    \ x = 1, y = 2, ys = 1, q = 1, g = 1;\n\t\tconstexpr int m = 128;\n\t\tfor(int\
+    \ r = 1; g == 1; r <<= 1) {\n\t\t\tx = y;\n\t\t\tfor(int i = 0; i < r; i++) {\n\
+    \t\t\t\ty = f(y);\n\t\t\t}\n\t\t\tfor(int k = 0; k < r && g == 1; k += m) {\n\t\
+    \t\t\tys = y;\n\t\t\t\tfor(int i = 0; i < std::min(m, r - k); i++) {\n\t\t\t\t\
+    \ty = f(y);\n\t\t\t\t\tq = internal::safe_mod<U>(U(q) * internal::safe_mod(x -\
+    \ y, n), n);\n\t\t\t\t}\n\t\t\t\tg = binary_gcd(q, n);\n\t\t\t}\n\t\t}\n\t\tif(g\
+    \ == n) {\n\t\t\tdo {\n\t\t\t\tys = f(ys);\n\t\t\t\tT x2 = internal::safe_mod(x\
+    \ - ys, n);\n\t\t\t\tg = binary_gcd(x2, n);\n\t\t\t} while(g == 1);\n\t\t}\n\t\
+    \tif(g != n) {\n\t\t\treturn g;\n\t\t}\n\t}\n\tassert(false);\n}\n\ntemplate<class\
+    \ T>\nstd::vector<T> factorize(T n) {\n\tif(n <= 1) {\n\t\treturn {};\n\t}\n\t\
+    std::vector<T> res = {n};\n\tfor(int i = 0; i < (int) res.size(); i++) {\n\t\t\
+    T p = pollard_rho(res[i]);\n\t\tif(p != res[i]) {\n\t\t\tres[i] /= p;\n\t\t\t\
+    res.push_back(p);\n\t\t\ti--;\n\t\t}\n\t}\n\tstd::sort(res.begin(), res.end());\n\
+    \treturn res;\n}\n\ntemplate<class T>\nstd::vector<T> get_divisors(T n) {\n\t\
+    if(n == 0) {\n\t\treturn {};\n\t}\n\tstd::vector<std::pair<T, int>> v;\n\tfor(auto\
+    \ p : factorize(n)) {\n\t\tif(v.empty() || v.back().first != p) {\n\t\t\tv.emplace_back(p,\
+    \ 1);\n\t\t} else {\n\t\t\tv.back().second++;\n\t\t}\n\t}\n\tstd::vector<T> res;\n\
+    \tauto f = [&](auto f, int i, T x) -> void {\n\t\tif(i == (int) v.size()) {\n\t\
+    \t\tres.push_back(x);\n\t\t\treturn;\n\t\t}\n\t\tfor(int j = v[i].second; ; j--)\
+    \ {\n\t\t\tf(f, i + 1, x);\n\t\t\tif(j == 0) {\n\t\t\t\tbreak;\n\t\t\t}\n\t\t\t\
+    x *= v[i].first;\n\t\t}\n\t};\n\tf(f, 0, 1);\n\tstd::sort(res.begin(), res.end());\n\
+    \treturn res;\n}\n\n} // namespace felix\n#line 7 \"library/math/primitive-root.hpp\"\
+    \n\nnamespace felix {\n\nnamespace internal {\n\nconstexpr int primitive_root_constexpr(int\
+    \ m) {\n\tif(m == 998244353) return 3;\n\tif(m == 167772161) return 3;\n\tif(m\
+    \ == 469762049) return 3;\n\tif(m == 754974721) return 11;\n\tif(m == 2) return\
+    \ 1;\n\tint divs[20] = {};\n\tdivs[0] = 2;\n\tint cnt = 1;\n\tint x = (m - 1)\
+    \ / 2;\n\tx >>= __builtin_ctz(x);\n\tfor(int i = 3; 1LL * i * i <= x; i += 2)\
+    \ {\n\t\tif(x % i == 0) {\n\t\t\tdivs[cnt++] = i;\n\t\t\twhile(x % i == 0) {\n\
+    \t\t\t\tx /= i;\n\t\t\t}\n\t\t}\n\t}\n\tif(x > 1) {\n\t\tdivs[cnt++] = x;\n\t\
+    }\n\tfor(int g = 2;; g++) {\n\t\tbool ok = true;\n\t\tfor(int i = 0; i < cnt;\
+    \ i++) {\n\t\t\tif(pow_mod_constexpr(g, (m - 1) / divs[i], m) == 1) {\n\t\t\t\t\
+    ok = false;\n\t\t\t\tbreak;\n\t\t\t}\n\t\t}\n\t\tif(ok) {\n\t\t\treturn g;\n\t\
+    \t}\n\t}\n\tassert(false);\n}\n\n} // namespace internal\n\nlong long primitive_root(long\
+    \ long n) {\n\tif(n == 2) {\n\t\treturn 1;\n\t}\n\tlong long x = (n - 1) / 2;\n\
+    \tx >>= __builtin_ctzll(x);\n\tauto f = factorize(x);\n\tf.erase(std::unique(f.begin(),\
+    \ f.end()), f.end());\n\tf.push_back(2);\n\tfor(long long g = 2;; g++) {\n\t\t\
+    bool ok = true;\n\t\tfor(auto d : f) {\n\t\t\tif(internal::pow_mod_constexpr(g,\
     \ (n - 1) / d, n) == 1) {\n\t\t\t\tok = false;\n\t\t\t\tbreak;\n\t\t\t}\n\t\t\
     }\n\t\tif(ok) {\n\t\t\treturn g;\n\t\t}\n\t}\n\tassert(false);\n}\n\n} // namespace\
     \ felix\n#line 11 \"library/convolution/ntt.hpp\"\n\r\nnamespace felix {\r\n\r\
@@ -601,7 +613,7 @@ data:
   isVerificationFile: false
   path: library/formal-power-series/poly.hpp
   requiredBy: []
-  timestamp: '2023-05-22 17:42:25+08:00'
+  timestamp: '2023-05-23 03:18:50+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/Math/Partition-Function.test.cpp

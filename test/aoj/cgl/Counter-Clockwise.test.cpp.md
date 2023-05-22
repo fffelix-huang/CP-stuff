@@ -76,27 +76,7 @@ data:
     \ L, Point<T> p) {\n\tauto v = L.vectorize();\n\tT x = abs(v);\n\treturn L.a +\
     \ v / x * dot(p - L.a, v) / x;\n}\n\ntemplate<class T>\nPoint<T> reflection(Line<T>\
     \ L, Point<T> p) {\n\tauto proj = projection(L, p);\n\treturn p + (proj - p) *\
-    \ 2;\n}\n\n// counter-clockwise order\ntemplate<class T>\nstd::vector<Point<T>>\
-    \ convex_hull(std::vector<Point<T>> p) {\n\tint n = (int) p.size();\n\tstd::sort(p.begin(),\
-    \ p.end(), [](const Point<T>& a, const Point<T>& b) {\n\t\treturn a.x == b.x ?\
-    \ (a.y < b.y) : (a.x < b.x);\n\t});\n\tauto build = [&]() {\n\t\tstd::vector<Point<T>>\
-    \ upper = {p[0], p[1]};\n\t\tfor(int i = 2; i < n; ++i) {\n\t\t\twhile(upper.size()\
-    \ >= 2) {\n\t\t\t\tif(cross(upper.end()[-1] - upper.end()[-2], p[i] - upper.end()[-1])\
-    \ > 0) {\n\t\t\t\t\tupper.pop_back();\n\t\t\t\t} else {\n\t\t\t\t\tbreak;\n\t\t\
-    \t\t}\n\t\t\t}\n\t\t\tupper.push_back(p[i]);\n\t\t}\n\t\treturn upper;\n\t};\n\
-    \tstd::vector<Point<T>> upper = build();\n\tstd::reverse(p.begin(), p.end());\n\
-    \tstd::vector<Point<T>> lower = build();\n\tlower.pop_back();\n\tupper.insert(upper.end(),\
-    \ lower.begin() + 1, lower.end());\n\tstd::reverse(upper.begin(), upper.end());\n\
-    \treturn upper;\n}\n\n// Convex Hull must be sorted in counter-clockwise order\n\
-    // ON: -1, IN: +1, OUT: 0\ntemplate<class T>\nint point_in_convex_hull(const std::vector<Point<T>>&\
-    \ a, const Point<T>& p) {\n\tint n = (int) a.size();\n\tif(between(a[0], a[1],\
-    \ p) || between(a[0], a[n - 1], p)) {\n\t\treturn -1;\n\t}\n\tint l = 0, r = n\
-    \ - 1;\n\twhile(l <= r) {\n\t\tint m = (l + r) / 2;\n\t\tauto a1 = cross(a[m]\
-    \ - a[0], p - a[0]);\n\t\tauto a2 = cross(a[(m + 1) % n] - a[0], p - a[0]);\n\t\
-    \tif(a1 >= 0 && a2 <= 0) {\n\t\t\tauto res = cross(a[(m + 1) % n] - a[m], p -\
-    \ a[m]);\n\t\t\treturn res > 0 ? 1 : (res >= 0 ? -1 : 0);\n\t\t}\n\t\tif(a1 <\
-    \ 0) {\n\t\t\tr = m - 1;\n\t\t} else {\n\t\t\tl = m + 1;\n\t\t}\n\t}\n\treturn\
-    \ 0;\n}\n\n} // namespace geometry\n\n} // namespace felix\n#line 6 \"test/aoj/cgl/Counter-Clockwise.test.cpp\"\
+    \ 2;\n}\n\n} // namespace geometry\n\n} // namespace felix\n#line 6 \"test/aoj/cgl/Counter-Clockwise.test.cpp\"\
     \nusing namespace std;\nusing namespace felix;\nusing namespace geometry;\n\n\
     int main() {\n\tios::sync_with_stdio(false);\n\tcin.tie(0);\n\tPoint<long long>\
     \ a, b;\n\tcin >> a >> b;\n\tint q;\n\tcin >> q;\n\twhile(q--) {\n\t\tPoint<long\
@@ -125,7 +105,7 @@ data:
   isVerificationFile: true
   path: test/aoj/cgl/Counter-Clockwise.test.cpp
   requiredBy: []
-  timestamp: '2023-05-15 14:09:28+08:00'
+  timestamp: '2023-05-23 03:18:50+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/cgl/Counter-Clockwise.test.cpp

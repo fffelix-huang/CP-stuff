@@ -4,6 +4,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/math/safe-mod.hpp
     title: library/math/safe-mod.hpp
+  - icon: ':heavy_check_mark:'
+    path: library/misc/type-traits.hpp
+    title: library/misc/type-traits.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: library/convolution/ntt.hpp
@@ -74,23 +77,66 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"library/math/safe-mod.hpp\"\n\r\nnamespace felix {\r\n\r\
-    \nnamespace internal {\r\n\r\ntemplate<class T>\r\nconstexpr T safe_mod(T x, T\
-    \ m) {\r\n\tx %= m;\r\n\tif(x < 0) {\r\n\t\tx += m;\r\n\t}\r\n\treturn x;\r\n\
-    }\r\n\r\n} // namespace internal\r\n\r\n} // namespace felix\n#line 3 \"library/math/pow-mod.hpp\"\
-    \n\r\nnamespace felix {\r\n\r\nnamespace internal {\r\n\r\ntemplate<class T, class\
-    \ U>\r\nconstexpr T pow_mod_constexpr(T x, long long n, U m) {\r\n\tif(m == 1)\
-    \ {\r\n\t\treturn 0;\r\n\t}\r\n\tx = safe_mod<T>(x, m);\r\n\tT r = 1;\r\n\twhile(n)\
-    \ {\r\n\t\tif(n & 1) {\r\n\t\t\tr = (r * x) % m;\r\n\t\t}\r\n\t\tx = (x * x) %\
-    \ m;\r\n\t\tn >>= 1;\r\n\t}\r\n\treturn r;\r\n}\r\n\r\n} // namespace internal\r\
-    \n\r\n} // namespace felix\r\n"
-  code: "#pragma once\r\n#include \"safe-mod.hpp\"\r\n\r\nnamespace felix {\r\n\r\n\
-    namespace internal {\r\n\r\ntemplate<class T, class U>\r\nconstexpr T pow_mod_constexpr(T\
-    \ x, long long n, U m) {\r\n\tif(m == 1) {\r\n\t\treturn 0;\r\n\t}\r\n\tx = safe_mod<T>(x,\
-    \ m);\r\n\tT r = 1;\r\n\twhile(n) {\r\n\t\tif(n & 1) {\r\n\t\t\tr = (r * x) %\
-    \ m;\r\n\t\t}\r\n\t\tx = (x * x) % m;\r\n\t\tn >>= 1;\r\n\t}\r\n\treturn r;\r\n\
-    }\r\n\r\n} // namespace internal\r\n\r\n} // namespace felix\r\n"
+  bundledCode: "#line 2 \"library/misc/type-traits.hpp\"\n#include <cassert>\r\n#include\
+    \ <numeric>\r\n#include <type_traits>\r\n\r\nnamespace felix {\r\n\r\nnamespace\
+    \ internal {\r\n\r\n#ifndef _MSC_VER\r\ntemplate<class T> using is_signed_int128\
+    \ = typename std::conditional<std::is_same<T, __int128_t>::value || std::is_same<T,\
+    \ __int128>::value, std::true_type, std::false_type>::type;\r\ntemplate<class\
+    \ T> using is_unsigned_int128 = typename std::conditional<std::is_same<T, __uint128_t>::value\
+    \ || std::is_same<T, unsigned __int128>::value, std::true_type, std::false_type>::type;\r\
+    \ntemplate<class T> using make_unsigned_int128 = typename std::conditional<std::is_same<T,\
+    \ __int128_t>::value, __uint128_t, unsigned __int128>;\r\ntemplate<class T> using\
+    \ is_integral = typename std::conditional<std::is_integral<T>::value || is_signed_int128<T>::value\
+    \ || is_unsigned_int128<T>::value, std::true_type, std::false_type>::type;\r\n\
+    template<class T> using is_signed_int = typename std::conditional<(is_integral<T>::value\
+    \ && std::is_signed<T>::value) || is_signed_int128<T>::value, std::true_type,\
+    \ std::false_type>::type;\r\ntemplate<class T> using is_unsigned_int = typename\
+    \ std::conditional<(is_integral<T>::value && std::is_unsigned<T>::value) || is_unsigned_int128<T>::value,\
+    \ std::true_type, std::false_type>::type;\r\ntemplate<class T> using to_unsigned\
+    \ = typename std::conditional<is_signed_int128<T>::value, make_unsigned_int128<T>,\
+    \ typename std::conditional<std::is_signed<T>::value, std::make_unsigned<T>, std::common_type<T>>::type>::type;\r\
+    \n#else\r\ntemplate<class T> using is_integral = typename std::is_integral<T>;\r\
+    \ntemplate<class T> using is_signed_int = typename std::conditional<is_integral<T>::value\
+    \ && std::is_signed<T>::value, std::true_type, std::false_type>::type;\r\ntemplate<class\
+    \ T> using is_unsigned_int = typename std::conditional<is_integral<T>::value &&\
+    \ std::is_unsigned<T>::value, std::true_type, std::false_type>::type;\r\ntemplate<class\
+    \ T> using to_unsigned = typename std::conditional<is_signed_int<T>::value, std::make_unsigned<T>,\
+    \ std::common_type<T>>::type;\r\n#endif\r\n\r\ntemplate<class T> using is_signed_int_t\
+    \ = std::enable_if_t<is_signed_int<T>::value>;\r\ntemplate<class T> using is_unsigned_int_t\
+    \ = std::enable_if_t<is_unsigned_int<T>::value>;\r\ntemplate<class T> using to_unsigned_t\
+    \ = typename to_unsigned<T>::type;\r\n\r\ntemplate<class T> struct safely_multipliable\
+    \ {};\r\ntemplate<> struct safely_multipliable<short> { using type = int; };\r\
+    \ntemplate<> struct safely_multipliable<unsigned short> { using type = unsigned\
+    \ int; };\r\ntemplate<> struct safely_multipliable<int> { using type = long long;\
+    \ };\r\ntemplate<> struct safely_multipliable<unsigned int> { using type = unsigned\
+    \ long long; };\r\ntemplate<> struct safely_multipliable<long long> { using type\
+    \ = __int128; };\r\ntemplate<> struct safely_multipliable<unsigned long long>\
+    \ { using type = __uint128_t; };\r\ntemplate<> struct safely_multipliable<float>\
+    \ { using type = float; };\r\ntemplate<> struct safely_multipliable<double> {\
+    \ using type = double; };\r\ntemplate<> struct safely_multipliable<long double>\
+    \ { using type = long double; };\r\ntemplate<> struct safely_multipliable<__float128>\
+    \ { using type = __float128; };\r\n\r\ntemplate<class T> using safely_multipliable_t\
+    \ = typename safely_multipliable<T>::type;\r\n\r\n}  // namespace internal\r\n\
+    \r\n}  // namespace felix\r\n#line 2 \"library/math/safe-mod.hpp\"\n\r\nnamespace\
+    \ felix {\r\n\r\nnamespace internal {\r\n\r\ntemplate<class T>\r\nconstexpr T\
+    \ safe_mod(T x, T m) {\r\n\tx %= m;\r\n\tif(x < 0) {\r\n\t\tx += m;\r\n\t}\r\n\
+    \treturn x;\r\n}\r\n\r\n} // namespace internal\r\n\r\n} // namespace felix\n\
+    #line 4 \"library/math/pow-mod.hpp\"\n\r\nnamespace felix {\r\n\r\nnamespace internal\
+    \ {\r\n\r\ntemplate<class T>\r\nconstexpr T pow_mod_constexpr(T x, long long n,\
+    \ T m) {\r\n\tusing U = safely_multipliable_t<T>;\r\n\tif(m == 1) {\r\n\t\treturn\
+    \ 0;\r\n\t}\r\n\tU r = 1, y = safe_mod(x, m);\r\n\twhile(n) {\r\n\t\tif(n & 1)\
+    \ {\r\n\t\t\tr = (r * y) % m;\r\n\t\t}\r\n\t\ty = (y * y) % m;\r\n\t\tn >>= 1;\r\
+    \n\t}\r\n\treturn r;\r\n}\r\n\r\n} // namespace internal\r\n\r\n} // namespace\
+    \ felix\r\n"
+  code: "#pragma once\r\n#include \"../misc/type-traits.hpp\"\r\n#include \"safe-mod.hpp\"\
+    \r\n\r\nnamespace felix {\r\n\r\nnamespace internal {\r\n\r\ntemplate<class T>\r\
+    \nconstexpr T pow_mod_constexpr(T x, long long n, T m) {\r\n\tusing U = safely_multipliable_t<T>;\r\
+    \n\tif(m == 1) {\r\n\t\treturn 0;\r\n\t}\r\n\tU r = 1, y = safe_mod(x, m);\r\n\
+    \twhile(n) {\r\n\t\tif(n & 1) {\r\n\t\t\tr = (r * y) % m;\r\n\t\t}\r\n\t\ty =\
+    \ (y * y) % m;\r\n\t\tn >>= 1;\r\n\t}\r\n\treturn r;\r\n}\r\n\r\n} // namespace\
+    \ internal\r\n\r\n} // namespace felix\r\n"
   dependsOn:
+  - library/misc/type-traits.hpp
   - library/math/safe-mod.hpp
   isVerificationFile: false
   path: library/math/pow-mod.hpp
@@ -100,7 +146,7 @@ data:
   - library/math/is-prime.hpp
   - library/math/primitive-root.hpp
   - library/formal-power-series/poly.hpp
-  timestamp: '2023-05-21 00:28:23+08:00'
+  timestamp: '2023-05-23 03:18:50+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/Convolution/Convolution.test.cpp

@@ -48,18 +48,30 @@ data:
     \ std::common_type<T>>::type;\r\n#endif\r\n\r\ntemplate<class T> using is_signed_int_t\
     \ = std::enable_if_t<is_signed_int<T>::value>;\r\ntemplate<class T> using is_unsigned_int_t\
     \ = std::enable_if_t<is_unsigned_int<T>::value>;\r\ntemplate<class T> using to_unsigned_t\
-    \ = typename to_unsigned<T>::type;\r\n\r\n}  // namespace internal\r\n\r\n}  //\
-    \ namespace felix\r\n#line 6 \"library/convolution/subset-convolution.hpp\"\n\n\
-    namespace felix {\n\ntemplate<class T, class F>\nvoid fwht(std::vector<T>& a,\
-    \ F f) {\n\tconst int n = (int) a.size();\n\tassert(__builtin_popcount(n) == 1);\n\
-    \tfor(int i = 1; i < n; i <<= 1) {\n\t\tfor(int j = 0; j < n; j += i << 1) {\n\
-    \t\t\tfor(int k = 0; k < i; k++) {\n\t\t\t\tf(a[j + k], a[i + j + k]);\n\t\t\t\
-    }\n\t\t}\n\t}\n}\n\ntemplate<class T>\nvoid or_transform(std::vector<T>& a, bool\
-    \ inv) {\n\tfwht(a, [&](T& x, T& y) { y += x * (inv ? -1 : +1); });\n}\n\ntemplate<class\
-    \ T>\nvoid and_transform(std::vector<T>& a, bool inv) {\n\tfwht(a, [&](T& x, T&\
-    \ y) { x += y * (inv ? -1 : +1); });\n}\n\ntemplate<class T>\nvoid xor_transform(std::vector<T>&\
-    \ a, bool inv) {\n\tfwht(a, [](T& x, T& y) {\n\t\tT z = x + y;\n\t\ty = x - y;\n\
-    \t\tx = z;\n\t});\n\tif(inv) {\n\t\tif constexpr(internal::is_integral<T>::value)\
+    \ = typename to_unsigned<T>::type;\r\n\r\ntemplate<class T> struct safely_multipliable\
+    \ {};\r\ntemplate<> struct safely_multipliable<short> { using type = int; };\r\
+    \ntemplate<> struct safely_multipliable<unsigned short> { using type = unsigned\
+    \ int; };\r\ntemplate<> struct safely_multipliable<int> { using type = long long;\
+    \ };\r\ntemplate<> struct safely_multipliable<unsigned int> { using type = unsigned\
+    \ long long; };\r\ntemplate<> struct safely_multipliable<long long> { using type\
+    \ = __int128; };\r\ntemplate<> struct safely_multipliable<unsigned long long>\
+    \ { using type = __uint128_t; };\r\ntemplate<> struct safely_multipliable<float>\
+    \ { using type = float; };\r\ntemplate<> struct safely_multipliable<double> {\
+    \ using type = double; };\r\ntemplate<> struct safely_multipliable<long double>\
+    \ { using type = long double; };\r\ntemplate<> struct safely_multipliable<__float128>\
+    \ { using type = __float128; };\r\n\r\ntemplate<class T> using safely_multipliable_t\
+    \ = typename safely_multipliable<T>::type;\r\n\r\n}  // namespace internal\r\n\
+    \r\n}  // namespace felix\r\n#line 6 \"library/convolution/subset-convolution.hpp\"\
+    \n\nnamespace felix {\n\ntemplate<class T, class F>\nvoid fwht(std::vector<T>&\
+    \ a, F f) {\n\tconst int n = (int) a.size();\n\tassert(__builtin_popcount(n) ==\
+    \ 1);\n\tfor(int i = 1; i < n; i <<= 1) {\n\t\tfor(int j = 0; j < n; j += i <<\
+    \ 1) {\n\t\t\tfor(int k = 0; k < i; k++) {\n\t\t\t\tf(a[j + k], a[i + j + k]);\n\
+    \t\t\t}\n\t\t}\n\t}\n}\n\ntemplate<class T>\nvoid or_transform(std::vector<T>&\
+    \ a, bool inv) {\n\tfwht(a, [&](T& x, T& y) { y += x * (inv ? -1 : +1); });\n\
+    }\n\ntemplate<class T>\nvoid and_transform(std::vector<T>& a, bool inv) {\n\t\
+    fwht(a, [&](T& x, T& y) { x += y * (inv ? -1 : +1); });\n}\n\ntemplate<class T>\n\
+    void xor_transform(std::vector<T>& a, bool inv) {\n\tfwht(a, [](T& x, T& y) {\n\
+    \t\tT z = x + y;\n\t\ty = x - y;\n\t\tx = z;\n\t});\n\tif(inv) {\n\t\tif constexpr(internal::is_integral<T>::value)\
     \ {\n\t\t\tfor(auto& x : a) {\n\t\t\t\tx /= a.size();\n\t\t\t}\n\t\t} else {\n\
     \t\t\tT z = T(1) / T(a.size());\n\t\t\tfor(auto& x : a) {\n\t\t\t\tx *= z;\n\t\
     \t\t}\n\t\t}\n\t}\n}\n\ntemplate<class T>\nstd::vector<T> or_convolution(std::vector<T>\
@@ -129,7 +141,7 @@ data:
   isVerificationFile: false
   path: library/convolution/subset-convolution.hpp
   requiredBy: []
-  timestamp: '2023-05-22 17:42:25+08:00'
+  timestamp: '2023-05-23 03:18:50+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/Convolution/Bitwise-And-Convolution.test.cpp

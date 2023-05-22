@@ -75,11 +75,17 @@ data:
       path: library/geometry/closest-pair.hpp
       title: library/geometry/closest-pair.hpp
     - icon: ':heavy_check_mark:'
+      path: library/geometry/convex-hull.hpp
+      title: library/geometry/convex-hull.hpp
+    - icon: ':heavy_check_mark:'
       path: library/geometry/geometry.hpp
       title: library/geometry/geometry.hpp
     - icon: ':heavy_check_mark:'
       path: library/geometry/line.hpp
       title: library/geometry/line.hpp
+    - icon: ':warning:'
+      path: library/geometry/point-in-convex-hull.hpp
+      title: library/geometry/point-in-convex-hull.hpp
     - icon: ':heavy_check_mark:'
       path: library/geometry/point.hpp
       title: library/geometry/point.hpp

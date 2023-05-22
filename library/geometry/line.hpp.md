@@ -8,10 +8,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/geometry/geometry.hpp
     title: library/geometry/geometry.hpp
+  - icon: ':warning:'
+    path: library/geometry/point-in-convex-hull.hpp
+    title: library/geometry/point-in-convex-hull.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/cgl/Convex-Hull.test.cpp
-    title: test/aoj/cgl/Convex-Hull.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/cgl/Counter-Clockwise.test.cpp
     title: test/aoj/cgl/Counter-Clockwise.test.cpp
@@ -68,11 +68,11 @@ data:
   isVerificationFile: false
   path: library/geometry/line.hpp
   requiredBy:
+  - library/geometry/point-in-convex-hull.hpp
   - library/geometry/geometry.hpp
   timestamp: '2023-05-15 01:11:19+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/cgl/Convex-Hull.test.cpp
   - test/aoj/cgl/Counter-Clockwise.test.cpp
   - test/aoj/cgl/Intersection.test.cpp
 documentation_of: library/geometry/line.hpp
