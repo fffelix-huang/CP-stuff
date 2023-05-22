@@ -22,8 +22,7 @@ T pollard_rho(T n) {
 		auto f = [&](T x) -> T {
 			return internal::safe_mod<__int128>(__int128(x) * x + R, n);
 		};
-		T x = 1, y = 2, ys = 1, q = 1;
-		T g = 1;
+		T x = 1, y = 2, ys = 1, q = 1, g = 1;
 		constexpr int m = 128;
 		for(int r = 1; g == 1; r <<= 1) {
 			x = y;
@@ -64,7 +63,7 @@ std::vector<T> factorize(T n) {
 		if(p != res[i]) {
 			res[i] /= p;
 			res.push_back(p);
-			i -= 1;
+			i--;
 		}
 	}
 	std::sort(res.begin(), res.end());
@@ -81,7 +80,7 @@ std::vector<T> get_divisors(T n) {
 		if(v.empty() || v.back().first != p) {
 			v.emplace_back(p, 1);
 		} else {
-			v.back().second += 1;
+			v.back().second++;
 		}
 	}
 	std::vector<T> res;

@@ -23,7 +23,7 @@ std::vector<std::pair<int, int>> prufer(const std::vector<int>& a) {
 	for(auto u : a) {
 		auto v = *leaf.begin();
 		leaf.erase(leaf.begin());
-		edges.emplace_back(u + 1, v + 1);
+		edges.emplace_back(u, v);
 		deg[u]--;
 		if(deg[u] == 0) {
 			leaf.insert(u);

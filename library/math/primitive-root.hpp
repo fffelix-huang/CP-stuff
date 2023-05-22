@@ -1,6 +1,9 @@
 #pragma once
 #include <cassert>
+#include <vector>
+#include <algorithm>
 #include "pow-mod.hpp"
+#include "factorize.hpp"
 
 namespace felix {
 
@@ -11,10 +14,7 @@ constexpr int primitive_root_constexpr(int m) {
 	if(m == 167772161) return 3;
 	if(m == 469762049) return 3;
 	if(m == 754974721) return 11;
-	if(m == 880803841) return 26;
-	if(m == 1045430273) return 3;
-	if(m == 1051721729) return 6;
-	if(m == 1053818881) return 7;
+	if(m == 2) return 1;
 	int divs[20] = {};
 	divs[0] = 2;
 	int cnt = 1;
@@ -34,7 +34,7 @@ constexpr int primitive_root_constexpr(int m) {
 	for(int g = 2;; g++) {
 		bool ok = true;
 		for(int i = 0; i < cnt; i++) {
-			if(pow_mod_constexpr<unsigned long long, int>(g, (m - 1) / divs[i], m) == 1) {
+			if(pow_mod_constexpr<unsigned long long, unsigned int>(g, (m - 1) / divs[i], m) == 1) {
 				ok = false;
 				break;
 			}
@@ -47,5 +47,29 @@ constexpr int primitive_root_constexpr(int m) {
 }
 
 } // namespace internal
+
+long long primitive_root(long long n) {
+	if(n == 2) {
+		return 1;
+	}
+	long long x = (n - 1) / 2;
+	x >>= __builtin_ctzll(x);
+	auto f = factorize(x);
+	f.erase(std::unique(f.begin(), f.end()), f.end());
+	f.push_back(2);
+	for(long long g = 2;; g++) {
+		bool ok = true;
+		for(auto d : f) {
+			if(internal::pow_mod_constexpr<__uint128_t, unsigned long long>(g, (n - 1) / d, n) == 1) {
+				ok = false;
+				break;
+			}
+		}
+		if(ok) {
+			return g;
+		}
+	}
+	assert(false);
+}
 
 } // namespace felix
