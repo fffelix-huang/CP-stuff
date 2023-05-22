@@ -1,22 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/binary-gcd.hpp
     title: "Binary GCD (\u4F4D\u5143 GCD)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/factorize.hpp
     title: "Integer Factorization (Pollard Rho \u8CEA\u56E0\u6578\u5206\u89E3)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/is-prime.hpp
     title: library/math/is-prime.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/pow-mod.hpp
     title: library/math/pow-mod.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/safe-mod.hpp
     title: library/math/safe-mod.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/random/rng.hpp
     title: library/random/rng.hpp
   _extendedRequiredBy:
@@ -39,7 +39,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/Math/Partition-Function.test.cpp
     title: test/yosupo/Math/Partition-Function.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/Math/Primitive-Root.test.cpp
     title: test/yosupo/Math/Primitive-Root.test.cpp
   - icon: ':heavy_check_mark:'
@@ -66,9 +66,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/Polynomial/Sqrt-of-Formal-Power-Series.test.cpp
     title: test/yosupo/Polynomial/Sqrt-of-Formal-Power-Series.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"library/math/primitive-root.hpp\"\n#include <cassert>\n\
@@ -182,7 +182,7 @@ data:
   - library/convolution/ntt.hpp
   - library/formal-power-series/poly.hpp
   timestamp: '2023-05-22 17:42:25+08:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/Convolution/Convolution.test.cpp
   - test/yosupo/Convolution/Convolution-Large.test.cpp

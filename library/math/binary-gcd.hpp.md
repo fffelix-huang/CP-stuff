@@ -11,10 +11,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/math/discrete-log.hpp
     title: "Discrete Log (\u96E2\u6563\u5C0D\u6578 $a^x \\equiv b \\pmod m$)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/factorize.hpp
     title: "Integer Factorization (Pollard Rho \u8CEA\u56E0\u6578\u5206\u89E3)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/primitive-root.hpp
     title: library/math/primitive-root.hpp
   _extendedVerifiedWith:
@@ -42,7 +42,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/Math/Partition-Function.test.cpp
     title: test/yosupo/Math/Partition-Function.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/Math/Primitive-Root.test.cpp
     title: test/yosupo/Math/Primitive-Root.test.cpp
   - icon: ':heavy_check_mark:'
@@ -69,9 +69,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/Polynomial/Sqrt-of-Formal-Power-Series.test.cpp
     title: test/yosupo/Polynomial/Sqrt-of-Formal-Power-Series.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"library/math/binary-gcd.hpp\"\n\r\nnamespace felix {\r\n\
@@ -98,7 +98,7 @@ data:
   - library/math/discrete-log.hpp
   - library/formal-power-series/poly.hpp
   timestamp: '2023-04-03 17:58:04+08:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/Convolution/Convolution.test.cpp
   - test/yosupo/Convolution/Convolution-Large.test.cpp

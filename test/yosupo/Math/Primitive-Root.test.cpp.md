@@ -1,39 +1,39 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/binary-gcd.hpp
     title: "Binary GCD (\u4F4D\u5143 GCD)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/factorize.hpp
     title: "Integer Factorization (Pollard Rho \u8CEA\u56E0\u6578\u5206\u89E3)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/is-prime.hpp
     title: library/math/is-prime.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/pow-mod.hpp
     title: library/math/pow-mod.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/primitive-root.hpp
     title: library/math/primitive-root.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/safe-mod.hpp
     title: library/math/safe-mod.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/random/rng.hpp
     title: library/random/rng.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/primality_test
+    PROBLEM: https://judge.yosupo.jp/problem/primitive_root
     links:
-    - https://judge.yosupo.jp/problem/primality_test
+    - https://judge.yosupo.jp/problem/primitive_root
   bundledCode: "#line 1 \"test/yosupo/Math/Primitive-Root.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/primality_test\"\n\n#include <iostream>\n\
+    \ \"https://judge.yosupo.jp/problem/primitive_root\"\n\n#include <iostream>\n\
     #line 2 \"library/math/primitive-root.hpp\"\n#include <cassert>\n#include <vector>\n\
     #include <algorithm>\n#line 2 \"library/math/safe-mod.hpp\"\n\r\nnamespace felix\
     \ {\r\n\r\nnamespace internal {\r\n\r\ntemplate<class T>\r\nconstexpr T safe_mod(T\
@@ -114,7 +114,7 @@ data:
     \ std;\nusing namespace felix;\n\nint main() {\n\tios::sync_with_stdio(false);\n\
     \tcin.tie(0);\n\tint q;\n\tcin >> q;\n\twhile(q--) {\n\t\tlong long n;\n\t\tcin\
     \ >> n;\n\t\tcout << primitive_root(n) << \"\\n\";\n\t}\n\treturn 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/primality_test\"\n\n#include\
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/primitive_root\"\n\n#include\
     \ <iostream>\n#include \"../../../library/math/primitive-root.hpp\"\nusing namespace\
     \ std;\nusing namespace felix;\n\nint main() {\n\tios::sync_with_stdio(false);\n\
     \tcin.tie(0);\n\tint q;\n\tcin >> q;\n\twhile(q--) {\n\t\tlong long n;\n\t\tcin\
@@ -130,8 +130,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/Math/Primitive-Root.test.cpp
   requiredBy: []
-  timestamp: '2023-05-22 17:42:25+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-05-23 00:11:40+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Math/Primitive-Root.test.cpp
 layout: document
