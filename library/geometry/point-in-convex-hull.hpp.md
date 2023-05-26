@@ -22,23 +22,23 @@ data:
     \nnamespace felix {\n\nnamespace geometry {\n\ntemplate<class T>\nstruct Point\
     \ {\n\tT x, y;\n\n\tPoint(T a = 0, T b = 0) : x(a), y(b) {}\n\tPoint(const std::pair<T,\
     \ T>& p) : x(p.first), y(p.second) {}\n\n\texplicit constexpr operator std::pair<T,\
-    \ T>() const {\n\t\treturn std::pair<T, T>(x, y);\n\t}\n\n\tconstexpr Point& operator+=(const\
-    \ Point& rhs) & {\n\t\tx += rhs.x;\n\t\ty += rhs.y;\n\t\treturn *this;\n\t}\n\n\
-    \tconstexpr Point& operator-=(const Point& rhs) & {\n\t\tx -= rhs.x;\n\t\ty -=\
-    \ rhs.y;\n\t\treturn *this;\n\t}\n\n\tconstexpr Point& operator*=(const T& rhs)\
-    \ & {\n\t\tx *= rhs;\n\t\ty *= rhs;\n\t\treturn *this;\n\t}\n\n\tconstexpr Point&\
-    \ operator/=(const T& rhs) & {\n\t\tx /= rhs;\n\t\ty /= rhs;\n\t\treturn *this;\n\
-    \t}\n\n\tconstexpr Point operator+() const { return *this; }\n\tconstexpr Point\
-    \ operator-() const { return Point(-x, -y); }\n\tfriend constexpr Point operator+(Point\
-    \ lhs, Point rhs) { return lhs += rhs; }\n\tfriend constexpr Point operator-(Point\
-    \ lhs, Point rhs) { return lhs -= rhs; }\n\tfriend constexpr Point operator*(Point\
-    \ lhs, T rhs) { return lhs *= rhs; }\n\tfriend constexpr Point operator/(Point\
-    \ lhs, T rhs) { return lhs /= rhs; }\n\tconstexpr bool operator==(const Point&\
-    \ rhs) const { return x == rhs.x && y == rhs.y; }\n\tconstexpr bool operator!=(const\
-    \ Point& rhs) const { return !(*this == rhs); }\n\n\t// rotate counter-clockwise\n\
-    \tconstexpr Point rotate(T theta) const {\n\t\tT sint = std::sin(theta);\n\t\t\
-    T cost = std::cos(theta);\n\t\treturn Point(x * cost - y * sint, x * sint + y\
-    \ * cost);\n\t}\n\n\tfriend constexpr T abs2(Point p) { return p.x * p.x + p.y\
+    \ T>() const { return std::pair<T, T>(x, y); }\n\n\tconstexpr Point& operator+=(const\
+    \ Point& rhs) & {\n\t\tx += rhs.x, y += rhs.y;\n\t\treturn *this;\n\t}\n\n\tconstexpr\
+    \ Point& operator-=(const Point& rhs) & {\n\t\tx -= rhs.x, y -= rhs.y;\n\t\treturn\
+    \ *this;\n\t}\n\n\tconstexpr Point& operator*=(const T& rhs) & {\n\t\tx *= rhs,\
+    \ y *= rhs;\n\t\treturn *this;\n\t}\n\n\tconstexpr Point& operator/=(const T&\
+    \ rhs) & {\n\t\tx /= rhs, y /= rhs;\n\t\treturn *this;\n\t}\n\n\tconstexpr Point\
+    \ operator+() const { return *this; }\n\tconstexpr Point operator-() const { return\
+    \ Point(-x, -y); }\n\tfriend constexpr Point operator+(Point lhs, Point rhs) {\
+    \ return lhs += rhs; }\n\tfriend constexpr Point operator-(Point lhs, Point rhs)\
+    \ { return lhs -= rhs; }\n\tfriend constexpr Point operator*(Point lhs, T rhs)\
+    \ { return lhs *= rhs; }\n\tfriend constexpr Point operator/(Point lhs, T rhs)\
+    \ { return lhs /= rhs; }\n\tconstexpr bool operator==(const Point& rhs) const\
+    \ { return x == rhs.x && y == rhs.y; }\n\tconstexpr bool operator!=(const Point&\
+    \ rhs) const { return !(*this == rhs); }\n\n\t// rotate counter-clockwise\n\t\
+    constexpr Point rotate(T theta) const {\n\t\tT sin_t = std::sin(theta), cos_t\
+    \ = std::cos(theta);\n\t\treturn Point(x * cos_t - y * sin_t, x * sin_t + y *\
+    \ cos_t);\n\t}\n\n\tfriend constexpr T abs2(Point p) { return p.x * p.x + p.y\
     \ * p.y; }\n\tfriend constexpr long double abs(Point p) { return std::sqrt(abs2(p));\
     \ }\n\tfriend constexpr long double angle(Point p) { return std::atan2(p.y, p.x);\
     \ }\n\tfriend constexpr T dot(Point lhs, Point rhs) { return lhs.x * rhs.x + lhs.y\
@@ -102,7 +102,7 @@ data:
   isVerificationFile: false
   path: library/geometry/point-in-convex-hull.hpp
   requiredBy: []
-  timestamp: '2023-05-23 03:18:50+08:00'
+  timestamp: '2023-05-26 16:40:39+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/geometry/point-in-convex-hull.hpp

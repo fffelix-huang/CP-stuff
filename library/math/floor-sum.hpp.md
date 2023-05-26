@@ -57,7 +57,7 @@ $g$ 和 $h$ 變形的做法請參考 Reference 裡 OI wiki 的文章。
 時間複雜度：$O(\log n)$
 
 ## 題目
-[AtCoder Library Practice Contest C - Floor Sum](https://atcoder.jp/contests/practice2/tasks/practice2_c)
+[LibreOJ - #138. 类欧几里得算法](https://loj.ac/p/138)
 
 ## References
 [AtCoder Library document](https://atcoder.github.io/ac-library/production/document_en/math.html)

@@ -101,6 +101,9 @@ data:
       path: library/graph/lowlink.hpp
       title: library/graph/lowlink.hpp
     - icon: ':heavy_check_mark:'
+      path: library/graph/max-clique.hpp
+      title: library/graph/max-clique.hpp
+    - icon: ':heavy_check_mark:'
       path: library/graph/strongly-connected-components.hpp
       title: library/graph/strongly-connected-components.hpp
   - name: library/math
@@ -414,6 +417,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/Graph/Matching-on-General-Graph.test.cpp
       title: test/yosupo/Graph/Matching-on-General-Graph.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/Graph/Maximum-Independent-Set.test.cpp
+      title: test/yosupo/Graph/Maximum-Independent-Set.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/Graph/Strongly-Connected-Components.test.cpp
       title: test/yosupo/Graph/Strongly-Connected-Components.test.cpp
