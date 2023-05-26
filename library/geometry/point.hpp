@@ -13,31 +13,25 @@ struct Point {
 	Point(T a = 0, T b = 0) : x(a), y(b) {}
 	Point(const std::pair<T, T>& p) : x(p.first), y(p.second) {}
 
-	explicit constexpr operator std::pair<T, T>() const {
-		return std::pair<T, T>(x, y);
-	}
+	explicit constexpr operator std::pair<T, T>() const { return std::pair<T, T>(x, y); }
 
 	constexpr Point& operator+=(const Point& rhs) & {
-		x += rhs.x;
-		y += rhs.y;
+		x += rhs.x, y += rhs.y;
 		return *this;
 	}
 
 	constexpr Point& operator-=(const Point& rhs) & {
-		x -= rhs.x;
-		y -= rhs.y;
+		x -= rhs.x, y -= rhs.y;
 		return *this;
 	}
 
 	constexpr Point& operator*=(const T& rhs) & {
-		x *= rhs;
-		y *= rhs;
+		x *= rhs, y *= rhs;
 		return *this;
 	}
 
 	constexpr Point& operator/=(const T& rhs) & {
-		x /= rhs;
-		y /= rhs;
+		x /= rhs, y /= rhs;
 		return *this;
 	}
 
@@ -52,9 +46,8 @@ struct Point {
 
 	// rotate counter-clockwise
 	constexpr Point rotate(T theta) const {
-		T sint = std::sin(theta);
-		T cost = std::cos(theta);
-		return Point(x * cost - y * sint, x * sint + y * cost);
+		T sin_t = std::sin(theta), cos_t = std::cos(theta);
+		return Point(x * cos_t - y * sin_t, x * sin_t + y * cos_t);
 	}
 
 	friend constexpr T abs2(Point p) { return p.x * p.x + p.y * p.y; }
