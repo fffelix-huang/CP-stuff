@@ -47,7 +47,7 @@ data:
     \nusing namespace std;\r\nusing namespace felix;\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\
     \n\tcin.tie(0);\r\n\tint n, m;\r\n\tcin >> n >> m;\r\n\tvector<vector<bool>> g(n,\
     \ vector<bool>(n));\r\n\tfor(int i = 0; i < m; i++) {\r\n\t\tint u, v;\r\n\t\t\
-    cin >> u >> v;\r\n\t\tg[u][v] = g[v][u] = 1;\r\n\t}\r\n\tmax_clique<40> solver(n);\r\
+    cin >> u >> v;\r\n\t\tg[u][v] = g[v][u] = true;\r\n\t}\r\n\tmax_clique<40> solver(n);\r\
     \n\tfor(int i = 0; i < n; i++) {\r\n\t\tfor(int j = i + 1; j < n; j++) {\r\n\t\
     \t\tif(!g[i][j]) {\r\n\t\t\t\tsolver.add_edge(i, j);\r\n\t\t\t}\r\n\t\t}\r\n\t\
     }\r\n\tauto ans = solver.solve();\r\n\tcout << ans.size() << \"\\n\";\r\n\tfor(auto\
@@ -58,7 +58,7 @@ data:
     \r\nusing namespace std;\r\nusing namespace felix;\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\
     \n\tcin.tie(0);\r\n\tint n, m;\r\n\tcin >> n >> m;\r\n\tvector<vector<bool>> g(n,\
     \ vector<bool>(n));\r\n\tfor(int i = 0; i < m; i++) {\r\n\t\tint u, v;\r\n\t\t\
-    cin >> u >> v;\r\n\t\tg[u][v] = g[v][u] = 1;\r\n\t}\r\n\tmax_clique<40> solver(n);\r\
+    cin >> u >> v;\r\n\t\tg[u][v] = g[v][u] = true;\r\n\t}\r\n\tmax_clique<40> solver(n);\r\
     \n\tfor(int i = 0; i < n; i++) {\r\n\t\tfor(int j = i + 1; j < n; j++) {\r\n\t\
     \t\tif(!g[i][j]) {\r\n\t\t\t\tsolver.add_edge(i, j);\r\n\t\t\t}\r\n\t\t}\r\n\t\
     }\r\n\tauto ans = solver.solve();\r\n\tcout << ans.size() << \"\\n\";\r\n\tfor(auto\
@@ -69,7 +69,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/Graph/Maximum-Independent-Set.test.cpp
   requiredBy: []
-  timestamp: '2023-05-26 16:40:39+08:00'
+  timestamp: '2023-05-27 01:30:43+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Graph/Maximum-Independent-Set.test.cpp
