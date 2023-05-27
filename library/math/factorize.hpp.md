@@ -19,62 +19,14 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/random/rng.hpp
     title: library/random/rng.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: library/convolution/ntt.hpp
-    title: library/convolution/ntt.hpp
-  - icon: ':heavy_check_mark:'
-    path: library/formal-power-series/poly.hpp
-    title: library/formal-power-series/poly.hpp
-  - icon: ':heavy_check_mark:'
-    path: library/math/primitive-root.hpp
-    title: library/math/primitive-root.hpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ntl/Prime-Factorize.test.cpp
     title: test/aoj/ntl/Prime-Factorize.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/Convolution/Convolution-Large.test.cpp
-    title: test/yosupo/Convolution/Convolution-Large.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/Convolution/Convolution-Mod-1000000007.test.cpp
-    title: test/yosupo/Convolution/Convolution-Mod-1000000007.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/Convolution/Convolution.test.cpp
-    title: test/yosupo/Convolution/Convolution.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yosupo/Math/Factorize.test.cpp
     title: test/yosupo/Math/Factorize.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/Math/Partition-Function.test.cpp
-    title: test/yosupo/Math/Partition-Function.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/Math/Primitive-Root.test.cpp
-    title: test/yosupo/Math/Primitive-Root.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/Polynomial/Exp-of-Formal-Power-Series.test.cpp
-    title: test/yosupo/Polynomial/Exp-of-Formal-Power-Series.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/Polynomial/Inv-of-Formal-Power-Series.test.cpp
-    title: test/yosupo/Polynomial/Inv-of-Formal-Power-Series.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/Polynomial/Log-of-Formal-Power-Series.test.cpp
-    title: test/yosupo/Polynomial/Log-of-Formal-Power-Series.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/Polynomial/Multipoint-Evaluation.test.cpp
-    title: test/yosupo/Polynomial/Multipoint-Evaluation.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/Polynomial/Polynomial-Taylor-Shift.test.cpp
-    title: test/yosupo/Polynomial/Polynomial-Taylor-Shift.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/Polynomial/Pow-of-Formal-Power-Series.test.cpp
-    title: test/yosupo/Polynomial/Pow-of-Formal-Power-Series.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/Polynomial/Product-of-Polynomial-Sequence.test.cpp
-    title: test/yosupo/Polynomial/Product-of-Polynomial-Sequence.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/Polynomial/Sqrt-of-Formal-Power-Series.test.cpp
-    title: test/yosupo/Polynomial/Sqrt-of-Formal-Power-Series.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -115,11 +67,7 @@ data:
     \ };\r\ntemplate<> struct safely_multipliable<unsigned int> { using type = unsigned\
     \ long long; };\r\ntemplate<> struct safely_multipliable<long long> { using type\
     \ = __int128; };\r\ntemplate<> struct safely_multipliable<unsigned long long>\
-    \ { using type = __uint128_t; };\r\ntemplate<> struct safely_multipliable<float>\
-    \ { using type = float; };\r\ntemplate<> struct safely_multipliable<double> {\
-    \ using type = double; };\r\ntemplate<> struct safely_multipliable<long double>\
-    \ { using type = long double; };\r\ntemplate<> struct safely_multipliable<__float128>\
-    \ { using type = __float128; };\r\n\r\ntemplate<class T> using safely_multipliable_t\
+    \ { using type = __uint128_t; };\r\n\r\ntemplate<class T> using safely_multipliable_t\
     \ = typename safely_multipliable<T>::type;\r\n\r\n}  // namespace internal\r\n\
     \r\n}  // namespace felix\r\n#line 2 \"library/math/binary-gcd.hpp\"\n\r\nnamespace\
     \ felix {\r\n\r\ntemplate<class T>\r\ninline T binary_gcd(T a, T b) {\r\n\tif(a\
@@ -149,20 +97,21 @@ data:
     if(n % 2 == 0) {\r\n\t\treturn n == 2;\r\n\t}\r\n\tif(n < (1LL << 30)) {\r\n\t\
     \treturn internal::is_prime(n, {2, 7, 61});\r\n\t}\r\n\treturn internal::is_prime(n,\
     \ {2, 325, 9375, 28178, 450775, 9780504, 1795265022});\r\n}\r\n\r\n} // namespace\
-    \ felix\n#line 2 \"library/random/rng.hpp\"\n#include <chrono>\n\nnamespace felix\
-    \ {\n\ninline unsigned long long rng() {\n\tstatic unsigned long long SEED = std::chrono::steady_clock::now().time_since_epoch().count();\n\
-    \tSEED ^= SEED << 7;\n\tSEED ^= SEED >> 9;\n\treturn SEED & 0xFFFFFFFFULL;\n}\n\
-    \n} // namespace felix\n#line 10 \"library/math/factorize.hpp\"\n\nnamespace felix\
-    \ {\n\ntemplate<class T>\nT pollard_rho(T n) {\n\tusing U = internal::safely_multipliable_t<T>;\n\
-    \tif(n % 2 == 0) {\n\t\treturn 2;\n\t}\n\tif(is_prime(n)) {\n\t\treturn n;\n\t\
-    }\n\twhile(true) {\n\t\tconst T R = rng() % (n - 1) + 1;\n\t\tauto f = [&](T x)\
-    \ -> T {\n\t\t\treturn internal::safe_mod<U>(U(x) * x + R, n);\n\t\t};\n\t\tT\
-    \ x = 1, y = 2, ys = 1, q = 1, g = 1;\n\t\tconstexpr int m = 128;\n\t\tfor(int\
-    \ r = 1; g == 1; r <<= 1) {\n\t\t\tx = y;\n\t\t\tfor(int i = 0; i < r; i++) {\n\
-    \t\t\t\ty = f(y);\n\t\t\t}\n\t\t\tfor(int k = 0; k < r && g == 1; k += m) {\n\t\
-    \t\t\tys = y;\n\t\t\t\tfor(int i = 0; i < std::min(m, r - k); i++) {\n\t\t\t\t\
-    \ty = f(y);\n\t\t\t\t\tq = internal::safe_mod<U>(U(q) * internal::safe_mod(x -\
-    \ y, n), n);\n\t\t\t\t}\n\t\t\t\tg = binary_gcd(q, n);\n\t\t\t}\n\t\t}\n\t\tif(g\
+    \ felix\r\n#line 2 \"library/random/rng.hpp\"\n#include <chrono>\n\nnamespace\
+    \ felix {\n\ninline unsigned long long rng() {\n\tstatic unsigned long long SEED\
+    \ = std::chrono::steady_clock::now().time_since_epoch().count();\n\tSEED ^= SEED\
+    \ << 7;\n\tSEED ^= SEED >> 9;\n\treturn SEED & 0xFFFFFFFFULL;\n}\n\n} // namespace\
+    \ felix\n#line 10 \"library/math/factorize.hpp\"\n\nnamespace felix {\n\ntemplate<class\
+    \ T>\nT pollard_rho(T n) {\n\tusing U = internal::safely_multipliable_t<T>;\n\t\
+    if(n % 2 == 0) {\n\t\treturn 2;\n\t}\n\tif(is_prime(n)) {\n\t\treturn n;\n\t}\n\
+    \twhile(true) {\n\t\tconst T R = rng() % (n - 1) + 1;\n\t\tauto f = [&](T x) ->\
+    \ T {\n\t\t\treturn internal::safe_mod<U>(U(x) * x + R, n);\n\t\t};\n\t\tT x =\
+    \ 1, y = 2, ys = 1, q = 1, g = 1;\n\t\tconstexpr int m = 128;\n\t\tfor(int r =\
+    \ 1; g == 1; r <<= 1) {\n\t\t\tx = y;\n\t\t\tfor(int i = 0; i < r; i++) {\n\t\t\
+    \t\ty = f(y);\n\t\t\t}\n\t\t\tfor(int k = 0; k < r && g == 1; k += m) {\n\t\t\t\
+    \tys = y;\n\t\t\t\tfor(int i = 0; i < std::min(m, r - k); i++) {\n\t\t\t\t\ty\
+    \ = f(y);\n\t\t\t\t\tq = internal::safe_mod<U>(U(q) * internal::safe_mod(x - y,\
+    \ n), n);\n\t\t\t\t}\n\t\t\t\tg = binary_gcd(q, n);\n\t\t\t}\n\t\t}\n\t\tif(g\
     \ == n) {\n\t\t\tdo {\n\t\t\t\tys = f(ys);\n\t\t\t\tT x2 = internal::safe_mod(x\
     \ - ys, n);\n\t\t\t\tg = binary_gcd(x2, n);\n\t\t\t} while(g == 1);\n\t\t}\n\t\
     \tif(g != n) {\n\t\t\treturn g;\n\t\t}\n\t}\n\tassert(false);\n}\n\ntemplate<class\
@@ -217,27 +166,11 @@ data:
   - library/random/rng.hpp
   isVerificationFile: false
   path: library/math/factorize.hpp
-  requiredBy:
-  - library/convolution/ntt.hpp
-  - library/math/primitive-root.hpp
-  - library/formal-power-series/poly.hpp
-  timestamp: '2023-05-23 03:18:50+08:00'
+  requiredBy: []
+  timestamp: '2023-05-28 03:49:52+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/Convolution/Convolution.test.cpp
-  - test/yosupo/Convolution/Convolution-Large.test.cpp
-  - test/yosupo/Convolution/Convolution-Mod-1000000007.test.cpp
-  - test/yosupo/Math/Primitive-Root.test.cpp
-  - test/yosupo/Math/Partition-Function.test.cpp
   - test/yosupo/Math/Factorize.test.cpp
-  - test/yosupo/Polynomial/Exp-of-Formal-Power-Series.test.cpp
-  - test/yosupo/Polynomial/Sqrt-of-Formal-Power-Series.test.cpp
-  - test/yosupo/Polynomial/Product-of-Polynomial-Sequence.test.cpp
-  - test/yosupo/Polynomial/Multipoint-Evaluation.test.cpp
-  - test/yosupo/Polynomial/Polynomial-Taylor-Shift.test.cpp
-  - test/yosupo/Polynomial/Log-of-Formal-Power-Series.test.cpp
-  - test/yosupo/Polynomial/Inv-of-Formal-Power-Series.test.cpp
-  - test/yosupo/Polynomial/Pow-of-Formal-Power-Series.test.cpp
   - test/aoj/ntl/Prime-Factorize.test.cpp
 documentation_of: library/math/factorize.hpp
 layout: document

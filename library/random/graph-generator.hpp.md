@@ -19,12 +19,12 @@ data:
     #include <cassert>\n#line 3 \"library/random/random.hpp\"\n#include <cstring>\n\
     #include <array>\n#line 6 \"library/random/random.hpp\"\n#include <numeric>\n\
     #include <climits>\n#line 2 \"library/random/splitmix64.hpp\"\n#include <chrono>\r\
-    \n\r\nnamespace felix {\r\n\r\nnamespace internal {\r\n\r\nstruct splitmix64_hash\
-    \ {\r\n\t// http://xoshiro.di.unimi.it/splitmix64.c\r\n\tstatic unsigned long\
-    \ long splitmix64(unsigned long long x) {\r\n\t\tx += 0x9e3779b97f4a7c15;\r\n\t\
-    \tx = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\r\n\t\tx = (x ^ (x >> 27)) * 0x94d049bb133111eb;\r\
-    \n\t\treturn x ^ (x >> 31);\r\n\t}\r\n \r\n\tunsigned long long operator()(unsigned\
-    \ long long x) const {\r\n\t\tstatic const unsigned long long FIXED_RANDOM = std::chrono::steady_clock::now().time_since_epoch().count();\r\
+    \n\r\nnamespace felix {\r\n\r\nnamespace internal {\r\n\r\n// http://xoshiro.di.unimi.it/splitmix64.c\r\
+    \nstruct splitmix64_hash {\r\n\tusing u64 = unsigned long long;\r\n\tstatic u64\
+    \ splitmix64(u64 x) {\r\n\t\tx += 0x9e3779b97f4a7c15;\r\n\t\tx = (x ^ (x >> 30))\
+    \ * 0xbf58476d1ce4e5b9;\r\n\t\tx = (x ^ (x >> 27)) * 0x94d049bb133111eb;\r\n\t\
+    \treturn x ^ (x >> 31);\r\n\t}\r\n \r\n\tu64 operator()(u64 x) const {\r\n\t\t\
+    static const u64 FIXED_RANDOM = std::chrono::steady_clock::now().time_since_epoch().count();\r\
     \n\t\treturn splitmix64(x + FIXED_RANDOM);\r\n\t}\r\n};\r\n\r\n} // namespace\
     \ internal\r\n\r\n} // namespace felix\r\n#line 9 \"library/random/random.hpp\"\
     \n\nnamespace felix {\n\nstruct random_t {\npublic:\n\texplicit random_t(unsigned\
@@ -211,7 +211,7 @@ data:
   isVerificationFile: false
   path: library/random/graph-generator.hpp
   requiredBy: []
-  timestamp: '2023-05-14 18:31:09+08:00'
+  timestamp: '2023-05-28 03:49:52+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/random/graph-generator.hpp

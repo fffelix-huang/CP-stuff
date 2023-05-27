@@ -5,17 +5,8 @@ data:
     path: library/convolution/ntt.hpp
     title: library/convolution/ntt.hpp
   - icon: ':heavy_check_mark:'
-    path: library/math/binary-gcd.hpp
-    title: "Binary GCD (\u4F4D\u5143 GCD)"
-  - icon: ':heavy_check_mark:'
-    path: library/math/factorize.hpp
-    title: "Integer Factorization (Pollard Rho \u8CEA\u56E0\u6578\u5206\u89E3)"
-  - icon: ':heavy_check_mark:'
     path: library/math/inv-gcd.hpp
     title: library/math/inv-gcd.hpp
-  - icon: ':heavy_check_mark:'
-    path: library/math/is-prime.hpp
-    title: library/math/is-prime.hpp
   - icon: ':heavy_check_mark:'
     path: library/math/pow-mod.hpp
     title: library/math/pow-mod.hpp
@@ -34,9 +25,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/modint/modint.hpp
     title: library/modint/modint.hpp
-  - icon: ':heavy_check_mark:'
-    path: library/random/rng.hpp
-    title: library/random/rng.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -85,11 +73,7 @@ data:
     \ };\r\ntemplate<> struct safely_multipliable<unsigned int> { using type = unsigned\
     \ long long; };\r\ntemplate<> struct safely_multipliable<long long> { using type\
     \ = __int128; };\r\ntemplate<> struct safely_multipliable<unsigned long long>\
-    \ { using type = __uint128_t; };\r\ntemplate<> struct safely_multipliable<float>\
-    \ { using type = float; };\r\ntemplate<> struct safely_multipliable<double> {\
-    \ using type = double; };\r\ntemplate<> struct safely_multipliable<long double>\
-    \ { using type = long double; };\r\ntemplate<> struct safely_multipliable<__float128>\
-    \ { using type = __float128; };\r\n\r\ntemplate<class T> using safely_multipliable_t\
+    \ { using type = __uint128_t; };\r\n\r\ntemplate<class T> using safely_multipliable_t\
     \ = typename safely_multipliable<T>::type;\r\n\r\n}  // namespace internal\r\n\
     \r\n}  // namespace felix\r\n#line 6 \"library/misc/fastio.hpp\"\n\nnamespace\
     \ std {\n\nstatic struct FastInput {\n\tstatic constexpr int BUF_SIZE = 1 << 20;\n\
@@ -103,20 +87,20 @@ data:
     \ skip_blanks() {\n\t\twhile(is_blank(cur) && cur != -1) {\n\t\t\tget_char();\n\
     \t\t}\n\t\treturn cur != -1;\n\t}\n\n\tinline FastInput& operator>>(char& c) {\n\
     \t\tskip_blanks();\n\t\tc = cur;\n\t\treturn *this;\n\t}\n\n\tinline FastInput&\
-    \ operator>>(std::string& s) {\n\t\tif(skip_blanks()) {\n\t\t\ts.clear();\n\t\t\
-    \tdo {\n\t\t\t\ts += cur;\n\t\t\t} while(!is_blank(get_char()));\n\t\t}\n\t\t\
-    return *this;\n\t}\n\n\ttemplate<class T>\n\tinline FastInput& read_integer(T&\
-    \ n) {\n\t\t// unsafe, doesn't check that characters are actually digits\n\t\t\
-    n = 0;\n\t\tif(skip_blanks()) {\n\t\t\tint sign = +1;\n\t\t\tif(cur == '-') {\n\
-    \t\t\t\tsign = -1;\n\t\t\t\tget_char();\n\t\t\t}\n\t\t\tdo {\n\t\t\t\tn += n +\
-    \ (n << 3) + cur - '0';\n\t\t\t} while(!is_blank(get_char()));\n\t\t\tn *= sign;\n\
-    \t\t}\n\t\treturn *this;\n\t}\n\n\ttemplate<class T>\n\tinline typename std::enable_if<felix::internal::is_integral<T>::value,\
+    \ operator>>(string& s) {\n\t\tif(skip_blanks()) {\n\t\t\ts.clear();\n\t\t\tdo\
+    \ {\n\t\t\t\ts += cur;\n\t\t\t} while(!is_blank(get_char()));\n\t\t}\n\t\treturn\
+    \ *this;\n\t}\n\n\ttemplate<class T>\n\tinline FastInput& read_integer(T& n) {\n\
+    \t\t// unsafe, doesn't check that characters are actually digits\n\t\tn = 0;\n\
+    \t\tif(skip_blanks()) {\n\t\t\tint sign = +1;\n\t\t\tif(cur == '-') {\n\t\t\t\t\
+    sign = -1;\n\t\t\t\tget_char();\n\t\t\t}\n\t\t\tdo {\n\t\t\t\tn += n + (n << 3)\
+    \ + cur - '0';\n\t\t\t} while(!is_blank(get_char()));\n\t\t\tn *= sign;\n\t\t\
+    }\n\t\treturn *this;\n\t}\n\n\ttemplate<class T>\n\tinline typename enable_if<felix::internal::is_integral<T>::value,\
     \ FastInput&>::type operator>>(T& n) {\n\t\treturn read_integer(n);\n\t}\n\n\t\
     inline FastInput& operator>>(__int128& n) {\n\t\treturn read_integer(n);\n\t}\n\
-    \n\ttemplate<class T>\n\tinline typename std::enable_if<std::is_floating_point<T>::value,\
+    \n\ttemplate<class T>\n\tinline typename enable_if<is_floating_point<T>::value,\
     \ FastInput&>::type operator>>(T& n) {\n\t\tn = 0;\n\t\tif(skip_blanks()) {\n\t\
-    \t\tstd::string s;\n\t\t\t(*this) >> s;\n\t\t\tsscanf(s.c_str(), \"%lf\", &n);\n\
-    \t\t}\n\t\treturn *this;\n\t}\n} fast_input;\n\n#define istream FastInput\n#define\
+    \t\tstring s;\n\t\t\t(*this) >> s;\n\t\t\tsscanf(s.c_str(), \"%lf\", &n);\n\t\t\
+    }\n\t\treturn *this;\n\t}\n} fast_input;\n\n#define istream FastInput\n#define\
     \ cin fast_input\n\nstatic struct FastOutput {\n\tstatic constexpr int BUF_SIZE\
     \ = 1 << 20;\n\tchar buf[BUF_SIZE];\n\tsize_t buf_pos = 0;\n\tstatic constexpr\
     \ int TMP_SIZE = 1 << 20;\n\tchar tmp[TMP_SIZE];\n\tFILE *out = stdout;\n \n\t\
@@ -125,23 +109,23 @@ data:
     \t}\n\n\t~FastOutput() {\n\t\tfwrite(buf, 1, buf_pos, out);\n\t}\n\n\tinline FastOutput&\
     \ operator<<(char c) {\n\t\tput_char(c);\n\t\treturn *this;\n\t}\n\n\tinline FastOutput&\
     \ operator<<(const char* s) {\n\t\twhile(*s) {\n\t\t\tput_char(*s++);\n\t\t}\n\
-    \t\treturn *this;\n\t}\n\n\tinline FastOutput& operator<<(const std::string& s)\
-    \ {\n\t\tfor(int i = 0; i < (int) s.size(); i++) {\n\t\t\tput_char(s[i]);\n\t\t\
-    }\n\t\treturn *this;\n\t}\n\n\ttemplate<class T>\n\tinline char* integer_to_string(T\
+    \t\treturn *this;\n\t}\n\n\tinline FastOutput& operator<<(const string& s) {\n\
+    \t\tfor(int i = 0; i < (int) s.size(); i++) {\n\t\t\tput_char(s[i]);\n\t\t}\n\t\
+    \treturn *this;\n\t}\n\n\ttemplate<class T>\n\tinline char* integer_to_string(T\
     \ n) {\n\t\t// beware of TMP_SIZE\n\t\tchar* p = tmp + TMP_SIZE - 1;\n\t\tif(n\
     \ == 0) {\n\t\t\t*--p = '0';\n\t\t} else {\n\t\t\tbool is_negative = false;\n\t\
     \t\tif(n < 0) {\n\t\t\t\tis_negative = true;\n\t\t\t\tn = -n;\n\t\t\t}\n\t\t\t\
     while(n > 0) {\n\t\t\t\t*--p = (char) ('0' + n % 10);\n\t\t\t\tn /= 10;\n\t\t\t\
     }\n\t\t\tif(is_negative) {\n\t\t\t\t*--p = '-';\n\t\t\t}\n\t\t}\n\t\treturn p;\n\
-    \t}\n\n\ttemplate<class T>\n\tinline typename std::enable_if<felix::internal::is_integral<T>::value,\
+    \t}\n\n\ttemplate<class T>\n\tinline typename enable_if<felix::internal::is_integral<T>::value,\
     \ char*>::type stringify(T n) {\n\t\treturn integer_to_string(n);\n\t}\n\n\tinline\
     \ char* stringify(__int128 n) {\n\t\treturn integer_to_string(n);\n\t}\n\n\ttemplate<class\
-    \ T>\n\tinline typename std::enable_if<std::is_floating_point<T>::value, char*>::type\
-    \ stringify(T n) {\n\t\tsprintf(tmp, \"%.17f\", n);\n\t\treturn tmp;\n\t}\n\n\t\
-    template<class T>\n\tinline FastOutput& operator<<(const T& n) {\n\t\tauto p =\
-    \ stringify(n);\n\t\tfor(; *p != 0; p++) {\n\t\t\tput_char(*p);\n\t\t}\n\t\treturn\
-    \ *this;\n\t}\n} fast_output;\n\n#define ostream FastOutput\n#define cout fast_output\n\
-    \n} // namespace std\n#line 4 \"library/modint/modint.hpp\"\n#include <algorithm>\r\
+    \ T>\n\tinline typename enable_if<is_floating_point<T>::value, char*>::type stringify(T\
+    \ n) {\n\t\tsprintf(tmp, \"%.17f\", n);\n\t\treturn tmp;\n\t}\n\n\ttemplate<class\
+    \ T>\n\tinline FastOutput& operator<<(const T& n) {\n\t\tauto p = stringify(n);\n\
+    \t\tfor(; *p != 0; p++) {\n\t\t\tput_char(*p);\n\t\t}\n\t\treturn *this;\n\t}\n\
+    } fast_output;\n\n#define ostream FastOutput\n#define cout fast_output\n\n} //\
+    \ namespace std\n#line 4 \"library/modint/modint.hpp\"\n#include <algorithm>\r\
     \n#line 2 \"library/math/safe-mod.hpp\"\n\r\nnamespace felix {\r\n\r\nnamespace\
     \ internal {\r\n\r\ntemplate<class T>\r\nconstexpr T safe_mod(T x, T m) {\r\n\t\
     x %= m;\r\n\tif(x < 0) {\r\n\t\tx += m;\r\n\t}\r\n\treturn x;\r\n}\r\n\r\n} //\
@@ -233,55 +217,8 @@ data:
     \ 1) {\r\n\t\treturn 0;\r\n\t}\r\n\tU r = 1, y = safe_mod(x, m);\r\n\twhile(n)\
     \ {\r\n\t\tif(n & 1) {\r\n\t\t\tr = (r * y) % m;\r\n\t\t}\r\n\t\ty = (y * y) %\
     \ m;\r\n\t\tn >>= 1;\r\n\t}\r\n\treturn r;\r\n}\r\n\r\n} // namespace internal\r\
-    \n\r\n} // namespace felix\r\n#line 2 \"library/math/binary-gcd.hpp\"\n\r\nnamespace\
-    \ felix {\r\n\r\ntemplate<class T>\r\ninline T binary_gcd(T a, T b) {\r\n\tif(a\
-    \ == 0 || b == 0) {\r\n\t\treturn a | b;\r\n\t}\r\n\tint8_t n = __builtin_ctzll(a);\r\
-    \n\tint8_t m = __builtin_ctzll(b);\r\n\ta >>= n;\r\n\tb >>= m;\r\n\twhile(a !=\
-    \ b) {\r\n\t\tT d = a - b;\r\n\t\tint8_t s = __builtin_ctzll(d);\r\n\t\tbool f\
-    \ = a > b;\r\n\t\tb = f ? b : a;\r\n\t\ta = (f ? d : -d) >> s;\r\n\t}\r\n\treturn\
-    \ a << (n < m ? n : m);\r\n}\r\n\r\n} // namespace felix\r\n#line 4 \"library/math/is-prime.hpp\"\
-    \n\r\nnamespace felix {\r\n\r\nnamespace internal {\r\n\r\nbool is_prime(long\
-    \ long n, std::vector<long long> x) {\r\n\tlong long d = n - 1;\r\n\td >>= __builtin_ctzll(d);\r\
-    \n\tfor(auto a : x) {\r\n\t\tif(n <= a) {\r\n\t\t\treturn true;\r\n\t\t}\r\n\t\
-    \tlong long t = d;\r\n\t\tlong long y = pow_mod_constexpr(a, d, n);\r\n\t\twhile(t\
-    \ != n - 1 && y != 1 && y != n - 1) {\r\n\t\t\ty = __int128(y) * y % n;\r\n\t\t\
-    \tt <<= 1;\r\n\t\t}\r\n\t\tif(y != n - 1 && t % 2 == 0) {\r\n\t\t\treturn false;\r\
-    \n\t\t}\r\n\t}\r\n\treturn true;\r\n}\r\n\r\n} // namespace internal\r\n\r\nbool\
-    \ is_prime(long long n) {\r\n\tif(n <= 1) {\r\n\t\treturn false;\r\n\t}\r\n\t\
-    if(n % 2 == 0) {\r\n\t\treturn n == 2;\r\n\t}\r\n\tif(n < (1LL << 30)) {\r\n\t\
-    \treturn internal::is_prime(n, {2, 7, 61});\r\n\t}\r\n\treturn internal::is_prime(n,\
-    \ {2, 325, 9375, 28178, 450775, 9780504, 1795265022});\r\n}\r\n\r\n} // namespace\
-    \ felix\n#line 2 \"library/random/rng.hpp\"\n#include <chrono>\n\nnamespace felix\
-    \ {\n\ninline unsigned long long rng() {\n\tstatic unsigned long long SEED = std::chrono::steady_clock::now().time_since_epoch().count();\n\
-    \tSEED ^= SEED << 7;\n\tSEED ^= SEED >> 9;\n\treturn SEED & 0xFFFFFFFFULL;\n}\n\
-    \n} // namespace felix\n#line 10 \"library/math/factorize.hpp\"\n\nnamespace felix\
-    \ {\n\ntemplate<class T>\nT pollard_rho(T n) {\n\tusing U = internal::safely_multipliable_t<T>;\n\
-    \tif(n % 2 == 0) {\n\t\treturn 2;\n\t}\n\tif(is_prime(n)) {\n\t\treturn n;\n\t\
-    }\n\twhile(true) {\n\t\tconst T R = rng() % (n - 1) + 1;\n\t\tauto f = [&](T x)\
-    \ -> T {\n\t\t\treturn internal::safe_mod<U>(U(x) * x + R, n);\n\t\t};\n\t\tT\
-    \ x = 1, y = 2, ys = 1, q = 1, g = 1;\n\t\tconstexpr int m = 128;\n\t\tfor(int\
-    \ r = 1; g == 1; r <<= 1) {\n\t\t\tx = y;\n\t\t\tfor(int i = 0; i < r; i++) {\n\
-    \t\t\t\ty = f(y);\n\t\t\t}\n\t\t\tfor(int k = 0; k < r && g == 1; k += m) {\n\t\
-    \t\t\tys = y;\n\t\t\t\tfor(int i = 0; i < std::min(m, r - k); i++) {\n\t\t\t\t\
-    \ty = f(y);\n\t\t\t\t\tq = internal::safe_mod<U>(U(q) * internal::safe_mod(x -\
-    \ y, n), n);\n\t\t\t\t}\n\t\t\t\tg = binary_gcd(q, n);\n\t\t\t}\n\t\t}\n\t\tif(g\
-    \ == n) {\n\t\t\tdo {\n\t\t\t\tys = f(ys);\n\t\t\t\tT x2 = internal::safe_mod(x\
-    \ - ys, n);\n\t\t\t\tg = binary_gcd(x2, n);\n\t\t\t} while(g == 1);\n\t\t}\n\t\
-    \tif(g != n) {\n\t\t\treturn g;\n\t\t}\n\t}\n\tassert(false);\n}\n\ntemplate<class\
-    \ T>\nstd::vector<T> factorize(T n) {\n\tif(n <= 1) {\n\t\treturn {};\n\t}\n\t\
-    std::vector<T> res = {n};\n\tfor(int i = 0; i < (int) res.size(); i++) {\n\t\t\
-    T p = pollard_rho(res[i]);\n\t\tif(p != res[i]) {\n\t\t\tres[i] /= p;\n\t\t\t\
-    res.push_back(p);\n\t\t\ti--;\n\t\t}\n\t}\n\tstd::sort(res.begin(), res.end());\n\
-    \treturn res;\n}\n\ntemplate<class T>\nstd::vector<T> get_divisors(T n) {\n\t\
-    if(n == 0) {\n\t\treturn {};\n\t}\n\tstd::vector<std::pair<T, int>> v;\n\tfor(auto\
-    \ p : factorize(n)) {\n\t\tif(v.empty() || v.back().first != p) {\n\t\t\tv.emplace_back(p,\
-    \ 1);\n\t\t} else {\n\t\t\tv.back().second++;\n\t\t}\n\t}\n\tstd::vector<T> res;\n\
-    \tauto f = [&](auto f, int i, T x) -> void {\n\t\tif(i == (int) v.size()) {\n\t\
-    \t\tres.push_back(x);\n\t\t\treturn;\n\t\t}\n\t\tfor(int j = v[i].second; ; j--)\
-    \ {\n\t\t\tf(f, i + 1, x);\n\t\t\tif(j == 0) {\n\t\t\t\tbreak;\n\t\t\t}\n\t\t\t\
-    x *= v[i].first;\n\t\t}\n\t};\n\tf(f, 0, 1);\n\tstd::sort(res.begin(), res.end());\n\
-    \treturn res;\n}\n\n} // namespace felix\n#line 7 \"library/math/primitive-root.hpp\"\
-    \n\nnamespace felix {\n\nnamespace internal {\n\nconstexpr int primitive_root_constexpr(int\
+    \n\r\n} // namespace felix\r\n#line 4 \"library/math/primitive-root.hpp\"\n\n\
+    namespace felix {\n\nnamespace internal {\n\nconstexpr int primitive_root_constexpr(int\
     \ m) {\n\tif(m == 998244353) return 3;\n\tif(m == 167772161) return 3;\n\tif(m\
     \ == 469762049) return 3;\n\tif(m == 754974721) return 11;\n\tif(m == 2) return\
     \ 1;\n\tint divs[20] = {};\n\tdivs[0] = 2;\n\tint cnt = 1;\n\tint x = (m - 1)\
@@ -291,16 +228,10 @@ data:
     }\n\tfor(int g = 2;; g++) {\n\t\tbool ok = true;\n\t\tfor(int i = 0; i < cnt;\
     \ i++) {\n\t\t\tif(pow_mod_constexpr(g, (m - 1) / divs[i], m) == 1) {\n\t\t\t\t\
     ok = false;\n\t\t\t\tbreak;\n\t\t\t}\n\t\t}\n\t\tif(ok) {\n\t\t\treturn g;\n\t\
-    \t}\n\t}\n\tassert(false);\n}\n\n} // namespace internal\n\nlong long primitive_root(long\
-    \ long n) {\n\tif(n == 2) {\n\t\treturn 1;\n\t}\n\tlong long x = (n - 1) / 2;\n\
-    \tx >>= __builtin_ctzll(x);\n\tauto f = factorize(x);\n\tf.erase(std::unique(f.begin(),\
-    \ f.end()), f.end());\n\tf.push_back(2);\n\tfor(long long g = 2;; g++) {\n\t\t\
-    bool ok = true;\n\t\tfor(auto d : f) {\n\t\t\tif(internal::pow_mod_constexpr(g,\
-    \ (n - 1) / d, n) == 1) {\n\t\t\t\tok = false;\n\t\t\t\tbreak;\n\t\t\t}\n\t\t\
-    }\n\t\tif(ok) {\n\t\t\treturn g;\n\t\t}\n\t}\n\tassert(false);\n}\n\n} // namespace\
-    \ felix\n#line 11 \"library/convolution/ntt.hpp\"\n\r\nnamespace felix {\r\n\r\
-    \nnamespace internal {\r\n\r\ntemplate<int mod>\r\nstruct NTT_prepare {\r\n\t\
-    using mint = modint<mod>;\r\n\r\n\tstatic constexpr int primitive_root = primitive_root_constexpr(mod);\r\
+    \t}\n\t}\n\tassert(false);\n}\n\n} // namespace internal\n\n} // namespace felix\n\
+    #line 11 \"library/convolution/ntt.hpp\"\n\r\nnamespace felix {\r\n\r\nnamespace\
+    \ internal {\r\n\r\ntemplate<int mod>\r\nstruct NTT_prepare {\r\n\tusing mint\
+    \ = modint<mod>;\r\n\r\n\tstatic constexpr int primitive_root = primitive_root_constexpr(mod);\r\
     \n\tstatic constexpr int level = __builtin_ctz(mod - 1);\r\n\r\n\tstd::array<mint,\
     \ level + 1> root, iroot;\r\n\tstd::array<mint, std::max(0, level - 2 + 1)> rate2,\
     \ irate2;\r\n\tstd::array<mint, std::max(0, level - 3 + 1)> rate3, irate3;\r\n\
@@ -406,30 +337,29 @@ data:
     \ == 0) {\r\n\t\treturn {};\r\n\t}\r\n\tstd::vector<__uint128_t> c(n + m - 1);\r\
     \n\tif(std::min(n, m) < 128) {\r\n\t\tstd::vector<__uint128_t> a2(a.begin(), a.end());\r\
     \n\t\tstd::vector<__uint128_t> b2(b.begin(), b.end());\r\n\t\treturn internal::convolution_naive(std::move(a2),\
-    \ std::move(b2));\r\n\t}\r\n\r\n\tstatic constexpr int MAX_AB_BIT = 24;\r\n  \
-    \  static_assert(m0 % (1ULL << MAX_AB_BIT) == 1, \"m0 isn't enough to support\
-    \ an array length of 2^24.\");\r\n    static_assert(m1 % (1ULL << MAX_AB_BIT)\
-    \ == 1, \"m1 isn't enough to support an array length of 2^24.\");\r\n    static_assert(m2\
+    \ std::move(b2));\r\n\t}\r\n\r\n\tstatic constexpr int MAX_AB_BIT = 24;\r\n\t\
+    static_assert(m0 % (1ULL << MAX_AB_BIT) == 1, \"m0 isn't enough to support an\
+    \ array length of 2^24.\");\r\n\tstatic_assert(m1 % (1ULL << MAX_AB_BIT) == 1,\
+    \ \"m1 isn't enough to support an array length of 2^24.\");\r\n\tstatic_assert(m2\
     \ % (1ULL << MAX_AB_BIT) == 1, \"m2 isn't enough to support an array length of\
-    \ 2^24.\");\r\n    assert(n + m - 1 <= (1 << MAX_AB_BIT));\r\n\r\n\tauto c0 =\
-    \ convolution<m0>(a, b);\r\n\tauto c1 = convolution<m1>(a, b);\r\n\tauto c2 =\
-    \ convolution<m2>(a, b);\r\n\tfor(int i = 0; i < n + m - 1; i++) {\r\n\t\tlong\
-    \ long n1 = c1[i], n2 = c2[i];\r\n\t\tlong long x = c0[i];\r\n\t\tlong long y\
-    \ = (n1 + m1 - x) * r01 % m1;\r\n\t\tlong long z = ((n2 + m2 - x) * r02r12 + (m2\
-    \ - y) * r12) % m2;\r\n\t\tc[i] = x + y * w1 + __uint128_t(z) * w2;\r\n\t}\r\n\
-    \treturn c;\r\n}\r\n\r\ntemplate<class mint, internal::is_static_modint_t<mint>*\
-    \ = nullptr>\r\nstd::vector<mint> convolution_large(const std::vector<mint>& a,\
-    \ const std::vector<mint>& b) {\r\n\tstatic constexpr int max_size = (mint::mod()\
-    \ - 1) & -(mint::mod() - 1);\r\n\tstatic constexpr int half_size = max_size >>\
-    \ 1;\r\n\tstatic constexpr int inv_max_size = internal::inv_gcd(max_size, mint::mod()).second;\r\
-    \n\r\n\tconst int n = (int) a.size(), m = (int) b.size();\r\n\tif(n == 0 || m\
-    \ == 0) {\r\n\t\treturn {};\r\n\t}\r\n\tif(std::min(n, m) < 128 || n + m - 1 <=\
-    \ max_size) {\r\n\t\treturn internal::convolution_naive(a, b);\r\n\t}\r\n\tconst\
-    \ int dn = (n + half_size - 1) / half_size;\r\n\tconst int dm = (m + half_size\
-    \ - 1) / half_size;\r\n\tstd::vector<std::vector<mint>> as(dn), bs(dm);\r\n\t\
-    for(int i = 0; i < dn; ++i) {\r\n\t\tconst int offset = half_size * i;\r\n\t\t\
-    as[i] = std::vector<mint>(a.begin() + offset, a.begin() + std::min(n, offset +\
-    \ half_size));\r\n\t\tas[i].resize(max_size);\r\n\t\tinternal::NTT<mint::mod()>::NTT4(as[i]);\r\
+    \ 2^24.\");\r\n\tassert(n + m - 1 <= (1 << MAX_AB_BIT));\r\n\r\n\tauto c0 = convolution<m0>(a,\
+    \ b);\r\n\tauto c1 = convolution<m1>(a, b);\r\n\tauto c2 = convolution<m2>(a,\
+    \ b);\r\n\tfor(int i = 0; i < n + m - 1; i++) {\r\n\t\tlong long n1 = c1[i], n2\
+    \ = c2[i];\r\n\t\tlong long x = c0[i];\r\n\t\tlong long y = (n1 + m1 - x) * r01\
+    \ % m1;\r\n\t\tlong long z = ((n2 + m2 - x) * r02r12 + (m2 - y) * r12) % m2;\r\
+    \n\t\tc[i] = x + y * w1 + __uint128_t(z) * w2;\r\n\t}\r\n\treturn c;\r\n}\r\n\r\
+    \ntemplate<class mint, internal::is_static_modint_t<mint>* = nullptr>\r\nstd::vector<mint>\
+    \ convolution_large(const std::vector<mint>& a, const std::vector<mint>& b) {\r\
+    \n\tstatic constexpr int max_size = (mint::mod() - 1) & -(mint::mod() - 1);\r\n\
+    \tstatic constexpr int half_size = max_size >> 1;\r\n\tstatic constexpr int inv_max_size\
+    \ = internal::inv_gcd(max_size, mint::mod()).second;\r\n\r\n\tconst int n = (int)\
+    \ a.size(), m = (int) b.size();\r\n\tif(n == 0 || m == 0) {\r\n\t\treturn {};\r\
+    \n\t}\r\n\tif(std::min(n, m) < 128 || n + m - 1 <= max_size) {\r\n\t\treturn internal::convolution_naive(a,\
+    \ b);\r\n\t}\r\n\tconst int dn = (n + half_size - 1) / half_size;\r\n\tconst int\
+    \ dm = (m + half_size - 1) / half_size;\r\n\tstd::vector<std::vector<mint>> as(dn),\
+    \ bs(dm);\r\n\tfor(int i = 0; i < dn; ++i) {\r\n\t\tconst int offset = half_size\
+    \ * i;\r\n\t\tas[i] = std::vector<mint>(a.begin() + offset, a.begin() + std::min(n,\
+    \ offset + half_size));\r\n\t\tas[i].resize(max_size);\r\n\t\tinternal::NTT<mint::mod()>::NTT4(as[i]);\r\
     \n\t}\r\n\tfor(int j = 0; j < dm; ++j) {\r\n\t\tconst int offset = half_size *\
     \ j;\r\n\t\tbs[j] = std::vector<mint>(b.begin() + offset, b.begin() + std::min(m,\
     \ offset + half_size));\r\n\t\tbs[j].resize(max_size);\r\n\t\tinternal::NTT<mint::mod()>::NTT4(bs[j]);\r\
@@ -468,14 +398,10 @@ data:
   - library/convolution/ntt.hpp
   - library/math/primitive-root.hpp
   - library/math/pow-mod.hpp
-  - library/math/factorize.hpp
-  - library/math/binary-gcd.hpp
-  - library/math/is-prime.hpp
-  - library/random/rng.hpp
   isVerificationFile: true
   path: test/yosupo/Convolution/Convolution-Large.test.cpp
   requiredBy: []
-  timestamp: '2023-05-23 03:18:50+08:00'
+  timestamp: '2023-05-28 03:49:52+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Convolution/Convolution-Large.test.cpp

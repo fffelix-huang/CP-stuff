@@ -85,9 +85,6 @@ data:
     path: test/yosupo/Math/Primality-Test.test.cpp
     title: test/yosupo/Math/Primality-Test.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/Math/Primitive-Root.test.cpp
-    title: test/yosupo/Math/Primitive-Root.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yosupo/Math/Sqrt-Mod.test.cpp
     title: test/yosupo/Math/Sqrt-Mod.test.cpp
   - icon: ':heavy_check_mark:'
@@ -165,7 +162,6 @@ data:
   - test/yosupo/Matrix/Matrix-Product.test.cpp
   - test/yosupo/Matrix/Determinant-of-Matrix.test.cpp
   - test/yosupo/Math/Sqrt-Mod.test.cpp
-  - test/yosupo/Math/Primitive-Root.test.cpp
   - test/yosupo/Math/Partition-Function.test.cpp
   - test/yosupo/Math/Factorize.test.cpp
   - test/yosupo/Math/Primality-Test.test.cpp

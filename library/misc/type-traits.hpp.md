@@ -88,9 +88,6 @@ data:
     path: test/yosupo/Math/Primality-Test.test.cpp
     title: test/yosupo/Math/Primality-Test.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/Math/Primitive-Root.test.cpp
-    title: test/yosupo/Math/Primitive-Root.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yosupo/Math/Sqrt-Mod.test.cpp
     title: test/yosupo/Math/Sqrt-Mod.test.cpp
   - icon: ':heavy_check_mark:'
@@ -162,11 +159,7 @@ data:
     \ };\r\ntemplate<> struct safely_multipliable<unsigned int> { using type = unsigned\
     \ long long; };\r\ntemplate<> struct safely_multipliable<long long> { using type\
     \ = __int128; };\r\ntemplate<> struct safely_multipliable<unsigned long long>\
-    \ { using type = __uint128_t; };\r\ntemplate<> struct safely_multipliable<float>\
-    \ { using type = float; };\r\ntemplate<> struct safely_multipliable<double> {\
-    \ using type = double; };\r\ntemplate<> struct safely_multipliable<long double>\
-    \ { using type = long double; };\r\ntemplate<> struct safely_multipliable<__float128>\
-    \ { using type = __float128; };\r\n\r\ntemplate<class T> using safely_multipliable_t\
+    \ { using type = __uint128_t; };\r\n\r\ntemplate<class T> using safely_multipliable_t\
     \ = typename safely_multipliable<T>::type;\r\n\r\n}  // namespace internal\r\n\
     \r\n}  // namespace felix\r\n"
   code: "#pragma once\r\n#include <cassert>\r\n#include <numeric>\r\n#include <type_traits>\r\
@@ -203,11 +196,7 @@ data:
     \ };\r\ntemplate<> struct safely_multipliable<unsigned int> { using type = unsigned\
     \ long long; };\r\ntemplate<> struct safely_multipliable<long long> { using type\
     \ = __int128; };\r\ntemplate<> struct safely_multipliable<unsigned long long>\
-    \ { using type = __uint128_t; };\r\ntemplate<> struct safely_multipliable<float>\
-    \ { using type = float; };\r\ntemplate<> struct safely_multipliable<double> {\
-    \ using type = double; };\r\ntemplate<> struct safely_multipliable<long double>\
-    \ { using type = long double; };\r\ntemplate<> struct safely_multipliable<__float128>\
-    \ { using type = __float128; };\r\n\r\ntemplate<class T> using safely_multipliable_t\
+    \ { using type = __uint128_t; };\r\n\r\ntemplate<class T> using safely_multipliable_t\
     \ = typename safely_multipliable<T>::type;\r\n\r\n}  // namespace internal\r\n\
     \r\n}  // namespace felix\r\n"
   dependsOn: []
@@ -223,7 +212,7 @@ data:
   - library/math/primitive-root.hpp
   - library/modint/modint.hpp
   - library/formal-power-series/poly.hpp
-  timestamp: '2023-05-23 03:18:50+08:00'
+  timestamp: '2023-05-28 03:49:52+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/Convolution/Bitwise-And-Convolution.test.cpp
@@ -242,7 +231,6 @@ data:
   - test/yosupo/Matrix/Matrix-Product.test.cpp
   - test/yosupo/Matrix/Determinant-of-Matrix.test.cpp
   - test/yosupo/Math/Sqrt-Mod.test.cpp
-  - test/yosupo/Math/Primitive-Root.test.cpp
   - test/yosupo/Math/Partition-Function.test.cpp
   - test/yosupo/Math/Factorize.test.cpp
   - test/yosupo/Math/Primality-Test.test.cpp

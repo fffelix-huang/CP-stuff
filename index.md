@@ -449,9 +449,6 @@ data:
       path: test/yosupo/Math/Primality-Test.test.cpp
       title: test/yosupo/Math/Primality-Test.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/yosupo/Math/Primitive-Root.test.cpp
-      title: test/yosupo/Math/Primitive-Root.test.cpp
-    - icon: ':heavy_check_mark:'
       path: test/yosupo/Math/Sqrt-Mod.test.cpp
       title: test/yosupo/Math/Sqrt-Mod.test.cpp
     - icon: ':heavy_check_mark:'

@@ -27,21 +27,21 @@ data:
     p = trie[p].go[x >> i & 1];\r\n\t\t\ttrie[p].cnt -= 1;\r\n\t\t}\r\n\t}\r\n\r\n\
     \tbool contains(T x) {\r\n\t\tfor(int i = B - 1, p = 0; i >= 0; i--) {\r\n\t\t\
     \tp = trie[p].go[x >> i & 1];\r\n\t\t\tif(trie[p].cnt == 0) {\r\n\t\t\t\treturn\
-    \ false;\r\n\t\t\t}\r\n\t\t}\r\n\t\treturn true;\r\n\t}\r\n\r\n\tT get_min() {\r\
-    \n\t\treturn get_xor_min(0);\r\n\t}\r\n\r\n\tT get_max() {\r\n\t\treturn get_xor_max(0);\r\
-    \n\t}\r\n\r\n\tT get_xor_min(T x) {\r\n\t\tT ans = 0;\r\n\t\tfor(int i = B - 1,\
+    \ false;\r\n\t\t\t}\r\n\t\t}\r\n\t\treturn true;\r\n\t}\r\n\r\n\tT get_min() const\
+    \ { return get_xor_min(0); }\r\n\tT get_max() const { return get_xor_max(0); }\r\
+    \n\r\n\tT get_xor_min(T x) const {\r\n\t\tT ans = 0;\r\n\t\tfor(int i = B - 1,\
     \ p = 0; i >= 0; i--) {\r\n\t\t\tint y = x >> i & 1;\r\n\t\t\tint z = trie[p].go[y];\r\
     \n\t\t\tif(z > 0 && trie[z].cnt > 0) {\r\n\t\t\t\tp = z;\r\n\t\t\t} else {\r\n\
     \t\t\t\tans |= T(1) << i;\r\n\t\t\t\tp = trie[p].go[y ^ 1];\r\n\t\t\t}\r\n\t\t\
-    }\r\n\t\treturn ans;\r\n\t}\r\n\r\n\tT get_xor_max(T x) {\r\n\t\tT ans = 0;\r\n\
-    \t\tfor(int i = B - 1, p = 0; i >= 0; i--) {\r\n\t\t\tint y = x >> i & 1;\r\n\t\
-    \t\tint z = trie[p].go[y ^ 1];\r\n\t\t\tif(z > 0 && trie[z].cnt > 0) {\r\n\t\t\
-    \t\tans |= T(1) << i;\r\n\t\t\t\tp = z;\r\n\t\t\t} else {\r\n\t\t\t\tp = trie[p].go[y];\r\
-    \n\t\t\t}\r\n\t\t}\r\n\t\treturn ans;\r\n\t}\r\n\r\nprivate:\r\n\tstatic constexpr\
-    \ int B = sizeof(T) * 8;\r\n\r\n\tstruct Node {\r\n\t\tstd::array<int, 2> go =\
-    \ {};\r\n\t\tint cnt = 0;\r\n\t};\r\n\r\n\tstd::vector<Node> trie;\r\n\r\n\tint\
-    \ new_node() {\r\n\t\ttrie.emplace_back();\r\n\t\treturn (int) trie.size() - 1;\r\
-    \n\t}\r\n};\r\n\r\n} // namespace felix\r\n#line 5 \"test/yosupo/Data-Structure/Set-Xor-Min.test.cpp\"\
+    }\r\n\t\treturn ans;\r\n\t}\r\n\r\n\tT get_xor_max(T x) const {\r\n\t\tT ans =\
+    \ 0;\r\n\t\tfor(int i = B - 1, p = 0; i >= 0; i--) {\r\n\t\t\tint y = x >> i &\
+    \ 1;\r\n\t\t\tint z = trie[p].go[y ^ 1];\r\n\t\t\tif(z > 0 && trie[z].cnt > 0)\
+    \ {\r\n\t\t\t\tans |= T(1) << i;\r\n\t\t\t\tp = z;\r\n\t\t\t} else {\r\n\t\t\t\
+    \tp = trie[p].go[y];\r\n\t\t\t}\r\n\t\t}\r\n\t\treturn ans;\r\n\t}\r\n\r\nprivate:\r\
+    \n\tstatic constexpr int B = sizeof(T) * 8;\r\n\r\n\tstruct Node {\r\n\t\tstd::array<int,\
+    \ 2> go = {};\r\n\t\tint cnt = 0;\r\n\t};\r\n\r\n\tstd::vector<Node> trie;\r\n\
+    \r\n\tint new_node() {\r\n\t\ttrie.emplace_back();\r\n\t\treturn (int) trie.size()\
+    \ - 1;\r\n\t}\r\n};\r\n\r\n} // namespace felix\r\n#line 5 \"test/yosupo/Data-Structure/Set-Xor-Min.test.cpp\"\
     \nusing namespace std;\r\nusing namespace felix;\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\
     \n\tcin.tie(0);\r\n\tbinary_trie<int> b;\r\n\tint q;\r\n\tcin >> q;\r\n\twhile(q--)\
     \ {\r\n\t\tint type, x;\r\n\t\tcin >> type >> x;\r\n\t\tif(type == 0) {\r\n\t\t\
@@ -63,7 +63,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/Data-Structure/Set-Xor-Min.test.cpp
   requiredBy: []
-  timestamp: '2023-04-20 12:52:42+08:00'
+  timestamp: '2023-05-28 03:49:52+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Data-Structure/Set-Xor-Min.test.cpp

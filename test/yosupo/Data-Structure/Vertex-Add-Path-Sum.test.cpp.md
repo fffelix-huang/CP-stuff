@@ -26,16 +26,17 @@ data:
     \ <vector>\n#include <cassert>\n\nnamespace felix {\n\ntemplate<class T>\nstruct\
     \ fenwick {\npublic:\n\tfenwick() : n(0) {}\n\texplicit fenwick(int _n) : n(_n),\
     \ data(_n) {}\n\n\tvoid add(int p, T x) {\n\t\tassert(0 <= p);\n\t\twhile(p <\
-    \ n) {\n\t\t\tdata[p] += x;\n\t\t\tp |= (p + 1);\n\t\t}\n\t}\n\n\tT get(int p)\
-    \ {\n\t\tassert(p < n);\n\t\tT res{};\n\t\twhile(p >= 0) {\n\t\t\tres += data[p];\n\
-    \t\t\tp = (p & (p + 1)) - 1;\n\t\t}\n\t\treturn res;\n\t}\n\n\tT sum(int l, int\
-    \ r) {\n\t\treturn get(r) - (l ? get(l - 1) : T{});\n\t}\n\nprivate:\n\tint n;\n\
-    \tstd::vector<T> data;\n};\n\n} // namespace felix\n#line 3 \"library/tree/heavy-light-decomposition.hpp\"\
-    \n#include <array>\r\n#line 5 \"library/tree/heavy-light-decomposition.hpp\"\n\
-    #include <algorithm>\r\n#include <cmath>\r\n#line 4 \"library/data-structure/sparse-table.hpp\"\
-    \n\nnamespace felix {\n\ntemplate<class T, T (*op)(T, T)>\nstruct sparse_table\
-    \ {\npublic:\n\tsparse_table() {}\n\texplicit sparse_table(const std::vector<T>&\
-    \ a) {\n\t\tn = (int) a.size();\n\t\tint max_log = std::__lg(n) + 1;\n\t\tmat.resize(max_log);\n\
+    \ n) {\n\t\t\tdata[p] += x;\n\t\t\tp |= (p + 1);\n\t\t}\n\t}\n\n\t// [0, p)\n\t\
+    T get(int p) const {\n\t\tassert(p <= n);\n\t\tp--;\n\t\tT res{};\n\t\twhile(p\
+    \ >= 0) {\n\t\t\tres += data[p];\n\t\t\tp = (p & (p + 1)) - 1;\n\t\t}\n\t\treturn\
+    \ res;\n\t}\n\n\t// [l, r)\n\tT sum(int l, int r) const { return get(r) - get(l);\
+    \ }\n\nprivate:\n\tint n;\n\tstd::vector<T> data;\n};\n\n} // namespace felix\n\
+    #line 3 \"library/tree/heavy-light-decomposition.hpp\"\n#include <array>\r\n#line\
+    \ 5 \"library/tree/heavy-light-decomposition.hpp\"\n#include <algorithm>\r\n#include\
+    \ <cmath>\r\n#line 4 \"library/data-structure/sparse-table.hpp\"\n\nnamespace\
+    \ felix {\n\ntemplate<class T, T (*op)(T, T)>\nstruct sparse_table {\npublic:\n\
+    \tsparse_table() {}\n\texplicit sparse_table(const std::vector<T>& a) {\n\t\t\
+    n = (int) a.size();\n\t\tint max_log = std::__lg(n) + 1;\n\t\tmat.resize(max_log);\n\
     \t\tmat[0] = a;\n\t\tfor(int j = 1; j < max_log; ++j) {\n\t\t\tmat[j].resize(n\
     \ - (1 << j) + 1);\n\t\t\tfor(int i = 0; i <= n - (1 << j); ++i) {\n\t\t\t\tmat[j][i]\
     \ = op(mat[j - 1][i], mat[j - 1][i + (1 << (j - 1))]);\n\t\t\t}\n\t\t}\n\t}\n\n\
@@ -112,10 +113,10 @@ data:
     \ + hld.subtree_size[i], -a[i]);\r\n\t}\r\n\twhile(q--) {\r\n\t\tint type, u,\
     \ v;\r\n\t\tcin >> type >> u >> v;\r\n\t\tif(type == 0) {\r\n\t\t\tfenw.add(hld.id[u],\
     \ v);\r\n\t\t\tfenw.add(hld.id[u] + hld.subtree_size[u], -v);\r\n\t\t} else {\r\
-    \n\t\t\tint z = hld.get_lca(u, v);\r\n\t\t\tlong long ans = fenw.get(hld.id[u])\
-    \ + fenw.get(hld.id[v]) - fenw.get(hld.id[z]);\r\n\t\t\tif(hld.parent[z] != -1)\
-    \ {\r\n\t\t\t\tans -= fenw.get(hld.id[hld.parent[z]]);\r\n\t\t\t}\r\n\t\t\tcout\
-    \ << ans << \"\\n\";\r\n\t\t}\r\n\t}\r\n\treturn 0;\r\n}\r\n"
+    \n\t\t\tint z = hld.get_lca(u, v);\r\n\t\t\tlong long ans = fenw.get(hld.id[u]\
+    \ + 1) + fenw.get(hld.id[v] + 1) - fenw.get(hld.id[z] + 1);\r\n\t\t\tif(hld.parent[z]\
+    \ != -1) {\r\n\t\t\t\tans -= fenw.get(hld.id[hld.parent[z]] + 1);\r\n\t\t\t}\r\
+    \n\t\t\tcout << ans << \"\\n\";\r\n\t\t}\r\n\t}\r\n\treturn 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/vertex_add_path_sum\"\r\
     \n\r\n#include <iostream>\r\n#include \"../../../library/data-structure/fenwick.hpp\"\
     \r\n#include \"../../../library/tree/heavy-light-decomposition.hpp\"\r\nusing\
@@ -128,10 +129,10 @@ data:
     \ + hld.subtree_size[i], -a[i]);\r\n\t}\r\n\twhile(q--) {\r\n\t\tint type, u,\
     \ v;\r\n\t\tcin >> type >> u >> v;\r\n\t\tif(type == 0) {\r\n\t\t\tfenw.add(hld.id[u],\
     \ v);\r\n\t\t\tfenw.add(hld.id[u] + hld.subtree_size[u], -v);\r\n\t\t} else {\r\
-    \n\t\t\tint z = hld.get_lca(u, v);\r\n\t\t\tlong long ans = fenw.get(hld.id[u])\
-    \ + fenw.get(hld.id[v]) - fenw.get(hld.id[z]);\r\n\t\t\tif(hld.parent[z] != -1)\
-    \ {\r\n\t\t\t\tans -= fenw.get(hld.id[hld.parent[z]]);\r\n\t\t\t}\r\n\t\t\tcout\
-    \ << ans << \"\\n\";\r\n\t\t}\r\n\t}\r\n\treturn 0;\r\n}\r\n"
+    \n\t\t\tint z = hld.get_lca(u, v);\r\n\t\t\tlong long ans = fenw.get(hld.id[u]\
+    \ + 1) + fenw.get(hld.id[v] + 1) - fenw.get(hld.id[z] + 1);\r\n\t\t\tif(hld.parent[z]\
+    \ != -1) {\r\n\t\t\t\tans -= fenw.get(hld.id[hld.parent[z]] + 1);\r\n\t\t\t}\r\
+    \n\t\t\tcout << ans << \"\\n\";\r\n\t\t}\r\n\t}\r\n\treturn 0;\r\n}\r\n"
   dependsOn:
   - library/data-structure/fenwick.hpp
   - library/tree/heavy-light-decomposition.hpp
@@ -139,7 +140,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/Data-Structure/Vertex-Add-Path-Sum.test.cpp
   requiredBy: []
-  timestamp: '2023-05-19 01:47:33+08:00'
+  timestamp: '2023-05-28 03:49:52+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Data-Structure/Vertex-Add-Path-Sum.test.cpp

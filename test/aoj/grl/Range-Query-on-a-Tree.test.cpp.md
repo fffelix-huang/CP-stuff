@@ -98,12 +98,12 @@ data:
     \n\nnamespace felix {\n\ntemplate<class T>\nstruct fenwick {\npublic:\n\tfenwick()\
     \ : n(0) {}\n\texplicit fenwick(int _n) : n(_n), data(_n) {}\n\n\tvoid add(int\
     \ p, T x) {\n\t\tassert(0 <= p);\n\t\twhile(p < n) {\n\t\t\tdata[p] += x;\n\t\t\
-    \tp |= (p + 1);\n\t\t}\n\t}\n\n\tT get(int p) {\n\t\tassert(p < n);\n\t\tT res{};\n\
-    \t\twhile(p >= 0) {\n\t\t\tres += data[p];\n\t\t\tp = (p & (p + 1)) - 1;\n\t\t\
-    }\n\t\treturn res;\n\t}\n\n\tT sum(int l, int r) {\n\t\treturn get(r) - (l ? get(l\
-    \ - 1) : T{});\n\t}\n\nprivate:\n\tint n;\n\tstd::vector<T> data;\n};\n\n} //\
-    \ namespace felix\n#line 6 \"test/aoj/grl/Range-Query-on-a-Tree.test.cpp\"\nusing\
-    \ namespace std;\r\nusing namespace felix;\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\
+    \tp |= (p + 1);\n\t\t}\n\t}\n\n\t// [0, p)\n\tT get(int p) const {\n\t\tassert(p\
+    \ <= n);\n\t\tp--;\n\t\tT res{};\n\t\twhile(p >= 0) {\n\t\t\tres += data[p];\n\
+    \t\t\tp = (p & (p + 1)) - 1;\n\t\t}\n\t\treturn res;\n\t}\n\n\t// [l, r)\n\tT\
+    \ sum(int l, int r) const { return get(r) - get(l); }\n\nprivate:\n\tint n;\n\t\
+    std::vector<T> data;\n};\n\n} // namespace felix\n#line 6 \"test/aoj/grl/Range-Query-on-a-Tree.test.cpp\"\
+    \nusing namespace std;\r\nusing namespace felix;\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\
     \n\tcin.tie(0);\r\n\tint n;\r\n\tcin >> n;\r\n\tHLD hld(n);\r\n\tfor(int i = 0;\
     \ i < n; i++) {\r\n\t\tint m;\r\n\t\tcin >> m;\r\n\t\tfor(int j = 0; j < m; j++)\
     \ {\r\n\t\t\tint x;\r\n\t\t\tcin >> x;\r\n\t\t\thld.add_edge(i, x);\r\n\t\t}\r\
@@ -111,7 +111,8 @@ data:
     \n\twhile(q--) {\r\n\t\tint type, u;\r\n\t\tcin >> type >> u;\r\n\t\tif(type ==\
     \ 0) {\r\n\t\t\tint w;\r\n\t\t\tcin >> w;\r\n\t\t\tfenw.add(hld.id[u], +w);\r\n\
     \t\t\tfenw.add(hld.id[u] + hld.subtree_size[u], -w);\r\n\t\t} else {\r\n\t\t\t\
-    cout << fenw.get(hld.id[u]) << \"\\n\";\r\n\t\t}\r\n\t}\r\n\treturn 0;\r\n}\r\n"
+    cout << fenw.get(hld.id[u] + 1) << \"\\n\";\r\n\t\t}\r\n\t}\r\n\treturn 0;\r\n\
+    }\r\n"
   code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_5_D\"\
     \r\n\r\n#include <iostream>\r\n#include \"../../../library/tree/heavy-light-decomposition.hpp\"\
     \r\n#include \"../../../library/data-structure/fenwick.hpp\"\r\nusing namespace\
@@ -123,7 +124,8 @@ data:
     \n\twhile(q--) {\r\n\t\tint type, u;\r\n\t\tcin >> type >> u;\r\n\t\tif(type ==\
     \ 0) {\r\n\t\t\tint w;\r\n\t\t\tcin >> w;\r\n\t\t\tfenw.add(hld.id[u], +w);\r\n\
     \t\t\tfenw.add(hld.id[u] + hld.subtree_size[u], -w);\r\n\t\t} else {\r\n\t\t\t\
-    cout << fenw.get(hld.id[u]) << \"\\n\";\r\n\t\t}\r\n\t}\r\n\treturn 0;\r\n}\r\n"
+    cout << fenw.get(hld.id[u] + 1) << \"\\n\";\r\n\t\t}\r\n\t}\r\n\treturn 0;\r\n\
+    }\r\n"
   dependsOn:
   - library/tree/heavy-light-decomposition.hpp
   - library/data-structure/sparse-table.hpp
@@ -131,7 +133,7 @@ data:
   isVerificationFile: true
   path: test/aoj/grl/Range-Query-on-a-Tree.test.cpp
   requiredBy: []
-  timestamp: '2023-05-19 01:47:33+08:00'
+  timestamp: '2023-05-28 03:49:52+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/grl/Range-Query-on-a-Tree.test.cpp

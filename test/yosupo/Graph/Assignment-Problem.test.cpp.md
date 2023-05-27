@@ -20,10 +20,10 @@ data:
     \n#include <queue>\r\n#include <limits>\r\n#include <cassert>\r\n\r\nnamespace\
     \ felix {\r\n\r\ntemplate<class T>\r\nstruct KM {\r\n\tstatic constexpr T INF\
     \ = std::numeric_limits<T>::max() / 2;\r\n\t\r\npublic:\r\n\tKM() : n(0) {}\r\n\
-    \texplicit KM(int n) : n(n), w(n, std::vector<T>(n, -INF)), lx(n), ly(n), slack(n),\
-    \ xy(n), yx(n), pre(n), visx(n), visy(n) {}\r\n\r\n\tvoid add_edge(int u, int\
-    \ v, T x) {\r\n\t\tw[u][v] = std::max(w[u][v], x);\r\n\t}\r\n\r\n\tvoid bfs(int\
-    \ s) {\r\n\t\tstd::fill(slack.begin(), slack.end(), INF);\r\n\t\tstd::fill(visx.begin(),\
+    \texplicit KM(int _n) : n(_n), w(_n, std::vector<T>(_n, -INF)), lx(_n), ly(_n),\
+    \ slack(_n), xy(_n), yx(_n), pre(_n), visx(_n), visy(_n) {}\r\n\r\n\tvoid add_edge(int\
+    \ u, int v, T x) {\r\n\t\tw[u][v] = std::max(w[u][v], x);\r\n\t}\r\n\r\n\tvoid\
+    \ bfs(int s) {\r\n\t\tstd::fill(slack.begin(), slack.end(), INF);\r\n\t\tstd::fill(visx.begin(),\
     \ visx.end(), false);\r\n\t\tstd::fill(visy.begin(), visy.end(), false);\r\n\t\
     \tstd::queue<int> que;\r\n\t\tque.push(s);\r\n\t\tvisy[s] = true;\r\n\t\tauto\
     \ check = [&](int x) -> bool {\r\n\t\t\tvisx[x] = true;\r\n\t\t\tif(xy[x] != -1)\
@@ -71,7 +71,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/Graph/Assignment-Problem.test.cpp
   requiredBy: []
-  timestamp: '2023-05-19 01:47:33+08:00'
+  timestamp: '2023-05-28 03:49:52+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Graph/Assignment-Problem.test.cpp

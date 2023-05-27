@@ -23,66 +23,57 @@ data:
   bundledCode: "#line 1 \"test/unit-test/xor-basis.test.cpp\"\n#define PROBLEM \"\
     https://judge.yosupo.jp/problem/aplusb\" // dummy\n\n#include <iostream>\n#include\
     \ <vector>\n#include <chrono>\n#include <cassert>\n#include <algorithm>\n#line\
-    \ 3 \"library/math/xor-basis.hpp\"\n#include <array>\r\n#include <type_traits>\r\
-    \n\r\nnamespace felix {\r\n\r\nnamespace xor_basis_internal {\r\n\r\ntemplate<int\
-    \ B, class T>\r\nstruct xor_basis_helper {\r\npublic:\r\n\tvoid insert(T x) {\r\
-    \n\t\tfor(int i = B - 1; i >= 0; i--) {\r\n\t\t\tif(x >> i & 1) {\r\n\t\t\t\t\
-    if(!p[i]) {\r\n\t\t\t\t\tp[i] = x;\r\n\t\t\t\t\tcnt += 1;\r\n\t\t\t\t\tchange\
+    \ 3 \"library/math/xor-basis.hpp\"\n#include <array>\r\n\r\nnamespace felix {\r\
+    \n\r\ntemplate<int B>\r\nstruct xor_basis {\r\npublic:\r\n\tvoid insert(long long\
+    \ x) {\r\n\t\tfor(int i = B - 1; i >= 0; i--) {\r\n\t\t\tif(x >> i & 1) {\r\n\t\
+    \t\t\tif(!p[i]) {\r\n\t\t\t\t\tp[i] = x;\r\n\t\t\t\t\tcnt++;\r\n\t\t\t\t\tchange\
     \ = true;\r\n\t\t\t\t\treturn;\r\n\t\t\t\t} else {\r\n\t\t\t\t\tx ^= p[i];\r\n\
     \t\t\t\t}\r\n\t\t\t}\r\n\t\t}\r\n\t\tif(zero == false) {\r\n\t\t\tzero = change\
-    \ = true;\r\n\t\t}\r\n\t}\r\n\r\n\tT get_min() {\r\n\t\tif(zero) {\r\n\t\t\treturn\
-    \ 0;\r\n\t\t}\r\n\t\tfor(int i = 0; i < B; i++) {\r\n\t\t\tif(p[i]) {\r\n\t\t\t\
-    \treturn p[i];\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n\r\n\tT get_max() {\r\n\t\tT ans\
-    \ = 0;\r\n\t\tfor(int i = B - 1; i >= 0; i--) {\r\n\t\t\tif((ans ^ p[i]) > ans)\
-    \ {\r\n\t\t\t\tans ^= p[i];\r\n\t\t\t}\r\n\t\t}\r\n\t\treturn ans;\r\n\t}\r\n\r\
-    \n\tT get_kth(long long k) {\r\n\t\tk += 1;\r\n\t\tif(k == 1 && zero) {\r\n\t\t\
-    \treturn 0;\r\n\t\t}\r\n\t\tif(zero) {\r\n\t\t\tk -= 1;\r\n\t\t}\r\n\t\tif(k >=\
-    \ (1LL << cnt)) {\r\n\t\t\treturn -1;\r\n\t\t}\r\n\t\tupdate();\r\n\t\tT ans =\
-    \ 0;\r\n\t\tfor(int i = 0; i < (int) d.size(); i++) {\r\n\t\t\tif(k >> i & 1)\
-    \ {\r\n\t\t\t\tans ^= d[i];\r\n\t\t\t}\r\n\t\t}\r\n\t\treturn ans;\r\n\t}\r\n\r\
-    \n\tbool contains(T x) {\r\n\t\tif(x == 0) {\r\n\t\t\treturn zero;\r\n\t\t}\r\n\
-    \t\tfor(int i = B - 1; i >= 0; i--) {\r\n\t\t\tif(x >> i & 1) {\r\n\t\t\t\tx ^=\
-    \ p[i];\r\n\t\t\t}\r\n\t\t}\r\n\t\treturn x == 0;\r\n\t}\r\n\r\n\tvoid merge(const\
-    \ xor_basis_helper& other) {\r\n\t\tfor(int i = 0; i < B; i++) {\r\n\t\t\tif(other.p[i])\
-    \ {\r\n\t\t\t\tinsert(other.p[i]);\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n\r\nprivate:\r\
-    \n\tbool zero = false;\r\n\tbool change = false;\r\n\tint cnt = 0;\r\n\tstd::array<T,\
-    \ B> p = {};\r\n\tstd::vector<T> d;\r\n\r\n\tvoid update() {\r\n\t\tif(!change)\
-    \ {\r\n\t\t\treturn;\r\n\t\t}\r\n\t\tchange = false;\r\n\t\td.clear();\r\n\t\t\
-    for(int j = 0; j < B; j++) {\r\n\t\t\tfor(int i = j - 1; i >= 0; i--) {\r\n\t\t\
-    \t\tif(p[j] >> i & 1) {\r\n\t\t\t\t\tp[j] ^= p[i];\r\n\t\t\t\t}\r\n\t\t\t}\r\n\
-    \t\t}\r\n\t\tfor(int i = 0; i < B; i++) {\r\n\t\t\tif(p[i]) {\r\n\t\t\t\td.push_back(p[i]);\r\
-    \n\t\t\t}\r\n\t\t}\r\n\t}\r\n};\r\n\r\n} // namespace xor_basis_internal\r\n\r\
-    \ntemplate<int B, class ENABLE = void> struct xor_basis : public xor_basis_internal::xor_basis_helper<B,\
-    \ __int128> {};\r\ntemplate<int B> struct xor_basis<B, std::enable_if_t<(B >=\
-    \ 32 && B < 64)>> : public xor_basis_internal::xor_basis_helper<B, long long>\
-    \ {};\r\ntemplate<int B> struct xor_basis<B, std::enable_if_t<(B >= 16 && B <\
-    \ 32)>> : public xor_basis_internal::xor_basis_helper<B, int> {};\r\ntemplate<int\
-    \ B> struct xor_basis<B, std::enable_if_t<(B >= 8 && B < 16)>> : public xor_basis_internal::xor_basis_helper<B,\
-    \ short> {};\r\ntemplate<int B> struct xor_basis<B, std::enable_if_t<(B < 8)>>\
-    \ : public xor_basis_internal::xor_basis_helper<B, int8_t> {};\r\n\r\n} // namespace\
-    \ felix\r\n#line 3 \"library/random/random.hpp\"\n#include <cstring>\n#line 6\
-    \ \"library/random/random.hpp\"\n#include <numeric>\n#include <climits>\n#line\
-    \ 3 \"library/random/splitmix64.hpp\"\n\r\nnamespace felix {\r\n\r\nnamespace\
-    \ internal {\r\n\r\nstruct splitmix64_hash {\r\n\t// http://xoshiro.di.unimi.it/splitmix64.c\r\
-    \n\tstatic unsigned long long splitmix64(unsigned long long x) {\r\n\t\tx += 0x9e3779b97f4a7c15;\r\
-    \n\t\tx = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\r\n\t\tx = (x ^ (x >> 27)) * 0x94d049bb133111eb;\r\
-    \n\t\treturn x ^ (x >> 31);\r\n\t}\r\n \r\n\tunsigned long long operator()(unsigned\
-    \ long long x) const {\r\n\t\tstatic const unsigned long long FIXED_RANDOM = std::chrono::steady_clock::now().time_since_epoch().count();\r\
-    \n\t\treturn splitmix64(x + FIXED_RANDOM);\r\n\t}\r\n};\r\n\r\n} // namespace\
-    \ internal\r\n\r\n} // namespace felix\r\n#line 9 \"library/random/random.hpp\"\
-    \n\nnamespace felix {\n\nstruct random_t {\npublic:\n\texplicit random_t(unsigned\
-    \ long long seed = 3905348978240129619LL) {\n\t\tset_seed(seed);\n\t}\n\n\tvoid\
-    \ set_seed(unsigned long long seed) {\n\t\tfor(int i = 0; i < 4; i++) {\n\t\t\t\
-    s[i] = internal::splitmix64_hash::splitmix64(seed);\n\t\t\tseed += 0x9e3779b97f4a7c15;\n\
-    \t\t}\n\t}\n\n\t// [0, n)\n\tunsigned long long next(unsigned long long n) {\n\
-    \t\tconst unsigned long long LIMIT = std::numeric_limits<unsigned long long>::max()\
-    \ / n * n;\n\t\tunsigned long long r;\n\t\tdo {\n\t\t\tr = next();\n\t\t} while(r\
-    \ >= LIMIT);\n\t\treturn r % n;\n\t}\n\n\t// [l, r]\n\ttemplate<class T>\n\tT\
-    \ next(T l, T r) {\n\t\tassert(l <= r);\n\t\treturn T(l + next(r - l + 1ULL));\n\
-    \t}\n\n\ttemplate<class Iter>\n\tvoid shuffle(Iter l, Iter r) {\n\t\tif(l == r)\
-    \ {\n\t\t\treturn;\n\t\t}\n\t\tint pos = 0;\n\t\tfor(auto it = l + 1; it != r;\
-    \ it++) {\n\t\t\tpos += 1;\n\t\t\tint j = next(pos + 1);\n\t\t\tif(j != pos) {\n\
-    \t\t\t\tstd::iter_swap(it, l + j);\n\t\t\t}\n\t\t}\n\t}\n\n\tstd::vector<int>\
+    \ = true;\r\n\t\t}\r\n\t}\r\n\r\n\tlong long get_min() {\r\n\t\tif(zero) {\r\n\
+    \t\t\treturn 0;\r\n\t\t}\r\n\t\tfor(int i = 0; i < B; i++) {\r\n\t\t\tif(p[i])\
+    \ {\r\n\t\t\t\treturn p[i];\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n\r\n\tlong long get_max()\
+    \ {\r\n\t\tlong long ans = 0;\r\n\t\tfor(int i = B - 1; i >= 0; i--) {\r\n\t\t\
+    \tans = std::max(ans, ans ^ p[i]);\r\n\t\t}\r\n\t\treturn ans;\r\n\t}\r\n\r\n\t\
+    long long get_kth(long long k) {\r\n\t\tk++;\r\n\t\tif(k == 1 && zero) {\r\n\t\
+    \t\treturn 0;\r\n\t\t}\r\n\t\tif(zero) {\r\n\t\t\tk--;\r\n\t\t}\r\n\t\tif(k >=\
+    \ (1LL << cnt)) {\r\n\t\t\treturn -1;\r\n\t\t}\r\n\t\tupdate();\r\n\t\tlong long\
+    \ ans = 0;\r\n\t\tfor(int i = 0; i < (int) d.size(); i++) {\r\n\t\t\tif(k >> i\
+    \ & 1) {\r\n\t\t\t\tans ^= d[i];\r\n\t\t\t}\r\n\t\t}\r\n\t\treturn ans;\r\n\t\
+    }\r\n\r\n\tbool contains(long long x) {\r\n\t\tif(x == 0) {\r\n\t\t\treturn zero;\r\
+    \n\t\t}\r\n\t\tfor(int i = B - 1; i >= 0; i--) {\r\n\t\t\tif(x >> i & 1) {\r\n\
+    \t\t\t\tx ^= p[i];\r\n\t\t\t}\r\n\t\t}\r\n\t\treturn x == 0;\r\n\t}\r\n\r\n\t\
+    void merge(const xor_basis& other) {\r\n\t\tfor(int i = 0; i < B; i++) {\r\n\t\
+    \t\tif(other.p[i]) {\r\n\t\t\t\tinsert(other.p[i]);\r\n\t\t\t}\r\n\t\t}\r\n\t\
+    }\r\n\r\nprivate:\r\n\tbool zero = false, change = false;\r\n\tint cnt = 0;\r\n\
+    \tstd::array<long long, B> p = {};\r\n\tstd::vector<long long> d;\r\n\r\n\tvoid\
+    \ update() {\r\n\t\tif(!change) {\r\n\t\t\treturn;\r\n\t\t}\r\n\t\tchange = false;\r\
+    \n\t\td.clear();\r\n\t\tfor(int j = 0; j < B; j++) {\r\n\t\t\tfor(int i = j -\
+    \ 1; i >= 0; i--) {\r\n\t\t\t\tif(p[j] >> i & 1) {\r\n\t\t\t\t\tp[j] ^= p[i];\r\
+    \n\t\t\t\t}\r\n\t\t\t}\r\n\t\t}\r\n\t\tfor(int i = 0; i < B; i++) {\r\n\t\t\t\
+    if(p[i]) {\r\n\t\t\t\td.push_back(p[i]);\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n};\r\n\r\
+    \n} // namespace felix\r\n#line 3 \"library/random/random.hpp\"\n#include <cstring>\n\
+    #line 6 \"library/random/random.hpp\"\n#include <numeric>\n#include <climits>\n\
+    #line 3 \"library/random/splitmix64.hpp\"\n\r\nnamespace felix {\r\n\r\nnamespace\
+    \ internal {\r\n\r\n// http://xoshiro.di.unimi.it/splitmix64.c\r\nstruct splitmix64_hash\
+    \ {\r\n\tusing u64 = unsigned long long;\r\n\tstatic u64 splitmix64(u64 x) {\r\
+    \n\t\tx += 0x9e3779b97f4a7c15;\r\n\t\tx = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\r\
+    \n\t\tx = (x ^ (x >> 27)) * 0x94d049bb133111eb;\r\n\t\treturn x ^ (x >> 31);\r\
+    \n\t}\r\n \r\n\tu64 operator()(u64 x) const {\r\n\t\tstatic const u64 FIXED_RANDOM\
+    \ = std::chrono::steady_clock::now().time_since_epoch().count();\r\n\t\treturn\
+    \ splitmix64(x + FIXED_RANDOM);\r\n\t}\r\n};\r\n\r\n} // namespace internal\r\n\
+    \r\n} // namespace felix\r\n#line 9 \"library/random/random.hpp\"\n\nnamespace\
+    \ felix {\n\nstruct random_t {\npublic:\n\texplicit random_t(unsigned long long\
+    \ seed = 3905348978240129619LL) {\n\t\tset_seed(seed);\n\t}\n\n\tvoid set_seed(unsigned\
+    \ long long seed) {\n\t\tfor(int i = 0; i < 4; i++) {\n\t\t\ts[i] = internal::splitmix64_hash::splitmix64(seed);\n\
+    \t\t\tseed += 0x9e3779b97f4a7c15;\n\t\t}\n\t}\n\n\t// [0, n)\n\tunsigned long\
+    \ long next(unsigned long long n) {\n\t\tconst unsigned long long LIMIT = std::numeric_limits<unsigned\
+    \ long long>::max() / n * n;\n\t\tunsigned long long r;\n\t\tdo {\n\t\t\tr = next();\n\
+    \t\t} while(r >= LIMIT);\n\t\treturn r % n;\n\t}\n\n\t// [l, r]\n\ttemplate<class\
+    \ T>\n\tT next(T l, T r) {\n\t\tassert(l <= r);\n\t\treturn T(l + next(r - l +\
+    \ 1ULL));\n\t}\n\n\ttemplate<class Iter>\n\tvoid shuffle(Iter l, Iter r) {\n\t\
+    \tif(l == r) {\n\t\t\treturn;\n\t\t}\n\t\tint pos = 0;\n\t\tfor(auto it = l +\
+    \ 1; it != r; it++) {\n\t\t\tpos += 1;\n\t\t\tint j = next(pos + 1);\n\t\t\tif(j\
+    \ != pos) {\n\t\t\t\tstd::iter_swap(it, l + j);\n\t\t\t}\n\t\t}\n\t}\n\n\tstd::vector<int>\
     \ permutation(int n) {\n\t\tstd::vector<int> a(n);\n\t\tstd::iota(a.begin(), a.end(),\
     \ 0);\n\t\tshuffle(a.begin(), a.end());\n\t\treturn a;\n\t}\n\n\tstd::string string(int\
     \ n, char min_char = 'a', char max_char = 'z') {\n\t\tstd::string s(n, '_');\n\
@@ -138,7 +129,7 @@ data:
   isVerificationFile: true
   path: test/unit-test/xor-basis.test.cpp
   requiredBy: []
-  timestamp: '2023-04-20 19:21:08+08:00'
+  timestamp: '2023-05-28 03:49:52+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/unit-test/xor-basis.test.cpp

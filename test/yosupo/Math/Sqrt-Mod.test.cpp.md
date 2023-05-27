@@ -61,11 +61,7 @@ data:
     \ };\r\ntemplate<> struct safely_multipliable<unsigned int> { using type = unsigned\
     \ long long; };\r\ntemplate<> struct safely_multipliable<long long> { using type\
     \ = __int128; };\r\ntemplate<> struct safely_multipliable<unsigned long long>\
-    \ { using type = __uint128_t; };\r\ntemplate<> struct safely_multipliable<float>\
-    \ { using type = float; };\r\ntemplate<> struct safely_multipliable<double> {\
-    \ using type = double; };\r\ntemplate<> struct safely_multipliable<long double>\
-    \ { using type = long double; };\r\ntemplate<> struct safely_multipliable<__float128>\
-    \ { using type = __float128; };\r\n\r\ntemplate<class T> using safely_multipliable_t\
+    \ { using type = __uint128_t; };\r\n\r\ntemplate<class T> using safely_multipliable_t\
     \ = typename safely_multipliable<T>::type;\r\n\r\n}  // namespace internal\r\n\
     \r\n}  // namespace felix\r\n#line 2 \"library/math/safe-mod.hpp\"\n\r\nnamespace\
     \ felix {\r\n\r\nnamespace internal {\r\n\r\ntemplate<class T>\r\nconstexpr T\
@@ -175,7 +171,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/Math/Sqrt-Mod.test.cpp
   requiredBy: []
-  timestamp: '2023-05-23 03:18:50+08:00'
+  timestamp: '2023-05-28 03:49:52+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Math/Sqrt-Mod.test.cpp

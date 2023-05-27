@@ -60,11 +60,7 @@ data:
     \ };\r\ntemplate<> struct safely_multipliable<unsigned int> { using type = unsigned\
     \ long long; };\r\ntemplate<> struct safely_multipliable<long long> { using type\
     \ = __int128; };\r\ntemplate<> struct safely_multipliable<unsigned long long>\
-    \ { using type = __uint128_t; };\r\ntemplate<> struct safely_multipliable<float>\
-    \ { using type = float; };\r\ntemplate<> struct safely_multipliable<double> {\
-    \ using type = double; };\r\ntemplate<> struct safely_multipliable<long double>\
-    \ { using type = long double; };\r\ntemplate<> struct safely_multipliable<__float128>\
-    \ { using type = __float128; };\r\n\r\ntemplate<class T> using safely_multipliable_t\
+    \ { using type = __uint128_t; };\r\n\r\ntemplate<class T> using safely_multipliable_t\
     \ = typename safely_multipliable<T>::type;\r\n\r\n}  // namespace internal\r\n\
     \r\n}  // namespace felix\r\n#line 2 \"library/math/safe-mod.hpp\"\n\r\nnamespace\
     \ felix {\r\n\r\nnamespace internal {\r\n\r\ntemplate<class T>\r\nconstexpr T\
@@ -88,7 +84,7 @@ data:
     if(n % 2 == 0) {\r\n\t\treturn n == 2;\r\n\t}\r\n\tif(n < (1LL << 30)) {\r\n\t\
     \treturn internal::is_prime(n, {2, 7, 61});\r\n\t}\r\n\treturn internal::is_prime(n,\
     \ {2, 325, 9375, 28178, 450775, 9780504, 1795265022});\r\n}\r\n\r\n} // namespace\
-    \ felix\n#line 5 \"test/yosupo/Math/Primality-Test.test.cpp\"\nusing namespace\
+    \ felix\r\n#line 5 \"test/yosupo/Math/Primality-Test.test.cpp\"\nusing namespace\
     \ std;\nusing namespace felix;\n\nint main() {\n\tios::sync_with_stdio(false);\n\
     \tcin.tie(0);\n\tint q;\n\tcin >> q;\n\twhile(q--) {\n\t\tlong long n;\n\t\tcin\
     \ >> n;\n\t\tcout << (is_prime(n) ? \"Yes\" : \"No\") << \"\\n\";\n\t}\n\treturn\
@@ -107,7 +103,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/Math/Primality-Test.test.cpp
   requiredBy: []
-  timestamp: '2023-05-23 03:18:50+08:00'
+  timestamp: '2023-05-28 03:49:52+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/Math/Primality-Test.test.cpp
