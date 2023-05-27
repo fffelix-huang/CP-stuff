@@ -258,10 +258,10 @@ std::vector<__uint128_t> convolution_u128(const std::vector<T>& a, const std::ve
 	}
 
 	static constexpr int MAX_AB_BIT = 24;
-    static_assert(m0 % (1ULL << MAX_AB_BIT) == 1, "m0 isn't enough to support an array length of 2^24.");
-    static_assert(m1 % (1ULL << MAX_AB_BIT) == 1, "m1 isn't enough to support an array length of 2^24.");
-    static_assert(m2 % (1ULL << MAX_AB_BIT) == 1, "m2 isn't enough to support an array length of 2^24.");
-    assert(n + m - 1 <= (1 << MAX_AB_BIT));
+	static_assert(m0 % (1ULL << MAX_AB_BIT) == 1, "m0 isn't enough to support an array length of 2^24.");
+	static_assert(m1 % (1ULL << MAX_AB_BIT) == 1, "m1 isn't enough to support an array length of 2^24.");
+	static_assert(m2 % (1ULL << MAX_AB_BIT) == 1, "m2 isn't enough to support an array length of 2^24.");
+	assert(n + m - 1 <= (1 << MAX_AB_BIT));
 
 	auto c0 = convolution<m0>(a, b);
 	auto c1 = convolution<m1>(a, b);

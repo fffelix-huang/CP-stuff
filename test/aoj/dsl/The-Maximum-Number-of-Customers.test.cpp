@@ -19,7 +19,7 @@ int main() {
 	}
 	int ans = 0;
 	for(int i = 0; i < k; i++) {
-		ans = max(ans, fenw.get(i));
+		ans = max(ans, fenw.get(i + 1));
 	}
 	cout << ans << "\n";
 	return 0;

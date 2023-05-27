@@ -43,7 +43,7 @@ static struct FastInput {
 		return *this;
 	}
 
-	inline FastInput& operator>>(std::string& s) {
+	inline FastInput& operator>>(string& s) {
 		if(skip_blanks()) {
 			s.clear();
 			do {
@@ -72,7 +72,7 @@ static struct FastInput {
 	}
 
 	template<class T>
-	inline typename std::enable_if<felix::internal::is_integral<T>::value, FastInput&>::type operator>>(T& n) {
+	inline typename enable_if<felix::internal::is_integral<T>::value, FastInput&>::type operator>>(T& n) {
 		return read_integer(n);
 	}
 
@@ -81,10 +81,10 @@ static struct FastInput {
 	}
 
 	template<class T>
-	inline typename std::enable_if<std::is_floating_point<T>::value, FastInput&>::type operator>>(T& n) {
+	inline typename enable_if<is_floating_point<T>::value, FastInput&>::type operator>>(T& n) {
 		n = 0;
 		if(skip_blanks()) {
-			std::string s;
+			string s;
 			(*this) >> s;
 			sscanf(s.c_str(), "%lf", &n);
 		}
@@ -128,7 +128,7 @@ static struct FastOutput {
 		return *this;
 	}
 
-	inline FastOutput& operator<<(const std::string& s) {
+	inline FastOutput& operator<<(const string& s) {
 		for(int i = 0; i < (int) s.size(); i++) {
 			put_char(s[i]);
 		}
@@ -159,7 +159,7 @@ static struct FastOutput {
 	}
 
 	template<class T>
-	inline typename std::enable_if<felix::internal::is_integral<T>::value, char*>::type stringify(T n) {
+	inline typename enable_if<felix::internal::is_integral<T>::value, char*>::type stringify(T n) {
 		return integer_to_string(n);
 	}
 
@@ -168,7 +168,7 @@ static struct FastOutput {
 	}
 
 	template<class T>
-	inline typename std::enable_if<std::is_floating_point<T>::value, char*>::type stringify(T n) {
+	inline typename enable_if<is_floating_point<T>::value, char*>::type stringify(T n) {
 		sprintf(tmp, "%.17f", n);
 		return tmp;
 	}

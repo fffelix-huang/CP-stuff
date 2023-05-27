@@ -21,7 +21,7 @@ int main() {
 			fenw.add(x, +z);
 			fenw.add(y, -z);
 		} else {
-			cout << fenw.get(x) << "\n";
+			cout << fenw.get(x + 1) << "\n";
 		}
 	}
 	return 0;

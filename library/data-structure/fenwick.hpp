@@ -18,8 +18,10 @@ public:
 		}
 	}
 
-	T get(int p) {
-		assert(p < n);
+	// [0, p)
+	T get(int p) const {
+		assert(p <= n);
+		p--;
 		T res{};
 		while(p >= 0) {
 			res += data[p];
@@ -28,9 +30,8 @@ public:
 		return res;
 	}
 
-	T sum(int l, int r) {
-		return get(r) - (l ? get(l - 1) : T{});
-	}
+	// [l, r)
+	T sum(int l, int r) const { return get(r) - get(l); }
 
 private:
 	int n;

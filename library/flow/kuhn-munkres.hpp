@@ -13,7 +13,7 @@ struct KM {
 	
 public:
 	KM() : n(0) {}
-	explicit KM(int n) : n(n), w(n, std::vector<T>(n, -INF)), lx(n), ly(n), slack(n), xy(n), yx(n), pre(n), visx(n), visy(n) {}
+	explicit KM(int _n) : n(_n), w(_n, std::vector<T>(_n, -INF)), lx(_n), ly(_n), slack(_n), xy(_n), yx(_n), pre(_n), visx(_n), visy(_n) {}
 
 	void add_edge(int u, int v, T x) {
 		w[u][v] = std::max(w[u][v], x);

@@ -26,13 +26,8 @@ public:
 		}
 	}
 
-	constexpr int size() const {
-		return (int) a.size();
-	}
-
-	constexpr void resize(int n) {
-		a.resize(n);
-	}
+	constexpr int size() const { return (int) a.size(); }
+	constexpr void resize(int n) { a.resize(n); }
 
 	constexpr void shrink() {
 		while(size() && a.back() == 0) {
@@ -48,9 +43,7 @@ public:
 		}
 	}
 
-	constexpr mint& operator[](int idx) {
-		return a[idx];
-	}
+	constexpr mint& operator[](int idx) { return a[idx]; }
 
 	constexpr friend Poly operator+(const Poly& a, const Poly& b) {
 		Poly c(std::max(a.size(), b.size()));
@@ -86,22 +79,11 @@ public:
 		return a;
 	}
 
-	constexpr Poly& operator+=(Poly b) {
-		return (*this) = (*this) + b;
-	}
-
-	constexpr Poly& operator-=(Poly b) {
-		return (*this) = (*this) - b;
-	}
-
-	constexpr Poly& operator*=(Poly b) {
-		return (*this) = (*this) * b;
-	}
-
-	constexpr Poly& operator*=(mint b) {
-		return (*this) = (*this) * b;
-	}
-
+	constexpr Poly& operator+=(Poly b) { return (*this) = (*this) + b; }
+	constexpr Poly& operator-=(Poly b) { return (*this) = (*this) - b; }
+	constexpr Poly& operator*=(Poly b) { return (*this) = (*this) * b; }
+	constexpr Poly& operator*=(mint b) { return (*this) = (*this) * b; }
+	
 	constexpr Poly mulxk(int k) const {
 		auto b = a;
 		b.insert(b.begin(), k, mint(0));

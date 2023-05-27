@@ -22,8 +22,10 @@ public:
 		}
 	}
 
-	T get(int x, int y) {
-		assert(x < n && y < m);
+	// [0, x) * [0, y)
+	T get(int x, int y) const {
+		assert(x <= n && y <= m);
+		x--, y--;
 		if(x < 0 || y < 0) {
 			return T{};
 		}
@@ -36,8 +38,9 @@ public:
 		return ans;
 	}
 
-	T sum(int x, int y, int x2, int y2) {
-		return get(x2, y2) - get(x - 1, y2) - get(x2, y - 1) + get(x - 1, y - 1);
+	// [x, x2) * [y, y2)
+	T sum(int x, int y, int x2, int y2) const {
+		return get(x2, y2) - get(x, y2) - get(x2, y) + get(x, y);
 	}
 
 private:

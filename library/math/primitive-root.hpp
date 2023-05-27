@@ -1,9 +1,6 @@
 #pragma once
 #include <cassert>
-#include <vector>
-#include <algorithm>
 #include "pow-mod.hpp"
-#include "factorize.hpp"
 
 namespace felix {
 
@@ -47,29 +44,5 @@ constexpr int primitive_root_constexpr(int m) {
 }
 
 } // namespace internal
-
-long long primitive_root(long long n) {
-	if(n == 2) {
-		return 1;
-	}
-	long long x = (n - 1) / 2;
-	x >>= __builtin_ctzll(x);
-	auto f = factorize(x);
-	f.erase(std::unique(f.begin(), f.end()), f.end());
-	f.push_back(2);
-	for(long long g = 2;; g++) {
-		bool ok = true;
-		for(auto d : f) {
-			if(internal::pow_mod_constexpr(g, (n - 1) / d, n) == 1) {
-				ok = false;
-				break;
-			}
-		}
-		if(ok) {
-			return g;
-		}
-	}
-	assert(false);
-}
 
 } // namespace felix

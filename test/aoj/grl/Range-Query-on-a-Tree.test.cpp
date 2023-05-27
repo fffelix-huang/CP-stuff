@@ -34,7 +34,7 @@ int main() {
 			fenw.add(hld.id[u], +w);
 			fenw.add(hld.id[u] + hld.subtree_size[u], -w);
 		} else {
-			cout << fenw.get(hld.id[u]) << "\n";
+			cout << fenw.get(hld.id[u] + 1) << "\n";
 		}
 	}
 	return 0;

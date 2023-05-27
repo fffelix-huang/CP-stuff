@@ -24,7 +24,7 @@ int main() {
 	int ans = 0;
 	for(int i = 0; i < N_MAX; i++) {
 		for(int j = 0; j < N_MAX; j++) {
-			ans = max(ans, fenw.get(i, j));
+			ans = max(ans, fenw.get(i + 1, j + 1));
 		}
 	}
 	cout << ans << "\n";

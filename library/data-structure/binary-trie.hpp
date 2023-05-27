@@ -44,15 +44,10 @@ public:
 		return true;
 	}
 
-	T get_min() {
-		return get_xor_min(0);
-	}
+	T get_min() const { return get_xor_min(0); }
+	T get_max() const { return get_xor_max(0); }
 
-	T get_max() {
-		return get_xor_max(0);
-	}
-
-	T get_xor_min(T x) {
+	T get_xor_min(T x) const {
 		T ans = 0;
 		for(int i = B - 1, p = 0; i >= 0; i--) {
 			int y = x >> i & 1;
@@ -67,7 +62,7 @@ public:
 		return ans;
 	}
 
-	T get_xor_max(T x) {
+	T get_xor_max(T x) const {
 		T ans = 0;
 		for(int i = B - 1, p = 0; i >= 0; i--) {
 			int y = x >> i & 1;

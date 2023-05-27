@@ -25,7 +25,7 @@ struct offline_rectangle_sum {
 		queries.emplace_back(x, y2, -1, qid);
 		queries.emplace_back(x2, y, -1, qid);
 		queries.emplace_back(x2, y2, +1, qid);
-		qid += 1;
+		qid++;
 	}
 
 	std::vector<Weight_t> solve() {
@@ -56,8 +56,7 @@ private:
 			return;
 		}
 		int mid = (l + r) / 2;
-		CDQ(l, mid);
-		CDQ(mid, r);
+		CDQ(l, mid), CDQ(mid, r);
 		int i = l;
 		for(int j = mid; j < r; j++) {
 			const Query& q = queries[j];
@@ -65,10 +64,10 @@ private:
 				if(queries[i].id == -1) {
 					fenw.add(queries[i].y, queries[i].w);
 				}
-				i += 1;
+				i++;
 			}
 			if(q.id >= 0) {
-				ans[q.id] += q.w * fenw.sum(q.y, sz - 1);
+				ans[q.id] += q.w * fenw.sum(q.y, sz);
 			}
 		}
 		for(int p = l; p < i; p++) {

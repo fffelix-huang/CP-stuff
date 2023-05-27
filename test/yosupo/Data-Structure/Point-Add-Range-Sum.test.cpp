@@ -22,7 +22,6 @@ int main() {
 		if(type == 0) {
 			fenw.add(x, y);
 		} else {
-			--y;
 			cout << fenw.sum(x, y) << "\n";
 		}
 	}

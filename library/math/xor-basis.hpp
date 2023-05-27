@@ -1,21 +1,18 @@
 #pragma once
 #include <vector>
 #include <array>
-#include <type_traits>
 
 namespace felix {
 
-namespace xor_basis_internal {
-
-template<int B, class T>
-struct xor_basis_helper {
+template<int B>
+struct xor_basis {
 public:
-	void insert(T x) {
+	void insert(long long x) {
 		for(int i = B - 1; i >= 0; i--) {
 			if(x >> i & 1) {
 				if(!p[i]) {
 					p[i] = x;
-					cnt += 1;
+					cnt++;
 					change = true;
 					return;
 				} else {
@@ -28,7 +25,7 @@ public:
 		}
 	}
 
-	T get_min() {
+	long long get_min() {
 		if(zero) {
 			return 0;
 		}
@@ -39,29 +36,27 @@ public:
 		}
 	}
 
-	T get_max() {
-		T ans = 0;
+	long long get_max() {
+		long long ans = 0;
 		for(int i = B - 1; i >= 0; i--) {
-			if((ans ^ p[i]) > ans) {
-				ans ^= p[i];
-			}
+			ans = std::max(ans, ans ^ p[i]);
 		}
 		return ans;
 	}
 
-	T get_kth(long long k) {
-		k += 1;
+	long long get_kth(long long k) {
+		k++;
 		if(k == 1 && zero) {
 			return 0;
 		}
 		if(zero) {
-			k -= 1;
+			k--;
 		}
 		if(k >= (1LL << cnt)) {
 			return -1;
 		}
 		update();
-		T ans = 0;
+		long long ans = 0;
 		for(int i = 0; i < (int) d.size(); i++) {
 			if(k >> i & 1) {
 				ans ^= d[i];
@@ -70,7 +65,7 @@ public:
 		return ans;
 	}
 
-	bool contains(T x) {
+	bool contains(long long x) {
 		if(x == 0) {
 			return zero;
 		}
@@ -82,7 +77,7 @@ public:
 		return x == 0;
 	}
 
-	void merge(const xor_basis_helper& other) {
+	void merge(const xor_basis& other) {
 		for(int i = 0; i < B; i++) {
 			if(other.p[i]) {
 				insert(other.p[i]);
@@ -91,11 +86,10 @@ public:
 	}
 
 private:
-	bool zero = false;
-	bool change = false;
+	bool zero = false, change = false;
 	int cnt = 0;
-	std::array<T, B> p = {};
-	std::vector<T> d;
+	std::array<long long, B> p = {};
+	std::vector<long long> d;
 
 	void update() {
 		if(!change) {
@@ -117,13 +111,5 @@ private:
 		}
 	}
 };
-
-} // namespace xor_basis_internal
-
-template<int B, class ENABLE = void> struct xor_basis : public xor_basis_internal::xor_basis_helper<B, __int128> {};
-template<int B> struct xor_basis<B, std::enable_if_t<(B >= 32 && B < 64)>> : public xor_basis_internal::xor_basis_helper<B, long long> {};
-template<int B> struct xor_basis<B, std::enable_if_t<(B >= 16 && B < 32)>> : public xor_basis_internal::xor_basis_helper<B, int> {};
-template<int B> struct xor_basis<B, std::enable_if_t<(B >= 8 && B < 16)>> : public xor_basis_internal::xor_basis_helper<B, short> {};
-template<int B> struct xor_basis<B, std::enable_if_t<(B < 8)>> : public xor_basis_internal::xor_basis_helper<B, int8_t> {};
 
 } // namespace felix

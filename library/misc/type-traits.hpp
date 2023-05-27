@@ -33,10 +33,6 @@ template<> struct safely_multipliable<int> { using type = long long; };
 template<> struct safely_multipliable<unsigned int> { using type = unsigned long long; };
 template<> struct safely_multipliable<long long> { using type = __int128; };
 template<> struct safely_multipliable<unsigned long long> { using type = __uint128_t; };
-template<> struct safely_multipliable<float> { using type = float; };
-template<> struct safely_multipliable<double> { using type = double; };
-template<> struct safely_multipliable<long double> { using type = long double; };
-template<> struct safely_multipliable<__float128> { using type = __float128; };
 
 template<class T> using safely_multipliable_t = typename safely_multipliable<T>::type;
 

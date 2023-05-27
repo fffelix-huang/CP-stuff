@@ -34,7 +34,7 @@ int main() {
 			cin >> x;
 			fenw.add(hld.id[u], x);
 		} else {
-			cout << fenw.sum(hld.id[u], hld.id[u] + hld.subtree_size[u] - 1) << "\n";
+			cout << fenw.sum(hld.id[u], hld.id[u] + hld.subtree_size[u]) << "\n";
 		}
 	}
 	return 0;

@@ -35,9 +35,9 @@ int main() {
 			fenw.add(hld.id[u] + hld.subtree_size[u], -v);
 		} else {
 			int z = hld.get_lca(u, v);
-			long long ans = fenw.get(hld.id[u]) + fenw.get(hld.id[v]) - fenw.get(hld.id[z]);
+			long long ans = fenw.get(hld.id[u] + 1) + fenw.get(hld.id[v] + 1) - fenw.get(hld.id[z] + 1);
 			if(hld.parent[z] != -1) {
-				ans -= fenw.get(hld.id[hld.parent[z]]);
+				ans -= fenw.get(hld.id[hld.parent[z]] + 1);
 			}
 			cout << ans << "\n";
 		}
