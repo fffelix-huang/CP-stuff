@@ -15,7 +15,7 @@ int main() {
 	for(int i = 0; i < m; i++) {
 		int u, v;
 		cin >> u >> v;
-		g[u][v] = g[v][u] = 1;
+		g[u][v] = g[v][u] = true;
 	}
 	max_clique<40> solver(n);
 	for(int i = 0; i < n; i++) {
