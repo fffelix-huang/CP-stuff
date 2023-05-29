@@ -7,29 +7,29 @@ data:
     title: library/data-structure/offline-rectangle-sum.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/aoj/dsl/Range-Add-Query.test.cpp
-    title: test/aoj/dsl/Range-Add-Query.test.cpp
+    path: test/data-structure/fenwick/aoj-dsl-Range-Add-Query.test.cpp
+    title: test/data-structure/fenwick/aoj-dsl-Range-Add-Query.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/aoj/dsl/Range-Sum-Query.test.cpp
-    title: test/aoj/dsl/Range-Sum-Query.test.cpp
+    path: test/data-structure/fenwick/aoj-dsl-Range-Sum-Query.test.cpp
+    title: test/data-structure/fenwick/aoj-dsl-Range-Sum-Query.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/aoj/dsl/The-Maximum-Number-of-Customers.test.cpp
-    title: test/aoj/dsl/The-Maximum-Number-of-Customers.test.cpp
+    path: test/data-structure/fenwick/aoj-dsl-The-Maximum-Number-of-Customers.test.cpp
+    title: test/data-structure/fenwick/aoj-dsl-The-Maximum-Number-of-Customers.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/aoj/grl/Range-Query-on-a-Tree.test.cpp
-    title: test/aoj/grl/Range-Query-on-a-Tree.test.cpp
+    path: test/data-structure/fenwick/yosupo-Point-Add-Range-Sum.test.cpp
+    title: test/data-structure/fenwick/yosupo-Point-Add-Range-Sum.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/Data-Structure/Point-Add-Range-Sum.test.cpp
-    title: test/yosupo/Data-Structure/Point-Add-Range-Sum.test.cpp
+    path: test/data-structure/offline-rectangle-sum/yosupo-Point-Add-Rectangle-Sum.test.cpp
+    title: test/data-structure/offline-rectangle-sum/yosupo-Point-Add-Rectangle-Sum.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/Data-Structure/Point-Add-Rectangle-Sum.test.cpp
-    title: test/yosupo/Data-Structure/Point-Add-Rectangle-Sum.test.cpp
+    path: test/tree/heavy-light-decomposition/aoj-grl-Range-Query-on-a-Tree.test.cpp
+    title: test/tree/heavy-light-decomposition/aoj-grl-Range-Query-on-a-Tree.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/Data-Structure/Vertex-Add-Path-Sum.test.cpp
-    title: test/yosupo/Data-Structure/Vertex-Add-Path-Sum.test.cpp
+    path: test/tree/heavy-light-decomposition/yosupo-Vertex-Add-Path-Sum.test.cpp
+    title: test/tree/heavy-light-decomposition/yosupo-Vertex-Add-Path-Sum.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/Data-Structure/Vertex-Add-Subtree-Sum.test.cpp
-    title: test/yosupo/Data-Structure/Vertex-Add-Subtree-Sum.test.cpp
+    path: test/tree/heavy-light-decomposition/yosupo-Vertex-Add-Subtree-Sum.test.cpp
+    title: test/tree/heavy-light-decomposition/yosupo-Vertex-Add-Subtree-Sum.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -61,14 +61,14 @@ data:
   timestamp: '2023-05-28 03:49:52+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/Data-Structure/Vertex-Add-Subtree-Sum.test.cpp
-  - test/yosupo/Data-Structure/Vertex-Add-Path-Sum.test.cpp
-  - test/yosupo/Data-Structure/Point-Add-Rectangle-Sum.test.cpp
-  - test/yosupo/Data-Structure/Point-Add-Range-Sum.test.cpp
-  - test/aoj/dsl/Range-Sum-Query.test.cpp
-  - test/aoj/dsl/The-Maximum-Number-of-Customers.test.cpp
-  - test/aoj/dsl/Range-Add-Query.test.cpp
-  - test/aoj/grl/Range-Query-on-a-Tree.test.cpp
+  - test/tree/heavy-light-decomposition/yosupo-Vertex-Add-Path-Sum.test.cpp
+  - test/tree/heavy-light-decomposition/yosupo-Vertex-Add-Subtree-Sum.test.cpp
+  - test/tree/heavy-light-decomposition/aoj-grl-Range-Query-on-a-Tree.test.cpp
+  - test/data-structure/offline-rectangle-sum/yosupo-Point-Add-Rectangle-Sum.test.cpp
+  - test/data-structure/fenwick/aoj-dsl-The-Maximum-Number-of-Customers.test.cpp
+  - test/data-structure/fenwick/yosupo-Point-Add-Range-Sum.test.cpp
+  - test/data-structure/fenwick/aoj-dsl-Range-Sum-Query.test.cpp
+  - test/data-structure/fenwick/aoj-dsl-Range-Add-Query.test.cpp
 documentation_of: library/data-structure/fenwick.hpp
 layout: document
 redirect_from:

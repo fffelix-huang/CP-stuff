@@ -4,8 +4,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/aoj/dsl/The-Maximum-Number-of-Overlaps.test.cpp
-    title: test/aoj/dsl/The-Maximum-Number-of-Overlaps.test.cpp
+    path: test/data-structure/fenwick2d/aoj-dsl-The-Maximum-Number-of-Overlaps.test.cpp
+    title: test/data-structure/fenwick2d/aoj-dsl-The-Maximum-Number-of-Overlaps.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -49,7 +49,7 @@ data:
   timestamp: '2023-05-28 03:49:52+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/dsl/The-Maximum-Number-of-Overlaps.test.cpp
+  - test/data-structure/fenwick2d/aoj-dsl-The-Maximum-Number-of-Overlaps.test.cpp
 documentation_of: library/data-structure/fenwick2d.hpp
 layout: document
 redirect_from:

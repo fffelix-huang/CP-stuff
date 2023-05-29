@@ -4,11 +4,11 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/aoj/grl/Bipartite-Matching.test.cpp
-    title: test/aoj/grl/Bipartite-Matching.test.cpp
+    path: test/graph/bipartite-matching/aoj-grl-Bipartite-Matching.test.cpp
+    title: test/graph/bipartite-matching/aoj-grl-Bipartite-Matching.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/Graph/Matching-on-Bipartite-Graph.test.cpp
-    title: test/yosupo/Graph/Matching-on-Bipartite-Graph.test.cpp
+    path: test/graph/bipartite-matching/yosupo-Matching-on-Bipartite-Graph.test.cpp
+    title: test/graph/bipartite-matching/yosupo-Matching-on-Bipartite-Graph.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -66,8 +66,8 @@ data:
   timestamp: '2023-04-17 12:10:28+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/Graph/Matching-on-Bipartite-Graph.test.cpp
-  - test/aoj/grl/Bipartite-Matching.test.cpp
+  - test/graph/bipartite-matching/yosupo-Matching-on-Bipartite-Graph.test.cpp
+  - test/graph/bipartite-matching/aoj-grl-Bipartite-Matching.test.cpp
 documentation_of: library/graph/bipartite-matching.hpp
 layout: document
 redirect_from:

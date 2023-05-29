@@ -7,32 +7,32 @@ data:
     title: library/tree/heavy-light-decomposition.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/aoj/grl/Lowest-Common-Ancestor.test.cpp
-    title: test/aoj/grl/Lowest-Common-Ancestor.test.cpp
+    path: test/data-structure/sparse-table/yosupo-Static-RMQ.test.cpp
+    title: test/data-structure/sparse-table/yosupo-Static-RMQ.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/aoj/grl/Range-Query-on-a-Tree-II.test.cpp
-    title: test/aoj/grl/Range-Query-on-a-Tree-II.test.cpp
+    path: test/tree/heavy-light-decomposition/aoj-grl-Lowest-Common-Ancestor.test.cpp
+    title: test/tree/heavy-light-decomposition/aoj-grl-Lowest-Common-Ancestor.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/aoj/grl/Range-Query-on-a-Tree.test.cpp
-    title: test/aoj/grl/Range-Query-on-a-Tree.test.cpp
+    path: test/tree/heavy-light-decomposition/aoj-grl-Range-Query-on-a-Tree-II.test.cpp
+    title: test/tree/heavy-light-decomposition/aoj-grl-Range-Query-on-a-Tree-II.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/Data-Structure/Static-RMQ.test.cpp
-    title: test/yosupo/Data-Structure/Static-RMQ.test.cpp
+    path: test/tree/heavy-light-decomposition/aoj-grl-Range-Query-on-a-Tree.test.cpp
+    title: test/tree/heavy-light-decomposition/aoj-grl-Range-Query-on-a-Tree.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/Data-Structure/Vertex-Add-Path-Sum.test.cpp
-    title: test/yosupo/Data-Structure/Vertex-Add-Path-Sum.test.cpp
+    path: test/tree/heavy-light-decomposition/yosupo-Jump-on-Tree.test.cpp
+    title: test/tree/heavy-light-decomposition/yosupo-Jump-on-Tree.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/Data-Structure/Vertex-Add-Subtree-Sum.test.cpp
-    title: test/yosupo/Data-Structure/Vertex-Add-Subtree-Sum.test.cpp
+    path: test/tree/heavy-light-decomposition/yosupo-Lowest-Common-Ancestor.test.cpp
+    title: test/tree/heavy-light-decomposition/yosupo-Lowest-Common-Ancestor.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/Data-Structure/Vertex-Set-Path-Composite.test.cpp
-    title: test/yosupo/Data-Structure/Vertex-Set-Path-Composite.test.cpp
+    path: test/tree/heavy-light-decomposition/yosupo-Vertex-Add-Path-Sum.test.cpp
+    title: test/tree/heavy-light-decomposition/yosupo-Vertex-Add-Path-Sum.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/Tree/Jump-on-Tree.test.cpp
-    title: test/yosupo/Tree/Jump-on-Tree.test.cpp
+    path: test/tree/heavy-light-decomposition/yosupo-Vertex-Add-Subtree-Sum.test.cpp
+    title: test/tree/heavy-light-decomposition/yosupo-Vertex-Add-Subtree-Sum.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/Tree/Lowest-Common-Ancestor.test.cpp
-    title: test/yosupo/Tree/Lowest-Common-Ancestor.test.cpp
+    path: test/tree/heavy-light-decomposition/yosupo-Vertex-Set-Path-Composite.test.cpp
+    title: test/tree/heavy-light-decomposition/yosupo-Vertex-Set-Path-Composite.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -69,15 +69,15 @@ data:
   timestamp: '2023-04-17 12:10:28+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/Data-Structure/Vertex-Add-Subtree-Sum.test.cpp
-  - test/yosupo/Data-Structure/Vertex-Add-Path-Sum.test.cpp
-  - test/yosupo/Data-Structure/Vertex-Set-Path-Composite.test.cpp
-  - test/yosupo/Data-Structure/Static-RMQ.test.cpp
-  - test/yosupo/Tree/Lowest-Common-Ancestor.test.cpp
-  - test/yosupo/Tree/Jump-on-Tree.test.cpp
-  - test/aoj/grl/Range-Query-on-a-Tree-II.test.cpp
-  - test/aoj/grl/Lowest-Common-Ancestor.test.cpp
-  - test/aoj/grl/Range-Query-on-a-Tree.test.cpp
+  - test/tree/heavy-light-decomposition/yosupo-Vertex-Add-Path-Sum.test.cpp
+  - test/tree/heavy-light-decomposition/yosupo-Jump-on-Tree.test.cpp
+  - test/tree/heavy-light-decomposition/aoj-grl-Range-Query-on-a-Tree-II.test.cpp
+  - test/tree/heavy-light-decomposition/aoj-grl-Lowest-Common-Ancestor.test.cpp
+  - test/tree/heavy-light-decomposition/yosupo-Vertex-Add-Subtree-Sum.test.cpp
+  - test/tree/heavy-light-decomposition/yosupo-Lowest-Common-Ancestor.test.cpp
+  - test/tree/heavy-light-decomposition/yosupo-Vertex-Set-Path-Composite.test.cpp
+  - test/tree/heavy-light-decomposition/aoj-grl-Range-Query-on-a-Tree.test.cpp
+  - test/data-structure/sparse-table/yosupo-Static-RMQ.test.cpp
 documentation_of: library/data-structure/sparse-table.hpp
 layout: document
 redirect_from:

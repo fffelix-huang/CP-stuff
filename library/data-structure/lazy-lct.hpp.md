@@ -4,11 +4,11 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/Data-Structure/Dynamic-Tree-Vertex-Add-Path-Sum.test.cpp
-    title: test/yosupo/Data-Structure/Dynamic-Tree-Vertex-Add-Path-Sum.test.cpp
+    path: test/data-structure/lazy-lct/yosupo-Dynamic-Tree-Vertex-Add-Path-Sum.test.cpp
+    title: test/data-structure/lazy-lct/yosupo-Dynamic-Tree-Vertex-Add-Path-Sum.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/Data-Structure/Dynamic-Tree-Vertex-Set-Path-Composite.test.cpp
-    title: test/yosupo/Data-Structure/Dynamic-Tree-Vertex-Set-Path-Composite.test.cpp
+    path: test/data-structure/lazy-lct/yosupo-Dynamic-Tree-Vertex-Set-Path-Composite.test.cpp
+    title: test/data-structure/lazy-lct/yosupo-Dynamic-Tree-Vertex-Set-Path-Composite.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -132,8 +132,8 @@ data:
   timestamp: '2023-05-19 02:28:25+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/Data-Structure/Dynamic-Tree-Vertex-Set-Path-Composite.test.cpp
-  - test/yosupo/Data-Structure/Dynamic-Tree-Vertex-Add-Path-Sum.test.cpp
+  - test/data-structure/lazy-lct/yosupo-Dynamic-Tree-Vertex-Add-Path-Sum.test.cpp
+  - test/data-structure/lazy-lct/yosupo-Dynamic-Tree-Vertex-Set-Path-Composite.test.cpp
 documentation_of: library/data-structure/lazy-lct.hpp
 layout: document
 redirect_from:

@@ -7,11 +7,11 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/Data-Structure/Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
-    title: test/yosupo/Data-Structure/Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
+    path: test/data-structure/lazy-treap/yosupo-Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
+    title: test/data-structure/lazy-treap/yosupo-Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/Data-Structure/Range-Reverse-Range-Sum.test.cpp
-    title: test/yosupo/Data-Structure/Range-Reverse-Range-Sum.test.cpp
+    path: test/data-structure/lazy-treap/yosupo-Range-Reverse-Range-Sum.test.cpp
+    title: test/data-structure/lazy-treap/yosupo-Range-Reverse-Range-Sum.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -172,8 +172,8 @@ data:
   timestamp: '2023-05-07 11:40:44+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/Data-Structure/Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
-  - test/yosupo/Data-Structure/Range-Reverse-Range-Sum.test.cpp
+  - test/data-structure/lazy-treap/yosupo-Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
+  - test/data-structure/lazy-treap/yosupo-Range-Reverse-Range-Sum.test.cpp
 documentation_of: library/data-structure/lazy-treap.hpp
 layout: document
 redirect_from:

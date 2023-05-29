@@ -7,8 +7,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/Math/2-Sat.test.cpp
-    title: test/yosupo/Math/2-Sat.test.cpp
+    path: test/math/two-sat/yosupo-2-Sat.test.cpp
+    title: test/math/two-sat/yosupo-2-Sat.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -83,7 +83,7 @@ data:
   timestamp: '2023-05-19 01:47:33+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/Math/2-Sat.test.cpp
+  - test/math/two-sat/yosupo-2-Sat.test.cpp
 documentation_of: library/math/two-sat.hpp
 layout: document
 redirect_from:

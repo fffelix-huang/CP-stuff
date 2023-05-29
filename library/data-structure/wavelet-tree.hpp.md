@@ -4,8 +4,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/Data-Structure/Range-Kth-Smallest.test.cpp
-    title: test/yosupo/Data-Structure/Range-Kth-Smallest.test.cpp
+    path: test/data-structure/wavelet-tree/yosupo-Range-Kth-Smallest.test.cpp
+    title: test/data-structure/wavelet-tree/yosupo-Range-Kth-Smallest.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -77,7 +77,7 @@ data:
   timestamp: '2023-04-18 17:16:47+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/Data-Structure/Range-Kth-Smallest.test.cpp
+  - test/data-structure/wavelet-tree/yosupo-Range-Kth-Smallest.test.cpp
 documentation_of: library/data-structure/wavelet-tree.hpp
 layout: document
 title: "Wavelet Tree (\u975C\u614B\u5340\u9593\u7B2C $k$ \u5927)"

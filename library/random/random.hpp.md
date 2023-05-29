@@ -8,13 +8,10 @@ data:
   - icon: ':warning:'
     path: library/random/graph-generator.hpp
     title: Random Graph Generator
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/unit-test/xor-basis.test.cpp
-    title: test/unit-test/xor-basis.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"library/random/random.hpp\"\n#include <vector>\n#include\
@@ -85,9 +82,8 @@ data:
   requiredBy:
   - library/random/graph-generator.hpp
   timestamp: '2023-05-28 03:49:52+08:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/unit-test/xor-basis.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: library/random/random.hpp
 layout: document
 title: random_t

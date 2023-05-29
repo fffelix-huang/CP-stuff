@@ -16,8 +16,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/Math/Discrete-Logarithm.test.cpp
-    title: test/yosupo/Math/Discrete-Logarithm.test.cpp
+    path: test/math/discrete-log/yosupo-Discrete-Logarithm.test.cpp
+    title: test/math/discrete-log/yosupo-Discrete-Logarithm.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -90,7 +90,7 @@ data:
   timestamp: '2023-05-28 03:49:52+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/Math/Discrete-Logarithm.test.cpp
+  - test/math/discrete-log/yosupo-Discrete-Logarithm.test.cpp
 documentation_of: library/math/discrete-log.hpp
 layout: document
 title: "Discrete Log (\u96E2\u6563\u5C0D\u6578 $a^x \\equiv b \\pmod m$)"

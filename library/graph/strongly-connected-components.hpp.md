@@ -7,14 +7,14 @@ data:
     title: library/math/two-sat.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/aoj/grl/Strongly-Connected-Components.test.cpp
-    title: test/aoj/grl/Strongly-Connected-Components.test.cpp
+    path: test/graph/strongly-connected-components/aoj-grl-Strongly-Connected-Components.test.cpp
+    title: test/graph/strongly-connected-components/aoj-grl-Strongly-Connected-Components.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/Graph/Strongly-Connected-Components.test.cpp
-    title: test/yosupo/Graph/Strongly-Connected-Components.test.cpp
+    path: test/graph/strongly-connected-components/yosupo-Strongly-Connected-Components.test.cpp
+    title: test/graph/strongly-connected-components/yosupo-Strongly-Connected-Components.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/Math/2-Sat.test.cpp
-    title: test/yosupo/Math/2-Sat.test.cpp
+    path: test/math/two-sat/yosupo-2-Sat.test.cpp
+    title: test/math/two-sat/yosupo-2-Sat.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -74,9 +74,9 @@ data:
   timestamp: '2023-05-19 01:47:33+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/Math/2-Sat.test.cpp
-  - test/yosupo/Graph/Strongly-Connected-Components.test.cpp
-  - test/aoj/grl/Strongly-Connected-Components.test.cpp
+  - test/math/two-sat/yosupo-2-Sat.test.cpp
+  - test/graph/strongly-connected-components/aoj-grl-Strongly-Connected-Components.test.cpp
+  - test/graph/strongly-connected-components/yosupo-Strongly-Connected-Components.test.cpp
 documentation_of: library/graph/strongly-connected-components.hpp
 layout: document
 redirect_from:

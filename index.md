@@ -144,7 +144,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/two-sat.hpp
       title: library/math/two-sat.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':warning:'
       path: library/math/xor-basis.hpp
       title: "xor basis (\u7DDA\u6027\u57FA)"
   - name: library/matrix
@@ -179,7 +179,7 @@ data:
     - icon: ':warning:'
       path: library/random/graph-generator.hpp
       title: Random Graph Generator
-    - icon: ':heavy_check_mark:'
+    - icon: ':warning:'
       path: library/random/random.hpp
       title: random_t
     - icon: ':heavy_check_mark:'
@@ -208,305 +208,353 @@ data:
       path: library/tree/prufer.hpp
       title: library/tree/prufer.hpp
   verificationCategories:
-  - name: test/aoj/alds1
+  - name: test/convolution/ntt
     pages:
     - icon: ':heavy_check_mark:'
-      path: test/aoj/alds1/String-Search.test.cpp
-      title: test/aoj/alds1/String-Search.test.cpp
-  - name: test/aoj/cgl
+      path: test/convolution/ntt/yosupo-Convolution-Large.test.cpp
+      title: test/convolution/ntt/yosupo-Convolution-Large.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/convolution/ntt/yosupo-Convolution-Mod-1000000007.test.cpp
+      title: test/convolution/ntt/yosupo-Convolution-Mod-1000000007.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/convolution/ntt/yosupo-Convolution.test.cpp
+      title: test/convolution/ntt/yosupo-Convolution.test.cpp
+  - name: test/convolution/subset-convolution
     pages:
     - icon: ':heavy_check_mark:'
-      path: test/aoj/cgl/Area.test.cpp
-      title: test/aoj/cgl/Area.test.cpp
+      path: test/convolution/subset-convolution/yosupo-Bitwise-And-Convolution.test.cpp
+      title: test/convolution/subset-convolution/yosupo-Bitwise-And-Convolution.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/aoj/cgl/Convex-Hull.test.cpp
-      title: test/aoj/cgl/Convex-Hull.test.cpp
+      path: test/convolution/subset-convolution/yosupo-Bitwise-Xor-Convolution.test.cpp
+      title: test/convolution/subset-convolution/yosupo-Bitwise-Xor-Convolution.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/aoj/cgl/Counter-Clockwise.test.cpp
-      title: test/aoj/cgl/Counter-Clockwise.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/aoj/cgl/Intersection.test.cpp
-      title: test/aoj/cgl/Intersection.test.cpp
-  - name: test/aoj/dsl
+      path: test/convolution/subset-convolution/yosupo-Subset-Convolution.test.cpp
+      title: test/convolution/subset-convolution/yosupo-Subset-Convolution.test.cpp
+  - name: test/data-structure/binary-trie
     pages:
     - icon: ':heavy_check_mark:'
-      path: test/aoj/dsl/Disjoint-Set-Union-Find-Tree.test.cpp
-      title: test/aoj/dsl/Disjoint-Set-Union-Find-Tree.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/aoj/dsl/RMQ-and-RAQ.test.cpp
-      title: test/aoj/dsl/RMQ-and-RAQ.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/aoj/dsl/RMQ-and-RUQ.test.cpp
-      title: test/aoj/dsl/RMQ-and-RUQ.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/aoj/dsl/RSQ-and-RAQ.test.cpp
-      title: test/aoj/dsl/RSQ-and-RAQ.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/aoj/dsl/RSQ-and-RUQ.test.cpp
-      title: test/aoj/dsl/RSQ-and-RUQ.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/aoj/dsl/Range-Add-Query.test.cpp
-      title: test/aoj/dsl/Range-Add-Query.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/aoj/dsl/Range-Minimum-Query.test.cpp
-      title: test/aoj/dsl/Range-Minimum-Query.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/aoj/dsl/Range-Sum-Query.test.cpp
-      title: test/aoj/dsl/Range-Sum-Query.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/aoj/dsl/Range-Update-Query.test.cpp
-      title: test/aoj/dsl/Range-Update-Query.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/aoj/dsl/The-Maximum-Number-of-Customers.test.cpp
-      title: test/aoj/dsl/The-Maximum-Number-of-Customers.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/aoj/dsl/The-Maximum-Number-of-Overlaps.test.cpp
-      title: test/aoj/dsl/The-Maximum-Number-of-Overlaps.test.cpp
-  - name: test/aoj/grl
+      path: test/data-structure/binary-trie/yosupo-Set-Xor-Min.test.cpp
+      title: test/data-structure/binary-trie/yosupo-Set-Xor-Min.test.cpp
+  - name: test/data-structure/dsu
     pages:
     - icon: ':heavy_check_mark:'
-      path: test/aoj/grl/Articulation-Points.test.cpp
-      title: test/aoj/grl/Articulation-Points.test.cpp
+      path: test/data-structure/dsu/aoj-dsl-Disjoint-Set-Union-Find-Tree.test.cpp
+      title: test/data-structure/dsu/aoj-dsl-Disjoint-Set-Union-Find-Tree.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/aoj/grl/Bipartite-Matching.test.cpp
-      title: test/aoj/grl/Bipartite-Matching.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/aoj/grl/Bridges.test.cpp
-      title: test/aoj/grl/Bridges.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/aoj/grl/Lowest-Common-Ancestor.test.cpp
-      title: test/aoj/grl/Lowest-Common-Ancestor.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/aoj/grl/Maximum-Flow.test.cpp
-      title: test/aoj/grl/Maximum-Flow.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/aoj/grl/Minimum-Cost-Flow.test.cpp
-      title: test/aoj/grl/Minimum-Cost-Flow.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/aoj/grl/Range-Query-on-a-Tree-II.test.cpp
-      title: test/aoj/grl/Range-Query-on-a-Tree-II.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/aoj/grl/Range-Query-on-a-Tree.test.cpp
-      title: test/aoj/grl/Range-Query-on-a-Tree.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/aoj/grl/Strongly-Connected-Components.test.cpp
-      title: test/aoj/grl/Strongly-Connected-Components.test.cpp
-  - name: test/aoj/ntl
+      path: test/data-structure/dsu/yosupo-Unionfind.test.cpp
+      title: test/data-structure/dsu/yosupo-Unionfind.test.cpp
+  - name: test/data-structure/fenwick
     pages:
     - icon: ':heavy_check_mark:'
-      path: test/aoj/ntl/Least-Common-Multiple.test.cpp
-      title: test/aoj/ntl/Least-Common-Multiple.test.cpp
+      path: test/data-structure/fenwick/aoj-dsl-Range-Add-Query.test.cpp
+      title: test/data-structure/fenwick/aoj-dsl-Range-Add-Query.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/aoj/ntl/Power.test.cpp
-      title: test/aoj/ntl/Power.test.cpp
+      path: test/data-structure/fenwick/aoj-dsl-Range-Sum-Query.test.cpp
+      title: test/data-structure/fenwick/aoj-dsl-Range-Sum-Query.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/aoj/ntl/Prime-Factorize.test.cpp
-      title: test/aoj/ntl/Prime-Factorize.test.cpp
-  - name: test/unit-test
+      path: test/data-structure/fenwick/aoj-dsl-The-Maximum-Number-of-Customers.test.cpp
+      title: test/data-structure/fenwick/aoj-dsl-The-Maximum-Number-of-Customers.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/data-structure/fenwick/yosupo-Point-Add-Range-Sum.test.cpp
+      title: test/data-structure/fenwick/yosupo-Point-Add-Range-Sum.test.cpp
+  - name: test/data-structure/fenwick2d
     pages:
     - icon: ':heavy_check_mark:'
-      path: test/unit-test/integer-div.test.cpp
-      title: test/unit-test/integer-div.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/unit-test/xor-basis.test.cpp
-      title: test/unit-test/xor-basis.test.cpp
-  - name: test/yosupo/Convolution
+      path: test/data-structure/fenwick2d/aoj-dsl-The-Maximum-Number-of-Overlaps.test.cpp
+      title: test/data-structure/fenwick2d/aoj-dsl-The-Maximum-Number-of-Overlaps.test.cpp
+  - name: test/data-structure/lazy-lct
     pages:
     - icon: ':heavy_check_mark:'
-      path: test/yosupo/Convolution/Bitwise-And-Convolution.test.cpp
-      title: test/yosupo/Convolution/Bitwise-And-Convolution.test.cpp
+      path: test/data-structure/lazy-lct/yosupo-Dynamic-Tree-Vertex-Add-Path-Sum.test.cpp
+      title: test/data-structure/lazy-lct/yosupo-Dynamic-Tree-Vertex-Add-Path-Sum.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/yosupo/Convolution/Bitwise-Xor-Convolution.test.cpp
-      title: test/yosupo/Convolution/Bitwise-Xor-Convolution.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/Convolution/Convolution-Large.test.cpp
-      title: test/yosupo/Convolution/Convolution-Large.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/Convolution/Convolution-Mod-1000000007.test.cpp
-      title: test/yosupo/Convolution/Convolution-Mod-1000000007.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/Convolution/Convolution.test.cpp
-      title: test/yosupo/Convolution/Convolution.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/Convolution/Subset-Convolution.test.cpp
-      title: test/yosupo/Convolution/Subset-Convolution.test.cpp
-  - name: test/yosupo/Data-Structure
+      path: test/data-structure/lazy-lct/yosupo-Dynamic-Tree-Vertex-Set-Path-Composite.test.cpp
+      title: test/data-structure/lazy-lct/yosupo-Dynamic-Tree-Vertex-Set-Path-Composite.test.cpp
+  - name: test/data-structure/lazy-segtree
     pages:
     - icon: ':heavy_check_mark:'
-      path: test/yosupo/Data-Structure/Associative-Array.test.cpp
-      title: test/yosupo/Data-Structure/Associative-Array.test.cpp
+      path: test/data-structure/lazy-segtree/aoj-dsl-RMQ-and-RAQ.test.cpp
+      title: test/data-structure/lazy-segtree/aoj-dsl-RMQ-and-RAQ.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/yosupo/Data-Structure/Deque-Operate-All-Composite.test.cpp
-      title: test/yosupo/Data-Structure/Deque-Operate-All-Composite.test.cpp
+      path: test/data-structure/lazy-segtree/aoj-dsl-RMQ-and-RUQ.test.cpp
+      title: test/data-structure/lazy-segtree/aoj-dsl-RMQ-and-RUQ.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/yosupo/Data-Structure/Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
-      title: test/yosupo/Data-Structure/Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
+      path: test/data-structure/lazy-segtree/aoj-dsl-RSQ-and-RAQ.test.cpp
+      title: test/data-structure/lazy-segtree/aoj-dsl-RSQ-and-RAQ.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/yosupo/Data-Structure/Dynamic-Tree-Vertex-Add-Path-Sum.test.cpp
-      title: test/yosupo/Data-Structure/Dynamic-Tree-Vertex-Add-Path-Sum.test.cpp
+      path: test/data-structure/lazy-segtree/aoj-dsl-RSQ-and-RUQ.test.cpp
+      title: test/data-structure/lazy-segtree/aoj-dsl-RSQ-and-RUQ.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/yosupo/Data-Structure/Dynamic-Tree-Vertex-Set-Path-Composite.test.cpp
-      title: test/yosupo/Data-Structure/Dynamic-Tree-Vertex-Set-Path-Composite.test.cpp
+      path: test/data-structure/lazy-segtree/aoj-dsl-Range-Update-Query.test.cpp
+      title: test/data-structure/lazy-segtree/aoj-dsl-Range-Update-Query.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/yosupo/Data-Structure/Line-Add-Get-Min.test.cpp
-      title: test/yosupo/Data-Structure/Line-Add-Get-Min.test.cpp
+      path: test/data-structure/lazy-segtree/yosupo-Range-Affine-Point-Get.test.cpp
+      title: test/data-structure/lazy-segtree/yosupo-Range-Affine-Point-Get.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/yosupo/Data-Structure/Point-Add-Range-Sum.test.cpp
-      title: test/yosupo/Data-Structure/Point-Add-Range-Sum.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/Data-Structure/Point-Add-Rectangle-Sum.test.cpp
-      title: test/yosupo/Data-Structure/Point-Add-Rectangle-Sum.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/Data-Structure/Predecessor-Problem.test.cpp
-      title: test/yosupo/Data-Structure/Predecessor-Problem.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/Data-Structure/Queue-Operate-All-Composite.test.cpp
-      title: test/yosupo/Data-Structure/Queue-Operate-All-Composite.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/Data-Structure/Range-Affine-Point-Get.test.cpp
-      title: test/yosupo/Data-Structure/Range-Affine-Point-Get.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/Data-Structure/Range-Affine-Range-Sum.test.cpp
-      title: test/yosupo/Data-Structure/Range-Affine-Range-Sum.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/Data-Structure/Range-Kth-Smallest.test.cpp
-      title: test/yosupo/Data-Structure/Range-Kth-Smallest.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/Data-Structure/Range-Reverse-Range-Sum.test.cpp
-      title: test/yosupo/Data-Structure/Range-Reverse-Range-Sum.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/Data-Structure/Set-Xor-Min.test.cpp
-      title: test/yosupo/Data-Structure/Set-Xor-Min.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/Data-Structure/Static-RMQ.test.cpp
-      title: test/yosupo/Data-Structure/Static-RMQ.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/Data-Structure/Static-Range-Frequency.test.cpp
-      title: test/yosupo/Data-Structure/Static-Range-Frequency.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/Data-Structure/Static-Range-Sum.test.cpp
-      title: test/yosupo/Data-Structure/Static-Range-Sum.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/Data-Structure/Unionfind.test.cpp
-      title: test/yosupo/Data-Structure/Unionfind.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/Data-Structure/Vertex-Add-Path-Sum.test.cpp
-      title: test/yosupo/Data-Structure/Vertex-Add-Path-Sum.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/Data-Structure/Vertex-Add-Subtree-Sum.test.cpp
-      title: test/yosupo/Data-Structure/Vertex-Add-Subtree-Sum.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/Data-Structure/Vertex-Set-Path-Composite.test.cpp
-      title: test/yosupo/Data-Structure/Vertex-Set-Path-Composite.test.cpp
-  - name: test/yosupo/Geometry
+      path: test/data-structure/lazy-segtree/yosupo-Range-Affine-Range-Sum.test.cpp
+      title: test/data-structure/lazy-segtree/yosupo-Range-Affine-Range-Sum.test.cpp
+  - name: test/data-structure/lazy-treap
     pages:
     - icon: ':heavy_check_mark:'
-      path: test/yosupo/Geometry/Sort-Points-by-Argument.test.cpp
-      title: test/yosupo/Geometry/Sort-Points-by-Argument.test.cpp
-  - name: test/yosupo/Graph
+      path: test/data-structure/lazy-treap/yosupo-Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
+      title: test/data-structure/lazy-treap/yosupo-Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/data-structure/lazy-treap/yosupo-Range-Reverse-Range-Sum.test.cpp
+      title: test/data-structure/lazy-treap/yosupo-Range-Reverse-Range-Sum.test.cpp
+  - name: test/data-structure/line-container
     pages:
     - icon: ':heavy_check_mark:'
-      path: test/yosupo/Graph/Assignment-Problem.test.cpp
-      title: test/yosupo/Graph/Assignment-Problem.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/Graph/Biconnected-Components.test.cpp
-      title: test/yosupo/Graph/Biconnected-Components.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/Graph/Matching-on-Bipartite-Graph.test.cpp
-      title: test/yosupo/Graph/Matching-on-Bipartite-Graph.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/Graph/Matching-on-General-Graph.test.cpp
-      title: test/yosupo/Graph/Matching-on-General-Graph.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/Graph/Maximum-Independent-Set.test.cpp
-      title: test/yosupo/Graph/Maximum-Independent-Set.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/Graph/Strongly-Connected-Components.test.cpp
-      title: test/yosupo/Graph/Strongly-Connected-Components.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/Graph/Two-Edge-Connected-Components.test.cpp
-      title: test/yosupo/Graph/Two-Edge-Connected-Components.test.cpp
-  - name: test/yosupo
+      path: test/data-structure/line-container/yosupo-Line-Add-Get-Min.test.cpp
+      title: test/data-structure/line-container/yosupo-Line-Add-Get-Min.test.cpp
+  - name: test/data-structure/offline-rectangle-sum
     pages:
     - icon: ':heavy_check_mark:'
-      path: test/yosupo/Many-A+B-128-bit.test.cpp
-      title: test/yosupo/Many-A+B-128-bit.test.cpp
-  - name: test/yosupo/Math
+      path: test/data-structure/offline-rectangle-sum/yosupo-Point-Add-Rectangle-Sum.test.cpp
+      title: test/data-structure/offline-rectangle-sum/yosupo-Point-Add-Rectangle-Sum.test.cpp
+  - name: test/data-structure/pbds
     pages:
     - icon: ':heavy_check_mark:'
-      path: test/yosupo/Math/2-Sat.test.cpp
-      title: test/yosupo/Math/2-Sat.test.cpp
+      path: test/data-structure/pbds/yosupo-Associative-Array.test.cpp
+      title: test/data-structure/pbds/yosupo-Associative-Array.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/yosupo/Math/Discrete-Logarithm.test.cpp
-      title: test/yosupo/Math/Discrete-Logarithm.test.cpp
+      path: test/data-structure/pbds/yosupo-Static-Range-Frequency.test.cpp
+      title: test/data-structure/pbds/yosupo-Static-Range-Frequency.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/yosupo/Math/Factorize.test.cpp
-      title: test/yosupo/Math/Factorize.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/Math/Partition-Function.test.cpp
-      title: test/yosupo/Math/Partition-Function.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/Math/Primality-Test.test.cpp
-      title: test/yosupo/Math/Primality-Test.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/Math/Sqrt-Mod.test.cpp
-      title: test/yosupo/Math/Sqrt-Mod.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/Math/Sum-of-Floor-of-Linear.test.cpp
-      title: test/yosupo/Math/Sum-of-Floor-of-Linear.test.cpp
-  - name: test/yosupo/Matrix
+      path: test/data-structure/pbds/yosupo-Static-Range-Sum.test.cpp
+      title: test/data-structure/pbds/yosupo-Static-Range-Sum.test.cpp
+  - name: test/data-structure/segtree
     pages:
     - icon: ':heavy_check_mark:'
-      path: test/yosupo/Matrix/Determinant-of-Matrix.test.cpp
-      title: test/yosupo/Matrix/Determinant-of-Matrix.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/Matrix/Matrix-Product.test.cpp
-      title: test/yosupo/Matrix/Matrix-Product.test.cpp
-  - name: test/yosupo/Polynomial
+      path: test/data-structure/segtree/aoj-dsl-Range-Minimum-Query.test.cpp
+      title: test/data-structure/segtree/aoj-dsl-Range-Minimum-Query.test.cpp
+  - name: test/data-structure/sparse-table
     pages:
     - icon: ':heavy_check_mark:'
-      path: test/yosupo/Polynomial/Exp-of-Formal-Power-Series.test.cpp
-      title: test/yosupo/Polynomial/Exp-of-Formal-Power-Series.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/Polynomial/Inv-of-Formal-Power-Series.test.cpp
-      title: test/yosupo/Polynomial/Inv-of-Formal-Power-Series.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/Polynomial/Log-of-Formal-Power-Series.test.cpp
-      title: test/yosupo/Polynomial/Log-of-Formal-Power-Series.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/Polynomial/Multipoint-Evaluation.test.cpp
-      title: test/yosupo/Polynomial/Multipoint-Evaluation.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/Polynomial/Polynomial-Taylor-Shift.test.cpp
-      title: test/yosupo/Polynomial/Polynomial-Taylor-Shift.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/Polynomial/Pow-of-Formal-Power-Series.test.cpp
-      title: test/yosupo/Polynomial/Pow-of-Formal-Power-Series.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/Polynomial/Product-of-Polynomial-Sequence.test.cpp
-      title: test/yosupo/Polynomial/Product-of-Polynomial-Sequence.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/Polynomial/Sqrt-of-Formal-Power-Series.test.cpp
-      title: test/yosupo/Polynomial/Sqrt-of-Formal-Power-Series.test.cpp
-  - name: test/yosupo/String
+      path: test/data-structure/sparse-table/yosupo-Static-RMQ.test.cpp
+      title: test/data-structure/sparse-table/yosupo-Static-RMQ.test.cpp
+  - name: test/data-structure/vebtree
     pages:
     - icon: ':heavy_check_mark:'
-      path: test/yosupo/String/Number-of-Substrings.test.cpp
-      title: test/yosupo/String/Number-of-Substrings.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/String/Suffix-Array.test.cpp
-      title: test/yosupo/String/Suffix-Array.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/String/Z-Algorithm.test.cpp
-      title: test/yosupo/String/Z-Algorithm.test.cpp
-  - name: test/yosupo/Tree
+      path: test/data-structure/vebtree/yosupo-Predecessor-Problem.test.cpp
+      title: test/data-structure/vebtree/yosupo-Predecessor-Problem.test.cpp
+  - name: test/data-structure/wavelet-tree
     pages:
     - icon: ':heavy_check_mark:'
-      path: test/yosupo/Tree/Jump-on-Tree.test.cpp
-      title: test/yosupo/Tree/Jump-on-Tree.test.cpp
+      path: test/data-structure/wavelet-tree/yosupo-Range-Kth-Smallest.test.cpp
+      title: test/data-structure/wavelet-tree/yosupo-Range-Kth-Smallest.test.cpp
+  - name: test/flow/kuhn-munkres
+    pages:
     - icon: ':heavy_check_mark:'
-      path: test/yosupo/Tree/Lowest-Common-Ancestor.test.cpp
-      title: test/yosupo/Tree/Lowest-Common-Ancestor.test.cpp
+      path: test/flow/kuhn-munkres/yosupo-Assignment-Problem.test.cpp
+      title: test/flow/kuhn-munkres/yosupo-Assignment-Problem.test.cpp
+  - name: test/flow/maxflow
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/flow/maxflow/aoj-grl-Maximum-Flow.test.cpp
+      title: test/flow/maxflow/aoj-grl-Maximum-Flow.test.cpp
+  - name: test/flow/mincostflow
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/flow/mincostflow/aoj-grl-Minimum-Cost-Flow.test.cpp
+      title: test/flow/mincostflow/aoj-grl-Minimum-Cost-Flow.test.cpp
+  - name: test/formal-power-series/poly
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/formal-power-series/poly/yosupo-Exp-of-Formal-Power-Series.test.cpp
+      title: test/formal-power-series/poly/yosupo-Exp-of-Formal-Power-Series.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/formal-power-series/poly/yosupo-Inv-of-Formal-Power-Series.test.cpp
+      title: test/formal-power-series/poly/yosupo-Inv-of-Formal-Power-Series.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/formal-power-series/poly/yosupo-Log-of-Formal-Power-Series.test.cpp
+      title: test/formal-power-series/poly/yosupo-Log-of-Formal-Power-Series.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/formal-power-series/poly/yosupo-Multipoint-Evaluation.test.cpp
+      title: test/formal-power-series/poly/yosupo-Multipoint-Evaluation.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/formal-power-series/poly/yosupo-Polynomial-Taylor-Shift.test.cpp
+      title: test/formal-power-series/poly/yosupo-Polynomial-Taylor-Shift.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/formal-power-series/poly/yosupo-Pow-of-Formal-Power-Series.test.cpp
+      title: test/formal-power-series/poly/yosupo-Pow-of-Formal-Power-Series.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/formal-power-series/poly/yosupo-Product-of-Polynomial-Sequence.test.cpp
+      title: test/formal-power-series/poly/yosupo-Product-of-Polynomial-Sequence.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/formal-power-series/poly/yosupo-Sqrt-of-Formal-Power-Series.test.cpp
+      title: test/formal-power-series/poly/yosupo-Sqrt-of-Formal-Power-Series.test.cpp
+  - name: test/formal-power-series/series
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/formal-power-series/series/yosupo-Partition-Function.test.cpp
+      title: test/formal-power-series/series/yosupo-Partition-Function.test.cpp
+  - name: test/geometry/convex-hull
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/geometry/convex-hull/aoj-cgl-Convex-Hull.test.cpp
+      title: test/geometry/convex-hull/aoj-cgl-Convex-Hull.test.cpp
+  - name: test/geometry/geometry
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/geometry/geometry/aoj-cgl-Area.test.cpp
+      title: test/geometry/geometry/aoj-cgl-Area.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/geometry/geometry/aoj-cgl-Counter-Clockwise.test.cpp
+      title: test/geometry/geometry/aoj-cgl-Counter-Clockwise.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/geometry/geometry/aoj-cgl-Intersection.test.cpp
+      title: test/geometry/geometry/aoj-cgl-Intersection.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/geometry/geometry/yosupo-Sort-Points-by-Argument.test.cpp
+      title: test/geometry/geometry/yosupo-Sort-Points-by-Argument.test.cpp
+  - name: test/graph/bipartite-matching
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/graph/bipartite-matching/aoj-grl-Bipartite-Matching.test.cpp
+      title: test/graph/bipartite-matching/aoj-grl-Bipartite-Matching.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/graph/bipartite-matching/yosupo-Matching-on-Bipartite-Graph.test.cpp
+      title: test/graph/bipartite-matching/yosupo-Matching-on-Bipartite-Graph.test.cpp
+  - name: test/graph/general-matching
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/graph/general-matching/yosupo-Matching-on-General-Graph.test.cpp
+      title: test/graph/general-matching/yosupo-Matching-on-General-Graph.test.cpp
+  - name: test/graph/lowlink
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/graph/lowlink/aoj-grl-Articulation-Points.test.cpp
+      title: test/graph/lowlink/aoj-grl-Articulation-Points.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/graph/lowlink/aoj-grl-Bridges.test.cpp
+      title: test/graph/lowlink/aoj-grl-Bridges.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/graph/lowlink/yosupo-Biconnected-Components.test.cpp
+      title: test/graph/lowlink/yosupo-Biconnected-Components.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/graph/lowlink/yosupo-Two-Edge-Connected-Components.test.cpp
+      title: test/graph/lowlink/yosupo-Two-Edge-Connected-Components.test.cpp
+  - name: test/graph/max-clique
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/graph/max-clique/yosupo-Maximum-Independent-Set.test.cpp
+      title: test/graph/max-clique/yosupo-Maximum-Independent-Set.test.cpp
+  - name: test/graph/strongly-connected-components
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/graph/strongly-connected-components/aoj-grl-Strongly-Connected-Components.test.cpp
+      title: test/graph/strongly-connected-components/aoj-grl-Strongly-Connected-Components.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/graph/strongly-connected-components/yosupo-Strongly-Connected-Components.test.cpp
+      title: test/graph/strongly-connected-components/yosupo-Strongly-Connected-Components.test.cpp
+  - name: test/math/binary-gcd
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/math/binary-gcd/aoj-ntl-Least-Common-Multiple.test.cpp
+      title: test/math/binary-gcd/aoj-ntl-Least-Common-Multiple.test.cpp
+  - name: test/math/discrete-log
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/math/discrete-log/yosupo-Discrete-Logarithm.test.cpp
+      title: test/math/discrete-log/yosupo-Discrete-Logarithm.test.cpp
+  - name: test/math/factorize
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/math/factorize/aoj-ntl-Prime-Factorize.test.cpp
+      title: test/math/factorize/aoj-ntl-Prime-Factorize.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/math/factorize/yosupo-Factorize.test.cpp
+      title: test/math/factorize/yosupo-Factorize.test.cpp
+  - name: test/math/floor-sum
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/math/floor-sum/yosupo-Sum-of-Floor-of-Linear.test.cpp
+      title: test/math/floor-sum/yosupo-Sum-of-Floor-of-Linear.test.cpp
+  - name: test/math/integer-div
+    pages:
+    - icon: ':x:'
+      path: test/math/integer-div/unit-test-integer-div.test.cpp
+      title: test/math/integer-div/unit-test-integer-div.test.cpp
+  - name: test/math/is-prime
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/math/is-prime/yosupo-Primality-Test.test.cpp
+      title: test/math/is-prime/yosupo-Primality-Test.test.cpp
+  - name: test/math/two-sat
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/math/two-sat/yosupo-2-Sat.test.cpp
+      title: test/math/two-sat/yosupo-2-Sat.test.cpp
+  - name: test/math/xor-basis
+    pages:
+    - icon: ':x:'
+      path: test/math/xor-basis/unit-test-xor-basis.test.cpp
+      title: test/math/xor-basis/unit-test-xor-basis.test.cpp
+  - name: test/matrix/matrix
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/matrix/matrix/yosupo-Determinant-of-Matrix.test.cpp
+      title: test/matrix/matrix/yosupo-Determinant-of-Matrix.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/matrix/matrix/yosupo-Matrix-Product.test.cpp
+      title: test/matrix/matrix/yosupo-Matrix-Product.test.cpp
+  - name: test/misc/fastio
+    pages:
+    - icon: ':x:'
+      path: test/misc/fastio/yosupo-Many-A+B-128-bit.test.cpp
+      title: test/misc/fastio/yosupo-Many-A+B-128-bit.test.cpp
+  - name: test/modint/modint
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/modint/modint/aoj-ntl-Power.test.cpp
+      title: test/modint/modint/aoj-ntl-Power.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/modint/modint/yosupo-Sqrt-Mod.test.cpp
+      title: test/modint/modint/yosupo-Sqrt-Mod.test.cpp
+  - name: test/string/kmp
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/string/kmp/aoj-alds1-String-Search.test.cpp
+      title: test/string/kmp/aoj-alds1-String-Search.test.cpp
+  - name: test/string/suffix-array
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/string/suffix-array/yosupo-Number-of-Substrings.test.cpp
+      title: test/string/suffix-array/yosupo-Number-of-Substrings.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/string/suffix-array/yosupo-Suffix-Array.test.cpp
+      title: test/string/suffix-array/yosupo-Suffix-Array.test.cpp
+  - name: test/string/z-algorithm
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/string/z-algorithm/yosupo-Z-Algorithm.test.cpp
+      title: test/string/z-algorithm/yosupo-Z-Algorithm.test.cpp
+  - name: test/tree/heavy-light-decomposition
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/tree/heavy-light-decomposition/aoj-grl-Lowest-Common-Ancestor.test.cpp
+      title: test/tree/heavy-light-decomposition/aoj-grl-Lowest-Common-Ancestor.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/tree/heavy-light-decomposition/aoj-grl-Range-Query-on-a-Tree-II.test.cpp
+      title: test/tree/heavy-light-decomposition/aoj-grl-Range-Query-on-a-Tree-II.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/tree/heavy-light-decomposition/aoj-grl-Range-Query-on-a-Tree.test.cpp
+      title: test/tree/heavy-light-decomposition/aoj-grl-Range-Query-on-a-Tree.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/tree/heavy-light-decomposition/yosupo-Jump-on-Tree.test.cpp
+      title: test/tree/heavy-light-decomposition/yosupo-Jump-on-Tree.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/tree/heavy-light-decomposition/yosupo-Lowest-Common-Ancestor.test.cpp
+      title: test/tree/heavy-light-decomposition/yosupo-Lowest-Common-Ancestor.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/tree/heavy-light-decomposition/yosupo-Vertex-Add-Path-Sum.test.cpp
+      title: test/tree/heavy-light-decomposition/yosupo-Vertex-Add-Path-Sum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/tree/heavy-light-decomposition/yosupo-Vertex-Add-Subtree-Sum.test.cpp
+      title: test/tree/heavy-light-decomposition/yosupo-Vertex-Add-Subtree-Sum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/tree/heavy-light-decomposition/yosupo-Vertex-Set-Path-Composite.test.cpp
+      title: test/tree/heavy-light-decomposition/yosupo-Vertex-Set-Path-Composite.test.cpp
 layout: toppage
 ---
 [![Penguin07](https://img.shields.io/endpoint?url=https%3A%2F%2Fatcoder-badges.now.sh%2Fapi%2Fatcoder%2Fjson%2FPenguin07)](https://atcoder.jp/users/Penguin07)

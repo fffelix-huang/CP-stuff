@@ -4,17 +4,17 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/aoj/grl/Articulation-Points.test.cpp
-    title: test/aoj/grl/Articulation-Points.test.cpp
+    path: test/graph/lowlink/aoj-grl-Articulation-Points.test.cpp
+    title: test/graph/lowlink/aoj-grl-Articulation-Points.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/aoj/grl/Bridges.test.cpp
-    title: test/aoj/grl/Bridges.test.cpp
+    path: test/graph/lowlink/aoj-grl-Bridges.test.cpp
+    title: test/graph/lowlink/aoj-grl-Bridges.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/Graph/Biconnected-Components.test.cpp
-    title: test/yosupo/Graph/Biconnected-Components.test.cpp
+    path: test/graph/lowlink/yosupo-Biconnected-Components.test.cpp
+    title: test/graph/lowlink/yosupo-Biconnected-Components.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/Graph/Two-Edge-Connected-Components.test.cpp
-    title: test/yosupo/Graph/Two-Edge-Connected-Components.test.cpp
+    path: test/graph/lowlink/yosupo-Two-Edge-Connected-Components.test.cpp
+    title: test/graph/lowlink/yosupo-Two-Edge-Connected-Components.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -128,10 +128,10 @@ data:
   timestamp: '2023-05-14 18:31:09+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/Graph/Two-Edge-Connected-Components.test.cpp
-  - test/yosupo/Graph/Biconnected-Components.test.cpp
-  - test/aoj/grl/Articulation-Points.test.cpp
-  - test/aoj/grl/Bridges.test.cpp
+  - test/graph/lowlink/yosupo-Two-Edge-Connected-Components.test.cpp
+  - test/graph/lowlink/aoj-grl-Articulation-Points.test.cpp
+  - test/graph/lowlink/yosupo-Biconnected-Components.test.cpp
+  - test/graph/lowlink/aoj-grl-Bridges.test.cpp
 documentation_of: library/graph/lowlink.hpp
 layout: document
 redirect_from:

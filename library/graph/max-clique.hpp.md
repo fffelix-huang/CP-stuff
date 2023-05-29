@@ -4,8 +4,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/Graph/Maximum-Independent-Set.test.cpp
-    title: test/yosupo/Graph/Maximum-Independent-Set.test.cpp
+    path: test/graph/max-clique/yosupo-Maximum-Independent-Set.test.cpp
+    title: test/graph/max-clique/yosupo-Maximum-Independent-Set.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -74,7 +74,7 @@ data:
   timestamp: '2023-05-26 16:40:39+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/Graph/Maximum-Independent-Set.test.cpp
+  - test/graph/max-clique/yosupo-Maximum-Independent-Set.test.cpp
 documentation_of: library/graph/max-clique.hpp
 layout: document
 redirect_from:

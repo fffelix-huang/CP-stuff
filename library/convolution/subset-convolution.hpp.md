@@ -7,14 +7,14 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/Convolution/Bitwise-And-Convolution.test.cpp
-    title: test/yosupo/Convolution/Bitwise-And-Convolution.test.cpp
+    path: test/convolution/subset-convolution/yosupo-Bitwise-And-Convolution.test.cpp
+    title: test/convolution/subset-convolution/yosupo-Bitwise-And-Convolution.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/Convolution/Bitwise-Xor-Convolution.test.cpp
-    title: test/yosupo/Convolution/Bitwise-Xor-Convolution.test.cpp
+    path: test/convolution/subset-convolution/yosupo-Bitwise-Xor-Convolution.test.cpp
+    title: test/convolution/subset-convolution/yosupo-Bitwise-Xor-Convolution.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/Convolution/Subset-Convolution.test.cpp
-    title: test/yosupo/Convolution/Subset-Convolution.test.cpp
+    path: test/convolution/subset-convolution/yosupo-Subset-Convolution.test.cpp
+    title: test/convolution/subset-convolution/yosupo-Subset-Convolution.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -140,9 +140,9 @@ data:
   timestamp: '2023-05-28 03:49:52+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/Convolution/Bitwise-And-Convolution.test.cpp
-  - test/yosupo/Convolution/Bitwise-Xor-Convolution.test.cpp
-  - test/yosupo/Convolution/Subset-Convolution.test.cpp
+  - test/convolution/subset-convolution/yosupo-Subset-Convolution.test.cpp
+  - test/convolution/subset-convolution/yosupo-Bitwise-And-Convolution.test.cpp
+  - test/convolution/subset-convolution/yosupo-Bitwise-Xor-Convolution.test.cpp
 documentation_of: library/convolution/subset-convolution.hpp
 layout: document
 redirect_from:

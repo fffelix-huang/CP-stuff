@@ -4,8 +4,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/aoj/grl/Minimum-Cost-Flow.test.cpp
-    title: test/aoj/grl/Minimum-Cost-Flow.test.cpp
+    path: test/flow/mincostflow/aoj-grl-Minimum-Cost-Flow.test.cpp
+    title: test/flow/mincostflow/aoj-grl-Minimum-Cost-Flow.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -81,7 +81,7 @@ data:
   timestamp: '2023-05-19 02:19:53+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/grl/Minimum-Cost-Flow.test.cpp
+  - test/flow/mincostflow/aoj-grl-Minimum-Cost-Flow.test.cpp
 documentation_of: library/flow/mincostflow.hpp
 layout: document
 redirect_from:

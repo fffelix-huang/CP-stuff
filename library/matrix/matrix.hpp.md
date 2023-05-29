@@ -4,11 +4,11 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/Matrix/Determinant-of-Matrix.test.cpp
-    title: test/yosupo/Matrix/Determinant-of-Matrix.test.cpp
+    path: test/matrix/matrix/yosupo-Determinant-of-Matrix.test.cpp
+    title: test/matrix/matrix/yosupo-Determinant-of-Matrix.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/Matrix/Matrix-Product.test.cpp
-    title: test/yosupo/Matrix/Matrix-Product.test.cpp
+    path: test/matrix/matrix/yosupo-Matrix-Product.test.cpp
+    title: test/matrix/matrix/yosupo-Matrix-Product.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -112,8 +112,8 @@ data:
   timestamp: '2023-04-22 00:13:18+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/Matrix/Matrix-Product.test.cpp
-  - test/yosupo/Matrix/Determinant-of-Matrix.test.cpp
+  - test/matrix/matrix/yosupo-Matrix-Product.test.cpp
+  - test/matrix/matrix/yosupo-Determinant-of-Matrix.test.cpp
 documentation_of: library/matrix/matrix.hpp
 layout: document
 redirect_from:

@@ -10,17 +10,17 @@ data:
     title: "Integer Factorization (Pollard Rho \u8CEA\u56E0\u6578\u5206\u89E3)"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/aoj/ntl/Prime-Factorize.test.cpp
-    title: test/aoj/ntl/Prime-Factorize.test.cpp
+    path: test/data-structure/lazy-treap/yosupo-Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
+    title: test/data-structure/lazy-treap/yosupo-Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/Data-Structure/Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
-    title: test/yosupo/Data-Structure/Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
+    path: test/data-structure/lazy-treap/yosupo-Range-Reverse-Range-Sum.test.cpp
+    title: test/data-structure/lazy-treap/yosupo-Range-Reverse-Range-Sum.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/Data-Structure/Range-Reverse-Range-Sum.test.cpp
-    title: test/yosupo/Data-Structure/Range-Reverse-Range-Sum.test.cpp
+    path: test/math/factorize/aoj-ntl-Prime-Factorize.test.cpp
+    title: test/math/factorize/aoj-ntl-Prime-Factorize.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/Math/Factorize.test.cpp
-    title: test/yosupo/Math/Factorize.test.cpp
+    path: test/math/factorize/yosupo-Factorize.test.cpp
+    title: test/math/factorize/yosupo-Factorize.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -44,10 +44,10 @@ data:
   timestamp: '2023-04-16 16:01:15+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/Data-Structure/Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
-  - test/yosupo/Data-Structure/Range-Reverse-Range-Sum.test.cpp
-  - test/yosupo/Math/Factorize.test.cpp
-  - test/aoj/ntl/Prime-Factorize.test.cpp
+  - test/math/factorize/aoj-ntl-Prime-Factorize.test.cpp
+  - test/math/factorize/yosupo-Factorize.test.cpp
+  - test/data-structure/lazy-treap/yosupo-Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
+  - test/data-structure/lazy-treap/yosupo-Range-Reverse-Range-Sum.test.cpp
 documentation_of: library/random/rng.hpp
 layout: document
 redirect_from:

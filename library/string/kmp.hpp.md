@@ -4,8 +4,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/aoj/alds1/String-Search.test.cpp
-    title: test/aoj/alds1/String-Search.test.cpp
+    path: test/string/kmp/aoj-alds1-String-Search.test.cpp
+    title: test/string/kmp/aoj-alds1-String-Search.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -35,7 +35,7 @@ data:
   timestamp: '2023-05-19 02:34:35+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/alds1/String-Search.test.cpp
+  - test/string/kmp/aoj-alds1-String-Search.test.cpp
 documentation_of: library/string/kmp.hpp
 layout: document
 redirect_from:

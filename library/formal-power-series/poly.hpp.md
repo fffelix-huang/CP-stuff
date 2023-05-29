@@ -25,32 +25,32 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/Math/Partition-Function.test.cpp
-    title: test/yosupo/Math/Partition-Function.test.cpp
+    path: test/formal-power-series/poly/yosupo-Exp-of-Formal-Power-Series.test.cpp
+    title: test/formal-power-series/poly/yosupo-Exp-of-Formal-Power-Series.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/Polynomial/Exp-of-Formal-Power-Series.test.cpp
-    title: test/yosupo/Polynomial/Exp-of-Formal-Power-Series.test.cpp
+    path: test/formal-power-series/poly/yosupo-Inv-of-Formal-Power-Series.test.cpp
+    title: test/formal-power-series/poly/yosupo-Inv-of-Formal-Power-Series.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/Polynomial/Inv-of-Formal-Power-Series.test.cpp
-    title: test/yosupo/Polynomial/Inv-of-Formal-Power-Series.test.cpp
+    path: test/formal-power-series/poly/yosupo-Log-of-Formal-Power-Series.test.cpp
+    title: test/formal-power-series/poly/yosupo-Log-of-Formal-Power-Series.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/Polynomial/Log-of-Formal-Power-Series.test.cpp
-    title: test/yosupo/Polynomial/Log-of-Formal-Power-Series.test.cpp
+    path: test/formal-power-series/poly/yosupo-Multipoint-Evaluation.test.cpp
+    title: test/formal-power-series/poly/yosupo-Multipoint-Evaluation.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/Polynomial/Multipoint-Evaluation.test.cpp
-    title: test/yosupo/Polynomial/Multipoint-Evaluation.test.cpp
+    path: test/formal-power-series/poly/yosupo-Polynomial-Taylor-Shift.test.cpp
+    title: test/formal-power-series/poly/yosupo-Polynomial-Taylor-Shift.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/Polynomial/Polynomial-Taylor-Shift.test.cpp
-    title: test/yosupo/Polynomial/Polynomial-Taylor-Shift.test.cpp
+    path: test/formal-power-series/poly/yosupo-Pow-of-Formal-Power-Series.test.cpp
+    title: test/formal-power-series/poly/yosupo-Pow-of-Formal-Power-Series.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/Polynomial/Pow-of-Formal-Power-Series.test.cpp
-    title: test/yosupo/Polynomial/Pow-of-Formal-Power-Series.test.cpp
+    path: test/formal-power-series/poly/yosupo-Product-of-Polynomial-Sequence.test.cpp
+    title: test/formal-power-series/poly/yosupo-Product-of-Polynomial-Sequence.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/Polynomial/Product-of-Polynomial-Sequence.test.cpp
-    title: test/yosupo/Polynomial/Product-of-Polynomial-Sequence.test.cpp
+    path: test/formal-power-series/poly/yosupo-Sqrt-of-Formal-Power-Series.test.cpp
+    title: test/formal-power-series/poly/yosupo-Sqrt-of-Formal-Power-Series.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/Polynomial/Sqrt-of-Formal-Power-Series.test.cpp
-    title: test/yosupo/Polynomial/Sqrt-of-Formal-Power-Series.test.cpp
+    path: test/formal-power-series/series/yosupo-Partition-Function.test.cpp
+    title: test/formal-power-series/series/yosupo-Partition-Function.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -539,15 +539,15 @@ data:
   timestamp: '2023-05-28 03:49:52+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/Math/Partition-Function.test.cpp
-  - test/yosupo/Polynomial/Exp-of-Formal-Power-Series.test.cpp
-  - test/yosupo/Polynomial/Sqrt-of-Formal-Power-Series.test.cpp
-  - test/yosupo/Polynomial/Product-of-Polynomial-Sequence.test.cpp
-  - test/yosupo/Polynomial/Multipoint-Evaluation.test.cpp
-  - test/yosupo/Polynomial/Polynomial-Taylor-Shift.test.cpp
-  - test/yosupo/Polynomial/Log-of-Formal-Power-Series.test.cpp
-  - test/yosupo/Polynomial/Inv-of-Formal-Power-Series.test.cpp
-  - test/yosupo/Polynomial/Pow-of-Formal-Power-Series.test.cpp
+  - test/formal-power-series/poly/yosupo-Product-of-Polynomial-Sequence.test.cpp
+  - test/formal-power-series/poly/yosupo-Pow-of-Formal-Power-Series.test.cpp
+  - test/formal-power-series/poly/yosupo-Sqrt-of-Formal-Power-Series.test.cpp
+  - test/formal-power-series/poly/yosupo-Multipoint-Evaluation.test.cpp
+  - test/formal-power-series/poly/yosupo-Polynomial-Taylor-Shift.test.cpp
+  - test/formal-power-series/poly/yosupo-Inv-of-Formal-Power-Series.test.cpp
+  - test/formal-power-series/poly/yosupo-Exp-of-Formal-Power-Series.test.cpp
+  - test/formal-power-series/poly/yosupo-Log-of-Formal-Power-Series.test.cpp
+  - test/formal-power-series/series/yosupo-Partition-Function.test.cpp
 documentation_of: library/formal-power-series/poly.hpp
 layout: document
 redirect_from:

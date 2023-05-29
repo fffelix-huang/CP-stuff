@@ -13,11 +13,11 @@ data:
     title: library/geometry/point-in-convex-hull.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/aoj/cgl/Counter-Clockwise.test.cpp
-    title: test/aoj/cgl/Counter-Clockwise.test.cpp
+    path: test/geometry/geometry/aoj-cgl-Counter-Clockwise.test.cpp
+    title: test/geometry/geometry/aoj-cgl-Counter-Clockwise.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/aoj/cgl/Intersection.test.cpp
-    title: test/aoj/cgl/Intersection.test.cpp
+    path: test/geometry/geometry/aoj-cgl-Intersection.test.cpp
+    title: test/geometry/geometry/aoj-cgl-Intersection.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -110,8 +110,8 @@ data:
   timestamp: '2023-05-26 16:40:39+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/cgl/Counter-Clockwise.test.cpp
-  - test/aoj/cgl/Intersection.test.cpp
+  - test/geometry/geometry/aoj-cgl-Counter-Clockwise.test.cpp
+  - test/geometry/geometry/aoj-cgl-Intersection.test.cpp
 documentation_of: library/geometry/geometry.hpp
 layout: document
 redirect_from:

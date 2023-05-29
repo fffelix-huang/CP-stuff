@@ -4,8 +4,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/Math/Sum-of-Floor-of-Linear.test.cpp
-    title: test/yosupo/Math/Sum-of-Floor-of-Linear.test.cpp
+    path: test/math/floor-sum/yosupo-Sum-of-Floor-of-Linear.test.cpp
+    title: test/math/floor-sum/yosupo-Sum-of-Floor-of-Linear.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -34,7 +34,7 @@ data:
   timestamp: '2023-04-14 23:04:57+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/Math/Sum-of-Floor-of-Linear.test.cpp
+  - test/math/floor-sum/yosupo-Sum-of-Floor-of-Linear.test.cpp
 documentation_of: library/math/floor-sum.hpp
 layout: document
 title: Sum of floor linear ($\sum_{i = 0}^{n - 1} \lfloor \frac{ai + b}{m} \rfloor$)

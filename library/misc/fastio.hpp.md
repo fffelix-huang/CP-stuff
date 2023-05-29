@@ -7,11 +7,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/Convolution/Convolution-Large.test.cpp
-    title: test/yosupo/Convolution/Convolution-Large.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/Many-A+B-128-bit.test.cpp
-    title: test/yosupo/Many-A+B-128-bit.test.cpp
+    path: test/convolution/ntt/yosupo-Convolution-Large.test.cpp
+    title: test/convolution/ntt/yosupo-Convolution-Large.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -165,8 +162,7 @@ data:
   timestamp: '2023-05-28 03:49:52+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/Convolution/Convolution-Large.test.cpp
-  - test/yosupo/Many-A+B-128-bit.test.cpp
+  - test/convolution/ntt/yosupo-Convolution-Large.test.cpp
 documentation_of: library/misc/fastio.hpp
 layout: document
 redirect_from:

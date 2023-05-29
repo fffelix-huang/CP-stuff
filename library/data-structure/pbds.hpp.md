@@ -10,17 +10,17 @@ data:
     title: "Discrete Log (\u96E2\u6563\u5C0D\u6578 $a^x \\equiv b \\pmod m$)"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/Data-Structure/Associative-Array.test.cpp
-    title: test/yosupo/Data-Structure/Associative-Array.test.cpp
+    path: test/data-structure/pbds/yosupo-Associative-Array.test.cpp
+    title: test/data-structure/pbds/yosupo-Associative-Array.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/Data-Structure/Static-Range-Frequency.test.cpp
-    title: test/yosupo/Data-Structure/Static-Range-Frequency.test.cpp
+    path: test/data-structure/pbds/yosupo-Static-Range-Frequency.test.cpp
+    title: test/data-structure/pbds/yosupo-Static-Range-Frequency.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/Data-Structure/Static-Range-Sum.test.cpp
-    title: test/yosupo/Data-Structure/Static-Range-Sum.test.cpp
+    path: test/data-structure/pbds/yosupo-Static-Range-Sum.test.cpp
+    title: test/data-structure/pbds/yosupo-Static-Range-Sum.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/Math/Discrete-Logarithm.test.cpp
-    title: test/yosupo/Math/Discrete-Logarithm.test.cpp
+    path: test/math/discrete-log/yosupo-Discrete-Logarithm.test.cpp
+    title: test/math/discrete-log/yosupo-Discrete-Logarithm.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -78,10 +78,10 @@ data:
   timestamp: '2023-05-28 03:49:52+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/Data-Structure/Associative-Array.test.cpp
-  - test/yosupo/Data-Structure/Static-Range-Frequency.test.cpp
-  - test/yosupo/Data-Structure/Static-Range-Sum.test.cpp
-  - test/yosupo/Math/Discrete-Logarithm.test.cpp
+  - test/math/discrete-log/yosupo-Discrete-Logarithm.test.cpp
+  - test/data-structure/pbds/yosupo-Associative-Array.test.cpp
+  - test/data-structure/pbds/yosupo-Static-Range-Sum.test.cpp
+  - test/data-structure/pbds/yosupo-Static-Range-Frequency.test.cpp
 documentation_of: library/data-structure/pbds.hpp
 layout: document
 redirect_from:

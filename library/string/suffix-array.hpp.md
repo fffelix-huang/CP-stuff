@@ -4,11 +4,11 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/String/Number-of-Substrings.test.cpp
-    title: test/yosupo/String/Number-of-Substrings.test.cpp
+    path: test/string/suffix-array/yosupo-Number-of-Substrings.test.cpp
+    title: test/string/suffix-array/yosupo-Number-of-Substrings.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/String/Suffix-Array.test.cpp
-    title: test/yosupo/String/Suffix-Array.test.cpp
+    path: test/string/suffix-array/yosupo-Suffix-Array.test.cpp
+    title: test/string/suffix-array/yosupo-Suffix-Array.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -167,8 +167,8 @@ data:
   timestamp: '2023-05-21 00:28:23+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/String/Suffix-Array.test.cpp
-  - test/yosupo/String/Number-of-Substrings.test.cpp
+  - test/string/suffix-array/yosupo-Suffix-Array.test.cpp
+  - test/string/suffix-array/yosupo-Number-of-Substrings.test.cpp
 documentation_of: library/string/suffix-array.hpp
 layout: document
 title: Suffix Array

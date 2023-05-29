@@ -4,11 +4,11 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/aoj/dsl/Disjoint-Set-Union-Find-Tree.test.cpp
-    title: test/aoj/dsl/Disjoint-Set-Union-Find-Tree.test.cpp
+    path: test/data-structure/dsu/aoj-dsl-Disjoint-Set-Union-Find-Tree.test.cpp
+    title: test/data-structure/dsu/aoj-dsl-Disjoint-Set-Union-Find-Tree.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/Data-Structure/Unionfind.test.cpp
-    title: test/yosupo/Data-Structure/Unionfind.test.cpp
+    path: test/data-structure/dsu/yosupo-Unionfind.test.cpp
+    title: test/data-structure/dsu/yosupo-Unionfind.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -51,8 +51,8 @@ data:
   timestamp: '2023-05-22 01:25:58+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/Data-Structure/Unionfind.test.cpp
-  - test/aoj/dsl/Disjoint-Set-Union-Find-Tree.test.cpp
+  - test/data-structure/dsu/aoj-dsl-Disjoint-Set-Union-Find-Tree.test.cpp
+  - test/data-structure/dsu/yosupo-Unionfind.test.cpp
 documentation_of: library/data-structure/dsu.hpp
 layout: document
 redirect_from:

@@ -7,8 +7,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/aoj/cgl/Convex-Hull.test.cpp
-    title: test/aoj/cgl/Convex-Hull.test.cpp
+    path: test/geometry/convex-hull/aoj-cgl-Convex-Hull.test.cpp
+    title: test/geometry/convex-hull/aoj-cgl-Convex-Hull.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -78,7 +78,7 @@ data:
   timestamp: '2023-05-26 16:40:39+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/cgl/Convex-Hull.test.cpp
+  - test/geometry/convex-hull/aoj-cgl-Convex-Hull.test.cpp
 documentation_of: library/geometry/convex-hull.hpp
 layout: document
 redirect_from:

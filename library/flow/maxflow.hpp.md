@@ -4,8 +4,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/aoj/grl/Maximum-Flow.test.cpp
-    title: test/aoj/grl/Maximum-Flow.test.cpp
+    path: test/flow/maxflow/aoj-grl-Maximum-Flow.test.cpp
+    title: test/flow/maxflow/aoj-grl-Maximum-Flow.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -110,7 +110,7 @@ data:
   timestamp: '2023-05-19 01:26:35+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/grl/Maximum-Flow.test.cpp
+  - test/flow/maxflow/aoj-grl-Maximum-Flow.test.cpp
 documentation_of: library/flow/maxflow.hpp
 layout: document
 redirect_from:
