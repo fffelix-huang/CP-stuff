@@ -1,26 +1,26 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':heavy_check_mark:'
+    path: library/math/integer-div.hpp
+    title: Integer division ($\lfloor \frac{a}{b} \rfloor \lceil \frac{a}{b} \rceil$)
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
-  attributes: {}
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.11.3/x64/lib/python3.11/site-packages/onlinejudge_verify/documentation/build.py\"\
-    , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n          \
-    \         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\
-    \  File \"/opt/hostedtoolcache/Python/3.11.3/x64/lib/python3.11/site-packages/onlinejudge_verify/languages/cplusplus.py\"\
-    , line 187, in bundle\n    bundler.update(path)\n  File \"/opt/hostedtoolcache/Python/3.11.3/x64/lib/python3.11/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
-    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
-    \                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n \
-    \ File \"/opt/hostedtoolcache/Python/3.11.3/x64/lib/python3.11/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
-    , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
-    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: ../../library/math/integer-div.hpp:\
-    \ line -1: no such header\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\" // dummy\n\n#include\
-    \ <iostream>\n#include <cassert>\n#include \"../../library/math/integer-div.hpp\"\
+  _verificationStatusIcon: ':heavy_check_mark:'
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/aplusb
+    links:
+    - https://judge.yosupo.jp/problem/aplusb
+  bundledCode: "#line 1 \"test/math/integer-div/unit-test-integer-div.test.cpp\"\n\
+    #define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\" // dummy\n\n#include\
+    \ <iostream>\n#include <cassert>\n#line 2 \"library/math/integer-div.hpp\"\n\r\
+    \nnamespace felix {\r\n\r\ntemplate<class T>\r\nT floor_div(T a, T b) {\r\n\t\
+    return a / b - ((a ^ b) < 0 && a % b != 0);\r\n}\r\n\r\ntemplate<class T>\r\n\
+    T ceil_div(T a, T b) {\r\n\treturn a / b + ((a ^ b) > 0 && a % b != 0);\r\n}\r\
+    \n\r\n} // namespace felix\r\n#line 6 \"test/math/integer-div/unit-test-integer-div.test.cpp\"\
     \nusing namespace std;\nusing namespace felix;\n\ntemplate<class T>\npair<T, T>\
     \ TEST(T a, T b) {\n\treturn make_pair(floor_div(a, b), ceil_div(a, b));\n}\n\n\
     int main() {\n\tassert(TEST(-2, 4) == make_pair(-1, 0));\n\tassert(TEST(4, -3)\
@@ -30,12 +30,24 @@ data:
     \ 5) == make_pair(-4, -4));\n\tassert(TEST(0, 3) == make_pair(0, 0));\n\tassert(TEST(0,\
     \ -7) == make_pair(0, 0));\n\n\tint a, b;\n\tcin >> a >> b;\n\tcout << a + b <<\
     \ \"\\n\";\n\treturn 0;\n}\n"
-  dependsOn: []
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\" // dummy\n\n#include\
+    \ <iostream>\n#include <cassert>\n#include \"../../../library/math/integer-div.hpp\"\
+    \nusing namespace std;\nusing namespace felix;\n\ntemplate<class T>\npair<T, T>\
+    \ TEST(T a, T b) {\n\treturn make_pair(floor_div(a, b), ceil_div(a, b));\n}\n\n\
+    int main() {\n\tassert(TEST(-2, 4) == make_pair(-1, 0));\n\tassert(TEST(4, -3)\
+    \ == make_pair(-2, -1));\n\tassert(TEST(10, 3) == make_pair(3, 4));\n\tassert(TEST(-10,\
+    \ -3) == make_pair(3, 4));\n\tassert(TEST(4, -4) == make_pair(-1, -1));\n\tassert(TEST(-8,\
+    \ 2) == make_pair(-4, -4));\n\tassert(TEST(12, 3) == make_pair(4, 4));\n\tassert(TEST(-20,\
+    \ 5) == make_pair(-4, -4));\n\tassert(TEST(0, 3) == make_pair(0, 0));\n\tassert(TEST(0,\
+    \ -7) == make_pair(0, 0));\n\n\tint a, b;\n\tcin >> a >> b;\n\tcout << a + b <<\
+    \ \"\\n\";\n\treturn 0;\n}\n"
+  dependsOn:
+  - library/math/integer-div.hpp
   isVerificationFile: true
   path: test/math/integer-div/unit-test-integer-div.test.cpp
   requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-05-29 15:49:06+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/math/integer-div/unit-test-integer-div.test.cpp
 layout: document

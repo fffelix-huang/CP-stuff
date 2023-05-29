@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: library/random/random.hpp
     title: random_t
   - icon: ':heavy_check_mark:'

@@ -103,6 +103,9 @@ data:
     path: test/matrix/matrix/yosupo-Matrix-Product.test.cpp
     title: test/matrix/matrix/yosupo-Matrix-Product.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/misc/fastio/yosupo-Many-A+B-128-bit.test.cpp
+    title: test/misc/fastio/yosupo-Many-A+B-128-bit.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/modint/modint/aoj-ntl-Power.test.cpp
     title: test/modint/modint/aoj-ntl-Power.test.cpp
   - icon: ':heavy_check_mark:'
@@ -206,6 +209,7 @@ data:
   timestamp: '2023-05-28 03:49:52+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/misc/fastio/yosupo-Many-A+B-128-bit.test.cpp
   - test/tree/heavy-light-decomposition/yosupo-Vertex-Set-Path-Composite.test.cpp
   - test/convolution/ntt/yosupo-Convolution-Large.test.cpp
   - test/convolution/ntt/yosupo-Convolution.test.cpp

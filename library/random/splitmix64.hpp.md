@@ -11,7 +11,7 @@ data:
   - icon: ':warning:'
     path: library/random/graph-generator.hpp
     title: Random Graph Generator
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: library/random/random.hpp
     title: random_t
   _extendedVerifiedWith:
@@ -27,6 +27,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/math/discrete-log/yosupo-Discrete-Logarithm.test.cpp
     title: test/math/discrete-log/yosupo-Discrete-Logarithm.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/math/xor-basis/unit-test-xor-basis.test.cpp
+    title: test/math/xor-basis/unit-test-xor-basis.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -63,6 +66,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/math/discrete-log/yosupo-Discrete-Logarithm.test.cpp
+  - test/math/xor-basis/unit-test-xor-basis.test.cpp
   - test/data-structure/pbds/yosupo-Associative-Array.test.cpp
   - test/data-structure/pbds/yosupo-Static-Range-Sum.test.cpp
   - test/data-structure/pbds/yosupo-Static-Range-Frequency.test.cpp

@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/math/xor-basis/unit-test-xor-basis.test.cpp
+    title: test/math/xor-basis/unit-test-xor-basis.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"library/math/xor-basis.hpp\"\n#include <vector>\r\n#include\
@@ -71,8 +74,9 @@ data:
   path: library/math/xor-basis.hpp
   requiredBy: []
   timestamp: '2023-05-28 03:49:52+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/math/xor-basis/unit-test-xor-basis.test.cpp
 documentation_of: library/math/xor-basis.hpp
 layout: document
 title: "xor basis (\u7DDA\u6027\u57FA)"

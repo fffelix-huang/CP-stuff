@@ -144,7 +144,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/two-sat.hpp
       title: library/math/two-sat.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: library/math/xor-basis.hpp
       title: "xor basis (\u7DDA\u6027\u57FA)"
   - name: library/matrix
@@ -179,7 +179,7 @@ data:
     - icon: ':warning:'
       path: library/random/graph-generator.hpp
       title: Random Graph Generator
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: library/random/random.hpp
       title: random_t
     - icon: ':heavy_check_mark:'
@@ -472,7 +472,7 @@ data:
       title: test/math/floor-sum/yosupo-Sum-of-Floor-of-Linear.test.cpp
   - name: test/math/integer-div
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/math/integer-div/unit-test-integer-div.test.cpp
       title: test/math/integer-div/unit-test-integer-div.test.cpp
   - name: test/math/is-prime
@@ -487,7 +487,7 @@ data:
       title: test/math/two-sat/yosupo-2-Sat.test.cpp
   - name: test/math/xor-basis
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/math/xor-basis/unit-test-xor-basis.test.cpp
       title: test/math/xor-basis/unit-test-xor-basis.test.cpp
   - name: test/matrix/matrix
@@ -500,7 +500,7 @@ data:
       title: test/matrix/matrix/yosupo-Matrix-Product.test.cpp
   - name: test/misc/fastio
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/misc/fastio/yosupo-Many-A+B-128-bit.test.cpp
       title: test/misc/fastio/yosupo-Many-A+B-128-bit.test.cpp
   - name: test/modint/modint
