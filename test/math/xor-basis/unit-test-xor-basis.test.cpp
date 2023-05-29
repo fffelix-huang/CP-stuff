@@ -5,8 +5,8 @@
 #include <chrono>
 #include <cassert>
 #include <algorithm>
-#include "../../library/math/xor-basis.hpp"
-#include "../../library/random/random.hpp"
+#include "../../../library/math/xor-basis.hpp"
+#include "../../../library/random/random.hpp"
 using namespace std;
 using namespace felix;
 
