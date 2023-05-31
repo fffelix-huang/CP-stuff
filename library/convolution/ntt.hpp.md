@@ -289,10 +289,16 @@ data:
     \n\tmint iz = mint(sz).inv();\r\n\tfor(int i = 0; i < n + m - 1; i++) {\r\n\t\t\
     a[i] *= iz;\r\n\t}\r\n\treturn a;\r\n}\r\n\r\n} // namespace internal\r\n\r\n\
     template<class mint, internal::is_static_modint_t<mint>* = nullptr>\r\nstd::vector<mint>\
-    \ convolution(const std::vector<mint>& a, const std::vector<mint>& b) {\r\n\t\
-    int n = (int) a.size(), m = (int) b.size();\r\n\tif(n == 0 || m == 0) {\r\n\t\t\
-    return {};\r\n\t}\r\n\tint sz = 1 << std::__lg(2 * (n + m - 1) - 1);\r\n\tassert((mint::mod()\
+    \ convolution(std::vector<mint>&& a, std::vector<mint>&& b) {\r\n\tint n = (int)\
+    \ a.size(), m = (int) b.size();\r\n\tif(n == 0 || m == 0) {\r\n\t\treturn {};\r\
+    \n\t}\r\n\tint sz = 1 << std::__lg(2 * (n + m - 1) - 1);\r\n\tassert((mint::mod()\
     \ - 1) % sz == 0);\r\n\tif(std::min(n, m) < 128) {\r\n\t\treturn internal::convolution_naive(a,\
+    \ b);\r\n\t}\r\n\treturn internal::convolution_ntt(a, b);\r\n}\r\n\r\ntemplate<class\
+    \ mint, internal::is_static_modint_t<mint>* = nullptr>\r\nstd::vector<mint> convolution(const\
+    \ std::vector<mint>& a, const std::vector<mint>& b) {\r\n\tint n = (int) a.size(),\
+    \ m = (int) b.size();\r\n\tif(n == 0 || m == 0) {\r\n\t\treturn {};\r\n\t}\r\n\
+    \tint sz = 1 << std::__lg(2 * (n + m - 1) - 1);\r\n\tassert((mint::mod() - 1)\
+    \ % sz == 0);\r\n\tif(std::min(n, m) < 128) {\r\n\t\treturn internal::convolution_naive(a,\
     \ b);\r\n\t}\r\n\treturn internal::convolution_ntt(a, b);\r\n}\r\n\r\ntemplate<int\
     \ mod, class T, std::enable_if_t<internal::is_integral<T>::value>* = nullptr>\r\
     \nstd::vector<T> convolution(const std::vector<T>& a, const std::vector<T>& b)\
@@ -313,27 +319,27 @@ data:
     \ m1;\r\n\r\n\tint n = (int) a.size(), m = (int) b.size();\r\n\tif(n == 0 || m\
     \ == 0) {\r\n\t\treturn {};\r\n\t}\r\n\tstd::vector<__uint128_t> c(n + m - 1);\r\
     \n\tif(std::min(n, m) < 128) {\r\n\t\tstd::vector<__uint128_t> a2(a.begin(), a.end());\r\
-    \n\t\tstd::vector<__uint128_t> b2(b.begin(), b.end());\r\n\t\treturn internal::convolution_naive(std::move(a2),\
-    \ std::move(b2));\r\n\t}\r\n\r\n\tstatic constexpr int MAX_AB_BIT = 24;\r\n\t\
-    static_assert(m0 % (1ULL << MAX_AB_BIT) == 1, \"m0 isn't enough to support an\
-    \ array length of 2^24.\");\r\n\tstatic_assert(m1 % (1ULL << MAX_AB_BIT) == 1,\
-    \ \"m1 isn't enough to support an array length of 2^24.\");\r\n\tstatic_assert(m2\
-    \ % (1ULL << MAX_AB_BIT) == 1, \"m2 isn't enough to support an array length of\
-    \ 2^24.\");\r\n\tassert(n + m - 1 <= (1 << MAX_AB_BIT));\r\n\r\n\tauto c0 = convolution<m0>(a,\
-    \ b);\r\n\tauto c1 = convolution<m1>(a, b);\r\n\tauto c2 = convolution<m2>(a,\
-    \ b);\r\n\tfor(int i = 0; i < n + m - 1; i++) {\r\n\t\tlong long n1 = c1[i], n2\
-    \ = c2[i];\r\n\t\tlong long x = c0[i];\r\n\t\tlong long y = (n1 + m1 - x) * r01\
-    \ % m1;\r\n\t\tlong long z = ((n2 + m2 - x) * r02r12 + (m2 - y) * r12) % m2;\r\
-    \n\t\tc[i] = x + y * w1 + __uint128_t(z) * w2;\r\n\t}\r\n\treturn c;\r\n}\r\n\r\
-    \ntemplate<class mint, internal::is_static_modint_t<mint>* = nullptr>\r\nstd::vector<mint>\
-    \ convolution_large(const std::vector<mint>& a, const std::vector<mint>& b) {\r\
-    \n\tstatic constexpr int max_size = (mint::mod() - 1) & -(mint::mod() - 1);\r\n\
-    \tstatic constexpr int half_size = max_size >> 1;\r\n\tstatic constexpr int inv_max_size\
-    \ = internal::inv_gcd(max_size, mint::mod()).second;\r\n\r\n\tconst int n = (int)\
-    \ a.size(), m = (int) b.size();\r\n\tif(n == 0 || m == 0) {\r\n\t\treturn {};\r\
-    \n\t}\r\n\tif(std::min(n, m) < 128 || n + m - 1 <= max_size) {\r\n\t\treturn internal::convolution_naive(a,\
-    \ b);\r\n\t}\r\n\tconst int dn = (n + half_size - 1) / half_size;\r\n\tconst int\
-    \ dm = (m + half_size - 1) / half_size;\r\n\tstd::vector<std::vector<mint>> as(dn),\
+    \n\t\tstd::vector<__uint128_t> b2(b.begin(), b.end());\r\n\t\treturn internal::convolution_naive(a2,\
+    \ b2);\r\n\t}\r\n\r\n\tstatic constexpr int MAX_AB_BIT = 24;\r\n\tstatic_assert(m0\
+    \ % (1ULL << MAX_AB_BIT) == 1, \"m0 isn't enough to support an array length of\
+    \ 2^24.\");\r\n\tstatic_assert(m1 % (1ULL << MAX_AB_BIT) == 1, \"m1 isn't enough\
+    \ to support an array length of 2^24.\");\r\n\tstatic_assert(m2 % (1ULL << MAX_AB_BIT)\
+    \ == 1, \"m2 isn't enough to support an array length of 2^24.\");\r\n\tassert(n\
+    \ + m - 1 <= (1 << MAX_AB_BIT));\r\n\r\n\tauto c0 = convolution<m0>(a, b);\r\n\
+    \tauto c1 = convolution<m1>(a, b);\r\n\tauto c2 = convolution<m2>(a, b);\r\n\t\
+    for(int i = 0; i < n + m - 1; i++) {\r\n\t\tlong long n1 = c1[i], n2 = c2[i];\r\
+    \n\t\tlong long x = c0[i];\r\n\t\tlong long y = (n1 + m1 - x) * r01 % m1;\r\n\t\
+    \tlong long z = ((n2 + m2 - x) * r02r12 + (m2 - y) * r12) % m2;\r\n\t\tc[i] =\
+    \ x + y * w1 + __uint128_t(z) * w2;\r\n\t}\r\n\treturn c;\r\n}\r\n\r\ntemplate<class\
+    \ mint, internal::is_static_modint_t<mint>* = nullptr>\r\nstd::vector<mint> convolution_large(const\
+    \ std::vector<mint>& a, const std::vector<mint>& b) {\r\n\tstatic constexpr int\
+    \ max_size = (mint::mod() - 1) & -(mint::mod() - 1);\r\n\tstatic constexpr int\
+    \ half_size = max_size >> 1;\r\n\tstatic constexpr int inv_max_size = internal::inv_gcd(max_size,\
+    \ mint::mod()).second;\r\n\r\n\tconst int n = (int) a.size(), m = (int) b.size();\r\
+    \n\tif(n == 0 || m == 0) {\r\n\t\treturn {};\r\n\t}\r\n\tif(std::min(n, m) < 128\
+    \ || n + m - 1 <= max_size) {\r\n\t\treturn internal::convolution_naive(a, b);\r\
+    \n\t}\r\n\tconst int dn = (n + half_size - 1) / half_size;\r\n\tconst int dm =\
+    \ (m + half_size - 1) / half_size;\r\n\tstd::vector<std::vector<mint>> as(dn),\
     \ bs(dm);\r\n\tfor(int i = 0; i < dn; ++i) {\r\n\t\tconst int offset = half_size\
     \ * i;\r\n\t\tas[i] = std::vector<mint>(a.begin() + offset, a.begin() + std::min(n,\
     \ offset + half_size));\r\n\t\tas[i].resize(max_size);\r\n\t\tinternal::NTT<mint::mod()>::NTT4(as[i]);\r\
@@ -435,10 +441,16 @@ data:
     \n\tmint iz = mint(sz).inv();\r\n\tfor(int i = 0; i < n + m - 1; i++) {\r\n\t\t\
     a[i] *= iz;\r\n\t}\r\n\treturn a;\r\n}\r\n\r\n} // namespace internal\r\n\r\n\
     template<class mint, internal::is_static_modint_t<mint>* = nullptr>\r\nstd::vector<mint>\
-    \ convolution(const std::vector<mint>& a, const std::vector<mint>& b) {\r\n\t\
-    int n = (int) a.size(), m = (int) b.size();\r\n\tif(n == 0 || m == 0) {\r\n\t\t\
-    return {};\r\n\t}\r\n\tint sz = 1 << std::__lg(2 * (n + m - 1) - 1);\r\n\tassert((mint::mod()\
+    \ convolution(std::vector<mint>&& a, std::vector<mint>&& b) {\r\n\tint n = (int)\
+    \ a.size(), m = (int) b.size();\r\n\tif(n == 0 || m == 0) {\r\n\t\treturn {};\r\
+    \n\t}\r\n\tint sz = 1 << std::__lg(2 * (n + m - 1) - 1);\r\n\tassert((mint::mod()\
     \ - 1) % sz == 0);\r\n\tif(std::min(n, m) < 128) {\r\n\t\treturn internal::convolution_naive(a,\
+    \ b);\r\n\t}\r\n\treturn internal::convolution_ntt(a, b);\r\n}\r\n\r\ntemplate<class\
+    \ mint, internal::is_static_modint_t<mint>* = nullptr>\r\nstd::vector<mint> convolution(const\
+    \ std::vector<mint>& a, const std::vector<mint>& b) {\r\n\tint n = (int) a.size(),\
+    \ m = (int) b.size();\r\n\tif(n == 0 || m == 0) {\r\n\t\treturn {};\r\n\t}\r\n\
+    \tint sz = 1 << std::__lg(2 * (n + m - 1) - 1);\r\n\tassert((mint::mod() - 1)\
+    \ % sz == 0);\r\n\tif(std::min(n, m) < 128) {\r\n\t\treturn internal::convolution_naive(a,\
     \ b);\r\n\t}\r\n\treturn internal::convolution_ntt(a, b);\r\n}\r\n\r\ntemplate<int\
     \ mod, class T, std::enable_if_t<internal::is_integral<T>::value>* = nullptr>\r\
     \nstd::vector<T> convolution(const std::vector<T>& a, const std::vector<T>& b)\
@@ -459,27 +471,27 @@ data:
     \ m1;\r\n\r\n\tint n = (int) a.size(), m = (int) b.size();\r\n\tif(n == 0 || m\
     \ == 0) {\r\n\t\treturn {};\r\n\t}\r\n\tstd::vector<__uint128_t> c(n + m - 1);\r\
     \n\tif(std::min(n, m) < 128) {\r\n\t\tstd::vector<__uint128_t> a2(a.begin(), a.end());\r\
-    \n\t\tstd::vector<__uint128_t> b2(b.begin(), b.end());\r\n\t\treturn internal::convolution_naive(std::move(a2),\
-    \ std::move(b2));\r\n\t}\r\n\r\n\tstatic constexpr int MAX_AB_BIT = 24;\r\n\t\
-    static_assert(m0 % (1ULL << MAX_AB_BIT) == 1, \"m0 isn't enough to support an\
-    \ array length of 2^24.\");\r\n\tstatic_assert(m1 % (1ULL << MAX_AB_BIT) == 1,\
-    \ \"m1 isn't enough to support an array length of 2^24.\");\r\n\tstatic_assert(m2\
-    \ % (1ULL << MAX_AB_BIT) == 1, \"m2 isn't enough to support an array length of\
-    \ 2^24.\");\r\n\tassert(n + m - 1 <= (1 << MAX_AB_BIT));\r\n\r\n\tauto c0 = convolution<m0>(a,\
-    \ b);\r\n\tauto c1 = convolution<m1>(a, b);\r\n\tauto c2 = convolution<m2>(a,\
-    \ b);\r\n\tfor(int i = 0; i < n + m - 1; i++) {\r\n\t\tlong long n1 = c1[i], n2\
-    \ = c2[i];\r\n\t\tlong long x = c0[i];\r\n\t\tlong long y = (n1 + m1 - x) * r01\
-    \ % m1;\r\n\t\tlong long z = ((n2 + m2 - x) * r02r12 + (m2 - y) * r12) % m2;\r\
-    \n\t\tc[i] = x + y * w1 + __uint128_t(z) * w2;\r\n\t}\r\n\treturn c;\r\n}\r\n\r\
-    \ntemplate<class mint, internal::is_static_modint_t<mint>* = nullptr>\r\nstd::vector<mint>\
-    \ convolution_large(const std::vector<mint>& a, const std::vector<mint>& b) {\r\
-    \n\tstatic constexpr int max_size = (mint::mod() - 1) & -(mint::mod() - 1);\r\n\
-    \tstatic constexpr int half_size = max_size >> 1;\r\n\tstatic constexpr int inv_max_size\
-    \ = internal::inv_gcd(max_size, mint::mod()).second;\r\n\r\n\tconst int n = (int)\
-    \ a.size(), m = (int) b.size();\r\n\tif(n == 0 || m == 0) {\r\n\t\treturn {};\r\
-    \n\t}\r\n\tif(std::min(n, m) < 128 || n + m - 1 <= max_size) {\r\n\t\treturn internal::convolution_naive(a,\
-    \ b);\r\n\t}\r\n\tconst int dn = (n + half_size - 1) / half_size;\r\n\tconst int\
-    \ dm = (m + half_size - 1) / half_size;\r\n\tstd::vector<std::vector<mint>> as(dn),\
+    \n\t\tstd::vector<__uint128_t> b2(b.begin(), b.end());\r\n\t\treturn internal::convolution_naive(a2,\
+    \ b2);\r\n\t}\r\n\r\n\tstatic constexpr int MAX_AB_BIT = 24;\r\n\tstatic_assert(m0\
+    \ % (1ULL << MAX_AB_BIT) == 1, \"m0 isn't enough to support an array length of\
+    \ 2^24.\");\r\n\tstatic_assert(m1 % (1ULL << MAX_AB_BIT) == 1, \"m1 isn't enough\
+    \ to support an array length of 2^24.\");\r\n\tstatic_assert(m2 % (1ULL << MAX_AB_BIT)\
+    \ == 1, \"m2 isn't enough to support an array length of 2^24.\");\r\n\tassert(n\
+    \ + m - 1 <= (1 << MAX_AB_BIT));\r\n\r\n\tauto c0 = convolution<m0>(a, b);\r\n\
+    \tauto c1 = convolution<m1>(a, b);\r\n\tauto c2 = convolution<m2>(a, b);\r\n\t\
+    for(int i = 0; i < n + m - 1; i++) {\r\n\t\tlong long n1 = c1[i], n2 = c2[i];\r\
+    \n\t\tlong long x = c0[i];\r\n\t\tlong long y = (n1 + m1 - x) * r01 % m1;\r\n\t\
+    \tlong long z = ((n2 + m2 - x) * r02r12 + (m2 - y) * r12) % m2;\r\n\t\tc[i] =\
+    \ x + y * w1 + __uint128_t(z) * w2;\r\n\t}\r\n\treturn c;\r\n}\r\n\r\ntemplate<class\
+    \ mint, internal::is_static_modint_t<mint>* = nullptr>\r\nstd::vector<mint> convolution_large(const\
+    \ std::vector<mint>& a, const std::vector<mint>& b) {\r\n\tstatic constexpr int\
+    \ max_size = (mint::mod() - 1) & -(mint::mod() - 1);\r\n\tstatic constexpr int\
+    \ half_size = max_size >> 1;\r\n\tstatic constexpr int inv_max_size = internal::inv_gcd(max_size,\
+    \ mint::mod()).second;\r\n\r\n\tconst int n = (int) a.size(), m = (int) b.size();\r\
+    \n\tif(n == 0 || m == 0) {\r\n\t\treturn {};\r\n\t}\r\n\tif(std::min(n, m) < 128\
+    \ || n + m - 1 <= max_size) {\r\n\t\treturn internal::convolution_naive(a, b);\r\
+    \n\t}\r\n\tconst int dn = (n + half_size - 1) / half_size;\r\n\tconst int dm =\
+    \ (m + half_size - 1) / half_size;\r\n\tstd::vector<std::vector<mint>> as(dn),\
     \ bs(dm);\r\n\tfor(int i = 0; i < dn; ++i) {\r\n\t\tconst int offset = half_size\
     \ * i;\r\n\t\tas[i] = std::vector<mint>(a.begin() + offset, a.begin() + std::min(n,\
     \ offset + half_size));\r\n\t\tas[i].resize(max_size);\r\n\t\tinternal::NTT<mint::mod()>::NTT4(as[i]);\r\
@@ -506,7 +518,7 @@ data:
   path: library/convolution/ntt.hpp
   requiredBy:
   - library/formal-power-series/poly.hpp
-  timestamp: '2023-05-28 03:49:52+08:00'
+  timestamp: '2023-05-31 10:45:25+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/convolution/ntt/yosupo-Convolution-Large.test.cpp
