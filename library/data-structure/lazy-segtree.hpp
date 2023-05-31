@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <cassert>
+#include "segtree.hpp"
 
 namespace felix {
 
@@ -11,105 +12,51 @@ template<class S,
          F (*id)(),
          S (*mapping)(F, S),
          F (*composition)(F, F)>
-struct lazy_segtree {
+struct lazy_segtree : public segtree<S, e, op> {
+	using base = segtree<S, e, op>;
+
 public:
+	using base::all_prod;
+
 	lazy_segtree() : lazy_segtree(0) {}
 	explicit lazy_segtree(int _n) : lazy_segtree(std::vector<S>(_n, e())) {}
-	explicit lazy_segtree(const std::vector<S>& v) : n(v.size()) {
-		log = std::__lg(2 * n - 1);
-		size = 1 << log;
-		d = std::vector<S>(size << 1, e());
+	explicit lazy_segtree(const std::vector<S>& v) : base(v) {
 		lz = std::vector<F>(size, id());
-		for(int i = 0; i < n; i++) {
-			d[size + i] = v[i];
-		}
-		for(int i = size - 1; i; --i) {
-			update(i);
-		}
 	}
 
 	void set(int p, S x) {
-		assert(0 <= p && p < n);
-		p += size;
-		for(int i = log; i; --i) {
-			push(p >> i);
-		}
-		d[p] = x;
-		for(int i = 1; i <= log; ++i) {
-			update(p >> i);
-		}
+		push_down(p);
+		base::set(p, x);
 	}
 
 	S get(int p) {
-		assert(0 <= p && p < n);
-		p += size;
-		for(int i = log; i; i--) {
-			push(p >> i);
-		}
-		return d[p];
+		push_down(p);
+		return base::get(p);
 	}
 
-	S operator[](int p) {
-		return get(p);
-	}
+	S operator[](int p) { return get(p); }
 
 	S prod(int l, int r) {
-		assert(0 <= l && l <= r && r <= n);
 		if(l == r) {
 			return e();
 		}
-		l += size;
-		r += size;
-		for(int i = log; i; i--) {
-			if(((l >> i) << i) != l) {
-				push(l >> i);
-			}
-			if(((r >> i) << i) != r) {
-				push(r >> i);
-			}
-		}
-		S sml = e(), smr = e();
-		while(l < r) {
-			if(l & 1) {
-				sml = op(sml, d[l++]);
-			}
-			if(r & 1) {
-				smr = op(d[--r], smr);
-			}
-			l >>= 1;
-			r >>= 1;
-		}
-		return op(sml, smr);
+		push_down(l, r);
+		return base::prod(l, r);
 	}
-
-	S all_prod() const { return d[1]; }
 
 	void apply(int p, F f) {
 		assert(0 <= p && p < n);
-		p += size;
-		for(int i = log; i; i--) {
-			push(p >> i);
-		}
-		d[p] = mapping(f, d[p]);
-		for(int i = 1; i <= log; i++) {
-			update(p >> i);
-		}
+		push_down(p);
+		base::set(p, mapping(f, d[p]));
 	}
+
 	void apply(int l, int r, F f) {
 		assert(0 <= l && l <= r && r <= n);
 		if(l == r) {
 			return;
 		}
-		l += size;
-		r += size;
-		for(int i = log; i; i--) {
-			if(((l >> i) << i) != l) {
-				push(l >> i);
-			}
-			if(((r >> i) << i) != r) {
-				push((r - 1) >> i);
-			}
-		}
+		push_down(l, r);
+		l += size, r += size;
 		{
 			int l2 = l, r2 = r;
 			while(l < r) {
@@ -119,11 +66,9 @@ public:
 				if(r & 1) {
 					all_apply(--r, f);
 				}
-				l >>= 1;
-				r >>= 1;
+				l >>= 1, r >>= 1;
 			}
-			l = l2;
-			r = r2;
+			l = l2, r = r2;
 		}
 		for(int i = 1; i <= log; i++) {
 			if(((l >> i) << i) != l) {
@@ -145,30 +90,8 @@ public:
 		if(l == n) {
 			return n;
 		}
-		l += size;
-		for(int i = log; i; i--) {
-			push(l >> i);
-		}
-		S sm = e();
-		do {
-			while(!(l & 1)) {
-				l >>= 1;
-			}
-			if(!g(op(sm, d[l]))) {
-				while(l < size) {
-					push(l);
-					l <<= 1;
-					if(g(op(sm, d[l]))) {
-						sm = op(sm, d[l]);
-						l++;
-					}
-				}
-				return l - size;
-			}
-			sm = op(sm, d[l]);
-			l++;
-		} while((l & -l) != l);
-		return n;
+		push_down(l);
+		return base::max_right(l, g, [&](int p) { push(p); });
 	}
 
 	template<bool (*g)(S)> int min_left(int r) {
@@ -181,38 +104,15 @@ public:
 		if(r == 0) {
 			return 0;
 		}
-		r += size;
-		for(int i = log; i >= 1; i--) {
-			push((r - 1) >> i);
-		}
-		S sm = e();
-		do {
-			r--;
-			while(r > 1 && (r & 1)) {
-				r >>= 1;
-			}
-			if(!g(op(d[r], sm))) {
-				while(r < size) {
-					push(r);
-					r = r << 1 | 1;
-					if(g(op(d[r], sm))) {
-						sm = op(d[r], sm);
-						r--;
-					}
-				}
-				return r + 1 - size;
-			}
-			sm = op(d[r], sm);
-		} while((r & -r) != r);
-		return 0;
+		push_down(r - 1);
+		return base::min_left(r, g, [&](int p) { push(p); });
 	}
 
 private:
-	int n, size, log;
-	std::vector<S> d;
-	std::vector<F> lz;
+	using base::n, base::log, base::size, base::d;
+	using base::update;
 
-	inline void update(int k) { d[k] = op(d[k << 1], d[k << 1 | 1]); }
+	std::vector<F> lz;
 
 	void all_apply(int k, F f) {
 		d[k] = mapping(f, d[k]);
@@ -222,9 +122,28 @@ private:
 	}
 
 	void push(int k) {
-		all_apply(k << 1, lz[k]);
-		all_apply(k << 1 | 1, lz[k]);
+		all_apply(2 * k, lz[k]);
+		all_apply(2 * k + 1, lz[k]);
 		lz[k] = id();
+	}
+
+	void push_down(int p) {
+		p += size;
+		for(int i = log; i >= 1; i--) {
+			push(p >> i);
+		}
+	}
+
+	void push_down(int l, int r) {
+		l += size, r += size;
+		for(int i = log; i >= 1; i--) {
+			if(((l >> i) << i) != l) {
+				push(l >> i);
+			}
+			if(((r >> i) << i) != r) {
+				push((r - 1) >> i);
+			}
+		}
 	}
 };
 

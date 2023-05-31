@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <set>
 #include <cstring>
 #include <array>
 #include <cassert>
@@ -54,11 +55,45 @@ public:
 		}
 	}
 
-	std::vector<int> permutation(int n) {
+	// [0, n)
+	std::vector<int> perm(int n) {
 		std::vector<int> a(n);
 		std::iota(a.begin(), a.end(), 0);
 		shuffle(a.begin(), a.end());
 		return a;
+	}
+
+	// [l, r]
+	template<class T>
+	std::vector<T> distinct(int size, T l, T r) {
+		std::vector<T> result;
+		if(size == 0) {
+			return result;
+		}
+		assert(l <= r);
+		assert(size > 0);
+		unsigned long long n = r - l + 1;
+		assert(size <= n);
+		double expected = 0;
+		for(int i = 1; i <= size; i++) {
+			expected += double(n) / double(n - i + 1);
+		}
+		if(expected < (double) n) {
+			std::set<T> s;
+			while((int) s.size() < size) {
+				T val = T(next(l, r));
+				if(s.insert(val).second) {
+					result.push_back(val);
+				}
+			}
+		} else {
+			std::vector<T> p(perm(n));
+			for(auto& x : p) {
+				x += l;
+			}
+			result.insert(result.end(), p.begin(), p.begin() + size);
+		}
+		return result;
 	}
 
 	std::string string(int n, char min_char = 'a', char max_char = 'z') {

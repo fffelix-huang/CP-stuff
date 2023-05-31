@@ -201,6 +201,20 @@ std::vector<mint> convolution_ntt(std::vector<mint> a, std::vector<mint> b) {
 } // namespace internal
 
 template<class mint, internal::is_static_modint_t<mint>* = nullptr>
+std::vector<mint> convolution(std::vector<mint>&& a, std::vector<mint>&& b) {
+	int n = (int) a.size(), m = (int) b.size();
+	if(n == 0 || m == 0) {
+		return {};
+	}
+	int sz = 1 << std::__lg(2 * (n + m - 1) - 1);
+	assert((mint::mod() - 1) % sz == 0);
+	if(std::min(n, m) < 128) {
+		return internal::convolution_naive(a, b);
+	}
+	return internal::convolution_ntt(a, b);
+}
+
+template<class mint, internal::is_static_modint_t<mint>* = nullptr>
 std::vector<mint> convolution(const std::vector<mint>& a, const std::vector<mint>& b) {
 	int n = (int) a.size(), m = (int) b.size();
 	if(n == 0 || m == 0) {
@@ -254,7 +268,7 @@ std::vector<__uint128_t> convolution_u128(const std::vector<T>& a, const std::ve
 	if(std::min(n, m) < 128) {
 		std::vector<__uint128_t> a2(a.begin(), a.end());
 		std::vector<__uint128_t> b2(b.begin(), b.end());
-		return internal::convolution_naive(std::move(a2), std::move(b2));
+		return internal::convolution_naive(a2, b2);
 	}
 
 	static constexpr int MAX_AB_BIT = 24;
