@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/data-structure/segtree.hpp
     title: library/data-structure/segtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/data-structure/sparse-table.hpp
     title: library/data-structure/sparse-table.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/inv-gcd.hpp
     title: library/math/inv-gcd.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/safe-mod.hpp
     title: library/math/safe-mod.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/misc/type-traits.hpp
     title: library/misc/type-traits.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/modint/modint.hpp
     title: library/modint/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/tree/heavy-light-decomposition.hpp
     title: library/tree/heavy-light-decomposition.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_set_path_composite
@@ -68,9 +68,9 @@ data:
     \ sm);\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\treturn r + 1 - size;\n\t\t\t}\n\t\t\t\
     sm = op(d[r], sm);\n\t\t} while((r & -r) != r);\n\t\treturn 0;\n\t}\n\t\nprotected:\n\
     \tint n, size, log;\n\tstd::vector<S> d;\n\n\tvoid update(int v) {\n\t\td[v] =\
-    \ op(d[2 * v], d[2 * v + 1]);\n\t}\n\n\tvirtual void push(int p) = 0;\n};\n\n\
-    } // namespace felix\n#line 3 \"library/tree/heavy-light-decomposition.hpp\"\n\
-    #include <array>\r\n#line 5 \"library/tree/heavy-light-decomposition.hpp\"\n#include\
+    \ op(d[2 * v], d[2 * v + 1]);\n\t}\n\n\tvirtual void push(int p) {}\n};\n\n} //\
+    \ namespace felix\n#line 3 \"library/tree/heavy-light-decomposition.hpp\"\n#include\
+    \ <array>\r\n#line 5 \"library/tree/heavy-light-decomposition.hpp\"\n#include\
     \ <algorithm>\r\n#include <cmath>\r\n#line 4 \"library/data-structure/sparse-table.hpp\"\
     \n\nnamespace felix {\n\ntemplate<class T, T (*op)(T, T)>\nstruct sparse_table\
     \ {\npublic:\n\tsparse_table() {}\n\texplicit sparse_table(const std::vector<T>&\
@@ -319,8 +319,8 @@ data:
   isVerificationFile: true
   path: test/tree/heavy-light-decomposition/yosupo-Vertex-Set-Path-Composite.test.cpp
   requiredBy: []
-  timestamp: '2023-06-03 19:09:05+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-06-03 23:52:09+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/tree/heavy-light-decomposition/yosupo-Vertex-Set-Path-Composite.test.cpp
 layout: document

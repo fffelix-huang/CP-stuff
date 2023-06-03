@@ -13,10 +13,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/math/pow-mod.hpp
     title: library/math/pow-mod.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/safe-mod.hpp
     title: library/math/safe-mod.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/misc/type-traits.hpp
     title: library/misc/type-traits.hpp
   - icon: ':heavy_check_mark:'
@@ -121,8 +121,8 @@ data:
     std::vector<T> res = {n};\n\tfor(int i = 0; i < (int) res.size(); i++) {\n\t\t\
     T p = pollard_rho(res[i]);\n\t\tif(p != res[i]) {\n\t\t\tres[i] /= p;\n\t\t\t\
     res.push_back(p);\n\t\t\ti--;\n\t\t}\n\t}\n\tstd::sort(res.begin(), res.end());\n\
-    \treturn res;\n}\n\ntemplate<class T>\nstd::vector<T> get_divisors(T n) {\n\t\
-    if(n == 0) {\n\t\treturn {};\n\t}\n\tstd::vector<std::pair<T, int>> v;\n\tfor(auto\
+    \treturn res;\n}\n\ntemplate<class T>\nstd::vector<T> divisors(T n) {\n\tif(n\
+    \ == 0) {\n\t\treturn {};\n\t}\n\tstd::vector<std::pair<T, int>> v;\n\tfor(auto\
     \ p : factorize(n)) {\n\t\tif(v.empty() || v.back().first != p) {\n\t\t\tv.emplace_back(p,\
     \ 1);\n\t\t} else {\n\t\t\tv.back().second++;\n\t\t}\n\t}\n\tstd::vector<T> res;\n\
     \tauto f = [&](auto f, int i, T x) -> void {\n\t\tif(i == (int) v.size()) {\n\t\
@@ -153,7 +153,7 @@ data:
   isVerificationFile: true
   path: test/math/factorize/yosupo-Factorize.test.cpp
   requiredBy: []
-  timestamp: '2023-05-29 14:59:47+08:00'
+  timestamp: '2023-06-03 23:52:09+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/math/factorize/yosupo-Factorize.test.cpp

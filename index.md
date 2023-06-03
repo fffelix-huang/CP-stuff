@@ -41,10 +41,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/data-structure/pbds.hpp
       title: library/data-structure/pbds.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/data-structure/segtree.hpp
       title: library/data-structure/segtree.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/data-structure/sparse-table.hpp
       title: library/data-structure/sparse-table.hpp
     - icon: ':heavy_check_mark:'
@@ -126,7 +126,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/integer-div.hpp
       title: Integer division ($\lfloor \frac{a}{b} \rfloor \lceil \frac{a}{b} \rceil$)
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/math/inv-gcd.hpp
       title: library/math/inv-gcd.hpp
     - icon: ':heavy_check_mark:'
@@ -138,7 +138,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/primitive-root.hpp
       title: library/math/primitive-root.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/math/safe-mod.hpp
       title: library/math/safe-mod.hpp
     - icon: ':heavy_check_mark:'
@@ -163,7 +163,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/misc/fastio.hpp
       title: library/misc/fastio.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/misc/type-traits.hpp
       title: library/misc/type-traits.hpp
   - name: library/modint
@@ -171,7 +171,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/modint/barrett.hpp
       title: library/modint/barrett.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/modint/modint.hpp
       title: library/modint/modint.hpp
   - name: library/random
@@ -201,7 +201,7 @@ data:
       title: Z Algorithm
   - name: library/tree
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/tree/heavy-light-decomposition.hpp
       title: library/tree/heavy-light-decomposition.hpp
     - icon: ':warning:'
@@ -324,7 +324,7 @@ data:
       title: test/data-structure/pbds/yosupo-Static-Range-Sum.test.cpp
   - name: test/data-structure/segtree
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/data-structure/segtree/aoj-dsl-Range-Minimum-Query.test.cpp
       title: test/data-structure/segtree/aoj-dsl-Range-Minimum-Query.test.cpp
   - name: test/data-structure/sparse-table
@@ -552,7 +552,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/tree/heavy-light-decomposition/yosupo-Vertex-Add-Subtree-Sum.test.cpp
       title: test/tree/heavy-light-decomposition/yosupo-Vertex-Add-Subtree-Sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/tree/heavy-light-decomposition/yosupo-Vertex-Set-Path-Composite.test.cpp
       title: test/tree/heavy-light-decomposition/yosupo-Vertex-Set-Path-Composite.test.cpp
 layout: toppage

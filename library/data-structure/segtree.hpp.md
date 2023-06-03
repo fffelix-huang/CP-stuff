@@ -27,18 +27,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/data-structure/lazy-segtree/yosupo-Range-Affine-Range-Sum.test.cpp
     title: test/data-structure/lazy-segtree/yosupo-Range-Affine-Range-Sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/data-structure/segtree/aoj-dsl-Range-Minimum-Query.test.cpp
     title: test/data-structure/segtree/aoj-dsl-Range-Minimum-Query.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/tree/heavy-light-decomposition/aoj-grl-Range-Query-on-a-Tree-II.test.cpp
     title: test/tree/heavy-light-decomposition/aoj-grl-Range-Query-on-a-Tree-II.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/tree/heavy-light-decomposition/yosupo-Vertex-Set-Path-Composite.test.cpp
     title: test/tree/heavy-light-decomposition/yosupo-Vertex-Set-Path-Composite.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"library/data-structure/segtree.hpp\"\n#include <vector>\n\
@@ -75,8 +75,8 @@ data:
     \ sm);\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\treturn r + 1 - size;\n\t\t\t}\n\t\t\t\
     sm = op(d[r], sm);\n\t\t} while((r & -r) != r);\n\t\treturn 0;\n\t}\n\t\nprotected:\n\
     \tint n, size, log;\n\tstd::vector<S> d;\n\n\tvoid update(int v) {\n\t\td[v] =\
-    \ op(d[2 * v], d[2 * v + 1]);\n\t}\n\n\tvirtual void push(int p) = 0;\n};\n\n\
-    } // namespace felix\n"
+    \ op(d[2 * v], d[2 * v + 1]);\n\t}\n\n\tvirtual void push(int p) {}\n};\n\n} //\
+    \ namespace felix\n"
   code: "#pragma once\n#include <vector>\n#include <functional>\n#include <cassert>\n\
     \nnamespace felix {\n\ntemplate<class S, S (*e)(), S (*op)(S, S)>\nstruct segtree\
     \ {\npublic:\n\tsegtree() : segtree(0) {}\n\texplicit segtree(int _n) : segtree(std::vector<S>(_n,\
@@ -110,15 +110,15 @@ data:
     \ sm);\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\treturn r + 1 - size;\n\t\t\t}\n\t\t\t\
     sm = op(d[r], sm);\n\t\t} while((r & -r) != r);\n\t\treturn 0;\n\t}\n\t\nprotected:\n\
     \tint n, size, log;\n\tstd::vector<S> d;\n\n\tvoid update(int v) {\n\t\td[v] =\
-    \ op(d[2 * v], d[2 * v + 1]);\n\t}\n\n\tvirtual void push(int p) = 0;\n};\n\n\
-    } // namespace felix\n"
+    \ op(d[2 * v], d[2 * v + 1]);\n\t}\n\n\tvirtual void push(int p) {}\n};\n\n} //\
+    \ namespace felix\n"
   dependsOn: []
   isVerificationFile: false
   path: library/data-structure/segtree.hpp
   requiredBy:
   - library/data-structure/lazy-segtree.hpp
-  timestamp: '2023-06-03 19:09:05+08:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2023-06-03 23:52:09+08:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/data-structure/lazy-segtree/aoj-dsl-RMQ-and-RUQ.test.cpp
   - test/data-structure/lazy-segtree/aoj-dsl-Range-Update-Query.test.cpp

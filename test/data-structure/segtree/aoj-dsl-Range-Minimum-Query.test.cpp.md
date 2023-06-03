@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/data-structure/segtree.hpp
     title: library/data-structure/segtree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_A
@@ -50,8 +50,8 @@ data:
     \ sm);\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\treturn r + 1 - size;\n\t\t\t}\n\t\t\t\
     sm = op(d[r], sm);\n\t\t} while((r & -r) != r);\n\t\treturn 0;\n\t}\n\t\nprotected:\n\
     \tint n, size, log;\n\tstd::vector<S> d;\n\n\tvoid update(int v) {\n\t\td[v] =\
-    \ op(d[2 * v], d[2 * v + 1]);\n\t}\n\n\tvirtual void push(int p) = 0;\n};\n\n\
-    } // namespace felix\n#line 6 \"test/data-structure/segtree/aoj-dsl-Range-Minimum-Query.test.cpp\"\
+    \ op(d[2 * v], d[2 * v + 1]);\n\t}\n\n\tvirtual void push(int p) {}\n};\n\n} //\
+    \ namespace felix\n#line 6 \"test/data-structure/segtree/aoj-dsl-Range-Minimum-Query.test.cpp\"\
     \nusing namespace std;\r\nusing namespace felix;\r\n\r\nint e() {\r\n\treturn\
     \ INT_MAX;\r\n}\r\n\r\nint op(int a, int b) {\r\n\treturn min(a, b);\r\n}\r\n\r\
     \nint main() {\r\n\tios::sync_with_stdio(false);\r\n\tcin.tie(0);\r\n\tint n,\
@@ -73,8 +73,8 @@ data:
   isVerificationFile: true
   path: test/data-structure/segtree/aoj-dsl-Range-Minimum-Query.test.cpp
   requiredBy: []
-  timestamp: '2023-06-03 19:09:05+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-06-03 23:52:09+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/data-structure/segtree/aoj-dsl-Range-Minimum-Query.test.cpp
 layout: document

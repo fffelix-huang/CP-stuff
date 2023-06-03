@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/data-structure/fenwick.hpp
     title: library/data-structure/fenwick.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/data-structure/sparse-table.hpp
     title: library/data-structure/sparse-table.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/tree/heavy-light-decomposition.hpp
     title: library/tree/heavy-light-decomposition.hpp
   _extendedRequiredBy: []

@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/tree/heavy-light-decomposition.hpp
     title: library/tree/heavy-light-decomposition.hpp
   _extendedVerifiedWith:
@@ -30,12 +30,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/tree/heavy-light-decomposition/yosupo-Vertex-Add-Subtree-Sum.test.cpp
     title: test/tree/heavy-light-decomposition/yosupo-Vertex-Add-Subtree-Sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/tree/heavy-light-decomposition/yosupo-Vertex-Set-Path-Composite.test.cpp
     title: test/tree/heavy-light-decomposition/yosupo-Vertex-Set-Path-Composite.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"library/data-structure/sparse-table.hpp\"\n#include <vector>\n\
@@ -67,7 +67,7 @@ data:
   requiredBy:
   - library/tree/heavy-light-decomposition.hpp
   timestamp: '2023-04-17 12:10:28+08:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/data-structure/sparse-table/yosupo-Static-RMQ.test.cpp
   - test/tree/heavy-light-decomposition/yosupo-Vertex-Set-Path-Composite.test.cpp

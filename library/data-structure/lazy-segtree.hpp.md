@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/data-structure/segtree.hpp
     title: library/data-structure/segtree.hpp
   _extendedRequiredBy: []
@@ -70,13 +70,13 @@ data:
     \ sm);\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\treturn r + 1 - size;\n\t\t\t}\n\t\t\t\
     sm = op(d[r], sm);\n\t\t} while((r & -r) != r);\n\t\treturn 0;\n\t}\n\t\nprotected:\n\
     \tint n, size, log;\n\tstd::vector<S> d;\n\n\tvoid update(int v) {\n\t\td[v] =\
-    \ op(d[2 * v], d[2 * v + 1]);\n\t}\n\n\tvirtual void push(int p) = 0;\n};\n\n\
-    } // namespace felix\n#line 5 \"library/data-structure/lazy-segtree.hpp\"\n\n\
-    namespace felix {\n\ntemplate<class S,\n         S (*e)(),\n         S (*op)(S,\
-    \ S),\n         class F,\n         F (*id)(),\n         S (*mapping)(F, S),\n\
-    \         F (*composition)(F, F)>\nstruct lazy_segtree : public segtree<S, e,\
-    \ op> {\n\tusing base = segtree<S, e, op>;\n\npublic:\n\tusing base::all_prod;\n\
-    \n\tlazy_segtree() : lazy_segtree(0) {}\n\texplicit lazy_segtree(int _n) : lazy_segtree(std::vector<S>(_n,\
+    \ op(d[2 * v], d[2 * v + 1]);\n\t}\n\n\tvirtual void push(int p) {}\n};\n\n} //\
+    \ namespace felix\n#line 5 \"library/data-structure/lazy-segtree.hpp\"\n\nnamespace\
+    \ felix {\n\ntemplate<class S,\n         S (*e)(),\n         S (*op)(S, S),\n\
+    \         class F,\n         F (*id)(),\n         S (*mapping)(F, S),\n      \
+    \   F (*composition)(F, F)>\nstruct lazy_segtree : public segtree<S, e, op> {\n\
+    \tusing base = segtree<S, e, op>;\n\npublic:\n\tusing base::all_prod;\n\n\tlazy_segtree()\
+    \ : lazy_segtree(0) {}\n\texplicit lazy_segtree(int _n) : lazy_segtree(std::vector<S>(_n,\
     \ e())) {}\n\texplicit lazy_segtree(const std::vector<S>& v) : base(v) {\n\t\t\
     lz = std::vector<F>(size, id());\n\t}\n\n\tvoid set(int p, S x) {\n\t\tpush_down(p);\n\
     \t\tbase::set(p, x);\n\t}\n\n\tS get(int p) {\n\t\tpush_down(p);\n\t\treturn base::get(p);\n\
@@ -152,7 +152,7 @@ data:
   isVerificationFile: false
   path: library/data-structure/lazy-segtree.hpp
   requiredBy: []
-  timestamp: '2023-06-03 19:09:05+08:00'
+  timestamp: '2023-06-03 23:52:09+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/data-structure/lazy-segtree/aoj-dsl-RMQ-and-RUQ.test.cpp
