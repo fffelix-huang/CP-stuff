@@ -132,8 +132,8 @@ data:
   timestamp: '2023-05-19 02:28:25+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/data-structure/lazy-lct/yosupo-Dynamic-Tree-Vertex-Add-Path-Sum.test.cpp
   - test/data-structure/lazy-lct/yosupo-Dynamic-Tree-Vertex-Set-Path-Composite.test.cpp
+  - test/data-structure/lazy-lct/yosupo-Dynamic-Tree-Vertex-Add-Path-Sum.test.cpp
 documentation_of: library/data-structure/lazy-lct.hpp
 layout: document
 redirect_from:

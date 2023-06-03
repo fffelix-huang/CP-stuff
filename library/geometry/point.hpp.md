@@ -98,19 +98,19 @@ data:
   isVerificationFile: false
   path: library/geometry/point.hpp
   requiredBy:
-  - library/geometry/line.hpp
-  - library/geometry/point-in-convex-hull.hpp
   - library/geometry/closest-pair.hpp
+  - library/geometry/point-in-convex-hull.hpp
   - library/geometry/convex-hull.hpp
   - library/geometry/geometry.hpp
+  - library/geometry/line.hpp
   timestamp: '2023-05-26 16:40:39+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/geometry/geometry/aoj-cgl-Area.test.cpp
-  - test/geometry/geometry/aoj-cgl-Counter-Clockwise.test.cpp
-  - test/geometry/geometry/yosupo-Sort-Points-by-Argument.test.cpp
-  - test/geometry/geometry/aoj-cgl-Intersection.test.cpp
   - test/geometry/convex-hull/aoj-cgl-Convex-Hull.test.cpp
+  - test/geometry/geometry/aoj-cgl-Area.test.cpp
+  - test/geometry/geometry/aoj-cgl-Intersection.test.cpp
+  - test/geometry/geometry/yosupo-Sort-Points-by-Argument.test.cpp
+  - test/geometry/geometry/aoj-cgl-Counter-Clockwise.test.cpp
 documentation_of: library/geometry/point.hpp
 layout: document
 redirect_from:

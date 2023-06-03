@@ -66,8 +66,8 @@ data:
   timestamp: '2023-04-17 12:10:28+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/graph/bipartite-matching/yosupo-Matching-on-Bipartite-Graph.test.cpp
   - test/graph/bipartite-matching/aoj-grl-Bipartite-Matching.test.cpp
+  - test/graph/bipartite-matching/yosupo-Matching-on-Bipartite-Graph.test.cpp
 documentation_of: library/graph/bipartite-matching.hpp
 layout: document
 redirect_from:

@@ -1,35 +1,35 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/convolution/ntt.hpp
     title: library/convolution/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/formal-power-series/poly.hpp
     title: library/formal-power-series/poly.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/inv-gcd.hpp
     title: library/math/inv-gcd.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/pow-mod.hpp
     title: library/math/pow-mod.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/primitive-root.hpp
     title: library/math/primitive-root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/safe-mod.hpp
     title: library/math/safe-mod.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/misc/type-traits.hpp
     title: library/misc/type-traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/modint/modint.hpp
     title: library/modint/modint.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/multipoint_evaluation
@@ -338,15 +338,15 @@ data:
     \ = f(i);\r\n\t\t}\r\n\t}\r\n\r\n\tconstexpr int size() const { return (int) a.size();\
     \ }\r\n\tconstexpr void resize(int n) { a.resize(n); }\r\n\r\n\tconstexpr void\
     \ shrink() {\r\n\t\twhile(size() && a.back() == 0) {\r\n\t\t\ta.pop_back();\r\n\
-    \t\t}\r\n\t}\r\n\r\n\tconstexpr mint operator[](int idx) const {\r\n\t\tif(idx\
-    \ >= 0 && idx < size()) {\r\n\t\t\treturn a[idx];\r\n\t\t} else {\r\n\t\t\treturn\
-    \ 0;\r\n\t\t}\r\n\t}\r\n\r\n\tconstexpr mint& operator[](int idx) { return a[idx];\
-    \ }\r\n\r\n\tconstexpr friend Poly operator+(const Poly& a, const Poly& b) {\r\
-    \n\t\tPoly c(std::max(a.size(), b.size()));\r\n\t\tfor(int i = 0; i < c.size();\
-    \ i++) {\r\n\t\t\tc[i] = a[i] + b[i];\r\n\t\t}\r\n\t\treturn c;\r\n\t}\r\n\r\n\
+    \t\t}\r\n\t}\r\n\r\n\tconstexpr mint at(int idx) const {\r\n\t\tif(idx >= 0 &&\
+    \ idx < size()) {\r\n\t\t\treturn a[idx];\r\n\t\t} else {\r\n\t\t\treturn 0;\r\
+    \n\t\t}\r\n\t}\r\n\r\n\tconstexpr mint& operator[](int idx) { return a[idx]; }\r\
+    \n\r\n\tconstexpr friend Poly operator+(const Poly& a, const Poly& b) {\r\n\t\t\
+    Poly c(std::max(a.size(), b.size()));\r\n\t\tfor(int i = 0; i < c.size(); i++)\
+    \ {\r\n\t\t\tc[i] = a.at(i) + b.at(i);\r\n\t\t}\r\n\t\treturn c;\r\n\t}\r\n\r\n\
     \tconstexpr friend Poly operator-(const Poly& a, const Poly& b) {\r\n\t\tPoly\
     \ c(std::max(a.size(), b.size()));\r\n\t\tfor(int i = 0; i < c.size(); i++) {\r\
-    \n\t\t\tc[i] = a[i] - b[i];\r\n\t\t}\r\n\t\treturn c;\r\n\t}\r\n\r\n\tconstexpr\
+    \n\t\t\tc[i] = a.at(i) - b.at(i);\r\n\t\t}\r\n\t\treturn c;\r\n\t}\r\n\r\n\tconstexpr\
     \ friend Poly operator*(Poly a, Poly b) {\r\n\t\treturn Poly(convolution(a.a,\
     \ b.a));\r\n\t}\r\n\r\n\tconstexpr friend Poly operator*(mint a, Poly b) {\r\n\
     \t\tfor(int i = 0; i < b.size(); i++) {\r\n\t\t\tb[i] *= a;\r\n\t\t}\r\n\t\treturn\
@@ -379,31 +379,31 @@ data:
     \n\r\n\tconstexpr Poly pow(long long k, int m = -1) const {\r\n\t\tif(m == -1)\
     \ {\r\n\t\t\tm = size();\r\n\t\t}\r\n\t\tif(k == 0) {\r\n\t\t\tPoly b(m);\r\n\t\
     \t\tb[0] = 1;\r\n\t\t\treturn b;\r\n\t\t}\r\n\t\tint s = 0, sz = size();\r\n\t\
-    \twhile(s < sz && a[s] == 0) {\r\n\t\t\ts++;\r\n\t\t}\r\n\t\tif(s == sz) {\r\n\
-    \t\t\treturn *this;\r\n\t\t}\r\n\t\tif(m > 0 && s >= (sz + k - 1) / k) {\r\n\t\
-    \t\treturn Poly(m);\r\n\t\t}\r\n\t\tif(s * k >= m) {\r\n\t\t\treturn Poly(m);\r\
-    \n\t\t}\r\n\t\treturn (((divxk(s) * a[s].inv()).log(m) * mint(k)).exp(m) * a[s].pow(k)).mulxk(s\
-    \ * k).modxk(m);\r\n\t}\r\n\r\n\tconstexpr bool has_sqrt() const {\r\n\t\tif(size()\
-    \ == 0) {\r\n\t\t\treturn true;\r\n\t\t}\r\n\t\tint x = 0;\r\n\t\twhile(x < size()\
-    \ && a[x] == 0) {\r\n\t\t\tx++;\r\n\t\t}\r\n\t\tif(x == size()) {\r\n\t\t\treturn\
-    \ true;\r\n\t\t}\r\n\t\tif(x % 2 == 1) {\r\n\t\t\treturn false;\r\n\t\t}\r\n\t\
-    \tmint y = a[x];\r\n\t\treturn (y == 0 || y.pow((mod - 1) / 2) == 1);\r\n\t}\r\
-    \n\r\n\tconstexpr Poly sqrt(int m = -1) const {\r\n\t\tif(m == -1) {\r\n\t\t\t\
-    m = size();\r\n\t\t}\r\n\t\tif(size() == 0) {\r\n\t\t\treturn Poly();\r\n\t\t\
-    }\r\n\t\tint x = 0;\r\n\t\twhile(x < size() && a[x] == 0) {\r\n\t\t\tx++;\r\n\t\
-    \t}\r\n\t\tif(x == size()) {\r\n\t\t\treturn Poly(size());\r\n\t\t}\r\n\t\tPoly\
-    \ f = divxk(x);\r\n\t\tPoly g({mint(f[0]).sqrt()});\r\n\t\tmint inv2 = mint(1)\
-    \ / 2;\r\n\t\tfor(int i = 1; i < m; i *= 2) {\r\n\t\t\tg = (g + f.modxk(i * 2)\
-    \ * g.inv(i * 2)) * inv2;\r\n\t\t}\r\n\t\treturn g.modxk(m).mulxk(x / 2);\r\n\t\
-    }\r\n\r\n\tconstexpr Poly shift(mint c) const {\r\n\t\tint n = size();\r\n\t\t\
-    mint::prepare(n);\r\n\t\tPoly b(*this);\r\n\t\tfor(int i = 0; i < n; i++) {\r\n\
-    \t\t\tb[i] *= mint::fact[i];\r\n\t\t}\r\n\t\tstd::reverse(b.a.begin(), b.a.end());\r\
-    \n\t\tPoly exp_cx(std::vector<mint>(n, mint(1)));\r\n\t\tfor(int i = 1; i < n;\
-    \ i++) {\r\n\t\t\texp_cx[i] = exp_cx[i - 1] * c / i;\r\n\t\t}\r\n\t\tb = (b *\
-    \ exp_cx).modxk(n);\r\n\t\tstd::reverse(b.a.begin(), b.a.end());\r\n\t\tfor(int\
-    \ i = 0; i < n; i++) {\r\n\t\t\tb[i] *= mint::inv_fact[i];\r\n\t\t}\r\n\t\treturn\
-    \ b;\r\n\t}\r\n\r\n\tconstexpr Poly mulT(Poly b) const {\r\n\t\tif(b.size() ==\
-    \ 0) {\r\n\t\t\treturn Poly();\r\n\t\t}\r\n\t\tint n = b.size();\r\n\t\tstd::reverse(b.a.begin(),\
+    \twhile(s < sz && a[s].val() == 0) {\r\n\t\t\ts++;\r\n\t\t}\r\n\t\tif(s == sz)\
+    \ {\r\n\t\t\treturn *this;\r\n\t\t}\r\n\t\tif(m > 0 && s >= (sz + k - 1) / k)\
+    \ {\r\n\t\t\treturn Poly(m);\r\n\t\t}\r\n\t\tif(s * k >= m) {\r\n\t\t\treturn\
+    \ Poly(m);\r\n\t\t}\r\n\t\treturn (((divxk(s) * a[s].inv()).log(m) * mint(k)).exp(m)\
+    \ * a[s].pow(k)).mulxk(s * k).modxk(m);\r\n\t}\r\n\r\n\tconstexpr bool has_sqrt()\
+    \ const {\r\n\t\tif(size() == 0) {\r\n\t\t\treturn true;\r\n\t\t}\r\n\t\tint x\
+    \ = 0;\r\n\t\twhile(x < size() && a[x].val() == 0) {\r\n\t\t\tx++;\r\n\t\t}\r\n\
+    \t\tif(x == size()) {\r\n\t\t\treturn true;\r\n\t\t}\r\n\t\tif(x % 2 == 1) {\r\
+    \n\t\t\treturn false;\r\n\t\t}\r\n\t\tmint y = a[x];\r\n\t\treturn (y == 0 ||\
+    \ y.pow((mod - 1) / 2) == 1);\r\n\t}\r\n\r\n\tconstexpr Poly sqrt(int m = -1)\
+    \ const {\r\n\t\tif(m == -1) {\r\n\t\t\tm = size();\r\n\t\t}\r\n\t\tif(size()\
+    \ == 0) {\r\n\t\t\treturn Poly();\r\n\t\t}\r\n\t\tint x = 0;\r\n\t\twhile(x <\
+    \ size() && a[x].val() == 0) {\r\n\t\t\tx++;\r\n\t\t}\r\n\t\tif(x == size()) {\r\
+    \n\t\t\treturn Poly(size());\r\n\t\t}\r\n\t\tPoly f = divxk(x);\r\n\t\tPoly g({mint(f[0]).sqrt()});\r\
+    \n\t\tmint inv2 = mint(1) / 2;\r\n\t\tfor(int i = 1; i < m; i *= 2) {\r\n\t\t\t\
+    g = (g + f.modxk(i * 2) * g.inv(i * 2)) * inv2;\r\n\t\t}\r\n\t\treturn g.modxk(m).mulxk(x\
+    \ / 2);\r\n\t}\r\n\r\n\tconstexpr Poly shift(mint c) const {\r\n\t\tint n = size();\r\
+    \n\t\tmint::prepare(n);\r\n\t\tPoly b(*this);\r\n\t\tfor(int i = 0; i < n; i++)\
+    \ {\r\n\t\t\tb[i] *= mint::fact[i];\r\n\t\t}\r\n\t\tstd::reverse(b.a.begin(),\
+    \ b.a.end());\r\n\t\tPoly exp_cx(std::vector<mint>(n, mint(1)));\r\n\t\tfor(int\
+    \ i = 1; i < n; i++) {\r\n\t\t\texp_cx[i] = exp_cx[i - 1] * c / i;\r\n\t\t}\r\n\
+    \t\tb = (b * exp_cx).modxk(n);\r\n\t\tstd::reverse(b.a.begin(), b.a.end());\r\n\
+    \t\tfor(int i = 0; i < n; i++) {\r\n\t\t\tb[i] *= mint::inv_fact[i];\r\n\t\t}\r\
+    \n\t\treturn b;\r\n\t}\r\n\r\n\tconstexpr Poly mulT(Poly b) const {\r\n\t\tif(b.size()\
+    \ == 0) {\r\n\t\t\treturn Poly();\r\n\t\t}\r\n\t\tint n = b.size();\r\n\t\tstd::reverse(b.a.begin(),\
     \ b.a.end());\r\n\t\treturn ((*this) * b).divxk(n - 1);\r\n\t}\r\n\r\n\tstd::vector<mint>\
     \ eval(std::vector<mint> x) const {\r\n\t\tif(size() == 0) {\r\n\t\t\treturn std::vector<mint>(x.size(),\
     \ mint(0));\r\n\t\t}\r\n\t\tconst int n = std::max((int) x.size(), size());\r\n\
@@ -449,8 +449,8 @@ data:
   isVerificationFile: true
   path: test/formal-power-series/poly/yosupo-Multipoint-Evaluation.test.cpp
   requiredBy: []
-  timestamp: '2023-05-31 10:45:25+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-06-03 19:09:05+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/formal-power-series/poly/yosupo-Multipoint-Evaluation.test.cpp
 layout: document

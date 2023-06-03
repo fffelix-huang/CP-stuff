@@ -88,46 +88,45 @@ data:
     \tw_high = high;\n}\n\nvoid add_edge(Graph& g, int u, int v) {\n\tlong long w\
     \ = rnd.next(w_low, w_high);\n\tg.add_undirected_edge(u, v, w);\n}\n\nGraph tree(int\
     \ n, bool weighted = false, long long w_min = 1, long long w_max = 1) {\n\tset_weight(weighted,\
-    \ w_min, w_max);\n\tGraph g(n, weighted);\n\tauto order = rnd.permutation(n);\n\
-    \tfor(int i = 1; i < n; i++) {\n\t\tadd_edge(g, order[rnd.next(0, i - 1)], order[i]);\n\
+    \ w_min, w_max);\n\tGraph g(n, weighted);\n\tauto order = rnd.perm(n);\n\tfor(int\
+    \ i = 1; i < n; i++) {\n\t\tadd_edge(g, order[rnd.next(0, i - 1)], order[i]);\n\
     \t}\n\tassert(g.m == n - 1);\n\treturn g;\n}\n\nGraph path(int n, bool weighted\
     \ = false, long long w_min = 1, long long w_max = 1) {\n\tset_weight(weighted,\
-    \ w_min, w_max);\n\tGraph g(n, weighted);\n\tauto order = rnd.permutation(n);\n\
-    \tfor(int i = 0; i < n - 1; i++) {\n\t\tadd_edge(g, order[i], order[i + 1]);\n\
-    \t}\n\tassert(g.m == n - 1);\n\treturn g;\n}\n\nGraph star(int n, bool weighted\
+    \ w_min, w_max);\n\tGraph g(n, weighted);\n\tauto order = rnd.perm(n);\n\tfor(int\
+    \ i = 0; i < n - 1; i++) {\n\t\tadd_edge(g, order[i], order[i + 1]);\n\t}\n\t\
+    assert(g.m == n - 1);\n\treturn g;\n}\n\nGraph star(int n, bool weighted = false,\
+    \ long long w_min = 1, long long w_max = 1) {\n\tset_weight(weighted, w_min, w_max);\n\
+    \tGraph g(n, weighted);\n\tauto order = rnd.perm(n);\n\tfor(int i = 1; i < n;\
+    \ i++) {\n\t\tadd_edge(g, order[0], order[i]);\n\t}\n\tassert(g.m == n - 1);\n\
+    \treturn g;\n}\n\nGraph perfect(int n, bool weighted = false, long long w_min\
+    \ = 1, long long w_max = 1) {\n\tset_weight(weighted, w_min, w_max);\n\tGraph\
+    \ g(n, weighted);\n\tfor(int i = 0; i < n; i++) {\n\t\tfor(int j = i + 1; j <\
+    \ n; j++) {\n\t\t\tadd_edge(g, i, j);\n\t\t}\n\t}\n\treturn g;\n}\n\nGraph simple(int\
+    \ n, bool weighted = false, long long w_min = 1, long long w_max = 1) {\n\tset_weight(weighted,\
+    \ w_min, w_max);\n\tGraph g(n, weighted);\n\tauto order = rnd.perm(n);\n\tfor(int\
+    \ i = 0; i < n; i++) {\n\t\tfor(int j = i + 1; j < n; j++) {\n\t\t\tif(rnd.next(0,\
+    \ 1)) {\n\t\t\t\tadd_edge(g, i, j);\n\t\t\t}\n\t\t}\n\t}\n\treturn g;\n}\n\nGraph\
+    \ namori(int n, bool weighted = false, long long w_min = 1, long long w_max =\
+    \ 1) {\n\tset_weight(weighted, w_min, w_max);\n\tGraph g(n, weighted);\n\tadd_edge(g,\
+    \ 0, rnd.next(1, n - 1));\n\tfor(int i = 1; i < n; i++) {\n\t\tadd_edge(g, i,\
+    \ rnd.next(0, i - 1));\n\t}\n\treturn g;\n}\n\nGraph sparse(int n, bool weighted\
     \ = false, long long w_min = 1, long long w_max = 1) {\n\tset_weight(weighted,\
-    \ w_min, w_max);\n\tGraph g(n, weighted);\n\tauto order = rnd.permutation(n);\n\
-    \tfor(int i = 1; i < n; i++) {\n\t\tadd_edge(g, order[0], order[i]);\n\t}\n\t\
-    assert(g.m == n - 1);\n\treturn g;\n}\n\nGraph perfect(int n, bool weighted =\
-    \ false, long long w_min = 1, long long w_max = 1) {\n\tset_weight(weighted, w_min,\
-    \ w_max);\n\tGraph g(n, weighted);\n\tfor(int i = 0; i < n; i++) {\n\t\tfor(int\
-    \ j = i + 1; j < n; j++) {\n\t\t\tadd_edge(g, i, j);\n\t\t}\n\t}\n\treturn g;\n\
-    }\n\nGraph simple(int n, bool weighted = false, long long w_min = 1, long long\
+    \ w_min, w_max);\n\tGraph g(n, weighted);\n\tif(n == 0) {\n\t\treturn g;\n\t}\n\
+    \tint m = rnd.next(0, n - 1);\n\tstd::set<std::pair<int, int>> edges;\n\twhile((int)\
+    \ edges.size() < m) {\n\t\tint u = rnd.next(0, n - 1);\n\t\tint v = rnd.next(0,\
+    \ n - 1);\n\t\tif(u >= v) {\n\t\t\tcontinue;\n\t\t}\n\t\tedges.emplace(u, v);\n\
+    \t}\n\tfor(auto [u, v] : edges) {\n\t\tadd_edge(g, u, v);\n\t}\n\treturn g;\n\
+    }\n\nGraph connected(int n, bool weighted = false, long long w_min = 1, long long\
     \ w_max = 1) {\n\tset_weight(weighted, w_min, w_max);\n\tGraph g(n, weighted);\n\
-    \tauto order = rnd.permutation(n);\n\tfor(int i = 0; i < n; i++) {\n\t\tfor(int\
-    \ j = i + 1; j < n; j++) {\n\t\t\tif(rnd.next(0, 1)) {\n\t\t\t\tadd_edge(g, i,\
-    \ j);\n\t\t\t}\n\t\t}\n\t}\n\treturn g;\n}\n\nGraph namori(int n, bool weighted\
-    \ = false, long long w_min = 1, long long w_max = 1) {\n\tset_weight(weighted,\
-    \ w_min, w_max);\n\tGraph g(n, weighted);\n\tadd_edge(g, 0, rnd.next(1, n - 1));\n\
-    \tfor(int i = 1; i < n; i++) {\n\t\tadd_edge(g, i, rnd.next(0, i - 1));\n\t}\n\
-    \treturn g;\n}\n\nGraph sparse(int n, bool weighted = false, long long w_min =\
-    \ 1, long long w_max = 1) {\n\tset_weight(weighted, w_min, w_max);\n\tGraph g(n,\
-    \ weighted);\n\tif(n == 0) {\n\t\treturn g;\n\t}\n\tint m = rnd.next(0, n - 1);\n\
-    \tstd::set<std::pair<int, int>> edges;\n\twhile((int) edges.size() < m) {\n\t\t\
-    int u = rnd.next(0, n - 1);\n\t\tint v = rnd.next(0, n - 1);\n\t\tif(u >= v) {\n\
-    \t\t\tcontinue;\n\t\t}\n\t\tedges.emplace(u, v);\n\t}\n\tfor(auto [u, v] : edges)\
-    \ {\n\t\tadd_edge(g, u, v);\n\t}\n\treturn g;\n}\n\nGraph connected(int n, bool\
-    \ weighted = false, long long w_min = 1, long long w_max = 1) {\n\tset_weight(weighted,\
-    \ w_min, w_max);\n\tGraph g(n, weighted);\n\tif(n == 1) {\n\t\treturn g;\n\t}\n\
-    \tstd::set<std::pair<int, int>> s;\n\tauto perm = rnd.permutation(n);\n\tfor(int\
-    \ i = 1; i < n; i++) {\n\t\tint u = perm[rnd.next(i)];\n\t\tint v = perm[i];\n\
-    \t\tadd_edge(g, u, v);\n\t\ts.emplace(std::min(u, v), std::max(u, v));\n\t}\n\t\
-    int extra = rnd.next(n, 10 * n);\n\tfor(int i = 0; i < extra; i++) {\n\t\tint\
-    \ u = rnd.next(n - 1);\n\t\tint v = rnd.next(u + 1, n - 1);\n\t\tif(s.count({u,\
+    \tif(n == 1) {\n\t\treturn g;\n\t}\n\tstd::set<std::pair<int, int>> s;\n\tauto\
+    \ perm = rnd.perm(n);\n\tfor(int i = 1; i < n; i++) {\n\t\tint u = perm[rnd.next(i)];\n\
+    \t\tint v = perm[i];\n\t\tadd_edge(g, u, v);\n\t\ts.emplace(std::min(u, v), std::max(u,\
+    \ v));\n\t}\n\tint extra = rnd.next(n, 10 * n);\n\tfor(int i = 0; i < extra; i++)\
+    \ {\n\t\tint u = rnd.next(n - 1);\n\t\tint v = rnd.next(u + 1, n - 1);\n\t\tif(s.count({u,\
     \ v})) {\n\t\t\tcontinue;\n\t\t}\n\t\ts.emplace(u, v);\n\t\tadd_edge(g, u, v);\n\
     \t}\n\treturn g;\n}\n\nGraph bipartite(int n, bool weighted = false, long long\
     \ w_min = 1, long long w_max = 1) {\n\tset_weight(weighted, w_min, w_max);\n\t\
-    Graph g(n, weighted);\n\tif(n == 1) {\n\t\treturn g;\n\t}\n\tauto perm = rnd.permutation(n);\n\
+    Graph g(n, weighted);\n\tif(n == 1) {\n\t\treturn g;\n\t}\n\tauto perm = rnd.perm(n);\n\
     \tint l_cnt = rnd.next(1, n - 1);\n\tauto lv = std::vector<int>(perm.begin(),\
     \ perm.begin() + l_cnt);\n\tauto rv = std::vector<int>(perm.begin() + l_cnt, perm.end());\n\
     \tfor(auto u : lv) {\n\t\tfor(auto v : rv) {\n\t\t\tif(rnd.next(0, 1)) {\n\t\t\
@@ -166,46 +165,45 @@ data:
     \tw_high = high;\n}\n\nvoid add_edge(Graph& g, int u, int v) {\n\tlong long w\
     \ = rnd.next(w_low, w_high);\n\tg.add_undirected_edge(u, v, w);\n}\n\nGraph tree(int\
     \ n, bool weighted = false, long long w_min = 1, long long w_max = 1) {\n\tset_weight(weighted,\
-    \ w_min, w_max);\n\tGraph g(n, weighted);\n\tauto order = rnd.permutation(n);\n\
-    \tfor(int i = 1; i < n; i++) {\n\t\tadd_edge(g, order[rnd.next(0, i - 1)], order[i]);\n\
+    \ w_min, w_max);\n\tGraph g(n, weighted);\n\tauto order = rnd.perm(n);\n\tfor(int\
+    \ i = 1; i < n; i++) {\n\t\tadd_edge(g, order[rnd.next(0, i - 1)], order[i]);\n\
     \t}\n\tassert(g.m == n - 1);\n\treturn g;\n}\n\nGraph path(int n, bool weighted\
     \ = false, long long w_min = 1, long long w_max = 1) {\n\tset_weight(weighted,\
-    \ w_min, w_max);\n\tGraph g(n, weighted);\n\tauto order = rnd.permutation(n);\n\
-    \tfor(int i = 0; i < n - 1; i++) {\n\t\tadd_edge(g, order[i], order[i + 1]);\n\
-    \t}\n\tassert(g.m == n - 1);\n\treturn g;\n}\n\nGraph star(int n, bool weighted\
+    \ w_min, w_max);\n\tGraph g(n, weighted);\n\tauto order = rnd.perm(n);\n\tfor(int\
+    \ i = 0; i < n - 1; i++) {\n\t\tadd_edge(g, order[i], order[i + 1]);\n\t}\n\t\
+    assert(g.m == n - 1);\n\treturn g;\n}\n\nGraph star(int n, bool weighted = false,\
+    \ long long w_min = 1, long long w_max = 1) {\n\tset_weight(weighted, w_min, w_max);\n\
+    \tGraph g(n, weighted);\n\tauto order = rnd.perm(n);\n\tfor(int i = 1; i < n;\
+    \ i++) {\n\t\tadd_edge(g, order[0], order[i]);\n\t}\n\tassert(g.m == n - 1);\n\
+    \treturn g;\n}\n\nGraph perfect(int n, bool weighted = false, long long w_min\
+    \ = 1, long long w_max = 1) {\n\tset_weight(weighted, w_min, w_max);\n\tGraph\
+    \ g(n, weighted);\n\tfor(int i = 0; i < n; i++) {\n\t\tfor(int j = i + 1; j <\
+    \ n; j++) {\n\t\t\tadd_edge(g, i, j);\n\t\t}\n\t}\n\treturn g;\n}\n\nGraph simple(int\
+    \ n, bool weighted = false, long long w_min = 1, long long w_max = 1) {\n\tset_weight(weighted,\
+    \ w_min, w_max);\n\tGraph g(n, weighted);\n\tauto order = rnd.perm(n);\n\tfor(int\
+    \ i = 0; i < n; i++) {\n\t\tfor(int j = i + 1; j < n; j++) {\n\t\t\tif(rnd.next(0,\
+    \ 1)) {\n\t\t\t\tadd_edge(g, i, j);\n\t\t\t}\n\t\t}\n\t}\n\treturn g;\n}\n\nGraph\
+    \ namori(int n, bool weighted = false, long long w_min = 1, long long w_max =\
+    \ 1) {\n\tset_weight(weighted, w_min, w_max);\n\tGraph g(n, weighted);\n\tadd_edge(g,\
+    \ 0, rnd.next(1, n - 1));\n\tfor(int i = 1; i < n; i++) {\n\t\tadd_edge(g, i,\
+    \ rnd.next(0, i - 1));\n\t}\n\treturn g;\n}\n\nGraph sparse(int n, bool weighted\
     \ = false, long long w_min = 1, long long w_max = 1) {\n\tset_weight(weighted,\
-    \ w_min, w_max);\n\tGraph g(n, weighted);\n\tauto order = rnd.permutation(n);\n\
-    \tfor(int i = 1; i < n; i++) {\n\t\tadd_edge(g, order[0], order[i]);\n\t}\n\t\
-    assert(g.m == n - 1);\n\treturn g;\n}\n\nGraph perfect(int n, bool weighted =\
-    \ false, long long w_min = 1, long long w_max = 1) {\n\tset_weight(weighted, w_min,\
-    \ w_max);\n\tGraph g(n, weighted);\n\tfor(int i = 0; i < n; i++) {\n\t\tfor(int\
-    \ j = i + 1; j < n; j++) {\n\t\t\tadd_edge(g, i, j);\n\t\t}\n\t}\n\treturn g;\n\
-    }\n\nGraph simple(int n, bool weighted = false, long long w_min = 1, long long\
+    \ w_min, w_max);\n\tGraph g(n, weighted);\n\tif(n == 0) {\n\t\treturn g;\n\t}\n\
+    \tint m = rnd.next(0, n - 1);\n\tstd::set<std::pair<int, int>> edges;\n\twhile((int)\
+    \ edges.size() < m) {\n\t\tint u = rnd.next(0, n - 1);\n\t\tint v = rnd.next(0,\
+    \ n - 1);\n\t\tif(u >= v) {\n\t\t\tcontinue;\n\t\t}\n\t\tedges.emplace(u, v);\n\
+    \t}\n\tfor(auto [u, v] : edges) {\n\t\tadd_edge(g, u, v);\n\t}\n\treturn g;\n\
+    }\n\nGraph connected(int n, bool weighted = false, long long w_min = 1, long long\
     \ w_max = 1) {\n\tset_weight(weighted, w_min, w_max);\n\tGraph g(n, weighted);\n\
-    \tauto order = rnd.permutation(n);\n\tfor(int i = 0; i < n; i++) {\n\t\tfor(int\
-    \ j = i + 1; j < n; j++) {\n\t\t\tif(rnd.next(0, 1)) {\n\t\t\t\tadd_edge(g, i,\
-    \ j);\n\t\t\t}\n\t\t}\n\t}\n\treturn g;\n}\n\nGraph namori(int n, bool weighted\
-    \ = false, long long w_min = 1, long long w_max = 1) {\n\tset_weight(weighted,\
-    \ w_min, w_max);\n\tGraph g(n, weighted);\n\tadd_edge(g, 0, rnd.next(1, n - 1));\n\
-    \tfor(int i = 1; i < n; i++) {\n\t\tadd_edge(g, i, rnd.next(0, i - 1));\n\t}\n\
-    \treturn g;\n}\n\nGraph sparse(int n, bool weighted = false, long long w_min =\
-    \ 1, long long w_max = 1) {\n\tset_weight(weighted, w_min, w_max);\n\tGraph g(n,\
-    \ weighted);\n\tif(n == 0) {\n\t\treturn g;\n\t}\n\tint m = rnd.next(0, n - 1);\n\
-    \tstd::set<std::pair<int, int>> edges;\n\twhile((int) edges.size() < m) {\n\t\t\
-    int u = rnd.next(0, n - 1);\n\t\tint v = rnd.next(0, n - 1);\n\t\tif(u >= v) {\n\
-    \t\t\tcontinue;\n\t\t}\n\t\tedges.emplace(u, v);\n\t}\n\tfor(auto [u, v] : edges)\
-    \ {\n\t\tadd_edge(g, u, v);\n\t}\n\treturn g;\n}\n\nGraph connected(int n, bool\
-    \ weighted = false, long long w_min = 1, long long w_max = 1) {\n\tset_weight(weighted,\
-    \ w_min, w_max);\n\tGraph g(n, weighted);\n\tif(n == 1) {\n\t\treturn g;\n\t}\n\
-    \tstd::set<std::pair<int, int>> s;\n\tauto perm = rnd.permutation(n);\n\tfor(int\
-    \ i = 1; i < n; i++) {\n\t\tint u = perm[rnd.next(i)];\n\t\tint v = perm[i];\n\
-    \t\tadd_edge(g, u, v);\n\t\ts.emplace(std::min(u, v), std::max(u, v));\n\t}\n\t\
-    int extra = rnd.next(n, 10 * n);\n\tfor(int i = 0; i < extra; i++) {\n\t\tint\
-    \ u = rnd.next(n - 1);\n\t\tint v = rnd.next(u + 1, n - 1);\n\t\tif(s.count({u,\
+    \tif(n == 1) {\n\t\treturn g;\n\t}\n\tstd::set<std::pair<int, int>> s;\n\tauto\
+    \ perm = rnd.perm(n);\n\tfor(int i = 1; i < n; i++) {\n\t\tint u = perm[rnd.next(i)];\n\
+    \t\tint v = perm[i];\n\t\tadd_edge(g, u, v);\n\t\ts.emplace(std::min(u, v), std::max(u,\
+    \ v));\n\t}\n\tint extra = rnd.next(n, 10 * n);\n\tfor(int i = 0; i < extra; i++)\
+    \ {\n\t\tint u = rnd.next(n - 1);\n\t\tint v = rnd.next(u + 1, n - 1);\n\t\tif(s.count({u,\
     \ v})) {\n\t\t\tcontinue;\n\t\t}\n\t\ts.emplace(u, v);\n\t\tadd_edge(g, u, v);\n\
     \t}\n\treturn g;\n}\n\nGraph bipartite(int n, bool weighted = false, long long\
     \ w_min = 1, long long w_max = 1) {\n\tset_weight(weighted, w_min, w_max);\n\t\
-    Graph g(n, weighted);\n\tif(n == 1) {\n\t\treturn g;\n\t}\n\tauto perm = rnd.permutation(n);\n\
+    Graph g(n, weighted);\n\tif(n == 1) {\n\t\treturn g;\n\t}\n\tauto perm = rnd.perm(n);\n\
     \tint l_cnt = rnd.next(1, n - 1);\n\tauto lv = std::vector<int>(perm.begin(),\
     \ perm.begin() + l_cnt);\n\tauto rv = std::vector<int>(perm.begin() + l_cnt, perm.end());\n\
     \tfor(auto u : lv) {\n\t\tfor(auto v : rv) {\n\t\t\tif(rnd.next(0, 1)) {\n\t\t\
@@ -221,7 +219,7 @@ data:
   isVerificationFile: false
   path: library/random/graph-generator.hpp
   requiredBy: []
-  timestamp: '2023-05-31 10:45:25+08:00'
+  timestamp: '2023-06-03 19:09:05+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/random/graph-generator.hpp

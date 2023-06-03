@@ -4,19 +4,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/data-structure/lazy-segtree.hpp
     title: library/data-structure/lazy-segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/data-structure/segtree.hpp
     title: library/data-structure/segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/inv-gcd.hpp
     title: library/math/inv-gcd.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/safe-mod.hpp
     title: library/math/safe-mod.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/misc/type-traits.hpp
     title: library/misc/type-traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/modint/modint.hpp
     title: library/modint/modint.hpp
   _extendedRequiredBy: []
@@ -39,39 +39,36 @@ data:
     \ e())) {}\n\texplicit segtree(const std::vector<S>& a): n(a.size()) {\n\t\tlog\
     \ = std::__lg(2 * n - 1);\n\t\tsize = 1 << log;\n\t\td.resize(size * 2, e());\n\
     \t\tfor(int i = 0; i < n; ++i) {\n\t\t\td[size + i] = a[i];\n\t\t}\n\t\tfor(int\
-    \ i = size - 1; i; --i) {\n\t\t\tupdate(i);\n\t\t}\n\t}\n\t\n\tvoid set(int p,\
-    \ S val) {\n\t\tassert(0 <= p && p < n);\n\t\tp += size;\n\t\td[p] = val;\n\t\t\
-    for(int i = 1; i <= log; ++i) {\n\t\t\tupdate(p >> i);\n\t\t}\n\t}\n\n\tS get(int\
-    \ p) const {\n\t\tassert(0 <= p && p < n);\n\t\treturn d[p + size];\n\t}\n\n\t\
-    S operator[](int p) const {\n\t\treturn get(p);\n\t}\n\t\n\tS prod(int l, int\
-    \ r) const {\n\t\tassert(0 <= l && l <= r && r <= n);\n\t\tS sml = e(), smr =\
-    \ e();\n\t\tl += size, r += size;\n\t\twhile(l < r) {\n\t\t\tif(l & 1) {\n\t\t\
-    \t\tsml = op(sml, d[l++]);\n\t\t\t}\n\t\t\tif(r & 1) {\n\t\t\t\tsmr = op(d[--r],\
-    \ smr);\n\t\t\t}\n\t\t\tl >>= 1, r >>= 1;\n\t\t}\n\t\treturn op(sml, smr);\n\t\
-    }\n\n\tS all_prod() const { return d[1]; }\n\n\ttemplate<bool (*f)(S)> int max_right(int\
-    \ l) const {\n\t\treturn max_right(l, [](S x) { return f(x); });\n\t}\n\n\ttemplate<class\
-    \ F> int max_right(int l, F f) const {\n\t\treturn max_right(l, f, [](int p) {});\n\
-    \t}\n\n\ttemplate<bool (*f)(S)> int min_left(int r) const {\n\t\treturn min_left(r,\
-    \ [](S x) { return f(x); });\n\t}\n\n\ttemplate<class F> int min_left(int r, F\
-    \ f) const {\n\t\treturn min_left(r, f, [](int p) {});\n\t}\n\t\nprotected:\n\t\
-    int n, size, log;\n\tstd::vector<S> d;\n\n\tvoid update(int v) {\n\t\td[v] = op(d[v\
-    \ * 2], d[v * 2 + 1]);\n\t}\n\n\ttemplate<class F> int max_right(int l, F f, const\
-    \ std::function<void(int)> push) const {\n\t\tassert(0 <= l && l <= n);\n\t\t\
-    assert(f(e()));\n\t\tif(l == n) {\n\t\t\treturn n;\n\t\t}\n\t\tl += size;\n\t\t\
-    S sm = e();\n\t\tdo {\n\t\t\twhile(~l & 1) {\n\t\t\t\tl >>= 1;\n\t\t\t}\n\t\t\t\
-    if(!f(op(sm, d[l]))) {\n\t\t\t\twhile(l < size) {\n\t\t\t\t\tpush(l);\n\t\t\t\t\
-    \tl <<= 1;\n\t\t\t\t\tif(f(op(sm, d[l]))) {\n\t\t\t\t\t\tsm = op(sm, d[l++]);\n\
-    \t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\treturn l - size;\n\t\t\t}\n\t\t\tsm = op(sm, d[l++]);\n\
-    \t\t} while((l & -l) != l);\n\t\treturn n;\n\t}\n\n\ttemplate<class F> int min_left(int\
-    \ r, F f, const std::function<void(int)> push) const {\n\t\tassert(0 <= r && r\
-    \ <= n);\n\t\tassert(f(e()));\n\t\tif(r == 0) {\n\t\t\treturn 0;\n\t\t}\n\t\t\
-    r += size;\n\t\tS sm = e();\n\t\tdo {\n\t\t\tr--;\n\t\t\twhile(r > 1 && (r & 1))\
-    \ {\n\t\t\t\tr >>= 1;\n\t\t\t}\n\t\t\tif(!f(op(d[r], sm))) {\n\t\t\t\twhile(r\
-    \ < size) {\n\t\t\t\t\tpush(r);\n\t\t\t\t\tr = r * 2 + 1;\n\t\t\t\t\tif(f(op(d[r],\
-    \ sm))) {\n\t\t\t\t\t\tsm = op(d[r--], sm);\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\t\
-    return r + 1 - size;\n\t\t\t}\n\t\t\tsm = op(d[r], sm);\n\t\t} while((r & -r)\
-    \ != r);\n\t\treturn 0;\n\t}\n};\n\n} // namespace felix\n#line 5 \"library/data-structure/lazy-segtree.hpp\"\
-    \n\nnamespace felix {\n\ntemplate<class S,\n         S (*e)(),\n         S (*op)(S,\
+    \ i = size - 1; i >= 1; i--) {\n\t\t\tupdate(i);\n\t\t}\n\t}\n\t\n\tvoid set(int\
+    \ p, S val) {\n\t\tassert(0 <= p && p < n);\n\t\tp += size;\n\t\td[p] = val;\n\
+    \t\tfor(int i = 1; i <= log; ++i) {\n\t\t\tupdate(p >> i);\n\t\t}\n\t}\n\n\tS\
+    \ get(int p) const {\n\t\tassert(0 <= p && p < n);\n\t\treturn d[p + size];\n\t\
+    }\n\n\tS operator[](int p) const { return get(p); }\n\t\n\tS prod(int l, int r)\
+    \ const {\n\t\tassert(0 <= l && l <= r && r <= n);\n\t\tS sml = e(), smr = e();\n\
+    \t\tl += size, r += size;\n\t\twhile(l < r) {\n\t\t\tif(l & 1) {\n\t\t\t\tsml\
+    \ = op(sml, d[l++]);\n\t\t\t}\n\t\t\tif(r & 1) {\n\t\t\t\tsmr = op(d[--r], smr);\n\
+    \t\t\t}\n\t\t\tl >>= 1, r >>= 1;\n\t\t}\n\t\treturn op(sml, smr);\n\t}\n\n\tS\
+    \ all_prod() const { return d[1]; }\n\n\ttemplate<bool (*f)(S)> int max_right(int\
+    \ l) {\n\t\treturn max_right(l, [](S x) { return f(x); });\n\t}\n\n\ttemplate<class\
+    \ F> int max_right(int l, F f) {\n\t\tassert(0 <= l && l <= n);\n\t\tassert(f(e()));\n\
+    \t\tif(l == n) {\n\t\t\treturn n;\n\t\t}\n\t\tl += size;\n\t\tS sm = e();\n\t\t\
+    do {\n\t\t\twhile(~l & 1) {\n\t\t\t\tl >>= 1;\n\t\t\t}\n\t\t\tif(!f(op(sm, d[l])))\
+    \ {\n\t\t\t\twhile(l < size) {\n\t\t\t\t\tpush(l);\n\t\t\t\t\tl <<= 1;\n\t\t\t\
+    \t\tif(f(op(sm, d[l]))) {\n\t\t\t\t\t\tsm = op(sm, d[l++]);\n\t\t\t\t\t}\n\t\t\
+    \t\t}\n\t\t\t\treturn l - size;\n\t\t\t}\n\t\t\tsm = op(sm, d[l++]);\n\t\t} while((l\
+    \ & -l) != l);\n\t\treturn n;\n\t}\n\n\ttemplate<bool (*f)(S)> int min_left(int\
+    \ r) {\n\t\treturn min_left(r, [](S x) { return f(x); });\n\t}\n\n\ttemplate<class\
+    \ F> int min_left(int r, F f) {\n\t\tassert(0 <= r && r <= n);\n\t\tassert(f(e()));\n\
+    \t\tif(r == 0) {\n\t\t\treturn 0;\n\t\t}\n\t\tr += size;\n\t\tS sm = e();\n\t\t\
+    do {\n\t\t\tr--;\n\t\t\twhile(r > 1 && (r & 1)) {\n\t\t\t\tr >>= 1;\n\t\t\t}\n\
+    \t\t\tif(!f(op(d[r], sm))) {\n\t\t\t\twhile(r < size) {\n\t\t\t\t\tpush(r);\n\t\
+    \t\t\t\tr = 2 * r + 1;\n\t\t\t\t\tif(f(op(d[r], sm))) {\n\t\t\t\t\t\tsm = op(d[r--],\
+    \ sm);\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\treturn r + 1 - size;\n\t\t\t}\n\t\t\t\
+    sm = op(d[r], sm);\n\t\t} while((r & -r) != r);\n\t\treturn 0;\n\t}\n\t\nprotected:\n\
+    \tint n, size, log;\n\tstd::vector<S> d;\n\n\tvoid update(int v) {\n\t\td[v] =\
+    \ op(d[2 * v], d[2 * v + 1]);\n\t}\n\n\tvirtual void push(int p) = 0;\n};\n\n\
+    } // namespace felix\n#line 5 \"library/data-structure/lazy-segtree.hpp\"\n\n\
+    namespace felix {\n\ntemplate<class S,\n         S (*e)(),\n         S (*op)(S,\
     \ S),\n         class F,\n         F (*id)(),\n         S (*mapping)(F, S),\n\
     \         F (*composition)(F, F)>\nstruct lazy_segtree : public segtree<S, e,\
     \ op> {\n\tusing base = segtree<S, e, op>;\n\npublic:\n\tusing base::all_prod;\n\
@@ -94,19 +91,19 @@ data:
     \ max_right(l, [](S x) { return g(x); });\n\t}\n\n\ttemplate<class G> int max_right(int\
     \ l, G g) {\n\t\tassert(0 <= l && l <= n);\n\t\tassert(g(e()));\n\t\tif(l == n)\
     \ {\n\t\t\treturn n;\n\t\t}\n\t\tpush_down(l);\n\t\treturn base::max_right(l,\
-    \ g, [&](int p) { push(p); });\n\t}\n\n\ttemplate<bool (*g)(S)> int min_left(int\
-    \ r) {\n\t\treturn min_left(r, [](S x) { return g(x); });\n\t}\n\n\ttemplate<class\
-    \ G> int min_left(int r, G g) {\n\t\tassert(0 <= r && r <= n);\n\t\tassert(g(e()));\n\
-    \t\tif(r == 0) {\n\t\t\treturn 0;\n\t\t}\n\t\tpush_down(r - 1);\n\t\treturn base::min_left(r,\
-    \ g, [&](int p) { push(p); });\n\t}\n\nprivate:\n\tusing base::n, base::log, base::size,\
-    \ base::d;\n\tusing base::update;\n\n\tstd::vector<F> lz;\n\n\tvoid all_apply(int\
-    \ k, F f) {\n\t\td[k] = mapping(f, d[k]);\n\t\tif(k < size) {\n\t\t\tlz[k] = composition(f,\
-    \ lz[k]);\n\t\t}\n\t}\n\n\tvoid push(int k) {\n\t\tall_apply(2 * k, lz[k]);\n\t\
-    \tall_apply(2 * k + 1, lz[k]);\n\t\tlz[k] = id();\n\t}\n\n\tvoid push_down(int\
-    \ p) {\n\t\tp += size;\n\t\tfor(int i = log; i >= 1; i--) {\n\t\t\tpush(p >> i);\n\
-    \t\t}\n\t}\n\n\tvoid push_down(int l, int r) {\n\t\tl += size, r += size;\n\t\t\
-    for(int i = log; i >= 1; i--) {\n\t\t\tif(((l >> i) << i) != l) {\n\t\t\t\tpush(l\
-    \ >> i);\n\t\t\t}\n\t\t\tif(((r >> i) << i) != r) {\n\t\t\t\tpush((r - 1) >> i);\n\
+    \ g);\n\t}\n\n\ttemplate<bool (*g)(S)> int min_left(int r) {\n\t\treturn min_left(r,\
+    \ [](S x) { return g(x); });\n\t}\n\n\ttemplate<class G> int min_left(int r, G\
+    \ g) {\n\t\tassert(0 <= r && r <= n);\n\t\tassert(g(e()));\n\t\tif(r == 0) {\n\
+    \t\t\treturn 0;\n\t\t}\n\t\tpush_down(r - 1);\n\t\treturn base::min_left(r, g);\n\
+    \t}\n\nprotected:\n\tusing base::n, base::log, base::size, base::d;\n\tusing base::update;\n\
+    \n\tstd::vector<F> lz;\n\n\tvirtual void all_apply(int k, F f) {\n\t\td[k] = mapping(f,\
+    \ d[k]);\n\t\tif(k < size) {\n\t\t\tlz[k] = composition(f, lz[k]);\n\t\t}\n\t\
+    }\n\n\tvoid push(int k) override {\n\t\tall_apply(2 * k, lz[k]);\n\t\tall_apply(2\
+    \ * k + 1, lz[k]);\n\t\tlz[k] = id();\n\t}\n\n\tvoid push_down(int p) {\n\t\t\
+    p += size;\n\t\tfor(int i = log; i >= 1; i--) {\n\t\t\tpush(p >> i);\n\t\t}\n\t\
+    }\n\n\tvoid push_down(int l, int r) {\n\t\tl += size, r += size;\n\t\tfor(int\
+    \ i = log; i >= 1; i--) {\n\t\t\tif(((l >> i) << i) != l) {\n\t\t\t\tpush(l >>\
+    \ i);\n\t\t\t}\n\t\t\tif(((r >> i) << i) != r) {\n\t\t\t\tpush((r - 1) >> i);\n\
     \t\t\t}\n\t\t}\n\t}\n};\n\n} // namespace felix\n#line 4 \"library/modint/modint.hpp\"\
     \n#include <algorithm>\r\n#line 6 \"library/modint/modint.hpp\"\n#include <type_traits>\r\
     \n#line 3 \"library/misc/type-traits.hpp\"\n#include <numeric>\r\n#line 5 \"library/misc/type-traits.hpp\"\
@@ -278,7 +275,7 @@ data:
   isVerificationFile: true
   path: test/data-structure/lazy-segtree/yosupo-Range-Affine-Point-Get.test.cpp
   requiredBy: []
-  timestamp: '2023-05-31 10:45:25+08:00'
+  timestamp: '2023-06-03 19:09:05+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/data-structure/lazy-segtree/yosupo-Range-Affine-Point-Get.test.cpp

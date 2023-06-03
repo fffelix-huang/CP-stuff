@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/data-structure/sparse-table.hpp
     title: library/data-structure/sparse-table.hpp
   _extendedRequiredBy: []
@@ -27,12 +27,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/tree/heavy-light-decomposition/yosupo-Vertex-Add-Subtree-Sum.test.cpp
     title: test/tree/heavy-light-decomposition/yosupo-Vertex-Add-Subtree-Sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/tree/heavy-light-decomposition/yosupo-Vertex-Set-Path-Composite.test.cpp
     title: test/tree/heavy-light-decomposition/yosupo-Vertex-Set-Path-Composite.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"library/tree/heavy-light-decomposition.hpp\"\n#include <vector>\r\
@@ -176,16 +176,16 @@ data:
   path: library/tree/heavy-light-decomposition.hpp
   requiredBy: []
   timestamp: '2023-05-19 01:26:35+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/tree/heavy-light-decomposition/yosupo-Vertex-Add-Path-Sum.test.cpp
-  - test/tree/heavy-light-decomposition/yosupo-Jump-on-Tree.test.cpp
-  - test/tree/heavy-light-decomposition/aoj-grl-Range-Query-on-a-Tree-II.test.cpp
-  - test/tree/heavy-light-decomposition/aoj-grl-Lowest-Common-Ancestor.test.cpp
-  - test/tree/heavy-light-decomposition/yosupo-Vertex-Add-Subtree-Sum.test.cpp
-  - test/tree/heavy-light-decomposition/yosupo-Lowest-Common-Ancestor.test.cpp
   - test/tree/heavy-light-decomposition/yosupo-Vertex-Set-Path-Composite.test.cpp
+  - test/tree/heavy-light-decomposition/aoj-grl-Range-Query-on-a-Tree-II.test.cpp
+  - test/tree/heavy-light-decomposition/yosupo-Lowest-Common-Ancestor.test.cpp
+  - test/tree/heavy-light-decomposition/yosupo-Vertex-Add-Path-Sum.test.cpp
   - test/tree/heavy-light-decomposition/aoj-grl-Range-Query-on-a-Tree.test.cpp
+  - test/tree/heavy-light-decomposition/yosupo-Vertex-Add-Subtree-Sum.test.cpp
+  - test/tree/heavy-light-decomposition/aoj-grl-Lowest-Common-Ancestor.test.cpp
+  - test/tree/heavy-light-decomposition/yosupo-Jump-on-Tree.test.cpp
 documentation_of: library/tree/heavy-light-decomposition.hpp
 layout: document
 redirect_from:

@@ -3,7 +3,7 @@ data:
   libraryCategories:
   - name: library/convolution
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/convolution/ntt.hpp
       title: library/convolution/ntt.hpp
     - icon: ':heavy_check_mark:'
@@ -41,10 +41,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/data-structure/pbds.hpp
       title: library/data-structure/pbds.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/data-structure/segtree.hpp
       title: library/data-structure/segtree.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/data-structure/sparse-table.hpp
       title: library/data-structure/sparse-table.hpp
     - icon: ':heavy_check_mark:'
@@ -66,7 +66,7 @@ data:
       title: library/flow/mincostflow.hpp
   - name: library/formal-power-series
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/formal-power-series/poly.hpp
       title: library/formal-power-series/poly.hpp
   - name: library/geometry
@@ -126,19 +126,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/integer-div.hpp
       title: Integer division ($\lfloor \frac{a}{b} \rfloor \lceil \frac{a}{b} \rceil$)
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/math/inv-gcd.hpp
       title: library/math/inv-gcd.hpp
     - icon: ':heavy_check_mark:'
       path: library/math/is-prime.hpp
       title: library/math/is-prime.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/math/pow-mod.hpp
       title: library/math/pow-mod.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/math/primitive-root.hpp
       title: library/math/primitive-root.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/math/safe-mod.hpp
       title: library/math/safe-mod.hpp
     - icon: ':heavy_check_mark:'
@@ -163,7 +163,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/misc/fastio.hpp
       title: library/misc/fastio.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/misc/type-traits.hpp
       title: library/misc/type-traits.hpp
   - name: library/modint
@@ -171,7 +171,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/modint/barrett.hpp
       title: library/modint/barrett.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/modint/modint.hpp
       title: library/modint/modint.hpp
   - name: library/random
@@ -201,7 +201,7 @@ data:
       title: Z Algorithm
   - name: library/tree
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/tree/heavy-light-decomposition.hpp
       title: library/tree/heavy-light-decomposition.hpp
     - icon: ':warning:'
@@ -324,7 +324,7 @@ data:
       title: test/data-structure/pbds/yosupo-Static-Range-Sum.test.cpp
   - name: test/data-structure/segtree
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/data-structure/segtree/aoj-dsl-Range-Minimum-Query.test.cpp
       title: test/data-structure/segtree/aoj-dsl-Range-Minimum-Query.test.cpp
   - name: test/data-structure/sparse-table
@@ -368,7 +368,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/formal-power-series/poly/yosupo-Log-of-Formal-Power-Series.test.cpp
       title: test/formal-power-series/poly/yosupo-Log-of-Formal-Power-Series.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/formal-power-series/poly/yosupo-Multipoint-Evaluation.test.cpp
       title: test/formal-power-series/poly/yosupo-Multipoint-Evaluation.test.cpp
     - icon: ':heavy_check_mark:'
@@ -552,7 +552,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/tree/heavy-light-decomposition/yosupo-Vertex-Add-Subtree-Sum.test.cpp
       title: test/tree/heavy-light-decomposition/yosupo-Vertex-Add-Subtree-Sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/tree/heavy-light-decomposition/yosupo-Vertex-Set-Path-Composite.test.cpp
       title: test/tree/heavy-light-decomposition/yosupo-Vertex-Set-Path-Composite.test.cpp
 layout: toppage
