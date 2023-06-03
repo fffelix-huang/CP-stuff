@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/convolution/ntt.hpp
     title: library/convolution/ntt.hpp
   - icon: ':question:'
     path: library/math/inv-gcd.hpp
     title: library/math/inv-gcd.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/pow-mod.hpp
     title: library/math/pow-mod.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/primitive-root.hpp
     title: library/math/primitive-root.hpp
   - icon: ':question:'
@@ -33,7 +33,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/formal-power-series/poly/yosupo-Log-of-Formal-Power-Series.test.cpp
     title: test/formal-power-series/poly/yosupo-Log-of-Formal-Power-Series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/formal-power-series/poly/yosupo-Multipoint-Evaluation.test.cpp
     title: test/formal-power-series/poly/yosupo-Multipoint-Evaluation.test.cpp
   - icon: ':heavy_check_mark:'
@@ -51,9 +51,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/formal-power-series/series/yosupo-Partition-Function.test.cpp
     title: test/formal-power-series/series/yosupo-Partition-Function.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"library/formal-power-series/poly.hpp\"\n#include <vector>\r\
@@ -433,7 +433,7 @@ data:
     \t\t\t\tbuild(2 * p + 1, m, r);\r\n\t\t\t\tq[p] = q[2 * p] * q[2 * p + 1];\r\n\
     \t\t\t}\r\n\t\t};\r\n\t\tbuild(1, 0, n);\r\n\t\tstd::function<void(int, int, int,\
     \ const Poly&)> work = [&](int p, int l, int r, const Poly& num) {\r\n\t\t\tif(r\
-    \ - l == 1) {\r\n\t\t\t\tif(l < (int) ans.size()) {\r\n\t\t\t\t\tans[l] = num[0];\r\
+    \ - l == 1) {\r\n\t\t\t\tif(l < (int) ans.size()) {\r\n\t\t\t\t\tans[l] = num.at(0);\r\
     \n\t\t\t\t}\r\n\t\t\t} else {\r\n\t\t\t\tint m = (l + r) / 2;\r\n\t\t\t\twork(2\
     \ * p, l, m, num.mulT(q[2 * p + 1]).modxk(m - l));\r\n\t\t\t\twork(2 * p + 1,\
     \ m, r, num.mulT(q[2 * p]).modxk(r - m));\r\n\t\t\t}\r\n\t\t};\r\n\t\twork(1,\
@@ -526,7 +526,7 @@ data:
     \t\t\t\tbuild(2 * p + 1, m, r);\r\n\t\t\t\tq[p] = q[2 * p] * q[2 * p + 1];\r\n\
     \t\t\t}\r\n\t\t};\r\n\t\tbuild(1, 0, n);\r\n\t\tstd::function<void(int, int, int,\
     \ const Poly&)> work = [&](int p, int l, int r, const Poly& num) {\r\n\t\t\tif(r\
-    \ - l == 1) {\r\n\t\t\t\tif(l < (int) ans.size()) {\r\n\t\t\t\t\tans[l] = num[0];\r\
+    \ - l == 1) {\r\n\t\t\t\tif(l < (int) ans.size()) {\r\n\t\t\t\t\tans[l] = num.at(0);\r\
     \n\t\t\t\t}\r\n\t\t\t} else {\r\n\t\t\t\tint m = (l + r) / 2;\r\n\t\t\t\twork(2\
     \ * p, l, m, num.mulT(q[2 * p + 1]).modxk(m - l));\r\n\t\t\t\twork(2 * p + 1,\
     \ m, r, num.mulT(q[2 * p]).modxk(r - m));\r\n\t\t\t}\r\n\t\t};\r\n\t\twork(1,\
@@ -543,8 +543,8 @@ data:
   isVerificationFile: false
   path: library/formal-power-series/poly.hpp
   requiredBy: []
-  timestamp: '2023-06-03 19:09:05+08:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2023-06-03 19:46:21+08:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/formal-power-series/series/yosupo-Partition-Function.test.cpp
   - test/formal-power-series/poly/yosupo-Exp-of-Formal-Power-Series.test.cpp

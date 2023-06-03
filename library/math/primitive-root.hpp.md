@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/pow-mod.hpp
     title: library/math/pow-mod.hpp
   - icon: ':question:'
@@ -11,10 +11,10 @@ data:
     path: library/misc/type-traits.hpp
     title: library/misc/type-traits.hpp
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/convolution/ntt.hpp
     title: library/convolution/ntt.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/formal-power-series/poly.hpp
     title: library/formal-power-series/poly.hpp
   _extendedVerifiedWith:
@@ -36,7 +36,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/formal-power-series/poly/yosupo-Log-of-Formal-Power-Series.test.cpp
     title: test/formal-power-series/poly/yosupo-Log-of-Formal-Power-Series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/formal-power-series/poly/yosupo-Multipoint-Evaluation.test.cpp
     title: test/formal-power-series/poly/yosupo-Multipoint-Evaluation.test.cpp
   - icon: ':heavy_check_mark:'
@@ -54,9 +54,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/formal-power-series/series/yosupo-Partition-Function.test.cpp
     title: test/formal-power-series/series/yosupo-Partition-Function.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"library/math/primitive-root.hpp\"\n#include <cassert>\n\
@@ -140,7 +140,7 @@ data:
   - library/formal-power-series/poly.hpp
   - library/convolution/ntt.hpp
   timestamp: '2023-05-28 03:49:52+08:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/formal-power-series/series/yosupo-Partition-Function.test.cpp
   - test/formal-power-series/poly/yosupo-Exp-of-Formal-Power-Series.test.cpp

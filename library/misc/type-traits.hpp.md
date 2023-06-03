@@ -2,13 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/convolution/ntt.hpp
     title: library/convolution/ntt.hpp
   - icon: ':heavy_check_mark:'
     path: library/convolution/subset-convolution.hpp
     title: library/convolution/subset-convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/formal-power-series/poly.hpp
     title: library/formal-power-series/poly.hpp
   - icon: ':heavy_check_mark:'
@@ -17,10 +17,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/math/is-prime.hpp
     title: library/math/is-prime.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/pow-mod.hpp
     title: library/math/pow-mod.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/primitive-root.hpp
     title: library/math/primitive-root.hpp
   - icon: ':heavy_check_mark:'
@@ -69,7 +69,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/formal-power-series/poly/yosupo-Log-of-Formal-Power-Series.test.cpp
     title: test/formal-power-series/poly/yosupo-Log-of-Formal-Power-Series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/formal-power-series/poly/yosupo-Multipoint-Evaluation.test.cpp
     title: test/formal-power-series/poly/yosupo-Multipoint-Evaluation.test.cpp
   - icon: ':heavy_check_mark:'
