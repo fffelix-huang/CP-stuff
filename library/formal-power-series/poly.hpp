@@ -272,7 +272,7 @@ public:
 		std::function<void(int, int, int, const Poly&)> work = [&](int p, int l, int r, const Poly& num) {
 			if(r - l == 1) {
 				if(l < (int) ans.size()) {
-					ans[l] = num[0];
+					ans[l] = num.at(0);
 				}
 			} else {
 				int m = (l + r) / 2;
