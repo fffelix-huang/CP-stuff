@@ -73,7 +73,7 @@ std::vector<T> factorize(T n) {
 }
 
 template<class T>
-std::vector<T> get_divisors(T n) {
+std::vector<T> divisors(T n) {
 	if(n == 0) {
 		return {};
 	}

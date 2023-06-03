@@ -127,7 +127,7 @@ protected:
 		d[v] = op(d[2 * v], d[2 * v + 1]);
 	}
 
-	virtual void push(int p) = 0;
+	virtual void push(int p) {}
 };
 
 } // namespace felix
