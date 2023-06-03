@@ -91,7 +91,7 @@ public:
 			return n;
 		}
 		push_down(l);
-		return base::max_right(l, g, [&](int p) { push(p); });
+		return base::max_right(l, g);
 	}
 
 	template<bool (*g)(S)> int min_left(int r) {
@@ -105,23 +105,23 @@ public:
 			return 0;
 		}
 		push_down(r - 1);
-		return base::min_left(r, g, [&](int p) { push(p); });
+		return base::min_left(r, g);
 	}
 
-private:
+protected:
 	using base::n, base::log, base::size, base::d;
 	using base::update;
 
 	std::vector<F> lz;
 
-	void all_apply(int k, F f) {
+	virtual void all_apply(int k, F f) {
 		d[k] = mapping(f, d[k]);
 		if(k < size) {
 			lz[k] = composition(f, lz[k]);
 		}
 	}
 
-	void push(int k) {
+	void push(int k) override {
 		all_apply(2 * k, lz[k]);
 		all_apply(2 * k + 1, lz[k]);
 		lz[k] = id();

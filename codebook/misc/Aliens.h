@@ -1,4 +1,4 @@
-template<class Func, bool MAX>
+template<bool MAX, class Func>
 long long Aliens(long long l, long long r, int k, Func f) {
 	while(l < r) {
 		long long m = l + (r - l) / 2;

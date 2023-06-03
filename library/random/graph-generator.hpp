@@ -98,7 +98,7 @@ void add_edge(Graph& g, int u, int v) {
 Graph tree(int n, bool weighted = false, long long w_min = 1, long long w_max = 1) {
 	set_weight(weighted, w_min, w_max);
 	Graph g(n, weighted);
-	auto order = rnd.permutation(n);
+	auto order = rnd.perm(n);
 	for(int i = 1; i < n; i++) {
 		add_edge(g, order[rnd.next(0, i - 1)], order[i]);
 	}
@@ -109,7 +109,7 @@ Graph tree(int n, bool weighted = false, long long w_min = 1, long long w_max = 
 Graph path(int n, bool weighted = false, long long w_min = 1, long long w_max = 1) {
 	set_weight(weighted, w_min, w_max);
 	Graph g(n, weighted);
-	auto order = rnd.permutation(n);
+	auto order = rnd.perm(n);
 	for(int i = 0; i < n - 1; i++) {
 		add_edge(g, order[i], order[i + 1]);
 	}
@@ -120,7 +120,7 @@ Graph path(int n, bool weighted = false, long long w_min = 1, long long w_max = 
 Graph star(int n, bool weighted = false, long long w_min = 1, long long w_max = 1) {
 	set_weight(weighted, w_min, w_max);
 	Graph g(n, weighted);
-	auto order = rnd.permutation(n);
+	auto order = rnd.perm(n);
 	for(int i = 1; i < n; i++) {
 		add_edge(g, order[0], order[i]);
 	}
@@ -142,7 +142,7 @@ Graph perfect(int n, bool weighted = false, long long w_min = 1, long long w_max
 Graph simple(int n, bool weighted = false, long long w_min = 1, long long w_max = 1) {
 	set_weight(weighted, w_min, w_max);
 	Graph g(n, weighted);
-	auto order = rnd.permutation(n);
+	auto order = rnd.perm(n);
 	for(int i = 0; i < n; i++) {
 		for(int j = i + 1; j < n; j++) {
 			if(rnd.next(0, 1)) {
@@ -192,7 +192,7 @@ Graph connected(int n, bool weighted = false, long long w_min = 1, long long w_m
 		return g;
 	}
 	std::set<std::pair<int, int>> s;
-	auto perm = rnd.permutation(n);
+	auto perm = rnd.perm(n);
 	for(int i = 1; i < n; i++) {
 		int u = perm[rnd.next(i)];
 		int v = perm[i];
@@ -218,7 +218,7 @@ Graph bipartite(int n, bool weighted = false, long long w_min = 1, long long w_m
 	if(n == 1) {
 		return g;
 	}
-	auto perm = rnd.permutation(n);
+	auto perm = rnd.perm(n);
 	int l_cnt = rnd.next(1, n - 1);
 	auto lv = std::vector<int>(perm.begin(), perm.begin() + l_cnt);
 	auto rv = std::vector<int>(perm.begin() + l_cnt, perm.end());

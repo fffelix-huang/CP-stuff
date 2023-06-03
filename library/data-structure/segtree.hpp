@@ -17,7 +17,7 @@ public:
 		for(int i = 0; i < n; ++i) {
 			d[size + i] = a[i];
 		}
-		for(int i = size - 1; i; --i) {
+		for(int i = size - 1; i >= 1; i--) {
 			update(i);
 		}
 	}
@@ -36,9 +36,7 @@ public:
 		return d[p + size];
 	}
 
-	S operator[](int p) const {
-		return get(p);
-	}
+	S operator[](int p) const { return get(p); }
 	
 	S prod(int l, int r) const {
 		assert(0 <= l && l <= r && r <= n);
@@ -58,31 +56,11 @@ public:
 
 	S all_prod() const { return d[1]; }
 
-	template<bool (*f)(S)> int max_right(int l) const {
+	template<bool (*f)(S)> int max_right(int l) {
 		return max_right(l, [](S x) { return f(x); });
 	}
 
-	template<class F> int max_right(int l, F f) const {
-		return max_right(l, f, [](int p) {});
-	}
-
-	template<bool (*f)(S)> int min_left(int r) const {
-		return min_left(r, [](S x) { return f(x); });
-	}
-
-	template<class F> int min_left(int r, F f) const {
-		return min_left(r, f, [](int p) {});
-	}
-	
-protected:
-	int n, size, log;
-	std::vector<S> d;
-
-	void update(int v) {
-		d[v] = op(d[v * 2], d[v * 2 + 1]);
-	}
-
-	template<class F> int max_right(int l, F f, const std::function<void(int)> push) const {
+	template<class F> int max_right(int l, F f) {
 		assert(0 <= l && l <= n);
 		assert(f(e()));
 		if(l == n) {
@@ -109,7 +87,11 @@ protected:
 		return n;
 	}
 
-	template<class F> int min_left(int r, F f, const std::function<void(int)> push) const {
+	template<bool (*f)(S)> int min_left(int r) {
+		return min_left(r, [](S x) { return f(x); });
+	}
+
+	template<class F> int min_left(int r, F f) {
 		assert(0 <= r && r <= n);
 		assert(f(e()));
 		if(r == 0) {
@@ -125,7 +107,7 @@ protected:
 			if(!f(op(d[r], sm))) {
 				while(r < size) {
 					push(r);
-					r = r * 2 + 1;
+					r = 2 * r + 1;
 					if(f(op(d[r], sm))) {
 						sm = op(d[r--], sm);
 					}
@@ -136,6 +118,16 @@ protected:
 		} while((r & -r) != r);
 		return 0;
 	}
+	
+protected:
+	int n, size, log;
+	std::vector<S> d;
+
+	void update(int v) {
+		d[v] = op(d[2 * v], d[2 * v + 1]);
+	}
+
+	virtual void push(int p) = 0;
 };
 
 } // namespace felix

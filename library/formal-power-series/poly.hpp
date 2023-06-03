@@ -35,7 +35,7 @@ public:
 		}
 	}
 
-	constexpr mint operator[](int idx) const {
+	constexpr mint at(int idx) const {
 		if(idx >= 0 && idx < size()) {
 			return a[idx];
 		} else {
@@ -48,7 +48,7 @@ public:
 	constexpr friend Poly operator+(const Poly& a, const Poly& b) {
 		Poly c(std::max(a.size(), b.size()));
 		for(int i = 0; i < c.size(); i++) {
-			c[i] = a[i] + b[i];
+			c[i] = a.at(i) + b.at(i);
 		}
 		return c;
 	}
@@ -56,7 +56,7 @@ public:
 	constexpr friend Poly operator-(const Poly& a, const Poly& b) {
 		Poly c(std::max(a.size(), b.size()));
 		for(int i = 0; i < c.size(); i++) {
-			c[i] = a[i] - b[i];
+			c[i] = a.at(i) - b.at(i);
 		}
 		return c;
 	}
@@ -165,7 +165,7 @@ public:
 			return b;
 		}
 		int s = 0, sz = size();
-		while(s < sz && a[s] == 0) {
+		while(s < sz && a[s].val() == 0) {
 			s++;
 		}
 		if(s == sz) {
@@ -185,7 +185,7 @@ public:
 			return true;
 		}
 		int x = 0;
-		while(x < size() && a[x] == 0) {
+		while(x < size() && a[x].val() == 0) {
 			x++;
 		}
 		if(x == size()) {
@@ -206,7 +206,7 @@ public:
 			return Poly();
 		}
 		int x = 0;
-		while(x < size() && a[x] == 0) {
+		while(x < size() && a[x].val() == 0) {
 			x++;
 		}
 		if(x == size()) {
