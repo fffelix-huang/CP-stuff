@@ -44,8 +44,8 @@ data:
   isVerificationFile: false
   path: library/math/binary-gcd.hpp
   requiredBy:
-  - library/math/factorize.hpp
   - library/math/discrete-log.hpp
+  - library/math/factorize.hpp
   timestamp: '2023-04-03 17:58:04+08:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:

@@ -60,19 +60,19 @@ data:
   isVerificationFile: false
   path: library/data-structure/fenwick.hpp
   requiredBy:
-  - library/counting/inversion.hpp
   - library/data-structure/offline-rectangle-sum.hpp
+  - library/counting/inversion.hpp
   timestamp: '2023-05-28 03:49:52+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/data-structure/fenwick/aoj-dsl-The-Maximum-Number-of-Customers.test.cpp
-  - test/data-structure/fenwick/aoj-dsl-Range-Sum-Query.test.cpp
-  - test/data-structure/fenwick/yosupo-Point-Add-Range-Sum.test.cpp
   - test/data-structure/fenwick/aoj-dsl-Range-Add-Query.test.cpp
+  - test/data-structure/fenwick/aoj-dsl-Range-Sum-Query.test.cpp
+  - test/data-structure/fenwick/aoj-dsl-The-Maximum-Number-of-Customers.test.cpp
+  - test/data-structure/fenwick/yosupo-Point-Add-Range-Sum.test.cpp
   - test/data-structure/offline-rectangle-sum/yosupo-Point-Add-Rectangle-Sum.test.cpp
+  - test/tree/heavy-light-decomposition/yosupo-Vertex-Add-Subtree-Sum.test.cpp
   - test/tree/heavy-light-decomposition/yosupo-Vertex-Add-Path-Sum.test.cpp
   - test/tree/heavy-light-decomposition/aoj-grl-Range-Query-on-a-Tree.test.cpp
-  - test/tree/heavy-light-decomposition/yosupo-Vertex-Add-Subtree-Sum.test.cpp
 documentation_of: library/data-structure/fenwick.hpp
 layout: document
 redirect_from:

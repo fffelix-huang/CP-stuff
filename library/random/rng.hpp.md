@@ -39,15 +39,15 @@ data:
   isVerificationFile: false
   path: library/random/rng.hpp
   requiredBy:
-  - library/math/factorize.hpp
   - library/data-structure/lazy-treap.hpp
+  - library/math/factorize.hpp
   timestamp: '2023-04-16 16:01:15+08:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/data-structure/lazy-treap/yosupo-Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
+  - test/data-structure/lazy-treap/yosupo-Range-Reverse-Range-Sum.test.cpp
   - test/math/factorize/aoj-ntl-Prime-Factorize.test.cpp
   - test/math/factorize/yosupo-Factorize.test.cpp
-  - test/data-structure/lazy-treap/yosupo-Range-Reverse-Range-Sum.test.cpp
-  - test/data-structure/lazy-treap/yosupo-Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
 documentation_of: library/random/rng.hpp
 layout: document
 redirect_from:
