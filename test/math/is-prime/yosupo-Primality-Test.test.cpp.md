@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/math/is-prime.hpp
     title: library/math/is-prime.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/pow-mod.hpp
     title: library/math/pow-mod.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/safe-mod.hpp
     title: library/math/safe-mod.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/misc/type-traits.hpp
     title: library/misc/type-traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/primality_test
@@ -81,11 +81,20 @@ data:
     \ <<= 1;\r\n\t\t}\r\n\t\tif(y != n - 1 && t % 2 == 0) {\r\n\t\t\treturn false;\r\
     \n\t\t}\r\n\t}\r\n\treturn true;\r\n}\r\n\r\n} // namespace internal\r\n\r\nbool\
     \ is_prime(long long n) {\r\n\tif(n <= 1) {\r\n\t\treturn false;\r\n\t}\r\n\t\
-    if(n % 2 == 0) {\r\n\t\treturn n == 2;\r\n\t}\r\n\tif(n < (1LL << 30)) {\r\n\t\
-    \treturn internal::is_prime(n, {2, 7, 61});\r\n\t}\r\n\treturn internal::is_prime(n,\
-    \ {2, 325, 9375, 28178, 450775, 9780504, 1795265022});\r\n}\r\n\r\n} // namespace\
-    \ felix\r\n#line 5 \"test/math/is-prime/yosupo-Primality-Test.test.cpp\"\nusing\
-    \ namespace std;\nusing namespace felix;\n\nint main() {\n\tios::sync_with_stdio(false);\n\
+    for(int p : {2, 3, 5, 7, 11, 13, 17, 19, 23, 29}) {\r\n\t\tif(n % p == 0) {\r\n\
+    \t\t\treturn n == p;\r\n\t\t}\r\n\t}\r\n\t// https://miller-rabin.appspot.com/\r\
+    \n\tif(n < 341531LL) return internal::is_prime(n, {9345883071009581737LL});\r\n\
+    \tif(n < 1050535501LL) return internal::is_prime(n, {336781006125LL, 9639812373923155LL});\r\
+    \n\tif(n < 350269456337LL) return internal::is_prime(n, {4230279247111683200LL,\
+    \ 14694767155120705706LL, 16641139526367750375LL});\r\n\tif(n < 55245642489451LL)\
+    \ return internal::is_prime(n, {2, 141889084524735LL, 1199124725622454117LL, 11096072698276303650LL});\r\
+    \n\tif(n < 7999252175582851LL) return internal::is_prime(n, {2, 4130806001517LL,\
+    \ 149795463772692060LL, 186635894390467037LL, 3967304179347715805LL});\r\n\tif(n\
+    \ < 585226005592931977LL) return internal::is_prime(n, {2, 123635709730000LL,\
+    \ 9233062284813009LL, 43835965440333360LL, 761179012939631437LL, 1263739024124850375LL});\r\
+    \n\treturn internal::is_prime(n, {2, 325, 9375, 28178, 450775, 9780504, 1795265022});\r\
+    \n}\r\n\r\n} // namespace felix\r\n#line 5 \"test/math/is-prime/yosupo-Primality-Test.test.cpp\"\
+    \nusing namespace std;\nusing namespace felix;\n\nint main() {\n\tios::sync_with_stdio(false);\n\
     \tcin.tie(0);\n\tint q;\n\tcin >> q;\n\twhile(q--) {\n\t\tlong long n;\n\t\tcin\
     \ >> n;\n\t\tcout << (is_prime(n) ? \"Yes\" : \"No\") << \"\\n\";\n\t}\n\treturn\
     \ 0;\n}\n"
@@ -103,8 +112,8 @@ data:
   isVerificationFile: true
   path: test/math/is-prime/yosupo-Primality-Test.test.cpp
   requiredBy: []
-  timestamp: '2023-05-29 14:59:47+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-06-14 12:36:01+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/math/is-prime/yosupo-Primality-Test.test.cpp
 layout: document

@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/data-structure/lazy-lct.hpp
-    title: library/data-structure/lazy-lct.hpp
+    title: Link Cut Tree
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

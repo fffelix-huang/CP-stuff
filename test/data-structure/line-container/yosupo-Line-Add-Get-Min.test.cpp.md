@@ -30,9 +30,9 @@ data:
     struct line_t {\n\tmutable T k, m, p;\n\n\tbool operator<(const line_t& o) const\
     \ { return k < o.k; }\n\tbool operator<(T x) const { return p < x; }\n};\n\ntemplate<class\
     \ T, bool MAX>\nstruct line_container : std::multiset<line_t<T>, std::less<>>\
-    \ {\n\tusing S = std::multiset<line_t<T>, std::less<>>;\n\tusing typename S::iterator;\n\
-    \tusing S::begin, S::end, S::insert, S::erase, S::empty, S::lower_bound;\n\n\t\
-    static constexpr T INF = std::numeric_limits<T>::max();\n\n\tbool isect(iterator\
+    \ {\n\tusing base = std::multiset<line_t<T>, std::less<>>;\n\tusing typename base::iterator;\n\
+    \tusing base::begin, base::end, base::insert, base::erase, base::empty, base::lower_bound;\n\
+    \n\tstatic constexpr T INF = std::numeric_limits<T>::max();\n\n\tbool isect(iterator\
     \ x, iterator y) {\n\t\tif(y == end()) {\n\t\t\tx->p = INF;\n\t\t\treturn 0;\n\
     \t\t}\n\t\tif(x->k == y->k) {\n\t\t\tx->p = (x->m > y->m ? INF : -INF);\n\t\t\
     } else {\n\t\t\tx->p = floor_div(y->m - x->m, x->k - y->k);\n\t\t}\n\t\treturn\
@@ -75,7 +75,7 @@ data:
   isVerificationFile: true
   path: test/data-structure/line-container/yosupo-Line-Add-Get-Min.test.cpp
   requiredBy: []
-  timestamp: '2023-05-29 14:59:47+08:00'
+  timestamp: '2023-06-14 12:36:01+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/data-structure/line-container/yosupo-Line-Add-Get-Min.test.cpp

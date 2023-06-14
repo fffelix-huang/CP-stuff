@@ -10,10 +10,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/math/inv-gcd.hpp
     title: library/math/inv-gcd.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/safe-mod.hpp
     title: library/math/safe-mod.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/misc/type-traits.hpp
     title: library/misc/type-traits.hpp
   - icon: ':heavy_check_mark:'
@@ -21,7 +21,7 @@ data:
     title: library/modint/modint.hpp
   - icon: ':heavy_check_mark:'
     path: library/tree/heavy-light-decomposition.hpp
-    title: library/tree/heavy-light-decomposition.hpp
+    title: "Heavy Light Decomposition (\u8F15\u91CD\u93C8\u5256\u5206)"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

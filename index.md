@@ -9,6 +9,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/convolution/subset-convolution.hpp
       title: library/convolution/subset-convolution.hpp
+  - name: library/counting
+    pages:
+    - icon: ':warning:'
+      path: library/counting/inversion.hpp
+      title: library/counting/inversion.hpp
   - name: library/data-structure
     pages:
     - icon: ':heavy_check_mark:'
@@ -16,7 +21,7 @@ data:
       title: library/data-structure/binary-trie.hpp
     - icon: ':heavy_check_mark:'
       path: library/data-structure/dsu.hpp
-      title: library/data-structure/dsu.hpp
+      title: "DSU (\u4E26\u67E5\u96C6)"
     - icon: ':heavy_check_mark:'
       path: library/data-structure/fenwick.hpp
       title: library/data-structure/fenwick.hpp
@@ -25,7 +30,7 @@ data:
       title: library/data-structure/fenwick2d.hpp
     - icon: ':heavy_check_mark:'
       path: library/data-structure/lazy-lct.hpp
-      title: library/data-structure/lazy-lct.hpp
+      title: Link Cut Tree
     - icon: ':heavy_check_mark:'
       path: library/data-structure/lazy-segtree.hpp
       title: library/data-structure/lazy-segtree.hpp
@@ -49,7 +54,7 @@ data:
       title: library/data-structure/sparse-table.hpp
     - icon: ':heavy_check_mark:'
       path: library/data-structure/vebtree.hpp
-      title: library/data-structure/vebtree.hpp
+      title: Van Emde Boas Tree
     - icon: ':heavy_check_mark:'
       path: library/data-structure/wavelet-tree.hpp
       title: "Wavelet Tree (\u975C\u614B\u5340\u9593\u7B2C $k$ \u5927)"
@@ -108,7 +113,7 @@ data:
       title: library/graph/strongly-connected-components.hpp
   - name: library/math
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/math/binary-gcd.hpp
       title: "Binary GCD (\u4F4D\u5143 GCD)"
     - icon: ':warning:'
@@ -117,7 +122,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/discrete-log.hpp
       title: "Discrete Log (\u96E2\u6563\u5C0D\u6578 $a^x \\equiv b \\pmod m$)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: library/math/factorize.hpp
       title: "Integer Factorization (Pollard Rho \u8CEA\u56E0\u6578\u5206\u89E3)"
     - icon: ':heavy_check_mark:'
@@ -129,16 +134,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/inv-gcd.hpp
       title: library/math/inv-gcd.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: library/math/is-prime.hpp
       title: library/math/is-prime.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/math/pow-mod.hpp
       title: library/math/pow-mod.hpp
     - icon: ':heavy_check_mark:'
       path: library/math/primitive-root.hpp
       title: library/math/primitive-root.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/math/safe-mod.hpp
       title: library/math/safe-mod.hpp
     - icon: ':heavy_check_mark:'
@@ -163,7 +168,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/misc/fastio.hpp
       title: library/misc/fastio.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/misc/type-traits.hpp
       title: library/misc/type-traits.hpp
   - name: library/modint
@@ -182,7 +187,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/random/random.hpp
       title: random_t
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/random/rng.hpp
       title: library/random/rng.hpp
     - icon: ':heavy_check_mark:'
@@ -203,7 +208,7 @@ data:
     pages:
     - icon: ':heavy_check_mark:'
       path: library/tree/heavy-light-decomposition.hpp
-      title: library/tree/heavy-light-decomposition.hpp
+      title: "Heavy Light Decomposition (\u8F15\u91CD\u93C8\u5256\u5206)"
     - icon: ':warning:'
       path: library/tree/prufer.hpp
       title: library/tree/prufer.hpp
@@ -459,10 +464,10 @@ data:
       title: test/math/discrete-log/yosupo-Discrete-Logarithm.test.cpp
   - name: test/math/factorize
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/math/factorize/aoj-ntl-Prime-Factorize.test.cpp
       title: test/math/factorize/aoj-ntl-Prime-Factorize.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/math/factorize/yosupo-Factorize.test.cpp
       title: test/math/factorize/yosupo-Factorize.test.cpp
   - name: test/math/floor-sum
@@ -477,7 +482,7 @@ data:
       title: test/math/integer-div/unit-test-integer-div.test.cpp
   - name: test/math/is-prime
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/math/is-prime/yosupo-Primality-Test.test.cpp
       title: test/math/is-prime/yosupo-Primality-Test.test.cpp
   - name: test/math/two-sat

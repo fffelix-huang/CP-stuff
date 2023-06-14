@@ -4,7 +4,7 @@ data:
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: library/tree/heavy-light-decomposition.hpp
-    title: library/tree/heavy-light-decomposition.hpp
+    title: "Heavy Light Decomposition (\u8F15\u91CD\u93C8\u5256\u5206)"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/data-structure/sparse-table/yosupo-Static-RMQ.test.cpp

@@ -1,35 +1,35 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/binary-gcd.hpp
     title: "Binary GCD (\u4F4D\u5143 GCD)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/math/is-prime.hpp
     title: library/math/is-prime.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/pow-mod.hpp
     title: library/math/pow-mod.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/safe-mod.hpp
     title: library/math/safe-mod.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/misc/type-traits.hpp
     title: library/misc/type-traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/random/rng.hpp
     title: library/random/rng.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/math/factorize/aoj-ntl-Prime-Factorize.test.cpp
     title: test/math/factorize/aoj-ntl-Prime-Factorize.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/math/factorize/yosupo-Factorize.test.cpp
     title: test/math/factorize/yosupo-Factorize.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"library/math/factorize.hpp\"\n#include <vector>\n#include\
@@ -94,24 +94,33 @@ data:
     \ <<= 1;\r\n\t\t}\r\n\t\tif(y != n - 1 && t % 2 == 0) {\r\n\t\t\treturn false;\r\
     \n\t\t}\r\n\t}\r\n\treturn true;\r\n}\r\n\r\n} // namespace internal\r\n\r\nbool\
     \ is_prime(long long n) {\r\n\tif(n <= 1) {\r\n\t\treturn false;\r\n\t}\r\n\t\
-    if(n % 2 == 0) {\r\n\t\treturn n == 2;\r\n\t}\r\n\tif(n < (1LL << 30)) {\r\n\t\
-    \treturn internal::is_prime(n, {2, 7, 61});\r\n\t}\r\n\treturn internal::is_prime(n,\
-    \ {2, 325, 9375, 28178, 450775, 9780504, 1795265022});\r\n}\r\n\r\n} // namespace\
-    \ felix\r\n#line 2 \"library/random/rng.hpp\"\n#include <chrono>\n\nnamespace\
-    \ felix {\n\ninline unsigned long long rng() {\n\tstatic unsigned long long SEED\
-    \ = std::chrono::steady_clock::now().time_since_epoch().count();\n\tSEED ^= SEED\
-    \ << 7;\n\tSEED ^= SEED >> 9;\n\treturn SEED & 0xFFFFFFFFULL;\n}\n\n} // namespace\
-    \ felix\n#line 10 \"library/math/factorize.hpp\"\n\nnamespace felix {\n\ntemplate<class\
-    \ T>\nT pollard_rho(T n) {\n\tusing U = internal::safely_multipliable_t<T>;\n\t\
-    if(n % 2 == 0) {\n\t\treturn 2;\n\t}\n\tif(is_prime(n)) {\n\t\treturn n;\n\t}\n\
-    \twhile(true) {\n\t\tconst T R = rng() % (n - 1) + 1;\n\t\tauto f = [&](T x) ->\
-    \ T {\n\t\t\treturn internal::safe_mod<U>(U(x) * x + R, n);\n\t\t};\n\t\tT x =\
-    \ 1, y = 2, ys = 1, q = 1, g = 1;\n\t\tconstexpr int m = 128;\n\t\tfor(int r =\
-    \ 1; g == 1; r <<= 1) {\n\t\t\tx = y;\n\t\t\tfor(int i = 0; i < r; i++) {\n\t\t\
-    \t\ty = f(y);\n\t\t\t}\n\t\t\tfor(int k = 0; k < r && g == 1; k += m) {\n\t\t\t\
-    \tys = y;\n\t\t\t\tfor(int i = 0; i < std::min(m, r - k); i++) {\n\t\t\t\t\ty\
-    \ = f(y);\n\t\t\t\t\tq = internal::safe_mod<U>(U(q) * internal::safe_mod(x - y,\
-    \ n), n);\n\t\t\t\t}\n\t\t\t\tg = binary_gcd(q, n);\n\t\t\t}\n\t\t}\n\t\tif(g\
+    for(int p : {2, 3, 5, 7, 11, 13, 17, 19, 23, 29}) {\r\n\t\tif(n % p == 0) {\r\n\
+    \t\t\treturn n == p;\r\n\t\t}\r\n\t}\r\n\t// https://miller-rabin.appspot.com/\r\
+    \n\tif(n < 341531LL) return internal::is_prime(n, {9345883071009581737LL});\r\n\
+    \tif(n < 1050535501LL) return internal::is_prime(n, {336781006125LL, 9639812373923155LL});\r\
+    \n\tif(n < 350269456337LL) return internal::is_prime(n, {4230279247111683200LL,\
+    \ 14694767155120705706LL, 16641139526367750375LL});\r\n\tif(n < 55245642489451LL)\
+    \ return internal::is_prime(n, {2, 141889084524735LL, 1199124725622454117LL, 11096072698276303650LL});\r\
+    \n\tif(n < 7999252175582851LL) return internal::is_prime(n, {2, 4130806001517LL,\
+    \ 149795463772692060LL, 186635894390467037LL, 3967304179347715805LL});\r\n\tif(n\
+    \ < 585226005592931977LL) return internal::is_prime(n, {2, 123635709730000LL,\
+    \ 9233062284813009LL, 43835965440333360LL, 761179012939631437LL, 1263739024124850375LL});\r\
+    \n\treturn internal::is_prime(n, {2, 325, 9375, 28178, 450775, 9780504, 1795265022});\r\
+    \n}\r\n\r\n} // namespace felix\r\n#line 2 \"library/random/rng.hpp\"\n#include\
+    \ <chrono>\n\nnamespace felix {\n\ninline unsigned long long rng() {\n\tstatic\
+    \ unsigned long long SEED = std::chrono::steady_clock::now().time_since_epoch().count();\n\
+    \tSEED ^= SEED << 7;\n\tSEED ^= SEED >> 9;\n\treturn SEED & 0xFFFFFFFFULL;\n}\n\
+    \n} // namespace felix\n#line 10 \"library/math/factorize.hpp\"\n\nnamespace felix\
+    \ {\n\ntemplate<class T>\nT pollard_rho(T n) {\n\tusing U = internal::safely_multipliable_t<T>;\n\
+    \tif(n % 2 == 0) {\n\t\treturn 2;\n\t}\n\tif(is_prime(n)) {\n\t\treturn n;\n\t\
+    }\n\twhile(true) {\n\t\tconst T R = rng() % (n - 1) + 1;\n\t\tauto f = [&](T x)\
+    \ -> T {\n\t\t\treturn internal::safe_mod<U>(U(x) * x + R, n);\n\t\t};\n\t\tT\
+    \ x = 1, y = 2, ys = 1, q = 1, g = 1;\n\t\tconstexpr int m = 128;\n\t\tfor(int\
+    \ r = 1; g == 1; r <<= 1) {\n\t\t\tx = y;\n\t\t\tfor(int i = 0; i < r; i++) {\n\
+    \t\t\t\ty = f(y);\n\t\t\t}\n\t\t\tfor(int k = 0; k < r && g == 1; k += m) {\n\t\
+    \t\t\tys = y;\n\t\t\t\tfor(int i = 0; i < std::min(m, r - k); i++) {\n\t\t\t\t\
+    \ty = f(y);\n\t\t\t\t\tq = internal::safe_mod<U>(U(q) * internal::safe_mod(x -\
+    \ y, n), n);\n\t\t\t\t}\n\t\t\t\tg = binary_gcd(q, n);\n\t\t\t}\n\t\t}\n\t\tif(g\
     \ == n) {\n\t\t\tdo {\n\t\t\t\tys = f(ys);\n\t\t\t\tT x2 = internal::safe_mod(x\
     \ - ys, n);\n\t\t\t\tg = binary_gcd(x2, n);\n\t\t\t} while(g == 1);\n\t\t}\n\t\
     \tif(g != n) {\n\t\t\treturn g;\n\t\t}\n\t}\n\tassert(false);\n}\n\ntemplate<class\
@@ -167,8 +176,8 @@ data:
   isVerificationFile: false
   path: library/math/factorize.hpp
   requiredBy: []
-  timestamp: '2023-06-03 23:52:09+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-06-14 12:36:01+08:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/math/factorize/aoj-ntl-Prime-Factorize.test.cpp
   - test/math/factorize/yosupo-Factorize.test.cpp

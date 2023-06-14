@@ -5,7 +5,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/math/discrete-log.hpp
     title: "Discrete Log (\u96E2\u6563\u5C0D\u6578 $a^x \\equiv b \\pmod m$)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/math/factorize.hpp
     title: "Integer Factorization (Pollard Rho \u8CEA\u56E0\u6578\u5206\u89E3)"
   _extendedVerifiedWith:
@@ -15,15 +15,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/math/discrete-log/yosupo-Discrete-Logarithm.test.cpp
     title: test/math/discrete-log/yosupo-Discrete-Logarithm.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/math/factorize/aoj-ntl-Prime-Factorize.test.cpp
     title: test/math/factorize/aoj-ntl-Prime-Factorize.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/math/factorize/yosupo-Factorize.test.cpp
     title: test/math/factorize/yosupo-Factorize.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"library/math/binary-gcd.hpp\"\n\r\nnamespace felix {\r\n\
@@ -47,7 +47,7 @@ data:
   - library/math/factorize.hpp
   - library/math/discrete-log.hpp
   timestamp: '2023-04-03 17:58:04+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/math/discrete-log/yosupo-Discrete-Logarithm.test.cpp
   - test/math/factorize/aoj-ntl-Prime-Factorize.test.cpp

@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: library/counting/inversion.hpp
+    title: library/counting/inversion.hpp
   - icon: ':heavy_check_mark:'
     path: library/data-structure/offline-rectangle-sum.hpp
     title: library/data-structure/offline-rectangle-sum.hpp
@@ -57,6 +60,7 @@ data:
   isVerificationFile: false
   path: library/data-structure/fenwick.hpp
   requiredBy:
+  - library/counting/inversion.hpp
   - library/data-structure/offline-rectangle-sum.hpp
   timestamp: '2023-05-28 03:49:52+08:00'
   verificationStatus: LIBRARY_ALL_AC

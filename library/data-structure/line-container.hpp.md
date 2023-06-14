@@ -24,9 +24,9 @@ data:
     \ T>\nstruct line_t {\n\tmutable T k, m, p;\n\n\tbool operator<(const line_t&\
     \ o) const { return k < o.k; }\n\tbool operator<(T x) const { return p < x; }\n\
     };\n\ntemplate<class T, bool MAX>\nstruct line_container : std::multiset<line_t<T>,\
-    \ std::less<>> {\n\tusing S = std::multiset<line_t<T>, std::less<>>;\n\tusing\
-    \ typename S::iterator;\n\tusing S::begin, S::end, S::insert, S::erase, S::empty,\
-    \ S::lower_bound;\n\n\tstatic constexpr T INF = std::numeric_limits<T>::max();\n\
+    \ std::less<>> {\n\tusing base = std::multiset<line_t<T>, std::less<>>;\n\tusing\
+    \ typename base::iterator;\n\tusing base::begin, base::end, base::insert, base::erase,\
+    \ base::empty, base::lower_bound;\n\n\tstatic constexpr T INF = std::numeric_limits<T>::max();\n\
     \n\tbool isect(iterator x, iterator y) {\n\t\tif(y == end()) {\n\t\t\tx->p = INF;\n\
     \t\t\treturn 0;\n\t\t}\n\t\tif(x->k == y->k) {\n\t\t\tx->p = (x->m > y->m ? INF\
     \ : -INF);\n\t\t} else {\n\t\t\tx->p = floor_div(y->m - x->m, x->k - y->k);\n\t\
@@ -47,15 +47,15 @@ data:
     mutable T k, m, p;\n\n\tbool operator<(const line_t& o) const { return k < o.k;\
     \ }\n\tbool operator<(T x) const { return p < x; }\n};\n\ntemplate<class T, bool\
     \ MAX>\nstruct line_container : std::multiset<line_t<T>, std::less<>> {\n\tusing\
-    \ S = std::multiset<line_t<T>, std::less<>>;\n\tusing typename S::iterator;\n\t\
-    using S::begin, S::end, S::insert, S::erase, S::empty, S::lower_bound;\n\n\tstatic\
-    \ constexpr T INF = std::numeric_limits<T>::max();\n\n\tbool isect(iterator x,\
-    \ iterator y) {\n\t\tif(y == end()) {\n\t\t\tx->p = INF;\n\t\t\treturn 0;\n\t\t\
-    }\n\t\tif(x->k == y->k) {\n\t\t\tx->p = (x->m > y->m ? INF : -INF);\n\t\t} else\
-    \ {\n\t\t\tx->p = floor_div(y->m - x->m, x->k - y->k);\n\t\t}\n\t\treturn x->p\
-    \ >= y->p;\n\t}\n\n\tvoid add_line(T k, T m) {\n\t\tif constexpr(!MAX) {\n\t\t\
-    \tk = -k;\n\t\t\tm = -m;\n\t\t}\n\t\tauto z = insert({k, m, 0}), y = z++, x =\
-    \ y;\n\t\twhile(isect(y, z)) {\n\t\t\tz = erase(z);\n\t\t}\n\t\tif(x != begin()\
+    \ base = std::multiset<line_t<T>, std::less<>>;\n\tusing typename base::iterator;\n\
+    \tusing base::begin, base::end, base::insert, base::erase, base::empty, base::lower_bound;\n\
+    \n\tstatic constexpr T INF = std::numeric_limits<T>::max();\n\n\tbool isect(iterator\
+    \ x, iterator y) {\n\t\tif(y == end()) {\n\t\t\tx->p = INF;\n\t\t\treturn 0;\n\
+    \t\t}\n\t\tif(x->k == y->k) {\n\t\t\tx->p = (x->m > y->m ? INF : -INF);\n\t\t\
+    } else {\n\t\t\tx->p = floor_div(y->m - x->m, x->k - y->k);\n\t\t}\n\t\treturn\
+    \ x->p >= y->p;\n\t}\n\n\tvoid add_line(T k, T m) {\n\t\tif constexpr(!MAX) {\n\
+    \t\t\tk = -k;\n\t\t\tm = -m;\n\t\t}\n\t\tauto z = insert({k, m, 0}), y = z++,\
+    \ x = y;\n\t\twhile(isect(y, z)) {\n\t\t\tz = erase(z);\n\t\t}\n\t\tif(x != begin()\
     \ && isect(--x, y)) {\n\t\t\tisect(x, y = erase(y));\n\t\t}\n\t\twhile((y = x)\
     \ != begin() && (--x)->p >= y->p) {\n\t\t\tisect(x, erase(y));\n\t\t}\n\t}\n\n\
     \tT get(T x) {\n\t\tassert(!empty());\n\t\tauto l = *lower_bound(x);\n\t\tT ans\
@@ -69,7 +69,7 @@ data:
   isVerificationFile: false
   path: library/data-structure/line-container.hpp
   requiredBy: []
-  timestamp: '2023-05-16 08:44:27+08:00'
+  timestamp: '2023-06-14 12:36:01+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/data-structure/line-container/yosupo-Line-Add-Get-Min.test.cpp
