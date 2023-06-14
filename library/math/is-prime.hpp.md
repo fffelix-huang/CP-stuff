@@ -79,17 +79,17 @@ data:
     \n\t}\r\n\treturn r;\r\n}\r\n\r\n} // namespace internal\r\n\r\n} // namespace\
     \ felix\r\n#line 4 \"library/math/is-prime.hpp\"\n\r\nnamespace felix {\r\n\r\n\
     namespace internal {\r\n\r\nbool is_prime(long long n, std::vector<unsigned long\
-    \ long> x) {\r\n\tlong long d = n - 1;\r\n\td >>= __builtin_ctzll(d);\r\n\tfor(auto\
-    \ a : x) {\r\n\t\tif(n <= a) {\r\n\t\t\treturn true;\r\n\t\t}\r\n\t\tlong long\
-    \ t = d;\r\n\t\t__uint128_t y = pow_mod_constexpr(a, d, n);\r\n\t\twhile(t !=\
-    \ n - 1 && y != 1 && y != n - 1) {\r\n\t\t\ty = y * y % n;\r\n\t\t\tt <<= 1;\r\
-    \n\t\t}\r\n\t\tif(y != n - 1 && t % 2 == 0) {\r\n\t\t\treturn false;\r\n\t\t}\r\
-    \n\t}\r\n\treturn true;\r\n}\r\n\r\n} // namespace internal\r\n\r\nbool is_prime(long\
-    \ long n) {\r\n\tif(n <= 1) {\r\n\t\treturn false;\r\n\t}\r\n\tfor(int p : {2,\
-    \ 3, 5, 7, 11, 13, 17, 19, 23, 29}) {\r\n\t\tif(n % p == 0) {\r\n\t\t\treturn\
-    \ n == p;\r\n\t\t}\r\n\t}\r\n\t// https://miller-rabin.appspot.com/\r\n\tif(n\
-    \ < 341531ULL) return internal::is_prime(n, {9345883071009581737ULL});\r\n\tif(n\
-    \ < 1050535501ULL) return internal::is_prime(n, {336781006125ULL, 9639812373923155ULL});\r\
+    \ long> x) {\r\n\tunsigned long long d = n - 1;\r\n\td >>= __builtin_ctzll(d);\r\
+    \n\tfor(auto a : x) {\r\n\t\tif(n <= a) {\r\n\t\t\treturn true;\r\n\t\t}\r\n\t\
+    \tlong long t = d;\r\n\t\t__uint128_t y = pow_mod_constexpr(a, d, n);\r\n\t\t\
+    while(t != n - 1 && y != 1 && y != n - 1) {\r\n\t\t\ty = y * y % n;\r\n\t\t\t\
+    t <<= 1;\r\n\t\t}\r\n\t\tif(y != n - 1 && t % 2 == 0) {\r\n\t\t\treturn false;\r\
+    \n\t\t}\r\n\t}\r\n\treturn true;\r\n}\r\n\r\n} // namespace internal\r\n\r\nbool\
+    \ is_prime(long long n) {\r\n\tif(n <= 1) {\r\n\t\treturn false;\r\n\t}\r\n\t\
+    for(int p : {2, 3, 5, 7, 11, 13, 17, 19, 23, 29}) {\r\n\t\tif(n % p == 0) {\r\n\
+    \t\t\treturn n == p;\r\n\t\t}\r\n\t}\r\n\t// https://miller-rabin.appspot.com/\r\
+    \n\tif(n < 341531ULL) return internal::is_prime(n, {9345883071009581737ULL});\r\
+    \n\tif(n < 1050535501ULL) return internal::is_prime(n, {336781006125ULL, 9639812373923155ULL});\r\
     \n\tif(n < 350269456337ULL) return internal::is_prime(n, {4230279247111683200ULL,\
     \ 14694767155120705706ULL, 16641139526367750375ULL});\r\n\tif(n < 55245642489451ULL)\
     \ return internal::is_prime(n, {2, 141889084524735ULL, 1199124725622454117ULL,\
@@ -101,17 +101,17 @@ data:
     \n}\r\n\r\n} // namespace felix\r\n"
   code: "#pragma once\r\n#include <vector>\r\n#include \"pow-mod.hpp\"\r\n\r\nnamespace\
     \ felix {\r\n\r\nnamespace internal {\r\n\r\nbool is_prime(long long n, std::vector<unsigned\
-    \ long long> x) {\r\n\tlong long d = n - 1;\r\n\td >>= __builtin_ctzll(d);\r\n\
-    \tfor(auto a : x) {\r\n\t\tif(n <= a) {\r\n\t\t\treturn true;\r\n\t\t}\r\n\t\t\
-    long long t = d;\r\n\t\t__uint128_t y = pow_mod_constexpr(a, d, n);\r\n\t\twhile(t\
-    \ != n - 1 && y != 1 && y != n - 1) {\r\n\t\t\ty = y * y % n;\r\n\t\t\tt <<= 1;\r\
-    \n\t\t}\r\n\t\tif(y != n - 1 && t % 2 == 0) {\r\n\t\t\treturn false;\r\n\t\t}\r\
-    \n\t}\r\n\treturn true;\r\n}\r\n\r\n} // namespace internal\r\n\r\nbool is_prime(long\
-    \ long n) {\r\n\tif(n <= 1) {\r\n\t\treturn false;\r\n\t}\r\n\tfor(int p : {2,\
-    \ 3, 5, 7, 11, 13, 17, 19, 23, 29}) {\r\n\t\tif(n % p == 0) {\r\n\t\t\treturn\
-    \ n == p;\r\n\t\t}\r\n\t}\r\n\t// https://miller-rabin.appspot.com/\r\n\tif(n\
-    \ < 341531ULL) return internal::is_prime(n, {9345883071009581737ULL});\r\n\tif(n\
-    \ < 1050535501ULL) return internal::is_prime(n, {336781006125ULL, 9639812373923155ULL});\r\
+    \ long long> x) {\r\n\tunsigned long long d = n - 1;\r\n\td >>= __builtin_ctzll(d);\r\
+    \n\tfor(auto a : x) {\r\n\t\tif(n <= a) {\r\n\t\t\treturn true;\r\n\t\t}\r\n\t\
+    \tlong long t = d;\r\n\t\t__uint128_t y = pow_mod_constexpr(a, d, n);\r\n\t\t\
+    while(t != n - 1 && y != 1 && y != n - 1) {\r\n\t\t\ty = y * y % n;\r\n\t\t\t\
+    t <<= 1;\r\n\t\t}\r\n\t\tif(y != n - 1 && t % 2 == 0) {\r\n\t\t\treturn false;\r\
+    \n\t\t}\r\n\t}\r\n\treturn true;\r\n}\r\n\r\n} // namespace internal\r\n\r\nbool\
+    \ is_prime(long long n) {\r\n\tif(n <= 1) {\r\n\t\treturn false;\r\n\t}\r\n\t\
+    for(int p : {2, 3, 5, 7, 11, 13, 17, 19, 23, 29}) {\r\n\t\tif(n % p == 0) {\r\n\
+    \t\t\treturn n == p;\r\n\t\t}\r\n\t}\r\n\t// https://miller-rabin.appspot.com/\r\
+    \n\tif(n < 341531ULL) return internal::is_prime(n, {9345883071009581737ULL});\r\
+    \n\tif(n < 1050535501ULL) return internal::is_prime(n, {336781006125ULL, 9639812373923155ULL});\r\
     \n\tif(n < 350269456337ULL) return internal::is_prime(n, {4230279247111683200ULL,\
     \ 14694767155120705706ULL, 16641139526367750375ULL});\r\n\tif(n < 55245642489451ULL)\
     \ return internal::is_prime(n, {2, 141889084524735ULL, 1199124725622454117ULL,\
@@ -129,12 +129,12 @@ data:
   path: library/math/is-prime.hpp
   requiredBy:
   - library/math/factorize.hpp
-  timestamp: '2023-06-14 12:47:34+08:00'
+  timestamp: '2023-06-14 12:55:46+08:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - test/math/is-prime/yosupo-Primality-Test.test.cpp
   - test/math/factorize/aoj-ntl-Prime-Factorize.test.cpp
   - test/math/factorize/yosupo-Factorize.test.cpp
-  - test/math/is-prime/yosupo-Primality-Test.test.cpp
 documentation_of: library/math/is-prime.hpp
 layout: document
 redirect_from:
