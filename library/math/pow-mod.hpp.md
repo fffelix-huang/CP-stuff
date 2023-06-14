@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/safe-mod.hpp
     title: library/math/safe-mod.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/misc/type-traits.hpp
     title: library/misc/type-traits.hpp
   _extendedRequiredBy:
@@ -14,10 +14,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/formal-power-series/poly.hpp
     title: library/formal-power-series/poly.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/math/factorize.hpp
     title: "Integer Factorization (Pollard Rho \u8CEA\u56E0\u6578\u5206\u89E3)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/math/is-prime.hpp
     title: library/math/is-prime.hpp
   - icon: ':heavy_check_mark:'
@@ -60,18 +60,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/formal-power-series/series/yosupo-Partition-Function.test.cpp
     title: test/formal-power-series/series/yosupo-Partition-Function.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/math/factorize/aoj-ntl-Prime-Factorize.test.cpp
     title: test/math/factorize/aoj-ntl-Prime-Factorize.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/math/factorize/yosupo-Factorize.test.cpp
     title: test/math/factorize/yosupo-Factorize.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/math/is-prime/yosupo-Primality-Test.test.cpp
     title: test/math/is-prime/yosupo-Primality-Test.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"library/misc/type-traits.hpp\"\n#include <cassert>\r\n#include\
@@ -140,7 +140,7 @@ data:
   - library/math/primitive-root.hpp
   - library/math/is-prime.hpp
   timestamp: '2023-05-28 03:49:52+08:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/formal-power-series/series/yosupo-Partition-Function.test.cpp
   - test/formal-power-series/poly/yosupo-Exp-of-Formal-Power-Series.test.cpp

@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/binary-gcd.hpp
     title: "Binary GCD (\u4F4D\u5143 GCD)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/math/factorize.hpp
     title: "Integer Factorization (Pollard Rho \u8CEA\u56E0\u6578\u5206\u89E3)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/math/is-prime.hpp
     title: library/math/is-prime.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/pow-mod.hpp
     title: library/math/pow-mod.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/safe-mod.hpp
     title: library/math/safe-mod.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/misc/type-traits.hpp
     title: library/misc/type-traits.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/random/rng.hpp
     title: library/random/rng.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_1_A
@@ -88,29 +88,20 @@ data:
     if(n & 1) {\r\n\t\t\tr = (r * y) % m;\r\n\t\t}\r\n\t\ty = (y * y) % m;\r\n\t\t\
     n >>= 1;\r\n\t}\r\n\treturn r;\r\n}\r\n\r\n} // namespace internal\r\n\r\n} //\
     \ namespace felix\r\n#line 4 \"library/math/is-prime.hpp\"\n\r\nnamespace felix\
-    \ {\r\n\r\nnamespace internal {\r\n\r\nbool is_prime(long long n, std::vector<unsigned\
-    \ long long> x) {\r\n\tlong long d = n - 1;\r\n\td >>= __builtin_ctzll(d);\r\n\
-    \tfor(auto a : x) {\r\n\t\tif(n <= a) {\r\n\t\t\treturn true;\r\n\t\t}\r\n\t\t\
-    long long t = d;\r\n\t\t__uint128_t y = pow_mod_constexpr(a, d, (unsigned long\
-    \ long) n);\r\n\t\twhile(t != n - 1 && y != 1 && y != n - 1) {\r\n\t\t\ty = y\
-    \ * y % n;\r\n\t\t\tt <<= 1;\r\n\t\t}\r\n\t\tif(y != n - 1 && t % 2 == 0) {\r\n\
-    \t\t\treturn false;\r\n\t\t}\r\n\t}\r\n\treturn true;\r\n}\r\n\r\n} // namespace\
-    \ internal\r\n\r\nbool is_prime(long long n) {\r\n\tif(n <= 1) {\r\n\t\treturn\
-    \ false;\r\n\t}\r\n\tfor(int p : {2, 3, 5, 7, 11, 13, 17, 19, 23, 29}) {\r\n\t\
-    \tif(n % p == 0) {\r\n\t\t\treturn n == p;\r\n\t\t}\r\n\t}\r\n\t// https://miller-rabin.appspot.com/\r\
-    \n\tif(n < 341531ULL) return internal::is_prime(n, {9345883071009581737ULL});\r\
-    \n\tif(n < 1050535501ULL) return internal::is_prime(n, {336781006125ULL, 9639812373923155ULL});\r\
-    \n\tif(n < 350269456337ULL) return internal::is_prime(n, {4230279247111683200ULL,\
-    \ 14694767155120705706ULL, 16641139526367750375ULL});\r\n\tif(n < 55245642489451ULL)\
-    \ return internal::is_prime(n, {2, 141889084524735ULL, 1199124725622454117ULL,\
-    \ 11096072698276303650ULL});\r\n\tif(n < 7999252175582851ULL) return internal::is_prime(n,\
-    \ {2, 4130806001517ULL, 149795463772692060ULL, 186635894390467037ULL, 3967304179347715805ULL});\r\
-    \n\tif(n < 585226005592931977ULL) return internal::is_prime(n, {2, 123635709730000ULL,\
-    \ 9233062284813009ULL, 43835965440333360ULL, 761179012939631437ULL, 1263739024124850375ULL});\r\
-    \n\treturn internal::is_prime(n, {2, 325, 9375, 28178, 450775, 9780504, 1795265022});\r\
-    \n}\r\n\r\n} // namespace felix\r\n#line 2 \"library/random/rng.hpp\"\n#include\
-    \ <chrono>\n\nnamespace felix {\n\ninline unsigned long long rng() {\n\tstatic\
-    \ unsigned long long SEED = std::chrono::steady_clock::now().time_since_epoch().count();\n\
+    \ {\r\n\r\nnamespace internal {\r\n\r\nbool miller_rabin(long long n, std::vector<long\
+    \ long> x) {\r\n\tlong long d = n - 1;\r\n\td >>= __builtin_ctzll(d);\r\n\tfor(auto\
+    \ a : x) {\r\n\t\tif(n <= a) {\r\n\t\t\treturn true;\r\n\t\t}\r\n\t\tlong long\
+    \ t = d;\r\n\t\t__uint128_t y = pow_mod_constexpr(a, d, n);\r\n\t\twhile(t !=\
+    \ n - 1 && y != 1 && y != n - 1) {\r\n\t\t\ty = y * y % n;\r\n\t\t\tt <<= 1;\r\
+    \n\t\t}\r\n\t\tif(y != n - 1 && t % 2 == 0) {\r\n\t\t\treturn false;\r\n\t\t}\r\
+    \n\t}\r\n\treturn true;\r\n}\r\n\r\n} // namespace internal\r\n\r\nbool is_prime(long\
+    \ long n) {\r\n\tif(n <= 1) {\r\n\t\treturn false;\r\n\t}\r\n\tfor(int p : {2,\
+    \ 3, 5, 7, 11, 13, 17, 19, 23, 29}) {\r\n\t\tif(n % p == 0) {\r\n\t\t\treturn\
+    \ n == p;\r\n\t\t}\r\n\t}\r\n\tif(n < (1LL << 30)) {\r\n\t\treturn internal::miller_rabin(n,\
+    \ {2, 7, 61});\r\n\t}\r\n\treturn internal::miller_rabin(n, {2, 325, 9375, 28178,\
+    \ 450775, 9780504, 1795265022});\r\n}\r\n\r\n} // namespace felix\r\n#line 2 \"\
+    library/random/rng.hpp\"\n#include <chrono>\n\nnamespace felix {\n\ninline unsigned\
+    \ long long rng() {\n\tstatic unsigned long long SEED = std::chrono::steady_clock::now().time_since_epoch().count();\n\
     \tSEED ^= SEED << 7;\n\tSEED ^= SEED >> 9;\n\treturn SEED & 0xFFFFFFFFULL;\n}\n\
     \n} // namespace felix\n#line 10 \"library/math/factorize.hpp\"\n\nnamespace felix\
     \ {\n\ntemplate<class T>\nT pollard_rho(T n) {\n\tusing U = internal::safely_multipliable_t<T>;\n\
@@ -160,8 +151,8 @@ data:
   isVerificationFile: true
   path: test/math/factorize/aoj-ntl-Prime-Factorize.test.cpp
   requiredBy: []
-  timestamp: '2023-06-14 13:06:59+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-06-14 13:21:31+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/math/factorize/aoj-ntl-Prime-Factorize.test.cpp
 layout: document

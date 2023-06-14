@@ -113,7 +113,7 @@ data:
       title: library/graph/strongly-connected-components.hpp
   - name: library/math
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/math/binary-gcd.hpp
       title: "Binary GCD (\u4F4D\u5143 GCD)"
     - icon: ':warning:'
@@ -122,7 +122,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/discrete-log.hpp
       title: "Discrete Log (\u96E2\u6563\u5C0D\u6578 $a^x \\equiv b \\pmod m$)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/math/factorize.hpp
       title: "Integer Factorization (Pollard Rho \u8CEA\u56E0\u6578\u5206\u89E3)"
     - icon: ':heavy_check_mark:'
@@ -134,16 +134,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/inv-gcd.hpp
       title: library/math/inv-gcd.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/math/is-prime.hpp
       title: library/math/is-prime.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/math/pow-mod.hpp
       title: library/math/pow-mod.hpp
     - icon: ':heavy_check_mark:'
       path: library/math/primitive-root.hpp
       title: library/math/primitive-root.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/math/safe-mod.hpp
       title: library/math/safe-mod.hpp
     - icon: ':heavy_check_mark:'
@@ -168,7 +168,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/misc/fastio.hpp
       title: library/misc/fastio.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/misc/type-traits.hpp
       title: library/misc/type-traits.hpp
   - name: library/modint
@@ -187,7 +187,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/random/random.hpp
       title: random_t
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/random/rng.hpp
       title: library/random/rng.hpp
     - icon: ':heavy_check_mark:'
@@ -464,10 +464,10 @@ data:
       title: test/math/discrete-log/yosupo-Discrete-Logarithm.test.cpp
   - name: test/math/factorize
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/math/factorize/aoj-ntl-Prime-Factorize.test.cpp
       title: test/math/factorize/aoj-ntl-Prime-Factorize.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/math/factorize/yosupo-Factorize.test.cpp
       title: test/math/factorize/yosupo-Factorize.test.cpp
   - name: test/math/floor-sum
@@ -482,7 +482,7 @@ data:
       title: test/math/integer-div/unit-test-integer-div.test.cpp
   - name: test/math/is-prime
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/math/is-prime/yosupo-Primality-Test.test.cpp
       title: test/math/is-prime/yosupo-Primality-Test.test.cpp
   - name: test/math/two-sat
