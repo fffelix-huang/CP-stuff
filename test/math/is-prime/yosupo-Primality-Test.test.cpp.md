@@ -74,11 +74,11 @@ data:
     \n\t}\r\n\treturn r;\r\n}\r\n\r\n} // namespace internal\r\n\r\n} // namespace\
     \ felix\r\n#line 4 \"library/math/is-prime.hpp\"\n\r\nnamespace felix {\r\n\r\n\
     namespace internal {\r\n\r\nbool is_prime(long long n, std::vector<unsigned long\
-    \ long> x) {\r\n\tunsigned long long d = n - 1;\r\n\td >>= __builtin_ctzll(d);\r\
-    \n\tfor(auto a : x) {\r\n\t\tif(n <= a) {\r\n\t\t\treturn true;\r\n\t\t}\r\n\t\
-    \tlong long t = d;\r\n\t\t__uint128_t y = pow_mod_constexpr(a, d, n);\r\n\t\t\
-    while(t != n - 1 && y != 1 && y != n - 1) {\r\n\t\t\ty = y * y % n;\r\n\t\t\t\
-    t <<= 1;\r\n\t\t}\r\n\t\tif(y != n - 1 && t % 2 == 0) {\r\n\t\t\treturn false;\r\
+    \ long> x) {\r\n\tlong long d = n - 1;\r\n\td >>= __builtin_ctzll(d);\r\n\tfor(auto\
+    \ a : x) {\r\n\t\tif(n <= a) {\r\n\t\t\treturn true;\r\n\t\t}\r\n\t\tlong long\
+    \ t = d;\r\n\t\t__uint128_t y = pow_mod_constexpr(a, d, (unsigned long long) n);\r\
+    \n\t\twhile(t != n - 1 && y != 1 && y != n - 1) {\r\n\t\t\ty = y * y % n;\r\n\t\
+    \t\tt <<= 1;\r\n\t\t}\r\n\t\tif(y != n - 1 && t % 2 == 0) {\r\n\t\t\treturn false;\r\
     \n\t\t}\r\n\t}\r\n\treturn true;\r\n}\r\n\r\n} // namespace internal\r\n\r\nbool\
     \ is_prime(long long n) {\r\n\tif(n <= 1) {\r\n\t\treturn false;\r\n\t}\r\n\t\
     for(int p : {2, 3, 5, 7, 11, 13, 17, 19, 23, 29}) {\r\n\t\tif(n % p == 0) {\r\n\
@@ -112,7 +112,7 @@ data:
   isVerificationFile: true
   path: test/math/is-prime/yosupo-Primality-Test.test.cpp
   requiredBy: []
-  timestamp: '2023-06-14 12:55:46+08:00'
+  timestamp: '2023-06-14 13:06:59+08:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/math/is-prime/yosupo-Primality-Test.test.cpp
