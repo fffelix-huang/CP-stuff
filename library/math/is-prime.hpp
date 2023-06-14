@@ -7,14 +7,14 @@ namespace felix {
 namespace internal {
 
 bool is_prime(long long n, std::vector<unsigned long long> x) {
-	unsigned long long d = n - 1;
+	long long d = n - 1;
 	d >>= __builtin_ctzll(d);
 	for(auto a : x) {
 		if(n <= a) {
 			return true;
 		}
 		long long t = d;
-		__uint128_t y = pow_mod_constexpr(a, d, n);
+		__uint128_t y = pow_mod_constexpr(a, d, (unsigned long long) n);
 		while(t != n - 1 && y != 1 && y != n - 1) {
 			y = y * y % n;
 			t <<= 1;
