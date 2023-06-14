@@ -1,6 +1,6 @@
 ---
 title: Heavy Light Decomposition (輕重鏈剖分)
-documentation_of: ../library/tree/HLD.hpp
+documentation_of: ../library/tree/heavy-light-decomposition.hpp
 ---
 
 ## 輕重鏈剖分

@@ -1,6 +1,6 @@
 ---
 title: Link Cut Tree
-documentation_of: ../library/data-structure/lazy-LCT.hpp
+documentation_of: ../library/data-structure/lazy-lct.hpp
 ---
 
 ## 使用方法

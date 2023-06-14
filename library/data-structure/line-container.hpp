@@ -19,9 +19,9 @@ struct line_t {
 
 template<class T, bool MAX>
 struct line_container : std::multiset<line_t<T>, std::less<>> {
-	using S = std::multiset<line_t<T>, std::less<>>;
-	using typename S::iterator;
-	using S::begin, S::end, S::insert, S::erase, S::empty, S::lower_bound;
+	using base = std::multiset<line_t<T>, std::less<>>;
+	using typename base::iterator;
+	using base::begin, base::end, base::insert, base::erase, base::empty, base::lower_bound;
 
 	static constexpr T INF = std::numeric_limits<T>::max();
 

@@ -1,7 +1,8 @@
 #pragma once
 #include <vector>
-#include <cassert>
 #include <queue>
+#include <algorithm>
+#include <cassert>
 #include <limits>
 
 namespace felix {
@@ -17,10 +18,12 @@ public:
 		assert(0 <= to && to < n);
 		assert(0 <= cap);
 		int m = (int) pos.size();
-		pos.push_back({from, (int) g[from].size()});
+		pos.emplace_back(from, (int) g[from].size());
 		int from_id = (int) g[from].size();
 		int to_id = (int) g[to].size();
-		if(from == to) to_id++;
+		if(from == to) {
+			to_id++;
+		}
 		g[from].push_back(_edge{to, to_id, cap});
 		g[to].push_back(_edge{from, from_id, 0});
 		return m;
@@ -42,7 +45,9 @@ public:
 	std::vector<edge> edges() {
 		int m = (int) pos.size();
 		std::vector<edge> result;
-		for(int i = 0; i < m; i++) { result.push_back(get_edge(i)); }
+		for(int i = 0; i < m; i++) {
+			result.push_back(get_edge(i));
+		}
 		return result;
 	}
 
@@ -84,7 +89,7 @@ public:
 		}
 		Cap_t res = 0;
 		int level_u = level[u];
-		for(int &i = iter[u]; i < (int) g[u].size(); i++) {
+		for(int& i = iter[u]; i < (int) g[u].size(); i++) {
 			const auto &e = g[u][i];
 			if(level_u <= level[e.to] || g[e.to][e.rev].cap == 0) {
 				continue;

@@ -32,12 +32,18 @@ bool is_prime(long long n) {
 	if(n <= 1) {
 		return false;
 	}
-	if(n % 2 == 0) {
-		return n == 2;
+	for(int p : {2, 3, 5, 7, 11, 13, 17, 19, 23, 29}) {
+		if(n % p == 0) {
+			return n == p;
+		}
 	}
-	if(n < (1LL << 30)) {
-		return internal::is_prime(n, {2, 7, 61});
-	}
+	// https://miller-rabin.appspot.com/
+	if(n < 341531LL) return internal::is_prime(n, {9345883071009581737LL});
+	if(n < 1050535501LL) return internal::is_prime(n, {336781006125LL, 9639812373923155LL});
+	if(n < 350269456337LL) return internal::is_prime(n, {4230279247111683200LL, 14694767155120705706LL, 16641139526367750375LL});
+	if(n < 55245642489451LL) return internal::is_prime(n, {2, 141889084524735LL, 1199124725622454117LL, 11096072698276303650LL});
+	if(n < 7999252175582851LL) return internal::is_prime(n, {2, 4130806001517LL, 149795463772692060LL, 186635894390467037LL, 3967304179347715805LL});
+	if(n < 585226005592931977LL) return internal::is_prime(n, {2, 123635709730000LL, 9233062284813009LL, 43835965440333360LL, 761179012939631437LL, 1263739024124850375LL});
 	return internal::is_prime(n, {2, 325, 9375, 28178, 450775, 9780504, 1795265022});
 }
 

@@ -1,11 +1,7 @@
 ---
 title: DSU (並查集)
-documentation_of: ../library/data-structure/DSU.hpp
+documentation_of: ../library/data-structure/dsu.hpp
 ---
-
-## 並查集
-
-除了 `d.groups()` 以外的操作複雜度都是 $O(\log n)$。
 
 ## 使用方法
 ```cpp

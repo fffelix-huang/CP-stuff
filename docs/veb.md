@@ -1,6 +1,6 @@
 ---
 title: Van Emde Boas Tree
-documentation_of: ../library/data-structure/VEBtree.hpp
+documentation_of: ../library/data-structure/vebtree.hpp
 ---
 
 ## 簡介
