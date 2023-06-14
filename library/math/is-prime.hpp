@@ -7,7 +7,7 @@ namespace felix {
 namespace internal {
 
 bool is_prime(long long n, std::vector<unsigned long long> x) {
-	long long d = n - 1;
+	unsigned long long d = n - 1;
 	d >>= __builtin_ctzll(d);
 	for(auto a : x) {
 		if(n <= a) {
