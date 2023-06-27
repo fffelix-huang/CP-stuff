@@ -4,11 +4,11 @@
 
 namespace felix {
 
-template<class T, T (*op)(T, T)>
+template<class S, S (*op)(S, S)>
 struct sparse_table {
 public:
 	sparse_table() {}
-	explicit sparse_table(const std::vector<T>& a) {
+	explicit sparse_table(const std::vector<S>& a) {
 		n = (int) a.size();
 		int max_log = std::__lg(n) + 1;
 		mat.resize(max_log);
@@ -21,7 +21,7 @@ public:
 		}
 	}
 
-	inline T prod(int from, int to) const {
+	inline S prod(int from, int to) const {
 		assert(0 <= from && from <= to && to <= n - 1);
 		int lg = std::__lg(to - from + 1);
 		return op(mat[lg][from], mat[lg][to - (1 << lg) + 1]);
@@ -29,7 +29,7 @@ public:
 
 private:
 	int n;
-	std::vector<std::vector<T>> mat;
+	std::vector<std::vector<S>> mat;
 };
 
 } // namespace felix

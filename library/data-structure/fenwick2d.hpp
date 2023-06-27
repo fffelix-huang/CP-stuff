@@ -15,9 +15,9 @@ public:
 		if(x >= n || y >= m) {
 			return;
 		}
-		for(int i = x; i < n; i |= i + 1) {
-			for(int j = y; j < m; j |= j + 1) {
-				data[i][j] += val;
+		for(int i = x + 1; i <= n; i += i & -i) {
+			for(int j = y + 1; j <= m; j += j & -j) {
+				data[i - 1][j - 1] += val;
 			}
 		}
 	}

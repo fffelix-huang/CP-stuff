@@ -7,13 +7,13 @@ namespace felix {
 
 template<class T, class Weight_t>
 struct offline_rectangle_sum {
-	struct Query {
+	struct op_t {
 		T x, y;
 		Weight_t w;
 		int id;
 
-		Query() {}
-		Query(T _x, T _y, Weight_t _w, int _id) : x(_x), y(_y), w(_w), id(_id) {}
+		op_t() {}
+		op_t(T _x, T _y, Weight_t _w, int _id) : x(_x), y(_y), w(_w), id(_id) {}
 	};
 
 	void add_point(T x, T y, Weight_t w) {
@@ -47,7 +47,7 @@ struct offline_rectangle_sum {
 
 private:
 	int qid = 0, sz;
-	std::vector<Query> queries;
+	std::vector<op_t> queries;
 	std::vector<Weight_t> ans;
 	fenwick<Weight_t> fenw;
 
@@ -59,7 +59,7 @@ private:
 		CDQ(l, mid), CDQ(mid, r);
 		int i = l;
 		for(int j = mid; j < r; j++) {
-			const Query& q = queries[j];
+			const op_t& q = queries[j];
 			while(i < mid && queries[i].x >= q.x) {
 				if(queries[i].id == -1) {
 					fenw.add(queries[i].y, queries[i].w);
@@ -75,7 +75,7 @@ private:
 				fenw.add(queries[p].y, -queries[p].w);
 			}
 		}
-		std::inplace_merge(queries.begin() + l, queries.begin() + mid, queries.begin() + r, [](const Query& a, const Query& b) {
+		std::inplace_merge(queries.begin() + l, queries.begin() + mid, queries.begin() + r, [](const op_t& a, const op_t& b) {
 			return a.x > b.x;
 		});
 	}

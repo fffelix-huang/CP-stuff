@@ -20,9 +20,7 @@ public:
 
 	lazy_segtree() : lazy_segtree(0) {}
 	explicit lazy_segtree(int _n) : lazy_segtree(std::vector<S>(_n, e())) {}
-	explicit lazy_segtree(const std::vector<S>& v) : base(v) {
-		lz = std::vector<F>(size, id());
-	}
+	explicit lazy_segtree(const std::vector<S>& v) : base(v), lz(size, id()) {}
 
 	void set(int p, S x) {
 		push_down(p);

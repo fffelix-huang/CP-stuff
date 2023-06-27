@@ -1,26 +1,24 @@
 template<class T>
-std::vector<T> dijkstra(const std::vector<std::vector<std::pair<int, T>>>& g, const std::vector<int>& src) {
+std::vector<T> dijkstra(const std::vector<std::vector<std::pair<int, T>>>& g, int src) {
 	int n = (int) g.size();
-	std::vector<T> dp(n, std::numeric_limits<T>::max());
+	std::vector<T> dist(n, std::numeric_limits<T>::max());
+	dist[src] = 0;
 	std::priority_queue<std::pair<T, int>, std::vector<pair<T, int>>, std::greater<pair<T, int>>> pq;
-	for(auto x : src) {
-		dp[x] = 0;
-		pq.emplace(0, x);
-	}
+	pq.emplace(dist[src], src);
 	while(!pq.empty()) {
 		auto [expect, u] = pq.top();
 		pq.pop();
-		if(dp[u] != expect) {
+		if(dist[u] != expect) {
 			continue;
 		}
 		for(auto [v, w] : g[u]) {
-			if(dp[v] > dp[u] + w) {
-				dp[v] = dp[u] + w;
-				pq.emplace(dp[v], v);
+			if(dist[v] > dist[u] + w) {
+				dist[v] = dist[u] + w;
+				pq.emplace(dist[v], v);
 			}
 		}
 	}
-	return dp;
+	return dist;
 }
 
 template<class T>

@@ -15,17 +15,17 @@ template<class S,
          F (*composition)(F, F)>
 struct lazy_lct {
 public:
-	struct Node {
+	struct node_t {
 		S val = e(), sum = e();
 		F lz = id();
 		bool rev = false;
 		int sz = 1;
-		Node* l = nullptr;
-		Node* r = nullptr;
-		Node* p = nullptr;
+		node_t* l = nullptr;
+		node_t* r = nullptr;
+		node_t* p = nullptr;
 
-		Node() {}
-		Node(const S& s) : val(s), sum(s) {}
+		node_t() {}
+		node_t(const S& s) : val(s), sum(s) {}
 
 		bool is_root() const { return p == nullptr || (p->l != this && p->r != this); }
 	};
@@ -39,11 +39,11 @@ public:
 		}
 	}
 
-	Node* access(int u) {
+	node_t* access(int u) {
 		assert(0 <= u && u < n);
-		Node* v = &a[u];
-		Node* last = nullptr;
-		for(Node* p = v; p != nullptr; p = p->p) {
+		node_t* v = &a[u];
+		node_t* last = nullptr;
+		for(node_t* p = v; p != nullptr; p = p->p) {
 			splay(p);
 			p->r = last;
 			pull(p);
@@ -117,18 +117,18 @@ public:
 
 private:
 	int n;
-	std::vector<Node> a;
+	std::vector<node_t> a;
 
-	void rotate(Node* v) {
-		auto attach = [&](Node* p, bool side, Node* c) {
+	void rotate(node_t* v) {
+		auto attach = [&](node_t* p, bool side, node_t* c) {
 			(side ? p->r : p->l) = c;
 			pull(p);
 			if(c != nullptr) {
 				c->p = p;
 			}
 		};
-		Node* p = v->p;
-		Node* g = p->p;
+		node_t* p = v->p;
+		node_t* g = p->p;
 		bool is_right = (p->r == v);
 		bool is_root = p->is_root();
 		attach(p, is_right, (is_right ? v->l : v->r));
@@ -140,7 +140,7 @@ private:
 		}
 	}
 
-	void splay(Node* v) {
+	void splay(node_t* v) {
 		push(v);
 		while(!v->is_root()) {
 			auto p = v->p;
@@ -156,13 +156,13 @@ private:
 		}
 	}
 
-	void all_apply(Node* v, F f) {
+	void all_apply(node_t* v, F f) {
 		v->val = mapping(f, v->val);
 		v->sum = mapping(f, v->sum);
 		v->lz = composition(f, v->lz);
 	}
 
-	void push(Node* v) {
+	void push(node_t* v) {
 		if(v->lz != id()) {
 			if(v->l != nullptr) {
 				all_apply(v->l, v->lz);
@@ -185,7 +185,7 @@ private:
 		}
 	}
 
-	void pull(Node* v) {
+	void pull(node_t* v) {
 		v->sz = 1;
 		v->sum = v->val;
 		if(v->l != nullptr) {

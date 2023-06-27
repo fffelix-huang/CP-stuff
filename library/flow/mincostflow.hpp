@@ -9,19 +9,19 @@ namespace felix {
 template<class Cap_t, class Cost_t>
 struct MCMF {
 public:
-	struct Edge {
+	struct edge_t {
 		int from;
 		int to;
 		Cap_t cap;
 		Cost_t cost;
-		Edge(int u, int v, Cap_t _cap, Cost_t _cost) : from(u), to(v), cap(_cap), cost(_cost) {}
+		edge_t(int u, int v, Cap_t _cap, Cost_t _cost) : from(u), to(v), cap(_cap), cost(_cost) {}
 	};
 
 	static constexpr Cap_t CAP_INF = std::numeric_limits<Cap_t>::max();
 	static constexpr Cost_t COST_INF = std::numeric_limits<Cost_t>::max();
 
 	int n;
-	std::vector<Edge> edges;
+	std::vector<edge_t> edges;
 	std::vector<std::vector<int>> g;
 	std::vector<Cost_t> d;
 	std::vector<bool> in_queue;
@@ -54,7 +54,7 @@ public:
 			}
 			in_queue[u] = false;
 			for(auto& id : g[u]) {
-				const Edge& e = edges[id];
+				const edge_t& e = edges[id];
 				if(e.cap > 0 && d[u] + e.cost < d[e.to]) {
 					d[e.to] = d[u] + e.cost;
 					previous_edge[e.to] = id;
@@ -77,15 +77,15 @@ public:
 			Cap_t send = f;
 			int u = t;
 			while(u != s) {
-				const Edge& e = edges[previous_edge[u]];
+				const edge_t& e = edges[previous_edge[u]];
 				send = std::min(send, e.cap);
 				u = e.from;
 			}
 			u = t;
 			while(u != s) {
-				Edge& e = edges[previous_edge[u]];
+				edge_t& e = edges[previous_edge[u]];
 				e.cap -= send;
-				Edge& b = edges[previous_edge[u] ^ 1];
+				edge_t& b = edges[previous_edge[u] ^ 1];
 				b.cap += send;
 				u = e.from;
 			}

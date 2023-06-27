@@ -105,8 +105,12 @@ public:
 	constexpr bool operator==(const modint& rhs) const { return value == rhs.value; } 
 	constexpr bool operator!=(const modint& rhs) const { return value != rhs.value; }
 
-	constexpr modint pow(unsigned long long p) const {
+	constexpr modint pow(long long p) const {
 		modint a(*this), res(1);
+		if(p < 0) {
+			a = a.inv();
+			p = -p;
+		}
 		while(p) {
 			if(p & 1) {
 				res *= a;

@@ -29,22 +29,22 @@ public:
 		return m;
 	}
 
-	struct edge {
+	struct edge_t {
 		int from, to;
 		Cap_t cap, flow;
 	};
 
-	edge get_edge(int i) {
+	edge_t get_edge(int i) {
 		int m = (int) pos.size();
 		assert(0 <= i && i < m);
 		auto _e = g[pos[i].first][pos[i].second];
 		auto _re = g[_e.to][_e.rev];
-		return edge{pos[i].first, _e.to, _e.cap + _re.cap, _re.cap};
+		return edge_t{pos[i].first, _e.to, _e.cap + _re.cap, _re.cap};
 	}
 
-	std::vector<edge> edges() {
+	std::vector<edge_t> edges() {
 		int m = (int) pos.size();
-		std::vector<edge> result;
+		std::vector<edge_t> result;
 		for(int i = 0; i < m; i++) {
 			result.push_back(get_edge(i));
 		}

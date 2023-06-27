@@ -2,7 +2,6 @@
 #include <vector>
 #include <functional>
 #include <algorithm>
-#include "../data-structure/fenwick.hpp"
 
 namespace felix {
 

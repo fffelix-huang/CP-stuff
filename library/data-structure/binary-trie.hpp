@@ -80,12 +80,12 @@ public:
 private:
 	static constexpr int B = sizeof(T) * 8;
 
-	struct Node {
+	struct node_t {
 		std::array<int, 2> go = {};
 		int cnt = 0;
 	};
 
-	std::vector<Node> trie;
+	std::vector<node_t> trie;
 
 	int new_node() {
 		trie.emplace_back();

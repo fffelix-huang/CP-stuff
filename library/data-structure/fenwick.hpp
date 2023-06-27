@@ -12,9 +12,8 @@ public:
 
 	void add(int p, T x) {
 		assert(0 <= p);
-		while(p < n) {
-			data[p] += x;
-			p |= (p + 1);
+		for(int i = p + 1; i <= n; i += i & -i) {
+			data[i - 1] += x;
 		}
 	}
 
