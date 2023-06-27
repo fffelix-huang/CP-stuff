@@ -77,11 +77,11 @@ data:
     \   F (*composition)(F, F)>\nstruct lazy_segtree : public segtree<S, e, op> {\n\
     \tusing base = segtree<S, e, op>;\n\npublic:\n\tusing base::all_prod;\n\n\tlazy_segtree()\
     \ : lazy_segtree(0) {}\n\texplicit lazy_segtree(int _n) : lazy_segtree(std::vector<S>(_n,\
-    \ e())) {}\n\texplicit lazy_segtree(const std::vector<S>& v) : base(v) {\n\t\t\
-    lz = std::vector<F>(size, id());\n\t}\n\n\tvoid set(int p, S x) {\n\t\tpush_down(p);\n\
-    \t\tbase::set(p, x);\n\t}\n\n\tS get(int p) {\n\t\tpush_down(p);\n\t\treturn base::get(p);\n\
-    \t}\n\n\tS operator[](int p) { return get(p); }\n\n\tS prod(int l, int r) {\n\t\
-    \tif(l == r) {\n\t\t\treturn e();\n\t\t}\n\t\tpush_down(l, r);\n\t\treturn base::prod(l,\
+    \ e())) {}\n\texplicit lazy_segtree(const std::vector<S>& v) : base(v), lz(size,\
+    \ id()) {}\n\n\tvoid set(int p, S x) {\n\t\tpush_down(p);\n\t\tbase::set(p, x);\n\
+    \t}\n\n\tS get(int p) {\n\t\tpush_down(p);\n\t\treturn base::get(p);\n\t}\n\n\t\
+    S operator[](int p) { return get(p); }\n\n\tS prod(int l, int r) {\n\t\tif(l ==\
+    \ r) {\n\t\t\treturn e();\n\t\t}\n\t\tpush_down(l, r);\n\t\treturn base::prod(l,\
     \ r);\n\t}\n\n\tvoid apply(int p, F f) {\n\t\tassert(0 <= p && p < n);\n\t\tpush_down(p);\n\
     \t\tbase::set(p, mapping(f, d[p]));\n\t}\n\n\tvoid apply(int l, int r, F f) {\n\
     \t\tassert(0 <= l && l <= r && r <= n);\n\t\tif(l == r) {\n\t\t\treturn;\n\t\t\
@@ -115,11 +115,11 @@ data:
     \         F (*composition)(F, F)>\nstruct lazy_segtree : public segtree<S, e,\
     \ op> {\n\tusing base = segtree<S, e, op>;\n\npublic:\n\tusing base::all_prod;\n\
     \n\tlazy_segtree() : lazy_segtree(0) {}\n\texplicit lazy_segtree(int _n) : lazy_segtree(std::vector<S>(_n,\
-    \ e())) {}\n\texplicit lazy_segtree(const std::vector<S>& v) : base(v) {\n\t\t\
-    lz = std::vector<F>(size, id());\n\t}\n\n\tvoid set(int p, S x) {\n\t\tpush_down(p);\n\
-    \t\tbase::set(p, x);\n\t}\n\n\tS get(int p) {\n\t\tpush_down(p);\n\t\treturn base::get(p);\n\
-    \t}\n\n\tS operator[](int p) { return get(p); }\n\n\tS prod(int l, int r) {\n\t\
-    \tif(l == r) {\n\t\t\treturn e();\n\t\t}\n\t\tpush_down(l, r);\n\t\treturn base::prod(l,\
+    \ e())) {}\n\texplicit lazy_segtree(const std::vector<S>& v) : base(v), lz(size,\
+    \ id()) {}\n\n\tvoid set(int p, S x) {\n\t\tpush_down(p);\n\t\tbase::set(p, x);\n\
+    \t}\n\n\tS get(int p) {\n\t\tpush_down(p);\n\t\treturn base::get(p);\n\t}\n\n\t\
+    S operator[](int p) { return get(p); }\n\n\tS prod(int l, int r) {\n\t\tif(l ==\
+    \ r) {\n\t\t\treturn e();\n\t\t}\n\t\tpush_down(l, r);\n\t\treturn base::prod(l,\
     \ r);\n\t}\n\n\tvoid apply(int p, F f) {\n\t\tassert(0 <= p && p < n);\n\t\tpush_down(p);\n\
     \t\tbase::set(p, mapping(f, d[p]));\n\t}\n\n\tvoid apply(int l, int r, F f) {\n\
     \t\tassert(0 <= l && l <= r && r <= n);\n\t\tif(l == r) {\n\t\t\treturn;\n\t\t\
@@ -152,16 +152,16 @@ data:
   isVerificationFile: false
   path: library/data-structure/lazy-segtree.hpp
   requiredBy: []
-  timestamp: '2023-06-03 23:52:09+08:00'
+  timestamp: '2023-06-27 22:09:28+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/data-structure/lazy-segtree/aoj-dsl-RMQ-and-RUQ.test.cpp
-  - test/data-structure/lazy-segtree/aoj-dsl-Range-Update-Query.test.cpp
-  - test/data-structure/lazy-segtree/aoj-dsl-RSQ-and-RAQ.test.cpp
-  - test/data-structure/lazy-segtree/aoj-dsl-RSQ-and-RUQ.test.cpp
   - test/data-structure/lazy-segtree/yosupo-Range-Affine-Range-Sum.test.cpp
+  - test/data-structure/lazy-segtree/aoj-dsl-RSQ-and-RAQ.test.cpp
   - test/data-structure/lazy-segtree/yosupo-Range-Affine-Point-Get.test.cpp
+  - test/data-structure/lazy-segtree/aoj-dsl-Range-Update-Query.test.cpp
   - test/data-structure/lazy-segtree/aoj-dsl-RMQ-and-RAQ.test.cpp
+  - test/data-structure/lazy-segtree/aoj-dsl-RMQ-and-RUQ.test.cpp
+  - test/data-structure/lazy-segtree/aoj-dsl-RSQ-and-RUQ.test.cpp
   - test/tree/heavy-light-decomposition/aoj-grl-Range-Query-on-a-Tree-II.test.cpp
 documentation_of: library/data-structure/lazy-segtree.hpp
 layout: document

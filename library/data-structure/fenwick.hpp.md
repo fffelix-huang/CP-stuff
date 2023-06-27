@@ -2,9 +2,6 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
-    path: library/counting/inversion.hpp
-    title: library/counting/inversion.hpp
   - icon: ':heavy_check_mark:'
     path: library/data-structure/offline-rectangle-sum.hpp
     title: library/data-structure/offline-rectangle-sum.hpp
@@ -41,38 +38,37 @@ data:
   bundledCode: "#line 2 \"library/data-structure/fenwick.hpp\"\n#include <vector>\n\
     #include <cassert>\n\nnamespace felix {\n\ntemplate<class T>\nstruct fenwick {\n\
     public:\n\tfenwick() : n(0) {}\n\texplicit fenwick(int _n) : n(_n), data(_n) {}\n\
-    \n\tvoid add(int p, T x) {\n\t\tassert(0 <= p);\n\t\twhile(p < n) {\n\t\t\tdata[p]\
-    \ += x;\n\t\t\tp |= (p + 1);\n\t\t}\n\t}\n\n\t// [0, p)\n\tT get(int p) const\
-    \ {\n\t\tassert(p <= n);\n\t\tp--;\n\t\tT res{};\n\t\twhile(p >= 0) {\n\t\t\t\
-    res += data[p];\n\t\t\tp = (p & (p + 1)) - 1;\n\t\t}\n\t\treturn res;\n\t}\n\n\
-    \t// [l, r)\n\tT sum(int l, int r) const { return get(r) - get(l); }\n\nprivate:\n\
-    \tint n;\n\tstd::vector<T> data;\n};\n\n} // namespace felix\n"
+    \n\tvoid add(int p, T x) {\n\t\tassert(0 <= p);\n\t\tfor(int i = p + 1; i <= n;\
+    \ i += i & -i) {\n\t\t\tdata[i - 1] += x;\n\t\t}\n\t}\n\n\t// [0, p)\n\tT get(int\
+    \ p) const {\n\t\tassert(p <= n);\n\t\tp--;\n\t\tT res{};\n\t\twhile(p >= 0) {\n\
+    \t\t\tres += data[p];\n\t\t\tp = (p & (p + 1)) - 1;\n\t\t}\n\t\treturn res;\n\t\
+    }\n\n\t// [l, r)\n\tT sum(int l, int r) const { return get(r) - get(l); }\n\n\
+    private:\n\tint n;\n\tstd::vector<T> data;\n};\n\n} // namespace felix\n"
   code: "#pragma once\n#include <vector>\n#include <cassert>\n\nnamespace felix {\n\
     \ntemplate<class T>\nstruct fenwick {\npublic:\n\tfenwick() : n(0) {}\n\texplicit\
     \ fenwick(int _n) : n(_n), data(_n) {}\n\n\tvoid add(int p, T x) {\n\t\tassert(0\
-    \ <= p);\n\t\twhile(p < n) {\n\t\t\tdata[p] += x;\n\t\t\tp |= (p + 1);\n\t\t}\n\
-    \t}\n\n\t// [0, p)\n\tT get(int p) const {\n\t\tassert(p <= n);\n\t\tp--;\n\t\t\
-    T res{};\n\t\twhile(p >= 0) {\n\t\t\tres += data[p];\n\t\t\tp = (p & (p + 1))\
-    \ - 1;\n\t\t}\n\t\treturn res;\n\t}\n\n\t// [l, r)\n\tT sum(int l, int r) const\
-    \ { return get(r) - get(l); }\n\nprivate:\n\tint n;\n\tstd::vector<T> data;\n\
-    };\n\n} // namespace felix\n"
+    \ <= p);\n\t\tfor(int i = p + 1; i <= n; i += i & -i) {\n\t\t\tdata[i - 1] +=\
+    \ x;\n\t\t}\n\t}\n\n\t// [0, p)\n\tT get(int p) const {\n\t\tassert(p <= n);\n\
+    \t\tp--;\n\t\tT res{};\n\t\twhile(p >= 0) {\n\t\t\tres += data[p];\n\t\t\tp =\
+    \ (p & (p + 1)) - 1;\n\t\t}\n\t\treturn res;\n\t}\n\n\t// [l, r)\n\tT sum(int\
+    \ l, int r) const { return get(r) - get(l); }\n\nprivate:\n\tint n;\n\tstd::vector<T>\
+    \ data;\n};\n\n} // namespace felix\n"
   dependsOn: []
   isVerificationFile: false
   path: library/data-structure/fenwick.hpp
   requiredBy:
-  - library/counting/inversion.hpp
   - library/data-structure/offline-rectangle-sum.hpp
-  timestamp: '2023-05-28 03:49:52+08:00'
+  timestamp: '2023-06-27 22:09:28+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/data-structure/fenwick/yosupo-Point-Add-Range-Sum.test.cpp
   - test/data-structure/fenwick/aoj-dsl-The-Maximum-Number-of-Customers.test.cpp
   - test/data-structure/fenwick/aoj-dsl-Range-Sum-Query.test.cpp
-  - test/data-structure/fenwick/yosupo-Point-Add-Range-Sum.test.cpp
   - test/data-structure/fenwick/aoj-dsl-Range-Add-Query.test.cpp
   - test/data-structure/offline-rectangle-sum/yosupo-Point-Add-Rectangle-Sum.test.cpp
-  - test/tree/heavy-light-decomposition/yosupo-Vertex-Add-Path-Sum.test.cpp
   - test/tree/heavy-light-decomposition/aoj-grl-Range-Query-on-a-Tree.test.cpp
   - test/tree/heavy-light-decomposition/yosupo-Vertex-Add-Subtree-Sum.test.cpp
+  - test/tree/heavy-light-decomposition/yosupo-Vertex-Add-Path-Sum.test.cpp
 documentation_of: library/data-structure/fenwick.hpp
 layout: document
 redirect_from:

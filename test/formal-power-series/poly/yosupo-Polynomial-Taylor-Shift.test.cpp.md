@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/formal-power-series/poly.hpp
     title: library/formal-power-series/poly.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/inv-gcd.hpp
     title: library/math/inv-gcd.hpp
   - icon: ':heavy_check_mark:'
@@ -16,13 +16,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/math/primitive-root.hpp
     title: library/math/primitive-root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/safe-mod.hpp
     title: library/math/safe-mod.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/misc/type-traits.hpp
     title: library/misc/type-traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/modint/modint.hpp
     title: library/modint/modint.hpp
   _extendedRequiredBy: []
@@ -126,24 +126,25 @@ data:
     \ *this; }\r\n\tconstexpr modint operator-() const { return modint() - *this;\
     \ } \r\n\tconstexpr bool operator==(const modint& rhs) const { return value ==\
     \ rhs.value; } \r\n\tconstexpr bool operator!=(const modint& rhs) const { return\
-    \ value != rhs.value; }\r\n\r\n\tconstexpr modint pow(unsigned long long p) const\
-    \ {\r\n\t\tmodint a(*this), res(1);\r\n\t\twhile(p) {\r\n\t\t\tif(p & 1) {\r\n\
-    \t\t\t\tres *= a;\r\n\t\t\t}\r\n\t\t\ta *= a;\r\n\t\t\tp >>= 1;\r\n\t\t}\r\n\t\
-    \treturn res;\r\n\t}\r\n\r\n\tconstexpr bool has_sqrt() const {\r\n\t\tif(mod()\
-    \ == 2 || value == 0) {\r\n\t\t\treturn true;\r\n\t\t}\r\n\t\tif(pow((mod() -\
-    \ 1) / 2).val() != 1) {\r\n\t\t\treturn false;\r\n\t\t}\r\n\t\treturn true;\r\n\
-    \t}\r\n\r\n\tconstexpr modint sqrt() const {\r\n\t\tif(mod() == 2 || value < 2)\
-    \ {\r\n\t\t\treturn *this;\r\n\t\t}\r\n\t\tassert(pow((mod() - 1) / 2).val() ==\
-    \ 1);\r\n\t\tmodint b = 1;\r\n\t\twhile(b.pow((mod() - 1) >> 1).val() == 1) {\r\
-    \n\t\t\tb += 1;\r\n\t\t}\r\n\t\tint m = mod() - 1, e = __builtin_ctz(m);\r\n\t\
-    \tm >>= e;\r\n\t\tmodint x = modint(*this).pow((m - 1) >> 1);\r\n\t\tmodint y\
-    \ = modint(*this) * x * x;\r\n\t\tx *= value;\r\n\t\tmodint z = b.pow(m);\r\n\t\
-    \twhile(y.val() != 1) {\r\n\t\t\tint j = 0;\r\n\t\t\tmodint t = y;\r\n\t\t\twhile(t.val()\
-    \ != 1) {\r\n\t\t\t\tt *= t;\r\n\t\t\t\tj++;\r\n\t\t\t}\r\n\t\t\tz = z.pow(1LL\
-    \ << (e - j - 1));\r\n\t\t\tx *= z, z *= z, y *= z;\r\n\t\t\te = j;\r\n\t\t}\r\
-    \n\t\treturn x;\r\n\t}\r\n\r\n\tfriend constexpr std::istream& operator>>(std::istream&\
-    \ in, modint& num) {\r\n\t\tlong long x;\r\n\t\tin >> x;\r\n\t\tnum = modint<id>(x);\r\
-    \n\t\treturn in;\r\n\t}\r\n\t\r\n\tfriend constexpr std::ostream& operator<<(std::ostream&\
+    \ value != rhs.value; }\r\n\r\n\tconstexpr modint pow(long long p) const {\r\n\
+    \t\tmodint a(*this), res(1);\r\n\t\tif(p < 0) {\r\n\t\t\ta = a.inv();\r\n\t\t\t\
+    p = -p;\r\n\t\t}\r\n\t\twhile(p) {\r\n\t\t\tif(p & 1) {\r\n\t\t\t\tres *= a;\r\
+    \n\t\t\t}\r\n\t\t\ta *= a;\r\n\t\t\tp >>= 1;\r\n\t\t}\r\n\t\treturn res;\r\n\t\
+    }\r\n\r\n\tconstexpr bool has_sqrt() const {\r\n\t\tif(mod() == 2 || value ==\
+    \ 0) {\r\n\t\t\treturn true;\r\n\t\t}\r\n\t\tif(pow((mod() - 1) / 2).val() !=\
+    \ 1) {\r\n\t\t\treturn false;\r\n\t\t}\r\n\t\treturn true;\r\n\t}\r\n\r\n\tconstexpr\
+    \ modint sqrt() const {\r\n\t\tif(mod() == 2 || value < 2) {\r\n\t\t\treturn *this;\r\
+    \n\t\t}\r\n\t\tassert(pow((mod() - 1) / 2).val() == 1);\r\n\t\tmodint b = 1;\r\
+    \n\t\twhile(b.pow((mod() - 1) >> 1).val() == 1) {\r\n\t\t\tb += 1;\r\n\t\t}\r\n\
+    \t\tint m = mod() - 1, e = __builtin_ctz(m);\r\n\t\tm >>= e;\r\n\t\tmodint x =\
+    \ modint(*this).pow((m - 1) >> 1);\r\n\t\tmodint y = modint(*this) * x * x;\r\n\
+    \t\tx *= value;\r\n\t\tmodint z = b.pow(m);\r\n\t\twhile(y.val() != 1) {\r\n\t\
+    \t\tint j = 0;\r\n\t\t\tmodint t = y;\r\n\t\t\twhile(t.val() != 1) {\r\n\t\t\t\
+    \tt *= t;\r\n\t\t\t\tj++;\r\n\t\t\t}\r\n\t\t\tz = z.pow(1LL << (e - j - 1));\r\
+    \n\t\t\tx *= z, z *= z, y *= z;\r\n\t\t\te = j;\r\n\t\t}\r\n\t\treturn x;\r\n\t\
+    }\r\n\r\n\tfriend constexpr std::istream& operator>>(std::istream& in, modint&\
+    \ num) {\r\n\t\tlong long x;\r\n\t\tin >> x;\r\n\t\tnum = modint<id>(x);\r\n\t\
+    \treturn in;\r\n\t}\r\n\t\r\n\tfriend constexpr std::ostream& operator<<(std::ostream&\
     \ out, const modint& num) {\r\n\t\treturn out << num.val();\r\n\t}\r\n\r\npublic:\r\
     \n\tstatic std::vector<modint> fact, inv_fact, invs;\r\n \r\nprivate:\r\n\tint\
     \ value;\r\n\tstatic int md;\r\n};\r\n\r\ntemplate<int id> int modint<id>::md\
@@ -443,7 +444,7 @@ data:
   isVerificationFile: true
   path: test/formal-power-series/poly/yosupo-Polynomial-Taylor-Shift.test.cpp
   requiredBy: []
-  timestamp: '2023-06-03 19:46:21+08:00'
+  timestamp: '2023-06-27 22:09:28+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/formal-power-series/poly/yosupo-Polynomial-Taylor-Shift.test.cpp

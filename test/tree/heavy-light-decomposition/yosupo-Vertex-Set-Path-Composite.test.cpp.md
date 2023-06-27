@@ -7,16 +7,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/data-structure/sparse-table.hpp
     title: library/data-structure/sparse-table.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/inv-gcd.hpp
     title: library/math/inv-gcd.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/safe-mod.hpp
     title: library/math/safe-mod.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/misc/type-traits.hpp
     title: library/misc/type-traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/modint/modint.hpp
     title: library/modint/modint.hpp
   - icon: ':heavy_check_mark:'
@@ -72,15 +72,15 @@ data:
     \ namespace felix\n#line 3 \"library/tree/heavy-light-decomposition.hpp\"\n#include\
     \ <array>\r\n#line 5 \"library/tree/heavy-light-decomposition.hpp\"\n#include\
     \ <algorithm>\r\n#include <cmath>\r\n#line 4 \"library/data-structure/sparse-table.hpp\"\
-    \n\nnamespace felix {\n\ntemplate<class T, T (*op)(T, T)>\nstruct sparse_table\
-    \ {\npublic:\n\tsparse_table() {}\n\texplicit sparse_table(const std::vector<T>&\
+    \n\nnamespace felix {\n\ntemplate<class S, S (*op)(S, S)>\nstruct sparse_table\
+    \ {\npublic:\n\tsparse_table() {}\n\texplicit sparse_table(const std::vector<S>&\
     \ a) {\n\t\tn = (int) a.size();\n\t\tint max_log = std::__lg(n) + 1;\n\t\tmat.resize(max_log);\n\
     \t\tmat[0] = a;\n\t\tfor(int j = 1; j < max_log; ++j) {\n\t\t\tmat[j].resize(n\
     \ - (1 << j) + 1);\n\t\t\tfor(int i = 0; i <= n - (1 << j); ++i) {\n\t\t\t\tmat[j][i]\
     \ = op(mat[j - 1][i], mat[j - 1][i + (1 << (j - 1))]);\n\t\t\t}\n\t\t}\n\t}\n\n\
-    \tinline T prod(int from, int to) const {\n\t\tassert(0 <= from && from <= to\
+    \tinline S prod(int from, int to) const {\n\t\tassert(0 <= from && from <= to\
     \ && to <= n - 1);\n\t\tint lg = std::__lg(to - from + 1);\n\t\treturn op(mat[lg][from],\
-    \ mat[lg][to - (1 << lg) + 1]);\n\t}\n\nprivate:\n\tint n;\n\tstd::vector<std::vector<T>>\
+    \ mat[lg][to - (1 << lg) + 1]);\n\t}\n\nprivate:\n\tint n;\n\tstd::vector<std::vector<S>>\
     \ mat;\n};\n\n} // namespace felix\n#line 8 \"library/tree/heavy-light-decomposition.hpp\"\
     \n\r\nnamespace felix {\r\n\r\nstruct HLD {\r\nprivate:\r\n\tstatic constexpr\
     \ std::pair<int, int> __lca_op(std::pair<int, int> a, std::pair<int, int> b) {\r\
@@ -229,24 +229,25 @@ data:
     \ *this; }\r\n\tconstexpr modint operator-() const { return modint() - *this;\
     \ } \r\n\tconstexpr bool operator==(const modint& rhs) const { return value ==\
     \ rhs.value; } \r\n\tconstexpr bool operator!=(const modint& rhs) const { return\
-    \ value != rhs.value; }\r\n\r\n\tconstexpr modint pow(unsigned long long p) const\
-    \ {\r\n\t\tmodint a(*this), res(1);\r\n\t\twhile(p) {\r\n\t\t\tif(p & 1) {\r\n\
-    \t\t\t\tres *= a;\r\n\t\t\t}\r\n\t\t\ta *= a;\r\n\t\t\tp >>= 1;\r\n\t\t}\r\n\t\
-    \treturn res;\r\n\t}\r\n\r\n\tconstexpr bool has_sqrt() const {\r\n\t\tif(mod()\
-    \ == 2 || value == 0) {\r\n\t\t\treturn true;\r\n\t\t}\r\n\t\tif(pow((mod() -\
-    \ 1) / 2).val() != 1) {\r\n\t\t\treturn false;\r\n\t\t}\r\n\t\treturn true;\r\n\
-    \t}\r\n\r\n\tconstexpr modint sqrt() const {\r\n\t\tif(mod() == 2 || value < 2)\
-    \ {\r\n\t\t\treturn *this;\r\n\t\t}\r\n\t\tassert(pow((mod() - 1) / 2).val() ==\
-    \ 1);\r\n\t\tmodint b = 1;\r\n\t\twhile(b.pow((mod() - 1) >> 1).val() == 1) {\r\
-    \n\t\t\tb += 1;\r\n\t\t}\r\n\t\tint m = mod() - 1, e = __builtin_ctz(m);\r\n\t\
-    \tm >>= e;\r\n\t\tmodint x = modint(*this).pow((m - 1) >> 1);\r\n\t\tmodint y\
-    \ = modint(*this) * x * x;\r\n\t\tx *= value;\r\n\t\tmodint z = b.pow(m);\r\n\t\
-    \twhile(y.val() != 1) {\r\n\t\t\tint j = 0;\r\n\t\t\tmodint t = y;\r\n\t\t\twhile(t.val()\
-    \ != 1) {\r\n\t\t\t\tt *= t;\r\n\t\t\t\tj++;\r\n\t\t\t}\r\n\t\t\tz = z.pow(1LL\
-    \ << (e - j - 1));\r\n\t\t\tx *= z, z *= z, y *= z;\r\n\t\t\te = j;\r\n\t\t}\r\
-    \n\t\treturn x;\r\n\t}\r\n\r\n\tfriend constexpr std::istream& operator>>(std::istream&\
-    \ in, modint& num) {\r\n\t\tlong long x;\r\n\t\tin >> x;\r\n\t\tnum = modint<id>(x);\r\
-    \n\t\treturn in;\r\n\t}\r\n\t\r\n\tfriend constexpr std::ostream& operator<<(std::ostream&\
+    \ value != rhs.value; }\r\n\r\n\tconstexpr modint pow(long long p) const {\r\n\
+    \t\tmodint a(*this), res(1);\r\n\t\tif(p < 0) {\r\n\t\t\ta = a.inv();\r\n\t\t\t\
+    p = -p;\r\n\t\t}\r\n\t\twhile(p) {\r\n\t\t\tif(p & 1) {\r\n\t\t\t\tres *= a;\r\
+    \n\t\t\t}\r\n\t\t\ta *= a;\r\n\t\t\tp >>= 1;\r\n\t\t}\r\n\t\treturn res;\r\n\t\
+    }\r\n\r\n\tconstexpr bool has_sqrt() const {\r\n\t\tif(mod() == 2 || value ==\
+    \ 0) {\r\n\t\t\treturn true;\r\n\t\t}\r\n\t\tif(pow((mod() - 1) / 2).val() !=\
+    \ 1) {\r\n\t\t\treturn false;\r\n\t\t}\r\n\t\treturn true;\r\n\t}\r\n\r\n\tconstexpr\
+    \ modint sqrt() const {\r\n\t\tif(mod() == 2 || value < 2) {\r\n\t\t\treturn *this;\r\
+    \n\t\t}\r\n\t\tassert(pow((mod() - 1) / 2).val() == 1);\r\n\t\tmodint b = 1;\r\
+    \n\t\twhile(b.pow((mod() - 1) >> 1).val() == 1) {\r\n\t\t\tb += 1;\r\n\t\t}\r\n\
+    \t\tint m = mod() - 1, e = __builtin_ctz(m);\r\n\t\tm >>= e;\r\n\t\tmodint x =\
+    \ modint(*this).pow((m - 1) >> 1);\r\n\t\tmodint y = modint(*this) * x * x;\r\n\
+    \t\tx *= value;\r\n\t\tmodint z = b.pow(m);\r\n\t\twhile(y.val() != 1) {\r\n\t\
+    \t\tint j = 0;\r\n\t\t\tmodint t = y;\r\n\t\t\twhile(t.val() != 1) {\r\n\t\t\t\
+    \tt *= t;\r\n\t\t\t\tj++;\r\n\t\t\t}\r\n\t\t\tz = z.pow(1LL << (e - j - 1));\r\
+    \n\t\t\tx *= z, z *= z, y *= z;\r\n\t\t\te = j;\r\n\t\t}\r\n\t\treturn x;\r\n\t\
+    }\r\n\r\n\tfriend constexpr std::istream& operator>>(std::istream& in, modint&\
+    \ num) {\r\n\t\tlong long x;\r\n\t\tin >> x;\r\n\t\tnum = modint<id>(x);\r\n\t\
+    \treturn in;\r\n\t}\r\n\t\r\n\tfriend constexpr std::ostream& operator<<(std::ostream&\
     \ out, const modint& num) {\r\n\t\treturn out << num.val();\r\n\t}\r\n\r\npublic:\r\
     \n\tstatic std::vector<modint> fact, inv_fact, invs;\r\n \r\nprivate:\r\n\tint\
     \ value;\r\n\tstatic int md;\r\n};\r\n\r\ntemplate<int id> int modint<id>::md\
@@ -319,7 +320,7 @@ data:
   isVerificationFile: true
   path: test/tree/heavy-light-decomposition/yosupo-Vertex-Set-Path-Composite.test.cpp
   requiredBy: []
-  timestamp: '2023-06-03 23:52:09+08:00'
+  timestamp: '2023-06-27 22:09:28+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/tree/heavy-light-decomposition/yosupo-Vertex-Set-Path-Composite.test.cpp

@@ -120,16 +120,16 @@ data:
   timestamp: '2023-06-03 23:52:09+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/data-structure/lazy-segtree/aoj-dsl-RMQ-and-RUQ.test.cpp
-  - test/data-structure/lazy-segtree/aoj-dsl-Range-Update-Query.test.cpp
-  - test/data-structure/lazy-segtree/aoj-dsl-RSQ-and-RAQ.test.cpp
-  - test/data-structure/lazy-segtree/aoj-dsl-RSQ-and-RUQ.test.cpp
-  - test/data-structure/lazy-segtree/yosupo-Range-Affine-Range-Sum.test.cpp
-  - test/data-structure/lazy-segtree/yosupo-Range-Affine-Point-Get.test.cpp
-  - test/data-structure/lazy-segtree/aoj-dsl-RMQ-and-RAQ.test.cpp
   - test/data-structure/segtree/aoj-dsl-Range-Minimum-Query.test.cpp
-  - test/tree/heavy-light-decomposition/yosupo-Vertex-Set-Path-Composite.test.cpp
+  - test/data-structure/lazy-segtree/yosupo-Range-Affine-Range-Sum.test.cpp
+  - test/data-structure/lazy-segtree/aoj-dsl-RSQ-and-RAQ.test.cpp
+  - test/data-structure/lazy-segtree/yosupo-Range-Affine-Point-Get.test.cpp
+  - test/data-structure/lazy-segtree/aoj-dsl-Range-Update-Query.test.cpp
+  - test/data-structure/lazy-segtree/aoj-dsl-RMQ-and-RAQ.test.cpp
+  - test/data-structure/lazy-segtree/aoj-dsl-RMQ-and-RUQ.test.cpp
+  - test/data-structure/lazy-segtree/aoj-dsl-RSQ-and-RUQ.test.cpp
   - test/tree/heavy-light-decomposition/aoj-grl-Range-Query-on-a-Tree-II.test.cpp
+  - test/tree/heavy-light-decomposition/yosupo-Vertex-Set-Path-Composite.test.cpp
 documentation_of: library/data-structure/segtree.hpp
 layout: document
 redirect_from:

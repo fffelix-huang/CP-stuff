@@ -33,9 +33,9 @@ data:
     \ 1;\r\n\t\t\tint z = trie[p].go[y ^ 1];\r\n\t\t\tif(z > 0 && trie[z].cnt > 0)\
     \ {\r\n\t\t\t\tans |= T(1) << i;\r\n\t\t\t\tp = z;\r\n\t\t\t} else {\r\n\t\t\t\
     \tp = trie[p].go[y];\r\n\t\t\t}\r\n\t\t}\r\n\t\treturn ans;\r\n\t}\r\n\r\nprivate:\r\
-    \n\tstatic constexpr int B = sizeof(T) * 8;\r\n\r\n\tstruct Node {\r\n\t\tstd::array<int,\
-    \ 2> go = {};\r\n\t\tint cnt = 0;\r\n\t};\r\n\r\n\tstd::vector<Node> trie;\r\n\
-    \r\n\tint new_node() {\r\n\t\ttrie.emplace_back();\r\n\t\treturn (int) trie.size()\
+    \n\tstatic constexpr int B = sizeof(T) * 8;\r\n\r\n\tstruct node_t {\r\n\t\tstd::array<int,\
+    \ 2> go = {};\r\n\t\tint cnt = 0;\r\n\t};\r\n\r\n\tstd::vector<node_t> trie;\r\
+    \n\r\n\tint new_node() {\r\n\t\ttrie.emplace_back();\r\n\t\treturn (int) trie.size()\
     \ - 1;\r\n\t}\r\n};\r\n\r\n} // namespace felix\r\n"
   code: "#pragma once\r\n#include <vector>\r\n#include <array>\r\n\r\nnamespace felix\
     \ {\r\n\r\ntemplate<class T>\r\nstruct binary_trie {\r\npublic:\r\n\tbinary_trie()\
@@ -59,15 +59,15 @@ data:
     \ ^ 1];\r\n\t\t\tif(z > 0 && trie[z].cnt > 0) {\r\n\t\t\t\tans |= T(1) << i;\r\
     \n\t\t\t\tp = z;\r\n\t\t\t} else {\r\n\t\t\t\tp = trie[p].go[y];\r\n\t\t\t}\r\n\
     \t\t}\r\n\t\treturn ans;\r\n\t}\r\n\r\nprivate:\r\n\tstatic constexpr int B =\
-    \ sizeof(T) * 8;\r\n\r\n\tstruct Node {\r\n\t\tstd::array<int, 2> go = {};\r\n\
-    \t\tint cnt = 0;\r\n\t};\r\n\r\n\tstd::vector<Node> trie;\r\n\r\n\tint new_node()\
+    \ sizeof(T) * 8;\r\n\r\n\tstruct node_t {\r\n\t\tstd::array<int, 2> go = {};\r\
+    \n\t\tint cnt = 0;\r\n\t};\r\n\r\n\tstd::vector<node_t> trie;\r\n\r\n\tint new_node()\
     \ {\r\n\t\ttrie.emplace_back();\r\n\t\treturn (int) trie.size() - 1;\r\n\t}\r\n\
     };\r\n\r\n} // namespace felix\r\n"
   dependsOn: []
   isVerificationFile: false
   path: library/data-structure/binary-trie.hpp
   requiredBy: []
-  timestamp: '2023-05-28 03:49:52+08:00'
+  timestamp: '2023-06-27 22:09:28+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/data-structure/binary-trie/yosupo-Set-Xor-Min.test.cpp

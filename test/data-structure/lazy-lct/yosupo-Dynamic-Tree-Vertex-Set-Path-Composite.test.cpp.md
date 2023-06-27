@@ -4,16 +4,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/data-structure/lazy-lct.hpp
     title: Link Cut Tree
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/inv-gcd.hpp
     title: library/math/inv-gcd.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/safe-mod.hpp
     title: library/math/safe-mod.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/misc/type-traits.hpp
     title: library/misc/type-traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/modint/modint.hpp
     title: library/modint/modint.hpp
   _extendedRequiredBy: []
@@ -116,24 +116,25 @@ data:
     \ *this; }\r\n\tconstexpr modint operator-() const { return modint() - *this;\
     \ } \r\n\tconstexpr bool operator==(const modint& rhs) const { return value ==\
     \ rhs.value; } \r\n\tconstexpr bool operator!=(const modint& rhs) const { return\
-    \ value != rhs.value; }\r\n\r\n\tconstexpr modint pow(unsigned long long p) const\
-    \ {\r\n\t\tmodint a(*this), res(1);\r\n\t\twhile(p) {\r\n\t\t\tif(p & 1) {\r\n\
-    \t\t\t\tres *= a;\r\n\t\t\t}\r\n\t\t\ta *= a;\r\n\t\t\tp >>= 1;\r\n\t\t}\r\n\t\
-    \treturn res;\r\n\t}\r\n\r\n\tconstexpr bool has_sqrt() const {\r\n\t\tif(mod()\
-    \ == 2 || value == 0) {\r\n\t\t\treturn true;\r\n\t\t}\r\n\t\tif(pow((mod() -\
-    \ 1) / 2).val() != 1) {\r\n\t\t\treturn false;\r\n\t\t}\r\n\t\treturn true;\r\n\
-    \t}\r\n\r\n\tconstexpr modint sqrt() const {\r\n\t\tif(mod() == 2 || value < 2)\
-    \ {\r\n\t\t\treturn *this;\r\n\t\t}\r\n\t\tassert(pow((mod() - 1) / 2).val() ==\
-    \ 1);\r\n\t\tmodint b = 1;\r\n\t\twhile(b.pow((mod() - 1) >> 1).val() == 1) {\r\
-    \n\t\t\tb += 1;\r\n\t\t}\r\n\t\tint m = mod() - 1, e = __builtin_ctz(m);\r\n\t\
-    \tm >>= e;\r\n\t\tmodint x = modint(*this).pow((m - 1) >> 1);\r\n\t\tmodint y\
-    \ = modint(*this) * x * x;\r\n\t\tx *= value;\r\n\t\tmodint z = b.pow(m);\r\n\t\
-    \twhile(y.val() != 1) {\r\n\t\t\tint j = 0;\r\n\t\t\tmodint t = y;\r\n\t\t\twhile(t.val()\
-    \ != 1) {\r\n\t\t\t\tt *= t;\r\n\t\t\t\tj++;\r\n\t\t\t}\r\n\t\t\tz = z.pow(1LL\
-    \ << (e - j - 1));\r\n\t\t\tx *= z, z *= z, y *= z;\r\n\t\t\te = j;\r\n\t\t}\r\
-    \n\t\treturn x;\r\n\t}\r\n\r\n\tfriend constexpr std::istream& operator>>(std::istream&\
-    \ in, modint& num) {\r\n\t\tlong long x;\r\n\t\tin >> x;\r\n\t\tnum = modint<id>(x);\r\
-    \n\t\treturn in;\r\n\t}\r\n\t\r\n\tfriend constexpr std::ostream& operator<<(std::ostream&\
+    \ value != rhs.value; }\r\n\r\n\tconstexpr modint pow(long long p) const {\r\n\
+    \t\tmodint a(*this), res(1);\r\n\t\tif(p < 0) {\r\n\t\t\ta = a.inv();\r\n\t\t\t\
+    p = -p;\r\n\t\t}\r\n\t\twhile(p) {\r\n\t\t\tif(p & 1) {\r\n\t\t\t\tres *= a;\r\
+    \n\t\t\t}\r\n\t\t\ta *= a;\r\n\t\t\tp >>= 1;\r\n\t\t}\r\n\t\treturn res;\r\n\t\
+    }\r\n\r\n\tconstexpr bool has_sqrt() const {\r\n\t\tif(mod() == 2 || value ==\
+    \ 0) {\r\n\t\t\treturn true;\r\n\t\t}\r\n\t\tif(pow((mod() - 1) / 2).val() !=\
+    \ 1) {\r\n\t\t\treturn false;\r\n\t\t}\r\n\t\treturn true;\r\n\t}\r\n\r\n\tconstexpr\
+    \ modint sqrt() const {\r\n\t\tif(mod() == 2 || value < 2) {\r\n\t\t\treturn *this;\r\
+    \n\t\t}\r\n\t\tassert(pow((mod() - 1) / 2).val() == 1);\r\n\t\tmodint b = 1;\r\
+    \n\t\twhile(b.pow((mod() - 1) >> 1).val() == 1) {\r\n\t\t\tb += 1;\r\n\t\t}\r\n\
+    \t\tint m = mod() - 1, e = __builtin_ctz(m);\r\n\t\tm >>= e;\r\n\t\tmodint x =\
+    \ modint(*this).pow((m - 1) >> 1);\r\n\t\tmodint y = modint(*this) * x * x;\r\n\
+    \t\tx *= value;\r\n\t\tmodint z = b.pow(m);\r\n\t\twhile(y.val() != 1) {\r\n\t\
+    \t\tint j = 0;\r\n\t\t\tmodint t = y;\r\n\t\t\twhile(t.val() != 1) {\r\n\t\t\t\
+    \tt *= t;\r\n\t\t\t\tj++;\r\n\t\t\t}\r\n\t\t\tz = z.pow(1LL << (e - j - 1));\r\
+    \n\t\t\tx *= z, z *= z, y *= z;\r\n\t\t\te = j;\r\n\t\t}\r\n\t\treturn x;\r\n\t\
+    }\r\n\r\n\tfriend constexpr std::istream& operator>>(std::istream& in, modint&\
+    \ num) {\r\n\t\tlong long x;\r\n\t\tin >> x;\r\n\t\tnum = modint<id>(x);\r\n\t\
+    \treturn in;\r\n\t}\r\n\t\r\n\tfriend constexpr std::ostream& operator<<(std::ostream&\
     \ out, const modint& num) {\r\n\t\treturn out << num.val();\r\n\t}\r\n\r\npublic:\r\
     \n\tstatic std::vector<modint> fact, inv_fact, invs;\r\n \r\nprivate:\r\n\tint\
     \ value;\r\n\tstatic int md;\r\n};\r\n\r\ntemplate<int id> int modint<id>::md\
@@ -155,57 +156,57 @@ data:
     \r\nnamespace felix {\r\n\r\ntemplate<class S,\r\n         S (*e)(),\r\n     \
     \    S (*op)(S, S),\r\n         S (*reversal)(S),\r\n         class F,\r\n   \
     \      F (*id)(),\r\n         S (*mapping)(F, S),\r\n         F (*composition)(F,\
-    \ F)>\r\nstruct lazy_lct {\r\npublic:\r\n\tstruct Node {\r\n\t\tS val = e(), sum\
-    \ = e();\r\n\t\tF lz = id();\r\n\t\tbool rev = false;\r\n\t\tint sz = 1;\r\n\t\
-    \tNode* l = nullptr;\r\n\t\tNode* r = nullptr;\r\n\t\tNode* p = nullptr;\r\n\r\
-    \n\t\tNode() {}\r\n\t\tNode(const S& s) : val(s), sum(s) {}\r\n\r\n\t\tbool is_root()\
-    \ const { return p == nullptr || (p->l != this && p->r != this); }\r\n\t};\r\n\
-    \r\n\tlazy_lct() : n(0) {}\r\n\texplicit lazy_lct(int _n) : lazy_lct(std::vector<S>(_n,\
+    \ F)>\r\nstruct lazy_lct {\r\npublic:\r\n\tstruct node_t {\r\n\t\tS val = e(),\
+    \ sum = e();\r\n\t\tF lz = id();\r\n\t\tbool rev = false;\r\n\t\tint sz = 1;\r\
+    \n\t\tnode_t* l = nullptr;\r\n\t\tnode_t* r = nullptr;\r\n\t\tnode_t* p = nullptr;\r\
+    \n\r\n\t\tnode_t() {}\r\n\t\tnode_t(const S& s) : val(s), sum(s) {}\r\n\r\n\t\t\
+    bool is_root() const { return p == nullptr || (p->l != this && p->r != this);\
+    \ }\r\n\t};\r\n\r\n\tlazy_lct() : n(0) {}\r\n\texplicit lazy_lct(int _n) : lazy_lct(std::vector<S>(_n,\
     \ e())) {}\r\n\texplicit lazy_lct(const std::vector<S>& v) : n(v.size()) {\r\n\
     \t\ta.reserve(n);\r\n\t\tfor(int i = 0; i < n; i++) {\r\n\t\t\ta.emplace_back(v[i]);\r\
-    \n\t\t}\r\n\t}\r\n\r\n\tNode* access(int u) {\r\n\t\tassert(0 <= u && u < n);\r\
-    \n\t\tNode* v = &a[u];\r\n\t\tNode* last = nullptr;\r\n\t\tfor(Node* p = v; p\
-    \ != nullptr; p = p->p) {\r\n\t\t\tsplay(p);\r\n\t\t\tp->r = last;\r\n\t\t\tpull(p);\r\
-    \n\t\t\tlast = p;\r\n\t\t}\r\n\t\tsplay(v);\r\n\t\treturn last;\r\n\t}\r\n\r\n\
-    \tvoid make_root(int u) {\r\n\t\taccess(u);\r\n\t\ta[u].rev ^= 1;\r\n\t\tpush(&a[u]);\r\
-    \n\t}\r\n\r\n\tvoid link(int u, int v) {\r\n\t\tmake_root(v);\r\n\t\ta[v].p =\
-    \ &a[u];\r\n\t}\r\n\r\n\tvoid cut(int u) {\r\n\t\taccess(u);\r\n\t\tif(a[u].l\
-    \ != nullptr) {\r\n\t\t\ta[u].l->p = nullptr;\r\n\t\t\ta[u].l = nullptr;\r\n\t\
-    \t\tpull(&a[u]);\r\n\t\t}\r\n\t}\r\n\r\n\tvoid cut(int u, int v) {\r\n\t\tmake_root(u);\r\
-    \n\t\tcut(v);\r\n\t}\r\n\r\n\tbool is_connected(int u, int v) {\r\n\t\tif(u ==\
-    \ v) {\r\n\t\t\treturn true;\r\n\t\t}\r\n\t\taccess(u), access(v);\r\n\t\treturn\
-    \ a[u].p != nullptr;\r\n\t}\r\n\r\n\tint get_lca(int u, int v) {\r\n\t\taccess(u);\r\
-    \n\t\treturn access(v) - &a[0];\r\n\t}\r\n\r\n\tvoid set(int u, const S& s) {\r\
-    \n\t\taccess(u);\r\n\t\ta[u].val = s;\r\n\t\tpull(&a[u]);\r\n\t}\r\n\r\n\tS get(int\
-    \ u) {\r\n\t\taccess(u);\r\n\t\treturn a[u].val;\r\n\t}\r\n\r\n\tvoid apply(int\
-    \ u, int v, const F& f) {\r\n\t\tmake_root(u);\r\n\t\taccess(v);\r\n\t\tall_apply(&a[v],\
-    \ f);\r\n\t\tpush(&a[v]);\r\n\t}\r\n\r\n\tS prod(int u, int v) {\r\n\t\tmake_root(u);\r\
-    \n\t\taccess(v);\r\n\t\treturn a[v].sum;\r\n\t}\r\n\r\nprivate:\r\n\tint n;\r\n\
-    \tstd::vector<Node> a;\r\n\r\n\tvoid rotate(Node* v) {\r\n\t\tauto attach = [&](Node*\
-    \ p, bool side, Node* c) {\r\n\t\t\t(side ? p->r : p->l) = c;\r\n\t\t\tpull(p);\r\
-    \n\t\t\tif(c != nullptr) {\r\n\t\t\t\tc->p = p;\r\n\t\t\t}\r\n\t\t};\r\n\t\tNode*\
-    \ p = v->p;\r\n\t\tNode* g = p->p;\r\n\t\tbool is_right = (p->r == v);\r\n\t\t\
-    bool is_root = p->is_root();\r\n\t\tattach(p, is_right, (is_right ? v->l : v->r));\r\
-    \n\t\tattach(v, !is_right, p);\r\n\t\tif(!is_root) {\r\n\t\t\tattach(g, (g->r\
-    \ == p), v);\r\n\t\t} else {\r\n\t\t\tv->p = g;\r\n\t\t}\r\n\t}\r\n\r\n\tvoid\
-    \ splay(Node* v) {\r\n\t\tpush(v);\r\n\t\twhile(!v->is_root()) {\r\n\t\t\tauto\
-    \ p = v->p;\r\n\t\t\tauto g = p->p;\r\n\t\t\tif(!p->is_root()) {\r\n\t\t\t\tpush(g);\r\
-    \n\t\t\t}\r\n\t\t\tpush(p), push(v);\r\n\t\t\tif(!p->is_root()) {\r\n\t\t\t\t\
-    rotate((g->r == p) == (p->r == v) ? p : v);\r\n\t\t\t}\r\n\t\t\trotate(v);\r\n\
-    \t\t}\r\n\t}\r\n\r\n\tvoid all_apply(Node* v, F f) {\r\n\t\tv->val = mapping(f,\
-    \ v->val);\r\n\t\tv->sum = mapping(f, v->sum);\r\n\t\tv->lz = composition(f, v->lz);\r\
-    \n\t}\r\n\r\n\tvoid push(Node* v) {\r\n\t\tif(v->lz != id()) {\r\n\t\t\tif(v->l\
-    \ != nullptr) {\r\n\t\t\t\tall_apply(v->l, v->lz);\r\n\t\t\t}\r\n\t\t\tif(v->r\
-    \ != nullptr) {\r\n\t\t\t\tall_apply(v->r, v->lz);\r\n\t\t\t}\r\n\t\t\tv->lz =\
-    \ id();\r\n\t\t}\r\n\t\tif(v->rev) {\r\n\t\t\tstd::swap(v->l, v->r);\r\n\t\t\t\
-    if(v->l != nullptr) {\r\n\t\t\t\tv->l->rev ^= 1;\r\n\t\t\t}\r\n\t\t\tif(v->r !=\
-    \ nullptr) {\r\n\t\t\t\tv->r->rev ^= 1;\r\n\t\t\t}\r\n\t\t\tv->sum = reversal(v->sum);\r\
-    \n\t\t\tv->rev = false;\r\n\t\t}\r\n\t}\r\n\r\n\tvoid pull(Node* v) {\r\n\t\t\
-    v->sz = 1;\r\n\t\tv->sum = v->val;\r\n\t\tif(v->l != nullptr) {\r\n\t\t\tpush(v->l);\r\
-    \n\t\t\tv->sum = op(v->l->sum, v->sum);\r\n\t\t\tv->sz += v->l->sz;\r\n\t\t}\r\
-    \n\t\tif(v->r != nullptr) {\r\n\t\t\tpush(v->r);\r\n\t\t\tv->sum = op(v->sum,\
-    \ v->r->sum);\r\n\t\t\tv->sz += v->r->sz;\r\n\t\t}\r\n\t}\r\n};\r\n\r\n} // namespace\
-    \ felix\r\n#line 7 \"test/data-structure/lazy-lct/yosupo-Dynamic-Tree-Vertex-Set-Path-Composite.test.cpp\"\
+    \n\t\t}\r\n\t}\r\n\r\n\tnode_t* access(int u) {\r\n\t\tassert(0 <= u && u < n);\r\
+    \n\t\tnode_t* v = &a[u];\r\n\t\tnode_t* last = nullptr;\r\n\t\tfor(node_t* p =\
+    \ v; p != nullptr; p = p->p) {\r\n\t\t\tsplay(p);\r\n\t\t\tp->r = last;\r\n\t\t\
+    \tpull(p);\r\n\t\t\tlast = p;\r\n\t\t}\r\n\t\tsplay(v);\r\n\t\treturn last;\r\n\
+    \t}\r\n\r\n\tvoid make_root(int u) {\r\n\t\taccess(u);\r\n\t\ta[u].rev ^= 1;\r\
+    \n\t\tpush(&a[u]);\r\n\t}\r\n\r\n\tvoid link(int u, int v) {\r\n\t\tmake_root(v);\r\
+    \n\t\ta[v].p = &a[u];\r\n\t}\r\n\r\n\tvoid cut(int u) {\r\n\t\taccess(u);\r\n\t\
+    \tif(a[u].l != nullptr) {\r\n\t\t\ta[u].l->p = nullptr;\r\n\t\t\ta[u].l = nullptr;\r\
+    \n\t\t\tpull(&a[u]);\r\n\t\t}\r\n\t}\r\n\r\n\tvoid cut(int u, int v) {\r\n\t\t\
+    make_root(u);\r\n\t\tcut(v);\r\n\t}\r\n\r\n\tbool is_connected(int u, int v) {\r\
+    \n\t\tif(u == v) {\r\n\t\t\treturn true;\r\n\t\t}\r\n\t\taccess(u), access(v);\r\
+    \n\t\treturn a[u].p != nullptr;\r\n\t}\r\n\r\n\tint get_lca(int u, int v) {\r\n\
+    \t\taccess(u);\r\n\t\treturn access(v) - &a[0];\r\n\t}\r\n\r\n\tvoid set(int u,\
+    \ const S& s) {\r\n\t\taccess(u);\r\n\t\ta[u].val = s;\r\n\t\tpull(&a[u]);\r\n\
+    \t}\r\n\r\n\tS get(int u) {\r\n\t\taccess(u);\r\n\t\treturn a[u].val;\r\n\t}\r\
+    \n\r\n\tvoid apply(int u, int v, const F& f) {\r\n\t\tmake_root(u);\r\n\t\taccess(v);\r\
+    \n\t\tall_apply(&a[v], f);\r\n\t\tpush(&a[v]);\r\n\t}\r\n\r\n\tS prod(int u, int\
+    \ v) {\r\n\t\tmake_root(u);\r\n\t\taccess(v);\r\n\t\treturn a[v].sum;\r\n\t}\r\
+    \n\r\nprivate:\r\n\tint n;\r\n\tstd::vector<node_t> a;\r\n\r\n\tvoid rotate(node_t*\
+    \ v) {\r\n\t\tauto attach = [&](node_t* p, bool side, node_t* c) {\r\n\t\t\t(side\
+    \ ? p->r : p->l) = c;\r\n\t\t\tpull(p);\r\n\t\t\tif(c != nullptr) {\r\n\t\t\t\t\
+    c->p = p;\r\n\t\t\t}\r\n\t\t};\r\n\t\tnode_t* p = v->p;\r\n\t\tnode_t* g = p->p;\r\
+    \n\t\tbool is_right = (p->r == v);\r\n\t\tbool is_root = p->is_root();\r\n\t\t\
+    attach(p, is_right, (is_right ? v->l : v->r));\r\n\t\tattach(v, !is_right, p);\r\
+    \n\t\tif(!is_root) {\r\n\t\t\tattach(g, (g->r == p), v);\r\n\t\t} else {\r\n\t\
+    \t\tv->p = g;\r\n\t\t}\r\n\t}\r\n\r\n\tvoid splay(node_t* v) {\r\n\t\tpush(v);\r\
+    \n\t\twhile(!v->is_root()) {\r\n\t\t\tauto p = v->p;\r\n\t\t\tauto g = p->p;\r\
+    \n\t\t\tif(!p->is_root()) {\r\n\t\t\t\tpush(g);\r\n\t\t\t}\r\n\t\t\tpush(p), push(v);\r\
+    \n\t\t\tif(!p->is_root()) {\r\n\t\t\t\trotate((g->r == p) == (p->r == v) ? p :\
+    \ v);\r\n\t\t\t}\r\n\t\t\trotate(v);\r\n\t\t}\r\n\t}\r\n\r\n\tvoid all_apply(node_t*\
+    \ v, F f) {\r\n\t\tv->val = mapping(f, v->val);\r\n\t\tv->sum = mapping(f, v->sum);\r\
+    \n\t\tv->lz = composition(f, v->lz);\r\n\t}\r\n\r\n\tvoid push(node_t* v) {\r\n\
+    \t\tif(v->lz != id()) {\r\n\t\t\tif(v->l != nullptr) {\r\n\t\t\t\tall_apply(v->l,\
+    \ v->lz);\r\n\t\t\t}\r\n\t\t\tif(v->r != nullptr) {\r\n\t\t\t\tall_apply(v->r,\
+    \ v->lz);\r\n\t\t\t}\r\n\t\t\tv->lz = id();\r\n\t\t}\r\n\t\tif(v->rev) {\r\n\t\
+    \t\tstd::swap(v->l, v->r);\r\n\t\t\tif(v->l != nullptr) {\r\n\t\t\t\tv->l->rev\
+    \ ^= 1;\r\n\t\t\t}\r\n\t\t\tif(v->r != nullptr) {\r\n\t\t\t\tv->r->rev ^= 1;\r\
+    \n\t\t\t}\r\n\t\t\tv->sum = reversal(v->sum);\r\n\t\t\tv->rev = false;\r\n\t\t\
+    }\r\n\t}\r\n\r\n\tvoid pull(node_t* v) {\r\n\t\tv->sz = 1;\r\n\t\tv->sum = v->val;\r\
+    \n\t\tif(v->l != nullptr) {\r\n\t\t\tpush(v->l);\r\n\t\t\tv->sum = op(v->l->sum,\
+    \ v->sum);\r\n\t\t\tv->sz += v->l->sz;\r\n\t\t}\r\n\t\tif(v->r != nullptr) {\r\
+    \n\t\t\tpush(v->r);\r\n\t\t\tv->sum = op(v->sum, v->r->sum);\r\n\t\t\tv->sz +=\
+    \ v->r->sz;\r\n\t\t}\r\n\t}\r\n};\r\n\r\n} // namespace felix\r\n#line 7 \"test/data-structure/lazy-lct/yosupo-Dynamic-Tree-Vertex-Set-Path-Composite.test.cpp\"\
     \nusing namespace std;\nusing namespace felix;\n\nusing mint = modint998244353;\n\
     \nstruct S {\n\tpair<mint, mint> f, g;\n\n\tS() : S(1, 0) {}\n\tS(mint a, mint\
     \ b) : f(a, b), g(a, b) {}\n\tS(pair<mint, mint> a, pair<mint, mint> b) : f(a),\
@@ -255,7 +256,7 @@ data:
   isVerificationFile: true
   path: test/data-structure/lazy-lct/yosupo-Dynamic-Tree-Vertex-Set-Path-Composite.test.cpp
   requiredBy: []
-  timestamp: '2023-05-29 14:59:47+08:00'
+  timestamp: '2023-06-27 22:09:28+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/data-structure/lazy-lct/yosupo-Dynamic-Tree-Vertex-Set-Path-Composite.test.cpp

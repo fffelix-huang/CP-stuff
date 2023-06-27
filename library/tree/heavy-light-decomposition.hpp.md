@@ -38,15 +38,15 @@ data:
   bundledCode: "#line 2 \"library/tree/heavy-light-decomposition.hpp\"\n#include <vector>\r\
     \n#include <array>\r\n#include <cassert>\r\n#include <algorithm>\r\n#include <cmath>\r\
     \n#line 4 \"library/data-structure/sparse-table.hpp\"\n\nnamespace felix {\n\n\
-    template<class T, T (*op)(T, T)>\nstruct sparse_table {\npublic:\n\tsparse_table()\
-    \ {}\n\texplicit sparse_table(const std::vector<T>& a) {\n\t\tn = (int) a.size();\n\
+    template<class S, S (*op)(S, S)>\nstruct sparse_table {\npublic:\n\tsparse_table()\
+    \ {}\n\texplicit sparse_table(const std::vector<S>& a) {\n\t\tn = (int) a.size();\n\
     \t\tint max_log = std::__lg(n) + 1;\n\t\tmat.resize(max_log);\n\t\tmat[0] = a;\n\
     \t\tfor(int j = 1; j < max_log; ++j) {\n\t\t\tmat[j].resize(n - (1 << j) + 1);\n\
     \t\t\tfor(int i = 0; i <= n - (1 << j); ++i) {\n\t\t\t\tmat[j][i] = op(mat[j -\
-    \ 1][i], mat[j - 1][i + (1 << (j - 1))]);\n\t\t\t}\n\t\t}\n\t}\n\n\tinline T prod(int\
+    \ 1][i], mat[j - 1][i + (1 << (j - 1))]);\n\t\t\t}\n\t\t}\n\t}\n\n\tinline S prod(int\
     \ from, int to) const {\n\t\tassert(0 <= from && from <= to && to <= n - 1);\n\
     \t\tint lg = std::__lg(to - from + 1);\n\t\treturn op(mat[lg][from], mat[lg][to\
-    \ - (1 << lg) + 1]);\n\t}\n\nprivate:\n\tint n;\n\tstd::vector<std::vector<T>>\
+    \ - (1 << lg) + 1]);\n\t}\n\nprivate:\n\tint n;\n\tstd::vector<std::vector<S>>\
     \ mat;\n};\n\n} // namespace felix\n#line 8 \"library/tree/heavy-light-decomposition.hpp\"\
     \n\r\nnamespace felix {\r\n\r\nstruct HLD {\r\nprivate:\r\n\tstatic constexpr\
     \ std::pair<int, int> __lca_op(std::pair<int, int> a, std::pair<int, int> b) {\r\
@@ -175,17 +175,17 @@ data:
   isVerificationFile: false
   path: library/tree/heavy-light-decomposition.hpp
   requiredBy: []
-  timestamp: '2023-05-19 01:26:35+08:00'
+  timestamp: '2023-06-27 22:09:28+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/tree/heavy-light-decomposition/yosupo-Vertex-Set-Path-Composite.test.cpp
-  - test/tree/heavy-light-decomposition/aoj-grl-Range-Query-on-a-Tree-II.test.cpp
   - test/tree/heavy-light-decomposition/yosupo-Lowest-Common-Ancestor.test.cpp
-  - test/tree/heavy-light-decomposition/yosupo-Vertex-Add-Path-Sum.test.cpp
+  - test/tree/heavy-light-decomposition/aoj-grl-Range-Query-on-a-Tree-II.test.cpp
+  - test/tree/heavy-light-decomposition/yosupo-Jump-on-Tree.test.cpp
   - test/tree/heavy-light-decomposition/aoj-grl-Range-Query-on-a-Tree.test.cpp
+  - test/tree/heavy-light-decomposition/yosupo-Vertex-Set-Path-Composite.test.cpp
   - test/tree/heavy-light-decomposition/yosupo-Vertex-Add-Subtree-Sum.test.cpp
   - test/tree/heavy-light-decomposition/aoj-grl-Lowest-Common-Ancestor.test.cpp
-  - test/tree/heavy-light-decomposition/yosupo-Jump-on-Tree.test.cpp
+  - test/tree/heavy-light-decomposition/yosupo-Vertex-Add-Path-Sum.test.cpp
 documentation_of: library/tree/heavy-light-decomposition.hpp
 layout: document
 title: "Heavy Light Decomposition (\u8F15\u91CD\u93C8\u5256\u5206)"

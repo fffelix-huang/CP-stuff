@@ -29,15 +29,15 @@ data:
     \ 3 \"library/tree/heavy-light-decomposition.hpp\"\n#include <array>\r\n#include\
     \ <cassert>\r\n#line 6 \"library/tree/heavy-light-decomposition.hpp\"\n#include\
     \ <cmath>\r\n#line 4 \"library/data-structure/sparse-table.hpp\"\n\nnamespace\
-    \ felix {\n\ntemplate<class T, T (*op)(T, T)>\nstruct sparse_table {\npublic:\n\
-    \tsparse_table() {}\n\texplicit sparse_table(const std::vector<T>& a) {\n\t\t\
+    \ felix {\n\ntemplate<class S, S (*op)(S, S)>\nstruct sparse_table {\npublic:\n\
+    \tsparse_table() {}\n\texplicit sparse_table(const std::vector<S>& a) {\n\t\t\
     n = (int) a.size();\n\t\tint max_log = std::__lg(n) + 1;\n\t\tmat.resize(max_log);\n\
     \t\tmat[0] = a;\n\t\tfor(int j = 1; j < max_log; ++j) {\n\t\t\tmat[j].resize(n\
     \ - (1 << j) + 1);\n\t\t\tfor(int i = 0; i <= n - (1 << j); ++i) {\n\t\t\t\tmat[j][i]\
     \ = op(mat[j - 1][i], mat[j - 1][i + (1 << (j - 1))]);\n\t\t\t}\n\t\t}\n\t}\n\n\
-    \tinline T prod(int from, int to) const {\n\t\tassert(0 <= from && from <= to\
+    \tinline S prod(int from, int to) const {\n\t\tassert(0 <= from && from <= to\
     \ && to <= n - 1);\n\t\tint lg = std::__lg(to - from + 1);\n\t\treturn op(mat[lg][from],\
-    \ mat[lg][to - (1 << lg) + 1]);\n\t}\n\nprivate:\n\tint n;\n\tstd::vector<std::vector<T>>\
+    \ mat[lg][to - (1 << lg) + 1]);\n\t}\n\nprivate:\n\tint n;\n\tstd::vector<std::vector<S>>\
     \ mat;\n};\n\n} // namespace felix\n#line 8 \"library/tree/heavy-light-decomposition.hpp\"\
     \n\r\nnamespace felix {\r\n\r\nstruct HLD {\r\nprivate:\r\n\tstatic constexpr\
     \ std::pair<int, int> __lca_op(std::pair<int, int> a, std::pair<int, int> b) {\r\
@@ -139,11 +139,11 @@ data:
     \   F (*composition)(F, F)>\nstruct lazy_segtree : public segtree<S, e, op> {\n\
     \tusing base = segtree<S, e, op>;\n\npublic:\n\tusing base::all_prod;\n\n\tlazy_segtree()\
     \ : lazy_segtree(0) {}\n\texplicit lazy_segtree(int _n) : lazy_segtree(std::vector<S>(_n,\
-    \ e())) {}\n\texplicit lazy_segtree(const std::vector<S>& v) : base(v) {\n\t\t\
-    lz = std::vector<F>(size, id());\n\t}\n\n\tvoid set(int p, S x) {\n\t\tpush_down(p);\n\
-    \t\tbase::set(p, x);\n\t}\n\n\tS get(int p) {\n\t\tpush_down(p);\n\t\treturn base::get(p);\n\
-    \t}\n\n\tS operator[](int p) { return get(p); }\n\n\tS prod(int l, int r) {\n\t\
-    \tif(l == r) {\n\t\t\treturn e();\n\t\t}\n\t\tpush_down(l, r);\n\t\treturn base::prod(l,\
+    \ e())) {}\n\texplicit lazy_segtree(const std::vector<S>& v) : base(v), lz(size,\
+    \ id()) {}\n\n\tvoid set(int p, S x) {\n\t\tpush_down(p);\n\t\tbase::set(p, x);\n\
+    \t}\n\n\tS get(int p) {\n\t\tpush_down(p);\n\t\treturn base::get(p);\n\t}\n\n\t\
+    S operator[](int p) { return get(p); }\n\n\tS prod(int l, int r) {\n\t\tif(l ==\
+    \ r) {\n\t\t\treturn e();\n\t\t}\n\t\tpush_down(l, r);\n\t\treturn base::prod(l,\
     \ r);\n\t}\n\n\tvoid apply(int p, F f) {\n\t\tassert(0 <= p && p < n);\n\t\tpush_down(p);\n\
     \t\tbase::set(p, mapping(f, d[p]));\n\t}\n\n\tvoid apply(int l, int r, F f) {\n\
     \t\tassert(0 <= l && l <= r && r <= n);\n\t\tif(l == r) {\n\t\t\treturn;\n\t\t\
@@ -221,7 +221,7 @@ data:
   isVerificationFile: true
   path: test/tree/heavy-light-decomposition/aoj-grl-Range-Query-on-a-Tree-II.test.cpp
   requiredBy: []
-  timestamp: '2023-06-03 23:52:09+08:00'
+  timestamp: '2023-06-27 22:09:28+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/tree/heavy-light-decomposition/aoj-grl-Range-Query-on-a-Tree-II.test.cpp

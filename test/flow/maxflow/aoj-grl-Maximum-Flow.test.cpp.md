@@ -26,13 +26,13 @@ data:
     \t\tint from_id = (int) g[from].size();\n\t\tint to_id = (int) g[to].size();\n\
     \t\tif(from == to) {\n\t\t\tto_id++;\n\t\t}\n\t\tg[from].push_back(_edge{to, to_id,\
     \ cap});\n\t\tg[to].push_back(_edge{from, from_id, 0});\n\t\treturn m;\n\t}\n\n\
-    \tstruct edge {\n\t\tint from, to;\n\t\tCap_t cap, flow;\n\t};\n\n\tedge get_edge(int\
+    \tstruct edge_t {\n\t\tint from, to;\n\t\tCap_t cap, flow;\n\t};\n\n\tedge_t get_edge(int\
     \ i) {\n\t\tint m = (int) pos.size();\n\t\tassert(0 <= i && i < m);\n\t\tauto\
     \ _e = g[pos[i].first][pos[i].second];\n\t\tauto _re = g[_e.to][_e.rev];\n\t\t\
-    return edge{pos[i].first, _e.to, _e.cap + _re.cap, _re.cap};\n\t}\n\n\tstd::vector<edge>\
-    \ edges() {\n\t\tint m = (int) pos.size();\n\t\tstd::vector<edge> result;\n\t\t\
-    for(int i = 0; i < m; i++) {\n\t\t\tresult.push_back(get_edge(i));\n\t\t}\n\t\t\
-    return result;\n\t}\n\n\tvoid change_edge(int i, Cap_t new_cap, Cap_t new_flow)\
+    return edge_t{pos[i].first, _e.to, _e.cap + _re.cap, _re.cap};\n\t}\n\n\tstd::vector<edge_t>\
+    \ edges() {\n\t\tint m = (int) pos.size();\n\t\tstd::vector<edge_t> result;\n\t\
+    \tfor(int i = 0; i < m; i++) {\n\t\t\tresult.push_back(get_edge(i));\n\t\t}\n\t\
+    \treturn result;\n\t}\n\n\tvoid change_edge(int i, Cap_t new_cap, Cap_t new_flow)\
     \ {\n\t\tint m = (int) pos.size();\n\t\tassert(0 <= i && i < m);\n\t\tassert(0\
     \ <= new_flow && new_flow <= new_cap);\n\t\tauto &_e = g[pos[i].first][pos[i].second];\n\
     \t\tauto &_re = g[_e.to][_e.rev];\n\t\t_e.cap = new_cap - new_flow;\n\t\t_re.cap\
@@ -81,7 +81,7 @@ data:
   isVerificationFile: true
   path: test/flow/maxflow/aoj-grl-Maximum-Flow.test.cpp
   requiredBy: []
-  timestamp: '2023-06-14 12:36:01+08:00'
+  timestamp: '2023-06-27 22:09:28+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/flow/maxflow/aoj-grl-Maximum-Flow.test.cpp

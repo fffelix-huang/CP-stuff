@@ -10,13 +10,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/math/pow-mod.hpp
     title: library/math/pow-mod.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/safe-mod.hpp
     title: library/math/safe-mod.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/misc/type-traits.hpp
     title: library/misc/type-traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/random/rng.hpp
     title: library/random/rng.hpp
   _extendedRequiredBy: []
@@ -100,18 +100,18 @@ data:
     \ 450775, 9780504, 1795265022});\r\n}\r\n\r\n} // namespace felix\r\n#line 2 \"\
     library/random/rng.hpp\"\n#include <chrono>\n\nnamespace felix {\n\ninline unsigned\
     \ long long rng() {\n\tstatic unsigned long long SEED = std::chrono::steady_clock::now().time_since_epoch().count();\n\
-    \tSEED ^= SEED << 7;\n\tSEED ^= SEED >> 9;\n\treturn SEED & 0xFFFFFFFFULL;\n}\n\
-    \n} // namespace felix\n#line 10 \"library/math/factorize.hpp\"\n\nnamespace felix\
-    \ {\n\ntemplate<class T>\nT pollard_rho(T n) {\n\tusing U = internal::safely_multipliable_t<T>;\n\
-    \tif(n % 2 == 0) {\n\t\treturn 2;\n\t}\n\tif(is_prime(n)) {\n\t\treturn n;\n\t\
-    }\n\twhile(true) {\n\t\tconst T R = rng() % (n - 1) + 1;\n\t\tauto f = [&](T x)\
-    \ -> T {\n\t\t\treturn internal::safe_mod<U>(U(x) * x + R, n);\n\t\t};\n\t\tT\
-    \ x = 1, y = 2, ys = 1, q = 1, g = 1;\n\t\tconstexpr int m = 128;\n\t\tfor(int\
-    \ r = 1; g == 1; r <<= 1) {\n\t\t\tx = y;\n\t\t\tfor(int i = 0; i < r; i++) {\n\
-    \t\t\t\ty = f(y);\n\t\t\t}\n\t\t\tfor(int k = 0; k < r && g == 1; k += m) {\n\t\
-    \t\t\tys = y;\n\t\t\t\tfor(int i = 0; i < std::min(m, r - k); i++) {\n\t\t\t\t\
-    \ty = f(y);\n\t\t\t\t\tq = internal::safe_mod<U>(U(q) * internal::safe_mod(x -\
-    \ y, n), n);\n\t\t\t\t}\n\t\t\t\tg = binary_gcd(q, n);\n\t\t\t}\n\t\t}\n\t\tif(g\
+    \tSEED ^= SEED << 7;\n\tSEED ^= SEED >> 9;\n\treturn SEED;\n}\n\n} // namespace\
+    \ felix\n#line 10 \"library/math/factorize.hpp\"\n\nnamespace felix {\n\ntemplate<class\
+    \ T>\nT pollard_rho(T n) {\n\tusing U = internal::safely_multipliable_t<T>;\n\t\
+    if(n % 2 == 0) {\n\t\treturn 2;\n\t}\n\tif(is_prime(n)) {\n\t\treturn n;\n\t}\n\
+    \twhile(true) {\n\t\tconst T R = rng() % (n - 1) + 1;\n\t\tauto f = [&](T x) ->\
+    \ T {\n\t\t\treturn internal::safe_mod<U>(U(x) * x + R, n);\n\t\t};\n\t\tT x =\
+    \ 1, y = 2, ys = 1, q = 1, g = 1;\n\t\tconstexpr int m = 128;\n\t\tfor(int r =\
+    \ 1; g == 1; r <<= 1) {\n\t\t\tx = y;\n\t\t\tfor(int i = 0; i < r; i++) {\n\t\t\
+    \t\ty = f(y);\n\t\t\t}\n\t\t\tfor(int k = 0; k < r && g == 1; k += m) {\n\t\t\t\
+    \tys = y;\n\t\t\t\tfor(int i = 0; i < std::min(m, r - k); i++) {\n\t\t\t\t\ty\
+    \ = f(y);\n\t\t\t\t\tq = internal::safe_mod<U>(U(q) * internal::safe_mod(x - y,\
+    \ n), n);\n\t\t\t\t}\n\t\t\t\tg = binary_gcd(q, n);\n\t\t\t}\n\t\t}\n\t\tif(g\
     \ == n) {\n\t\t\tdo {\n\t\t\t\tys = f(ys);\n\t\t\t\tT x2 = internal::safe_mod(x\
     \ - ys, n);\n\t\t\t\tg = binary_gcd(x2, n);\n\t\t\t} while(g == 1);\n\t\t}\n\t\
     \tif(g != n) {\n\t\t\treturn g;\n\t\t}\n\t}\n\tassert(false);\n}\n\ntemplate<class\
@@ -167,11 +167,11 @@ data:
   isVerificationFile: false
   path: library/math/factorize.hpp
   requiredBy: []
-  timestamp: '2023-06-14 13:21:31+08:00'
+  timestamp: '2023-06-27 22:09:28+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/math/factorize/aoj-ntl-Prime-Factorize.test.cpp
   - test/math/factorize/yosupo-Factorize.test.cpp
+  - test/math/factorize/aoj-ntl-Prime-Factorize.test.cpp
 documentation_of: library/math/factorize.hpp
 layout: document
 title: "Integer Factorization (Pollard Rho \u8CEA\u56E0\u6578\u5206\u89E3)"
