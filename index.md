@@ -34,7 +34,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/data-structure/lazy-segtree.hpp
       title: library/data-structure/lazy-segtree.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: library/data-structure/lazy-treap.hpp
       title: library/data-structure/lazy-treap.hpp
     - icon: ':heavy_check_mark:'
@@ -303,7 +303,7 @@ data:
     - icon: ':x:'
       path: test/data-structure/lazy-treap/yosupo-Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
       title: test/data-structure/lazy-treap/yosupo-Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/data-structure/lazy-treap/yosupo-Range-Reverse-Range-Sum.test.cpp
       title: test/data-structure/lazy-treap/yosupo-Range-Reverse-Range-Sum.test.cpp
   - name: test/data-structure/line-container

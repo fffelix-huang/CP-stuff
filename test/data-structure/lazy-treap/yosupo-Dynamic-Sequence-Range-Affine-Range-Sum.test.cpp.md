@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/data-structure/lazy-treap.hpp
     title: library/data-structure/lazy-treap.hpp
   - icon: ':question:'
@@ -176,45 +176,46 @@ data:
     if(v->p->l != nullptr) {\n\t\t\t\t\tk += v->p->l->sz;\n\t\t\t\t}\n\t\t\t}\n\t\t\
     \tv = v->p;\n\t\t}\n\t\treturn k;\n\t}\n\n\tnode_t* merge(node_t* a, node_t* b)\
     \ {\n\t\tif(a == nullptr || b == nullptr) {\n\t\t\treturn a != nullptr ? a : b;\n\
-    \t\t}\n\t\tif((int) ((rng() * (a->sz + b->sz)) >> 32) < a->sz) {\n\t\t\tpush(a);\n\
-    \t\t\ta->r = merge(a->r, b);\n\t\t\tpull(a);\n\t\t\treturn a;\n\t\t} else {\n\t\
-    \t\tpush(b);\n\t\t\tb->l = merge(a, b->l);\n\t\t\tpull(b);\n\t\t\treturn b;\n\t\
-    \t}\n\t}\n\n\tstd::pair<node_t*, node_t*> split(node_t*& root, const std::function<bool(node_t*)>&\
-    \ is_right) {\n\t\tif(root == nullptr) {\n\t\t\treturn std::make_pair(nullptr,\
-    \ nullptr);\n\t\t}\n\t\tpush(root);\n\t\tif(is_right(root)) {\n\t\t\tauto p =\
-    \ split(root->l, is_right);\n\t\t\troot->l = p.second;\n\t\t\tif(p.first != nullptr)\
-    \ {\n\t\t\t\tp.first->p = nullptr;\n\t\t\t}\n\t\t\tpull(root);\n\t\t\treturn std::make_pair(p.first,\
-    \ root);\n\t\t} else {\n\t\t\tauto p = split(root->r, is_right);\n\t\t\troot->r\
-    \ = p.first;\n\t\t\tif(p.second != nullptr) {\n\t\t\t\tp.second->p = nullptr;\n\
-    \t\t\t}\n\t\t\tpull(root);\n\t\t\treturn std::make_pair(root, p.second);\n\t\t\
-    }\n\t}\n\n\tstd::pair<node_t*, node_t*> split_k(node_t*& root, int k) {\n\t\t\
-    return split(root, [&](node_t* u) {\n\t\t\tint cnt = size(u->l) + 1;\n\t\t\tif(k\
-    \ >= cnt) {\n\t\t\t\tk -= cnt;\n\t\t\t\treturn false;\n\t\t\t}\n\t\t\treturn true;\n\
-    \t\t});\n\t}\n\n\tstd::tuple<node_t*, node_t*, node_t*> split_range(node_t*& root,\
-    \ int l, int r) {\n\t\tassert(l < r);\n\t\tauto lhs = split_k(root, l);\n\t\t\
-    auto rhs = split_k(lhs.second, r - l);\n\t\treturn std::make_tuple(lhs.first,\
-    \ rhs.first, rhs.second);\n\t}\n\n\tvoid insert(node_t*& root, int pos, const\
-    \ S& s) {\n\t\tauto p = split_k(root, pos);\n\t\troot = merge(p.first, merge(make_node(s),\
-    \ p.second));\n\t}\n\n\tvoid erase(node_t*& root, int pos) {\n\t\tauto [lhs, mid,\
-    \ rhs] = split_range(root, pos, pos + 1);\n\t\troot = merge(lhs, rhs);\n\t}\n\n\
-    \tvoid set(node_t*& root, int pos, const S& s) {\n\t\tauto [lhs, mid, rhs] = split_range(root,\
-    \ pos, pos + 1);\n\t\t*mid = node_t(s);\n\t\troot = merge(lhs, merge(mid, rhs));\n\
-    \t}\n\n\tvoid apply(node_t*& root, int l, int r, const F& f) {\n\t\tif(l == r)\
-    \ {\n\t\t\treturn;\n\t\t}\n\t\tauto [lhs, mid, rhs] = split_range(root, l, r);\n\
-    \t\tall_apply(mid, f);\n\t\troot = merge(lhs, merge(mid, rhs));\n\t}\n\n\tS prod(node_t*&\
-    \ root, int l, int r) {\n\t\tif(l == r) {\n\t\t\treturn e();\n\t\t}\n\t\tauto\
-    \ [lhs, mid, rhs] = split_range(root, l, r);\n\t\tif(mid != nullptr) {\n\t\t\t\
-    push(mid);\n\t\t}\n\t\tS ans = mid->sum;\n\t\troot = merge(lhs, merge(mid, rhs));\n\
-    \t\treturn ans;\n\t}\n\n\tS get(node_t*& root, int pos) {\n\t\tauto [lhs, mid,\
-    \ rhs] = split_range(root, pos, pos + 1);\n\t\tS ans = mid->val;\n\t\troot = merge(lhs,\
-    \ merge(mid, rhs));\n\t\treturn ans;\n\t}\n\n\tvoid reverse(node_t*& root) {\n\
-    \t\troot->rev ^= 1;\n\t}\n\n\tvoid reverse(node_t*& root, int l, int r) {\n\t\t\
-    if(l == r) {\n\t\t\treturn;\n\t\t}\n\t\tauto [lhs, mid, rhs] = split_range(root,\
-    \ l, r);\n\t\treverse(mid);\n\t\troot = merge(lhs, merge(mid, rhs));\n\t}\n\n\t\
-    void assign(node_t*& root, const std::vector<S>& init) {\n\t\tint n = (int) init.size();\n\
-    \t\tif(n == 0) {\n\t\t\troot = new_tree();\n\t\t\treturn;\n\t\t}\n\t\tstd::function<node_t*(int,\
-    \ int)> build = [&](int l, int r) {\n\t\t\tif(l + 1 == r) {\n\t\t\t\treturn make_node(init[l]);\n\
-    \t\t\t}\n\t\t\tint mid = (l + r) / 2;\n\t\t\treturn merge(build(l, mid), build(mid,\
+    \t\t}\n\t\tif((int) (((unsigned int) rng() * (a->sz + b->sz)) >> 32) < a->sz)\
+    \ {\n\t\t\tpush(a);\n\t\t\ta->r = merge(a->r, b);\n\t\t\tpull(a);\n\t\t\treturn\
+    \ a;\n\t\t} else {\n\t\t\tpush(b);\n\t\t\tb->l = merge(a, b->l);\n\t\t\tpull(b);\n\
+    \t\t\treturn b;\n\t\t}\n\t}\n\n\tstd::pair<node_t*, node_t*> split(node_t*& root,\
+    \ const std::function<bool(node_t*)>& is_right) {\n\t\tif(root == nullptr) {\n\
+    \t\t\treturn std::make_pair(nullptr, nullptr);\n\t\t}\n\t\tpush(root);\n\t\tif(is_right(root))\
+    \ {\n\t\t\tauto p = split(root->l, is_right);\n\t\t\troot->l = p.second;\n\t\t\
+    \tif(p.first != nullptr) {\n\t\t\t\tp.first->p = nullptr;\n\t\t\t}\n\t\t\tpull(root);\n\
+    \t\t\treturn std::make_pair(p.first, root);\n\t\t} else {\n\t\t\tauto p = split(root->r,\
+    \ is_right);\n\t\t\troot->r = p.first;\n\t\t\tif(p.second != nullptr) {\n\t\t\t\
+    \tp.second->p = nullptr;\n\t\t\t}\n\t\t\tpull(root);\n\t\t\treturn std::make_pair(root,\
+    \ p.second);\n\t\t}\n\t}\n\n\tstd::pair<node_t*, node_t*> split_k(node_t*& root,\
+    \ int k) {\n\t\treturn split(root, [&](node_t* u) {\n\t\t\tint cnt = size(u->l)\
+    \ + 1;\n\t\t\tif(k >= cnt) {\n\t\t\t\tk -= cnt;\n\t\t\t\treturn false;\n\t\t\t\
+    }\n\t\t\treturn true;\n\t\t});\n\t}\n\n\tstd::tuple<node_t*, node_t*, node_t*>\
+    \ split_range(node_t*& root, int l, int r) {\n\t\tassert(l < r);\n\t\tauto lhs\
+    \ = split_k(root, l);\n\t\tauto rhs = split_k(lhs.second, r - l);\n\t\treturn\
+    \ std::make_tuple(lhs.first, rhs.first, rhs.second);\n\t}\n\n\tvoid insert(node_t*&\
+    \ root, int pos, const S& s) {\n\t\tauto p = split_k(root, pos);\n\t\troot = merge(p.first,\
+    \ merge(make_node(s), p.second));\n\t}\n\n\tvoid erase(node_t*& root, int pos)\
+    \ {\n\t\tauto [lhs, mid, rhs] = split_range(root, pos, pos + 1);\n\t\troot = merge(lhs,\
+    \ rhs);\n\t}\n\n\tvoid set(node_t*& root, int pos, const S& s) {\n\t\tauto [lhs,\
+    \ mid, rhs] = split_range(root, pos, pos + 1);\n\t\t*mid = node_t(s);\n\t\troot\
+    \ = merge(lhs, merge(mid, rhs));\n\t}\n\n\tvoid apply(node_t*& root, int l, int\
+    \ r, const F& f) {\n\t\tif(l == r) {\n\t\t\treturn;\n\t\t}\n\t\tauto [lhs, mid,\
+    \ rhs] = split_range(root, l, r);\n\t\tall_apply(mid, f);\n\t\troot = merge(lhs,\
+    \ merge(mid, rhs));\n\t}\n\n\tS prod(node_t*& root, int l, int r) {\n\t\tif(l\
+    \ == r) {\n\t\t\treturn e();\n\t\t}\n\t\tauto [lhs, mid, rhs] = split_range(root,\
+    \ l, r);\n\t\tif(mid != nullptr) {\n\t\t\tpush(mid);\n\t\t}\n\t\tS ans = mid->sum;\n\
+    \t\troot = merge(lhs, merge(mid, rhs));\n\t\treturn ans;\n\t}\n\n\tS get(node_t*&\
+    \ root, int pos) {\n\t\tauto [lhs, mid, rhs] = split_range(root, pos, pos + 1);\n\
+    \t\tS ans = mid->val;\n\t\troot = merge(lhs, merge(mid, rhs));\n\t\treturn ans;\n\
+    \t}\n\n\tvoid reverse(node_t*& root) {\n\t\troot->rev ^= 1;\n\t}\n\n\tvoid reverse(node_t*&\
+    \ root, int l, int r) {\n\t\tif(l == r) {\n\t\t\treturn;\n\t\t}\n\t\tauto [lhs,\
+    \ mid, rhs] = split_range(root, l, r);\n\t\treverse(mid);\n\t\troot = merge(lhs,\
+    \ merge(mid, rhs));\n\t}\n\n\tvoid assign(node_t*& root, const std::vector<S>&\
+    \ init) {\n\t\tint n = (int) init.size();\n\t\tif(n == 0) {\n\t\t\troot = new_tree();\n\
+    \t\t\treturn;\n\t\t}\n\t\tstd::function<node_t*(int, int)> build = [&](int l,\
+    \ int r) {\n\t\t\tif(l + 1 == r) {\n\t\t\t\treturn make_node(init[l]);\n\t\t\t\
+    }\n\t\t\tint mid = (l + r) / 2;\n\t\t\treturn merge(build(l, mid), build(mid,\
     \ r));\n\t\t};\n\t\troot = build(0, n);\n\t}\n\n\tvoid print(node_t* root, char\
     \ sep = '\\0') {\n\t\tif(root == nullptr) {\n\t\t\treturn;\n\t\t}\n\t\tpush(root);\n\
     \t\tprint(root->l, sep);\n\t\tstd::cout << root->val;\n\t\tif(sep != '\\0') {\n\
@@ -284,7 +285,7 @@ data:
   isVerificationFile: true
   path: test/data-structure/lazy-treap/yosupo-Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
   requiredBy: []
-  timestamp: '2023-06-27 22:09:28+08:00'
+  timestamp: '2023-06-28 11:07:28+08:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/data-structure/lazy-treap/yosupo-Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp

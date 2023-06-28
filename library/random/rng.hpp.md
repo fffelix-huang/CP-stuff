@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/data-structure/lazy-treap.hpp
     title: library/data-structure/lazy-treap.hpp
   - icon: ':heavy_check_mark:'
@@ -12,7 +12,7 @@ data:
   - icon: ':x:'
     path: test/data-structure/lazy-treap/yosupo-Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
     title: test/data-structure/lazy-treap/yosupo-Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/data-structure/lazy-treap/yosupo-Range-Reverse-Range-Sum.test.cpp
     title: test/data-structure/lazy-treap/yosupo-Range-Reverse-Range-Sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -38,15 +38,15 @@ data:
   isVerificationFile: false
   path: library/random/rng.hpp
   requiredBy:
-  - library/data-structure/lazy-treap.hpp
   - library/math/factorize.hpp
+  - library/data-structure/lazy-treap.hpp
   timestamp: '2023-06-27 22:09:28+08:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/math/factorize/aoj-ntl-Prime-Factorize.test.cpp
+  - test/math/factorize/yosupo-Factorize.test.cpp
   - test/data-structure/lazy-treap/yosupo-Range-Reverse-Range-Sum.test.cpp
   - test/data-structure/lazy-treap/yosupo-Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
-  - test/math/factorize/yosupo-Factorize.test.cpp
-  - test/math/factorize/aoj-ntl-Prime-Factorize.test.cpp
 documentation_of: library/random/rng.hpp
 layout: document
 redirect_from:

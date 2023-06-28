@@ -74,9 +74,9 @@ data:
   timestamp: '2023-05-19 01:47:33+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/math/two-sat/yosupo-2-Sat.test.cpp
   - test/graph/strongly-connected-components/yosupo-Strongly-Connected-Components.test.cpp
   - test/graph/strongly-connected-components/aoj-grl-Strongly-Connected-Components.test.cpp
+  - test/math/two-sat/yosupo-2-Sat.test.cpp
 documentation_of: library/graph/strongly-connected-components.hpp
 layout: document
 redirect_from:
