@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/data-structure/lazy-treap.hpp
     title: library/data-structure/lazy-treap.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/random/rng.hpp
     title: library/random/rng.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/range_reverse_range_sum
@@ -40,7 +40,7 @@ data:
     if(v->p->l != nullptr) {\n\t\t\t\t\tk += v->p->l->sz;\n\t\t\t\t}\n\t\t\t}\n\t\t\
     \tv = v->p;\n\t\t}\n\t\treturn k;\n\t}\n\n\tnode_t* merge(node_t* a, node_t* b)\
     \ {\n\t\tif(a == nullptr || b == nullptr) {\n\t\t\treturn a != nullptr ? a : b;\n\
-    \t\t}\n\t\tif((int) (((unsigned int) rng() * (a->sz + b->sz)) >> 32) < a->sz)\
+    \t\t}\n\t\tif((int) (((unsigned int) rng() * 1LL * (a->sz + b->sz)) >> 32) < a->sz)\
     \ {\n\t\t\tpush(a);\n\t\t\ta->r = merge(a->r, b);\n\t\t\tpull(a);\n\t\t\treturn\
     \ a;\n\t\t} else {\n\t\t\tpush(b);\n\t\t\tb->l = merge(a, b->l);\n\t\t\tpull(b);\n\
     \t\t\treturn b;\n\t\t}\n\t}\n\n\tstd::pair<node_t*, node_t*> split(node_t*& root,\
@@ -128,8 +128,8 @@ data:
   isVerificationFile: true
   path: test/data-structure/lazy-treap/yosupo-Range-Reverse-Range-Sum.test.cpp
   requiredBy: []
-  timestamp: '2023-06-28 11:07:28+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-06-28 11:21:17+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/data-structure/lazy-treap/yosupo-Range-Reverse-Range-Sum.test.cpp
 layout: document

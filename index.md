@@ -34,7 +34,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/data-structure/lazy-segtree.hpp
       title: library/data-structure/lazy-segtree.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/data-structure/lazy-treap.hpp
       title: library/data-structure/lazy-treap.hpp
     - icon: ':heavy_check_mark:'
@@ -131,7 +131,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/integer-div.hpp
       title: Integer division ($\lfloor \frac{a}{b} \rfloor \lceil \frac{a}{b} \rceil$)
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/math/inv-gcd.hpp
       title: library/math/inv-gcd.hpp
     - icon: ':heavy_check_mark:'
@@ -143,7 +143,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/primitive-root.hpp
       title: library/math/primitive-root.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/math/safe-mod.hpp
       title: library/math/safe-mod.hpp
     - icon: ':heavy_check_mark:'
@@ -168,7 +168,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/misc/fastio.hpp
       title: library/misc/fastio.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/misc/type-traits.hpp
       title: library/misc/type-traits.hpp
   - name: library/modint
@@ -176,7 +176,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/modint/barrett.hpp
       title: library/modint/barrett.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/modint/modint.hpp
       title: library/modint/modint.hpp
   - name: library/random
@@ -187,7 +187,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/random/random.hpp
       title: random_t
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/random/rng.hpp
       title: library/random/rng.hpp
     - icon: ':heavy_check_mark:'
@@ -300,10 +300,10 @@ data:
       title: test/data-structure/lazy-segtree/yosupo-Range-Affine-Range-Sum.test.cpp
   - name: test/data-structure/lazy-treap
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/data-structure/lazy-treap/yosupo-Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
       title: test/data-structure/lazy-treap/yosupo-Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/data-structure/lazy-treap/yosupo-Range-Reverse-Range-Sum.test.cpp
       title: test/data-structure/lazy-treap/yosupo-Range-Reverse-Range-Sum.test.cpp
   - name: test/data-structure/line-container

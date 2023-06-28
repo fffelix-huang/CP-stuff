@@ -7,16 +7,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/data-structure/sparse-table.hpp
     title: library/data-structure/sparse-table.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/inv-gcd.hpp
     title: library/math/inv-gcd.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/safe-mod.hpp
     title: library/math/safe-mod.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/misc/type-traits.hpp
     title: library/misc/type-traits.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/modint/modint.hpp
     title: library/modint/modint.hpp
   - icon: ':heavy_check_mark:'

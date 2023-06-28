@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/math/pow-mod.hpp
     title: library/math/pow-mod.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/safe-mod.hpp
     title: library/math/safe-mod.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/misc/type-traits.hpp
     title: library/misc/type-traits.hpp
   _extendedRequiredBy:
@@ -142,18 +142,18 @@ data:
   timestamp: '2023-05-28 03:49:52+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/convolution/ntt/yosupo-Convolution-Large.test.cpp
-  - test/convolution/ntt/yosupo-Convolution-Mod-1000000007.test.cpp
   - test/convolution/ntt/yosupo-Convolution.test.cpp
-  - test/formal-power-series/series/yosupo-Partition-Function.test.cpp
-  - test/formal-power-series/poly/yosupo-Sqrt-of-Formal-Power-Series.test.cpp
+  - test/convolution/ntt/yosupo-Convolution-Mod-1000000007.test.cpp
+  - test/convolution/ntt/yosupo-Convolution-Large.test.cpp
   - test/formal-power-series/poly/yosupo-Product-of-Polynomial-Sequence.test.cpp
-  - test/formal-power-series/poly/yosupo-Multipoint-Evaluation.test.cpp
+  - test/formal-power-series/poly/yosupo-Sqrt-of-Formal-Power-Series.test.cpp
   - test/formal-power-series/poly/yosupo-Pow-of-Formal-Power-Series.test.cpp
-  - test/formal-power-series/poly/yosupo-Polynomial-Taylor-Shift.test.cpp
-  - test/formal-power-series/poly/yosupo-Log-of-Formal-Power-Series.test.cpp
   - test/formal-power-series/poly/yosupo-Exp-of-Formal-Power-Series.test.cpp
+  - test/formal-power-series/poly/yosupo-Log-of-Formal-Power-Series.test.cpp
+  - test/formal-power-series/poly/yosupo-Polynomial-Taylor-Shift.test.cpp
   - test/formal-power-series/poly/yosupo-Inv-of-Formal-Power-Series.test.cpp
+  - test/formal-power-series/poly/yosupo-Multipoint-Evaluation.test.cpp
+  - test/formal-power-series/series/yosupo-Partition-Function.test.cpp
 documentation_of: library/math/primitive-root.hpp
 layout: document
 redirect_from:

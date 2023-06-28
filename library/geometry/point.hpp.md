@@ -100,9 +100,9 @@ data:
   requiredBy:
   - library/geometry/closest-pair.hpp
   - library/geometry/convex-hull.hpp
-  - library/geometry/geometry.hpp
-  - library/geometry/point-in-convex-hull.hpp
   - library/geometry/line.hpp
+  - library/geometry/point-in-convex-hull.hpp
+  - library/geometry/geometry.hpp
   timestamp: '2023-05-26 16:40:39+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
