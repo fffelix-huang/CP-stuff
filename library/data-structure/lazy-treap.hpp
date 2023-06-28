@@ -64,7 +64,7 @@ public:
 		if(a == nullptr || b == nullptr) {
 			return a != nullptr ? a : b;
 		}
-		if((int) (((unsigned int) rng() * (a->sz + b->sz)) >> 32) < a->sz) {
+		if((int) (((unsigned int) rng() * 1LL * (a->sz + b->sz)) >> 32) < a->sz) {
 			push(a);
 			a->r = merge(a->r, b);
 			pull(a);
