@@ -12,9 +12,9 @@ public:
 	explicit Matrix(int n) : Matrix(n, n) {}
 	explicit Matrix(int n, int m) : a(n, std::vector<T>(m)) {}
 	
-	Matrix(const std::vector<std::vector<T>>& v) : n(v.size()), m(v.empty() ? 0 : v[0].size()), a(v) {
-		for(int i = 0; i < n; i++) {
-			assert(v[i].size() == v[0].size());
+	Matrix(const std::vector<std::vector<T>>& v) : a(v) {
+		for(int i = 0; i < (int) a.size(); i++) {
+			assert(a[i].size() == a[0].size());
 		}
 	}
 
