@@ -33,20 +33,20 @@ data:
     \ get(int p) const {\n\t\tassert(0 <= p && p < n);\n\t\treturn d[p + size];\n\t\
     }\n\n\tS operator[](int p) const { return get(p); }\n\t\n\tS prod(int l, int r)\
     \ const {\n\t\tassert(0 <= l && l <= r && r <= n);\n\t\tS sml = e(), smr = e();\n\
-    \t\tl += size, r += size;\n\t\twhile(l < r) {\n\t\t\tif(l & 1) {\n\t\t\t\tsml\
-    \ = op(sml, d[l++]);\n\t\t\t}\n\t\t\tif(r & 1) {\n\t\t\t\tsmr = op(d[--r], smr);\n\
-    \t\t\t}\n\t\t\tl >>= 1, r >>= 1;\n\t\t}\n\t\treturn op(sml, smr);\n\t}\n\n\tS\
-    \ all_prod() const { return d[1]; }\n\n\ttemplate<bool (*f)(S)> int max_right(int\
-    \ l) {\n\t\treturn max_right(l, [](S x) { return f(x); });\n\t}\n\n\ttemplate<class\
-    \ F> int max_right(int l, F f) {\n\t\tassert(0 <= l && l <= n);\n\t\tassert(f(e()));\n\
-    \t\tif(l == n) {\n\t\t\treturn n;\n\t\t}\n\t\tl += size;\n\t\tS sm = e();\n\t\t\
-    do {\n\t\t\twhile(~l & 1) {\n\t\t\t\tl >>= 1;\n\t\t\t}\n\t\t\tif(!f(op(sm, d[l])))\
-    \ {\n\t\t\t\twhile(l < size) {\n\t\t\t\t\tpush(l);\n\t\t\t\t\tl <<= 1;\n\t\t\t\
-    \t\tif(f(op(sm, d[l]))) {\n\t\t\t\t\t\tsm = op(sm, d[l++]);\n\t\t\t\t\t}\n\t\t\
-    \t\t}\n\t\t\t\treturn l - size;\n\t\t\t}\n\t\t\tsm = op(sm, d[l++]);\n\t\t} while((l\
-    \ & -l) != l);\n\t\treturn n;\n\t}\n\n\ttemplate<bool (*f)(S)> int min_left(int\
-    \ r) {\n\t\treturn min_left(r, [](S x) { return f(x); });\n\t}\n\n\ttemplate<class\
-    \ F> int min_left(int r, F f) {\n\t\tassert(0 <= r && r <= n);\n\t\tassert(f(e()));\n\
+    \t\tfor(l += size, r += size; l < r; l >>= 1, r >>= 1) {\n\t\t\tif(l & 1) {\n\t\
+    \t\t\tsml = op(sml, d[l++]);\n\t\t\t}\n\t\t\tif(r & 1) {\n\t\t\t\tsmr = op(d[--r],\
+    \ smr);\n\t\t\t}\n\t\t}\n\t\treturn op(sml, smr);\n\t}\n\n\tS all_prod() const\
+    \ { return d[1]; }\n\n\ttemplate<bool (*f)(S)> int max_right(int l) {\n\t\treturn\
+    \ max_right(l, [](S x) { return f(x); });\n\t}\n\n\ttemplate<class F> int max_right(int\
+    \ l, F f) {\n\t\tassert(0 <= l && l <= n);\n\t\tassert(f(e()));\n\t\tif(l == n)\
+    \ {\n\t\t\treturn n;\n\t\t}\n\t\tl += size;\n\t\tS sm = e();\n\t\tdo {\n\t\t\t\
+    while(~l & 1) {\n\t\t\t\tl >>= 1;\n\t\t\t}\n\t\t\tif(!f(op(sm, d[l]))) {\n\t\t\
+    \t\twhile(l < size) {\n\t\t\t\t\tpush(l);\n\t\t\t\t\tl <<= 1;\n\t\t\t\t\tif(f(op(sm,\
+    \ d[l]))) {\n\t\t\t\t\t\tsm = op(sm, d[l++]);\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\t\
+    return l - size;\n\t\t\t}\n\t\t\tsm = op(sm, d[l++]);\n\t\t} while((l & -l) !=\
+    \ l);\n\t\treturn n;\n\t}\n\n\ttemplate<bool (*f)(S)> int min_left(int r) {\n\t\
+    \treturn min_left(r, [](S x) { return f(x); });\n\t}\n\n\ttemplate<class F> int\
+    \ min_left(int r, F f) {\n\t\tassert(0 <= r && r <= n);\n\t\tassert(f(e()));\n\
     \t\tif(r == 0) {\n\t\t\treturn 0;\n\t\t}\n\t\tr += size;\n\t\tS sm = e();\n\t\t\
     do {\n\t\t\tr--;\n\t\t\twhile(r > 1 && (r & 1)) {\n\t\t\t\tr >>= 1;\n\t\t\t}\n\
     \t\t\tif(!f(op(d[r], sm))) {\n\t\t\t\twhile(r < size) {\n\t\t\t\t\tpush(r);\n\t\
@@ -123,7 +123,7 @@ data:
   isVerificationFile: true
   path: test/data-structure/lazy-segtree/aoj-dsl-RSQ-and-RUQ.test.cpp
   requiredBy: []
-  timestamp: '2023-06-27 22:09:28+08:00'
+  timestamp: '2023-07-01 16:07:45+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/data-structure/lazy-segtree/aoj-dsl-RSQ-and-RUQ.test.cpp

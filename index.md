@@ -41,6 +41,9 @@ data:
       path: library/data-structure/line-container.hpp
       title: library/data-structure/line-container.hpp
     - icon: ':heavy_check_mark:'
+      path: library/data-structure/merge-sort-tree.hpp
+      title: Merge Sort Tree
+    - icon: ':heavy_check_mark:'
       path: library/data-structure/offline-rectangle-sum.hpp
       title: library/data-structure/offline-rectangle-sum.hpp
     - icon: ':heavy_check_mark:'
@@ -131,7 +134,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/integer-div.hpp
       title: Integer division ($\lfloor \frac{a}{b} \rfloor \lceil \frac{a}{b} \rceil$)
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/math/inv-gcd.hpp
       title: library/math/inv-gcd.hpp
     - icon: ':heavy_check_mark:'
@@ -143,7 +146,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/primitive-root.hpp
       title: library/math/primitive-root.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/math/safe-mod.hpp
       title: library/math/safe-mod.hpp
     - icon: ':heavy_check_mark:'
@@ -154,7 +157,7 @@ data:
       title: "xor basis (\u7DDA\u6027\u57FA)"
   - name: library/matrix
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: library/matrix/matrix.hpp
       title: library/matrix/matrix.hpp
   - name: library/misc
@@ -168,7 +171,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/misc/fastio.hpp
       title: library/misc/fastio.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':warning:'
+      path: library/misc/timer.hpp
+      title: library/misc/timer.hpp
+    - icon: ':question:'
       path: library/misc/type-traits.hpp
       title: library/misc/type-traits.hpp
   - name: library/modint
@@ -176,7 +182,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/modint/barrett.hpp
       title: library/modint/barrett.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/modint/modint.hpp
       title: library/modint/modint.hpp
   - name: library/random
@@ -198,6 +204,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/string/kmp.hpp
       title: library/string/kmp.hpp
+    - icon: ':heavy_check_mark:'
+      path: library/string/manacher.hpp
+      title: Manacher's Algorithm
     - icon: ':heavy_check_mark:'
       path: library/string/suffix-array.hpp
       title: Suffix Array
@@ -311,6 +320,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/data-structure/line-container/yosupo-Line-Add-Get-Min.test.cpp
       title: test/data-structure/line-container/yosupo-Line-Add-Get-Min.test.cpp
+  - name: test/data-structure/merge-sort-tree
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/data-structure/merge-sort-tree/yosupo-Range-Kth-Smallest.test.cpp
+      title: test/data-structure/merge-sort-tree/yosupo-Range-Kth-Smallest.test.cpp
   - name: test/data-structure/offline-rectangle-sum
     pages:
     - icon: ':heavy_check_mark:'
@@ -497,10 +511,10 @@ data:
       title: test/math/xor-basis/unit-test-xor-basis.test.cpp
   - name: test/matrix/matrix
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/matrix/matrix/yosupo-Determinant-of-Matrix.test.cpp
       title: test/matrix/matrix/yosupo-Determinant-of-Matrix.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/matrix/matrix/yosupo-Matrix-Product.test.cpp
       title: test/matrix/matrix/yosupo-Matrix-Product.test.cpp
   - name: test/misc/fastio
@@ -521,6 +535,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/string/kmp/aoj-alds1-String-Search.test.cpp
       title: test/string/kmp/aoj-alds1-String-Search.test.cpp
+  - name: test/string/manacher
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/string/manacher/yosupo-Enumerate-Palindromes.test.cpp
+      title: test/string/manacher/yosupo-Enumerate-Palindromes.test.cpp
   - name: test/string/suffix-array
     pages:
     - icon: ':heavy_check_mark:'

@@ -33,6 +33,9 @@ data:
     \ \", \", std::get<2>(tp), \")\"); };\n\ttemplate<class a, class b, class c, class\
     \ d> void print(std::tuple<a, b, c, d> tp) { print(\"(\", std::get<0>(tp), \"\
     , \", std::get<1>(tp), \", \", std::get<2>(tp), \", \", std::get<3>(tp), \")\"\
+    ); };\n\ttemplate<class a, class b, class c, class d, class e> void print(std::tuple<a,\
+    \ b, c, d, e> tp) { print(\"(\", std::get<0>(tp), \", \", std::get<1>(tp), \"\
+    , \", std::get<2>(tp), \", \", std::get<3>(tp), \", \", std::get<4>(tp), \")\"\
     ); };\n\ttemplate<class c> void print(rge<c> d) {\n\t\tstd::cerr << \"{\";\n\t\
     \tfor(auto it = d.b; it != d.e; ++it) {\n\t\t\tstd::cerr << \", \" + 2 * (it ==\
     \ d.b);\n\t\t\tprint(*it);\n\t\t}\n\t\tstd::cerr << \"}\";\n\t}\n\ttemplate<class\
@@ -65,7 +68,10 @@ data:
     \ c> tp) { print(\"(\", std::get<0>(tp), \", \", std::get<1>(tp), \", \", std::get<2>(tp),\
     \ \")\"); };\n\ttemplate<class a, class b, class c, class d> void print(std::tuple<a,\
     \ b, c, d> tp) { print(\"(\", std::get<0>(tp), \", \", std::get<1>(tp), \", \"\
-    , std::get<2>(tp), \", \", std::get<3>(tp), \")\"); };\n\ttemplate<class c> void\
+    , std::get<2>(tp), \", \", std::get<3>(tp), \")\"); };\n\ttemplate<class a, class\
+    \ b, class c, class d, class e> void print(std::tuple<a, b, c, d, e> tp) { print(\"\
+    (\", std::get<0>(tp), \", \", std::get<1>(tp), \", \", std::get<2>(tp), \", \"\
+    , std::get<3>(tp), \", \", std::get<4>(tp), \")\"); };\n\ttemplate<class c> void\
     \ print(rge<c> d) {\n\t\tstd::cerr << \"{\";\n\t\tfor(auto it = d.b; it != d.e;\
     \ ++it) {\n\t\t\tstd::cerr << \", \" + 2 * (it == d.b);\n\t\t\tprint(*it);\n\t\
     \t}\n\t\tstd::cerr << \"}\";\n\t}\n\ttemplate<class c> debug& operator<<(const\
@@ -77,7 +83,7 @@ data:
   isVerificationFile: false
   path: library/misc/debug.hpp
   requiredBy: []
-  timestamp: '2023-04-07 23:16:56+08:00'
+  timestamp: '2023-07-01 16:07:45+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/misc/debug.hpp
