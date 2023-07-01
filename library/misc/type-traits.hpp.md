@@ -26,7 +26,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/misc/fastio.hpp
     title: library/misc/fastio.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/modint/modint.hpp
     title: library/modint/modint.hpp
   _extendedVerifiedWith:
@@ -96,10 +96,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/math/is-prime/yosupo-Primality-Test.test.cpp
     title: test/math/is-prime/yosupo-Primality-Test.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/matrix/matrix/yosupo-Determinant-of-Matrix.test.cpp
     title: test/matrix/matrix/yosupo-Determinant-of-Matrix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/matrix/matrix/yosupo-Matrix-Product.test.cpp
     title: test/matrix/matrix/yosupo-Matrix-Product.test.cpp
   - icon: ':heavy_check_mark:'
@@ -114,9 +114,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/tree/heavy-light-decomposition/yosupo-Vertex-Set-Path-Composite.test.cpp
     title: test/tree/heavy-light-decomposition/yosupo-Vertex-Set-Path-Composite.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"library/misc/type-traits.hpp\"\n#include <cassert>\r\n#include\
@@ -207,7 +207,7 @@ data:
   - library/math/pow-mod.hpp
   - library/math/primitive-root.hpp
   timestamp: '2023-05-28 03:49:52+08:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/modint/modint/yosupo-Sqrt-Mod.test.cpp
   - test/modint/modint/aoj-ntl-Power.test.cpp

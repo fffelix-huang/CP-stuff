@@ -134,7 +134,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/integer-div.hpp
       title: Integer division ($\lfloor \frac{a}{b} \rfloor \lceil \frac{a}{b} \rceil$)
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/math/inv-gcd.hpp
       title: library/math/inv-gcd.hpp
     - icon: ':heavy_check_mark:'
@@ -146,7 +146,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/primitive-root.hpp
       title: library/math/primitive-root.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/math/safe-mod.hpp
       title: library/math/safe-mod.hpp
     - icon: ':heavy_check_mark:'
@@ -157,7 +157,7 @@ data:
       title: "xor basis (\u7DDA\u6027\u57FA)"
   - name: library/matrix
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/matrix/matrix.hpp
       title: library/matrix/matrix.hpp
   - name: library/misc
@@ -174,7 +174,7 @@ data:
     - icon: ':warning:'
       path: library/misc/timer.hpp
       title: library/misc/timer.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/misc/type-traits.hpp
       title: library/misc/type-traits.hpp
   - name: library/modint
@@ -182,7 +182,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/modint/barrett.hpp
       title: library/modint/barrett.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/modint/modint.hpp
       title: library/modint/modint.hpp
   - name: library/random
@@ -511,10 +511,10 @@ data:
       title: test/math/xor-basis/unit-test-xor-basis.test.cpp
   - name: test/matrix/matrix
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/matrix/matrix/yosupo-Determinant-of-Matrix.test.cpp
       title: test/matrix/matrix/yosupo-Determinant-of-Matrix.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/matrix/matrix/yosupo-Matrix-Product.test.cpp
       title: test/matrix/matrix/yosupo-Matrix-Product.test.cpp
   - name: test/misc/fastio

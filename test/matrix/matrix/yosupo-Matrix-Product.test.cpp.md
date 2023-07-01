@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/inv-gcd.hpp
     title: library/math/inv-gcd.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/safe-mod.hpp
     title: library/math/safe-mod.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/matrix/matrix.hpp
     title: library/matrix/matrix.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/misc/type-traits.hpp
     title: library/misc/type-traits.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/modint/modint.hpp
     title: library/modint/modint.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/matrix_product
@@ -32,18 +32,18 @@ data:
     \n#include <cassert>\r\n\r\nnamespace felix {\r\n\r\ntemplate<class T>\r\nstruct\
     \ Matrix {\r\npublic:\r\n\tMatrix() {}\r\n\texplicit Matrix(int n) : Matrix(n,\
     \ n) {}\r\n\texplicit Matrix(int n, int m) : a(n, std::vector<T>(m)) {}\r\n\t\r\
-    \n\tMatrix(const std::vector<std::vector<T>>& v) : n(v.size()), m(v.empty() ?\
-    \ 0 : v[0].size()), a(v) {\r\n\t\tfor(int i = 0; i < n; i++) {\r\n\t\t\tassert(v[i].size()\
-    \ == v[0].size());\r\n\t\t}\r\n\t}\r\n\r\n\tint H() const { return (int) a.size();\
-    \ }\r\n\tint W() const { return (int) a[0].size(); }\r\n\r\n\tinline const std::vector<T>\
-    \ operator[](int i) const { return a[i]; }\r\n\tinline std::vector<T>& operator[](int\
-    \ i) { return a[i]; }\r\n\r\n\tstatic Matrix I(int n) {\r\n\t\tMatrix b(n);\r\n\
-    \t\tfor(int i = 0; i < n; i++) {\r\n\t\t\tb[i][i] = T(1);\r\n\t\t}\r\n\t\treturn\
-    \ b;\r\n\t}\r\n\r\n\tMatrix& operator+=(const Matrix& b) {\r\n\t\tint n = H(),\
-    \ m = W();\r\n\t\tassert(n == b.H() && m == b.W());\r\n\t\tfor(int i = 0; i <\
-    \ n; i++) {\r\n\t\t\tfor(int j = 0; j < m; j++) {\r\n\t\t\t\ta[i][j] += b.a[i][j];\r\
-    \n\t\t\t}\r\n\t\t}\r\n\t\treturn *this;\r\n\t}\r\n\r\n\tMatrix& operator-=(const\
-    \ Matrix& b) {\r\n\t\tint n = H(), m = W();\r\n\t\tassert(n == b.H() && m == b.W());\r\
+    \n\tMatrix(const std::vector<std::vector<T>>& v) : a(v) {\r\n\t\tfor(int i = 0;\
+    \ i < (int) a.size(); i++) {\r\n\t\t\tassert(a[i].size() == a[0].size());\r\n\t\
+    \t}\r\n\t}\r\n\r\n\tint H() const { return (int) a.size(); }\r\n\tint W() const\
+    \ { return (int) a[0].size(); }\r\n\r\n\tinline const std::vector<T> operator[](int\
+    \ i) const { return a[i]; }\r\n\tinline std::vector<T>& operator[](int i) { return\
+    \ a[i]; }\r\n\r\n\tstatic Matrix I(int n) {\r\n\t\tMatrix b(n);\r\n\t\tfor(int\
+    \ i = 0; i < n; i++) {\r\n\t\t\tb[i][i] = T(1);\r\n\t\t}\r\n\t\treturn b;\r\n\t\
+    }\r\n\r\n\tMatrix& operator+=(const Matrix& b) {\r\n\t\tint n = H(), m = W();\r\
+    \n\t\tassert(n == b.H() && m == b.W());\r\n\t\tfor(int i = 0; i < n; i++) {\r\n\
+    \t\t\tfor(int j = 0; j < m; j++) {\r\n\t\t\t\ta[i][j] += b.a[i][j];\r\n\t\t\t\
+    }\r\n\t\t}\r\n\t\treturn *this;\r\n\t}\r\n\r\n\tMatrix& operator-=(const Matrix&\
+    \ b) {\r\n\t\tint n = H(), m = W();\r\n\t\tassert(n == b.H() && m == b.W());\r\
     \n\t\tfor(int i = 0; i < n; i++) {\r\n\t\t\tfor(int j = 0; j < m; j++) {\r\n\t\
     \t\t\ta[i][j] -= b.a[i][j];\r\n\t\t\t}\r\n\t\t}\r\n\t\treturn *this;\r\n\t}\r\n\
     \r\n\tMatrix& operator*=(const Matrix& b) {\r\n\t\tint n = H(), m = W(), p = b.W();\r\
@@ -229,8 +229,8 @@ data:
   isVerificationFile: true
   path: test/matrix/matrix/yosupo-Matrix-Product.test.cpp
   requiredBy: []
-  timestamp: '2023-07-01 16:07:45+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-07-01 16:21:32+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/matrix/matrix/yosupo-Matrix-Product.test.cpp
 layout: document
