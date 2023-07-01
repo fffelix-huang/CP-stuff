@@ -22,6 +22,7 @@ struct debug {
 	template<class c, class b> void print(std::pair<b, c> d) { print("(", d.first, ", ", d.second, ")"); }
 	template<class a, class b, class c> void print(std::tuple<a, b, c> tp) { print("(", std::get<0>(tp), ", ", std::get<1>(tp), ", ", std::get<2>(tp), ")"); };
 	template<class a, class b, class c, class d> void print(std::tuple<a, b, c, d> tp) { print("(", std::get<0>(tp), ", ", std::get<1>(tp), ", ", std::get<2>(tp), ", ", std::get<3>(tp), ")"); };
+	template<class a, class b, class c, class d, class e> void print(std::tuple<a, b, c, d, e> tp) { print("(", std::get<0>(tp), ", ", std::get<1>(tp), ", ", std::get<2>(tp), ", ", std::get<3>(tp), ", ", std::get<4>(tp), ")"); };
 	template<class c> void print(rge<c> d) {
 		std::cerr << "{";
 		for(auto it = d.b; it != d.e; ++it) {

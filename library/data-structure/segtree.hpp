@@ -41,15 +41,13 @@ public:
 	S prod(int l, int r) const {
 		assert(0 <= l && l <= r && r <= n);
 		S sml = e(), smr = e();
-		l += size, r += size;
-		while(l < r) {
+		for(l += size, r += size; l < r; l >>= 1, r >>= 1) {
 			if(l & 1) {
 				sml = op(sml, d[l++]);
 			}
 			if(r & 1) {
 				smr = op(d[--r], smr);
 			}
-			l >>= 1, r >>= 1;
 		}
 		return op(sml, smr);
 	}
