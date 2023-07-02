@@ -1,12 +1,12 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/random/rng.hpp
     title: library/random/rng.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/data-structure/treap/unit-test-treap.test.cpp
     title: test/data-structure/treap/unit-test-treap.test.cpp
   - icon: ':heavy_check_mark:'
@@ -15,9 +15,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/data-structure/treap/yosupo-Range-Reverse-Range-Sum.test.cpp
     title: test/data-structure/treap/yosupo-Range-Reverse-Range-Sum.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"library/data-structure/treap.hpp\"\n#include <iostream>\n\
@@ -290,7 +290,7 @@ data:
   path: library/data-structure/treap.hpp
   requiredBy: []
   timestamp: '2023-07-02 17:14:02+08:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/data-structure/treap/unit-test-treap.test.cpp
   - test/data-structure/treap/yosupo-Range-Reverse-Range-Sum.test.cpp

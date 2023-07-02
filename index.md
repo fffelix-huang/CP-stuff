@@ -52,7 +52,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/data-structure/sparse-table.hpp
       title: library/data-structure/sparse-table.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/data-structure/treap.hpp
       title: treap
     - icon: ':heavy_check_mark:'
@@ -193,7 +193,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/random/random.hpp
       title: random_t
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/random/rng.hpp
       title: library/random/rng.hpp
     - icon: ':heavy_check_mark:'
@@ -345,7 +345,7 @@ data:
       title: test/data-structure/sparse-table/yosupo-Static-RMQ.test.cpp
   - name: test/data-structure/treap
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/data-structure/treap/unit-test-treap.test.cpp
       title: test/data-structure/treap/unit-test-treap.test.cpp
     - icon: ':heavy_check_mark:'

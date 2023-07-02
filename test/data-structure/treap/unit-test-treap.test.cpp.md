@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/data-structure/treap.hpp
     title: treap
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/random/rng.hpp
     title: library/random/rng.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -217,12 +217,12 @@ data:
     \t\ttree.insert(tree.end(), x);\r\n\t\t}\r\n\t\tvector<int> b = {3, 1, 4, 1, 5};\r\
     \n\t\tTreap tree2;\r\n\t\tfor(auto x : b) {\r\n\t\t\ttree2.insert(tree2.end(),\
     \ x);\r\n\t\t}\r\n\t\ta.insert(a.end(), b.begin(), b.end());\r\n\t\ttree.merge(tree2);\r\
-    \n\t\tcheck(tree, a);\r\n\t}\r\n\r\n\t{\r\n\t\tcerr << \"Testing get_position\"\
-    \ << endl;\r\n\t\tTreap tree;\r\n\t\tfor(int i = 0; i < 100; i++) {\r\n\t\t\t\
-    int k = rng() % (i + 1);\r\n\t\t\tauto it = tree.insert_k(k, (S) rng());\r\n\t\
-    \t\tassert(tree.get_position(it) == k);\r\n\t\t}\r\n\t}\r\n\r\n\t{\r\n\t\tcerr\
-    \ << \"Testing split k\" << endl;\r\n\t\tTreap tree;\r\n\t\tvector<int> a;\r\n\
-    \t\tfor(int i = 0; i < 100; i++) {\r\n\t\t\tS x = rng();\r\n\t\t\ttree.insert(tree.end(),\
+    \n\t\tcheck(tree, a);\r\n\t}\r\n\r\n\t{\r\n\t\tcerr << \"Testing get_index\" <<\
+    \ endl;\r\n\t\tTreap tree;\r\n\t\tfor(int i = 0; i < 100; i++) {\r\n\t\t\tint\
+    \ k = rng() % (i + 1);\r\n\t\t\tauto it = tree.insert_k(k, (S) rng());\r\n\t\t\
+    \tassert(tree.get_index(it) == k);\r\n\t\t}\r\n\t}\r\n\r\n\t{\r\n\t\tcerr << \"\
+    Testing split k\" << endl;\r\n\t\tTreap tree;\r\n\t\tvector<int> a;\r\n\t\tfor(int\
+    \ i = 0; i < 100; i++) {\r\n\t\t\tS x = rng();\r\n\t\t\ttree.insert(tree.end(),\
     \ x);\r\n\t\t\ta.push_back(x);\r\n\t\t}\r\n\t\tint k = rng() % (tree.size() +\
     \ 1);\r\n\t\tauto [t1, t2] = tree.split_k(k);\r\n\t\tvector<int> b(a.begin(),\
     \ a.begin() + k);\r\n\t\tvector<int> c(a.begin() + k, a.end());\r\n\t\tcheck(t1,\
@@ -305,13 +305,13 @@ data:
     vector<int> b = {3, 1, 4, 1, 5};\r\n\t\tTreap tree2;\r\n\t\tfor(auto x : b) {\r\
     \n\t\t\ttree2.insert(tree2.end(), x);\r\n\t\t}\r\n\t\ta.insert(a.end(), b.begin(),\
     \ b.end());\r\n\t\ttree.merge(tree2);\r\n\t\tcheck(tree, a);\r\n\t}\r\n\r\n\t\
-    {\r\n\t\tcerr << \"Testing get_position\" << endl;\r\n\t\tTreap tree;\r\n\t\t\
-    for(int i = 0; i < 100; i++) {\r\n\t\t\tint k = rng() % (i + 1);\r\n\t\t\tauto\
-    \ it = tree.insert_k(k, (S) rng());\r\n\t\t\tassert(tree.get_position(it) == k);\r\
-    \n\t\t}\r\n\t}\r\n\r\n\t{\r\n\t\tcerr << \"Testing split k\" << endl;\r\n\t\t\
-    Treap tree;\r\n\t\tvector<int> a;\r\n\t\tfor(int i = 0; i < 100; i++) {\r\n\t\t\
-    \tS x = rng();\r\n\t\t\ttree.insert(tree.end(), x);\r\n\t\t\ta.push_back(x);\r\
-    \n\t\t}\r\n\t\tint k = rng() % (tree.size() + 1);\r\n\t\tauto [t1, t2] = tree.split_k(k);\r\
+    {\r\n\t\tcerr << \"Testing get_index\" << endl;\r\n\t\tTreap tree;\r\n\t\tfor(int\
+    \ i = 0; i < 100; i++) {\r\n\t\t\tint k = rng() % (i + 1);\r\n\t\t\tauto it =\
+    \ tree.insert_k(k, (S) rng());\r\n\t\t\tassert(tree.get_index(it) == k);\r\n\t\
+    \t}\r\n\t}\r\n\r\n\t{\r\n\t\tcerr << \"Testing split k\" << endl;\r\n\t\tTreap\
+    \ tree;\r\n\t\tvector<int> a;\r\n\t\tfor(int i = 0; i < 100; i++) {\r\n\t\t\t\
+    S x = rng();\r\n\t\t\ttree.insert(tree.end(), x);\r\n\t\t\ta.push_back(x);\r\n\
+    \t\t}\r\n\t\tint k = rng() % (tree.size() + 1);\r\n\t\tauto [t1, t2] = tree.split_k(k);\r\
     \n\t\tvector<int> b(a.begin(), a.begin() + k);\r\n\t\tvector<int> c(a.begin()\
     \ + k, a.end());\r\n\t\tcheck(t1, b);\r\n\t\tcheck(t2, c);\r\n\t\tassert(tree.size()\
     \ == 0 && tree.empty());\r\n\t}\r\n\r\n\t{\r\n\t\tcerr << \"Testing split_range\"\
@@ -331,8 +331,8 @@ data:
   isVerificationFile: true
   path: test/data-structure/treap/unit-test-treap.test.cpp
   requiredBy: []
-  timestamp: '2023-07-02 17:14:02+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-07-02 17:19:18+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/data-structure/treap/unit-test-treap.test.cpp
 layout: document
