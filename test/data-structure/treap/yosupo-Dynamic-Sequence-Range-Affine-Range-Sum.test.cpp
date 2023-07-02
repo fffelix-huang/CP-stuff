@@ -50,7 +50,7 @@ int main() {
 	for(int i = 0; i < n; i++) {
 		mint x;
 		cin >> x;
-		tree.insert(i, S(x));
+		tree.insert(tree.end(), S(x));
 	}
 	while(q--) {
 		int type;

@@ -5,8 +5,8 @@
 #include <tuple>
 #include <algorithm>
 #include <cassert>
-#include "random/rng.hpp"
-#include "data-structure/treap.hpp"
+#include "../../../library/random/rng.hpp"
+#include "../../../library/data-structure/treap.hpp"
 using namespace std;
 using namespace felix;
 
