@@ -26,7 +26,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/misc/fastio.hpp
     title: library/misc/fastio.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/modint/modint.hpp
     title: library/modint/modint.hpp
   _extendedVerifiedWith:
@@ -57,9 +57,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/data-structure/lazy-segtree/yosupo-Range-Affine-Range-Sum.test.cpp
     title: test/data-structure/lazy-segtree/yosupo-Range-Affine-Range-Sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/data-structure/lazy-treap/yosupo-Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
-    title: test/data-structure/lazy-treap/yosupo-Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
+  - icon: ':x:'
+    path: test/data-structure/treap/yosupo-Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
+    title: test/data-structure/treap/yosupo-Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/formal-power-series/poly/yosupo-Exp-of-Formal-Power-Series.test.cpp
     title: test/formal-power-series/poly/yosupo-Exp-of-Formal-Power-Series.test.cpp
@@ -114,9 +114,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/tree/heavy-light-decomposition/yosupo-Vertex-Set-Path-Composite.test.cpp
     title: test/tree/heavy-light-decomposition/yosupo-Vertex-Set-Path-Composite.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"library/misc/type-traits.hpp\"\n#include <cassert>\r\n#include\
@@ -207,7 +207,7 @@ data:
   - library/math/pow-mod.hpp
   - library/math/primitive-root.hpp
   timestamp: '2023-05-28 03:49:52+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/modint/modint/yosupo-Sqrt-Mod.test.cpp
   - test/modint/modint/aoj-ntl-Power.test.cpp
@@ -234,9 +234,9 @@ data:
   - test/math/factorize/yosupo-Factorize.test.cpp
   - test/math/is-prime/yosupo-Primality-Test.test.cpp
   - test/data-structure/lazy-lct/yosupo-Dynamic-Tree-Vertex-Set-Path-Composite.test.cpp
-  - test/data-structure/lazy-treap/yosupo-Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
   - test/data-structure/lazy-segtree/yosupo-Range-Affine-Range-Sum.test.cpp
   - test/data-structure/lazy-segtree/yosupo-Range-Affine-Point-Get.test.cpp
+  - test/data-structure/treap/yosupo-Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
 documentation_of: library/misc/type-traits.hpp
 layout: document
 redirect_from:

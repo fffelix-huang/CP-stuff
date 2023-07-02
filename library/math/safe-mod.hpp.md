@@ -14,7 +14,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/math/factorize.hpp
     title: "Integer Factorization (Pollard Rho \u8CEA\u56E0\u6578\u5206\u89E3)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/inv-gcd.hpp
     title: library/math/inv-gcd.hpp
   - icon: ':heavy_check_mark:'
@@ -26,7 +26,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/math/primitive-root.hpp
     title: library/math/primitive-root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/modint/modint.hpp
     title: library/modint/modint.hpp
   _extendedVerifiedWith:
@@ -57,9 +57,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/data-structure/lazy-segtree/yosupo-Range-Affine-Range-Sum.test.cpp
     title: test/data-structure/lazy-segtree/yosupo-Range-Affine-Range-Sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/data-structure/lazy-treap/yosupo-Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
-    title: test/data-structure/lazy-treap/yosupo-Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
+  - icon: ':x:'
+    path: test/data-structure/treap/yosupo-Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
+    title: test/data-structure/treap/yosupo-Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/formal-power-series/poly/yosupo-Exp-of-Formal-Power-Series.test.cpp
     title: test/formal-power-series/poly/yosupo-Exp-of-Formal-Power-Series.test.cpp
@@ -111,9 +111,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/tree/heavy-light-decomposition/yosupo-Vertex-Set-Path-Composite.test.cpp
     title: test/tree/heavy-light-decomposition/yosupo-Vertex-Set-Path-Composite.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"library/math/safe-mod.hpp\"\n\r\nnamespace felix {\r\n\r\
@@ -138,7 +138,7 @@ data:
   - library/math/pow-mod.hpp
   - library/math/primitive-root.hpp
   timestamp: '2023-04-21 21:20:30+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/modint/modint/yosupo-Sqrt-Mod.test.cpp
   - test/modint/modint/aoj-ntl-Power.test.cpp
@@ -164,9 +164,9 @@ data:
   - test/math/factorize/yosupo-Factorize.test.cpp
   - test/math/is-prime/yosupo-Primality-Test.test.cpp
   - test/data-structure/lazy-lct/yosupo-Dynamic-Tree-Vertex-Set-Path-Composite.test.cpp
-  - test/data-structure/lazy-treap/yosupo-Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
   - test/data-structure/lazy-segtree/yosupo-Range-Affine-Range-Sum.test.cpp
   - test/data-structure/lazy-segtree/yosupo-Range-Affine-Point-Get.test.cpp
+  - test/data-structure/treap/yosupo-Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
 documentation_of: library/math/safe-mod.hpp
 layout: document
 redirect_from:

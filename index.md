@@ -35,9 +35,6 @@ data:
       path: library/data-structure/lazy-segtree.hpp
       title: library/data-structure/lazy-segtree.hpp
     - icon: ':heavy_check_mark:'
-      path: library/data-structure/lazy-treap.hpp
-      title: library/data-structure/lazy-treap.hpp
-    - icon: ':heavy_check_mark:'
       path: library/data-structure/line-container.hpp
       title: library/data-structure/line-container.hpp
     - icon: ':heavy_check_mark:'
@@ -55,6 +52,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/data-structure/sparse-table.hpp
       title: library/data-structure/sparse-table.hpp
+    - icon: ':question:'
+      path: library/data-structure/treap.hpp
+      title: treap
     - icon: ':heavy_check_mark:'
       path: library/data-structure/vebtree.hpp
       title: Van Emde Boas Tree
@@ -134,7 +134,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/integer-div.hpp
       title: Integer division ($\lfloor \frac{a}{b} \rfloor \lceil \frac{a}{b} \rceil$)
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/math/inv-gcd.hpp
       title: library/math/inv-gcd.hpp
     - icon: ':heavy_check_mark:'
@@ -146,7 +146,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/primitive-root.hpp
       title: library/math/primitive-root.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/math/safe-mod.hpp
       title: library/math/safe-mod.hpp
     - icon: ':heavy_check_mark:'
@@ -174,7 +174,7 @@ data:
     - icon: ':warning:'
       path: library/misc/timer.hpp
       title: library/misc/timer.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/misc/type-traits.hpp
       title: library/misc/type-traits.hpp
   - name: library/modint
@@ -182,7 +182,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/modint/barrett.hpp
       title: library/modint/barrett.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/modint/modint.hpp
       title: library/modint/modint.hpp
   - name: library/random
@@ -193,7 +193,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/random/random.hpp
       title: random_t
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/random/rng.hpp
       title: library/random/rng.hpp
     - icon: ':heavy_check_mark:'
@@ -307,14 +307,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/data-structure/lazy-segtree/yosupo-Range-Affine-Range-Sum.test.cpp
       title: test/data-structure/lazy-segtree/yosupo-Range-Affine-Range-Sum.test.cpp
-  - name: test/data-structure/lazy-treap
-    pages:
-    - icon: ':heavy_check_mark:'
-      path: test/data-structure/lazy-treap/yosupo-Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
-      title: test/data-structure/lazy-treap/yosupo-Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/data-structure/lazy-treap/yosupo-Range-Reverse-Range-Sum.test.cpp
-      title: test/data-structure/lazy-treap/yosupo-Range-Reverse-Range-Sum.test.cpp
   - name: test/data-structure/line-container
     pages:
     - icon: ':heavy_check_mark:'
@@ -351,6 +343,17 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/data-structure/sparse-table/yosupo-Static-RMQ.test.cpp
       title: test/data-structure/sparse-table/yosupo-Static-RMQ.test.cpp
+  - name: test/data-structure/treap
+    pages:
+    - icon: ':x:'
+      path: test/data-structure/treap/unit-test-treap.test.cpp
+      title: test/data-structure/treap/unit-test-treap.test.cpp
+    - icon: ':x:'
+      path: test/data-structure/treap/yosupo-Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
+      title: test/data-structure/treap/yosupo-Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/data-structure/treap/yosupo-Range-Reverse-Range-Sum.test.cpp
+      title: test/data-structure/treap/yosupo-Range-Reverse-Range-Sum.test.cpp
   - name: test/data-structure/vebtree
     pages:
     - icon: ':heavy_check_mark:'

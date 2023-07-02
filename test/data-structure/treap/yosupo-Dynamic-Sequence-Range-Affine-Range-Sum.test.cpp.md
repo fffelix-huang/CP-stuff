@@ -1,0 +1,353 @@
+---
+data:
+  _extendedDependsOn:
+  - icon: ':question:'
+    path: library/data-structure/treap.hpp
+    title: treap
+  - icon: ':question:'
+    path: library/math/inv-gcd.hpp
+    title: library/math/inv-gcd.hpp
+  - icon: ':question:'
+    path: library/math/safe-mod.hpp
+    title: library/math/safe-mod.hpp
+  - icon: ':question:'
+    path: library/misc/type-traits.hpp
+    title: library/misc/type-traits.hpp
+  - icon: ':question:'
+    path: library/modint/modint.hpp
+    title: library/modint/modint.hpp
+  - icon: ':question:'
+    path: library/random/rng.hpp
+    title: library/random/rng.hpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
+  _isVerificationFailed: true
+  _pathExtension: cpp
+  _verificationStatusIcon: ':x:'
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum
+    links:
+    - https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum
+  bundledCode: "#line 1 \"test/data-structure/treap/yosupo-Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum\"\
+    \n\n#include <iostream>\n#include <vector>\n#line 4 \"library/modint/modint.hpp\"\
+    \n#include <algorithm>\r\n#include <cassert>\r\n#include <type_traits>\r\n#line\
+    \ 3 \"library/misc/type-traits.hpp\"\n#include <numeric>\r\n#line 5 \"library/misc/type-traits.hpp\"\
+    \n\r\nnamespace felix {\r\n\r\nnamespace internal {\r\n\r\n#ifndef _MSC_VER\r\n\
+    template<class T> using is_signed_int128 = typename std::conditional<std::is_same<T,\
+    \ __int128_t>::value || std::is_same<T, __int128>::value, std::true_type, std::false_type>::type;\r\
+    \ntemplate<class T> using is_unsigned_int128 = typename std::conditional<std::is_same<T,\
+    \ __uint128_t>::value || std::is_same<T, unsigned __int128>::value, std::true_type,\
+    \ std::false_type>::type;\r\ntemplate<class T> using make_unsigned_int128 = typename\
+    \ std::conditional<std::is_same<T, __int128_t>::value, __uint128_t, unsigned __int128>;\r\
+    \ntemplate<class T> using is_integral = typename std::conditional<std::is_integral<T>::value\
+    \ || is_signed_int128<T>::value || is_unsigned_int128<T>::value, std::true_type,\
+    \ std::false_type>::type;\r\ntemplate<class T> using is_signed_int = typename\
+    \ std::conditional<(is_integral<T>::value && std::is_signed<T>::value) || is_signed_int128<T>::value,\
+    \ std::true_type, std::false_type>::type;\r\ntemplate<class T> using is_unsigned_int\
+    \ = typename std::conditional<(is_integral<T>::value && std::is_unsigned<T>::value)\
+    \ || is_unsigned_int128<T>::value, std::true_type, std::false_type>::type;\r\n\
+    template<class T> using to_unsigned = typename std::conditional<is_signed_int128<T>::value,\
+    \ make_unsigned_int128<T>, typename std::conditional<std::is_signed<T>::value,\
+    \ std::make_unsigned<T>, std::common_type<T>>::type>::type;\r\n#else\r\ntemplate<class\
+    \ T> using is_integral = typename std::is_integral<T>;\r\ntemplate<class T> using\
+    \ is_signed_int = typename std::conditional<is_integral<T>::value && std::is_signed<T>::value,\
+    \ std::true_type, std::false_type>::type;\r\ntemplate<class T> using is_unsigned_int\
+    \ = typename std::conditional<is_integral<T>::value && std::is_unsigned<T>::value,\
+    \ std::true_type, std::false_type>::type;\r\ntemplate<class T> using to_unsigned\
+    \ = typename std::conditional<is_signed_int<T>::value, std::make_unsigned<T>,\
+    \ std::common_type<T>>::type;\r\n#endif\r\n\r\ntemplate<class T> using is_signed_int_t\
+    \ = std::enable_if_t<is_signed_int<T>::value>;\r\ntemplate<class T> using is_unsigned_int_t\
+    \ = std::enable_if_t<is_unsigned_int<T>::value>;\r\ntemplate<class T> using to_unsigned_t\
+    \ = typename to_unsigned<T>::type;\r\n\r\ntemplate<class T> struct safely_multipliable\
+    \ {};\r\ntemplate<> struct safely_multipliable<short> { using type = int; };\r\
+    \ntemplate<> struct safely_multipliable<unsigned short> { using type = unsigned\
+    \ int; };\r\ntemplate<> struct safely_multipliable<int> { using type = long long;\
+    \ };\r\ntemplate<> struct safely_multipliable<unsigned int> { using type = unsigned\
+    \ long long; };\r\ntemplate<> struct safely_multipliable<long long> { using type\
+    \ = __int128; };\r\ntemplate<> struct safely_multipliable<unsigned long long>\
+    \ { using type = __uint128_t; };\r\n\r\ntemplate<class T> using safely_multipliable_t\
+    \ = typename safely_multipliable<T>::type;\r\n\r\n}  // namespace internal\r\n\
+    \r\n}  // namespace felix\r\n#line 2 \"library/math/safe-mod.hpp\"\n\r\nnamespace\
+    \ felix {\r\n\r\nnamespace internal {\r\n\r\ntemplate<class T>\r\nconstexpr T\
+    \ safe_mod(T x, T m) {\r\n\tx %= m;\r\n\tif(x < 0) {\r\n\t\tx += m;\r\n\t}\r\n\
+    \treturn x;\r\n}\r\n\r\n} // namespace internal\r\n\r\n} // namespace felix\n\
+    #line 3 \"library/math/inv-gcd.hpp\"\n\r\nnamespace felix {\r\n\r\nnamespace internal\
+    \ {\r\n\r\ntemplate<class T>\r\nconstexpr std::pair<T, T> inv_gcd(T a, T b) {\r\
+    \n\ta = safe_mod(a, b);\r\n\tif(a == 0) {\r\n\t\treturn {b, 0};\r\n\t}\r\n\tT\
+    \ s = b, t = a;\r\n\tT m0 = 0, m1 = 1;\r\n\twhile(t) {\r\n\t\tT u = s / t;\r\n\
+    \t\ts -= t * u;\r\n\t\tm0 -= m1 * u;\r\n\t\tauto tmp = s;\r\n\t\ts = t;\r\n\t\t\
+    t = tmp;\r\n\t\ttmp = m0;\r\n\t\tm0 = m1;\r\n\t\tm1 = tmp;\r\n\t}\r\n\tif(m0 <\
+    \ 0) {\r\n\t\tm0 += b / s;\r\n\t}\r\n\treturn {s, m0};\r\n}\r\n\r\n} // namespace\
+    \ internal\r\n\r\n} // namespace felix\r\n#line 9 \"library/modint/modint.hpp\"\
+    \n\r\nnamespace felix {\r\n\r\ntemplate<int id>\r\nstruct modint {\r\npublic:\r\
+    \n\tstatic constexpr int mod() { return (id > 0 ? id : md); }\r\n \t\r\n\tstatic\
+    \ constexpr void set_mod(int m) {\r\n\t\tif(id > 0 || md == m) {\r\n\t\t\treturn;\r\
+    \n\t\t}\r\n\t\tmd = m;\r\n\t\tfact.resize(1);\r\n\t\tinv_fact.resize(1);\r\n\t\
+    \tinvs.resize(1);\r\n\t}\r\n\r\n\tstatic constexpr void prepare(int n) {\r\n\t\
+    \tint sz = (int) fact.size();\r\n\t\tif(sz == mod()) {\r\n\t\t\treturn;\r\n\t\t\
+    }\r\n\t\tn = 1 << std::__lg(2 * n - 1);\r\n\t\tif(n < sz) {\r\n\t\t\treturn;\r\
+    \n\t\t}\r\n\t\tif(n < (sz - 1) * 2) {\r\n\t\t\tn = std::min((sz - 1) * 2, mod()\
+    \ - 1);\r\n\t\t}\r\n\t\tfact.resize(n + 1);\r\n\t\tinv_fact.resize(n + 1);\r\n\
+    \t\tinvs.resize(n + 1);\r\n\t\tfor(int i = sz; i <= n; i++) {\r\n\t\t\tfact[i]\
+    \ = fact[i - 1] * i;\r\n\t\t}\r\n\t\tauto eg = internal::inv_gcd(fact.back().val(),\
+    \ mod());\r\n\t\tassert(eg.first == 1);\r\n\t\tinv_fact[n] = eg.second;\r\n\t\t\
+    for(int i = n - 1; i >= sz; i--) {\r\n\t\t\tinv_fact[i] = inv_fact[i + 1] * (i\
+    \ + 1);\r\n\t\t}\r\n\t\tfor(int i = n; i >= sz; i--) {\r\n\t\t\tinvs[i] = inv_fact[i]\
+    \ * fact[i - 1];\r\n\t\t}\r\n\t}\r\n \r\n\tconstexpr modint() : value(0) {} \r\
+    \n\ttemplate<class T, internal::is_signed_int_t<T>* = nullptr> constexpr modint(T\
+    \ v) : value(v >= 0 ? v % mod() : v % mod() + mod()) {}\r\n\ttemplate<class T,\
+    \ internal::is_unsigned_int_t<T>* = nullptr> constexpr modint(T v) : value(v %\
+    \ mod()) {}\r\n \r\n\tconstexpr int val() const { return value; }\r\n\r\n\tconstexpr\
+    \ modint inv() const {\r\n\t\tif(id > 0 && value < std::min(mod() >> 1, 1 << 18))\
+    \ {\r\n\t\t\tprepare(value);\r\n\t\t\treturn invs[value];\r\n\t\t} else {\r\n\t\
+    \t\tauto eg = internal::inv_gcd(value, mod());\r\n\t\t\tassert(eg.first == 1);\r\
+    \n\t\t\treturn eg.second;\r\n\t\t}\r\n\t}\r\n \r\n\tconstexpr modint& operator+=(const\
+    \ modint& rhs) & {\r\n\t\tvalue += rhs.value;\r\n\t\tif(value >= mod()) {\r\n\t\
+    \t\tvalue -= mod();\r\n\t\t}\r\n\t\treturn *this;\r\n\t}\r\n \r\n\tconstexpr modint&\
+    \ operator-=(const modint& rhs) & {\r\n\t\tvalue -= rhs.value;\r\n\t\tif(value\
+    \ < 0) {\r\n\t\t\tvalue += mod();\r\n\t\t}\r\n\t\treturn *this;\r\n\t}\r\n\r\n\
+    \tconstexpr modint& operator*=(const modint& rhs) & {\r\n\t\tvalue = 1LL * value\
+    \ * rhs.value % mod();\r\n\t\treturn *this;\r\n\t}\r\n\r\n\tconstexpr modint&\
+    \ operator/=(const modint& rhs) & {\r\n\t\treturn *this *= rhs.inv();\r\n\t}\r\
+    \n\r\n\tfriend constexpr modint operator+(modint lhs, modint rhs) { return lhs\
+    \ += rhs; }\r\n\tfriend constexpr modint operator-(modint lhs, modint rhs) { return\
+    \ lhs -= rhs; }\r\n\tfriend constexpr modint operator*(modint lhs, modint rhs)\
+    \ { return lhs *= rhs; }\r\n\tfriend constexpr modint operator/(modint lhs, modint\
+    \ rhs) { return lhs /= rhs; }\r\n\r\n\tconstexpr modint operator+() const { return\
+    \ *this; }\r\n\tconstexpr modint operator-() const { return modint() - *this;\
+    \ } \r\n\tconstexpr bool operator==(const modint& rhs) const { return value ==\
+    \ rhs.value; } \r\n\tconstexpr bool operator!=(const modint& rhs) const { return\
+    \ value != rhs.value; }\r\n\r\n\tconstexpr modint pow(long long p) const {\r\n\
+    \t\tmodint a(*this), res(1);\r\n\t\tif(p < 0) {\r\n\t\t\ta = a.inv();\r\n\t\t\t\
+    p = -p;\r\n\t\t}\r\n\t\twhile(p) {\r\n\t\t\tif(p & 1) {\r\n\t\t\t\tres *= a;\r\
+    \n\t\t\t}\r\n\t\t\ta *= a;\r\n\t\t\tp >>= 1;\r\n\t\t}\r\n\t\treturn res;\r\n\t\
+    }\r\n\r\n\tconstexpr bool has_sqrt() const {\r\n\t\tif(mod() == 2 || value ==\
+    \ 0) {\r\n\t\t\treturn true;\r\n\t\t}\r\n\t\tif(pow((mod() - 1) / 2).val() !=\
+    \ 1) {\r\n\t\t\treturn false;\r\n\t\t}\r\n\t\treturn true;\r\n\t}\r\n\r\n\tconstexpr\
+    \ modint sqrt() const {\r\n\t\tif(mod() == 2 || value < 2) {\r\n\t\t\treturn *this;\r\
+    \n\t\t}\r\n\t\tassert(pow((mod() - 1) / 2).val() == 1);\r\n\t\tmodint b = 1;\r\
+    \n\t\twhile(b.pow((mod() - 1) >> 1).val() == 1) {\r\n\t\t\tb += 1;\r\n\t\t}\r\n\
+    \t\tint m = mod() - 1, e = __builtin_ctz(m);\r\n\t\tm >>= e;\r\n\t\tmodint x =\
+    \ modint(*this).pow((m - 1) >> 1);\r\n\t\tmodint y = modint(*this) * x * x;\r\n\
+    \t\tx *= value;\r\n\t\tmodint z = b.pow(m);\r\n\t\twhile(y.val() != 1) {\r\n\t\
+    \t\tint j = 0;\r\n\t\t\tmodint t = y;\r\n\t\t\twhile(t.val() != 1) {\r\n\t\t\t\
+    \tt *= t;\r\n\t\t\t\tj++;\r\n\t\t\t}\r\n\t\t\tz = z.pow(1LL << (e - j - 1));\r\
+    \n\t\t\tx *= z, z *= z, y *= z;\r\n\t\t\te = j;\r\n\t\t}\r\n\t\treturn x;\r\n\t\
+    }\r\n\r\n\tfriend constexpr std::istream& operator>>(std::istream& in, modint&\
+    \ num) {\r\n\t\tlong long x;\r\n\t\tin >> x;\r\n\t\tnum = modint<id>(x);\r\n\t\
+    \treturn in;\r\n\t}\r\n\t\r\n\tfriend constexpr std::ostream& operator<<(std::ostream&\
+    \ out, const modint& num) {\r\n\t\treturn out << num.val();\r\n\t}\r\n\r\npublic:\r\
+    \n\tstatic std::vector<modint> fact, inv_fact, invs;\r\n \r\nprivate:\r\n\tint\
+    \ value;\r\n\tstatic int md;\r\n};\r\n\r\ntemplate<int id> int modint<id>::md\
+    \ = 998244353;\r\ntemplate<int id> std::vector<modint<id>> modint<id>::fact =\
+    \ {1};\r\ntemplate<int id> std::vector<modint<id>> modint<id>::inv_fact = {1};\r\
+    \ntemplate<int id> std::vector<modint<id>> modint<id>::invs = {0};\r\n\r\nusing\
+    \ modint998244353 = modint<998244353>;\r\nusing modint1000000007 = modint<1000000007>;\r\
+    \n\r\nnamespace internal {\r\n\r\ntemplate<class T> struct is_modint : public\
+    \ std::false_type {};\r\ntemplate<int id> struct is_modint<modint<id>> : public\
+    \ std::true_type {};\r\n\r\ntemplate<class T, class ENABLE = void> struct is_static_modint\
+    \ : public std::false_type {};\r\ntemplate<int id> struct is_static_modint<modint<id>,\
+    \ std::enable_if_t<(id > 0)>> : public std::true_type {};\r\ntemplate<class T>\
+    \ using is_static_modint_t = std::enable_if_t<is_static_modint<T>::value>;\r\n\
+    \r\ntemplate<class T, class ENABLE = void> struct is_dynamic_modint : public std::false_type\
+    \ {};\r\ntemplate<int id> struct is_dynamic_modint<modint<id>, std::enable_if_t<(id\
+    \ <= 0)>> : public std::true_type {};\r\ntemplate<class T> using is_dynamic_modint_t\
+    \ = std::enable_if_t<is_dynamic_modint<T>::value>;\r\n\r\n} // namespace internal\r\
+    \n\r\n} // namespace felix\r\n#line 3 \"library/data-structure/treap.hpp\"\n#include\
+    \ <cstddef>\n#include <iterator>\n#line 8 \"library/data-structure/treap.hpp\"\
+    \n#include <chrono>\n#include <functional>\n#include <tuple>\n#line 3 \"library/random/rng.hpp\"\
+    \n\nnamespace felix {\n\ninline unsigned long long rng() {\n\tstatic unsigned\
+    \ long long SEED = std::chrono::steady_clock::now().time_since_epoch().count();\n\
+    \tSEED ^= SEED << 7;\n\tSEED ^= SEED >> 9;\n\treturn SEED;\n}\n\n} // namespace\
+    \ felix\n#line 12 \"library/data-structure/treap.hpp\"\n\nnamespace felix {\n\n\
+    template<class S,\n         S (*e)(),\n         S (*op)(S, S),\n         S (*reversal)(S),\n\
+    \         class F,\n         F (*id)(),\n         S (*mapping)(F, S),\n      \
+    \   F (*composition)(F, F)>\nstruct treap {\npublic:\n\tstruct node_t {\n\t\t\
+    S value, sum;\n\t\tF lz = id();\n\t\tbool rev = false;\n\t\tint sz = 1;\n\t\t\
+    node_t* l = nullptr;\n\t\tnode_t* r = nullptr;\n\t\tnode_t* p = nullptr;\n\n\t\
+    \tnode_t() : value(e()), sum(e()) {}\n\t\tnode_t(const S& s) : value(s), sum(s)\
+    \ {}\n\t};\n\n\tstruct iterator {\n\tprivate:\n\t\tnode_t* v = nullptr;\n\n\t\
+    public:\n\t\tusing valueue_type = S;\n\t\tusing pointer = S*;\n\t\tusing reference\
+    \ = S&;\n\t\tusing difference_type = std::ptrdiff_t;\n\t\tusing iterator_category\
+    \ = std::bidirectional_iterator_tag;\n\n\t\titerator& operator++() {\n\t\t\tv\
+    \ = next(v);\n\t\t\treturn *this;\n\t\t}\n\n\t\titerator operator++(int) {\n\t\
+    \t\titerator tmp(*this);\n\t\t\t++(*this);\n\t\t\treturn tmp;\n\t\t}\n\n\t\titerator&\
+    \ operator--() {\n\t\t\tv = prev(v);\n\t\t\treturn *this;\n\t\t}\n\n\t\titerator\
+    \ operator--(int) {\n\t\t\titerator tmp(*this);\n\t\t\t--(*this);\n\t\t\treturn\
+    \ tmp;\n\t\t}\n\n\t\treference operator*() { return v->value; }\n\t\tpointer operator->()\
+    \ { return v->value; }\n\t\tnode_t* ptr() const { return v; }\n\n\t\titerator()\
+    \ {}\n\t\titerator(node_t* node) : v(node) {}\n\n\t\tbool operator==(const iterator&\
+    \ other) const { return v == other.v; }\n\t\tbool operator!=(const iterator& other)\
+    \ const { return v != other.v; }\n\t};\n\n\titerator begin() const { return find([](const\
+    \ node_t&) { return -1; }); }\n\titerator end() const { return iterator(nullptr);\
+    \ }\n\nprivate:\n\tnode_t* root = nullptr;\n\n\ttreap(node_t* v) : root(v) {}\n\
+    \npublic:\n\ttreap() {}\n\n\tint size() const { return root != nullptr ? root->sz\
+    \ : 0; }\n\tbool empty() const { return root == nullptr; }\n\n\tvoid clear() {\n\
+    \t\tstd::function<void(node_t*)> remove = [&](node_t* v) {\n\t\t\tif(v == nullptr)\
+    \ {\n\t\t\t\treturn;\n\t\t\t}\n\t\t\tremove(v->l);\n\t\t\tremove(v->r);\n\t\t\t\
+    delete v;\n\t\t};\n\t\tremove(root);\n\t\troot = nullptr;\n\t}\n\n\tvoid merge(treap\
+    \ other) {\n\t\troot = merge(root, other.root);\n\t}\n\n\tstd::pair<treap, treap>\
+    \ split(const std::function<bool(const node_t&)>& is_right) {\n\t\tauto [lhs,\
+    \ rhs] = split(root, is_right);\n\t\troot = nullptr;\n\t\treturn std::make_pair(treap(lhs),\
+    \ treap(rhs));\n\t}\n\n\tvoid clear_tag() {\n\t\tstd::function<void(node_t*)>\
+    \ down = [&](node_t* v) {\n\t\t\tif(v == nullptr) {\n\t\t\t\treturn;\n\t\t\t}\n\
+    \t\t\tpush(v);\n\t\t\tdown(v->l);\n\t\t\tdown(v->r);\n\t\t};\n\t\tdown(root);\n\
+    \t}\n\n\t// bst operations\n\n\t// -1 0 +1\n\titerator find(const std::function<int(const\
+    \ node_t&)>& go_to) const {\n\t\tnode_t* v = root;\n\t\tif(v == nullptr) {\n\t\
+    \t\treturn nullptr;\n\t\t}\n\t\tint dir = 0;\n\t\twhile(true) {\n\t\t\tpush(v);\n\
+    \t\t\tdir = go_to(*v);\n\t\t\tif(dir == 0) {\n\t\t\t\tbreak;\n\t\t\t}\n\t\t\t\
+    node_t* new_v = (dir == -1 ? v->l : v->r);\n\t\t\tif(new_v == nullptr) {\n\t\t\
+    \t\tbreak;\n\t\t\t}\n\t\t\tv = new_v;\n\t\t}\n\t\treturn iterator(v);\n\t}\n\n\
+    \titerator find(const S& value) {\n\t\tauto it = lower_bound(value);\n\t\tif(it\
+    \ != end() && *it == value) {\n\t\t\treturn it;\n\t\t}\n\t\treturn end();\n\t\
+    }\n\n\titerator lower_bound(const S& value) {\n\t\tif(empty()) {\n\t\t\treturn\
+    \ end();\n\t\t}\n\t\tauto [lhs, rhs] = split([&](const node_t& v) {\n\t\t\treturn\
+    \ v.value >= value;\n\t\t});\n\t\tauto it = rhs.begin();\n\t\troot = merge(lhs.root,\
+    \ rhs.root);\n\t\treturn it;\n\t}\n\n\titerator upper_bound(const S& value) {\n\
+    \t\tif(empty()) {\n\t\t\treturn end();\n\t\t}\n\t\tauto [lhs, rhs] = split([&](const\
+    \ node_t& v) {\n\t\t\treturn v.value > value;\n\t\t});\n\t\tauto it = rhs.begin();\n\
+    \t\troot = merge(lhs.root, rhs.root);\n\t\treturn it;\n\t}\n\n\titerator insert(const\
+    \ S& value) {\n\t\tauto [lhs, rhs] = split([&](const node_t& v) {\n\t\t\treturn\
+    \ v.value > value;\n\t\t});\n\t\tauto v = make_node(value);\n\t\troot = merge(lhs.root,\
+    \ merge(v, rhs.root));\n\t\treturn v;\n\t}\n\n\tvoid erase(const S& value) {\n\
+    \t\tauto it = find(value);\n\t\tif(it != end()) {\n\t\t\terase(it);\n\t\t}\n\t\
+    }\n\n\titerator insert(iterator it, const S& s) {\n\t\tif(it == end()) {\n\t\t\
+    \tauto v = make_node(s);\n\t\t\troot = merge(root, v);\n\t\t\treturn v;\n\t\t\
+    }\n\t\tauto v = it.ptr();\n\t\tpush(v);\n\t\tauto z = make_node(s);\n\t\tv->l\
+    \ = merge(v->l, z);\n\t\tpull(v);\n\t\twhile((v = v->p) != nullptr) {\n\t\t\t\
+    push(v), pull(v);\n\t\t}\n\t\treturn z;\n\t}\n\n\tvoid erase(iterator it) {\n\t\
+    \tauto v = it.ptr();\n\t\tif(v == nullptr) {\n\t\t\treturn;\n\t\t}\n\t\tpush(v),\
+    \ pull(v);\n\t\tnode_t* p = v->p;\n\t\tnode_t* z = merge(v->l, v->r);\n\t\tif(p\
+    \ == nullptr) {\n\t\t\tif(z != nullptr) {\n\t\t\t\tz->p = nullptr;\n\t\t\t}\n\t\
+    \t\tif(v == root) {\n\t\t\t\troot = z;\n\t\t\t}\n\t\t} else {\n\t\t\tif(z != nullptr)\
+    \ {\n\t\t\t\tz->p = p;\n\t\t\t}\n\t\t\tif(p->l == v) {\n\t\t\t\tp->l = z;\n\t\t\
+    \t}\n\t\t\tif(p->r == v) {\n\t\t\t\tp->r = z;\n\t\t\t}\n\t\t}\n\t\twhile(p !=\
+    \ nullptr) {\n\t\t\tpush(p), pull(p);\n\t\t\tif(p->p == nullptr) {\n\t\t\t\tbreak;\n\
+    \t\t\t}\n\t\t\tp = p->p;\n\t\t}\n\t\treturn;\n\t}\n\n\t// sequence operations\n\
+    \n\tint get_position(iterator it) const {\n\t\tauto v = it.ptr();\n\t\tif(v ==\
+    \ nullptr) {\n\t\t\treturn size();\n\t\t}\n\t\tint k = (v->l == nullptr ? 0 :\
+    \ v->l->sz);\n\t\twhile(v->p != nullptr) {\n\t\t\tif(v == v->p->r) {\n\t\t\t\t\
+    k++;\n\t\t\t\tif(v->p->l != nullptr) {\n\t\t\t\t\tk += v->p->l->sz;\n\t\t\t\t\
+    }\n\t\t\t}\n\t\t\tv = v->p;\n\t\t}\n\t\treturn k;\n\t}\n\n\tstd::pair<treap, treap>\
+    \ split_k(int k) {\n\t\treturn split([&](const node_t& u) {\n\t\t\tint cnt = (u.l\
+    \ == nullptr ? 0 : u.l->sz) + 1;\n\t\t\tif(k >= cnt) {\n\t\t\t\tk -= cnt;\n\t\t\
+    \t\treturn false;\n\t\t\t}\n\t\t\treturn true;\n\t\t});\n\t}\n\n\tstd::tuple<treap,\
+    \ treap, treap> split_range(int l, int r) {\n\t\tassert(l < r);\n\t\tauto p =\
+    \ split_k(l);\n\t\tauto q = p.second.split_k(r - l);\n\t\treturn std::make_tuple(p.first,\
+    \ q.first, q.second);\n\t}\n\n\titerator insert_k(int k, const S& s) {\n\t\tauto\
+    \ p = split_k(k);\n\t\tauto v = make_node(s);\n\t\troot = merge(p.first.root,\
+    \ merge(v, p.second.root));\n\t\treturn iterator(v);\n\t}\n\n\tvoid erase_k(int\
+    \ k) {\n\t\tauto [lhs, mid, rhs] = split_range(k, k + 1);\n\t\troot = merge(lhs.root,\
+    \ rhs.root);\n\t}\n\n\tvoid set(int k, const S& s) {\n\t\tauto [lhs, mid, rhs]\
+    \ = split_range(k, k + 1);\n\t\t*mid.root = node_t(s);\n\t\troot = merge(lhs.root,\
+    \ merge(mid.root, rhs.root));\n\t}\n\n\tvoid apply(int l, int r, const F& f) {\n\
+    \t\tif(l == r) {\n\t\t\treturn;\n\t\t}\n\t\tauto [lhs, mid, rhs] = split_range(l,\
+    \ r);\n\t\tall_apply(mid.root, f);\n\t\troot = merge(lhs.root, merge(mid.root,\
+    \ rhs.root));\n\t}\n\n\tS prod(int l, int r) {\n\t\tif(l == r) {\n\t\t\treturn\
+    \ e();\n\t\t}\n\t\tauto [lhs, mid, rhs] = split_range(l, r);\n\t\tif(mid.root\
+    \ != nullptr) {\n\t\t\tpush(mid.root);\n\t\t}\n\t\tS ans = mid.root->sum;\n\t\t\
+    root = merge(lhs.root, merge(mid.root, rhs.root));\n\t\treturn ans;\n\t}\n\n\t\
+    S all_prod() {\n\t\tpush(root);\n\t\treturn root->sum;\n\t}\n\n\tS get(int k)\
+    \ {\n\t\tauto [lhs, mid, rhs] = split_range(k, k + 1);\n\t\tS ans = mid.root->value;\n\
+    \t\troot = merge(lhs.root, merge(mid.root, rhs.root));\n\t\treturn ans;\n\t}\n\
+    \n\tS operator[](int k) {\n\t\treturn get(k);\n\t}\n\n\tvoid reverse() {\n\t\t\
+    root->rev ^= 1;\n\t}\n\n\tvoid reverse(int l, int r) {\n\t\tif(l == r) {\n\t\t\
+    \treturn;\n\t\t}\n\t\tauto [lhs, mid, rhs] = split_range(l, r);\n\t\tmid.reverse();\n\
+    \t\troot = merge(lhs.root, merge(mid.root, rhs.root));\n\t}\n\nprotected:\n\t\
+    static node_t* make_node(const S& s) { return new node_t(s); }\n\n\tstatic node_t*\
+    \ merge(node_t* a, node_t* b) {\n\t\tif(a == nullptr || b == nullptr) {\n\t\t\t\
+    return a != nullptr ? a : b;\n\t\t}\n\t\tif((int) (((unsigned int) rng() * 1LL\
+    \ * (a->sz + b->sz)) >> 32) < a->sz) {\n\t\t\tpush(a);\n\t\t\ta->r = merge(a->r,\
+    \ b);\n\t\t\tpull(a);\n\t\t\treturn a;\n\t\t} else {\n\t\t\tpush(b);\n\t\t\tb->l\
+    \ = merge(a, b->l);\n\t\t\tpull(b);\n\t\t\treturn b;\n\t\t}\n\t}\n\n\tstatic std::pair<node_t*,\
+    \ node_t*> split(node_t*& v, const std::function<bool(const node_t&)>& is_right)\
+    \ {\n\t\tif(v == nullptr) {\n\t\t\treturn std::make_pair(nullptr, nullptr);\n\t\
+    \t}\n\t\tpush(v);\n\t\tif(is_right(*v)) {\n\t\t\tauto p = split(v->l, is_right);\n\
+    \t\t\tv->l = p.second;\n\t\t\tif(p.first != nullptr) {\n\t\t\t\tp.first->p = nullptr;\n\
+    \t\t\t}\n\t\t\tpull(v);\n\t\t\treturn std::make_pair(p.first, v);\n\t\t} else\
+    \ {\n\t\t\tauto p = split(v->r, is_right);\n\t\t\tv->r = p.first;\n\t\t\tif(p.second\
+    \ != nullptr) {\n\t\t\t\tp.second->p = nullptr;\n\t\t\t}\n\t\t\tpull(v);\n\t\t\
+    \treturn std::make_pair(v, p.second);\n\t\t}\n\t}\n\n\tstatic void all_apply(node_t*\
+    \ v, F f) {\n\t\tv->value = mapping(f, v->value);\n\t\tv->sum = mapping(f, v->sum);\n\
+    \t\tv->lz = composition(f, v->lz);\n\t}\n\n\tstatic void push(node_t* v) {\n\t\
+    \tif(v->lz != id()) {\n\t\t\tif(v->l != nullptr) {\n\t\t\t\tall_apply(v->l, v->lz);\n\
+    \t\t\t}\n\t\t\tif(v->r != nullptr) {\n\t\t\t\tall_apply(v->r, v->lz);\n\t\t\t\
+    }\n\t\t\tv->lz = id();\n\t\t}\n\t\tif(v->rev) {\n\t\t\tstd::swap(v->l, v->r);\n\
+    \t\t\tif(v->l != nullptr) {\n\t\t\t\tv->l->rev ^= 1;\n\t\t\t}\n\t\t\tif(v->r !=\
+    \ nullptr) {\n\t\t\t\tv->r->rev ^= 1;\n\t\t\t}\n\t\t\tv->sum = reversal(v->sum);\n\
+    \t\t\tv->rev = false;\n\t\t}\n\t}\n\n\tstatic void pull(node_t* v) {\n\t\tv->sz\
+    \ = 1;\n\t\tv->sum = v->value;\n\t\tif(v->l != nullptr) {\n\t\t\tv->sz += v->l->sz;\n\
+    \t\t\tv->sum = op(v->l->sum, v->sum);\n\t\t\tv->l->p = v;\n\t\t}\n\t\tif(v->r\
+    \ != nullptr) {\n\t\t\tv->sz += v->r->sz;\n\t\t\tv->sum = op(v->sum, v->r->sum);\n\
+    \t\t\tv->r->p = v;\n\t\t}\n\t}\n\n\tstatic node_t* next(node_t* v) {\n\t\tif(v->r\
+    \ == nullptr) {\n\t\t\twhile(v->p != nullptr && v->p->r == v) {\n\t\t\t\tv = v->p;\n\
+    \t\t\t}\n\t\t\treturn v->p;\n\t\t}\n\t\tpush(v);\n\t\tv = v->r;\n\t\twhile(v->l\
+    \ != nullptr) {\n\t\t\tpush(v);\n\t\t\tv = v->l;\n\t\t}\n\t\treturn v;\n\t}\n\
+    \ \n\tstatic node_t* prev(node_t* v) {\n\t\tif(v->l == nullptr) {\n\t\t\twhile(v->p\
+    \ != nullptr && v->p->l == v) {\n\t\t\t\tv = v->p;\n\t\t\t}\n\t\t\treturn v->p;\n\
+    \t\t}\n\t\tpush(v);\n\t\tv = v->l;\n\t\twhile(v->r != nullptr) {\n\t\t\tpush(v);\n\
+    \t\t\tv = v->r;\n\t\t}\n\t\treturn v;\n\t}\n};\n\n} // namespace felix\n#line\
+    \ 7 \"test/data-structure/treap/yosupo-Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp\"\
+    \nusing namespace std;\nusing namespace felix;\n\nusing mint = modint998244353;\n\
+    \nstruct S {\n\tmint sum;\n\tint sz = 0;\n\n\tS() {}\n\tS(mint x, int y = 1) :\
+    \ sum(x), sz(y) {}\n};\n\nS e() { return S(); }\nS op(S a, S b) { return S(a.sum\
+    \ + b.sum, a.sz + b.sz); }\nS reversal(S s) { return s; }\n\nstruct F {\n\tmint\
+    \ a = 1, b = 0;\n\n\tF() {}\n\tF(mint x, mint y) : a(x), b(y) {}\n\n\tbool operator!=(const\
+    \ F& other) const {\n\t\treturn a != other.a || b != other.b;\n\t}\n};\n\nF id()\
+    \ { return F(); }\n\nS mapping(F f, S s) {\n\ts.sum = f.a * s.sum + f.b * s.sz;\n\
+    \treturn s;\n}\n\nF composition(F a, F b) { return F(a.a * b.a, a.a * b.b + a.b);\
+    \ }\n\nint main() {\n\tios::sync_with_stdio(false);\n\tcin.tie(0);\n\tint n, q;\n\
+    \tcin >> n >> q;\n\ttreap<S, e, op, reversal, F, id, mapping, composition> tree;\n\
+    \tfor(int i = 0; i < n; i++) {\n\t\tmint x;\n\t\tcin >> x;\n\t\ttree.insert(i,\
+    \ S(x));\n\t}\n\twhile(q--) {\n\t\tint type;\n\t\tcin >> type;\n\t\tif(type ==\
+    \ 0) {\n\t\t\tint p, x;\n\t\t\tcin >> p >> x;\n\t\t\ttree.insert_k(p, S(x));\n\
+    \t\t} else if(type == 1) {\n\t\t\tint p;\n\t\t\tcin >> p;\n\t\t\ttree.erase_k(p);\n\
+    \t\t} else if(type == 2) {\n\t\t\tint l, r;\n\t\t\tcin >> l >> r;\n\t\t\ttree.reverse(l,\
+    \ r);\n\t\t} else if(type == 3) {\n\t\t\tint l, r, a, b;\n\t\t\tcin >> l >> r\
+    \ >> a >> b;\n\t\t\ttree.apply(l, r, F(a, b));\n\t\t} else {\n\t\t\tint l, r;\n\
+    \t\t\tcin >> l >> r;\n\t\t\tcout << tree.prod(l, r).sum << \"\\n\";\n\t\t}\n\t\
+    }\n\treturn 0;\n}\n\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum\"\
+    \n\n#include <iostream>\n#include <vector>\n#include \"../../../library/modint/modint.hpp\"\
+    \n#include \"../../../library/data-structure/treap.hpp\"\nusing namespace std;\n\
+    using namespace felix;\n\nusing mint = modint998244353;\n\nstruct S {\n\tmint\
+    \ sum;\n\tint sz = 0;\n\n\tS() {}\n\tS(mint x, int y = 1) : sum(x), sz(y) {}\n\
+    };\n\nS e() { return S(); }\nS op(S a, S b) { return S(a.sum + b.sum, a.sz + b.sz);\
+    \ }\nS reversal(S s) { return s; }\n\nstruct F {\n\tmint a = 1, b = 0;\n\n\tF()\
+    \ {}\n\tF(mint x, mint y) : a(x), b(y) {}\n\n\tbool operator!=(const F& other)\
+    \ const {\n\t\treturn a != other.a || b != other.b;\n\t}\n};\n\nF id() { return\
+    \ F(); }\n\nS mapping(F f, S s) {\n\ts.sum = f.a * s.sum + f.b * s.sz;\n\treturn\
+    \ s;\n}\n\nF composition(F a, F b) { return F(a.a * b.a, a.a * b.b + a.b); }\n\
+    \nint main() {\n\tios::sync_with_stdio(false);\n\tcin.tie(0);\n\tint n, q;\n\t\
+    cin >> n >> q;\n\ttreap<S, e, op, reversal, F, id, mapping, composition> tree;\n\
+    \tfor(int i = 0; i < n; i++) {\n\t\tmint x;\n\t\tcin >> x;\n\t\ttree.insert(i,\
+    \ S(x));\n\t}\n\twhile(q--) {\n\t\tint type;\n\t\tcin >> type;\n\t\tif(type ==\
+    \ 0) {\n\t\t\tint p, x;\n\t\t\tcin >> p >> x;\n\t\t\ttree.insert_k(p, S(x));\n\
+    \t\t} else if(type == 1) {\n\t\t\tint p;\n\t\t\tcin >> p;\n\t\t\ttree.erase_k(p);\n\
+    \t\t} else if(type == 2) {\n\t\t\tint l, r;\n\t\t\tcin >> l >> r;\n\t\t\ttree.reverse(l,\
+    \ r);\n\t\t} else if(type == 3) {\n\t\t\tint l, r, a, b;\n\t\t\tcin >> l >> r\
+    \ >> a >> b;\n\t\t\ttree.apply(l, r, F(a, b));\n\t\t} else {\n\t\t\tint l, r;\n\
+    \t\t\tcin >> l >> r;\n\t\t\tcout << tree.prod(l, r).sum << \"\\n\";\n\t\t}\n\t\
+    }\n\treturn 0;\n}\n\n"
+  dependsOn:
+  - library/modint/modint.hpp
+  - library/misc/type-traits.hpp
+  - library/math/inv-gcd.hpp
+  - library/math/safe-mod.hpp
+  - library/data-structure/treap.hpp
+  - library/random/rng.hpp
+  isVerificationFile: true
+  path: test/data-structure/treap/yosupo-Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
+  requiredBy: []
+  timestamp: '2023-07-02 17:03:19+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
+  verifiedWith: []
+documentation_of: test/data-structure/treap/yosupo-Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
+layout: document
+redirect_from:
+- /verify/test/data-structure/treap/yosupo-Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
+- /verify/test/data-structure/treap/yosupo-Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp.html
+title: test/data-structure/treap/yosupo-Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
+---

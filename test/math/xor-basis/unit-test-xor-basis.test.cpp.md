@@ -109,10 +109,9 @@ data:
     \t}\n\tfor(int i = 0; i < (int) ans.size(); i++) {\n\t\tassert(basis.get_kth(i)\
     \ == ans[i]);\n\t\tassert(basis.contains(ans[i]));\n\t}\n\tassert(basis.get_kth(ans.size())\
     \ == -1);\n\tassert(basis.get_min() == ans[0]);\n\tassert(basis.get_max() == ans.back());\n\
-    }\n\nint main() {\n\trnd.set_seed(chrono::steady_clock::now().time_since_epoch().count());\n\
-    \tTEST<1, 1>();\n\tTEST<1, 60>();\n\tfor(int iter = 0; iter < 50; iter++) {\n\t\
-    \tTEST<20, 60>();\n\t}\n\n\tint a, b;\n\tcin >> a >> b;\n\tcout << a + b << \"\
-    \\n\";\n\treturn 0;\n}\n"
+    }\n\nint main() {\n\tTEST<1, 1>();\n\tTEST<1, 60>();\n\tfor(int iter = 0; iter\
+    \ < 50; iter++) {\n\t\tTEST<20, 60>();\n\t}\n\n\tint a, b;\n\tcin >> a >> b;\n\
+    \tcout << a + b << \"\\n\";\n\treturn 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\" // dummy\n\n#include\
     \ <iostream>\n#include <vector>\n#include <chrono>\n#include <cassert>\n#include\
     \ <algorithm>\n#include \"../../../library/math/xor-basis.hpp\"\n#include \"../../../library/random/random.hpp\"\
@@ -129,10 +128,9 @@ data:
     \t}\n\tfor(int i = 0; i < (int) ans.size(); i++) {\n\t\tassert(basis.get_kth(i)\
     \ == ans[i]);\n\t\tassert(basis.contains(ans[i]));\n\t}\n\tassert(basis.get_kth(ans.size())\
     \ == -1);\n\tassert(basis.get_min() == ans[0]);\n\tassert(basis.get_max() == ans.back());\n\
-    }\n\nint main() {\n\trnd.set_seed(chrono::steady_clock::now().time_since_epoch().count());\n\
-    \tTEST<1, 1>();\n\tTEST<1, 60>();\n\tfor(int iter = 0; iter < 50; iter++) {\n\t\
-    \tTEST<20, 60>();\n\t}\n\n\tint a, b;\n\tcin >> a >> b;\n\tcout << a + b << \"\
-    \\n\";\n\treturn 0;\n}\n"
+    }\n\nint main() {\n\tTEST<1, 1>();\n\tTEST<1, 60>();\n\tfor(int iter = 0; iter\
+    \ < 50; iter++) {\n\t\tTEST<20, 60>();\n\t}\n\n\tint a, b;\n\tcin >> a >> b;\n\
+    \tcout << a + b << \"\\n\";\n\treturn 0;\n}\n"
   dependsOn:
   - library/math/xor-basis.hpp
   - library/random/random.hpp
@@ -140,7 +138,7 @@ data:
   isVerificationFile: true
   path: test/math/xor-basis/unit-test-xor-basis.test.cpp
   requiredBy: []
-  timestamp: '2023-05-31 10:45:25+08:00'
+  timestamp: '2023-07-02 17:03:19+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/math/xor-basis/unit-test-xor-basis.test.cpp
