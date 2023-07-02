@@ -40,7 +40,7 @@ it = tree.upper_bound(val);
 it = tree.find(val);
 
 // sequence
-int index = tree.get_position(it);
+int index = tree.get_index(it);
 it = tree.insert_k(k, val);
 tree.erase_k(k);
 tie(L, R) = tree.split_k(k); // tree == empty

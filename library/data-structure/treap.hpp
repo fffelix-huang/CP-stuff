@@ -40,7 +40,7 @@ public:
 		node_t* v = nullptr;
 
 	public:
-		using valueue_type = S;
+		using value_type = S;
 		using pointer = S*;
 		using reference = S&;
 		using difference_type = std::ptrdiff_t;
@@ -255,7 +255,7 @@ public:
 
 	// sequence operations
 
-	int get_position(iterator it) const {
+	int get_index(iterator it) const {
 		auto v = it.ptr();
 		if(v == nullptr) {
 			return size();
