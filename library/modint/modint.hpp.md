@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/inv-gcd.hpp
     title: library/math/inv-gcd.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/safe-mod.hpp
     title: library/math/safe-mod.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/misc/type-traits.hpp
     title: library/misc/type-traits.hpp
   _extendedRequiredBy:
@@ -45,7 +45,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/data-structure/lazy-segtree/yosupo-Range-Affine-Range-Sum.test.cpp
     title: test/data-structure/lazy-segtree/yosupo-Range-Affine-Range-Sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/data-structure/treap/yosupo-Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
     title: test/data-structure/treap/yosupo-Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -90,9 +90,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/tree/heavy-light-decomposition/yosupo-Vertex-Set-Path-Composite.test.cpp
     title: test/tree/heavy-light-decomposition/yosupo-Vertex-Set-Path-Composite.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"library/modint/modint.hpp\"\n#include <iostream>\r\n#include\
@@ -307,7 +307,7 @@ data:
   - library/convolution/ntt.hpp
   - library/formal-power-series/poly.hpp
   timestamp: '2023-06-27 22:09:28+08:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/modint/modint/yosupo-Sqrt-Mod.test.cpp
   - test/modint/modint/aoj-ntl-Power.test.cpp

@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/data-structure/treap.hpp
     title: treap
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/inv-gcd.hpp
     title: library/math/inv-gcd.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/safe-mod.hpp
     title: library/math/safe-mod.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/misc/type-traits.hpp
     title: library/misc/type-traits.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/modint/modint.hpp
     title: library/modint/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/random/rng.hpp
     title: library/random/rng.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum
@@ -300,7 +300,7 @@ data:
     \treturn s;\n}\n\nF composition(F a, F b) { return F(a.a * b.a, a.a * b.b + a.b);\
     \ }\n\nint main() {\n\tios::sync_with_stdio(false);\n\tcin.tie(0);\n\tint n, q;\n\
     \tcin >> n >> q;\n\ttreap<S, e, op, reversal, F, id, mapping, composition> tree;\n\
-    \tfor(int i = 0; i < n; i++) {\n\t\tmint x;\n\t\tcin >> x;\n\t\ttree.insert(i,\
+    \tfor(int i = 0; i < n; i++) {\n\t\tmint x;\n\t\tcin >> x;\n\t\ttree.insert(tree.end(),\
     \ S(x));\n\t}\n\twhile(q--) {\n\t\tint type;\n\t\tcin >> type;\n\t\tif(type ==\
     \ 0) {\n\t\t\tint p, x;\n\t\t\tcin >> p >> x;\n\t\t\ttree.insert_k(p, S(x));\n\
     \t\t} else if(type == 1) {\n\t\t\tint p;\n\t\t\tcin >> p;\n\t\t\ttree.erase_k(p);\n\
@@ -322,7 +322,7 @@ data:
     \ s;\n}\n\nF composition(F a, F b) { return F(a.a * b.a, a.a * b.b + a.b); }\n\
     \nint main() {\n\tios::sync_with_stdio(false);\n\tcin.tie(0);\n\tint n, q;\n\t\
     cin >> n >> q;\n\ttreap<S, e, op, reversal, F, id, mapping, composition> tree;\n\
-    \tfor(int i = 0; i < n; i++) {\n\t\tmint x;\n\t\tcin >> x;\n\t\ttree.insert(i,\
+    \tfor(int i = 0; i < n; i++) {\n\t\tmint x;\n\t\tcin >> x;\n\t\ttree.insert(tree.end(),\
     \ S(x));\n\t}\n\twhile(q--) {\n\t\tint type;\n\t\tcin >> type;\n\t\tif(type ==\
     \ 0) {\n\t\t\tint p, x;\n\t\t\tcin >> p >> x;\n\t\t\ttree.insert_k(p, S(x));\n\
     \t\t} else if(type == 1) {\n\t\t\tint p;\n\t\t\tcin >> p;\n\t\t\ttree.erase_k(p);\n\
@@ -341,8 +341,8 @@ data:
   isVerificationFile: true
   path: test/data-structure/treap/yosupo-Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
   requiredBy: []
-  timestamp: '2023-07-02 17:03:19+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-07-02 17:11:22+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/data-structure/treap/yosupo-Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
 layout: document
