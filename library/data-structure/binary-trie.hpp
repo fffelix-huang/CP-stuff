@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <array>
+#include <limits>
 
 namespace felix {
 
@@ -12,6 +13,7 @@ public:
 	}
 
 	void clear() {
+		sz = 0;
 		trie.clear();
 		new_node();
 	}
@@ -23,15 +25,17 @@ public:
 				trie[p].go[y] = new_node();
 			}
 			p = trie[p].go[y];
-			trie[p].cnt += 1;
+			trie[p].cnt++;
 		}
+		sz++;
 	}
 
 	void erase(T x) {
 		for(int i = B - 1, p = 0; i >= 0; i--) {
 			p = trie[p].go[x >> i & 1];
-			trie[p].cnt -= 1;
+			trie[p].cnt--;
 		}
+		sz--;
 	}
 
 	bool contains(T x) {
@@ -48,6 +52,9 @@ public:
 	T get_max() const { return get_xor_max(0); }
 
 	T get_xor_min(T x) const {
+		if(empty()) {
+			return std::numeric_limits<T>::max();
+		}
 		T ans = 0;
 		for(int i = B - 1, p = 0; i >= 0; i--) {
 			int y = x >> i & 1;
@@ -63,6 +70,9 @@ public:
 	}
 
 	T get_xor_max(T x) const {
+		if(empty()) {
+			return std::numeric_limits<T>::min();
+		}
 		T ans = 0;
 		for(int i = B - 1, p = 0; i >= 0; i--) {
 			int y = x >> i & 1;
@@ -77,6 +87,9 @@ public:
 		return ans;
 	}
 
+	int size() const { return sz; }
+	bool empty() const { return sz == 0; }
+
 private:
 	static constexpr int B = sizeof(T) * 8;
 
@@ -85,6 +98,7 @@ private:
 		int cnt = 0;
 	};
 
+	int sz = 0;
 	std::vector<node_t> trie;
 
 	int new_node() {

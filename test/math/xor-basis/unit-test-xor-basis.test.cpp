@@ -48,7 +48,6 @@ void TEST() {
 }
 
 int main() {
-	rnd.set_seed(chrono::steady_clock::now().time_since_epoch().count());
 	TEST<1, 1>();
 	TEST<1, 60>();
 	for(int iter = 0; iter < 50; iter++) {

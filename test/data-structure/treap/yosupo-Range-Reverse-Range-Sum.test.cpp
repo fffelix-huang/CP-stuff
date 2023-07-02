@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include <vector>
-#include "../../../library/data-structure/lazy-treap.hpp"
+#include "../../../library/data-structure/treap.hpp"
 using namespace std;
 using namespace felix;
 
@@ -12,31 +12,30 @@ S e() { return 0; }
 S op(S a, S b) { return a + b; }
 S reversal(S a) { return a; }
 
-using F = bool;
+using F = tuple<>;
 
-F id() { return false; }
-S mapping(F f, S s) { return s; }
-F composition(F a, F b) { return false; }
+F id() { return {}; }
+S mapping(F, S s) { return s; }
+F composition(F, F) { return {}; }
 
 int main() {
 	ios::sync_with_stdio(false);
 	cin.tie(0);
 	int n, q;
 	cin >> n >> q;
-	lazy_treap<S, e, op, reversal, F, id, mapping, composition> tree;
-	vector<S> a(n);
+	treap<S, e, op, reversal, F, id, mapping, composition> tree;
 	for(int i = 0; i < n; i++) {
-		cin >> a[i];
+		S x;
+		cin >> x;
+		tree.insert(tree.end(), x);
 	}
-	auto root = tree.new_tree();
-	tree.assign(root, a);
 	while(q--) {
 		int type, l, r;
 		cin >> type >> l >> r;
 		if(type == 0) {
-			tree.reverse(root, l, r);
+			tree.reverse(l, r);
 		} else {
-			cout << tree.prod(root, l, r) << "\n";
+			cout << tree.prod(l, r) << "\n";
 		}
 	}
 	return 0;

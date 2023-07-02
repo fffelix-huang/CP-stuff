@@ -3,7 +3,7 @@
 #include <iostream>
 #include <vector>
 #include "../../../library/modint/modint.hpp"
-#include "../../../library/data-structure/lazy-treap.hpp"
+#include "../../../library/data-structure/treap.hpp"
 using namespace std;
 using namespace felix;
 
@@ -46,37 +46,35 @@ int main() {
 	cin.tie(0);
 	int n, q;
 	cin >> n >> q;
-	vector<S> a(n);
+	treap<S, e, op, reversal, F, id, mapping, composition> tree;
 	for(int i = 0; i < n; i++) {
-		cin >> a[i].sum;
-		a[i].sz = 1;
+		mint x;
+		cin >> x;
+		tree.insert(i, S(x));
 	}
-	lazy_treap<S, e, op, reversal, F, id, mapping, composition> tree;
-	auto root = tree.new_tree();
-	tree.assign(root, a);
 	while(q--) {
 		int type;
 		cin >> type;
 		if(type == 0) {
 			int p, x;
 			cin >> p >> x;
-			tree.insert(root, p, S(x));
+			tree.insert_k(p, S(x));
 		} else if(type == 1) {
 			int p;
 			cin >> p;
-			tree.erase(root, p);
+			tree.erase_k(p);
 		} else if(type == 2) {
 			int l, r;
 			cin >> l >> r;
-			tree.reverse(root, l, r);
+			tree.reverse(l, r);
 		} else if(type == 3) {
 			int l, r, a, b;
 			cin >> l >> r >> a >> b;
-			tree.apply(root, l, r, F(a, b));
+			tree.apply(l, r, F(a, b));
 		} else {
 			int l, r;
 			cin >> l >> r;
-			cout << tree.prod(root, l, r).sum << "\n";
+			cout << tree.prod(l, r).sum << "\n";
 		}
 	}
 	return 0;
