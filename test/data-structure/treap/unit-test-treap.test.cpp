@@ -217,12 +217,12 @@ void TEST() {
 	}
 
 	{
-		cerr << "Testing get_position" << endl;
+		cerr << "Testing get_index" << endl;
 		Treap tree;
 		for(int i = 0; i < 100; i++) {
 			int k = rng() % (i + 1);
 			auto it = tree.insert_k(k, (S) rng());
-			assert(tree.get_position(it) == k);
+			assert(tree.get_index(it) == k);
 		}
 	}
 
