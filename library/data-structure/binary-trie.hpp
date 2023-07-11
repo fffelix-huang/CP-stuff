@@ -19,7 +19,7 @@ public:
 	}
 
 	void insert(T x) {
-		for(int i = B - 1, p = 0; i >= 0; i--) {
+		for(int i = BITS - 1, p = 0; i >= 0; i--) {
 			int y = x >> i & 1;
 			if(trie[p].go[y] == 0) {
 				trie[p].go[y] = new_node();
@@ -31,7 +31,7 @@ public:
 	}
 
 	void erase(T x) {
-		for(int i = B - 1, p = 0; i >= 0; i--) {
+		for(int i = BITS - 1, p = 0; i >= 0; i--) {
 			p = trie[p].go[x >> i & 1];
 			trie[p].cnt--;
 		}
@@ -39,7 +39,7 @@ public:
 	}
 
 	bool contains(T x) {
-		for(int i = B - 1, p = 0; i >= 0; i--) {
+		for(int i = BITS - 1, p = 0; i >= 0; i--) {
 			p = trie[p].go[x >> i & 1];
 			if(trie[p].cnt == 0) {
 				return false;
@@ -56,7 +56,7 @@ public:
 			return std::numeric_limits<T>::max();
 		}
 		T ans = 0;
-		for(int i = B - 1, p = 0; i >= 0; i--) {
+		for(int i = BITS - 1, p = 0; i >= 0; i--) {
 			int y = x >> i & 1;
 			int z = trie[p].go[y];
 			if(z > 0 && trie[z].cnt > 0) {
@@ -74,7 +74,7 @@ public:
 			return std::numeric_limits<T>::min();
 		}
 		T ans = 0;
-		for(int i = B - 1, p = 0; i >= 0; i--) {
+		for(int i = BITS - 1, p = 0; i >= 0; i--) {
 			int y = x >> i & 1;
 			int z = trie[p].go[y ^ 1];
 			if(z > 0 && trie[z].cnt > 0) {
@@ -91,7 +91,7 @@ public:
 	bool empty() const { return sz == 0; }
 
 private:
-	static constexpr int B = sizeof(T) * 8;
+	static constexpr int BITS = sizeof(T) * 8;
 
 	struct node_t {
 		std::array<int, 2> go = {};

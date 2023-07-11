@@ -21,7 +21,7 @@ public:
 		}
 	}
 
-	inline S prod(int from, int to) const {
+	S prod(int from, int to) const {
 		assert(0 <= from && from <= to && to <= n - 1);
 		int lg = std::__lg(to - from + 1);
 		return op(mat[lg][from], mat[lg][to - (1 << lg) + 1]);

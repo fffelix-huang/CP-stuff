@@ -16,6 +16,8 @@ using i128 = __int128;
 using u128 = __uint128_t;
 using pii = std::pair<int, int>;
 using pll = std::pair<ll, ll>;
+template<class T> using max_heap = std::priority_queue<T>;
+template<class T> using min_heap = std::priority_queue<T, std::vector<T>, std::greater<T>>;
 
 template<class T, class U> std::istream& operator>>(std::istream& in, std::pair<T, U>& p) { return in >> p.first >> p.second; }
 template<class A, class B, class C> std::istream& operator>>(std::istream& in, std::tuple<A, B, C>& tp) { return in >> std::get<0>(tp) >> std::get<1>(tp) >> std::get<2>(tp); }

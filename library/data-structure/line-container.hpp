@@ -7,7 +7,7 @@
 
 namespace felix {
 
-namespace line_container_internal {
+namespace internal_line_container {
 
 template<class T>
 struct line_t {
@@ -66,9 +66,9 @@ struct line_container : std::multiset<line_t<T>, std::less<>> {
 	}
 };
 
-} // line_container_internal
+} // internal_line_container
 
-template<class T> using min_line_container = line_container_internal::line_container<T, false>;
-template<class T> using max_line_container = line_container_internal::line_container<T, true>;
+template<class T> using min_line_container = internal_line_container::line_container<T, false>;
+template<class T> using max_line_container = internal_line_container::line_container<T, true>;
 
 } // namespace felix
