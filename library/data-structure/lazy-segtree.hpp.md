@@ -27,6 +27,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/data-structure/lazy-segtree/yosupo-Range-Affine-Range-Sum.test.cpp
     title: test/data-structure/lazy-segtree/yosupo-Range-Affine-Range-Sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/tree/hld/aoj-grl-Range-Query-on-a-Tree-II.test.cpp
+    title: test/tree/hld/aoj-grl-Range-Query-on-a-Tree-II.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -159,6 +162,7 @@ data:
   - test/data-structure/lazy-segtree/aoj-dsl-RSQ-and-RUQ.test.cpp
   - test/data-structure/lazy-segtree/yosupo-Range-Affine-Range-Sum.test.cpp
   - test/data-structure/lazy-segtree/aoj-dsl-RSQ-and-RAQ.test.cpp
+  - test/tree/hld/aoj-grl-Range-Query-on-a-Tree-II.test.cpp
 documentation_of: library/data-structure/lazy-segtree.hpp
 layout: document
 redirect_from:

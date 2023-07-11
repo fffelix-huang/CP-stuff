@@ -5,10 +5,34 @@ data:
     path: library/data-structure/sparse-table.hpp
     title: library/data-structure/sparse-table.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/tree/hld/aoj-grl-Lowest-Common-Ancestor.test.cpp
+    title: test/tree/hld/aoj-grl-Lowest-Common-Ancestor.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/tree/hld/aoj-grl-Range-Query-on-a-Tree-II.test.cpp
+    title: test/tree/hld/aoj-grl-Range-Query-on-a-Tree-II.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/tree/hld/aoj-grl-Range-Query-on-a-Tree.test.cpp
+    title: test/tree/hld/aoj-grl-Range-Query-on-a-Tree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/tree/hld/yosupo-Jump-on-Tree.test.cpp
+    title: test/tree/hld/yosupo-Jump-on-Tree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/tree/hld/yosupo-Lowest-Common-Ancestor.test.cpp
+    title: test/tree/hld/yosupo-Lowest-Common-Ancestor.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/tree/hld/yosupo-Vertex-Add-Path-Sum.test.cpp
+    title: test/tree/hld/yosupo-Vertex-Add-Path-Sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/tree/hld/yosupo-Vertex-Add-Subtree-Sum.test.cpp
+    title: test/tree/hld/yosupo-Vertex-Add-Subtree-Sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/tree/hld/yosupo-Vertex-Set-Path-Composite.test.cpp
+    title: test/tree/hld/yosupo-Vertex-Set-Path-Composite.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"library/tree/hld.hpp\"\n#include <vector>\r\n#include <array>\r\
@@ -152,8 +176,16 @@ data:
   path: library/tree/hld.hpp
   requiredBy: []
   timestamp: '2023-07-11 10:41:16+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/tree/hld/yosupo-Jump-on-Tree.test.cpp
+  - test/tree/hld/yosupo-Vertex-Set-Path-Composite.test.cpp
+  - test/tree/hld/aoj-grl-Range-Query-on-a-Tree-II.test.cpp
+  - test/tree/hld/yosupo-Vertex-Add-Path-Sum.test.cpp
+  - test/tree/hld/yosupo-Vertex-Add-Subtree-Sum.test.cpp
+  - test/tree/hld/aoj-grl-Range-Query-on-a-Tree.test.cpp
+  - test/tree/hld/yosupo-Lowest-Common-Ancestor.test.cpp
+  - test/tree/hld/aoj-grl-Lowest-Common-Ancestor.test.cpp
 documentation_of: library/tree/hld.hpp
 layout: document
 redirect_from:

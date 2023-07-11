@@ -229,7 +229,7 @@ data:
       title: Z Algorithm
   - name: library/tree
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: library/tree/hld.hpp
       title: library/tree/hld.hpp
     - icon: ':warning:'
@@ -577,28 +577,28 @@ data:
       title: test/string/z-algorithm/yosupo-Z-Algorithm.test.cpp
   - name: test/tree/hld
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/tree/hld/aoj-grl-Lowest-Common-Ancestor.test.cpp
       title: test/tree/hld/aoj-grl-Lowest-Common-Ancestor.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/tree/hld/aoj-grl-Range-Query-on-a-Tree-II.test.cpp
       title: test/tree/hld/aoj-grl-Range-Query-on-a-Tree-II.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/tree/hld/aoj-grl-Range-Query-on-a-Tree.test.cpp
       title: test/tree/hld/aoj-grl-Range-Query-on-a-Tree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/tree/hld/yosupo-Jump-on-Tree.test.cpp
       title: test/tree/hld/yosupo-Jump-on-Tree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/tree/hld/yosupo-Lowest-Common-Ancestor.test.cpp
       title: test/tree/hld/yosupo-Lowest-Common-Ancestor.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/tree/hld/yosupo-Vertex-Add-Path-Sum.test.cpp
       title: test/tree/hld/yosupo-Vertex-Add-Path-Sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/tree/hld/yosupo-Vertex-Add-Subtree-Sum.test.cpp
       title: test/tree/hld/yosupo-Vertex-Add-Subtree-Sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/tree/hld/yosupo-Vertex-Set-Path-Composite.test.cpp
       title: test/tree/hld/yosupo-Vertex-Set-Path-Composite.test.cpp
 layout: toppage

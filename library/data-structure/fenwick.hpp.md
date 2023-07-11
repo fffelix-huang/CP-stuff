@@ -21,6 +21,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/data-structure/offline-rectangle-sum/yosupo-Point-Add-Rectangle-Sum.test.cpp
     title: test/data-structure/offline-rectangle-sum/yosupo-Point-Add-Rectangle-Sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/tree/hld/aoj-grl-Range-Query-on-a-Tree.test.cpp
+    title: test/tree/hld/aoj-grl-Range-Query-on-a-Tree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/tree/hld/yosupo-Vertex-Add-Path-Sum.test.cpp
+    title: test/tree/hld/yosupo-Vertex-Add-Path-Sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/tree/hld/yosupo-Vertex-Add-Subtree-Sum.test.cpp
+    title: test/tree/hld/yosupo-Vertex-Add-Subtree-Sum.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -62,6 +71,9 @@ data:
   - test/data-structure/fenwick/aoj-dsl-Range-Sum-Query.test.cpp
   - test/data-structure/fenwick/aoj-dsl-Range-Add-Query.test.cpp
   - test/data-structure/offline-rectangle-sum/yosupo-Point-Add-Rectangle-Sum.test.cpp
+  - test/tree/hld/yosupo-Vertex-Add-Path-Sum.test.cpp
+  - test/tree/hld/yosupo-Vertex-Add-Subtree-Sum.test.cpp
+  - test/tree/hld/aoj-grl-Range-Query-on-a-Tree.test.cpp
 documentation_of: library/data-structure/fenwick.hpp
 layout: document
 redirect_from:

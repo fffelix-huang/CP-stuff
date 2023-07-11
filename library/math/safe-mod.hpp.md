@@ -108,6 +108,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/modint/modint/yosupo-Sqrt-Mod.test.cpp
     title: test/modint/modint/yosupo-Sqrt-Mod.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/tree/hld/yosupo-Vertex-Set-Path-Composite.test.cpp
+    title: test/tree/hld/yosupo-Vertex-Set-Path-Composite.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -157,6 +160,7 @@ data:
   - test/data-structure/lazy-lct/yosupo-Dynamic-Tree-Vertex-Set-Path-Composite.test.cpp
   - test/data-structure/lazy-segtree/yosupo-Range-Affine-Point-Get.test.cpp
   - test/data-structure/lazy-segtree/yosupo-Range-Affine-Range-Sum.test.cpp
+  - test/tree/hld/yosupo-Vertex-Set-Path-Composite.test.cpp
   - test/convolution/ntt/yosupo-Convolution-Large.test.cpp
   - test/convolution/ntt/yosupo-Convolution-Mod-1000000007.test.cpp
   - test/convolution/ntt/yosupo-Convolution.test.cpp
