@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/misc/type-traits.hpp
     title: library/misc/type-traits.hpp
   _extendedRequiredBy: []
@@ -140,8 +140,8 @@ data:
   timestamp: '2023-05-28 03:49:52+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/convolution/subset-convolution/yosupo-Subset-Convolution.test.cpp
   - test/convolution/subset-convolution/yosupo-Bitwise-Xor-Convolution.test.cpp
+  - test/convolution/subset-convolution/yosupo-Subset-Convolution.test.cpp
   - test/convolution/subset-convolution/yosupo-Bitwise-And-Convolution.test.cpp
 documentation_of: library/convolution/subset-convolution.hpp
 layout: document

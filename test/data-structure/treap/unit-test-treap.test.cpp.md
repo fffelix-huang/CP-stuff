@@ -1,17 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: library/bst/rbst-base.hpp
+    title: library/bst/rbst-base.hpp
+  - icon: ':x:'
     path: library/data-structure/treap.hpp
     title: treap
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/random/rng.hpp
     title: library/random/rng.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -24,136 +27,96 @@ data:
     \nnamespace felix {\n\ninline unsigned long long rng() {\n\tstatic unsigned long\
     \ long SEED = std::chrono::steady_clock::now().time_since_epoch().count();\n\t\
     SEED ^= SEED << 7;\n\tSEED ^= SEED >> 9;\n\treturn SEED;\n}\n\n} // namespace\
-    \ felix\n#line 3 \"library/data-structure/treap.hpp\"\n#include <cstddef>\n#include\
-    \ <iterator>\n#line 9 \"library/data-structure/treap.hpp\"\n#include <functional>\n\
-    #line 12 \"library/data-structure/treap.hpp\"\n\nnamespace felix {\n\ntemplate<class\
-    \ S,\n         S (*e)(),\n         S (*op)(S, S),\n         S (*reversal)(S),\n\
-    \         class F,\n         F (*id)(),\n         S (*mapping)(F, S),\n      \
-    \   F (*composition)(F, F)>\nstruct treap {\npublic:\n\tstruct node_t {\n\t\t\
-    S value, sum;\n\t\tF lz = id();\n\t\tbool rev = false;\n\t\tint sz = 1;\n\t\t\
-    node_t* l = nullptr;\n\t\tnode_t* r = nullptr;\n\t\tnode_t* p = nullptr;\n\n\t\
-    \tnode_t() : value(e()), sum(e()) {}\n\t\tnode_t(const S& s) : value(s), sum(s)\
-    \ {}\n\t};\n\n\tstruct iterator {\n\tprivate:\n\t\tnode_t* v = nullptr;\n\n\t\
-    public:\n\t\tusing value_type = S;\n\t\tusing pointer = S*;\n\t\tusing reference\
-    \ = S&;\n\t\tusing difference_type = std::ptrdiff_t;\n\t\tusing iterator_category\
-    \ = std::bidirectional_iterator_tag;\n\n\t\titerator& operator++() {\n\t\t\tv\
-    \ = next(v);\n\t\t\treturn *this;\n\t\t}\n\n\t\titerator operator++(int) {\n\t\
-    \t\titerator tmp(*this);\n\t\t\t++(*this);\n\t\t\treturn tmp;\n\t\t}\n\n\t\titerator&\
-    \ operator--() {\n\t\t\tv = prev(v);\n\t\t\treturn *this;\n\t\t}\n\n\t\titerator\
-    \ operator--(int) {\n\t\t\titerator tmp(*this);\n\t\t\t--(*this);\n\t\t\treturn\
-    \ tmp;\n\t\t}\n\n\t\treference operator*() { return v->value; }\n\t\tpointer operator->()\
-    \ { return v->value; }\n\t\tnode_t* ptr() const { return v; }\n\n\t\titerator()\
-    \ {}\n\t\titerator(node_t* node) : v(node) {}\n\n\t\tbool operator==(const iterator&\
-    \ other) const { return v == other.v; }\n\t\tbool operator!=(const iterator& other)\
-    \ const { return v != other.v; }\n\t};\n\n\titerator begin() const { return find([](const\
-    \ node_t&) { return -1; }); }\n\titerator end() const { return iterator(nullptr);\
-    \ }\n\nprivate:\n\tnode_t* root = nullptr;\n\n\ttreap(node_t* v) : root(v) {}\n\
-    \npublic:\n\ttreap() {}\n\n\tint size() const { return root != nullptr ? root->sz\
-    \ : 0; }\n\tbool empty() const { return root == nullptr; }\n\n\tvoid clear() {\n\
-    \t\tstd::function<void(node_t*)> remove = [&](node_t* v) {\n\t\t\tif(v == nullptr)\
-    \ {\n\t\t\t\treturn;\n\t\t\t}\n\t\t\tremove(v->l);\n\t\t\tremove(v->r);\n\t\t\t\
-    delete v;\n\t\t};\n\t\tremove(root);\n\t\troot = nullptr;\n\t}\n\n\tvoid merge(treap\
-    \ other) {\n\t\troot = merge(root, other.root);\n\t}\n\n\tstd::pair<treap, treap>\
-    \ split(const std::function<bool(const node_t&)>& is_right) {\n\t\tauto [lhs,\
-    \ rhs] = split(root, is_right);\n\t\troot = nullptr;\n\t\treturn std::make_pair(treap(lhs),\
-    \ treap(rhs));\n\t}\n\n\tvoid clear_tag() {\n\t\tstd::function<void(node_t*)>\
-    \ down = [&](node_t* v) {\n\t\t\tif(v == nullptr) {\n\t\t\t\treturn;\n\t\t\t}\n\
-    \t\t\tpush(v);\n\t\t\tdown(v->l);\n\t\t\tdown(v->r);\n\t\t};\n\t\tdown(root);\n\
-    \t}\n\n\t// bst operations\n\n\t// -1 0 +1\n\titerator find(const std::function<int(const\
-    \ node_t&)>& go_to) const {\n\t\tnode_t* v = root;\n\t\tif(v == nullptr) {\n\t\
-    \t\treturn nullptr;\n\t\t}\n\t\tint dir = 0;\n\t\twhile(true) {\n\t\t\tpush(v);\n\
-    \t\t\tdir = go_to(*v);\n\t\t\tif(dir == 0) {\n\t\t\t\tbreak;\n\t\t\t}\n\t\t\t\
-    node_t* new_v = (dir == -1 ? v->l : v->r);\n\t\t\tif(new_v == nullptr) {\n\t\t\
-    \t\tbreak;\n\t\t\t}\n\t\t\tv = new_v;\n\t\t}\n\t\treturn iterator(v);\n\t}\n\n\
-    \titerator find(const S& value) {\n\t\tauto it = lower_bound(value);\n\t\tif(it\
-    \ != end() && *it == value) {\n\t\t\treturn it;\n\t\t}\n\t\treturn end();\n\t\
-    }\n\n\titerator lower_bound(const S& value) {\n\t\tif(empty()) {\n\t\t\treturn\
-    \ end();\n\t\t}\n\t\tauto [lhs, rhs] = split([&](const node_t& v) {\n\t\t\treturn\
-    \ v.value >= value;\n\t\t});\n\t\tauto it = rhs.begin();\n\t\troot = merge(lhs.root,\
-    \ rhs.root);\n\t\treturn it;\n\t}\n\n\titerator upper_bound(const S& value) {\n\
-    \t\tif(empty()) {\n\t\t\treturn end();\n\t\t}\n\t\tauto [lhs, rhs] = split([&](const\
-    \ node_t& v) {\n\t\t\treturn v.value > value;\n\t\t});\n\t\tauto it = rhs.begin();\n\
-    \t\troot = merge(lhs.root, rhs.root);\n\t\treturn it;\n\t}\n\n\titerator insert(const\
-    \ S& value) {\n\t\tauto [lhs, rhs] = split([&](const node_t& v) {\n\t\t\treturn\
-    \ v.value > value;\n\t\t});\n\t\tauto v = make_node(value);\n\t\troot = merge(lhs.root,\
-    \ merge(v, rhs.root));\n\t\treturn v;\n\t}\n\n\tvoid erase(const S& value) {\n\
-    \t\tauto it = find(value);\n\t\tif(it != end()) {\n\t\t\terase(it);\n\t\t}\n\t\
-    }\n\n\titerator insert(iterator it, const S& s) {\n\t\tif(it == end()) {\n\t\t\
-    \tauto v = make_node(s);\n\t\t\troot = merge(root, v);\n\t\t\treturn v;\n\t\t\
-    }\n\t\tauto v = it.ptr();\n\t\tpush(v);\n\t\tauto z = make_node(s);\n\t\tv->l\
-    \ = merge(v->l, z);\n\t\tpull(v);\n\t\twhile((v = v->p) != nullptr) {\n\t\t\t\
-    push(v), pull(v);\n\t\t}\n\t\treturn z;\n\t}\n\n\tvoid erase(iterator it) {\n\t\
-    \tauto v = it.ptr();\n\t\tif(v == nullptr) {\n\t\t\treturn;\n\t\t}\n\t\tpush(v),\
-    \ pull(v);\n\t\tnode_t* p = v->p;\n\t\tnode_t* z = merge(v->l, v->r);\n\t\tif(p\
-    \ == nullptr) {\n\t\t\tif(z != nullptr) {\n\t\t\t\tz->p = nullptr;\n\t\t\t}\n\t\
-    \t\tif(v == root) {\n\t\t\t\troot = z;\n\t\t\t}\n\t\t} else {\n\t\t\tif(z != nullptr)\
-    \ {\n\t\t\t\tz->p = p;\n\t\t\t}\n\t\t\tif(p->l == v) {\n\t\t\t\tp->l = z;\n\t\t\
-    \t}\n\t\t\tif(p->r == v) {\n\t\t\t\tp->r = z;\n\t\t\t}\n\t\t}\n\t\twhile(p !=\
-    \ nullptr) {\n\t\t\tpush(p), pull(p);\n\t\t\tif(p->p == nullptr) {\n\t\t\t\tbreak;\n\
-    \t\t\t}\n\t\t\tp = p->p;\n\t\t}\n\t\treturn;\n\t}\n\n\t// sequence operations\n\
-    \n\tint get_index(iterator it) const {\n\t\tauto v = it.ptr();\n\t\tif(v == nullptr)\
-    \ {\n\t\t\treturn size();\n\t\t}\n\t\tint k = (v->l == nullptr ? 0 : v->l->sz);\n\
-    \t\twhile(v->p != nullptr) {\n\t\t\tif(v == v->p->r) {\n\t\t\t\tk++;\n\t\t\t\t\
-    if(v->p->l != nullptr) {\n\t\t\t\t\tk += v->p->l->sz;\n\t\t\t\t}\n\t\t\t}\n\t\t\
-    \tv = v->p;\n\t\t}\n\t\treturn k;\n\t}\n\n\tstd::pair<treap, treap> split_k(int\
-    \ k) {\n\t\treturn split([&](const node_t& u) {\n\t\t\tint cnt = (u.l == nullptr\
-    \ ? 0 : u.l->sz) + 1;\n\t\t\tif(k >= cnt) {\n\t\t\t\tk -= cnt;\n\t\t\t\treturn\
-    \ false;\n\t\t\t}\n\t\t\treturn true;\n\t\t});\n\t}\n\n\tstd::tuple<treap, treap,\
-    \ treap> split_range(int l, int r) {\n\t\tassert(l < r);\n\t\tauto p = split_k(l);\n\
-    \t\tauto q = p.second.split_k(r - l);\n\t\treturn std::make_tuple(p.first, q.first,\
-    \ q.second);\n\t}\n\n\titerator insert_k(int k, const S& s) {\n\t\tauto p = split_k(k);\n\
-    \t\tauto v = make_node(s);\n\t\troot = merge(p.first.root, merge(v, p.second.root));\n\
-    \t\treturn iterator(v);\n\t}\n\n\tvoid erase_k(int k) {\n\t\tauto [lhs, mid, rhs]\
-    \ = split_range(k, k + 1);\n\t\troot = merge(lhs.root, rhs.root);\n\t}\n\n\tvoid\
-    \ set(int k, const S& s) {\n\t\tauto [lhs, mid, rhs] = split_range(k, k + 1);\n\
-    \t\t*mid.root = node_t(s);\n\t\troot = merge(lhs.root, merge(mid.root, rhs.root));\n\
-    \t}\n\n\tvoid apply(int l, int r, const F& f) {\n\t\tif(l == r) {\n\t\t\treturn;\n\
-    \t\t}\n\t\tauto [lhs, mid, rhs] = split_range(l, r);\n\t\tall_apply(mid.root,\
-    \ f);\n\t\troot = merge(lhs.root, merge(mid.root, rhs.root));\n\t}\n\n\tS prod(int\
-    \ l, int r) {\n\t\tif(l == r) {\n\t\t\treturn e();\n\t\t}\n\t\tauto [lhs, mid,\
-    \ rhs] = split_range(l, r);\n\t\tif(mid.root != nullptr) {\n\t\t\tpush(mid.root);\n\
-    \t\t}\n\t\tS ans = mid.root->sum;\n\t\troot = merge(lhs.root, merge(mid.root,\
-    \ rhs.root));\n\t\treturn ans;\n\t}\n\n\tS all_prod() {\n\t\tpush(root);\n\t\t\
-    return root->sum;\n\t}\n\n\tS get(int k) {\n\t\tauto [lhs, mid, rhs] = split_range(k,\
-    \ k + 1);\n\t\tS ans = mid.root->value;\n\t\troot = merge(lhs.root, merge(mid.root,\
-    \ rhs.root));\n\t\treturn ans;\n\t}\n\n\tS operator[](int k) {\n\t\treturn get(k);\n\
-    \t}\n\n\tvoid reverse() {\n\t\troot->rev ^= 1;\n\t}\n\n\tvoid reverse(int l, int\
-    \ r) {\n\t\tif(l == r) {\n\t\t\treturn;\n\t\t}\n\t\tauto [lhs, mid, rhs] = split_range(l,\
-    \ r);\n\t\tmid.reverse();\n\t\troot = merge(lhs.root, merge(mid.root, rhs.root));\n\
-    \t}\n\nprotected:\n\tstatic node_t* make_node(const S& s) { return new node_t(s);\
-    \ }\n\n\tstatic node_t* merge(node_t* a, node_t* b) {\n\t\tif(a == nullptr ||\
-    \ b == nullptr) {\n\t\t\treturn a != nullptr ? a : b;\n\t\t}\n\t\tif((int) (((unsigned\
-    \ int) rng() * 1LL * (a->sz + b->sz)) >> 32) < a->sz) {\n\t\t\tpush(a);\n\t\t\t\
-    a->r = merge(a->r, b);\n\t\t\tpull(a);\n\t\t\treturn a;\n\t\t} else {\n\t\t\t\
-    push(b);\n\t\t\tb->l = merge(a, b->l);\n\t\t\tpull(b);\n\t\t\treturn b;\n\t\t\
-    }\n\t}\n\n\tstatic std::pair<node_t*, node_t*> split(node_t*& v, const std::function<bool(const\
-    \ node_t&)>& is_right) {\n\t\tif(v == nullptr) {\n\t\t\treturn std::make_pair(nullptr,\
-    \ nullptr);\n\t\t}\n\t\tpush(v);\n\t\tif(is_right(*v)) {\n\t\t\tauto p = split(v->l,\
-    \ is_right);\n\t\t\tv->l = p.second;\n\t\t\tif(p.first != nullptr) {\n\t\t\t\t\
-    p.first->p = nullptr;\n\t\t\t}\n\t\t\tpull(v);\n\t\t\treturn std::make_pair(p.first,\
-    \ v);\n\t\t} else {\n\t\t\tauto p = split(v->r, is_right);\n\t\t\tv->r = p.first;\n\
-    \t\t\tif(p.second != nullptr) {\n\t\t\t\tp.second->p = nullptr;\n\t\t\t}\n\t\t\
-    \tpull(v);\n\t\t\treturn std::make_pair(v, p.second);\n\t\t}\n\t}\n\n\tstatic\
-    \ void all_apply(node_t* v, F f) {\n\t\tv->value = mapping(f, v->value);\n\t\t\
-    v->sum = mapping(f, v->sum);\n\t\tv->lz = composition(f, v->lz);\n\t}\n\n\tstatic\
-    \ void push(node_t* v) {\n\t\tif(v->lz != id()) {\n\t\t\tif(v->l != nullptr) {\n\
-    \t\t\t\tall_apply(v->l, v->lz);\n\t\t\t}\n\t\t\tif(v->r != nullptr) {\n\t\t\t\t\
-    all_apply(v->r, v->lz);\n\t\t\t}\n\t\t\tv->lz = id();\n\t\t}\n\t\tif(v->rev) {\n\
-    \t\t\tstd::swap(v->l, v->r);\n\t\t\tif(v->l != nullptr) {\n\t\t\t\tv->l->rev ^=\
-    \ 1;\n\t\t\t}\n\t\t\tif(v->r != nullptr) {\n\t\t\t\tv->r->rev ^= 1;\n\t\t\t}\n\
-    \t\t\tv->sum = reversal(v->sum);\n\t\t\tv->rev = false;\n\t\t}\n\t}\n\n\tstatic\
-    \ void pull(node_t* v) {\n\t\tv->sz = 1;\n\t\tv->sum = v->value;\n\t\tif(v->l\
-    \ != nullptr) {\n\t\t\tv->sz += v->l->sz;\n\t\t\tv->sum = op(v->l->sum, v->sum);\n\
-    \t\t\tv->l->p = v;\n\t\t}\n\t\tif(v->r != nullptr) {\n\t\t\tv->sz += v->r->sz;\n\
-    \t\t\tv->sum = op(v->sum, v->r->sum);\n\t\t\tv->r->p = v;\n\t\t}\n\t}\n\n\tstatic\
-    \ node_t* next(node_t* v) {\n\t\tif(v->r == nullptr) {\n\t\t\twhile(v->p != nullptr\
-    \ && v->p->r == v) {\n\t\t\t\tv = v->p;\n\t\t\t}\n\t\t\treturn v->p;\n\t\t}\n\t\
-    \tpush(v);\n\t\tv = v->r;\n\t\twhile(v->l != nullptr) {\n\t\t\tpush(v);\n\t\t\t\
-    v = v->l;\n\t\t}\n\t\treturn v;\n\t}\n \n\tstatic node_t* prev(node_t* v) {\n\t\
-    \tif(v->l == nullptr) {\n\t\t\twhile(v->p != nullptr && v->p->l == v) {\n\t\t\t\
-    \tv = v->p;\n\t\t\t}\n\t\t\treturn v->p;\n\t\t}\n\t\tpush(v);\n\t\tv = v->l;\n\
-    \t\twhile(v->r != nullptr) {\n\t\t\tpush(v);\n\t\t\tv = v->r;\n\t\t}\n\t\treturn\
-    \ v;\n\t}\n};\n\n} // namespace felix\n#line 10 \"test/data-structure/treap/unit-test-treap.test.cpp\"\
+    \ felix\n#line 3 \"library/bst/rbst-base.hpp\"\n#include <functional>\r\n#line\
+    \ 5 \"library/bst/rbst-base.hpp\"\n\r\nnamespace felix {\r\n\r\nnamespace internal\
+    \ {\r\n\r\ntemplate<class node_t, class Comp = std::less<decltype(node_t::key)>>\r\
+    \nstruct rbst_base {\r\n\tusing key_type = decltype(node_t::key);\r\n\r\nprivate:\r\
+    \n\tstatic const Comp Compare;\r\n\r\npublic:\r\n\tstatic node_t* merge(node_t*\
+    \ a, node_t* b) {\r\n\t\tif(a == nullptr || b == nullptr) {\r\n\t\t\treturn a\
+    \ != nullptr ? a : b;\r\n\t\t}\r\n\t\tif((int) (((unsigned int) rng() * 1LL *\
+    \ (a->size + b->size)) >> 32) < a->size) {\r\n\t\t\ta->push();\r\n\t\t\ta->r =\
+    \ merge(a->r, b);\r\n\t\t\ta->pull();\r\n\t\t\treturn a;\r\n\t\t} else {\r\n\t\
+    \t\tb->push();\r\n\t\t\tb->l = merge(a, b->l);\r\n\t\t\tb->pull();\r\n\t\t\treturn\
+    \ b;\r\n\t\t}\r\n\t}\r\n\r\n\tstatic std::pair<node_t*, node_t*> split(node_t*\
+    \ v, int k) {\r\n\t\tif(v == nullptr) {\r\n\t\t\treturn {nullptr, nullptr};\r\n\
+    \t\t}\r\n\t\tv->push();\r\n\t\tif(k <= get_size(v->l)) {\r\n\t\t\tauto p = split(v->l,\
+    \ k);\r\n\t\t\tv->l = p.second;\r\n\t\t\tif(p.first != nullptr) {\r\n\t\t\t\t\
+    p.first->p = nullptr;\r\n\t\t\t}\r\n\t\t\tv->pull();\r\n\t\t\treturn {p.first,\
+    \ v};\r\n\t\t} else {\r\n\t\t\tauto p = split(v->r, k - get_size(v->l) - 1);\r\
+    \n\t\t\tv->r = p.first;\r\n\t\t\tif(p.second != nullptr) {\r\n\t\t\t\tp.second->p\
+    \ = nullptr;\r\n\t\t\t}\r\n\t\t\tv->pull();\r\n\t\t\treturn {v, p.second};\r\n\
+    \t\t}\r\n\t}\r\n\r\n\tstatic std::tuple<node_t*, node_t*, node_t*> split_range(node_t*\
+    \ v, int l, int r) {\r\n\t\tauto p = split(v, l);\r\n\t\tauto q = split(p.second,\
+    \ r - l);\r\n\t\treturn {p.first, q.first, q.second};\r\n\t}\r\n\r\n\tstatic void\
+    \ insert(node_t*& v, int k, const key_type& val) {\r\n\t\tauto p = split(v, k);\r\
+    \n\t\tv = merge(p.first, merge(new node_t(val), p.second));\r\n\t}\r\n\r\n\tstatic\
+    \ void erase(node_t*& v, int k) {\r\n\t\tauto p = split_range(v, k, k + 1);\r\n\
+    \t\tdelete std::get<1>(p);\r\n\t\tv = merge(std::get<0>(p), std::get<2>(p));\r\
+    \n\t}\r\n\r\n\tstatic int lower_bound(node_t* v, const key_type& val) {\r\n\t\t\
+    if(v == nullptr) {\r\n\t\t\treturn 0;\r\n\t\t}\r\n\t\t// TTTTFFFF\r\n\t\t//  \
+    \   ^\r\n\t\tif(Compare(v->key, val)) {\r\n\t\t\treturn get_size(v->l) + 1 + lower_bound(v->r,\
+    \ val);\r\n\t\t} else {\r\n\t\t\treturn lower_bound(v->l, val);\r\n\t\t}\r\n\t\
+    }\r\n\r\n\tstatic int upper_bound(node_t* v, const key_type& val) {\r\n\t\t//\
+    \ 1 2 3 3 4\r\n\t\t//         ^\r\n\t\t// F F F F T\r\n\t\tif(v == nullptr) {\r\
+    \n\t\t\treturn 0;\r\n\t\t}\r\n\t\tif(!Compare(val, v->key)) {\r\n\t\t\treturn\
+    \ get_size(v->l) + 1 + upper_bound(v->r, val);\r\n\t\t} else {\r\n\t\t\treturn\
+    \ upper_bound(v->l, val);\r\n\t\t}\r\n\t}\r\n\r\n\tstatic key_type get(node_t*&\
+    \ v, int k) {\r\n\t\tauto p = split_range(v, k, k + 1);\r\n\t\tkey_type res =\
+    \ std::get<1>(p)->key;\r\n\t\tv = merge(std::get<0>(p), merge(std::get<1>(p),\
+    \ std::get<2>(p)));\r\n\t\treturn res;\r\n\t}\r\n\r\n\tstatic int get_index(node_t*\
+    \ v) {\r\n\t\tint k = get_size(v->l);\r\n\t\twhile(v->p != nullptr) {\r\n\t\t\t\
+    if(v == v->p->r) {\r\n\t\t\t\tk++;\r\n\t\t\t\tif(v->p->l != nullptr) {\r\n\t\t\
+    \t\t\tk += v->p->l->size;\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t\tv = v->p;\r\n\t\t}\r\
+    \n\t\treturn k;\r\n\t}\r\n\r\n\tstatic void clear(node_t*& v) {\r\n\t\tpostorder(v,\
+    \ [](node_t* v) {\r\n\t\t\tdelete v;\r\n\t\t});\r\n\t\tv = nullptr;\r\n\t}\r\n\
+    \r\n\tstatic node_t* next(node_t* v) {\r\n\t\tif(v->r == nullptr) {\r\n\t\t\t\
+    while(v->p != nullptr && v->p->r == v) {\r\n\t\t\t\tv = v->p;\r\n\t\t\t}\r\n\t\
+    \t\treturn v->p;\r\n\t\t}\r\n\t\tv->push();\r\n\t\tif(v->r == nullptr) {\r\n\t\
+    \t\treturn nullptr;\r\n\t\t}\r\n\t\tv = v->r;\r\n\t\twhile(v->l != nullptr) {\r\
+    \n\t\t\tv->push();\r\n\t\t\tv = v->l;\r\n\t\t}\r\n\t\treturn v;\r\n\t}\r\n\r\n\
+    \tstatic node_t* prev(node_t* v) {\r\n\t\tif(v->l == nullptr) {\r\n\t\t\twhile(v->p\
+    \ != nullptr && v->p->l == v) {\r\n\t\t\t\tv = v->p;\r\n\t\t\t}\r\n\t\t\treturn\
+    \ v->p;\r\n\t\t}\r\n\t\tv->push();\r\n\t\tif(v->l == nullptr) {\r\n\t\t\treturn\
+    \ nullptr;\r\n\t\t}\r\n\t\tv = v->l;\r\n\t\twhile(v->r != nullptr) {\r\n\t\t\t\
+    v->push();\r\n\t\t\tv = v->r;\r\n\t\t}\r\n\t\treturn v;\r\n\t}\r\n\r\n\ttemplate<class\
+    \ Func>\r\n\tstatic void preorder(node_t* v, const Func& f) {\r\n\t\tauto rec\
+    \ = [&](auto rec, node_t* v) -> void {\r\n\t\t\tif(v == nullptr) {\r\n\t\t\t\t\
+    return;\r\n\t\t\t}\r\n\t\t\tv->push();\r\n\t\t\tf(v);\r\n\t\t\trec(rec, v->l);\r\
+    \n\t\t\trec(rec, v->r);\r\n\t\t};\r\n\t\trec(rec, v);\r\n\t}\r\n\r\n\ttemplate<class\
+    \ Func>\r\n\tstatic void inorder(node_t* v, const Func& f) {\r\n\t\tauto rec =\
+    \ [&](auto rec, node_t* v) -> void {\r\n\t\t\tif(v == nullptr) {\r\n\t\t\t\treturn;\r\
+    \n\t\t\t}\r\n\t\t\tv->push();\r\n\t\t\trec(rec, v->l);\r\n\t\t\tf(v);\r\n\t\t\t\
+    rec(rec, v->r);\r\n\t\t};\r\n\t\trec(rec, v);\r\n\t}\r\n\r\n\ttemplate<class Func>\r\
+    \n\tstatic void postorder(node_t* v, const Func& f) {\r\n\t\tauto rec = [&](auto\
+    \ rec, node_t* v) -> void {\r\n\t\t\tif(v == nullptr) {\r\n\t\t\t\treturn;\r\n\
+    \t\t\t}\r\n\t\t\tv->push();\r\n\t\t\trec(rec, v->l);\r\n\t\t\trec(rec, v->r);\r\
+    \n\t\t\tf(v);\r\n\t\t};\r\n\t\trec(rec, v);\r\n\t}\r\n\r\n\tstatic int size(node_t*\
+    \ v) { return get_size(v); }\r\n\tstatic bool empty(node_t* v) { return v == nullptr;\
+    \ }\r\n\r\nprivate:\r\n\tstatic int get_size(node_t* v) { return v != nullptr\
+    \ ? v->size : 0; }\r\n};\r\n\r\ntemplate<class node_t, class Comp> const Comp\
+    \ rbst_base<node_t, Comp>::Compare = Comp();\r\n\r\n} // namespace internal\r\n\
+    \r\n} // namespace felix\r\n#line 3 \"library/data-structure/treap.hpp\"\n\r\n\
+    namespace felix {\r\n\r\nnamespace internal_treap {\r\n\r\ntemplate<class S, S\
+    \ (*e)(), S (*op)(S, S)>\r\nstruct treap_node {\r\n\tS key = e(), sum = e();\r\
+    \n\tint size = 1;\r\n\ttreap_node* l = nullptr;\r\n\ttreap_node* r = nullptr;\r\
+    \n\ttreap_node* p = nullptr;\r\n\r\n\ttreap_node() {}\r\n\ttreap_node(const S&\
+    \ s) : key(s), sum(s) {}\r\n\r\n\tvoid push() {}\r\n\r\n\tvoid pull() {\r\n\t\t\
+    size = 1;\r\n\t\tsum = key;\r\n\t\tif(l != nullptr) {\r\n\t\t\tsize += l->size;\r\
+    \n\t\t\tsum = op(l->sum, sum);\r\n\t\t\tl->p = this;\r\n\t\t}\r\n\t\tif(r != nullptr)\
+    \ {\r\n\t\t\tsize += r->size;\r\n\t\t\tsum = op(sum, r->sum);\r\n\t\t\tr->p =\
+    \ this;\r\n\t\t}\r\n\t}\r\n};\r\n\r\n} // namespace internal_treap\r\n\r\ntemplate<class\
+    \ S, S (*e)(), S (*op)(S, S), class Comp = std::less<S>>\r\nstruct treap : public\
+    \ internal::rbst_base<internal_treap::treap_node<S, e, op>, Comp> {\r\n\tusing\
+    \ node_t = internal_treap::treap_node<S, e, op>;\r\n\tusing base = internal::rbst_base<internal_treap::treap_node<S,\
+    \ e, op>, Comp>;\r\n\tusing base::split_range_by_size, base::merge;\r\n\tusing\
+    \ base::root;\r\n\r\npublic:\r\n\ttreap() {}\r\n\r\n\tvoid set(int k, const S&\
+    \ s) {\r\n\t\tauto [lhs, mid, rhs] = split_range_by_size(k, k + 1);\r\n\t\tmid.clear();\r\
+    \n\t\tmid.insert(mid.end(), s);\r\n\t\tmerge(lhs), merge(mid), merge(rhs);\r\n\
+    \t}\r\n\r\n\tS prod(int l, int r) {\r\n\t\tif(l == r) {\r\n\t\t\treturn e();\r\
+    \n\t\t}\r\n\t\tauto [lhs, mid, rhs] = split_range_by_size(l, r);\r\n\t\tS ans\
+    \ = mid.root->sum;\r\n\t\tmerge(lhs), merge(mid), merge(rhs);\r\n\t\treturn ans;\r\
+    \n\t}\r\n\r\n\tS all_prod() {\r\n\t\troot->push();\r\n\t\treturn root->sum;\r\n\
+    \t}\r\n};\r\n\r\n} // namespace felix\r\n#line 10 \"test/data-structure/treap/unit-test-treap.test.cpp\"\
     \nusing namespace std;\r\nusing namespace felix;\r\n\r\nusing S = int;\r\n\r\n\
     S e() { return 0; }\r\nS op(S a, S b) { return a + b; }\r\nS reversal(S s) { return\
     \ s; }\r\n\r\nusing F = tuple<>;\r\n\r\nF id() { return {}; }\r\nS mapping(F,\
@@ -328,11 +291,12 @@ data:
   dependsOn:
   - library/random/rng.hpp
   - library/data-structure/treap.hpp
+  - library/bst/rbst-base.hpp
   isVerificationFile: true
   path: test/data-structure/treap/unit-test-treap.test.cpp
   requiredBy: []
-  timestamp: '2023-07-02 17:19:18+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-07-11 10:41:16+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/data-structure/treap/unit-test-treap.test.cpp
 layout: document

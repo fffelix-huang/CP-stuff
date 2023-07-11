@@ -23,10 +23,10 @@ data:
     \ + 1;\n\t\tmat.resize(max_log);\n\t\tmat[0] = a;\n\t\tfor(int j = 1; j < max_log;\
     \ ++j) {\n\t\t\tmat[j].resize(n - (1 << j) + 1);\n\t\t\tfor(int i = 0; i <= n\
     \ - (1 << j); ++i) {\n\t\t\t\tmat[j][i] = op(mat[j - 1][i], mat[j - 1][i + (1\
-    \ << (j - 1))]);\n\t\t\t}\n\t\t}\n\t}\n\n\tinline S prod(int from, int to) const\
-    \ {\n\t\tassert(0 <= from && from <= to && to <= n - 1);\n\t\tint lg = std::__lg(to\
-    \ - from + 1);\n\t\treturn op(mat[lg][from], mat[lg][to - (1 << lg) + 1]);\n\t\
-    }\n\nprivate:\n\tint n;\n\tstd::vector<std::vector<S>> mat;\n};\n\n} // namespace\
+    \ << (j - 1))]);\n\t\t\t}\n\t\t}\n\t}\n\n\tS prod(int from, int to) const {\n\t\
+    \tassert(0 <= from && from <= to && to <= n - 1);\n\t\tint lg = std::__lg(to -\
+    \ from + 1);\n\t\treturn op(mat[lg][from], mat[lg][to - (1 << lg) + 1]);\n\t}\n\
+    \nprivate:\n\tint n;\n\tstd::vector<std::vector<S>> mat;\n};\n\n} // namespace\
     \ felix\n#line 7 \"test/data-structure/sparse-table/yosupo-Static-RMQ.test.cpp\"\
     \nusing namespace std;\r\nusing namespace felix;\r\n\r\nint op_min(int a, int\
     \ b) {\r\n\treturn min(a, b);\r\n}\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\
@@ -47,7 +47,7 @@ data:
   isVerificationFile: true
   path: test/data-structure/sparse-table/yosupo-Static-RMQ.test.cpp
   requiredBy: []
-  timestamp: '2023-06-27 22:09:28+08:00'
+  timestamp: '2023-07-11 10:41:16+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/data-structure/sparse-table/yosupo-Static-RMQ.test.cpp

@@ -32,10 +32,7 @@ data:
     \n\nnamespace felix {\n\ntemplate<class T, class U, class H = internal::splitmix64_hash>\
     \ using hash_map = __gnu_pbds::gp_hash_table<T, U, H>;\ntemplate<class T, class\
     \ H = internal::splitmix64_hash> using hash_set = hash_map<T, __gnu_pbds::null_type,\
-    \ H>;\n\ntemplate<class T, class Comp = std::less<T>> using ordered_set = __gnu_pbds::tree<T,\
-    \ __gnu_pbds::null_type, Comp, __gnu_pbds::rb_tree_tag, __gnu_pbds::tree_order_statistics_node_update>;\n\
-    template<class T> using ordered_multiset = ordered_set<T, std::less_equal<T>>;\n\
-    \n} // namespace felix\n#line 5 \"test/data-structure/pbds/yosupo-Associative-Array.test.cpp\"\
+    \ H>;\n\n} // namespace felix\n#line 5 \"test/data-structure/pbds/yosupo-Associative-Array.test.cpp\"\
     \nusing namespace std;\r\nusing namespace felix;\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\
     \n\tcin.tie(0);\r\n\thash_map<long long, long long> mp;\r\n\tint q;\r\n\tcin >>\
     \ q;\r\n\twhile(q--) {\r\n\t\tint type;\r\n\t\tlong long k;\r\n\t\tcin >> type\
@@ -56,7 +53,7 @@ data:
   isVerificationFile: true
   path: test/data-structure/pbds/yosupo-Associative-Array.test.cpp
   requiredBy: []
-  timestamp: '2023-05-31 10:45:25+08:00'
+  timestamp: '2023-07-11 10:41:16+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/data-structure/pbds/yosupo-Associative-Array.test.cpp

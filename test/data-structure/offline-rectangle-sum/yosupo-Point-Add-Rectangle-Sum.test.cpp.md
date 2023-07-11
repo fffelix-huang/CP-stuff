@@ -21,21 +21,23 @@ data:
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/point_add_rectangle_sum\"\n\
     \n#include <iostream>\n#line 2 \"library/data-structure/offline-rectangle-sum.hpp\"\
     \n#include <vector>\n#include <algorithm>\n#line 3 \"library/data-structure/fenwick.hpp\"\
-    \n#include <cassert>\n\nnamespace felix {\n\ntemplate<class T>\nstruct fenwick\
+    \n#include <cassert>\n\nnamespace felix {\n\ntemplate<class S>\nstruct fenwick\
     \ {\npublic:\n\tfenwick() : n(0) {}\n\texplicit fenwick(int _n) : n(_n), data(_n)\
-    \ {}\n\n\tvoid add(int p, T x) {\n\t\tassert(0 <= p);\n\t\tfor(int i = p + 1;\
-    \ i <= n; i += i & -i) {\n\t\t\tdata[i - 1] += x;\n\t\t}\n\t}\n\n\t// [0, p)\n\
-    \tT get(int p) const {\n\t\tassert(p <= n);\n\t\tp--;\n\t\tT res{};\n\t\twhile(p\
-    \ >= 0) {\n\t\t\tres += data[p];\n\t\t\tp = (p & (p + 1)) - 1;\n\t\t}\n\t\treturn\
-    \ res;\n\t}\n\n\t// [l, r)\n\tT sum(int l, int r) const { return get(r) - get(l);\
-    \ }\n\nprivate:\n\tint n;\n\tstd::vector<T> data;\n};\n\n} // namespace felix\n\
-    #line 5 \"library/data-structure/offline-rectangle-sum.hpp\"\n\nnamespace felix\
-    \ {\n\ntemplate<class T, class Weight_t>\nstruct offline_rectangle_sum {\n\tstruct\
-    \ op_t {\n\t\tT x, y;\n\t\tWeight_t w;\n\t\tint id;\n\n\t\top_t() {}\n\t\top_t(T\
-    \ _x, T _y, Weight_t _w, int _id) : x(_x), y(_y), w(_w), id(_id) {}\n\t};\n\n\t\
-    void add_point(T x, T y, Weight_t w) {\n\t\tqueries.emplace_back(x, y, w, -1);\n\
-    \t}\n\n\tvoid add_query(T x, T y, T x2, T y2) {\n\t\tqueries.emplace_back(x, y,\
-    \ +1, qid);\n\t\tqueries.emplace_back(x, y2, -1, qid);\n\t\tqueries.emplace_back(x2,\
+    \ {}\n\n\tvoid add(int p, S x) {\n\t\tfor(int i = p + 1; i <= n; i += i & -i)\
+    \ {\n\t\t\tdata[i - 1] += x;\n\t\t}\n\t}\n\n\t// [0, p)\n\tS get(int p) const\
+    \ {\n\t\tauto ans = S();\n\t\tfor(int i = p; i > 0; i -= i & -i) {\n\t\t\tans\
+    \ += data[i - 1];\n\t\t}\n\t\treturn ans;\n\t}\n\n\t// [l, r)\n\tS sum(int l,\
+    \ int r) const { return get(r) - get(l); }\n\n\t// 0-based\n\tint kth(S k) const\
+    \ {\n\t\tint x = 0;\n\t\tfor(int i = 1 << std::__lg(n); i > 0; i >>= 1) {\n\t\t\
+    \tif (x + i <= n && k >= data[x + i - 1]) {\n\t\t\t\tx += i;\n\t\t\t\tk -= data[x\
+    \ - 1];\n\t\t\t}\n\t\t}\n\t\treturn x;\n\t}\n\nprivate:\n\tint n;\n\tstd::vector<S>\
+    \ data;\n};\n\n} // namespace felix\n#line 5 \"library/data-structure/offline-rectangle-sum.hpp\"\
+    \n\nnamespace felix {\n\ntemplate<class T, class Weight_t>\nstruct offline_rectangle_sum\
+    \ {\n\tstruct op_t {\n\t\tT x, y;\n\t\tWeight_t w;\n\t\tint id;\n\n\t\top_t()\
+    \ {}\n\t\top_t(T _x, T _y, Weight_t _w, int _id) : x(_x), y(_y), w(_w), id(_id)\
+    \ {}\n\t};\n\n\tvoid add_point(T x, T y, Weight_t w) {\n\t\tqueries.emplace_back(x,\
+    \ y, w, -1);\n\t}\n\n\tvoid add_query(T x, T y, T x2, T y2) {\n\t\tqueries.emplace_back(x,\
+    \ y, +1, qid);\n\t\tqueries.emplace_back(x, y2, -1, qid);\n\t\tqueries.emplace_back(x2,\
     \ y, -1, qid);\n\t\tqueries.emplace_back(x2, y2, +1, qid);\n\t\tqid++;\n\t}\n\n\
     \tstd::vector<Weight_t> solve() {\n\t\tstd::vector<T> ys;\n\t\tfor(auto& q : queries)\
     \ {\n\t\t\tys.push_back(q.y);\n\t\t}\n\t\tstd::sort(ys.begin(), ys.end());\n\t\
@@ -81,7 +83,7 @@ data:
   isVerificationFile: true
   path: test/data-structure/offline-rectangle-sum/yosupo-Point-Add-Rectangle-Sum.test.cpp
   requiredBy: []
-  timestamp: '2023-06-27 22:09:28+08:00'
+  timestamp: '2023-07-11 10:41:16+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/data-structure/offline-rectangle-sum/yosupo-Point-Add-Rectangle-Sum.test.cpp

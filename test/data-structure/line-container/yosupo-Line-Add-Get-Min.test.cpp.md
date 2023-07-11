@@ -26,7 +26,7 @@ data:
     \ a / b - ((a ^ b) < 0 && a % b != 0);\r\n}\r\n\r\ntemplate<class T>\r\nT ceil_div(T\
     \ a, T b) {\r\n\treturn a / b + ((a ^ b) > 0 && a % b != 0);\r\n}\r\n\r\n} //\
     \ namespace felix\r\n#line 7 \"library/data-structure/line-container.hpp\"\n\n\
-    namespace felix {\n\nnamespace line_container_internal {\n\ntemplate<class T>\n\
+    namespace felix {\n\nnamespace internal_line_container {\n\ntemplate<class T>\n\
     struct line_t {\n\tmutable T k, m, p;\n\n\tbool operator<(const line_t& o) const\
     \ { return k < o.k; }\n\tbool operator<(T x) const { return p < x; }\n};\n\ntemplate<class\
     \ T, bool MAX>\nstruct line_container : std::multiset<line_t<T>, std::less<>>\
@@ -43,9 +43,9 @@ data:
     \ != begin() && (--x)->p >= y->p) {\n\t\t\tisect(x, erase(y));\n\t\t}\n\t}\n\n\
     \tT get(T x) {\n\t\tassert(!empty());\n\t\tauto l = *lower_bound(x);\n\t\tT ans\
     \ = l.k * x + l.m;\n\t\tif constexpr(!MAX) {\n\t\t\tans = -ans;\n\t\t}\n\t\treturn\
-    \ ans;\n\t}\n};\n\n} // line_container_internal\n\ntemplate<class T> using min_line_container\
-    \ = line_container_internal::line_container<T, false>;\ntemplate<class T> using\
-    \ max_line_container = line_container_internal::line_container<T, true>;\n\n}\
+    \ ans;\n\t}\n};\n\n} // internal_line_container\n\ntemplate<class T> using min_line_container\
+    \ = internal_line_container::line_container<T, false>;\ntemplate<class T> using\
+    \ max_line_container = internal_line_container::line_container<T, true>;\n\n}\
     \ // namespace felix\n#line 6 \"test/data-structure/line-container/yosupo-Line-Add-Get-Min.test.cpp\"\
     \nusing namespace std;\r\nusing namespace felix;\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\
     \n\tcin.tie(0);\r\n\tint n, q;\r\n\tcin >> n >> q;\r\n\tmax_line_container<long\
@@ -75,7 +75,7 @@ data:
   isVerificationFile: true
   path: test/data-structure/line-container/yosupo-Line-Add-Get-Min.test.cpp
   requiredBy: []
-  timestamp: '2023-06-14 12:36:01+08:00'
+  timestamp: '2023-07-11 10:41:16+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/data-structure/line-container/yosupo-Line-Add-Get-Min.test.cpp

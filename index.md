@@ -1,6 +1,11 @@
 ---
 data:
   libraryCategories:
+  - name: library/bst
+    pages:
+    - icon: ':x:'
+      path: library/bst/rbst-base.hpp
+      title: library/bst/rbst-base.hpp
   - name: library/convolution
     pages:
     - icon: ':heavy_check_mark:'
@@ -34,6 +39,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/data-structure/lazy-segtree.hpp
       title: library/data-structure/lazy-segtree.hpp
+    - icon: ':warning:'
+      path: library/data-structure/lazy-treap.hpp
+      title: library/data-structure/lazy-treap.hpp
     - icon: ':heavy_check_mark:'
       path: library/data-structure/line-container.hpp
       title: library/data-structure/line-container.hpp
@@ -43,6 +51,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/data-structure/offline-rectangle-sum.hpp
       title: library/data-structure/offline-rectangle-sum.hpp
+    - icon: ':warning:'
+      path: library/data-structure/old-treap.hpp
+      title: library/data-structure/old-treap.hpp
+    - icon: ':warning:'
+      path: library/data-structure/ordered-set.hpp
+      title: library/data-structure/ordered-set.hpp
     - icon: ':heavy_check_mark:'
       path: library/data-structure/pbds.hpp
       title: library/data-structure/pbds.hpp
@@ -52,7 +66,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/data-structure/sparse-table.hpp
       title: library/data-structure/sparse-table.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: library/data-structure/treap.hpp
       title: treap
     - icon: ':heavy_check_mark:'
@@ -112,8 +126,8 @@ data:
       path: library/graph/max-clique.hpp
       title: library/graph/max-clique.hpp
     - icon: ':heavy_check_mark:'
-      path: library/graph/strongly-connected-components.hpp
-      title: library/graph/strongly-connected-components.hpp
+      path: library/graph/scc.hpp
+      title: library/graph/scc.hpp
   - name: library/math
     pages:
     - icon: ':heavy_check_mark:'
@@ -134,7 +148,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/integer-div.hpp
       title: Integer division ($\lfloor \frac{a}{b} \rfloor \lceil \frac{a}{b} \rceil$)
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/math/inv-gcd.hpp
       title: library/math/inv-gcd.hpp
     - icon: ':heavy_check_mark:'
@@ -146,7 +160,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/primitive-root.hpp
       title: library/math/primitive-root.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/math/safe-mod.hpp
       title: library/math/safe-mod.hpp
     - icon: ':heavy_check_mark:'
@@ -174,7 +188,7 @@ data:
     - icon: ':warning:'
       path: library/misc/timer.hpp
       title: library/misc/timer.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/misc/type-traits.hpp
       title: library/misc/type-traits.hpp
   - name: library/modint
@@ -182,7 +196,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/modint/barrett.hpp
       title: library/modint/barrett.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/modint/modint.hpp
       title: library/modint/modint.hpp
   - name: library/random
@@ -193,7 +207,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/random/random.hpp
       title: random_t
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/random/rng.hpp
       title: library/random/rng.hpp
     - icon: ':heavy_check_mark:'
@@ -215,9 +229,9 @@ data:
       title: Z Algorithm
   - name: library/tree
     pages:
-    - icon: ':heavy_check_mark:'
-      path: library/tree/heavy-light-decomposition.hpp
-      title: "Heavy Light Decomposition (\u8F15\u91CD\u93C8\u5256\u5206)"
+    - icon: ':warning:'
+      path: library/tree/hld.hpp
+      title: library/tree/hld.hpp
     - icon: ':warning:'
       path: library/tree/prufer.hpp
       title: library/tree/prufer.hpp
@@ -345,13 +359,13 @@ data:
       title: test/data-structure/sparse-table/yosupo-Static-RMQ.test.cpp
   - name: test/data-structure/treap
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/data-structure/treap/unit-test-treap.test.cpp
       title: test/data-structure/treap/unit-test-treap.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/data-structure/treap/yosupo-Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
       title: test/data-structure/treap/yosupo-Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/data-structure/treap/yosupo-Range-Reverse-Range-Sum.test.cpp
       title: test/data-structure/treap/yosupo-Range-Reverse-Range-Sum.test.cpp
   - name: test/data-structure/vebtree
@@ -463,10 +477,10 @@ data:
       title: test/graph/max-clique/yosupo-Maximum-Independent-Set.test.cpp
   - name: test/graph/strongly-connected-components
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/graph/strongly-connected-components/aoj-grl-Strongly-Connected-Components.test.cpp
       title: test/graph/strongly-connected-components/aoj-grl-Strongly-Connected-Components.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/graph/strongly-connected-components/yosupo-Strongly-Connected-Components.test.cpp
       title: test/graph/strongly-connected-components/yosupo-Strongly-Connected-Components.test.cpp
   - name: test/math/binary-gcd
@@ -558,28 +572,28 @@ data:
       title: test/string/z-algorithm/yosupo-Z-Algorithm.test.cpp
   - name: test/tree/heavy-light-decomposition
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/tree/heavy-light-decomposition/aoj-grl-Lowest-Common-Ancestor.test.cpp
       title: test/tree/heavy-light-decomposition/aoj-grl-Lowest-Common-Ancestor.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/tree/heavy-light-decomposition/aoj-grl-Range-Query-on-a-Tree-II.test.cpp
       title: test/tree/heavy-light-decomposition/aoj-grl-Range-Query-on-a-Tree-II.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/tree/heavy-light-decomposition/aoj-grl-Range-Query-on-a-Tree.test.cpp
       title: test/tree/heavy-light-decomposition/aoj-grl-Range-Query-on-a-Tree.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/tree/heavy-light-decomposition/yosupo-Jump-on-Tree.test.cpp
       title: test/tree/heavy-light-decomposition/yosupo-Jump-on-Tree.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/tree/heavy-light-decomposition/yosupo-Lowest-Common-Ancestor.test.cpp
       title: test/tree/heavy-light-decomposition/yosupo-Lowest-Common-Ancestor.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/tree/heavy-light-decomposition/yosupo-Vertex-Add-Path-Sum.test.cpp
       title: test/tree/heavy-light-decomposition/yosupo-Vertex-Add-Path-Sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/tree/heavy-light-decomposition/yosupo-Vertex-Add-Subtree-Sum.test.cpp
       title: test/tree/heavy-light-decomposition/yosupo-Vertex-Add-Subtree-Sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/tree/heavy-light-decomposition/yosupo-Vertex-Set-Path-Composite.test.cpp
       title: test/tree/heavy-light-decomposition/yosupo-Vertex-Set-Path-Composite.test.cpp
 layout: toppage

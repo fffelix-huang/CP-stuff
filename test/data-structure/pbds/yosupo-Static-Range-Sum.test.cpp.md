@@ -32,10 +32,7 @@ data:
     \n\nnamespace felix {\n\ntemplate<class T, class U, class H = internal::splitmix64_hash>\
     \ using hash_map = __gnu_pbds::gp_hash_table<T, U, H>;\ntemplate<class T, class\
     \ H = internal::splitmix64_hash> using hash_set = hash_map<T, __gnu_pbds::null_type,\
-    \ H>;\n\ntemplate<class T, class Comp = std::less<T>> using ordered_set = __gnu_pbds::tree<T,\
-    \ __gnu_pbds::null_type, Comp, __gnu_pbds::rb_tree_tag, __gnu_pbds::tree_order_statistics_node_update>;\n\
-    template<class T> using ordered_multiset = ordered_set<T, std::less_equal<T>>;\n\
-    \n} // namespace felix\n#line 5 \"test/data-structure/pbds/yosupo-Static-Range-Sum.test.cpp\"\
+    \ H>;\n\n} // namespace felix\n#line 5 \"test/data-structure/pbds/yosupo-Static-Range-Sum.test.cpp\"\
     \nusing namespace std;\nusing namespace felix;\n\nint main() {\n\tios::sync_with_stdio(false);\n\
     \tcin.tie(0);\n\tint n, q;\n\tcin >> n >> q;\n\thash_map<int, long long> a;\n\t\
     for(int i = 1; i <= n; i++) {\n\t\tint x;\n\t\tcin >> x;\n\t\ta[i] = a[i - 1]\
@@ -54,7 +51,7 @@ data:
   isVerificationFile: true
   path: test/data-structure/pbds/yosupo-Static-Range-Sum.test.cpp
   requiredBy: []
-  timestamp: '2023-05-31 10:45:25+08:00'
+  timestamp: '2023-07-11 10:41:16+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/data-structure/pbds/yosupo-Static-Range-Sum.test.cpp

@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: library/graph/strongly-connected-components.hpp
-    title: library/graph/strongly-connected-components.hpp
+    path: library/graph/scc.hpp
+    title: library/graph/scc.hpp
   - icon: ':heavy_check_mark:'
     path: library/math/two-sat.hpp
     title: library/math/two-sat.hpp
@@ -19,7 +19,7 @@ data:
     - https://judge.yosupo.jp/problem/two_sat
   bundledCode: "#line 1 \"test/math/two-sat/yosupo-2-Sat.test.cpp\"\n#define PROBLEM\
     \ \"https://judge.yosupo.jp/problem/two_sat\"\r\n\r\n#include <iostream>\r\n#line\
-    \ 2 \"library/math/two-sat.hpp\"\n#include <vector>\n#line 3 \"library/graph/strongly-connected-components.hpp\"\
+    \ 2 \"library/math/two-sat.hpp\"\n#include <vector>\n#line 3 \"library/graph/scc.hpp\"\
     \n#include <cassert>\n#include <algorithm>\n#include <functional>\n\nnamespace\
     \ felix {\n\nstruct SCC {\npublic:\n\tSCC() : n(0) {}\n\texplicit SCC(int _n)\
     \ : n(_n), g(_n), h(_n) {}\n\n\tvoid add_edge(int u, int v) {\n\t\tassert(0 <=\
@@ -82,11 +82,11 @@ data:
     \ {\r\n\t\tcout << \"s UNSATISFIABLE\\n\";\r\n\t}\r\n\treturn 0;\r\n}\r\n"
   dependsOn:
   - library/math/two-sat.hpp
-  - library/graph/strongly-connected-components.hpp
+  - library/graph/scc.hpp
   isVerificationFile: true
   path: test/math/two-sat/yosupo-2-Sat.test.cpp
   requiredBy: []
-  timestamp: '2023-05-29 14:59:47+08:00'
+  timestamp: '2023-07-11 10:41:16+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/math/two-sat/yosupo-2-Sat.test.cpp

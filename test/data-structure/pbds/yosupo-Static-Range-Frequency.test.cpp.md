@@ -32,10 +32,7 @@ data:
     \n\nnamespace felix {\n\ntemplate<class T, class U, class H = internal::splitmix64_hash>\
     \ using hash_map = __gnu_pbds::gp_hash_table<T, U, H>;\ntemplate<class T, class\
     \ H = internal::splitmix64_hash> using hash_set = hash_map<T, __gnu_pbds::null_type,\
-    \ H>;\n\ntemplate<class T, class Comp = std::less<T>> using ordered_set = __gnu_pbds::tree<T,\
-    \ __gnu_pbds::null_type, Comp, __gnu_pbds::rb_tree_tag, __gnu_pbds::tree_order_statistics_node_update>;\n\
-    template<class T> using ordered_multiset = ordered_set<T, std::less_equal<T>>;\n\
-    \n} // namespace felix\n#line 5 \"test/data-structure/pbds/yosupo-Static-Range-Frequency.test.cpp\"\
+    \ H>;\n\n} // namespace felix\n#line 5 \"test/data-structure/pbds/yosupo-Static-Range-Frequency.test.cpp\"\
     \nusing namespace std;\r\nusing namespace felix;\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\
     \n\tcin.tie(0);\r\n\tint n, q;\r\n\tcin >> n >> q;\r\n\thash_map<int, vector<int>>\
     \ pos;\r\n\tfor(int i = 0; i < n; i++) {\r\n\t\tint x;\r\n\t\tcin >> x;\r\n\t\t\
@@ -56,7 +53,7 @@ data:
   isVerificationFile: true
   path: test/data-structure/pbds/yosupo-Static-Range-Frequency.test.cpp
   requiredBy: []
-  timestamp: '2023-05-31 10:45:25+08:00'
+  timestamp: '2023-07-11 10:41:16+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/data-structure/pbds/yosupo-Static-Range-Frequency.test.cpp

@@ -17,15 +17,17 @@ data:
   bundledCode: "#line 1 \"test/data-structure/fenwick/yosupo-Point-Add-Range-Sum.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/point_add_range_sum\"\r\n\r\
     \n#include <iostream>\r\n#line 2 \"library/data-structure/fenwick.hpp\"\n#include\
-    \ <vector>\n#include <cassert>\n\nnamespace felix {\n\ntemplate<class T>\nstruct\
+    \ <vector>\n#include <cassert>\n\nnamespace felix {\n\ntemplate<class S>\nstruct\
     \ fenwick {\npublic:\n\tfenwick() : n(0) {}\n\texplicit fenwick(int _n) : n(_n),\
-    \ data(_n) {}\n\n\tvoid add(int p, T x) {\n\t\tassert(0 <= p);\n\t\tfor(int i\
-    \ = p + 1; i <= n; i += i & -i) {\n\t\t\tdata[i - 1] += x;\n\t\t}\n\t}\n\n\t//\
-    \ [0, p)\n\tT get(int p) const {\n\t\tassert(p <= n);\n\t\tp--;\n\t\tT res{};\n\
-    \t\twhile(p >= 0) {\n\t\t\tres += data[p];\n\t\t\tp = (p & (p + 1)) - 1;\n\t\t\
-    }\n\t\treturn res;\n\t}\n\n\t// [l, r)\n\tT sum(int l, int r) const { return get(r)\
-    \ - get(l); }\n\nprivate:\n\tint n;\n\tstd::vector<T> data;\n};\n\n} // namespace\
-    \ felix\n#line 5 \"test/data-structure/fenwick/yosupo-Point-Add-Range-Sum.test.cpp\"\
+    \ data(_n) {}\n\n\tvoid add(int p, S x) {\n\t\tfor(int i = p + 1; i <= n; i +=\
+    \ i & -i) {\n\t\t\tdata[i - 1] += x;\n\t\t}\n\t}\n\n\t// [0, p)\n\tS get(int p)\
+    \ const {\n\t\tauto ans = S();\n\t\tfor(int i = p; i > 0; i -= i & -i) {\n\t\t\
+    \tans += data[i - 1];\n\t\t}\n\t\treturn ans;\n\t}\n\n\t// [l, r)\n\tS sum(int\
+    \ l, int r) const { return get(r) - get(l); }\n\n\t// 0-based\n\tint kth(S k)\
+    \ const {\n\t\tint x = 0;\n\t\tfor(int i = 1 << std::__lg(n); i > 0; i >>= 1)\
+    \ {\n\t\t\tif (x + i <= n && k >= data[x + i - 1]) {\n\t\t\t\tx += i;\n\t\t\t\t\
+    k -= data[x - 1];\n\t\t\t}\n\t\t}\n\t\treturn x;\n\t}\n\nprivate:\n\tint n;\n\t\
+    std::vector<S> data;\n};\n\n} // namespace felix\n#line 5 \"test/data-structure/fenwick/yosupo-Point-Add-Range-Sum.test.cpp\"\
     \nusing namespace std;\r\nusing namespace felix;\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\
     \n\tcin.tie(0);\r\n\tint n, q;\r\n\tcin >> n >> q;\r\n\tfenwick<long long> fenw(n);\r\
     \n\tfor(int i = 0; i < n; i++) {\r\n\t\tint x;\r\n\t\tcin >> x;\r\n\t\tfenw.add(i,\
@@ -45,7 +47,7 @@ data:
   isVerificationFile: true
   path: test/data-structure/fenwick/yosupo-Point-Add-Range-Sum.test.cpp
   requiredBy: []
-  timestamp: '2023-06-27 22:09:28+08:00'
+  timestamp: '2023-07-11 10:41:16+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/data-structure/fenwick/yosupo-Point-Add-Range-Sum.test.cpp

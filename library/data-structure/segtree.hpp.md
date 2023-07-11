@@ -30,12 +30,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/data-structure/segtree/aoj-dsl-Range-Minimum-Query.test.cpp
     title: test/data-structure/segtree/aoj-dsl-Range-Minimum-Query.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/tree/heavy-light-decomposition/aoj-grl-Range-Query-on-a-Tree-II.test.cpp
-    title: test/tree/heavy-light-decomposition/aoj-grl-Range-Query-on-a-Tree-II.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/tree/heavy-light-decomposition/yosupo-Vertex-Set-Path-Composite.test.cpp
-    title: test/tree/heavy-light-decomposition/yosupo-Vertex-Set-Path-Composite.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -120,15 +114,13 @@ data:
   timestamp: '2023-07-01 16:07:45+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/tree/heavy-light-decomposition/yosupo-Vertex-Set-Path-Composite.test.cpp
-  - test/tree/heavy-light-decomposition/aoj-grl-Range-Query-on-a-Tree-II.test.cpp
-  - test/data-structure/lazy-segtree/aoj-dsl-RSQ-and-RUQ.test.cpp
+  - test/data-structure/lazy-segtree/aoj-dsl-RMQ-and-RAQ.test.cpp
+  - test/data-structure/lazy-segtree/yosupo-Range-Affine-Point-Get.test.cpp
   - test/data-structure/lazy-segtree/aoj-dsl-RMQ-and-RUQ.test.cpp
+  - test/data-structure/lazy-segtree/aoj-dsl-Range-Update-Query.test.cpp
+  - test/data-structure/lazy-segtree/aoj-dsl-RSQ-and-RUQ.test.cpp
   - test/data-structure/lazy-segtree/yosupo-Range-Affine-Range-Sum.test.cpp
   - test/data-structure/lazy-segtree/aoj-dsl-RSQ-and-RAQ.test.cpp
-  - test/data-structure/lazy-segtree/yosupo-Range-Affine-Point-Get.test.cpp
-  - test/data-structure/lazy-segtree/aoj-dsl-Range-Update-Query.test.cpp
-  - test/data-structure/lazy-segtree/aoj-dsl-RMQ-and-RAQ.test.cpp
   - test/data-structure/segtree/aoj-dsl-Range-Minimum-Query.test.cpp
 documentation_of: library/data-structure/segtree.hpp
 layout: document

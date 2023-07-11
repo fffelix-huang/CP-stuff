@@ -5,63 +5,39 @@ data:
     path: library/data-structure/sparse-table.hpp
     title: library/data-structure/sparse-table.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/tree/heavy-light-decomposition/aoj-grl-Lowest-Common-Ancestor.test.cpp
-    title: test/tree/heavy-light-decomposition/aoj-grl-Lowest-Common-Ancestor.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/tree/heavy-light-decomposition/aoj-grl-Range-Query-on-a-Tree-II.test.cpp
-    title: test/tree/heavy-light-decomposition/aoj-grl-Range-Query-on-a-Tree-II.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/tree/heavy-light-decomposition/aoj-grl-Range-Query-on-a-Tree.test.cpp
-    title: test/tree/heavy-light-decomposition/aoj-grl-Range-Query-on-a-Tree.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/tree/heavy-light-decomposition/yosupo-Jump-on-Tree.test.cpp
-    title: test/tree/heavy-light-decomposition/yosupo-Jump-on-Tree.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/tree/heavy-light-decomposition/yosupo-Lowest-Common-Ancestor.test.cpp
-    title: test/tree/heavy-light-decomposition/yosupo-Lowest-Common-Ancestor.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/tree/heavy-light-decomposition/yosupo-Vertex-Add-Path-Sum.test.cpp
-    title: test/tree/heavy-light-decomposition/yosupo-Vertex-Add-Path-Sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/tree/heavy-light-decomposition/yosupo-Vertex-Add-Subtree-Sum.test.cpp
-    title: test/tree/heavy-light-decomposition/yosupo-Vertex-Add-Subtree-Sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/tree/heavy-light-decomposition/yosupo-Vertex-Set-Path-Composite.test.cpp
-    title: test/tree/heavy-light-decomposition/yosupo-Vertex-Set-Path-Composite.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"library/tree/heavy-light-decomposition.hpp\"\n#include <vector>\r\
-    \n#include <array>\r\n#include <cassert>\r\n#include <algorithm>\r\n#include <cmath>\r\
-    \n#line 4 \"library/data-structure/sparse-table.hpp\"\n\nnamespace felix {\n\n\
-    template<class S, S (*op)(S, S)>\nstruct sparse_table {\npublic:\n\tsparse_table()\
-    \ {}\n\texplicit sparse_table(const std::vector<S>& a) {\n\t\tn = (int) a.size();\n\
-    \t\tint max_log = std::__lg(n) + 1;\n\t\tmat.resize(max_log);\n\t\tmat[0] = a;\n\
-    \t\tfor(int j = 1; j < max_log; ++j) {\n\t\t\tmat[j].resize(n - (1 << j) + 1);\n\
-    \t\t\tfor(int i = 0; i <= n - (1 << j); ++i) {\n\t\t\t\tmat[j][i] = op(mat[j -\
-    \ 1][i], mat[j - 1][i + (1 << (j - 1))]);\n\t\t\t}\n\t\t}\n\t}\n\n\tinline S prod(int\
-    \ from, int to) const {\n\t\tassert(0 <= from && from <= to && to <= n - 1);\n\
-    \t\tint lg = std::__lg(to - from + 1);\n\t\treturn op(mat[lg][from], mat[lg][to\
-    \ - (1 << lg) + 1]);\n\t}\n\nprivate:\n\tint n;\n\tstd::vector<std::vector<S>>\
-    \ mat;\n};\n\n} // namespace felix\n#line 8 \"library/tree/heavy-light-decomposition.hpp\"\
-    \n\r\nnamespace felix {\r\n\r\nstruct HLD {\r\nprivate:\r\n\tstatic constexpr\
-    \ std::pair<int, int> __lca_op(std::pair<int, int> a, std::pair<int, int> b) {\r\
-    \n\t\treturn std::min(a, b);\r\n\t}\r\n\r\npublic:\r\n\tint n;\r\n\tstd::vector<std::vector<int>>\
-    \ g;\r\n\tstd::vector<int> subtree_size;\r\n\tstd::vector<int> parent;\r\n\tstd::vector<int>\
-    \ depth;\r\n\tstd::vector<int> top;\r\n\tstd::vector<int> tour;\r\n\tstd::vector<int>\
-    \ first_occurrence;\r\n\tstd::vector<int> id;\r\n\tstd::vector<std::pair<int,\
-    \ int>> euler_tour;\r\n\tsparse_table<std::pair<int, int>, __lca_op> st;\r\n\r\
-    \n\tHLD() : n(0) {}\r\n\texplicit HLD(int _n) : n(_n), g(_n), subtree_size(_n),\
-    \ parent(_n), depth(_n), top(_n), first_occurrence(_n), id(_n) {\r\n\t\ttour.reserve(n);\r\
-    \n\t\teuler_tour.reserve(2 * n - 1);\r\n\t}\r\n\r\n\tvoid add_edge(int u, int\
-    \ v) {\r\n\t\tassert(0 <= u && u < n);\r\n\t\tassert(0 <= v && v < n);\r\n\t\t\
-    g[u].push_back(v);\r\n\t\tg[v].push_back(u);\r\n\t}\r\n\r\n\tvoid build(int root\
-    \ = 0) {\r\n\t\tassert(0 <= root && root < n);\r\n\t\tparent[root] = -1;\r\n\t\
-    \ttop[root] = root;\r\n\t\tdfs_sz(root);\r\n\t\tdfs_link(root);\r\n\t\tst = sparse_table<std::pair<int,\
+  bundledCode: "#line 2 \"library/tree/hld.hpp\"\n#include <vector>\r\n#include <array>\r\
+    \n#include <cassert>\r\n#include <algorithm>\r\n#include <cmath>\r\n#line 4 \"\
+    library/data-structure/sparse-table.hpp\"\n\nnamespace felix {\n\ntemplate<class\
+    \ S, S (*op)(S, S)>\nstruct sparse_table {\npublic:\n\tsparse_table() {}\n\texplicit\
+    \ sparse_table(const std::vector<S>& a) {\n\t\tn = (int) a.size();\n\t\tint max_log\
+    \ = std::__lg(n) + 1;\n\t\tmat.resize(max_log);\n\t\tmat[0] = a;\n\t\tfor(int\
+    \ j = 1; j < max_log; ++j) {\n\t\t\tmat[j].resize(n - (1 << j) + 1);\n\t\t\tfor(int\
+    \ i = 0; i <= n - (1 << j); ++i) {\n\t\t\t\tmat[j][i] = op(mat[j - 1][i], mat[j\
+    \ - 1][i + (1 << (j - 1))]);\n\t\t\t}\n\t\t}\n\t}\n\n\tS prod(int from, int to)\
+    \ const {\n\t\tassert(0 <= from && from <= to && to <= n - 1);\n\t\tint lg = std::__lg(to\
+    \ - from + 1);\n\t\treturn op(mat[lg][from], mat[lg][to - (1 << lg) + 1]);\n\t\
+    }\n\nprivate:\n\tint n;\n\tstd::vector<std::vector<S>> mat;\n};\n\n} // namespace\
+    \ felix\n#line 8 \"library/tree/hld.hpp\"\n\r\nnamespace felix {\r\n\r\nstruct\
+    \ HLD {\r\nprivate:\r\n\tstatic constexpr std::pair<int, int> __lca_op(std::pair<int,\
+    \ int> a, std::pair<int, int> b) {\r\n\t\treturn std::min(a, b);\r\n\t}\r\n\r\n\
+    public:\r\n\tint n;\r\n\tstd::vector<std::vector<int>> g;\r\n\tstd::vector<int>\
+    \ subtree_size;\r\n\tstd::vector<int> parent;\r\n\tstd::vector<int> depth;\r\n\
+    \tstd::vector<int> top;\r\n\tstd::vector<int> tour;\r\n\tstd::vector<int> first_occurrence;\r\
+    \n\tstd::vector<int> id;\r\n\tstd::vector<std::pair<int, int>> euler_tour;\r\n\
+    \tsparse_table<std::pair<int, int>, __lca_op> st;\r\n\r\n\tHLD() : n(0) {}\r\n\
+    \texplicit HLD(int _n) : n(_n), g(_n), subtree_size(_n), parent(_n), depth(_n),\
+    \ top(_n), first_occurrence(_n), id(_n) {\r\n\t\ttour.reserve(n);\r\n\t\teuler_tour.reserve(2\
+    \ * n - 1);\r\n\t}\r\n\r\n\tvoid add_edge(int u, int v) {\r\n\t\tassert(0 <= u\
+    \ && u < n);\r\n\t\tassert(0 <= v && v < n);\r\n\t\tg[u].push_back(v);\r\n\t\t\
+    g[v].push_back(u);\r\n\t}\r\n\r\n\tvoid build(int root = 0) {\r\n\t\tassert(0\
+    \ <= root && root < n);\r\n\t\tparent[root] = -1;\r\n\t\ttop[root] = root;\r\n\
+    \t\tdfs_sz(root);\r\n\t\tdfs_link(root);\r\n\t\tst = sparse_table<std::pair<int,\
     \ int>, __lca_op>(euler_tour);\r\n\t}\r\n\r\n\tint get_lca(int u, int v) {\r\n\
     \t\tassert(0 <= u && u < n);\r\n\t\tassert(0 <= v && v < n);\r\n\t\tint L = first_occurrence[u];\r\
     \n\t\tint R = first_occurrence[v];\r\n\t\tif(L > R) {\r\n\t\t\tstd::swap(L, R);\r\
@@ -173,51 +149,15 @@ data:
   dependsOn:
   - library/data-structure/sparse-table.hpp
   isVerificationFile: false
-  path: library/tree/heavy-light-decomposition.hpp
+  path: library/tree/hld.hpp
   requiredBy: []
-  timestamp: '2023-06-27 22:09:28+08:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/tree/heavy-light-decomposition/aoj-grl-Range-Query-on-a-Tree.test.cpp
-  - test/tree/heavy-light-decomposition/yosupo-Vertex-Set-Path-Composite.test.cpp
-  - test/tree/heavy-light-decomposition/aoj-grl-Lowest-Common-Ancestor.test.cpp
-  - test/tree/heavy-light-decomposition/yosupo-Jump-on-Tree.test.cpp
-  - test/tree/heavy-light-decomposition/aoj-grl-Range-Query-on-a-Tree-II.test.cpp
-  - test/tree/heavy-light-decomposition/yosupo-Vertex-Add-Subtree-Sum.test.cpp
-  - test/tree/heavy-light-decomposition/yosupo-Vertex-Add-Path-Sum.test.cpp
-  - test/tree/heavy-light-decomposition/yosupo-Lowest-Common-Ancestor.test.cpp
-documentation_of: library/tree/heavy-light-decomposition.hpp
+  timestamp: '2023-07-11 10:41:16+08:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: library/tree/hld.hpp
 layout: document
-title: "Heavy Light Decomposition (\u8F15\u91CD\u93C8\u5256\u5206)"
+redirect_from:
+- /library/library/tree/hld.hpp
+- /library/library/tree/hld.hpp.html
+title: library/tree/hld.hpp
 ---
-
-## 輕重鏈剖分
-
-使用前要先呼叫 `build(root)`。
-
-## 使用方法
-```cpp
-int n;
-HLD hld(n);
-
-int u, v, root;
-hld.add_edge(u, v);
-hld.build(root); // 以 root 為根結點建構
-
-int z, k, len;
-array<int, 2> node;
-int lca = hld.get_lca(u, v); // 回傳 u 和 v 的 LCA
-bool is_anc = hld.is_ancestor(u, v); // 回傳 u 是不是 v 的祖先
-bool btw = hld.on_path(u, z, v); // 回傳 z 是不是在 u 到 v 的路徑上
-tie(len, node) = hld.get_diameter(); // 回傳樹直徑的長度和節點
-int dist = hld.get_distance(u, v); // 回傳 u 到 v 的距離
-int kth_anc = hld.get_kth_ancestor(u, k); // 回傳 u 的第 k 個祖先，或 -1 如果不存在
-int kth_node = hld.get_kth_node_on_path(u, v, k); // 回傳 u 到 v 路徑的第 k 個節點，或 -1 如果不存在
-vector<pair<int, int>> seg = hld.get_path(u, v, z); // 回傳 u 到 v 的所有鏈的區間，z = true 代表要包含 LCA
-
-int id = hld.id[u]; // u 的編號
-int sz = hld.subtree_size[u]; // u 子樹的大小
-```
-
-## 題目
-[ABC294 G - Distance Queries on a Tree](https://atcoder.jp/contests/abc294/tasks/abc294_g)

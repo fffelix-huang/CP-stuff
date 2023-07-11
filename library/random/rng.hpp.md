@@ -2,20 +2,32 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: library/bst/rbst-base.hpp
+    title: library/bst/rbst-base.hpp
+  - icon: ':warning:'
+    path: library/data-structure/lazy-treap.hpp
+    title: library/data-structure/lazy-treap.hpp
+  - icon: ':warning:'
+    path: library/data-structure/old-treap.hpp
+    title: library/data-structure/old-treap.hpp
+  - icon: ':warning:'
+    path: library/data-structure/ordered-set.hpp
+    title: library/data-structure/ordered-set.hpp
+  - icon: ':x:'
     path: library/data-structure/treap.hpp
     title: treap
   - icon: ':heavy_check_mark:'
     path: library/math/factorize.hpp
     title: "Integer Factorization (Pollard Rho \u8CEA\u56E0\u6578\u5206\u89E3)"
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/data-structure/treap/unit-test-treap.test.cpp
     title: test/data-structure/treap/unit-test-treap.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/data-structure/treap/yosupo-Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
     title: test/data-structure/treap/yosupo-Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/data-structure/treap/yosupo-Range-Reverse-Range-Sum.test.cpp
     title: test/data-structure/treap/yosupo-Range-Reverse-Range-Sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -24,9 +36,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/math/factorize/yosupo-Factorize.test.cpp
     title: test/math/factorize/yosupo-Factorize.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"library/random/rng.hpp\"\n#include <chrono>\n\nnamespace\
@@ -42,15 +54,19 @@ data:
   path: library/random/rng.hpp
   requiredBy:
   - library/math/factorize.hpp
+  - library/bst/rbst-base.hpp
+  - library/data-structure/ordered-set.hpp
+  - library/data-structure/lazy-treap.hpp
   - library/data-structure/treap.hpp
+  - library/data-structure/old-treap.hpp
   timestamp: '2023-06-27 22:09:28+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/math/factorize/aoj-ntl-Prime-Factorize.test.cpp
   - test/math/factorize/yosupo-Factorize.test.cpp
+  - test/math/factorize/aoj-ntl-Prime-Factorize.test.cpp
   - test/data-structure/treap/unit-test-treap.test.cpp
-  - test/data-structure/treap/yosupo-Range-Reverse-Range-Sum.test.cpp
   - test/data-structure/treap/yosupo-Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
+  - test/data-structure/treap/yosupo-Range-Reverse-Range-Sum.test.cpp
 documentation_of: library/random/rng.hpp
 layout: document
 redirect_from:
