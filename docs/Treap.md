@@ -53,8 +53,13 @@ for(auto x : tree) {
 }
 ```
 
-https://atcoder.jp/contests/abc306/submissions/43177331
+## 題目
+
+[ABC306 E - Best Performances](https://atcoder.jp/contests/abc306/tasks/abc306_e)
+
+[CF Edu 15 F. T-Shirts](https://codeforces.com/contest/702/problem/F)
 
 ## References
 [hitonanode's library](https://hitonanode.github.io/cplib-cpp/data_structure/lazy_rbst.hpp)
+
 [tourist's treap template](https://codeforces.com/contest/1737/submission/175025650)
