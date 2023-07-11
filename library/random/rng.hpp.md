@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/bst/rbst-base.hpp
     title: library/bst/rbst-base.hpp
   - icon: ':warning:'
@@ -11,7 +11,7 @@ data:
   - icon: ':warning:'
     path: library/data-structure/old-treap.hpp
     title: library/data-structure/old-treap.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: library/data-structure/ordered-set.hpp
     title: library/data-structure/ordered-set.hpp
   - icon: ':x:'
@@ -21,6 +21,9 @@ data:
     path: library/math/factorize.hpp
     title: "Integer Factorization (Pollard Rho \u8CEA\u56E0\u6578\u5206\u89E3)"
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/data-structure/ordered-set/yosupo-Predecessor-Problem.test.cpp
+    title: test/data-structure/ordered-set/yosupo-Predecessor-Problem.test.cpp
   - icon: ':x:'
     path: test/data-structure/treap/unit-test-treap.test.cpp
     title: test/data-structure/treap/unit-test-treap.test.cpp
@@ -67,6 +70,7 @@ data:
   - test/data-structure/treap/unit-test-treap.test.cpp
   - test/data-structure/treap/yosupo-Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
   - test/data-structure/treap/yosupo-Range-Reverse-Range-Sum.test.cpp
+  - test/data-structure/ordered-set/yosupo-Predecessor-Problem.test.cpp
 documentation_of: library/random/rng.hpp
 layout: document
 redirect_from:

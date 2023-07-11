@@ -19,25 +19,25 @@ data:
     , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
     )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: ../../../library/tree/heavy-light-decomposition.hpp:\
     \ line -1: no such header\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/lca\"\r\n\r\n#include <iostream>\r\
-    \n#include \"../../../library/tree/heavy-light-decomposition.hpp\"\r\nusing namespace\
-    \ std;\r\nusing namespace felix;\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/jump_on_tree\"\r\n\r\n\
+    #include <iostream>\r\n#include \"../../../library/tree/heavy-light-decomposition.hpp\"\
+    \r\nusing namespace std;\r\nusing namespace felix;\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\
     \n\tcin.tie(0);\r\n\tint n, q;\r\n\tcin >> n >> q;\r\n\tHLD hld(n);\r\n\tfor(int\
-    \ i = 1; i < n; i++) {\r\n\t\tint p;\r\n\t\tcin >> p;\r\n\t\thld.add_edge(i, p);\r\
-    \n\t}\r\n\thld.build(0);\r\n\twhile(q--) {\r\n\t\tint u, v;\r\n\t\tcin >> u >>\
-    \ v;\r\n\t\tcout << hld.get_lca(u, v) << \"\\n\";\r\n\t}\r\n\treturn 0;\r\n}\r\
-    \n"
+    \ i = 0; i < n - 1; i++) {\r\n\t\tint u, v;\r\n\t\tcin >> u >> v;\r\n\t\thld.add_edge(u,\
+    \ v);\r\n\t}\r\n\thld.build();\r\n\twhile(q--) {\r\n\t\tint u, v, k;\r\n\t\tcin\
+    \ >> u >> v >> k;\r\n\t\tcout << hld.get_kth_node_on_path(u, v, k) << \"\\n\"\
+    ;\r\n\t}\r\n\treturn 0;\r\n}\r\n"
   dependsOn: []
   isVerificationFile: true
-  path: test/tree/heavy-light-decomposition/yosupo-Lowest-Common-Ancestor.test.cpp
+  path: test/tree/hld/yosupo-Jump-on-Tree.test.cpp
   requiredBy: []
   timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/tree/heavy-light-decomposition/yosupo-Lowest-Common-Ancestor.test.cpp
+documentation_of: test/tree/hld/yosupo-Jump-on-Tree.test.cpp
 layout: document
 redirect_from:
-- /verify/test/tree/heavy-light-decomposition/yosupo-Lowest-Common-Ancestor.test.cpp
-- /verify/test/tree/heavy-light-decomposition/yosupo-Lowest-Common-Ancestor.test.cpp.html
-title: test/tree/heavy-light-decomposition/yosupo-Lowest-Common-Ancestor.test.cpp
+- /verify/test/tree/hld/yosupo-Jump-on-Tree.test.cpp
+- /verify/test/tree/hld/yosupo-Jump-on-Tree.test.cpp.html
+title: test/tree/hld/yosupo-Jump-on-Tree.test.cpp
 ---

@@ -17,30 +17,27 @@ data:
     \                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n \
     \ File \"/opt/hostedtoolcache/Python/3.11.4/x64/lib/python3.11/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
-    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: ../../../library/graph/strongly-connected-components.hpp:\
+    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: ../../../library/tree/heavy-light-decomposition.hpp:\
     \ line -1: no such header\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/scc\"\r\n\r\n#include <iostream>\r\
-    \n#include \"../../../library/graph/strongly-connected-components.hpp\"\r\nusing\
-    \ namespace std;\r\nusing namespace felix;\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\
-    \n\tcin.tie(0);\r\n\tint n, m;\r\n\tcin >> n >> m;\r\n\tSCC g(n);\r\n\tfor(int\
-    \ i = 0; i < m; i++) {\r\n\t\tint u, v;\r\n\t\tcin >> u >> v;\r\n\t\tg.add_edge(u,\
-    \ v);\r\n\t}\r\n\tauto id = g.solve();\r\n\tint k = *max_element(id.begin(), id.end())\
-    \ + 1;\r\n\tvector<vector<int>> ans(k);\r\n\tfor(int i = 0; i < n; i++) {\r\n\t\
-    \tans[id[i]].push_back(i);\r\n\t}\r\n\tcout << k << \"\\n\";\r\n\tfor(int i =\
-    \ 0; i < k; i++) {\r\n\t\tcout << ans[i].size();\r\n\t\tfor(auto x : ans[i]) {\r\
-    \n\t\t\tcout << \" \" << x;\r\n\t\t}\r\n\t\tcout << \"\\n\";\r\n\t}\r\n\treturn\
-    \ 0;\r\n}\r\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/lca\"\r\n\r\n#include <iostream>\r\
+    \n#include \"../../../library/tree/heavy-light-decomposition.hpp\"\r\nusing namespace\
+    \ std;\r\nusing namespace felix;\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\
+    \n\tcin.tie(0);\r\n\tint n, q;\r\n\tcin >> n >> q;\r\n\tHLD hld(n);\r\n\tfor(int\
+    \ i = 1; i < n; i++) {\r\n\t\tint p;\r\n\t\tcin >> p;\r\n\t\thld.add_edge(i, p);\r\
+    \n\t}\r\n\thld.build(0);\r\n\twhile(q--) {\r\n\t\tint u, v;\r\n\t\tcin >> u >>\
+    \ v;\r\n\t\tcout << hld.get_lca(u, v) << \"\\n\";\r\n\t}\r\n\treturn 0;\r\n}\r\
+    \n"
   dependsOn: []
   isVerificationFile: true
-  path: test/graph/strongly-connected-components/yosupo-Strongly-Connected-Components.test.cpp
+  path: test/tree/hld/yosupo-Lowest-Common-Ancestor.test.cpp
   requiredBy: []
   timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/graph/strongly-connected-components/yosupo-Strongly-Connected-Components.test.cpp
+documentation_of: test/tree/hld/yosupo-Lowest-Common-Ancestor.test.cpp
 layout: document
 redirect_from:
-- /verify/test/graph/strongly-connected-components/yosupo-Strongly-Connected-Components.test.cpp
-- /verify/test/graph/strongly-connected-components/yosupo-Strongly-Connected-Components.test.cpp.html
-title: test/graph/strongly-connected-components/yosupo-Strongly-Connected-Components.test.cpp
+- /verify/test/tree/hld/yosupo-Lowest-Common-Ancestor.test.cpp
+- /verify/test/tree/hld/yosupo-Lowest-Common-Ancestor.test.cpp.html
+title: test/tree/hld/yosupo-Lowest-Common-Ancestor.test.cpp
 ---

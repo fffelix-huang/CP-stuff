@@ -19,25 +19,26 @@ data:
     , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
     )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: ../../../library/tree/heavy-light-decomposition.hpp:\
     \ line -1: no such header\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/jump_on_tree\"\r\n\r\n\
-    #include <iostream>\r\n#include \"../../../library/tree/heavy-light-decomposition.hpp\"\
+  code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_5_C\"\
+    \r\n\r\n#include <iostream>\r\n#include \"../../../library/tree/heavy-light-decomposition.hpp\"\
     \r\nusing namespace std;\r\nusing namespace felix;\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\
-    \n\tcin.tie(0);\r\n\tint n, q;\r\n\tcin >> n >> q;\r\n\tHLD hld(n);\r\n\tfor(int\
-    \ i = 0; i < n - 1; i++) {\r\n\t\tint u, v;\r\n\t\tcin >> u >> v;\r\n\t\thld.add_edge(u,\
-    \ v);\r\n\t}\r\n\thld.build();\r\n\twhile(q--) {\r\n\t\tint u, v, k;\r\n\t\tcin\
-    \ >> u >> v >> k;\r\n\t\tcout << hld.get_kth_node_on_path(u, v, k) << \"\\n\"\
-    ;\r\n\t}\r\n\treturn 0;\r\n}\r\n"
+    \n\tcin.tie(0);\r\n\tint n;\r\n\tcin >> n;\r\n\tHLD hld(n);\r\n\tfor(int i = 0;\
+    \ i < n; i++) {\r\n\t\tint m;\r\n\t\tcin >> m;\r\n\t\tfor(int j = 0; j < m; j++)\
+    \ {\r\n\t\t\tint x;\r\n\t\t\tcin >> x;\r\n\t\t\thld.add_edge(i, x);\r\n\t\t}\r\
+    \n\t}\r\n\thld.build(0);\r\n\tint q;\r\n\tcin >> q;\r\n\twhile(q--) {\r\n\t\t\
+    int u, v;\r\n\t\tcin >> u >> v;\r\n\t\tcout << hld.get_lca(u, v) << \"\\n\";\r\
+    \n\t}\r\n\treturn 0;\r\n}\r\n"
   dependsOn: []
   isVerificationFile: true
-  path: test/tree/heavy-light-decomposition/yosupo-Jump-on-Tree.test.cpp
+  path: test/tree/hld/aoj-grl-Lowest-Common-Ancestor.test.cpp
   requiredBy: []
   timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/tree/heavy-light-decomposition/yosupo-Jump-on-Tree.test.cpp
+documentation_of: test/tree/hld/aoj-grl-Lowest-Common-Ancestor.test.cpp
 layout: document
 redirect_from:
-- /verify/test/tree/heavy-light-decomposition/yosupo-Jump-on-Tree.test.cpp
-- /verify/test/tree/heavy-light-decomposition/yosupo-Jump-on-Tree.test.cpp.html
-title: test/tree/heavy-light-decomposition/yosupo-Jump-on-Tree.test.cpp
+- /verify/test/tree/hld/aoj-grl-Lowest-Common-Ancestor.test.cpp
+- /verify/test/tree/hld/aoj-grl-Lowest-Common-Ancestor.test.cpp.html
+title: test/tree/hld/aoj-grl-Lowest-Common-Ancestor.test.cpp
 ---

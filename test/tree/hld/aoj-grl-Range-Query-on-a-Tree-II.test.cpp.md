@@ -44,15 +44,15 @@ data:
     \t}\r\n\treturn 0;\r\n}\r\n"
   dependsOn: []
   isVerificationFile: true
-  path: test/tree/heavy-light-decomposition/aoj-grl-Range-Query-on-a-Tree-II.test.cpp
+  path: test/tree/hld/aoj-grl-Range-Query-on-a-Tree-II.test.cpp
   requiredBy: []
   timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/tree/heavy-light-decomposition/aoj-grl-Range-Query-on-a-Tree-II.test.cpp
+documentation_of: test/tree/hld/aoj-grl-Range-Query-on-a-Tree-II.test.cpp
 layout: document
 redirect_from:
-- /verify/test/tree/heavy-light-decomposition/aoj-grl-Range-Query-on-a-Tree-II.test.cpp
-- /verify/test/tree/heavy-light-decomposition/aoj-grl-Range-Query-on-a-Tree-II.test.cpp.html
-title: test/tree/heavy-light-decomposition/aoj-grl-Range-Query-on-a-Tree-II.test.cpp
+- /verify/test/tree/hld/aoj-grl-Range-Query-on-a-Tree-II.test.cpp
+- /verify/test/tree/hld/aoj-grl-Range-Query-on-a-Tree-II.test.cpp.html
+title: test/tree/hld/aoj-grl-Range-Query-on-a-Tree-II.test.cpp
 ---

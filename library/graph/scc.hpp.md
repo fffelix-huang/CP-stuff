@@ -7,6 +7,12 @@ data:
     title: library/math/two-sat.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/graph/scc/aoj-grl-Strongly-Connected-Components.test.cpp
+    title: test/graph/scc/aoj-grl-Strongly-Connected-Components.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/graph/scc/yosupo-Strongly-Connected-Components.test.cpp
+    title: test/graph/scc/yosupo-Strongly-Connected-Components.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/math/two-sat/yosupo-2-Sat.test.cpp
     title: test/math/two-sat/yosupo-2-Sat.test.cpp
   _isVerificationFailed: false
@@ -69,6 +75,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/math/two-sat/yosupo-2-Sat.test.cpp
+  - test/graph/scc/yosupo-Strongly-Connected-Components.test.cpp
+  - test/graph/scc/aoj-grl-Strongly-Connected-Components.test.cpp
 documentation_of: library/graph/scc.hpp
 layout: document
 redirect_from:

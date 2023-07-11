@@ -44,15 +44,15 @@ data:
     \ z + res.second << \"\\n\";\r\n\t\t}\r\n\t}\r\n\treturn 0;\r\n}\r\n"
   dependsOn: []
   isVerificationFile: true
-  path: test/tree/heavy-light-decomposition/yosupo-Vertex-Set-Path-Composite.test.cpp
+  path: test/tree/hld/yosupo-Vertex-Set-Path-Composite.test.cpp
   requiredBy: []
   timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/tree/heavy-light-decomposition/yosupo-Vertex-Set-Path-Composite.test.cpp
+documentation_of: test/tree/hld/yosupo-Vertex-Set-Path-Composite.test.cpp
 layout: document
 redirect_from:
-- /verify/test/tree/heavy-light-decomposition/yosupo-Vertex-Set-Path-Composite.test.cpp
-- /verify/test/tree/heavy-light-decomposition/yosupo-Vertex-Set-Path-Composite.test.cpp.html
-title: test/tree/heavy-light-decomposition/yosupo-Vertex-Set-Path-Composite.test.cpp
+- /verify/test/tree/hld/yosupo-Vertex-Set-Path-Composite.test.cpp
+- /verify/test/tree/hld/yosupo-Vertex-Set-Path-Composite.test.cpp.html
+title: test/tree/hld/yosupo-Vertex-Set-Path-Composite.test.cpp
 ---

@@ -19,30 +19,30 @@ data:
     , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
     )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: ../../../library/tree/heavy-light-decomposition.hpp:\
     \ line -1: no such header\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/vertex_add_subtree_sum\"\
-    \r\n\r\n#include <iostream>\r\n#include \"../../../library/data-structure/fenwick.hpp\"\
-    \r\n#include \"../../../library/tree/heavy-light-decomposition.hpp\"\r\nusing\
-    \ namespace std;\r\nusing namespace felix;\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\
-    \n\tcin.tie(0);\r\n\tint n, q;\r\n\tcin >> n >> q;\r\n\tvector<int> a(n);\r\n\t\
-    for(int i = 0; i < n; i++) {\r\n\t\tcin >> a[i];\r\n\t}\r\n\tHLD hld(n);\r\n\t\
-    for(int i = 1; i < n; i++) {\r\n\t\tint p;\r\n\t\tcin >> p;\r\n\t\thld.add_edge(p,\
-    \ i);\r\n\t}\r\n\thld.build(0);\r\n\tfenwick<long long> fenw(n);\r\n\tfor(int\
-    \ i = 0; i < n; i++) {\r\n\t\tfenw.add(hld.id[i], a[i]);\r\n\t}\r\n\twhile(q--)\
-    \ {\r\n\t\tint type, u;\r\n\t\tcin >> type >> u;\r\n\t\tif(type == 0) {\r\n\t\t\
-    \tint x;\r\n\t\t\tcin >> x;\r\n\t\t\tfenw.add(hld.id[u], x);\r\n\t\t} else {\r\
-    \n\t\t\tcout << fenw.sum(hld.id[u], hld.id[u] + hld.subtree_size[u]) << \"\\n\"\
-    ;\r\n\t\t}\r\n\t}\r\n\treturn 0;\r\n}\r\n"
+  code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_5_D\"\
+    \r\n\r\n#include <iostream>\r\n#include \"../../../library/tree/heavy-light-decomposition.hpp\"\
+    \r\n#include \"../../../library/data-structure/fenwick.hpp\"\r\nusing namespace\
+    \ std;\r\nusing namespace felix;\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\
+    \n\tcin.tie(0);\r\n\tint n;\r\n\tcin >> n;\r\n\tHLD hld(n);\r\n\tfor(int i = 0;\
+    \ i < n; i++) {\r\n\t\tint m;\r\n\t\tcin >> m;\r\n\t\tfor(int j = 0; j < m; j++)\
+    \ {\r\n\t\t\tint x;\r\n\t\t\tcin >> x;\r\n\t\t\thld.add_edge(i, x);\r\n\t\t}\r\
+    \n\t}\r\n\thld.build(0);\r\n\tfenwick<int> fenw(n);\r\n\tint q;\r\n\tcin >> q;\r\
+    \n\twhile(q--) {\r\n\t\tint type, u;\r\n\t\tcin >> type >> u;\r\n\t\tif(type ==\
+    \ 0) {\r\n\t\t\tint w;\r\n\t\t\tcin >> w;\r\n\t\t\tfenw.add(hld.id[u], +w);\r\n\
+    \t\t\tfenw.add(hld.id[u] + hld.subtree_size[u], -w);\r\n\t\t} else {\r\n\t\t\t\
+    cout << fenw.get(hld.id[u] + 1) << \"\\n\";\r\n\t\t}\r\n\t}\r\n\treturn 0;\r\n\
+    }\r\n"
   dependsOn: []
   isVerificationFile: true
-  path: test/tree/heavy-light-decomposition/yosupo-Vertex-Add-Subtree-Sum.test.cpp
+  path: test/tree/hld/aoj-grl-Range-Query-on-a-Tree.test.cpp
   requiredBy: []
   timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/tree/heavy-light-decomposition/yosupo-Vertex-Add-Subtree-Sum.test.cpp
+documentation_of: test/tree/hld/aoj-grl-Range-Query-on-a-Tree.test.cpp
 layout: document
 redirect_from:
-- /verify/test/tree/heavy-light-decomposition/yosupo-Vertex-Add-Subtree-Sum.test.cpp
-- /verify/test/tree/heavy-light-decomposition/yosupo-Vertex-Add-Subtree-Sum.test.cpp.html
-title: test/tree/heavy-light-decomposition/yosupo-Vertex-Add-Subtree-Sum.test.cpp
+- /verify/test/tree/hld/aoj-grl-Range-Query-on-a-Tree.test.cpp
+- /verify/test/tree/hld/aoj-grl-Range-Query-on-a-Tree.test.cpp.html
+title: test/tree/hld/aoj-grl-Range-Query-on-a-Tree.test.cpp
 ---

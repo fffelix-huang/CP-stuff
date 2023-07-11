@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/bst/rbst-base.hpp
     title: library/bst/rbst-base.hpp
   - icon: ':question:'
