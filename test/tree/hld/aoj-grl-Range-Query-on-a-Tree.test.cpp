@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_5_D"
 
 #include <iostream>
-#include "../../../library/tree/heavy-light-decomposition.hpp"
+#include "../../../library/tree/hld.hpp"
 #include "../../../library/data-structure/fenwick.hpp"
 using namespace std;
 using namespace felix;

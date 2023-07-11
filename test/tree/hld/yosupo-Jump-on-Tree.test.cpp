@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/jump_on_tree"
 
 #include <iostream>
-#include "../../../library/tree/heavy-light-decomposition.hpp"
+#include "../../../library/tree/hld.hpp"
 using namespace std;
 using namespace felix;
 

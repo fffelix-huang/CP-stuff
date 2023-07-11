@@ -3,7 +3,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-#include "../../../library/tree/heavy-light-decomposition.hpp"
+#include "../../../library/tree/hld.hpp"
 #include "../../../library/data-structure/lazy-segtree.hpp"
 using namespace std;
 using namespace felix;
