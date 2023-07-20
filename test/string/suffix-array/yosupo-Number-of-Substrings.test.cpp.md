@@ -23,7 +23,7 @@ data:
     \ s) {\r\n\tstd::vector<int> sa(s.size());\r\n\tstd::iota(sa.begin(), sa.end(),\
     \ 0);\r\n\tstd::sort(sa.begin(), sa.end(), [&](int i, int j) {\r\n\t\treturn std::lexicographical_compare(s.begin()\
     \ + i, s.end(), s.begin() + j, s.end());\r\n\t});\r\n\treturn sa;\r\n}\r\n\r\n\
-    std::vector<int> sa_doubling(const std::vector<int>& s) {\r\n\tint n = (int) s.size();\r\
+    std::vector<int> sa_doubling(const std::vector<int>& s) {\r\n\tint n = s.size();\r\
     \n\tstd::vector<int> rnk(s), tmp(n), sa(n);\r\n\tstd::iota(sa.begin(), sa.end(),\
     \ 0);\r\n\tfor(int k = 1; k < n; k *= 2) {\r\n\t\tauto cmp = [&](int x, int y)\
     \ {\r\n\t\t\tif(rnk[x] != rnk[y]) {\r\n\t\t\t\treturn rnk[x] < rnk[y];\r\n\t\t\
@@ -32,10 +32,10 @@ data:
     \ sa.end(), cmp);\r\n\t\ttmp[sa[0]] = 0;\r\n\t\tfor(int i = 1; i < n; i++) {\r\
     \n\t\t\ttmp[sa[i]] = tmp[sa[i - 1]] + cmp(sa[i - 1], sa[i]);\r\n\t\t}\r\n\t\t\
     std::swap(tmp, rnk);\r\n\t}\r\n\treturn sa;\r\n}\r\n\r\nstd::vector<int> sa_is(const\
-    \ std::vector<int>& s, int upper) {\r\n\tint n = (int) s.size();\r\n\tif(n ==\
-    \ 0) {\r\n\t\treturn {};\r\n\t}\r\n\tif(n == 1) {\r\n\t\treturn {0};\r\n\t}\r\n\
-    \tif(n == 2) {\r\n\t\tif(s[0] < s[1]) {\r\n\t\t\treturn {0, 1};\r\n\t\t} else\
-    \ {\r\n\t\t\treturn {1, 0};\r\n\t\t}\r\n\t}\r\n\tif(n < 10) {\r\n\t\treturn sa_naive(s);\r\
+    \ std::vector<int>& s, int upper) {\r\n\tint n = s.size();\r\n\tif(n == 0) {\r\
+    \n\t\treturn {};\r\n\t}\r\n\tif(n == 1) {\r\n\t\treturn {0};\r\n\t}\r\n\tif(n\
+    \ == 2) {\r\n\t\tif(s[0] < s[1]) {\r\n\t\t\treturn {0, 1};\r\n\t\t} else {\r\n\
+    \t\t\treturn {1, 0};\r\n\t\t}\r\n\t}\r\n\tif(n < 10) {\r\n\t\treturn sa_naive(s);\r\
     \n\t}\r\n\tif(n < 40) {\r\n\t\treturn sa_doubling(s);\r\n\t}\r\n\tstd::vector<bool>\
     \ ls(n);\r\n\tfor(int i = n - 2; i >= 0; i--) {\r\n\t\tls[i] = (s[i] == s[i +\
     \ 1]) ? ls[i + 1] : (s[i] < s[i + 1]);\r\n\t}\r\n\tstd::vector<int> sum_l(upper\
@@ -72,7 +72,7 @@ data:
     \ upper) {\r\n\tassert(0 <= upper);\r\n\tfor(int d : s) {\r\n\t\tassert(0 <= d\
     \ && d <= upper);\r\n\t}\r\n\tauto sa = internal::sa_is(s, upper);\r\n\treturn\
     \ sa;\r\n}\r\n\r\ntemplate<class T>\r\nstd::vector<int> suffix_array(const std::vector<T>&\
-    \ s) {\r\n\tint n = (int) s.size();\r\n\tstd::vector<int> idx(n);\r\n\tstd::iota(idx.begin(),\
+    \ s) {\r\n\tint n = s.size();\r\n\tstd::vector<int> idx(n);\r\n\tstd::iota(idx.begin(),\
     \ idx.end(), 0);\r\n\tstd::sort(idx.begin(), idx.end(), [&](int l, int r) { return\
     \ s[l] < s[r]; });\r\n\tstd::vector<int> s2(n);\r\n\tint now = 0;\r\n\tfor(int\
     \ i = 0; i < n; i++) {\r\n\t\tif(i && s[idx[i - 1]] != s[idx[i]]) {\r\n\t\t\t\
@@ -80,16 +80,15 @@ data:
     \ now);\r\n}\r\n\r\nstd::vector<int> suffix_array(const std::string& s) {\r\n\t\
     return internal::sa_is(std::vector<int>(s.begin(), s.end()), 255);\r\n}\r\n\r\n\
     template<class T>\r\nstd::vector<int> lcp_array(const std::vector<T>& s, const\
-    \ std::vector<int>& sa) {\r\n\tint n = (int) s.size();\r\n\tassert(n >= 1);\r\n\
-    \tstd::vector<int> rnk(n);\r\n\tfor(int i = 0; i < n; i++) {\r\n\t\trnk[sa[i]]\
-    \ = i;\r\n\t}\r\n\tstd::vector<int> lcp(n - 1);\r\n\tint h = 0;\r\n\tfor(int i\
-    \ = 0; i < n; i++) {\r\n\t\tif(h > 0) {\r\n\t\t\th--;\r\n\t\t}\r\n\t\tif(rnk[i]\
-    \ == 0) {\r\n\t\t\tcontinue;\r\n\t\t}\r\n\t\tint j = sa[rnk[i] - 1];\r\n\t\tfor(;\
-    \ j + h < n && i + h < n; h++) {\r\n\t\t\tif(s[j + h] != s[i + h]) {\r\n\t\t\t\
-    \tbreak;\r\n\t\t\t}\r\n\t\t}\r\n\t\tlcp[rnk[i] - 1] = h;\r\n\t}\r\n\treturn lcp;\r\
-    \n}\r\n\r\nstd::vector<int> lcp_array(const std::string& s, const std::vector<int>&\
-    \ sa) {\r\n\treturn lcp_array(std::vector<int>(s.begin(), s.end()), sa);\r\n}\r\
-    \n\r\n} // namespace felix\r\n#line 6 \"test/string/suffix-array/yosupo-Number-of-Substrings.test.cpp\"\
+    \ std::vector<int>& sa) {\r\n\tint n = s.size();\r\n\tassert(n >= 1);\r\n\tstd::vector<int>\
+    \ rnk(n);\r\n\tfor(int i = 0; i < n; i++) {\r\n\t\trnk[sa[i]] = i;\r\n\t}\r\n\t\
+    std::vector<int> lcp(n - 1);\r\n\tint h = 0;\r\n\tfor(int i = 0; i < n; i++) {\r\
+    \n\t\tif(h > 0) {\r\n\t\t\th--;\r\n\t\t}\r\n\t\tif(rnk[i] == 0) {\r\n\t\t\tcontinue;\r\
+    \n\t\t}\r\n\t\tint j = sa[rnk[i] - 1];\r\n\t\tfor(; j + h < n && i + h < n; h++)\
+    \ {\r\n\t\t\tif(s[j + h] != s[i + h]) {\r\n\t\t\t\tbreak;\r\n\t\t\t}\r\n\t\t}\r\
+    \n\t\tlcp[rnk[i] - 1] = h;\r\n\t}\r\n\treturn lcp;\r\n}\r\n\r\nstd::vector<int>\
+    \ lcp_array(const std::string& s, const std::vector<int>& sa) {\r\n\treturn lcp_array(std::vector<int>(s.begin(),\
+    \ s.end()), sa);\r\n}\r\n\r\n} // namespace felix\r\n#line 6 \"test/string/suffix-array/yosupo-Number-of-Substrings.test.cpp\"\
     \nusing namespace std;\r\nusing namespace felix;\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\
     \n\tcin.tie(0);\r\n\tstring s;\r\n\tcin >> s;\r\n\tint n = (int) s.size();\r\n\
     \tauto sa = suffix_array(s);\r\n\tauto lcp = lcp_array(s, sa);\r\n\tcout << n\
@@ -107,7 +106,7 @@ data:
   isVerificationFile: true
   path: test/string/suffix-array/yosupo-Number-of-Substrings.test.cpp
   requiredBy: []
-  timestamp: '2023-05-29 14:59:47+08:00'
+  timestamp: '2023-07-20 17:15:06+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/string/suffix-array/yosupo-Number-of-Substrings.test.cpp

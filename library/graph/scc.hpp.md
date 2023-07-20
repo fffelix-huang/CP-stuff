@@ -34,7 +34,7 @@ data:
     \ = x;\n\t\t\tfor(auto v : h[u]) {\n\t\t\t\tif(id[v] == -1) {\n\t\t\t\t\tdfs2(v,\
     \ x);\n\t\t\t\t}\n\t\t\t}\n\t\t};\n\t\tfor(int i = n - 1, cnt = 0; i >= 0; --i)\
     \ {\n\t\t\tint u = top[i];\n\t\t\tif(id[u] == -1) {\n\t\t\t\tdfs2(u, cnt);\n\t\
-    \t\t\tcnt += 1;\n\t\t\t}\n\t\t}\n\t\treturn id;\n\t}\n\n\tstd::vector<std::vector<int>>\
+    \t\t\tcnt++;\n\t\t\t}\n\t\t}\n\t\treturn id;\n\t}\n\n\tstd::vector<std::vector<int>>\
     \ compress(std::vector<int> id) {\n\t\tint sz = *max_element(id.begin(), id.end())\
     \ + 1;\n\t\tstd::vector<std::vector<int>> new_g(sz);\n\t\tfor(int u = 0; u < n;\
     \ ++u) {\n\t\t\tfor(auto v : g[u]) {\n\t\t\t\tif(id[u] == id[v]) {\n\t\t\t\t\t\
@@ -57,7 +57,7 @@ data:
     \ = x;\n\t\t\tfor(auto v : h[u]) {\n\t\t\t\tif(id[v] == -1) {\n\t\t\t\t\tdfs2(v,\
     \ x);\n\t\t\t\t}\n\t\t\t}\n\t\t};\n\t\tfor(int i = n - 1, cnt = 0; i >= 0; --i)\
     \ {\n\t\t\tint u = top[i];\n\t\t\tif(id[u] == -1) {\n\t\t\t\tdfs2(u, cnt);\n\t\
-    \t\t\tcnt += 1;\n\t\t\t}\n\t\t}\n\t\treturn id;\n\t}\n\n\tstd::vector<std::vector<int>>\
+    \t\t\tcnt++;\n\t\t\t}\n\t\t}\n\t\treturn id;\n\t}\n\n\tstd::vector<std::vector<int>>\
     \ compress(std::vector<int> id) {\n\t\tint sz = *max_element(id.begin(), id.end())\
     \ + 1;\n\t\tstd::vector<std::vector<int>> new_g(sz);\n\t\tfor(int u = 0; u < n;\
     \ ++u) {\n\t\t\tfor(auto v : g[u]) {\n\t\t\t\tif(id[u] == id[v]) {\n\t\t\t\t\t\
@@ -71,7 +71,7 @@ data:
   path: library/graph/scc.hpp
   requiredBy:
   - library/math/two-sat.hpp
-  timestamp: '2023-07-11 10:41:16+08:00'
+  timestamp: '2023-07-20 17:15:06+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/math/two-sat/yosupo-2-Sat.test.cpp

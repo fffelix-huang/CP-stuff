@@ -176,13 +176,16 @@ data:
     make_root(u);\r\n\t\tcut(v);\r\n\t}\r\n\r\n\tbool is_connected(int u, int v) {\r\
     \n\t\tif(u == v) {\r\n\t\t\treturn true;\r\n\t\t}\r\n\t\taccess(u), access(v);\r\
     \n\t\treturn a[u].p != nullptr;\r\n\t}\r\n\r\n\tint get_lca(int u, int v) {\r\n\
-    \t\taccess(u);\r\n\t\treturn access(v) - &a[0];\r\n\t}\r\n\r\n\tvoid set(int u,\
-    \ const S& s) {\r\n\t\taccess(u);\r\n\t\ta[u].val = s;\r\n\t\tpull(&a[u]);\r\n\
-    \t}\r\n\r\n\tS get(int u) {\r\n\t\taccess(u);\r\n\t\treturn a[u].val;\r\n\t}\r\
-    \n\r\n\tvoid apply(int u, int v, const F& f) {\r\n\t\tmake_root(u);\r\n\t\taccess(v);\r\
-    \n\t\tall_apply(&a[v], f);\r\n\t\tpush(&a[v]);\r\n\t}\r\n\r\n\tS prod(int u, int\
-    \ v) {\r\n\t\tmake_root(u);\r\n\t\taccess(v);\r\n\t\treturn a[v].sum;\r\n\t}\r\
-    \n\r\nprivate:\r\n\tint n;\r\n\tstd::vector<node_t> a;\r\n\r\n\tvoid rotate(node_t*\
+    \t\tif(u == v) {\r\n\t\t\treturn u;\r\n\t\t}\r\n\t\taccess(u);\r\n\t\treturn access(v)\
+    \ - &a[0];\r\n\t}\r\n\r\n\tint get_root(int u) {\r\n\t\tnode_t* v = access(u);\r\
+    \n\t\tpush(v);\r\n\t\twhile(v->l != nullptr) {\r\n\t\t\tv = v->l;\r\n\t\t\tpush(v);\r\
+    \n\t\t}\r\n\t\taccess(v);\r\n\t\treturn v - &a[0];\r\n\t}\r\n\r\n\tvoid set(int\
+    \ u, const S& s) {\r\n\t\taccess(u);\r\n\t\ta[u].val = s;\r\n\t\tpull(&a[u]);\r\
+    \n\t}\r\n\r\n\tS get(int u) {\r\n\t\taccess(u);\r\n\t\treturn a[u].val;\r\n\t\
+    }\r\n\r\n\tvoid apply(int u, int v, const F& f) {\r\n\t\tmake_root(u);\r\n\t\t\
+    access(v);\r\n\t\tall_apply(&a[v], f);\r\n\t\tpush(&a[v]);\r\n\t}\r\n\r\n\tS prod(int\
+    \ u, int v) {\r\n\t\tmake_root(u);\r\n\t\taccess(v);\r\n\t\treturn a[v].sum;\r\
+    \n\t}\r\n\r\nprivate:\r\n\tint n;\r\n\tstd::vector<node_t> a;\r\n\r\n\tvoid rotate(node_t*\
     \ v) {\r\n\t\tauto attach = [&](node_t* p, bool side, node_t* c) {\r\n\t\t\t(side\
     \ ? p->r : p->l) = c;\r\n\t\t\tpull(p);\r\n\t\t\tif(c != nullptr) {\r\n\t\t\t\t\
     c->p = p;\r\n\t\t\t}\r\n\t\t};\r\n\t\tnode_t* p = v->p;\r\n\t\tnode_t* g = p->p;\r\
@@ -256,7 +259,7 @@ data:
   isVerificationFile: true
   path: test/data-structure/lazy-lct/yosupo-Dynamic-Tree-Vertex-Set-Path-Composite.test.cpp
   requiredBy: []
-  timestamp: '2023-06-27 22:09:28+08:00'
+  timestamp: '2023-07-20 17:15:06+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/data-structure/lazy-lct/yosupo-Dynamic-Tree-Vertex-Set-Path-Composite.test.cpp

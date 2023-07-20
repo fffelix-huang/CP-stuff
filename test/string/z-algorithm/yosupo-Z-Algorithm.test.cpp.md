@@ -19,14 +19,13 @@ data:
     \ <iostream>\r\n#line 2 \"library/string/z-algorithm.hpp\"\n#include <vector>\n\
     #include <cstring>\n#include <algorithm>\n#include <numeric>\n\nnamespace felix\
     \ {\n\ntemplate<class T>\nstd::vector<int> z_algorithm(const std::vector<T>& a)\
-    \ {\n\tint n = (int) a.size();\n\tstd::vector<int> z(n);\n\tfor(int i = 1, j =\
-    \ 0; i < n; ++i) {\n\t\tif(i <= j + z[j]) {\n\t\t\tz[i] = std::min(z[i - j], j\
-    \ + z[j] - i);\n\t\t}\n\t\twhile(i + z[i] < n && a[i + z[i]] == a[z[i]]) {\n\t\
-    \t\tz[i] += 1;\n\t\t}\n\t\tif(i + z[i] > j + z[j]) {\n\t\t\tj = i;\n\t\t}\n\t\
-    }\n\treturn z;\n}\n\nstd::vector<int> z_algorithm(const std::string& s) {\n\t\
-    return z_algorithm(std::vector<int>(s.begin(), s.end()));\n}\n\n} // namespace\
-    \ felix\n#line 5 \"test/string/z-algorithm/yosupo-Z-Algorithm.test.cpp\"\nusing\
-    \ namespace std;\r\nusing namespace felix;\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\
+    \ {\n\tint n = a.size();\n\tstd::vector<int> z(n);\n\tfor(int i = 1, j = 0; i\
+    \ < n; ++i) {\n\t\tif(i <= j + z[j]) {\n\t\t\tz[i] = std::min(z[i - j], j + z[j]\
+    \ - i);\n\t\t}\n\t\twhile(i + z[i] < n && a[i + z[i]] == a[z[i]]) {\n\t\t\tz[i]++;\n\
+    \t\t}\n\t\tif(i + z[i] > j + z[j]) {\n\t\t\tj = i;\n\t\t}\n\t}\n\treturn z;\n\
+    }\n\nstd::vector<int> z_algorithm(const std::string& s) {\n\treturn z_algorithm(std::vector<int>(s.begin(),\
+    \ s.end()));\n}\n\n} // namespace felix\n#line 5 \"test/string/z-algorithm/yosupo-Z-Algorithm.test.cpp\"\
+    \nusing namespace std;\r\nusing namespace felix;\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\
     \n\tcin.tie(0);\r\n\tstring s;\r\n\tcin >> s;\r\n\tauto z = z_algorithm(s);\r\n\
     \tz[0] = (int) s.size();\r\n\tfor(int i = 0; i < (int) z.size(); i++) {\r\n\t\t\
     cout << z[i] << \" \\n\"[i == (int) z.size() - 1];\r\n\t}\r\n\treturn 0;\r\n}\r\
@@ -43,7 +42,7 @@ data:
   isVerificationFile: true
   path: test/string/z-algorithm/yosupo-Z-Algorithm.test.cpp
   requiredBy: []
-  timestamp: '2023-05-29 14:59:47+08:00'
+  timestamp: '2023-07-20 17:15:06+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/string/z-algorithm/yosupo-Z-Algorithm.test.cpp

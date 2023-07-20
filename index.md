@@ -221,6 +221,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/string/manacher.hpp
       title: Manacher's Algorithm
+    - icon: ':warning:'
+      path: library/string/minimal-rotation.hpp
+      title: library/string/minimal-rotation.hpp
     - icon: ':heavy_check_mark:'
       path: library/string/suffix-array.hpp
       title: Suffix Array
@@ -292,6 +295,9 @@ data:
       title: test/data-structure/fenwick2d/aoj-dsl-The-Maximum-Number-of-Overlaps.test.cpp
   - name: test/data-structure/lazy-lct
     pages:
+    - icon: ':heavy_check_mark:'
+      path: test/data-structure/lazy-lct/aoj-Do-use-segment-tree.test.cpp
+      title: test/data-structure/lazy-lct/aoj-Do-use-segment-tree.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/data-structure/lazy-lct/yosupo-Dynamic-Tree-Vertex-Add-Path-Sum.test.cpp
       title: test/data-structure/lazy-lct/yosupo-Dynamic-Tree-Vertex-Add-Path-Sum.test.cpp
