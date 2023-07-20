@@ -6,7 +6,7 @@ namespace felix {
 
 template<class T>
 std::vector<int> manacher(const std::vector<T>& s) {
-	int n = (int) s.size();
+	int n = s.size();
 	std::vector<int> res(n);
 	int i = 0, j = 0;
 	while(i < n) {
@@ -30,7 +30,7 @@ std::vector<int> manacher(const std::string& s) {
 
 template<class T>
 std::vector<std::pair<int, int>> enumerate_palindromes(const std::vector<T>& s) {
-	int n = (int) s.size();
+	int n = s.size();
 	std::vector<T> v;
 	for(int i = 0; i < n - 1; i++) {
 		v.push_back(s[i]);

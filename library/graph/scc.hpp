@@ -49,7 +49,7 @@ public:
 			int u = top[i];
 			if(id[u] == -1) {
 				dfs2(u, cnt);
-				cnt += 1;
+				cnt++;
 			}
 		}
 		return id;

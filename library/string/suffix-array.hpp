@@ -19,7 +19,7 @@ std::vector<int> sa_naive(const std::vector<int>& s) {
 }
 
 std::vector<int> sa_doubling(const std::vector<int>& s) {
-	int n = (int) s.size();
+	int n = s.size();
 	std::vector<int> rnk(s), tmp(n), sa(n);
 	std::iota(sa.begin(), sa.end(), 0);
 	for(int k = 1; k < n; k *= 2) {
@@ -42,7 +42,7 @@ std::vector<int> sa_doubling(const std::vector<int>& s) {
 }
 
 std::vector<int> sa_is(const std::vector<int>& s, int upper) {
-	int n = (int) s.size();
+	int n = s.size();
 	if(n == 0) {
 		return {};
 	}
@@ -158,7 +158,7 @@ std::vector<int> suffix_array(const std::vector<int>& s, int upper) {
 
 template<class T>
 std::vector<int> suffix_array(const std::vector<T>& s) {
-	int n = (int) s.size();
+	int n = s.size();
 	std::vector<int> idx(n);
 	std::iota(idx.begin(), idx.end(), 0);
 	std::sort(idx.begin(), idx.end(), [&](int l, int r) { return s[l] < s[r]; });
@@ -179,7 +179,7 @@ std::vector<int> suffix_array(const std::string& s) {
 
 template<class T>
 std::vector<int> lcp_array(const std::vector<T>& s, const std::vector<int>& sa) {
-	int n = (int) s.size();
+	int n = s.size();
 	assert(n >= 1);
 	std::vector<int> rnk(n);
 	for(int i = 0; i < n; i++) {

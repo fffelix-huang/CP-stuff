@@ -8,7 +8,7 @@ namespace felix {
 
 template<class T>
 std::vector<int> KMP(const std::vector<T>& a) {
-	int n = (int) a.size();
+	int n = a.size();
 	std::vector<int> k(n);
 	for(int i = 1; i < n; ++i) {
 		int j = k[i - 1];

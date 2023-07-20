@@ -87,8 +87,22 @@ public:
 	}
 
 	int get_lca(int u, int v) {
+		if(u == v) {
+			return u;
+		}
 		access(u);
 		return access(v) - &a[0];
+	}
+
+	int get_root(int u) {
+		node_t* v = access(u);
+		push(v);
+		while(v->l != nullptr) {
+			v = v->l;
+			push(v);
+		}
+		access(v);
+		return v - &a[0];
 	}
 
 	void set(int u, const S& s) {
