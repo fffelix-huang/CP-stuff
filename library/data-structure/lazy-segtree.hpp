@@ -1,5 +1,7 @@
 #pragma once
 #include <vector>
+#include <algorithm>
+#include <functional>
 #include <cassert>
 #include "segtree.hpp"
 
@@ -16,9 +18,7 @@ struct lazy_segtree : public segtree<S, e, op> {
 	using base = segtree<S, e, op>;
 
 public:
-	using base::all_prod;
-
-	lazy_segtree() : lazy_segtree(0) {}
+	lazy_segtree() {}
 	explicit lazy_segtree(int _n) : lazy_segtree(std::vector<S>(_n, e())) {}
 	explicit lazy_segtree(const std::vector<S>& v) : base(v), lz(size, id()) {}
 
