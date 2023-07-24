@@ -60,6 +60,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/data-structure/pbds.hpp
       title: library/data-structure/pbds.hpp
+    - icon: ':warning:'
+      path: library/data-structure/range-add-range-sum.hpp
+      title: library/data-structure/range-add-range-sum.hpp
     - icon: ':heavy_check_mark:'
       path: library/data-structure/segtree.hpp
       title: library/data-structure/segtree.hpp

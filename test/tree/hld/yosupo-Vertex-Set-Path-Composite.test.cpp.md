@@ -35,66 +35,73 @@ data:
   bundledCode: "#line 1 \"test/tree/hld/yosupo-Vertex-Set-Path-Composite.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/vertex_set_path_composite\"\
     \r\n\r\n#include <iostream>\r\n#include <vector>\r\n#line 3 \"library/data-structure/segtree.hpp\"\
-    \n#include <functional>\n#include <cassert>\n\nnamespace felix {\n\ntemplate<class\
-    \ S, S (*e)(), S (*op)(S, S)>\nstruct segtree {\npublic:\n\tsegtree() : segtree(0)\
-    \ {}\n\texplicit segtree(int _n) : segtree(std::vector<S>(_n, e())) {}\n\texplicit\
-    \ segtree(const std::vector<S>& a): n(a.size()) {\n\t\tlog = std::__lg(2 * n -\
-    \ 1);\n\t\tsize = 1 << log;\n\t\td.resize(size * 2, e());\n\t\tfor(int i = 0;\
-    \ i < n; ++i) {\n\t\t\td[size + i] = a[i];\n\t\t}\n\t\tfor(int i = size - 1; i\
-    \ >= 1; i--) {\n\t\t\tupdate(i);\n\t\t}\n\t}\n\t\n\tvoid set(int p, S val) {\n\
-    \t\tassert(0 <= p && p < n);\n\t\tp += size;\n\t\td[p] = val;\n\t\tfor(int i =\
-    \ 1; i <= log; ++i) {\n\t\t\tupdate(p >> i);\n\t\t}\n\t}\n\n\tS get(int p) const\
-    \ {\n\t\tassert(0 <= p && p < n);\n\t\treturn d[p + size];\n\t}\n\n\tS operator[](int\
-    \ p) const { return get(p); }\n\t\n\tS prod(int l, int r) const {\n\t\tassert(0\
-    \ <= l && l <= r && r <= n);\n\t\tS sml = e(), smr = e();\n\t\tfor(l += size,\
-    \ r += size; l < r; l >>= 1, r >>= 1) {\n\t\t\tif(l & 1) {\n\t\t\t\tsml = op(sml,\
-    \ d[l++]);\n\t\t\t}\n\t\t\tif(r & 1) {\n\t\t\t\tsmr = op(d[--r], smr);\n\t\t\t\
-    }\n\t\t}\n\t\treturn op(sml, smr);\n\t}\n\n\tS all_prod() const { return d[1];\
-    \ }\n\n\ttemplate<bool (*f)(S)> int max_right(int l) {\n\t\treturn max_right(l,\
-    \ [](S x) { return f(x); });\n\t}\n\n\ttemplate<class F> int max_right(int l,\
-    \ F f) {\n\t\tassert(0 <= l && l <= n);\n\t\tassert(f(e()));\n\t\tif(l == n) {\n\
-    \t\t\treturn n;\n\t\t}\n\t\tl += size;\n\t\tS sm = e();\n\t\tdo {\n\t\t\twhile(~l\
-    \ & 1) {\n\t\t\t\tl >>= 1;\n\t\t\t}\n\t\t\tif(!f(op(sm, d[l]))) {\n\t\t\t\twhile(l\
-    \ < size) {\n\t\t\t\t\tpush(l);\n\t\t\t\t\tl <<= 1;\n\t\t\t\t\tif(f(op(sm, d[l])))\
-    \ {\n\t\t\t\t\t\tsm = op(sm, d[l++]);\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\treturn\
-    \ l - size;\n\t\t\t}\n\t\t\tsm = op(sm, d[l++]);\n\t\t} while((l & -l) != l);\n\
-    \t\treturn n;\n\t}\n\n\ttemplate<bool (*f)(S)> int min_left(int r) {\n\t\treturn\
-    \ min_left(r, [](S x) { return f(x); });\n\t}\n\n\ttemplate<class F> int min_left(int\
-    \ r, F f) {\n\t\tassert(0 <= r && r <= n);\n\t\tassert(f(e()));\n\t\tif(r == 0)\
-    \ {\n\t\t\treturn 0;\n\t\t}\n\t\tr += size;\n\t\tS sm = e();\n\t\tdo {\n\t\t\t\
-    r--;\n\t\t\twhile(r > 1 && (r & 1)) {\n\t\t\t\tr >>= 1;\n\t\t\t}\n\t\t\tif(!f(op(d[r],\
-    \ sm))) {\n\t\t\t\twhile(r < size) {\n\t\t\t\t\tpush(r);\n\t\t\t\t\tr = 2 * r\
-    \ + 1;\n\t\t\t\t\tif(f(op(d[r], sm))) {\n\t\t\t\t\t\tsm = op(d[r--], sm);\n\t\t\
-    \t\t\t}\n\t\t\t\t}\n\t\t\t\treturn r + 1 - size;\n\t\t\t}\n\t\t\tsm = op(d[r],\
-    \ sm);\n\t\t} while((r & -r) != r);\n\t\treturn 0;\n\t}\n\t\nprotected:\n\tint\
-    \ n, size, log;\n\tstd::vector<S> d;\n\n\tvoid update(int v) {\n\t\td[v] = op(d[2\
-    \ * v], d[2 * v + 1]);\n\t}\n\n\tvirtual void push(int p) {}\n};\n\n} // namespace\
-    \ felix\n#line 3 \"library/tree/hld.hpp\"\n#include <array>\r\n#line 5 \"library/tree/hld.hpp\"\
-    \n#include <algorithm>\r\n#include <cmath>\r\n#line 4 \"library/data-structure/sparse-table.hpp\"\
-    \n\nnamespace felix {\n\ntemplate<class S, S (*op)(S, S)>\nstruct sparse_table\
-    \ {\npublic:\n\tsparse_table() {}\n\texplicit sparse_table(const std::vector<S>&\
-    \ a) {\n\t\tn = (int) a.size();\n\t\tint max_log = std::__lg(n) + 1;\n\t\tmat.resize(max_log);\n\
-    \t\tmat[0] = a;\n\t\tfor(int j = 1; j < max_log; ++j) {\n\t\t\tmat[j].resize(n\
-    \ - (1 << j) + 1);\n\t\t\tfor(int i = 0; i <= n - (1 << j); ++i) {\n\t\t\t\tmat[j][i]\
-    \ = op(mat[j - 1][i], mat[j - 1][i + (1 << (j - 1))]);\n\t\t\t}\n\t\t}\n\t}\n\n\
-    \tS prod(int from, int to) const {\n\t\tassert(0 <= from && from <= to && to <=\
-    \ n - 1);\n\t\tint lg = std::__lg(to - from + 1);\n\t\treturn op(mat[lg][from],\
-    \ mat[lg][to - (1 << lg) + 1]);\n\t}\n\nprivate:\n\tint n;\n\tstd::vector<std::vector<S>>\
-    \ mat;\n};\n\n} // namespace felix\n#line 8 \"library/tree/hld.hpp\"\n\r\nnamespace\
-    \ felix {\r\n\r\nstruct HLD {\r\nprivate:\r\n\tstatic constexpr std::pair<int,\
-    \ int> __lca_op(std::pair<int, int> a, std::pair<int, int> b) {\r\n\t\treturn\
-    \ std::min(a, b);\r\n\t}\r\n\r\npublic:\r\n\tint n;\r\n\tstd::vector<std::vector<int>>\
-    \ g;\r\n\tstd::vector<int> subtree_size;\r\n\tstd::vector<int> parent;\r\n\tstd::vector<int>\
-    \ depth;\r\n\tstd::vector<int> top;\r\n\tstd::vector<int> tour;\r\n\tstd::vector<int>\
-    \ first_occurrence;\r\n\tstd::vector<int> id;\r\n\tstd::vector<std::pair<int,\
-    \ int>> euler_tour;\r\n\tsparse_table<std::pair<int, int>, __lca_op> st;\r\n\r\
-    \n\tHLD() : n(0) {}\r\n\texplicit HLD(int _n) : n(_n), g(_n), subtree_size(_n),\
-    \ parent(_n), depth(_n), top(_n), first_occurrence(_n), id(_n) {\r\n\t\ttour.reserve(n);\r\
-    \n\t\teuler_tour.reserve(2 * n - 1);\r\n\t}\r\n\r\n\tvoid add_edge(int u, int\
-    \ v) {\r\n\t\tassert(0 <= u && u < n);\r\n\t\tassert(0 <= v && v < n);\r\n\t\t\
-    g[u].push_back(v);\r\n\t\tg[v].push_back(u);\r\n\t}\r\n\r\n\tvoid build(int root\
-    \ = 0) {\r\n\t\tassert(0 <= root && root < n);\r\n\t\tparent[root] = -1;\r\n\t\
-    \ttop[root] = root;\r\n\t\tdfs_sz(root);\r\n\t\tdfs_link(root);\r\n\t\tst = sparse_table<std::pair<int,\
+    \n#include <algorithm>\n#include <functional>\n#include <cassert>\n\nnamespace\
+    \ felix {\n\ntemplate<class S, S (*e)(), S (*op)(S, S)>\nstruct segtree {\npublic:\n\
+    \    segtree() {}\n    explicit segtree(int _n) : segtree(std::vector<S>(_n, e()))\
+    \ {}\n    explicit segtree(const std::vector<S>& a): n(a.size()) {\n        log\
+    \ = std::__lg(2 * n - 1);\n        size = 1 << log;\n        d.resize(size * 2,\
+    \ e());\n        for(int i = 0; i < n; ++i) {\n            d[size + i] = a[i];\n\
+    \        }\n        for(int i = size - 1; i >= 1; i--) {\n            update(i);\n\
+    \        }\n    }\n    \n    void set(int p, S val) {\n        assert(0 <= p &&\
+    \ p < n);\n        p += size;\n        d[p] = val;\n        for(int i = 1; i <=\
+    \ log; ++i) {\n            update(p >> i);\n        }\n    }\n\n    S get(int\
+    \ p) const {\n        assert(0 <= p && p < n);\n        return d[p + size];\n\
+    \    }\n\n    S operator[](int p) const { return get(p); }\n    \n    S prod(int\
+    \ l, int r) const {\n        assert(0 <= l && l <= r && r <= n);\n        S sml\
+    \ = e(), smr = e();\n        for(l += size, r += size; l < r; l >>= 1, r >>= 1)\
+    \ {\n            if(l & 1) {\n                sml = op(sml, d[l++]);\n       \
+    \     }\n            if(r & 1) {\n                smr = op(d[--r], smr);\n   \
+    \         }\n        }\n        return op(sml, smr);\n    }\n\n    S all_prod()\
+    \ const { return d[1]; }\n\n    template<bool (*f)(S)> int max_right(int l) {\n\
+    \        return max_right(l, [](S x) { return f(x); });\n    }\n\n    template<class\
+    \ F> int max_right(int l, F f) {\n        assert(0 <= l && l <= n);\n        assert(f(e()));\n\
+    \        if(l == n) {\n            return n;\n        }\n        l += size;\n\
+    \        S sm = e();\n        do {\n            while(~l & 1) {\n            \
+    \    l >>= 1;\n            }\n            if(!f(op(sm, d[l]))) {\n           \
+    \     while(l < size) {\n                    push(l);\n                    l <<=\
+    \ 1;\n                    if(f(op(sm, d[l]))) {\n                        sm =\
+    \ op(sm, d[l++]);\n                    }\n                }\n                return\
+    \ l - size;\n            }\n            sm = op(sm, d[l++]);\n        } while((l\
+    \ & -l) != l);\n        return n;\n    }\n\n    template<bool (*f)(S)> int min_left(int\
+    \ r) {\n        return min_left(r, [](S x) { return f(x); });\n    }\n\n    template<class\
+    \ F> int min_left(int r, F f) {\n        assert(0 <= r && r <= n);\n        assert(f(e()));\n\
+    \        if(r == 0) {\n            return 0;\n        }\n        r += size;\n\
+    \        S sm = e();\n        do {\n            r--;\n            while(r > 1\
+    \ && (r & 1)) {\n                r >>= 1;\n            }\n            if(!f(op(d[r],\
+    \ sm))) {\n                while(r < size) {\n                    push(r);\n \
+    \                   r = 2 * r + 1;\n                    if(f(op(d[r], sm))) {\n\
+    \                        sm = op(d[r--], sm);\n                    }\n       \
+    \         }\n                return r + 1 - size;\n            }\n           \
+    \ sm = op(d[r], sm);\n        } while((r & -r) != r);\n        return 0;\n   \
+    \ }\n    \nprotected:\n    int n, size, log;\n    std::vector<S> d;\n\n    void\
+    \ update(int v) {\n        d[v] = op(d[2 * v], d[2 * v + 1]);\n    }\n\n    virtual\
+    \ void push(int p) {}\n};\n\n} // namespace felix\n#line 3 \"library/tree/hld.hpp\"\
+    \n#include <array>\r\n#line 6 \"library/tree/hld.hpp\"\n#include <cmath>\r\n#line\
+    \ 4 \"library/data-structure/sparse-table.hpp\"\n\nnamespace felix {\n\ntemplate<class\
+    \ S, S (*op)(S, S)>\nstruct sparse_table {\npublic:\n\tsparse_table() {}\n\texplicit\
+    \ sparse_table(const std::vector<S>& a) {\n\t\tn = (int) a.size();\n\t\tint max_log\
+    \ = std::__lg(n) + 1;\n\t\tmat.resize(max_log);\n\t\tmat[0] = a;\n\t\tfor(int\
+    \ j = 1; j < max_log; ++j) {\n\t\t\tmat[j].resize(n - (1 << j) + 1);\n\t\t\tfor(int\
+    \ i = 0; i <= n - (1 << j); ++i) {\n\t\t\t\tmat[j][i] = op(mat[j - 1][i], mat[j\
+    \ - 1][i + (1 << (j - 1))]);\n\t\t\t}\n\t\t}\n\t}\n\n\tS prod(int from, int to)\
+    \ const {\n\t\tassert(0 <= from && from <= to && to <= n - 1);\n\t\tint lg = std::__lg(to\
+    \ - from + 1);\n\t\treturn op(mat[lg][from], mat[lg][to - (1 << lg) + 1]);\n\t\
+    }\n\nprivate:\n\tint n;\n\tstd::vector<std::vector<S>> mat;\n};\n\n} // namespace\
+    \ felix\n#line 8 \"library/tree/hld.hpp\"\n\r\nnamespace felix {\r\n\r\nstruct\
+    \ HLD {\r\nprivate:\r\n\tstatic constexpr std::pair<int, int> __lca_op(std::pair<int,\
+    \ int> a, std::pair<int, int> b) {\r\n\t\treturn std::min(a, b);\r\n\t}\r\n\r\n\
+    public:\r\n\tint n;\r\n\tstd::vector<std::vector<int>> g;\r\n\tstd::vector<int>\
+    \ subtree_size;\r\n\tstd::vector<int> parent;\r\n\tstd::vector<int> depth;\r\n\
+    \tstd::vector<int> top;\r\n\tstd::vector<int> tour;\r\n\tstd::vector<int> first_occurrence;\r\
+    \n\tstd::vector<int> id;\r\n\tstd::vector<std::pair<int, int>> euler_tour;\r\n\
+    \tsparse_table<std::pair<int, int>, __lca_op> st;\r\n\r\n\tHLD() : n(0) {}\r\n\
+    \texplicit HLD(int _n) : n(_n), g(_n), subtree_size(_n), parent(_n), depth(_n),\
+    \ top(_n), first_occurrence(_n), id(_n) {\r\n\t\ttour.reserve(n);\r\n\t\teuler_tour.reserve(2\
+    \ * n - 1);\r\n\t}\r\n\r\n\tvoid add_edge(int u, int v) {\r\n\t\tassert(0 <= u\
+    \ && u < n);\r\n\t\tassert(0 <= v && v < n);\r\n\t\tg[u].push_back(v);\r\n\t\t\
+    g[v].push_back(u);\r\n\t}\r\n\r\n\tvoid build(int root = 0) {\r\n\t\tassert(0\
+    \ <= root && root < n);\r\n\t\tparent[root] = -1;\r\n\t\ttop[root] = root;\r\n\
+    \t\tdfs_sz(root);\r\n\t\tdfs_link(root);\r\n\t\tst = sparse_table<std::pair<int,\
     \ int>, __lca_op>(euler_tour);\r\n\t}\r\n\r\n\tint get_lca(int u, int v) {\r\n\
     \t\tassert(0 <= u && u < n);\r\n\t\tassert(0 <= v && v < n);\r\n\t\tint L = first_occurrence[u];\r\
     \n\t\tint R = first_occurrence[v];\r\n\t\tif(L > R) {\r\n\t\t\tstd::swap(L, R);\r\
@@ -319,7 +326,7 @@ data:
   isVerificationFile: true
   path: test/tree/hld/yosupo-Vertex-Set-Path-Composite.test.cpp
   requiredBy: []
-  timestamp: '2023-07-11 11:04:32+08:00'
+  timestamp: '2023-07-24 08:41:31+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/tree/hld/yosupo-Vertex-Set-Path-Composite.test.cpp

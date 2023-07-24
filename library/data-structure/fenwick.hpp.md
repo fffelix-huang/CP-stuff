@@ -5,6 +5,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/data-structure/offline-rectangle-sum.hpp
     title: library/data-structure/offline-rectangle-sum.hpp
+  - icon: ':warning:'
+    path: library/data-structure/range-add-range-sum.hpp
+    title: library/data-structure/range-add-range-sum.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/data-structure/fenwick/aoj-dsl-Range-Add-Query.test.cpp
@@ -63,6 +66,7 @@ data:
   path: library/data-structure/fenwick.hpp
   requiredBy:
   - library/data-structure/offline-rectangle-sum.hpp
+  - library/data-structure/range-add-range-sum.hpp
   timestamp: '2023-07-11 10:41:16+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
