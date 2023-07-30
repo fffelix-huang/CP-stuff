@@ -18,7 +18,7 @@ data:
     \ PROBLEM \"https://judge.yosupo.jp/problem/unionfind\"\r\n\r\n#include <iostream>\r\
     \n#line 2 \"library/data-structure/dsu.hpp\"\n#include <vector>\n#include <cassert>\n\
     #include <algorithm>\n\nnamespace felix {\n\ntemplate<bool UNION_BY_SIZE = false>\n\
-    struct DSU {\npublic:\n\tDSU() : DSU(0) {}\n\texplicit DSU(int _n) : n(_n), sz(n,\
+    struct dsu {\npublic:\n\tdsu() : dsu(0) {}\n\texplicit dsu(int _n) : n(_n), sz(n,\
     \ -1) {}\n\t\n\tint leader(int u) {\n\t\tassert(0 <= u && u < n);\n\t\treturn\
     \ (sz[u] < 0 ? u : (sz[u] = leader(sz[u])));\n\t}\n\t\n\tbool merge(int a, int\
     \ b) {\n\t\ta = leader(a), b = leader(b);\n\t\tif(a == b) {\n\t\t\treturn false;\n\
@@ -32,14 +32,14 @@ data:
     }), result.end());\n\t\treturn result;\n\t}\n\nprivate:\n\tint n;\n\tstd::vector<int>\
     \ sz;\n};\n\n} // namespace felix\n#line 5 \"test/data-structure/dsu/yosupo-Unionfind.test.cpp\"\
     \nusing namespace std;\r\nusing namespace felix;\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\
-    \n\tcin.tie(0);\r\n\tint n, q;\r\n\tcin >> n >> q;\r\n\tDSU<true> d(n);\r\n\t\
+    \n\tcin.tie(0);\r\n\tint n, q;\r\n\tcin >> n >> q;\r\n\tdsu<true> d(n);\r\n\t\
     while(q--) {\r\n\t\tint type, u, v;\r\n\t\tcin >> type >> u >> v;\r\n\t\tif(type\
     \ == 0) {\r\n\t\t\td.merge(u, v);\r\n\t\t} else {\r\n\t\t\tcout << d.same(u, v)\
     \ << \"\\n\";\r\n\t\t}\r\n\t}\r\n\treturn 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/unionfind\"\r\n\r\n#include\
     \ <iostream>\r\n#include \"../../../library/data-structure/dsu.hpp\"\r\nusing\
     \ namespace std;\r\nusing namespace felix;\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\
-    \n\tcin.tie(0);\r\n\tint n, q;\r\n\tcin >> n >> q;\r\n\tDSU<true> d(n);\r\n\t\
+    \n\tcin.tie(0);\r\n\tint n, q;\r\n\tcin >> n >> q;\r\n\tdsu<true> d(n);\r\n\t\
     while(q--) {\r\n\t\tint type, u, v;\r\n\t\tcin >> type >> u >> v;\r\n\t\tif(type\
     \ == 0) {\r\n\t\t\td.merge(u, v);\r\n\t\t} else {\r\n\t\t\tcout << d.same(u, v)\
     \ << \"\\n\";\r\n\t\t}\r\n\t}\r\n\treturn 0;\r\n}\r\n"
@@ -48,7 +48,7 @@ data:
   isVerificationFile: true
   path: test/data-structure/dsu/yosupo-Unionfind.test.cpp
   requiredBy: []
-  timestamp: '2023-05-29 14:59:47+08:00'
+  timestamp: '2023-07-30 19:34:47+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/data-structure/dsu/yosupo-Unionfind.test.cpp

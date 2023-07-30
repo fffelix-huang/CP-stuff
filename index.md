@@ -60,6 +60,18 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/data-structure/pbds.hpp
       title: library/data-structure/pbds.hpp
+    - icon: ':heavy_check_mark:'
+      path: library/data-structure/persistent-array.hpp
+      title: library/data-structure/persistent-array.hpp
+    - icon: ':heavy_check_mark:'
+      path: library/data-structure/persistent-dsu.hpp
+      title: library/data-structure/persistent-dsu.hpp
+    - icon: ':warning:'
+      path: library/data-structure/persistent-lazy-segtree.hpp
+      title: library/data-structure/persistent-lazy-segtree.hpp
+    - icon: ':warning:'
+      path: library/data-structure/persistent-segtree.hpp
+      title: library/data-structure/persistent-segtree.hpp
     - icon: ':warning:'
       path: library/data-structure/range-add-range-sum.hpp
       title: library/data-structure/range-add-range-sum.hpp
@@ -361,6 +373,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/data-structure/pbds/yosupo-Static-Range-Sum.test.cpp
       title: test/data-structure/pbds/yosupo-Static-Range-Sum.test.cpp
+  - name: test/data-structure/persistent-dsu
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/data-structure/persistent-dsu/yosupo-Unionfind.test.cpp
+      title: test/data-structure/persistent-dsu/yosupo-Unionfind.test.cpp
   - name: test/data-structure/segtree
     pages:
     - icon: ':heavy_check_mark:'

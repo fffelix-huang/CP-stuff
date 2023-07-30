@@ -16,7 +16,7 @@ data:
     links: []
   bundledCode: "#line 2 \"library/data-structure/dsu.hpp\"\n#include <vector>\n#include\
     \ <cassert>\n#include <algorithm>\n\nnamespace felix {\n\ntemplate<bool UNION_BY_SIZE\
-    \ = false>\nstruct DSU {\npublic:\n\tDSU() : DSU(0) {}\n\texplicit DSU(int _n)\
+    \ = false>\nstruct dsu {\npublic:\n\tdsu() : dsu(0) {}\n\texplicit dsu(int _n)\
     \ : n(_n), sz(n, -1) {}\n\t\n\tint leader(int u) {\n\t\tassert(0 <= u && u < n);\n\
     \t\treturn (sz[u] < 0 ? u : (sz[u] = leader(sz[u])));\n\t}\n\t\n\tbool merge(int\
     \ a, int b) {\n\t\ta = leader(a), b = leader(b);\n\t\tif(a == b) {\n\t\t\treturn\
@@ -30,8 +30,8 @@ data:
     }), result.end());\n\t\treturn result;\n\t}\n\nprivate:\n\tint n;\n\tstd::vector<int>\
     \ sz;\n};\n\n} // namespace felix\n"
   code: "#pragma once\n#include <vector>\n#include <cassert>\n#include <algorithm>\n\
-    \nnamespace felix {\n\ntemplate<bool UNION_BY_SIZE = false>\nstruct DSU {\npublic:\n\
-    \tDSU() : DSU(0) {}\n\texplicit DSU(int _n) : n(_n), sz(n, -1) {}\n\t\n\tint leader(int\
+    \nnamespace felix {\n\ntemplate<bool UNION_BY_SIZE = false>\nstruct dsu {\npublic:\n\
+    \tdsu() : dsu(0) {}\n\texplicit dsu(int _n) : n(_n), sz(n, -1) {}\n\t\n\tint leader(int\
     \ u) {\n\t\tassert(0 <= u && u < n);\n\t\treturn (sz[u] < 0 ? u : (sz[u] = leader(sz[u])));\n\
     \t}\n\t\n\tbool merge(int a, int b) {\n\t\ta = leader(a), b = leader(b);\n\t\t\
     if(a == b) {\n\t\t\treturn false;\n\t\t}\n\t\tif constexpr(UNION_BY_SIZE) {\n\t\
@@ -48,7 +48,7 @@ data:
   isVerificationFile: false
   path: library/data-structure/dsu.hpp
   requiredBy: []
-  timestamp: '2023-05-22 01:25:58+08:00'
+  timestamp: '2023-07-30 19:34:47+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/data-structure/dsu/aoj-dsl-Disjoint-Set-Union-Find-Tree.test.cpp

@@ -18,8 +18,8 @@ data:
     \n#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_1_A\"\
     \n\n#include <iostream>\n#line 2 \"library/data-structure/dsu.hpp\"\n#include\
     \ <vector>\n#include <cassert>\n#include <algorithm>\n\nnamespace felix {\n\n\
-    template<bool UNION_BY_SIZE = false>\nstruct DSU {\npublic:\n\tDSU() : DSU(0)\
-    \ {}\n\texplicit DSU(int _n) : n(_n), sz(n, -1) {}\n\t\n\tint leader(int u) {\n\
+    template<bool UNION_BY_SIZE = false>\nstruct dsu {\npublic:\n\tdsu() : dsu(0)\
+    \ {}\n\texplicit dsu(int _n) : n(_n), sz(n, -1) {}\n\t\n\tint leader(int u) {\n\
     \t\tassert(0 <= u && u < n);\n\t\treturn (sz[u] < 0 ? u : (sz[u] = leader(sz[u])));\n\
     \t}\n\t\n\tbool merge(int a, int b) {\n\t\ta = leader(a), b = leader(b);\n\t\t\
     if(a == b) {\n\t\t\treturn false;\n\t\t}\n\t\tif constexpr(UNION_BY_SIZE) {\n\t\
@@ -33,14 +33,14 @@ data:
     return result;\n\t}\n\nprivate:\n\tint n;\n\tstd::vector<int> sz;\n};\n\n} //\
     \ namespace felix\n#line 5 \"test/data-structure/dsu/aoj-dsl-Disjoint-Set-Union-Find-Tree.test.cpp\"\
     \nusing namespace std;\nusing namespace felix;\n\nint main() {\n\tios::sync_with_stdio(false);\n\
-    \tcin.tie(0);\n\tint n, q;\n\tcin >> n >> q;\n\tDSU<true> d(n);\n\twhile(q--)\
+    \tcin.tie(0);\n\tint n, q;\n\tcin >> n >> q;\n\tdsu<true> d(n);\n\twhile(q--)\
     \ {\n\t\tint type, x, y;\n\t\tcin >> type >> x >> y;\n\t\tif(type == 0) {\n\t\t\
     \td.merge(x, y);\n\t\t} else {\n\t\t\tcout << d.same(x, y) << \"\\n\";\n\t\t}\n\
     \t}\n\treturn 0;\n}\n"
   code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_1_A\"\
     \n\n#include <iostream>\n#include \"../../../library/data-structure/dsu.hpp\"\n\
     using namespace std;\nusing namespace felix;\n\nint main() {\n\tios::sync_with_stdio(false);\n\
-    \tcin.tie(0);\n\tint n, q;\n\tcin >> n >> q;\n\tDSU<true> d(n);\n\twhile(q--)\
+    \tcin.tie(0);\n\tint n, q;\n\tcin >> n >> q;\n\tdsu<true> d(n);\n\twhile(q--)\
     \ {\n\t\tint type, x, y;\n\t\tcin >> type >> x >> y;\n\t\tif(type == 0) {\n\t\t\
     \td.merge(x, y);\n\t\t} else {\n\t\t\tcout << d.same(x, y) << \"\\n\";\n\t\t}\n\
     \t}\n\treturn 0;\n}\n"
@@ -49,7 +49,7 @@ data:
   isVerificationFile: true
   path: test/data-structure/dsu/aoj-dsl-Disjoint-Set-Union-Find-Tree.test.cpp
   requiredBy: []
-  timestamp: '2023-05-29 14:59:47+08:00'
+  timestamp: '2023-07-30 19:34:47+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/data-structure/dsu/aoj-dsl-Disjoint-Set-Union-Find-Tree.test.cpp
