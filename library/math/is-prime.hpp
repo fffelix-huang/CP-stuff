@@ -15,11 +15,11 @@ bool miller_rabin(long long n, std::vector<long long> x) {
 		}
 		long long t = d;
 		__uint128_t y = pow_mod_constexpr(a, d, n);
-		while(t != n - 1 && y != 1 && y != n - 1) {
+		while(t != n - 1 && y != 1 && y != n - 1ULL) {
 			y = y * y % n;
 			t <<= 1;
 		}
-		if(y != n - 1 && t % 2 == 0) {
+		if(y != n - 1ULL && t % 2 == 0) {
 			return false;
 		}
 	}

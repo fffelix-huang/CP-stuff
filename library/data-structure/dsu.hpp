@@ -6,10 +6,10 @@
 namespace felix {
 
 template<bool UNION_BY_SIZE = false>
-struct DSU {
+struct dsu {
 public:
-	DSU() : DSU(0) {}
-	explicit DSU(int _n) : n(_n), sz(n, -1) {}
+	dsu() : dsu(0) {}
+	explicit dsu(int _n) : n(_n), sz(n, -1) {}
 	
 	int leader(int u) {
 		assert(0 <= u && u < n);

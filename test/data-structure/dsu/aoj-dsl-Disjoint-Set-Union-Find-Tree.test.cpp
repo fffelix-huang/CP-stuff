@@ -10,7 +10,7 @@ int main() {
 	cin.tie(0);
 	int n, q;
 	cin >> n >> q;
-	DSU<true> d(n);
+	dsu<true> d(n);
 	while(q--) {
 		int type, x, y;
 		cin >> type >> x >> y;
