@@ -214,6 +214,9 @@ data:
     - icon: ':question:'
       path: library/modint/modint.hpp
       title: library/modint/modint.hpp
+    - icon: ':heavy_check_mark:'
+      path: library/modint/modint61.hpp
+      title: library/modint/modint61.hpp
   - name: library/random
     pages:
     - icon: ':warning:'
@@ -239,6 +242,9 @@ data:
     - icon: ':warning:'
       path: library/string/minimal-rotation.hpp
       title: library/string/minimal-rotation.hpp
+    - icon: ':heavy_check_mark:'
+      path: library/string/rolling-hash.hpp
+      title: Rolling Hash
     - icon: ':heavy_check_mark:'
       path: library/string/suffix-array.hpp
       title: Suffix Array
@@ -588,6 +594,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/string/manacher/yosupo-Enumerate-Palindromes.test.cpp
       title: test/string/manacher/yosupo-Enumerate-Palindromes.test.cpp
+  - name: test/string/rolling-hash
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/string/rolling-hash/aoj-alds1-String-Search.test.cpp
+      title: test/string/rolling-hash/aoj-alds1-String-Search.test.cpp
   - name: test/string/suffix-array
     pages:
     - icon: ':heavy_check_mark:'
