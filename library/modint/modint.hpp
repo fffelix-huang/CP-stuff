@@ -53,41 +53,41 @@ public:
 		}
 	}
  
-	constexpr modint() : value(0) {} 
-	template<class T, internal::is_signed_int_t<T>* = nullptr> constexpr modint(T v) : value(v >= 0 ? v % mod() : v % mod() + mod()) {}
-	template<class T, internal::is_unsigned_int_t<T>* = nullptr> constexpr modint(T v) : value(v % mod()) {}
+	constexpr modint() : v(0) {} 
+	template<class T, internal::is_signed_int_t<T>* = nullptr> constexpr modint(T x) : v(x >= 0 ? x % mod() : x % mod() + mod()) {}
+	template<class T, internal::is_unsigned_int_t<T>* = nullptr> constexpr modint(T x) : v(x % mod()) {}
  
-	constexpr int val() const { return value; }
+	constexpr int val() const { return v; }
 
 	constexpr modint inv() const {
-		if(id > 0 && value < std::min(mod() >> 1, 1 << 18)) {
-			prepare(value);
-			return invs[value];
+		if(id > 0 && v < std::min(mod() >> 1, 1 << 18)) {
+			prepare(v);
+			return invs[v];
 		} else {
-			auto eg = internal::inv_gcd(value, mod());
+			auto eg = internal::inv_gcd(v, mod());
 			assert(eg.first == 1);
 			return eg.second;
 		}
 	}
  
 	constexpr modint& operator+=(const modint& rhs) & {
-		value += rhs.value;
-		if(value >= mod()) {
-			value -= mod();
+		v += rhs.v;
+		if(v >= mod()) {
+			v -= mod();
 		}
 		return *this;
 	}
  
 	constexpr modint& operator-=(const modint& rhs) & {
-		value -= rhs.value;
-		if(value < 0) {
-			value += mod();
+		v -= rhs.v;
+		if(v < 0) {
+			v += mod();
 		}
 		return *this;
 	}
 
 	constexpr modint& operator*=(const modint& rhs) & {
-		value = 1LL * value * rhs.value % mod();
+		v = 1LL * v * rhs.v % mod();
 		return *this;
 	}
 
@@ -102,8 +102,8 @@ public:
 
 	constexpr modint operator+() const { return *this; }
 	constexpr modint operator-() const { return modint() - *this; } 
-	constexpr bool operator==(const modint& rhs) const { return value == rhs.value; } 
-	constexpr bool operator!=(const modint& rhs) const { return value != rhs.value; }
+	constexpr bool operator==(const modint& rhs) const { return v == rhs.v; } 
+	constexpr bool operator!=(const modint& rhs) const { return v != rhs.v; }
 
 	constexpr modint pow(long long p) const {
 		modint a(*this), res(1);
@@ -122,7 +122,7 @@ public:
 	}
 
 	constexpr bool has_sqrt() const {
-		if(mod() == 2 || value == 0) {
+		if(mod() == 2 || v == 0) {
 			return true;
 		}
 		if(pow((mod() - 1) / 2).val() != 1) {
@@ -132,7 +132,7 @@ public:
 	}
 
 	constexpr modint sqrt() const {
-		if(mod() == 2 || value < 2) {
+		if(mod() == 2 || v < 2) {
 			return *this;
 		}
 		assert(pow((mod() - 1) / 2).val() == 1);
@@ -144,7 +144,7 @@ public:
 		m >>= e;
 		modint x = modint(*this).pow((m - 1) >> 1);
 		modint y = modint(*this) * x * x;
-		x *= value;
+		x *= v;
 		modint z = b.pow(m);
 		while(y.val() != 1) {
 			int j = 0;
@@ -160,14 +160,14 @@ public:
 		return x;
 	}
 
-	friend constexpr std::istream& operator>>(std::istream& in, modint& num) {
+	friend std::istream& operator>>(std::istream& in, modint& num) {
 		long long x;
 		in >> x;
 		num = modint<id>(x);
 		return in;
 	}
 	
-	friend constexpr std::ostream& operator<<(std::ostream& out, const modint& num) {
+	friend std::ostream& operator<<(std::ostream& out, const modint& num) {
 		return out << num.val();
 	}
 
@@ -175,7 +175,7 @@ public:
 	static std::vector<modint> fact, inv_fact, invs;
  
 private:
-	int value;
+	int v;
 	static int md;
 };
 
