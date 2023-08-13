@@ -70,9 +70,9 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/math/discrete-log/yosupo-Discrete-Logarithm.test.cpp
+  - test/data-structure/pbds/yosupo-Static-Range-Sum.test.cpp
   - test/data-structure/pbds/yosupo-Static-Range-Frequency.test.cpp
   - test/data-structure/pbds/yosupo-Associative-Array.test.cpp
-  - test/data-structure/pbds/yosupo-Static-Range-Sum.test.cpp
 documentation_of: library/data-structure/pbds.hpp
 layout: document
 redirect_from:

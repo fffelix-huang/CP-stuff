@@ -4,20 +4,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/data-structure/persistent-array.hpp
     title: library/data-structure/persistent-array.hpp
+  - icon: ':heavy_check_mark:'
+    path: library/data-structure/persistent-dsu.hpp
+    title: library/data-structure/persistent-dsu.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/data-structure/persistent-dsu/yosupo-Persistent-Unionfind.test.cpp
-    title: test/data-structure/persistent-dsu/yosupo-Persistent-Unionfind.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/data-structure/persistent-dsu/yosupo-Unionfind.test.cpp
-    title: test/data-structure/persistent-dsu/yosupo-Unionfind.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: hpp
+  _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 2 \"library/data-structure/persistent-dsu.hpp\"\n#include <vector>\r\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/persistent_unionfind
+    links:
+    - https://judge.yosupo.jp/problem/persistent_unionfind
+  bundledCode: "#line 1 \"test/data-structure/persistent-dsu/yosupo-Persistent-Unionfind.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/persistent_unionfind\"\r\n\
+    \r\n#include <iostream>\r\n#include <vector>\r\n#line 3 \"library/data-structure/persistent-dsu.hpp\"\
     \n#include <cassert>\r\n#line 3 \"library/data-structure/persistent-array.hpp\"\
     \n#include <algorithm>\r\n#include <functional>\r\n#line 6 \"library/data-structure/persistent-array.hpp\"\
     \n\r\nnamespace felix {\r\n\r\ntemplate<class T>\r\nstruct persistent_array {\r\
@@ -66,41 +68,38 @@ data:
     \ true};\r\n\t\t}\r\n\t};\r\n\r\npublic:\r\n\tref operator[](int id) {\r\n\t\t\
     assert(0 <= id && id < data.versions());\r\n\t\treturn ref{id, n, data};\r\n\t\
     }\r\n\r\nprivate:\r\n\tint n;\r\n\tpersistent_array<int> data;\r\n};\r\n\r\n}\
-    \ // namespace felix\r\n"
-  code: "#pragma once\r\n#include <vector>\r\n#include <cassert>\r\n#include \"persistent-array.hpp\"\
-    \r\n\r\nnamespace felix {\r\n\r\nstruct persistent_dsu {\r\npublic:\r\n\tpersistent_dsu()\
-    \ : n(0) {}\r\n\texplicit persistent_dsu(int _n) : n(_n), data(std::vector<int>(_n,\
-    \ -1)) {}\r\n\r\n\tint versions() const { return data.versions(); }\r\n\r\nprivate:\r\
-    \n\tstruct ref {\r\n\t\tint id;\r\n\t\tint n;\r\n\t\tpersistent_array<int>& data;\r\
-    \n\r\n\t\tint leader(int u) const {\r\n\t\t\tint p;\r\n\t\t\twhile((p = data[id].get(u))\
-    \ >= 0) {\r\n\t\t\t\tu = p;\r\n\t\t\t}\r\n\t\t\treturn u;\r\n\t\t}\r\n\r\n\t\t\
-    bool same(int u, int v) const {\r\n\t\t\treturn leader(u) == leader(v);\r\n\t\t\
-    }\r\n\r\n\t\tint size(int u) const {\r\n\t\t\tint p;\r\n\t\t\tdo {\r\n\t\t\t\t\
-    p = data[id].get(u);\r\n\t\t\t\tif(p < 0) {\r\n\t\t\t\t\treturn -p;\r\n\t\t\t\t\
-    }\r\n\t\t\t\tu = p;\r\n\t\t\t} while(true);\r\n\t\t}\r\n\r\n\t\tstd::pair<int,\
-    \ bool> merge(int u, int v) {\r\n\t\t\tu = leader(u), v = leader(v);\r\n\t\t\t\
-    if(u == v) {\r\n\t\t\t\treturn {id, false};\r\n\t\t\t}\r\n\t\t\tint sz_u = size(u),\
-    \ sz_v = size(v);\r\n\t\t\tif(sz_u < sz_v) {\r\n\t\t\t\tstd::swap(u, v);\r\n\t\
-    \t\t\tstd::swap(sz_u, sz_v);\r\n\t\t\t}\r\n\t\t\tint new_id = data[id].set(v,\
-    \ u);\r\n\t\t\tnew_id = data[new_id].set(u, -(sz_u + sz_v));\r\n\t\t\treturn {new_id,\
-    \ true};\r\n\t\t}\r\n\t};\r\n\r\npublic:\r\n\tref operator[](int id) {\r\n\t\t\
-    assert(0 <= id && id < data.versions());\r\n\t\treturn ref{id, n, data};\r\n\t\
-    }\r\n\r\nprivate:\r\n\tint n;\r\n\tpersistent_array<int> data;\r\n};\r\n\r\n}\
-    \ // namespace felix\r\n"
+    \ // namespace felix\r\n#line 6 \"test/data-structure/persistent-dsu/yosupo-Persistent-Unionfind.test.cpp\"\
+    \nusing namespace std;\r\nusing namespace felix;\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\
+    \n\tcin.tie(0);\r\n\tint n, q;\r\n\tcin >> n >> q;\r\n\tpersistent_dsu d(n);\r\
+    \n\tvector<int> versions;\r\n\tversions.reserve(q + 1);\r\n\tversions.push_back(0);\r\
+    \n\twhile(q--) {\r\n\t\tint type, k, u, v;\r\n\t\tcin >> type >> k >> u >> v;\r\
+    \n\t\tk++;\r\n\t\tif(type == 0) {\r\n\t\t\tversions.push_back(d[versions[k]].merge(u,\
+    \ v).first);\r\n\t\t} else {\r\n\t\t\tversions.push_back(versions[k]);\r\n\t\t\
+    \tcout << d[versions[k]].same(u, v) << \"\\n\";\r\n\t\t}\r\n\t}\r\n\treturn 0;\r\
+    \n}\r\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/persistent_unionfind\"\r\
+    \n\r\n#include <iostream>\r\n#include <vector>\r\n#include \"../../../library/data-structure/persistent-dsu.hpp\"\
+    \r\nusing namespace std;\r\nusing namespace felix;\r\n\r\nint main() {\r\n\tios::sync_with_stdio(false);\r\
+    \n\tcin.tie(0);\r\n\tint n, q;\r\n\tcin >> n >> q;\r\n\tpersistent_dsu d(n);\r\
+    \n\tvector<int> versions;\r\n\tversions.reserve(q + 1);\r\n\tversions.push_back(0);\r\
+    \n\twhile(q--) {\r\n\t\tint type, k, u, v;\r\n\t\tcin >> type >> k >> u >> v;\r\
+    \n\t\tk++;\r\n\t\tif(type == 0) {\r\n\t\t\tversions.push_back(d[versions[k]].merge(u,\
+    \ v).first);\r\n\t\t} else {\r\n\t\t\tversions.push_back(versions[k]);\r\n\t\t\
+    \tcout << d[versions[k]].same(u, v) << \"\\n\";\r\n\t\t}\r\n\t}\r\n\treturn 0;\r\
+    \n}\r\n"
   dependsOn:
+  - library/data-structure/persistent-dsu.hpp
   - library/data-structure/persistent-array.hpp
-  isVerificationFile: false
-  path: library/data-structure/persistent-dsu.hpp
+  isVerificationFile: true
+  path: test/data-structure/persistent-dsu/yosupo-Persistent-Unionfind.test.cpp
   requiredBy: []
   timestamp: '2023-08-13 14:16:40+08:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/data-structure/persistent-dsu/yosupo-Unionfind.test.cpp
-  - test/data-structure/persistent-dsu/yosupo-Persistent-Unionfind.test.cpp
-documentation_of: library/data-structure/persistent-dsu.hpp
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: test/data-structure/persistent-dsu/yosupo-Persistent-Unionfind.test.cpp
 layout: document
 redirect_from:
-- /library/library/data-structure/persistent-dsu.hpp
-- /library/library/data-structure/persistent-dsu.hpp.html
-title: library/data-structure/persistent-dsu.hpp
+- /verify/test/data-structure/persistent-dsu/yosupo-Persistent-Unionfind.test.cpp
+- /verify/test/data-structure/persistent-dsu/yosupo-Persistent-Unionfind.test.cpp.html
+title: test/data-structure/persistent-dsu/yosupo-Persistent-Unionfind.test.cpp
 ---

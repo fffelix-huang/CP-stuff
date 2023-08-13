@@ -67,10 +67,10 @@ data:
   verifiedWith:
   - test/math/factorize/yosupo-Factorize.test.cpp
   - test/math/factorize/aoj-ntl-Prime-Factorize.test.cpp
-  - test/data-structure/treap/unit-test-treap.test.cpp
+  - test/data-structure/ordered-set/yosupo-Predecessor-Problem.test.cpp
   - test/data-structure/treap/yosupo-Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
   - test/data-structure/treap/yosupo-Range-Reverse-Range-Sum.test.cpp
-  - test/data-structure/ordered-set/yosupo-Predecessor-Problem.test.cpp
+  - test/data-structure/treap/unit-test-treap.test.cpp
 documentation_of: library/random/rng.hpp
 layout: document
 redirect_from:

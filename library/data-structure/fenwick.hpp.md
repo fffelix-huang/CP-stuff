@@ -70,14 +70,14 @@ data:
   timestamp: '2023-07-11 10:41:16+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/data-structure/fenwick/aoj-dsl-The-Maximum-Number-of-Customers.test.cpp
+  - test/tree/hld/yosupo-Vertex-Add-Path-Sum.test.cpp
+  - test/tree/hld/aoj-grl-Range-Query-on-a-Tree.test.cpp
+  - test/tree/hld/yosupo-Vertex-Add-Subtree-Sum.test.cpp
+  - test/data-structure/offline-rectangle-sum/yosupo-Point-Add-Rectangle-Sum.test.cpp
   - test/data-structure/fenwick/yosupo-Point-Add-Range-Sum.test.cpp
+  - test/data-structure/fenwick/aoj-dsl-The-Maximum-Number-of-Customers.test.cpp
   - test/data-structure/fenwick/aoj-dsl-Range-Sum-Query.test.cpp
   - test/data-structure/fenwick/aoj-dsl-Range-Add-Query.test.cpp
-  - test/data-structure/offline-rectangle-sum/yosupo-Point-Add-Rectangle-Sum.test.cpp
-  - test/tree/hld/yosupo-Vertex-Add-Path-Sum.test.cpp
-  - test/tree/hld/yosupo-Vertex-Add-Subtree-Sum.test.cpp
-  - test/tree/hld/aoj-grl-Range-Query-on-a-Tree.test.cpp
 documentation_of: library/data-structure/fenwick.hpp
 layout: document
 redirect_from:

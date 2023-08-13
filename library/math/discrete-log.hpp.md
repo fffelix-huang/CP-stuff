@@ -23,14 +23,14 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"library/math/discrete-log.hpp\"\n#include <vector>\r\n#include\
-    \ <cmath>\r\n#include <cassert>\r\n#line 2 \"library/data-structure/pbds.hpp\"\
-    \n#include <ext/pb_ds/assoc_container.hpp>\n#line 2 \"library/random/splitmix64.hpp\"\
-    \n#include <chrono>\r\n\r\nnamespace felix {\r\n\r\nnamespace internal {\r\n\r\
-    \n// http://xoshiro.di.unimi.it/splitmix64.c\r\nstruct splitmix64_hash {\r\n\t\
-    static unsigned long long splitmix64(unsigned long long x) {\r\n\t\tx += 0x9e3779b97f4a7c15;\r\
-    \n\t\tx = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\r\n\t\tx = (x ^ (x >> 27)) * 0x94d049bb133111eb;\r\
-    \n\t\treturn x ^ (x >> 31);\r\n\t}\r\n \r\n\tunsigned long long operator()(unsigned\
+  bundledCode: "#line 2 \"library/math/discrete-log.hpp\"\n#include <cmath>\r\n#include\
+    \ <cassert>\r\n#line 2 \"library/data-structure/pbds.hpp\"\n#include <ext/pb_ds/assoc_container.hpp>\n\
+    #line 2 \"library/random/splitmix64.hpp\"\n#include <chrono>\r\n\r\nnamespace\
+    \ felix {\r\n\r\nnamespace internal {\r\n\r\n// http://xoshiro.di.unimi.it/splitmix64.c\r\
+    \nstruct splitmix64_hash {\r\n\tstatic unsigned long long splitmix64(unsigned\
+    \ long long x) {\r\n\t\tx += 0x9e3779b97f4a7c15;\r\n\t\tx = (x ^ (x >> 30)) *\
+    \ 0xbf58476d1ce4e5b9;\r\n\t\tx = (x ^ (x >> 27)) * 0x94d049bb133111eb;\r\n\t\t\
+    return x ^ (x >> 31);\r\n\t}\r\n \r\n\tunsigned long long operator()(unsigned\
     \ long long x) const {\r\n\t\tstatic const unsigned long long FIXED_RANDOM = std::chrono::steady_clock::now().time_since_epoch().count();\r\
     \n\t\treturn splitmix64(x + FIXED_RANDOM);\r\n\t}\r\n};\r\n\r\n} // namespace\
     \ internal\r\n\r\n} // namespace felix\r\n#line 4 \"library/data-structure/pbds.hpp\"\
@@ -55,7 +55,7 @@ data:
     b >>= m;\r\n\twhile(a != b) {\r\n\t\tT d = a - b;\r\n\t\tint8_t s = __builtin_ctzll(d);\r\
     \n\t\tbool f = a > b;\r\n\t\tb = f ? b : a;\r\n\t\ta = (f ? d : -d) >> s;\r\n\t\
     }\r\n\treturn a << (n < m ? n : m);\r\n}\r\n\r\n} // namespace felix\r\n#line\
-    \ 8 \"library/math/discrete-log.hpp\"\n\r\nnamespace felix {\r\n\r\nint discrete_log(int\
+    \ 7 \"library/math/discrete-log.hpp\"\n\r\nnamespace felix {\r\n\r\nint discrete_log(int\
     \ a, int b, int m) {\r\n\tassert(b < m);\r\n\tif(b == 1 || m == 1) {\r\n\t\treturn\
     \ 0;\r\n\t}\r\n\tint n = (int) std::sqrt(m) + 1, e = 1, f = 1, j = 1;\r\n\thash_map<int,\
     \ int> baby;\r\n\tinternal::barrett bt(m);\r\n\twhile(j <= n && (e = f = bt.mul(e,\
@@ -64,17 +64,17 @@ data:
     \ i = 2; i < n + 2; i++) {\r\n\t\t\te = bt.mul(e, f);\r\n\t\t\tif(baby.find(e)\
     \ != baby.end()) {\r\n\t\t\t\treturn n * i - baby[e];\r\n\t\t\t}\r\n\t\t}\r\n\t\
     }\r\n\treturn -1;\r\n}\r\n\r\n} // namespace felix\r\n"
-  code: "#pragma once\r\n#include <vector>\r\n#include <cmath>\r\n#include <cassert>\r\
-    \n#include \"../data-structure/pbds.hpp\"\r\n#include \"../modint/barrett.hpp\"\
-    \r\n#include \"binary-gcd.hpp\"\r\n\r\nnamespace felix {\r\n\r\nint discrete_log(int\
-    \ a, int b, int m) {\r\n\tassert(b < m);\r\n\tif(b == 1 || m == 1) {\r\n\t\treturn\
-    \ 0;\r\n\t}\r\n\tint n = (int) std::sqrt(m) + 1, e = 1, f = 1, j = 1;\r\n\thash_map<int,\
-    \ int> baby;\r\n\tinternal::barrett bt(m);\r\n\twhile(j <= n && (e = f = bt.mul(e,\
-    \ a)) != b) {\r\n\t\tbaby[bt.mul(e, b)] = j++;\r\n\t}\r\n\tif(e == b) {\r\n\t\t\
-    return j;\r\n\t}\r\n\tif(binary_gcd(m, e) == binary_gcd(m, b))  {\r\n\t\tfor(int\
-    \ i = 2; i < n + 2; i++) {\r\n\t\t\te = bt.mul(e, f);\r\n\t\t\tif(baby.find(e)\
-    \ != baby.end()) {\r\n\t\t\t\treturn n * i - baby[e];\r\n\t\t\t}\r\n\t\t}\r\n\t\
-    }\r\n\treturn -1;\r\n}\r\n\r\n} // namespace felix\r\n"
+  code: "#pragma once\r\n#include <cmath>\r\n#include <cassert>\r\n#include \"../data-structure/pbds.hpp\"\
+    \r\n#include \"../modint/barrett.hpp\"\r\n#include \"binary-gcd.hpp\"\r\n\r\n\
+    namespace felix {\r\n\r\nint discrete_log(int a, int b, int m) {\r\n\tassert(b\
+    \ < m);\r\n\tif(b == 1 || m == 1) {\r\n\t\treturn 0;\r\n\t}\r\n\tint n = (int)\
+    \ std::sqrt(m) + 1, e = 1, f = 1, j = 1;\r\n\thash_map<int, int> baby;\r\n\tinternal::barrett\
+    \ bt(m);\r\n\twhile(j <= n && (e = f = bt.mul(e, a)) != b) {\r\n\t\tbaby[bt.mul(e,\
+    \ b)] = j++;\r\n\t}\r\n\tif(e == b) {\r\n\t\treturn j;\r\n\t}\r\n\tif(binary_gcd(m,\
+    \ e) == binary_gcd(m, b))  {\r\n\t\tfor(int i = 2; i < n + 2; i++) {\r\n\t\t\t\
+    e = bt.mul(e, f);\r\n\t\t\tif(baby.find(e) != baby.end()) {\r\n\t\t\t\treturn\
+    \ n * i - baby[e];\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n\treturn -1;\r\n}\r\n\r\n} //\
+    \ namespace felix\r\n"
   dependsOn:
   - library/data-structure/pbds.hpp
   - library/random/splitmix64.hpp
@@ -83,7 +83,7 @@ data:
   isVerificationFile: false
   path: library/math/discrete-log.hpp
   requiredBy: []
-  timestamp: '2023-07-11 10:41:16+08:00'
+  timestamp: '2023-08-13 14:16:40+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/math/discrete-log/yosupo-Discrete-Logarithm.test.cpp

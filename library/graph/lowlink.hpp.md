@@ -45,9 +45,9 @@ data:
     \ = true;\r\n\t\t\t\t}\r\n\t\t\t\tif(low[v] >= id[u]) {\r\n\t\t\t\t\twhile(true)\
     \ {\r\n\t\t\t\t\t\tint e = stk.back();\r\n\t\t\t\t\t\tstk.pop_back();\r\n\t\t\t\
     \t\t\ttvcc_id[e] = tvcc_cnt;\r\n\t\t\t\t\t\tif(e == eid) {\r\n\t\t\t\t\t\t\tbreak;\r\
-    \n\t\t\t\t\t\t}\r\n\t\t\t\t\t}\r\n\t\t\t\t\ttvcc_cnt += 1;\r\n\t\t\t\t}\r\n\t\t\
-    \t}\r\n\t\t}\r\n\t}\r\n\r\n\tvoid build() {\r\n\t\tfor(int i = 0; i < n; i++)\
-    \ {\r\n\t\t\tif(id[i] < 0) {\r\n\t\t\t\tdfs(i);\r\n\t\t\t}\r\n\t\t}\r\n\t\tfor(int\
+    \n\t\t\t\t\t\t}\r\n\t\t\t\t\t}\r\n\t\t\t\t\ttvcc_cnt++;\r\n\t\t\t\t}\r\n\t\t\t\
+    }\r\n\t\t}\r\n\t}\r\n\r\n\tvoid build() {\r\n\t\tfor(int i = 0; i < n; i++) {\r\
+    \n\t\t\tif(id[i] < 0) {\r\n\t\t\t\tdfs(i);\r\n\t\t\t}\r\n\t\t}\r\n\t\tfor(int\
     \ i = 0; i < (int) edges.size(); i++) {\r\n\t\t\tauto [u, v] = edges[i];\r\n\t\
     \t\tif(id[u] > id[v]) {\r\n\t\t\t\tstd::swap(u, v);\r\n\t\t\t}\r\n\t\t\tis_bridge[i]\
     \ = (id[u] < low[v]);\r\n\t\t}\r\n\t}\r\n\r\n\tstd::vector<std::vector<int>> TECC()\
@@ -58,7 +58,7 @@ data:
     \n\t\t\t\tstk.pop_back();\r\n\t\t\t\tfor(auto [v, eid] : g[u]) {\r\n\t\t\t\t\t\
     if(tecc_id[v] >= 0 || is_bridge[eid]) {\r\n\t\t\t\t\t\tcontinue;\r\n\t\t\t\t\t\
     }\r\n\t\t\t\t\ttecc_id[v] = tecc_cnt;\r\n\t\t\t\t\tstk.push_back(v);\r\n\t\t\t\
-    \t}\r\n\t\t\t}\r\n\t\t\ttecc_cnt += 1;\r\n\t\t}\r\n\t\tstd::vector<std::vector<int>>\
+    \t}\r\n\t\t\t}\r\n\t\t\ttecc_cnt++;\r\n\t\t}\r\n\t\tstd::vector<std::vector<int>>\
     \ components(tecc_cnt);\r\n\t\tfor(int i = 0; i < n; i++) {\r\n\t\t\tcomponents[tecc_id[i]].push_back(i);\r\
     \n\t\t}\r\n\t\treturn components;\r\n\t}\r\n\r\n\tstd::vector<std::vector<int>>\
     \ BCCV() {\r\n\t\tbuild();\r\n\t\tstd::vector<std::vector<int>> components(tvcc_cnt);\r\
@@ -95,9 +95,9 @@ data:
     \ = true;\r\n\t\t\t\t}\r\n\t\t\t\tif(low[v] >= id[u]) {\r\n\t\t\t\t\twhile(true)\
     \ {\r\n\t\t\t\t\t\tint e = stk.back();\r\n\t\t\t\t\t\tstk.pop_back();\r\n\t\t\t\
     \t\t\ttvcc_id[e] = tvcc_cnt;\r\n\t\t\t\t\t\tif(e == eid) {\r\n\t\t\t\t\t\t\tbreak;\r\
-    \n\t\t\t\t\t\t}\r\n\t\t\t\t\t}\r\n\t\t\t\t\ttvcc_cnt += 1;\r\n\t\t\t\t}\r\n\t\t\
-    \t}\r\n\t\t}\r\n\t}\r\n\r\n\tvoid build() {\r\n\t\tfor(int i = 0; i < n; i++)\
-    \ {\r\n\t\t\tif(id[i] < 0) {\r\n\t\t\t\tdfs(i);\r\n\t\t\t}\r\n\t\t}\r\n\t\tfor(int\
+    \n\t\t\t\t\t\t}\r\n\t\t\t\t\t}\r\n\t\t\t\t\ttvcc_cnt++;\r\n\t\t\t\t}\r\n\t\t\t\
+    }\r\n\t\t}\r\n\t}\r\n\r\n\tvoid build() {\r\n\t\tfor(int i = 0; i < n; i++) {\r\
+    \n\t\t\tif(id[i] < 0) {\r\n\t\t\t\tdfs(i);\r\n\t\t\t}\r\n\t\t}\r\n\t\tfor(int\
     \ i = 0; i < (int) edges.size(); i++) {\r\n\t\t\tauto [u, v] = edges[i];\r\n\t\
     \t\tif(id[u] > id[v]) {\r\n\t\t\t\tstd::swap(u, v);\r\n\t\t\t}\r\n\t\t\tis_bridge[i]\
     \ = (id[u] < low[v]);\r\n\t\t}\r\n\t}\r\n\r\n\tstd::vector<std::vector<int>> TECC()\
@@ -108,7 +108,7 @@ data:
     \n\t\t\t\tstk.pop_back();\r\n\t\t\t\tfor(auto [v, eid] : g[u]) {\r\n\t\t\t\t\t\
     if(tecc_id[v] >= 0 || is_bridge[eid]) {\r\n\t\t\t\t\t\tcontinue;\r\n\t\t\t\t\t\
     }\r\n\t\t\t\t\ttecc_id[v] = tecc_cnt;\r\n\t\t\t\t\tstk.push_back(v);\r\n\t\t\t\
-    \t}\r\n\t\t\t}\r\n\t\t\ttecc_cnt += 1;\r\n\t\t}\r\n\t\tstd::vector<std::vector<int>>\
+    \t}\r\n\t\t\t}\r\n\t\t\ttecc_cnt++;\r\n\t\t}\r\n\t\tstd::vector<std::vector<int>>\
     \ components(tecc_cnt);\r\n\t\tfor(int i = 0; i < n; i++) {\r\n\t\t\tcomponents[tecc_id[i]].push_back(i);\r\
     \n\t\t}\r\n\t\treturn components;\r\n\t}\r\n\r\n\tstd::vector<std::vector<int>>\
     \ BCCV() {\r\n\t\tbuild();\r\n\t\tstd::vector<std::vector<int>> components(tvcc_cnt);\r\
@@ -125,13 +125,13 @@ data:
   isVerificationFile: false
   path: library/graph/lowlink.hpp
   requiredBy: []
-  timestamp: '2023-05-14 18:31:09+08:00'
+  timestamp: '2023-08-13 14:16:40+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/graph/lowlink/yosupo-Two-Edge-Connected-Components.test.cpp
-  - test/graph/lowlink/aoj-grl-Articulation-Points.test.cpp
   - test/graph/lowlink/aoj-grl-Bridges.test.cpp
+  - test/graph/lowlink/yosupo-Two-Edge-Connected-Components.test.cpp
   - test/graph/lowlink/yosupo-Biconnected-Components.test.cpp
+  - test/graph/lowlink/aoj-grl-Articulation-Points.test.cpp
 documentation_of: library/graph/lowlink.hpp
 layout: document
 redirect_from:

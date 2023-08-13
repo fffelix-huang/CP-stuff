@@ -84,6 +84,7 @@ title: "Wavelet Tree (\u975C\u614B\u5340\u9593\u7B2C $k$ \u5927)"
 ---
 
 ## 使用方法
+
 ```cpp
 vector<int> v = {4, 8, 7, 6, 3};
 vector<pair<int, int>> v2({make_pair(3, 1), make_pair(4, 1), make_pair(5, 9), make_pair(2, 6)});
@@ -98,4 +99,3 @@ int x = tree.get_kth(0, 3, 0); // 4
 int y = tree.get_kth(1, 3, 1); // 8
 pair<int, int> res = tree2.get_kth(1, 4, 1); // {4, 1};
 ```
-

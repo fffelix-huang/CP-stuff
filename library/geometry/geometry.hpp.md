@@ -110,8 +110,8 @@ data:
   timestamp: '2023-05-26 16:40:39+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/geometry/geometry/aoj-cgl-Counter-Clockwise.test.cpp
   - test/geometry/geometry/aoj-cgl-Intersection.test.cpp
+  - test/geometry/geometry/aoj-cgl-Counter-Clockwise.test.cpp
 documentation_of: library/geometry/geometry.hpp
 layout: document
 redirect_from:

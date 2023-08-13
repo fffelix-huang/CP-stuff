@@ -61,8 +61,8 @@ data:
     \ && u < n);\r\n\t\tassert(0 <= v && v < n);\r\n\t\tg[u].push_back(v);\r\n\t\t\
     g[v].push_back(u);\r\n\t}\r\n\r\n\tvoid build(int root = 0) {\r\n\t\tassert(0\
     \ <= root && root < n);\r\n\t\tparent[root] = -1;\r\n\t\ttop[root] = root;\r\n\
-    \t\tdfs_sz(root);\r\n\t\tdfs_link(root);\r\n\t\tst = sparse_table<std::pair<int,\
-    \ int>, __lca_op>(euler_tour);\r\n\t}\r\n\r\n\tint get_lca(int u, int v) {\r\n\
+    \t\tdfs_sz(root);\r\n\t\tdfs_link(root);\r\n\t\tst = std::move(sparse_table<std::pair<int,\
+    \ int>, __lca_op>(euler_tour));\r\n\t}\r\n\r\n\tint get_lca(int u, int v) {\r\n\
     \t\tassert(0 <= u && u < n);\r\n\t\tassert(0 <= v && v < n);\r\n\t\tint L = first_occurrence[u];\r\
     \n\t\tint R = first_occurrence[v];\r\n\t\tif(L > R) {\r\n\t\t\tstd::swap(L, R);\r\
     \n\t\t}\r\n\t\treturn st.prod(L, R).second;\r\n\t}\r\n\r\n\tbool is_ancestor(int\
@@ -123,8 +123,8 @@ data:
     \ v) {\r\n\t\tassert(0 <= u && u < n);\r\n\t\tassert(0 <= v && v < n);\r\n\t\t\
     g[u].push_back(v);\r\n\t\tg[v].push_back(u);\r\n\t}\r\n\r\n\tvoid build(int root\
     \ = 0) {\r\n\t\tassert(0 <= root && root < n);\r\n\t\tparent[root] = -1;\r\n\t\
-    \ttop[root] = root;\r\n\t\tdfs_sz(root);\r\n\t\tdfs_link(root);\r\n\t\tst = sparse_table<std::pair<int,\
-    \ int>, __lca_op>(euler_tour);\r\n\t}\r\n\r\n\tint get_lca(int u, int v) {\r\n\
+    \ttop[root] = root;\r\n\t\tdfs_sz(root);\r\n\t\tdfs_link(root);\r\n\t\tst = std::move(sparse_table<std::pair<int,\
+    \ int>, __lca_op>(euler_tour));\r\n\t}\r\n\r\n\tint get_lca(int u, int v) {\r\n\
     \t\tassert(0 <= u && u < n);\r\n\t\tassert(0 <= v && v < n);\r\n\t\tint L = first_occurrence[u];\r\
     \n\t\tint R = first_occurrence[v];\r\n\t\tif(L > R) {\r\n\t\t\tstd::swap(L, R);\r\
     \n\t\t}\r\n\t\treturn st.prod(L, R).second;\r\n\t}\r\n\r\n\tbool is_ancestor(int\
@@ -175,17 +175,17 @@ data:
   isVerificationFile: false
   path: library/tree/hld.hpp
   requiredBy: []
-  timestamp: '2023-07-11 10:41:16+08:00'
+  timestamp: '2023-08-13 14:16:40+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/tree/hld/yosupo-Vertex-Add-Path-Sum.test.cpp
+  - test/tree/hld/aoj-grl-Range-Query-on-a-Tree.test.cpp
+  - test/tree/hld/aoj-grl-Lowest-Common-Ancestor.test.cpp
   - test/tree/hld/yosupo-Jump-on-Tree.test.cpp
+  - test/tree/hld/yosupo-Vertex-Add-Subtree-Sum.test.cpp
+  - test/tree/hld/yosupo-Lowest-Common-Ancestor.test.cpp
   - test/tree/hld/yosupo-Vertex-Set-Path-Composite.test.cpp
   - test/tree/hld/aoj-grl-Range-Query-on-a-Tree-II.test.cpp
-  - test/tree/hld/yosupo-Vertex-Add-Path-Sum.test.cpp
-  - test/tree/hld/yosupo-Vertex-Add-Subtree-Sum.test.cpp
-  - test/tree/hld/aoj-grl-Range-Query-on-a-Tree.test.cpp
-  - test/tree/hld/yosupo-Lowest-Common-Ancestor.test.cpp
-  - test/tree/hld/aoj-grl-Lowest-Common-Ancestor.test.cpp
 documentation_of: library/tree/hld.hpp
 layout: document
 redirect_from:

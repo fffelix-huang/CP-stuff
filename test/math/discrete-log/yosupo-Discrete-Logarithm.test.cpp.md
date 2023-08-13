@@ -29,7 +29,7 @@ data:
   bundledCode: "#line 1 \"test/math/discrete-log/yosupo-Discrete-Logarithm.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/discrete_logarithm_mod\"\r\
     \n\r\n#include <iostream>\r\n#line 2 \"library/math/discrete-log.hpp\"\n#include\
-    \ <vector>\r\n#include <cmath>\r\n#include <cassert>\r\n#line 2 \"library/data-structure/pbds.hpp\"\
+    \ <cmath>\r\n#include <cassert>\r\n#line 2 \"library/data-structure/pbds.hpp\"\
     \n#include <ext/pb_ds/assoc_container.hpp>\n#line 2 \"library/random/splitmix64.hpp\"\
     \n#include <chrono>\r\n\r\nnamespace felix {\r\n\r\nnamespace internal {\r\n\r\
     \n// http://xoshiro.di.unimi.it/splitmix64.c\r\nstruct splitmix64_hash {\r\n\t\
@@ -60,7 +60,7 @@ data:
     b >>= m;\r\n\twhile(a != b) {\r\n\t\tT d = a - b;\r\n\t\tint8_t s = __builtin_ctzll(d);\r\
     \n\t\tbool f = a > b;\r\n\t\tb = f ? b : a;\r\n\t\ta = (f ? d : -d) >> s;\r\n\t\
     }\r\n\treturn a << (n < m ? n : m);\r\n}\r\n\r\n} // namespace felix\r\n#line\
-    \ 8 \"library/math/discrete-log.hpp\"\n\r\nnamespace felix {\r\n\r\nint discrete_log(int\
+    \ 7 \"library/math/discrete-log.hpp\"\n\r\nnamespace felix {\r\n\r\nint discrete_log(int\
     \ a, int b, int m) {\r\n\tassert(b < m);\r\n\tif(b == 1 || m == 1) {\r\n\t\treturn\
     \ 0;\r\n\t}\r\n\tint n = (int) std::sqrt(m) + 1, e = 1, f = 1, j = 1;\r\n\thash_map<int,\
     \ int> baby;\r\n\tinternal::barrett bt(m);\r\n\twhile(j <= n && (e = f = bt.mul(e,\
@@ -88,7 +88,7 @@ data:
   isVerificationFile: true
   path: test/math/discrete-log/yosupo-Discrete-Logarithm.test.cpp
   requiredBy: []
-  timestamp: '2023-07-11 10:41:16+08:00'
+  timestamp: '2023-08-13 14:16:40+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/math/discrete-log/yosupo-Discrete-Logarithm.test.cpp

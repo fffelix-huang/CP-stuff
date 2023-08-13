@@ -58,35 +58,35 @@ data:
     \n#include <chrono>\r\n#include <random>\r\n#line 8 \"library/string/rolling-hash.hpp\"\
     \n\r\nnamespace felix {\r\n\r\ntemplate<class M = modint61>\r\nstruct rolling_hash\
     \ {\r\n\tstatic std::vector<M> power;\r\n\tstatic M base;\r\n\r\n\tstatic void\
-    \ build_power(int _n) {\r\n\t\tif(power.size() > 1 && power[0] != base) {\r\n\t\
-    \t\tpower = {M(1)};\r\n\t\t}\r\n\t\twhile((int) power.size() <= _n) {\r\n\t\t\t\
-    power.emplace_back(power.back() * base);\r\n\t\t}\r\n\t}\r\n\r\n\trolling_hash()\
-    \ : n(0) {}\r\n\trolling_hash(const std::string& s, M B = generate_base()) : n(s.size()),\
-    \ pref(s.size() + 1) {\r\n\t\tbase = B;\r\n\t\tfor(int i = 0; i < n; i++) {\r\n\
-    \t\t\tpref[i + 1] = pref[i] * base + s[i];\r\n\t\t}\r\n\t\tbuild_power(n);\r\n\
-    \t}\r\n\r\n\tconstexpr int size() const { return n; }\r\n\tconstexpr int length()\
-    \ const { return n; }\r\n\r\n\tvoid add_char(char c) {\r\n\t\tpref.emplace_back(pref[n]\
-    \ * base + c);\r\n\t\tn++;\r\n\t\tbuild_power(n);\r\n\t}\r\n\r\n\tstruct Hash\
-    \ {\r\n\t\tM val;\r\n\t\tint len;\r\n\r\n\t\tconstexpr Hash() : len(0) {}\r\n\t\
-    \tconstexpr Hash(const M& x, int L) : val(x), len(L) {}\r\n\r\n\t\tconstexpr int\
-    \ size() const { return len; }\r\n\t\tconstexpr int length() const { return len;\
-    \ }\r\n\r\n\t\t// S + T\r\n\t\tconstexpr Hash& operator+=(const Hash& rhs) & {\r\
-    \n\t\t\tval = val * power[rhs.len] + rhs.val;\r\n\t\t\tlen += rhs.len;\r\n\t\t\
-    \treturn *this;\r\n\t\t}\r\n\r\n\t\t// S + ... + S\r\n\t\tconstexpr Hash& operator*=(int\
-    \ n) & {\r\n\t\t\tif(len > 0) {\r\n\t\t\t\tM a1 = val;\r\n\t\t\t\tM r = (len <\
-    \ (int) power.size() ? power[len] : base.pow(len));\r\n\t\t\t\tval = a1 * (r.pow(n)\
-    \ - 1U) / (r - 1U);\r\n\t\t\t\tlen *= n;\r\n\t\t\t}\r\n\t\t\treturn *this;\r\n\
-    \t\t}\r\n\r\n\t\tfriend constexpr Hash operator+(Hash lhs, Hash rhs) { return\
-    \ lhs += rhs; }\r\n\t\tfriend constexpr Hash operator*(Hash s, int n) { return\
-    \ s *= n; }\r\n\r\n\t\tconstexpr bool operator==(const Hash& rhs) const { return\
-    \ val == rhs.val && len == rhs.len; }\r\n\t\tconstexpr bool operator<(const Hash&\
-    \ rhs) const { return val.val() < rhs.val.val() || (val.val() == rhs.val.val()\
-    \ && len < rhs.len); }\r\n\t};\r\n\r\n\t// [l, r)\r\n\tconstexpr Hash get(int\
-    \ l, int r) const {\r\n\t\tassert(0 <= l && l <= r && r <= n);\r\n\t\treturn Hash(pref[r]\
-    \ - pref[l] * power[r - l], r - l);\r\n\t}\r\n\r\n\tconstexpr Hash get() const\
-    \ {\r\n\t\treturn Hash(pref[n], n);\r\n\t}\r\n\r\n\tstatic inline M generate_base(bool\
-    \ new_base = false) {\r\n\t\tstatic M B(0);\r\n\t\tif(B.val() == 0 || new_base)\
-    \ {\r\n\t\t\tstd::mt19937_64 mt(std::chrono::steady_clock::now().time_since_epoch().count());\r\
+    \ prepare(int _n) {\r\n\t\tif(power.size() > 1 && power[0] != base) {\r\n\t\t\t\
+    power = {M(1)};\r\n\t\t}\r\n\t\twhile((int) power.size() <= _n) {\r\n\t\t\tpower.emplace_back(power.back()\
+    \ * base);\r\n\t\t}\r\n\t}\r\n\r\n\trolling_hash() : n(0) {}\r\n\trolling_hash(const\
+    \ std::string& s, M B = generate_base()) : n(s.size()), pref(s.size() + 1) {\r\
+    \n\t\tbase = B;\r\n\t\tfor(int i = 0; i < n; i++) {\r\n\t\t\tpref[i + 1] = pref[i]\
+    \ * base + s[i];\r\n\t\t}\r\n\t\tprepare(n);\r\n\t}\r\n\r\n\tconstexpr int size()\
+    \ const { return n; }\r\n\tconstexpr int length() const { return n; }\r\n\r\n\t\
+    void add_char(char c) {\r\n\t\tpref.emplace_back(pref[n] * base + c);\r\n\t\t\
+    n++;\r\n\t\tprepare(n);\r\n\t}\r\n\r\n\tstruct Hash {\r\n\t\tM val;\r\n\t\tint\
+    \ len;\r\n\r\n\t\tconstexpr Hash() : len(0) {}\r\n\t\tconstexpr Hash(const M&\
+    \ x, int L) : val(x), len(L) {}\r\n\r\n\t\tconstexpr int size() const { return\
+    \ len; }\r\n\t\tconstexpr int length() const { return len; }\r\n\r\n\t\t// S +\
+    \ T\r\n\t\tconstexpr Hash& operator+=(const Hash& rhs) & {\r\n\t\t\tval = val\
+    \ * power[rhs.len] + rhs.val;\r\n\t\t\tlen += rhs.len;\r\n\t\t\treturn *this;\r\
+    \n\t\t}\r\n\r\n\t\t// S + ... + S\r\n\t\tconstexpr Hash& operator*=(int n) & {\r\
+    \n\t\t\tif(len > 0) {\r\n\t\t\t\tM a1 = val;\r\n\t\t\t\tM r = (len < (int) power.size()\
+    \ ? power[len] : base.pow(len));\r\n\t\t\t\tval = a1 * (r.pow(n) - 1U) / (r -\
+    \ 1U);\r\n\t\t\t\tlen *= n;\r\n\t\t\t}\r\n\t\t\treturn *this;\r\n\t\t}\r\n\r\n\
+    \t\tfriend constexpr Hash operator+(Hash lhs, Hash rhs) { return lhs += rhs; }\r\
+    \n\t\tfriend constexpr Hash operator*(Hash s, int n) { return s *= n; }\r\n\r\n\
+    \t\tconstexpr bool operator==(const Hash& rhs) const { return val == rhs.val &&\
+    \ len == rhs.len; }\r\n\t\tconstexpr bool operator<(const Hash& rhs) const { return\
+    \ val.val() < rhs.val.val() || (val.val() == rhs.val.val() && len < rhs.len);\
+    \ }\r\n\t};\r\n\r\n\t// [l, r)\r\n\tconstexpr Hash get(int l, int r) const {\r\
+    \n\t\tassert(0 <= l && l <= r && r <= n);\r\n\t\treturn Hash(pref[r] - pref[l]\
+    \ * power[r - l], r - l);\r\n\t}\r\n\r\n\tconstexpr Hash get() const {\r\n\t\t\
+    return Hash(pref[n], n);\r\n\t}\r\n\r\n\tstatic inline M generate_base(bool new_base\
+    \ = false) {\r\n\t\tstatic M B(0);\r\n\t\tif(B.val() == 0 || new_base) {\r\n\t\
+    \t\tstd::mt19937_64 mt(std::chrono::steady_clock::now().time_since_epoch().count());\r\
     \n\t\t\tstd::uniform_int_distribution<unsigned long long> rd(1, M::mod() - 1);\r\
     \n\t\t\tB = M(rd(mt));\r\n\t\t}\r\n\t\treturn B;\r\n\t}\r\n\r\nprivate:\r\n\t\
     int n;\r\n\tstd::vector<M> pref;\r\n};\r\n\r\ntemplate<class M> std::vector<M>\
@@ -111,7 +111,7 @@ data:
   isVerificationFile: true
   path: test/string/rolling-hash/aoj-alds1-String-Search.test.cpp
   requiredBy: []
-  timestamp: '2023-07-31 16:36:45+08:00'
+  timestamp: '2023-08-13 14:16:40+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/string/rolling-hash/aoj-alds1-String-Search.test.cpp

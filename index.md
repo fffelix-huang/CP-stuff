@@ -24,6 +24,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/data-structure/binary-trie.hpp
       title: library/data-structure/binary-trie.hpp
+    - icon: ':warning:'
+      path: library/data-structure/bitset.hpp
+      title: library/data-structure/bitset.hpp
     - icon: ':heavy_check_mark:'
       path: library/data-structure/dsu.hpp
       title: "DSU (\u4E26\u67E5\u96C6)"
@@ -140,7 +143,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/graph/max-clique.hpp
       title: library/graph/max-clique.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: library/graph/scc.hpp
       title: library/graph/scc.hpp
   - name: library/math
@@ -178,7 +181,7 @@ data:
     - icon: ':question:'
       path: library/math/safe-mod.hpp
       title: library/math/safe-mod.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: library/math/two-sat.hpp
       title: library/math/two-sat.hpp
     - icon: ':heavy_check_mark:'
@@ -382,6 +385,9 @@ data:
   - name: test/data-structure/persistent-dsu
     pages:
     - icon: ':heavy_check_mark:'
+      path: test/data-structure/persistent-dsu/yosupo-Persistent-Unionfind.test.cpp
+      title: test/data-structure/persistent-dsu/yosupo-Persistent-Unionfind.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/data-structure/persistent-dsu/yosupo-Unionfind.test.cpp
       title: test/data-structure/persistent-dsu/yosupo-Unionfind.test.cpp
   - name: test/data-structure/segtree
@@ -514,10 +520,10 @@ data:
       title: test/graph/max-clique/yosupo-Maximum-Independent-Set.test.cpp
   - name: test/graph/scc
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/graph/scc/aoj-grl-Strongly-Connected-Components.test.cpp
       title: test/graph/scc/aoj-grl-Strongly-Connected-Components.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/graph/scc/yosupo-Strongly-Connected-Components.test.cpp
       title: test/graph/scc/yosupo-Strongly-Connected-Components.test.cpp
   - name: test/math/binary-gcd
@@ -555,7 +561,7 @@ data:
       title: test/math/is-prime/yosupo-Primality-Test.test.cpp
   - name: test/math/two-sat
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/math/two-sat/yosupo-2-Sat.test.cpp
       title: test/math/two-sat/yosupo-2-Sat.test.cpp
   - name: test/math/xor-basis

@@ -59,17 +59,17 @@ data:
   path: library/random/splitmix64.hpp
   requiredBy:
   - library/math/discrete-log.hpp
-  - library/data-structure/pbds.hpp
   - library/random/graph-generator.hpp
   - library/random/random.hpp
+  - library/data-structure/pbds.hpp
   timestamp: '2023-05-31 10:45:25+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/math/xor-basis/unit-test-xor-basis.test.cpp
   - test/math/discrete-log/yosupo-Discrete-Logarithm.test.cpp
+  - test/data-structure/pbds/yosupo-Static-Range-Sum.test.cpp
   - test/data-structure/pbds/yosupo-Static-Range-Frequency.test.cpp
   - test/data-structure/pbds/yosupo-Associative-Array.test.cpp
-  - test/data-structure/pbds/yosupo-Static-Range-Sum.test.cpp
 documentation_of: library/random/splitmix64.hpp
 layout: document
 redirect_from:
