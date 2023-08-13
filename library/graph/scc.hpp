@@ -8,8 +8,10 @@ namespace felix {
 
 struct SCC {
 public:
+	std::vector<int> id;
+
 	SCC() : n(0) {}
-	explicit SCC(int _n) : n(_n), g(_n), h(_n) {}
+	explicit SCC(int _n) : id(_n), n(_n), g(_n), h(_n) {}
 
 	void add_edge(int u, int v) {
 		assert(0 <= u && u < n);
@@ -18,8 +20,7 @@ public:
 		h[v].push_back(u);
 	}
 
-	std::vector<int> solve() {
-		std::vector<int> id(n);
+	void build() {
 		std::vector<int> top;
 		top.reserve(n);
 		std::function<void(int)> dfs1 = [&](int u) {
@@ -31,7 +32,7 @@ public:
 			}
 			top.push_back(u);
 		};
-		for(int i = 0; i < n; ++i) {
+		for(int i = 0; i < n; i++) {
 			if(id[i] == 0) {
 				dfs1(i);
 			}
@@ -45,7 +46,7 @@ public:
 				}
 			}
 		};
-		for(int i = n - 1, cnt = 0; i >= 0; --i) {
+		for(int i = n - 1, cnt = 0; i >= 0; i--) {
 			int u = top[i];
 			if(id[u] == -1) {
 				dfs2(u, cnt);
@@ -55,10 +56,10 @@ public:
 		return id;
 	}
 
-	std::vector<std::vector<int>> compress(std::vector<int> id) {
+	std::vector<std::vector<int>> compress() {
 		int sz = *max_element(id.begin(), id.end()) + 1;
 		std::vector<std::vector<int>> new_g(sz);
-		for(int u = 0; u < n; ++u) {
+		for(int u = 0; u < n; u++) {
 			for(auto v : g[u]) {
 				if(id[u] == id[v]) {
 					continue;

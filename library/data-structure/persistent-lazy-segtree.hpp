@@ -32,81 +32,6 @@ public:
 
 	int versions() const { return (int) roots.size(); }
 
-	int set(int v, int p, const S& val) {
-		assert(0 <= v && v < (int) roots.size());
-		assert(0 <= p && p < n);
-		roots.push_back(roots[v]->set(p, val, 0, n));
-		return roots.size() - 1;
-	}
-
-	S get(int v, int p) const {
-		assert(0 <= v && v < (int) roots.size());
-		assert(0 <= p && p < n);
-		return roots[v]->get(p, 0, n);
-	}
-
-	S prod(int v, int l, int r) const {
-		assert(0 <= v && v < (int) roots.size());
-		assert(0 <= l && l <= r && r <= n);
-		if(l == r) {
-			return e();
-		}
-		return roots[v]->prod(l, r, 0, n);
-	}
-
-	int apply(int v, int p, F f) {
-		assert(0 <= v && v < (int) roots.size());
-		assert(0 <= p && p < n);
-		roots.push_back(roots[v]->apply(p, f, 0, n));
-		return roots.size() - 1;
-	}
-
-	int apply(int v, int l, int r, F f) {
-		assert(0 <= v && v < (int) roots.size());
-		assert(0 <= l && l <= r && r <= n);
-		roots.push_back(roots[v]->apply(l, r, f, 0, n));
-		return roots.size() - 1;
-	}
-
-	S all_prod(int v) const {
-		assert(0 <= v && v < (int) roots.size());
-		return roots[v]->val;
-	}
-
-	int clone(int v) {
-		assert(0 <= v && v < (int) roots.size());
-		roots.push_back(new node_t(*roots[v]));
-		return roots.size() - 1;
-	}
-
-	template<bool (*f)(S)>
-	int max_right(int v, int l) const {
-		return max_right(id, l, [](S x) { return f(x); });
-	}
-
-	template<class G>
-	int max_right(int v, int l, G g) const {
-		assert(0 <= v && v < (int) roots.size());
-		assert(0 <= l && l <= n);
-		assert(g(e()));
-		S sum = e();
-		return roots[v]->max_right(l, g, sum, id(), 0, n);
-	}
-
-	template<bool (*f)(S)>
-	int min_left(int v, int r) const {
-		return min_left(id, r, [](S x) { return f(x); });
-	}
-
-	template<class G>
-	int min_left(int v, int r, G g) const {
-		assert(0 <= v && v < (int) roots.size());
-		assert(0 <= r && r <= n);
-		assert(g(e()));
-		S sum = e();
-		return roots[v]->min_left(r, g, sum, id(), 0, n);
-	}
-
 private:
 	struct node_t {
 		S val = e();
@@ -255,6 +180,77 @@ private:
 
 	int n;
 	std::vector<node_t*> roots;
+
+	struct tree_ref {
+		node_t* root;
+		int n;
+		std::vector<node_t*>& roots;
+
+		int set(int p, const S& val) {
+			assert(0 <= p && p < n);
+			roots.push_back(root->set(p, val, 0, n));
+			return roots.size() - 1;
+		}
+
+		S get(int p) const {
+			assert(0 <= p && p < n);
+			return root->get(p, 0, n);
+		}
+
+		S prod(int l, int r) const {
+			assert(0 <= l && l <= r && r <= n);
+			if(l == r) {
+				return e();
+			}
+			return root->prod(l, r, 0, n);
+		}
+
+		int apply(int p, F f) {
+			assert(0 <= p && p < n);
+			roots.push_back(root->apply(p, f, 0, n));
+			return roots.size() - 1;
+		}
+
+		int apply(int l, int r, F f) {
+			assert(0 <= l && l <= r && r <= n);
+			roots.push_back(root->apply(l, r, f, 0, n));
+			return roots.size() - 1;
+		}
+
+		S all_prod() const { return root->val; }
+
+		template<bool (*f)(S)>
+		int max_right(int l) const {
+			return max_right(l, [](S x) { return f(x); });
+		}
+
+		template<class G>
+		int max_right(int l, G g) const {
+			assert(0 <= l && l <= n);
+			assert(g(e()));
+			S sum = e();
+			return root->max_right(l, g, sum, id(), 0, n);
+		}
+
+		template<bool (*f)(S)>
+		int min_left(int r) const {
+			return min_left(r, [](S x) { return f(x); });
+		}
+
+		template<class G>
+		int min_left(int r, G g) const {
+			assert(0 <= r && r <= n);
+			assert(g(e()));
+			S sum = e();
+			return root->min_left(r, g, sum, id(), 0, n);
+		}
+	};
+
+public:
+	tree_ref operator[](int id) {
+		assert(0 <= id && id < (int) roots.size());
+		return tree_ref{roots[id], n, roots};
+	}
 };
 
 } // namespace felix

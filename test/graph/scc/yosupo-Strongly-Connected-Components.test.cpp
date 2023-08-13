@@ -1,6 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/scc"
 
 #include <iostream>
+#include <algorithm>
+#include <vector>
 #include "../../../library/graph/scc.hpp"
 using namespace std;
 using namespace felix;
@@ -16,11 +18,11 @@ int main() {
 		cin >> u >> v;
 		g.add_edge(u, v);
 	}
-	auto id = g.solve();
-	int k = *max_element(id.begin(), id.end()) + 1;
+	g.build();
+	int k = *max_element(g.id.begin(), g.id.end()) + 1;
 	vector<vector<int>> ans(k);
 	for(int i = 0; i < n; i++) {
-		ans[id[i]].push_back(i);
+		ans[g.id[i]].push_back(i);
 	}
 	cout << k << "\n";
 	for(int i = 0; i < k; i++) {

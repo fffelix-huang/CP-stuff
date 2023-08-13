@@ -4,6 +4,7 @@ documentation_of: ../library/string/rolling-hash.hpp
 ---
 
 ## 使用方法
+
 ```cpp
 using H = rolling_hash<modint61>;
 
@@ -17,7 +18,10 @@ assert(s.get() + t.get() == H("aaaaaa").get());
 ```
 
 ## 範例
-[ABC312 Ex - snukesnuke](https://atcoder.jp/contests/abc312/tasks/abc312_h)
+
+1. [ABC312 Ex - snukesnuke](https://atcoder.jp/contests/abc312/tasks/abc312_h)
 
 ## References
-[https://hitonanode.github.io/cplib-cpp/string/rolling_hash_1d.hpp](https://hitonanode.github.io/cplib-cpp/string/rolling_hash_1d.hpp)
+
+1. [https://hitonanode.github.io/cplib-cpp/string/rolling_hash_1d.hpp](https://hitonanode.github.io/cplib-cpp/string/rolling_hash_1d.hpp)
+2. [tourist](https://codeforces.com/contest/1609/submission/137263072)

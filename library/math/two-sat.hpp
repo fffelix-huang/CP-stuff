@@ -7,7 +7,7 @@ namespace felix {
 struct two_sat {
 public:
 	two_sat() : n(0) {}
-	explicit two_sat(int _n) : n(_n), g(_n * 2) {}
+	explicit two_sat(int _n) : n(_n), g(_n * 2), ans(_n) {}
 
 	void add_implies_clause(int u, bool x, int v, bool y) {
 		g.add_edge(2 * u + x, 2 * v + y);
@@ -40,13 +40,12 @@ public:
 
 	bool satisfiable() {
 		built = true;
-		ans.resize(n);
-		auto id = g.solve();
+		g.build();
 		for(int i = 0; i < n; ++i) {
-			if(id[2 * i] == id[2 * i + 1]) {
+			if(g.id[2 * i] == g.id[2 * i + 1]) {
 				return false;
 			}
-			ans[i] = (id[2 * i] < id[2 * i + 1]);
+			ans[i] = (g.id[2 * i] < g.id[2 * i + 1]);
 		}
 		return true;
 	}

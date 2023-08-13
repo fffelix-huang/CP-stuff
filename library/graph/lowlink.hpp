@@ -67,7 +67,7 @@ struct lowlink {
 							break;
 						}
 					}
-					tvcc_cnt += 1;
+					tvcc_cnt++;
 				}
 			}
 		}
@@ -110,7 +110,7 @@ struct lowlink {
 					stk.push_back(v);
 				}
 			}
-			tecc_cnt += 1;
+			tecc_cnt++;
 		}
 		std::vector<std::vector<int>> components(tecc_cnt);
 		for(int i = 0; i < n; i++) {

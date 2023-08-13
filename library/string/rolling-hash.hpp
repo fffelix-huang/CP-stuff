@@ -13,7 +13,7 @@ struct rolling_hash {
 	static std::vector<M> power;
 	static M base;
 
-	static void build_power(int _n) {
+	static void prepare(int _n) {
 		if(power.size() > 1 && power[0] != base) {
 			power = {M(1)};
 		}
@@ -28,7 +28,7 @@ struct rolling_hash {
 		for(int i = 0; i < n; i++) {
 			pref[i + 1] = pref[i] * base + s[i];
 		}
-		build_power(n);
+		prepare(n);
 	}
 
 	constexpr int size() const { return n; }
@@ -37,7 +37,7 @@ struct rolling_hash {
 	void add_char(char c) {
 		pref.emplace_back(pref[n] * base + c);
 		n++;
-		build_power(n);
+		prepare(n);
 	}
 
 	struct Hash {

@@ -16,9 +16,9 @@ int main() {
 		int type, u, v;
 		cin >> type >> u >> v;
 		if(type == 0) {
-			id = d.merge(id, u, v).first;
+			id = d[id].merge(u, v).first;
 		} else {
-			cout << d.same(id, u, v) << "\n";
+			cout << d[id].same(u, v) << "\n";
 		}
 	}
 	return 0;

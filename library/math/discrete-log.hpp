@@ -1,5 +1,4 @@
 #pragma once
-#include <vector>
 #include <cmath>
 #include <cassert>
 #include "../data-structure/pbds.hpp"

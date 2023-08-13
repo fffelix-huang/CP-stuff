@@ -4,6 +4,7 @@ documentation_of: ../library/data-structure/dsu.hpp
 ---
 
 ## 使用方法
+
 ```cpp
 int n;
 DSU d(n); // 只有路徑壓縮
@@ -19,4 +20,5 @@ vector<vector<int>> g = d.groups();
 ```
 
 ## References
-[AtCoder Library document](https://atcoder.github.io/ac-library/production/document_en/dsu.html)
+
+1. [AtCoder Library document](https://atcoder.github.io/ac-library/production/document_en/dsu.html)

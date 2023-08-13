@@ -16,13 +16,13 @@ int main() {
 		cin >> u >> v;
 		g.add_edge(u, v);
 	}
-	auto id = g.solve();
+	g.build();
 	int q;
 	cin >> q;
 	while(q--) {
 		int u, v;
 		cin >> u >> v;
-		cout << (id[u] == id[v]) << "\n";
+		cout << (g.id[u] == g.id[v]) << "\n";
 	}
 	return 0;
 }

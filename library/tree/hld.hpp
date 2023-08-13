@@ -46,7 +46,7 @@ public:
 		top[root] = root;
 		dfs_sz(root);
 		dfs_link(root);
-		st = sparse_table<std::pair<int, int>, __lca_op>(euler_tour);
+		st = std::move(sparse_table<std::pair<int, int>, __lca_op>(euler_tour));
 	}
 
 	int get_lca(int u, int v) {

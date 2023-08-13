@@ -24,19 +24,6 @@ public:
 
 	int versions() const { return (int) roots.size(); }
 
-	int set(int id, int pos, const T& x) {
-		assert(0 <= id && id < (int) roots.size());
-		assert(0 <= pos && pos < n);
-		roots.push_back(roots[id]->set(pos, x, 0, n));
-		return roots.size() - 1;
-	}
-
-	T get(int id, int pos) const {
-		assert(0 <= id && id < (int) roots.size());
-		assert(0 <= pos && pos < n);
-		return roots[id]->get(pos, 0, n);
-	}
-
 private:
 	struct node_t {
 		T val = T();
@@ -77,6 +64,31 @@ private:
 
 	int n;
 	std::vector<node_t*> roots;
+
+	struct tree_ref {
+		node_t* root;
+		int n;
+		std::vector<node_t*>& roots;
+
+		int set(int pos, const T& x) {
+			assert(0 <= pos && pos < n);
+			roots.push_back(root->set(pos, x, 0, n));
+			return roots.size() - 1;
+		}
+
+		T get(int pos) const {
+			assert(0 <= pos && pos < n);
+			return root->get(pos, 0, n);
+		}
+
+		T operator[](int pos) const { return get(pos); }
+	};
+
+public:
+	tree_ref operator[](int id) {
+		assert(0 <= id && id < (int) roots.size());
+		return tree_ref{roots[id], n, roots};
+	}
 };
 
 } // namespace felix
