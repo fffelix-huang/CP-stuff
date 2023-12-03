@@ -113,9 +113,9 @@ data:
   timestamp: '2023-07-30 19:34:47+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/math/factorize/yosupo-Factorize.test.cpp
-  - test/math/factorize/aoj-ntl-Prime-Factorize.test.cpp
   - test/math/is-prime/yosupo-Primality-Test.test.cpp
+  - test/math/factorize/aoj-ntl-Prime-Factorize.test.cpp
+  - test/math/factorize/yosupo-Factorize.test.cpp
 documentation_of: library/math/is-prime.hpp
 layout: document
 redirect_from:

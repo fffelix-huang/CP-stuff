@@ -8,6 +8,12 @@ data:
       title: library/bst/rbst-base.hpp
   - name: library/convolution
     pages:
+    - icon: ':warning:'
+      path: library/convolution/gcd-convolution.hpp
+      title: library/convolution/gcd-convolution.hpp
+    - icon: ':warning:'
+      path: library/convolution/lcm-convolution.hpp
+      title: library/convolution/lcm-convolution.hpp
     - icon: ':heavy_check_mark:'
       path: library/convolution/ntt.hpp
       title: library/convolution/ntt.hpp
@@ -143,7 +149,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/graph/max-clique.hpp
       title: library/graph/max-clique.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/graph/scc.hpp
       title: library/graph/scc.hpp
   - name: library/math
@@ -157,10 +163,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/discrete-log.hpp
       title: "Discrete Log (\u96E2\u6563\u5C0D\u6578 $a^x \\equiv b \\pmod m$)"
+    - icon: ':warning:'
+      path: library/math/divisor-multiple-transform.hpp
+      title: library/math/divisor-multiple-transform.hpp
     - icon: ':heavy_check_mark:'
       path: library/math/factorize.hpp
       title: "Integer Factorization (Pollard Rho \u8CEA\u56E0\u6578\u5206\u89E3)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: library/math/floor-sum.hpp
       title: Sum of floor linear ($\sum_{i = 0}^{n - 1} \lfloor \frac{ai + b}{m} \rfloor$)
     - icon: ':heavy_check_mark:'
@@ -176,12 +185,15 @@ data:
       path: library/math/pow-mod.hpp
       title: library/math/pow-mod.hpp
     - icon: ':heavy_check_mark:'
+      path: library/math/prime-enumerate.hpp
+      title: library/math/prime-enumerate.hpp
+    - icon: ':heavy_check_mark:'
       path: library/math/primitive-root.hpp
       title: library/math/primitive-root.hpp
     - icon: ':question:'
       path: library/math/safe-mod.hpp
       title: library/math/safe-mod.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/math/two-sat.hpp
       title: library/math/two-sat.hpp
     - icon: ':heavy_check_mark:'
@@ -520,10 +532,10 @@ data:
       title: test/graph/max-clique/yosupo-Maximum-Independent-Set.test.cpp
   - name: test/graph/scc
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/graph/scc/aoj-grl-Strongly-Connected-Components.test.cpp
       title: test/graph/scc/aoj-grl-Strongly-Connected-Components.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/graph/scc/yosupo-Strongly-Connected-Components.test.cpp
       title: test/graph/scc/yosupo-Strongly-Connected-Components.test.cpp
   - name: test/math/binary-gcd
@@ -546,7 +558,7 @@ data:
       title: test/math/factorize/yosupo-Factorize.test.cpp
   - name: test/math/floor-sum
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/math/floor-sum/yosupo-Sum-of-Floor-of-Linear.test.cpp
       title: test/math/floor-sum/yosupo-Sum-of-Floor-of-Linear.test.cpp
   - name: test/math/integer-div
@@ -559,9 +571,14 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/math/is-prime/yosupo-Primality-Test.test.cpp
       title: test/math/is-prime/yosupo-Primality-Test.test.cpp
+  - name: test/math/prime-enumerate
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/math/prime-enumerate/yosupo-Enumerate-Primes.test.cpp
+      title: test/math/prime-enumerate/yosupo-Enumerate-Primes.test.cpp
   - name: test/math/two-sat
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/math/two-sat/yosupo-2-Sat.test.cpp
       title: test/math/two-sat/yosupo-2-Sat.test.cpp
   - name: test/math/xor-basis

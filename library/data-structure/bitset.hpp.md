@@ -64,24 +64,39 @@ data:
     \ <<= shift; }\r\n\tBitset operator>>(int shift) { return Bitset(*this) >>= shift;\
     \ }\r\n\tBitset operator~() const { return Bitset(*this).flip(); }\r\n\r\n\tfriend\
     \ bool operator==(const Bitset& a, const Bitset& b) {\r\n\t\tif(a.len != b.len)\
-    \ {\r\n\t\t\treturn false;\r\n\t\t}\r\n\t\tfor(int i = 0; i < a.n; i++) {\r\n\t\
-    \t\tif(a.bits[i] != b.bits[i]) {\r\n\t\t\t\treturn false;\r\n\t\t\t}\r\n\t\t}\r\
-    \n\t\treturn true;\r\n\t}\r\n\r\n\tfriend bool operator!=(const Bitset& a, const\
-    \ Bitset& b) {\r\n\t\treturn !(a == b);\r\n\t}\r\n\r\n\tbool all() const {\r\n\
-    \t\tif(len == 0) {\r\n\t\t\treturn true;\r\n\t\t}\r\n\t\tfor(int i = 0; i < (int)\
-    \ bits.size(); i++) {\r\n\t\t\tif(bits[i] != ~block(0)) {\r\n\t\t\t\treturn false;\r\
-    \n\t\t\t}\r\n\t\t}\r\n\t\tconst std::size_t num = n - ((bits.size() - 1) * block_size);\r\
-    \n\t\tassert(num > 0);\r\n\t\tconst block upper = ((block(1) << (block_size -\
-    \ num)) - 1) << num;\r\n\t\treturn (upper | bits.back()) == ~block(0);\r\n\t}\r\
-    \n\r\n\tbool none() {\r\n\t\t_clean();\r\n\t\treturn std::count(bits.begin(),\
-    \ bits.end(), block(0)) == n;\r\n\t}\r\n\r\n\tbool any() { return !none(); }\r\
-    \n\r\n\tint count() {\r\n\t\t_clean();\r\n\t\tint res = 0;\r\n\t\tfor(auto b :\
-    \ bits) {\r\n\t\t\tres += __builtin_popcountll(b);\r\n\t\t}\r\n\t\treturn res;\r\
-    \n\t}\r\n\r\n\t// >\r\n\tint find_next(int pos) const {\r\n\t\tpos++;\r\n\t\t\
+    \ {\r\n\t\t\treturn false;\r\n\t\t}\r\n\t\treturn a.bits == b.bits;\r\n\t}\r\n\
+    \r\n\tfriend bool operator!=(const Bitset& a, const Bitset& b) {\r\n\t\treturn\
+    \ !(a == b);\r\n\t}\r\n\r\n\tbool all() const {\r\n\t\tif(len == 0) {\r\n\t\t\t\
+    return true;\r\n\t\t}\r\n\t\tfor(int i = 0; i < (int) bits.size(); i++) {\r\n\t\
+    \t\tif(bits[i] != ~block(0)) {\r\n\t\t\t\treturn false;\r\n\t\t\t}\r\n\t\t}\r\n\
+    \t\tconst std::size_t num = n - ((bits.size() - 1) * block_size);\r\n\t\tassert(num\
+    \ > 0);\r\n\t\tconst block upper = ((block(1) << (block_size - num)) - 1) << num;\r\
+    \n\t\treturn (upper | bits.back()) == ~block(0);\r\n\t}\r\n\r\n\tbool none() {\r\
+    \n\t\t_clean();\r\n\t\treturn std::count(bits.begin(), bits.end(), block(0)) ==\
+    \ n;\r\n\t}\r\n\r\n\tbool any() { return !none(); }\r\n\r\n\tint count() {\r\n\
+    \t\t_clean();\r\n\t\tint res = 0;\r\n\t\tfor(auto b : bits) {\r\n\t\t\tres +=\
+    \ __builtin_popcountll(b);\r\n\t\t}\r\n\t\treturn res;\r\n\t}\r\n\r\n\t// set\
+    \ [l, r) to 1\r\n\tvoid range_set(int l, int r) {\r\n\t\tassert(l <= r && r <=\
+    \ len);\r\n\t\tif(l == r) {\r\n\t\t\treturn;\r\n\t\t}\r\n\t\tstd::size_t lb =\
+    \ l / block_size, rb = (r - 1) / block_size;\r\n\t\tstd::size_t li = l % block_size,\
+    \ ri = r % block_size;\r\n\t\tif(ri == 0) {\r\n\t\t\tri = block_size;\r\n\t\t\
+    }\r\n\t\tif(lb == rb) {\r\n\t\t\tbits[lb] |= mask_range_bits(~block(0), li, ri);\r\
+    \n\t\t\treturn;\r\n\t\t}\r\n\t\tbits[lb] |= mask_upper_bits(~block(0), block_size\
+    \ - li);\r\n\t\tbits[rb] |= mask_lower_bits(~block(0), ri);\r\n\t\tstd::fill(bits.begin()\
+    \ + lb + 1, bits.begin() + rb, ~block(0));\r\n\t\t_clean();\r\n\t}\r\n\r\n\t//\
+    \ // set [l, r) to 0\r\n\tvoid range_reset(int l, int r) {\r\n\t\tassert(l <=\
+    \ r && r <= len);\r\n\t\tif(l == r) return;\r\n\t\tstd::size_t lb = l / block_size,\
+    \ rb = (r - 1) / block_size;\r\n\t\tstd::size_t li = l % block_size, ri = r %\
+    \ block_size;\r\n\t\tif(ri == 0) {\r\n\t\t\tri = block_size;\r\n\t\t}\r\n\t\t\
+    if(lb == rb) {\r\n\t\t\tbits[lb] &= ~mask_range_bits(~block(0), li, ri);\r\n\t\
+    \t\treturn;\r\n\t\t}\r\n\t\tbits[lb] &= ~mask_upper_bits(~block(0), block_size\
+    \ - li);\r\n\t\tbits[rb] &= ~mask_lower_bits(~block(0), ri);\r\n\t\tstd::fill(bits.begin()\
+    \ + lb + 1, bits.begin() + rb, block(0));\r\n\t}\r\n\r\n\t// set [l, r) to type\r\
+    \n\tvoid range_update(int l, int r, bool type) { type ? range_set(l, r) : range_reset(l,\
+    \ r); }\r\n\r\n\t// >\r\n\tint find_next(int pos) const {\r\n\t\tpos++;\r\n\t\t\
     int i = pos / block_size;\r\n\t\tif(i >= n) {\r\n\t\t\treturn n;\r\n\t\t}\r\n\t\
-    \tint num = block_size - pos % block_size;\r\n\t\tblock upper = (num > 0 ? (bits[i]\
-    \ >> (block_size - num) << (block_size - num)) : block(0));\r\n\t\tif(upper !=\
-    \ 0) {\r\n\t\t\treturn std::min(n, __builtin_ctzll(upper) | (i * block_size));\r\
+    \tblock upper = mask_upper_bits(bits[i], block_size - pos % block_size);\r\n\t\
+    \tif(upper != 0) {\r\n\t\t\treturn std::min(n, __builtin_ctzll(upper) | (i * block_size));\r\
     \n\t\t}\r\n\t\twhile(++i < (int) bits.size()) {\r\n\t\t\tif(bits[i] != 0) {\r\n\
     \t\t\t\treturn std::min(n, __builtin_ctzll(bits[i]) | (i * block_size));\r\n\t\
     \t\t}\r\n\t\t}\r\n\t\treturn n;\r\n\t}\r\n\r\n\t// <\r\n\tint find_prev(int pos)\
@@ -95,8 +110,19 @@ data:
     \ }\r\n\r\n\tstd::string to_string() const {\r\n\t\tstd::string s;\r\n\t\tfor(int\
     \ i = 0; i < len; i++) {\r\n\t\t\ts += (*this)[i] + '0';\r\n\t\t}\r\n\t\treturn\
     \ s;\r\n\t}\r\n\r\n\tfriend std::ostream& operator<<(std::ostream& out, const\
-    \ Bitset& b) {\r\n\t\treturn out << b.to_string();\r\n\t}\r\n};\r\n\r\n} // namespace\
-    \ felix\r\n"
+    \ Bitset& b) {\r\n\t\treturn out << b.to_string();\r\n\t}\r\n\r\nprivate:\r\n\t\
+    static constexpr block get_lower_bits(block b, std::size_t num) {\r\n\t\treturn\
+    \ num ? (b << (block_size - num) >> (block_size - num)) : block(0);\r\n\t}\r\n\
+    \tstatic constexpr block get_upper_bits(block b, std::size_t num) {\r\n\t\treturn\
+    \ num ? (b >> (block_size - num)) : block(0);\r\n\t}\r\n\tstatic constexpr block\
+    \ get_range_bits(block b, std::size_t l, std::size_t r) {\r\n\t\treturn l < r\
+    \ ? b << (block_size - r) >> (block_size - r + l) : block(0);\r\n\t}\r\n\tstatic\
+    \ constexpr block mask_lower_bits(block b, std::size_t num) {\r\n\t\treturn get_lower_bits(b,\
+    \ num);\r\n\t}\r\n\tstatic constexpr block mask_upper_bits(block b, std::size_t\
+    \ num) {\r\n\t\treturn num ? (b >> (block_size - num) << (block_size - num)) :\
+    \ block(0);\r\n\t}\r\n\tstatic constexpr block mask_range_bits(block b, std::size_t\
+    \ l, std::size_t r) {\r\n\t\treturn l < r ? b << (block_size - r) >> (block_size\
+    \ - r + l) << l : block(0);\r\n\t}\r\n};\r\n\r\n} // namespace felix\r\n"
   code: "#pragma once\r\n#include <iostream>\r\n#include <vector>\r\n#include <cstring>\r\
     \n#include <algorithm>\r\n#include <limits>\r\n#include <cassert>\r\n\r\nnamespace\
     \ felix {\r\n\r\nstruct Bitset {\r\nprivate:\r\n\tusing block = unsigned long\
@@ -153,44 +179,69 @@ data:
     \ operator>>(int shift) { return Bitset(*this) >>= shift; }\r\n\tBitset operator~()\
     \ const { return Bitset(*this).flip(); }\r\n\r\n\tfriend bool operator==(const\
     \ Bitset& a, const Bitset& b) {\r\n\t\tif(a.len != b.len) {\r\n\t\t\treturn false;\r\
-    \n\t\t}\r\n\t\tfor(int i = 0; i < a.n; i++) {\r\n\t\t\tif(a.bits[i] != b.bits[i])\
-    \ {\r\n\t\t\t\treturn false;\r\n\t\t\t}\r\n\t\t}\r\n\t\treturn true;\r\n\t}\r\n\
-    \r\n\tfriend bool operator!=(const Bitset& a, const Bitset& b) {\r\n\t\treturn\
-    \ !(a == b);\r\n\t}\r\n\r\n\tbool all() const {\r\n\t\tif(len == 0) {\r\n\t\t\t\
-    return true;\r\n\t\t}\r\n\t\tfor(int i = 0; i < (int) bits.size(); i++) {\r\n\t\
-    \t\tif(bits[i] != ~block(0)) {\r\n\t\t\t\treturn false;\r\n\t\t\t}\r\n\t\t}\r\n\
-    \t\tconst std::size_t num = n - ((bits.size() - 1) * block_size);\r\n\t\tassert(num\
-    \ > 0);\r\n\t\tconst block upper = ((block(1) << (block_size - num)) - 1) << num;\r\
-    \n\t\treturn (upper | bits.back()) == ~block(0);\r\n\t}\r\n\r\n\tbool none() {\r\
-    \n\t\t_clean();\r\n\t\treturn std::count(bits.begin(), bits.end(), block(0)) ==\
-    \ n;\r\n\t}\r\n\r\n\tbool any() { return !none(); }\r\n\r\n\tint count() {\r\n\
-    \t\t_clean();\r\n\t\tint res = 0;\r\n\t\tfor(auto b : bits) {\r\n\t\t\tres +=\
-    \ __builtin_popcountll(b);\r\n\t\t}\r\n\t\treturn res;\r\n\t}\r\n\r\n\t// >\r\n\
-    \tint find_next(int pos) const {\r\n\t\tpos++;\r\n\t\tint i = pos / block_size;\r\
-    \n\t\tif(i >= n) {\r\n\t\t\treturn n;\r\n\t\t}\r\n\t\tint num = block_size - pos\
-    \ % block_size;\r\n\t\tblock upper = (num > 0 ? (bits[i] >> (block_size - num)\
-    \ << (block_size - num)) : block(0));\r\n\t\tif(upper != 0) {\r\n\t\t\treturn\
-    \ std::min(n, __builtin_ctzll(upper) | (i * block_size));\r\n\t\t}\r\n\t\twhile(++i\
-    \ < (int) bits.size()) {\r\n\t\t\tif(bits[i] != 0) {\r\n\t\t\t\treturn std::min(n,\
-    \ __builtin_ctzll(bits[i]) | (i * block_size));\r\n\t\t\t}\r\n\t\t}\r\n\t\treturn\
-    \ n;\r\n\t}\r\n\r\n\t// <\r\n\tint find_prev(int pos) const {\r\n\t\tif(pos ==\
-    \ 0) {\r\n\t\t\treturn -1;\r\n\t\t}\r\n\t\tif((*this)[--pos] == true) {\r\n\t\t\
-    \treturn pos;\r\n\t\t}\r\n\t\tint i = pos / block_size;\r\n\t\tblock buf = bits[i]\
-    \ & ((1 << (i % block_size)) - 1);\r\n\t\tif(buf != 0) {\r\n\t\t\treturn i * block_size\
-    \ + 63 - __builtin_ctzll(buf);\r\n\t\t}\r\n\t\twhile(i--) {\r\n\t\t\tif(bits[i]\
-    \ != 0) {\r\n\t\t\t\treturn i * block_size + 63 - __builtin_ctzll(bits[i]);\r\n\
-    \t\t\t}\r\n\t\t}\r\n\t\treturn -1;\r\n\t}\r\n\r\n\tint find_first() const { return\
-    \ find_next(-1); }\r\n\tint find_last() const { return find_prev(len); }\r\n\r\
-    \n\tstd::string to_string() const {\r\n\t\tstd::string s;\r\n\t\tfor(int i = 0;\
-    \ i < len; i++) {\r\n\t\t\ts += (*this)[i] + '0';\r\n\t\t}\r\n\t\treturn s;\r\n\
-    \t}\r\n\r\n\tfriend std::ostream& operator<<(std::ostream& out, const Bitset&\
-    \ b) {\r\n\t\treturn out << b.to_string();\r\n\t}\r\n};\r\n\r\n} // namespace\
-    \ felix\r\n"
+    \n\t\t}\r\n\t\treturn a.bits == b.bits;\r\n\t}\r\n\r\n\tfriend bool operator!=(const\
+    \ Bitset& a, const Bitset& b) {\r\n\t\treturn !(a == b);\r\n\t}\r\n\r\n\tbool\
+    \ all() const {\r\n\t\tif(len == 0) {\r\n\t\t\treturn true;\r\n\t\t}\r\n\t\tfor(int\
+    \ i = 0; i < (int) bits.size(); i++) {\r\n\t\t\tif(bits[i] != ~block(0)) {\r\n\
+    \t\t\t\treturn false;\r\n\t\t\t}\r\n\t\t}\r\n\t\tconst std::size_t num = n - ((bits.size()\
+    \ - 1) * block_size);\r\n\t\tassert(num > 0);\r\n\t\tconst block upper = ((block(1)\
+    \ << (block_size - num)) - 1) << num;\r\n\t\treturn (upper | bits.back()) == ~block(0);\r\
+    \n\t}\r\n\r\n\tbool none() {\r\n\t\t_clean();\r\n\t\treturn std::count(bits.begin(),\
+    \ bits.end(), block(0)) == n;\r\n\t}\r\n\r\n\tbool any() { return !none(); }\r\
+    \n\r\n\tint count() {\r\n\t\t_clean();\r\n\t\tint res = 0;\r\n\t\tfor(auto b :\
+    \ bits) {\r\n\t\t\tres += __builtin_popcountll(b);\r\n\t\t}\r\n\t\treturn res;\r\
+    \n\t}\r\n\r\n\t// set [l, r) to 1\r\n\tvoid range_set(int l, int r) {\r\n\t\t\
+    assert(l <= r && r <= len);\r\n\t\tif(l == r) {\r\n\t\t\treturn;\r\n\t\t}\r\n\t\
+    \tstd::size_t lb = l / block_size, rb = (r - 1) / block_size;\r\n\t\tstd::size_t\
+    \ li = l % block_size, ri = r % block_size;\r\n\t\tif(ri == 0) {\r\n\t\t\tri =\
+    \ block_size;\r\n\t\t}\r\n\t\tif(lb == rb) {\r\n\t\t\tbits[lb] |= mask_range_bits(~block(0),\
+    \ li, ri);\r\n\t\t\treturn;\r\n\t\t}\r\n\t\tbits[lb] |= mask_upper_bits(~block(0),\
+    \ block_size - li);\r\n\t\tbits[rb] |= mask_lower_bits(~block(0), ri);\r\n\t\t\
+    std::fill(bits.begin() + lb + 1, bits.begin() + rb, ~block(0));\r\n\t\t_clean();\r\
+    \n\t}\r\n\r\n\t// // set [l, r) to 0\r\n\tvoid range_reset(int l, int r) {\r\n\
+    \t\tassert(l <= r && r <= len);\r\n\t\tif(l == r) return;\r\n\t\tstd::size_t lb\
+    \ = l / block_size, rb = (r - 1) / block_size;\r\n\t\tstd::size_t li = l % block_size,\
+    \ ri = r % block_size;\r\n\t\tif(ri == 0) {\r\n\t\t\tri = block_size;\r\n\t\t\
+    }\r\n\t\tif(lb == rb) {\r\n\t\t\tbits[lb] &= ~mask_range_bits(~block(0), li, ri);\r\
+    \n\t\t\treturn;\r\n\t\t}\r\n\t\tbits[lb] &= ~mask_upper_bits(~block(0), block_size\
+    \ - li);\r\n\t\tbits[rb] &= ~mask_lower_bits(~block(0), ri);\r\n\t\tstd::fill(bits.begin()\
+    \ + lb + 1, bits.begin() + rb, block(0));\r\n\t}\r\n\r\n\t// set [l, r) to type\r\
+    \n\tvoid range_update(int l, int r, bool type) { type ? range_set(l, r) : range_reset(l,\
+    \ r); }\r\n\r\n\t// >\r\n\tint find_next(int pos) const {\r\n\t\tpos++;\r\n\t\t\
+    int i = pos / block_size;\r\n\t\tif(i >= n) {\r\n\t\t\treturn n;\r\n\t\t}\r\n\t\
+    \tblock upper = mask_upper_bits(bits[i], block_size - pos % block_size);\r\n\t\
+    \tif(upper != 0) {\r\n\t\t\treturn std::min(n, __builtin_ctzll(upper) | (i * block_size));\r\
+    \n\t\t}\r\n\t\twhile(++i < (int) bits.size()) {\r\n\t\t\tif(bits[i] != 0) {\r\n\
+    \t\t\t\treturn std::min(n, __builtin_ctzll(bits[i]) | (i * block_size));\r\n\t\
+    \t\t}\r\n\t\t}\r\n\t\treturn n;\r\n\t}\r\n\r\n\t// <\r\n\tint find_prev(int pos)\
+    \ const {\r\n\t\tif(pos == 0) {\r\n\t\t\treturn -1;\r\n\t\t}\r\n\t\tif((*this)[--pos]\
+    \ == true) {\r\n\t\t\treturn pos;\r\n\t\t}\r\n\t\tint i = pos / block_size;\r\n\
+    \t\tblock buf = bits[i] & ((1 << (i % block_size)) - 1);\r\n\t\tif(buf != 0) {\r\
+    \n\t\t\treturn i * block_size + 63 - __builtin_ctzll(buf);\r\n\t\t}\r\n\t\twhile(i--)\
+    \ {\r\n\t\t\tif(bits[i] != 0) {\r\n\t\t\t\treturn i * block_size + 63 - __builtin_ctzll(bits[i]);\r\
+    \n\t\t\t}\r\n\t\t}\r\n\t\treturn -1;\r\n\t}\r\n\r\n\tint find_first() const {\
+    \ return find_next(-1); }\r\n\tint find_last() const { return find_prev(len);\
+    \ }\r\n\r\n\tstd::string to_string() const {\r\n\t\tstd::string s;\r\n\t\tfor(int\
+    \ i = 0; i < len; i++) {\r\n\t\t\ts += (*this)[i] + '0';\r\n\t\t}\r\n\t\treturn\
+    \ s;\r\n\t}\r\n\r\n\tfriend std::ostream& operator<<(std::ostream& out, const\
+    \ Bitset& b) {\r\n\t\treturn out << b.to_string();\r\n\t}\r\n\r\nprivate:\r\n\t\
+    static constexpr block get_lower_bits(block b, std::size_t num) {\r\n\t\treturn\
+    \ num ? (b << (block_size - num) >> (block_size - num)) : block(0);\r\n\t}\r\n\
+    \tstatic constexpr block get_upper_bits(block b, std::size_t num) {\r\n\t\treturn\
+    \ num ? (b >> (block_size - num)) : block(0);\r\n\t}\r\n\tstatic constexpr block\
+    \ get_range_bits(block b, std::size_t l, std::size_t r) {\r\n\t\treturn l < r\
+    \ ? b << (block_size - r) >> (block_size - r + l) : block(0);\r\n\t}\r\n\tstatic\
+    \ constexpr block mask_lower_bits(block b, std::size_t num) {\r\n\t\treturn get_lower_bits(b,\
+    \ num);\r\n\t}\r\n\tstatic constexpr block mask_upper_bits(block b, std::size_t\
+    \ num) {\r\n\t\treturn num ? (b >> (block_size - num) << (block_size - num)) :\
+    \ block(0);\r\n\t}\r\n\tstatic constexpr block mask_range_bits(block b, std::size_t\
+    \ l, std::size_t r) {\r\n\t\treturn l < r ? b << (block_size - r) >> (block_size\
+    \ - r + l) << l : block(0);\r\n\t}\r\n};\r\n\r\n} // namespace felix\r\n"
   dependsOn: []
   isVerificationFile: false
   path: library/data-structure/bitset.hpp
   requiredBy: []
-  timestamp: '2023-08-13 14:16:40+08:00'
+  timestamp: '2023-12-03 13:41:56+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/data-structure/bitset.hpp

@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/graph/scc.hpp
     title: library/graph/scc.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/scc
@@ -31,11 +31,11 @@ data:
     \ {\n\t\t\t\tif(id[v] == -1) {\n\t\t\t\t\tdfs2(v, x);\n\t\t\t\t}\n\t\t\t}\n\t\t\
     };\n\t\tfor(int i = n - 1, cnt = 0; i >= 0; i--) {\n\t\t\tint u = top[i];\n\t\t\
     \tif(id[u] == -1) {\n\t\t\t\tdfs2(u, cnt);\n\t\t\t\tcnt++;\n\t\t\t}\n\t\t}\n\t\
-    \treturn id;\n\t}\n\n\tstd::vector<std::vector<int>> compress() {\n\t\tint sz\
-    \ = *max_element(id.begin(), id.end()) + 1;\n\t\tstd::vector<std::vector<int>>\
-    \ new_g(sz);\n\t\tfor(int u = 0; u < n; u++) {\n\t\t\tfor(auto v : g[u]) {\n\t\
-    \t\t\tif(id[u] == id[v]) {\n\t\t\t\t\tcontinue;\n\t\t\t\t}\n\t\t\t\tnew_g[id[u]].push_back(id[v]);\n\
-    \t\t\t}\n\t\t}\n\t\tfor(int i = 0; i < sz; ++i) {\n\t\t\tstd::sort(new_g[i].begin(),\
+    }\n\n\tstd::vector<std::vector<int>> compress() {\n\t\tint sz = *std::max_element(id.begin(),\
+    \ id.end()) + 1;\n\t\tstd::vector<std::vector<int>> new_g(sz);\n\t\tfor(int u\
+    \ = 0; u < n; u++) {\n\t\t\tfor(auto v : g[u]) {\n\t\t\t\tif(id[u] == id[v]) {\n\
+    \t\t\t\t\tcontinue;\n\t\t\t\t}\n\t\t\t\tnew_g[id[u]].push_back(id[v]);\n\t\t\t\
+    }\n\t\t}\n\t\tfor(int i = 0; i < sz; ++i) {\n\t\t\tstd::sort(new_g[i].begin(),\
     \ new_g[i].end());\n\t\t\tnew_g[i].erase(std::unique(new_g[i].begin(), new_g[i].end()),\
     \ new_g[i].end());\n\t\t}\n\t\treturn new_g;\n\t}\n\nprivate:\n\tint n;\n\tstd::vector<std::vector<int>>\
     \ g, h;\n};\n\n} // namespace felix\n#line 7 \"test/graph/scc/yosupo-Strongly-Connected-Components.test.cpp\"\
@@ -64,8 +64,8 @@ data:
   isVerificationFile: true
   path: test/graph/scc/yosupo-Strongly-Connected-Components.test.cpp
   requiredBy: []
-  timestamp: '2023-08-13 14:16:40+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-12-03 13:41:56+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/graph/scc/yosupo-Strongly-Connected-Components.test.cpp
 layout: document

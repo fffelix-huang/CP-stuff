@@ -170,8 +170,8 @@ data:
   timestamp: '2023-07-30 19:34:47+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/math/factorize/yosupo-Factorize.test.cpp
   - test/math/factorize/aoj-ntl-Prime-Factorize.test.cpp
+  - test/math/factorize/yosupo-Factorize.test.cpp
 documentation_of: library/math/factorize.hpp
 layout: document
 title: "Integer Factorization (Pollard Rho \u8CEA\u56E0\u6578\u5206\u89E3)"

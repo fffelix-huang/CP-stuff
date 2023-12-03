@@ -162,12 +162,12 @@ data:
   verifiedWith:
   - test/tree/hld/aoj-grl-Range-Query-on-a-Tree-II.test.cpp
   - test/data-structure/lazy-segtree/aoj-dsl-RSQ-and-RAQ.test.cpp
-  - test/data-structure/lazy-segtree/aoj-dsl-RMQ-and-RUQ.test.cpp
-  - test/data-structure/lazy-segtree/yosupo-Range-Affine-Range-Sum.test.cpp
-  - test/data-structure/lazy-segtree/aoj-dsl-Range-Update-Query.test.cpp
-  - test/data-structure/lazy-segtree/yosupo-Range-Affine-Point-Get.test.cpp
   - test/data-structure/lazy-segtree/aoj-dsl-RSQ-and-RUQ.test.cpp
+  - test/data-structure/lazy-segtree/aoj-dsl-RMQ-and-RUQ.test.cpp
   - test/data-structure/lazy-segtree/aoj-dsl-RMQ-and-RAQ.test.cpp
+  - test/data-structure/lazy-segtree/yosupo-Range-Affine-Range-Sum.test.cpp
+  - test/data-structure/lazy-segtree/yosupo-Range-Affine-Point-Get.test.cpp
+  - test/data-structure/lazy-segtree/aoj-dsl-Range-Update-Query.test.cpp
 documentation_of: library/data-structure/lazy-segtree.hpp
 layout: document
 redirect_from:

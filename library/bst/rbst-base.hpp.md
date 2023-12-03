@@ -179,16 +179,16 @@ data:
   isVerificationFile: false
   path: library/bst/rbst-base.hpp
   requiredBy:
-  - library/data-structure/ordered-set.hpp
   - library/data-structure/lazy-treap.hpp
   - library/data-structure/treap.hpp
+  - library/data-structure/ordered-set.hpp
   timestamp: '2023-07-11 10:41:16+08:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/data-structure/ordered-set/yosupo-Predecessor-Problem.test.cpp
   - test/data-structure/treap/yosupo-Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
   - test/data-structure/treap/yosupo-Range-Reverse-Range-Sum.test.cpp
   - test/data-structure/treap/unit-test-treap.test.cpp
+  - test/data-structure/ordered-set/yosupo-Predecessor-Problem.test.cpp
 documentation_of: library/bst/rbst-base.hpp
 layout: document
 redirect_from:
