@@ -148,12 +148,7 @@ public:
 		if(a.len != b.len) {
 			return false;
 		}
-		for(int i = 0; i < a.n; i++) {
-			if(a.bits[i] != b.bits[i]) {
-				return false;
-			}
-		}
-		return true;
+		return a.bits == b.bits;
 	}
 
 	friend bool operator!=(const Bitset& a, const Bitset& b) {
@@ -191,6 +186,48 @@ public:
 		return res;
 	}
 
+	// set [l, r) to 1
+	void range_set(int l, int r) {
+		assert(l <= r && r <= len);
+		if(l == r) {
+			return;
+		}
+		std::size_t lb = l / block_size, rb = (r - 1) / block_size;
+		std::size_t li = l % block_size, ri = r % block_size;
+		if(ri == 0) {
+			ri = block_size;
+		}
+		if(lb == rb) {
+			bits[lb] |= mask_range_bits(~block(0), li, ri);
+			return;
+		}
+		bits[lb] |= mask_upper_bits(~block(0), block_size - li);
+		bits[rb] |= mask_lower_bits(~block(0), ri);
+		std::fill(bits.begin() + lb + 1, bits.begin() + rb, ~block(0));
+		_clean();
+	}
+
+	// // set [l, r) to 0
+	void range_reset(int l, int r) {
+		assert(l <= r && r <= len);
+		if(l == r) return;
+		std::size_t lb = l / block_size, rb = (r - 1) / block_size;
+		std::size_t li = l % block_size, ri = r % block_size;
+		if(ri == 0) {
+			ri = block_size;
+		}
+		if(lb == rb) {
+			bits[lb] &= ~mask_range_bits(~block(0), li, ri);
+			return;
+		}
+		bits[lb] &= ~mask_upper_bits(~block(0), block_size - li);
+		bits[rb] &= ~mask_lower_bits(~block(0), ri);
+		std::fill(bits.begin() + lb + 1, bits.begin() + rb, block(0));
+	}
+
+	// set [l, r) to type
+	void range_update(int l, int r, bool type) { type ? range_set(l, r) : range_reset(l, r); }
+
 	// >
 	int find_next(int pos) const {
 		pos++;
@@ -198,8 +235,7 @@ public:
 		if(i >= n) {
 			return n;
 		}
-		int num = block_size - pos % block_size;
-		block upper = (num > 0 ? (bits[i] >> (block_size - num) << (block_size - num)) : block(0));
+		block upper = mask_upper_bits(bits[i], block_size - pos % block_size);
 		if(upper != 0) {
 			return std::min(n, __builtin_ctzll(upper) | (i * block_size));
 		}
@@ -245,6 +281,26 @@ public:
 
 	friend std::ostream& operator<<(std::ostream& out, const Bitset& b) {
 		return out << b.to_string();
+	}
+
+private:
+	static constexpr block get_lower_bits(block b, std::size_t num) {
+		return num ? (b << (block_size - num) >> (block_size - num)) : block(0);
+	}
+	static constexpr block get_upper_bits(block b, std::size_t num) {
+		return num ? (b >> (block_size - num)) : block(0);
+	}
+	static constexpr block get_range_bits(block b, std::size_t l, std::size_t r) {
+		return l < r ? b << (block_size - r) >> (block_size - r + l) : block(0);
+	}
+	static constexpr block mask_lower_bits(block b, std::size_t num) {
+		return get_lower_bits(b, num);
+	}
+	static constexpr block mask_upper_bits(block b, std::size_t num) {
+		return num ? (b >> (block_size - num) << (block_size - num)) : block(0);
+	}
+	static constexpr block mask_range_bits(block b, std::size_t l, std::size_t r) {
+		return l < r ? b << (block_size - r) >> (block_size - r + l) << l : block(0);
 	}
 };
 

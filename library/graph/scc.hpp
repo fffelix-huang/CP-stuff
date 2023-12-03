@@ -53,11 +53,10 @@ public:
 				cnt++;
 			}
 		}
-		return id;
 	}
 
 	std::vector<std::vector<int>> compress() {
-		int sz = *max_element(id.begin(), id.end()) + 1;
+		int sz = *std::max_element(id.begin(), id.end()) + 1;
 		std::vector<std::vector<int>> new_g(sz);
 		for(int u = 0; u < n; u++) {
 			for(auto v : g[u]) {
