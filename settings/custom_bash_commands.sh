@@ -1,20 +1,15 @@
-export DISPLAY=:0;
-export DOWNLOAD=/mnt/c/Users/NCTU/Downloads/
-
-#function make() {
-#	echo -e '\033[1;42m[No flag]\033[m Compiling' $1'.cpp with c++17.'
-#	g++ -std=c++17 -I ~/../../mnt/c/Felix/cp/CP-stuff/library $1.cpp -o $1
-#}
+function mkcdir() {
+	mkdir $1 && cd $1
+}
 
 function fast() {
 	echo -e '\033[1;45m[-O2 flag]\033[m Compiling' $1'.cpp with c++17.'
-	g++ -std=gnu++17 -I /mnt/c/Felix/CP/CP-stuff/library/ -Wall -O2 $1.cpp -o $1
-#	g++ -std=c++17 -O2 $1.cpp -o $1
+	g++ -std=gnu++17 -I ~/Desktop/felix/CP/CP-stuff/library -Wall -O2 $1.cpp -o $1
 }
 
 function debug() {
 	echo -e '\033[1;41m[DEBUG MODE]\033[m Compiling' $1'.cpp with c++17.'
-	g++ -std=gnu++17 -I /mnt/c/Felix/CP/CP-stuff/library/ -Wall -DLOCAL $1.cpp -o $1
+	g++ -std=gnu++17 -I ~/Desktop/felix/CP/CP-stuff/library -Wall -DLOCAL $1.cpp -o $1
 }
 
 function run-stress-test() {
@@ -46,34 +41,12 @@ function run-stress-test() {
 
 function submit() {
 	echo 'Removing debug lines'
-	python3 /mnt/c/Felix/CP/CP-stuff/settings/cleaner.py $1.cpp
+	python3 ~/Desktop/felix/CP/CP-stuff/settings/cleaner.py $1.cpp
 	echo 'Expanding' $1'.cpp'
-#	python3 /mnt/c/Felix/CP/CP-stuff/settings/expander.py $1.cpp --lib /mnt/c/Felix/CP/CP-stuff/library/
-	oj-bundle combined.cpp -I /mnt/c/Felix/CP/CP-stuff/library/ > qwerasdf.cpp
+	python3 /mnt/c/Felix/CP/CP-stuff/settings/expander.py $1.cpp --lib /mnt/c/Felix/CP/CP-stuff/library/
+	oj-bundle combined.cpp -I ~/Desktop/felix/CP/CP-stuff/library > qwerasdf.cpp
 	echo 'Formatting' $1'.cpp'
-	python3 /mnt/c/Felix/CP/CP-stuff/settings/formatter.py qwerasdf.cpp
+	python3 ~/Desktop/felix/CP/CP-stuff/settings/formatter.py qwerasdf.cpp Penguin07
 	rm qwerasdf.cpp
-	clip.exe < combined.cpp
-	echo -e "\033[1;42m"$(wc -l < combined.cpp) "lines yanked to clipboard.\033[m"
-}
-
-function open() {
-	echo 'Opening' $1
-	cmd.exe /C start $1
-}
-
-function subl() {
-	/mnt/c/Program\ Files/Sublime\ Text/sublime_text.exe $1
-}
-
-function mkcdir() {
-	mkdir $1 && cd $1
-}
-
-function runsamples() {
-	python3 /mnt/c/Felix/Projects/Run-Samples/runsamples.py $1
-}
-
-function pictures-to-PDF() {
-    python3 /mnt/c/Felix/Projects/Pictures-to-PDF/a.py $1
+	echo -e "\033[1;42m"$(wc -l < combined.cpp) "lines generated to combined.cpp.\033[m"
 }
