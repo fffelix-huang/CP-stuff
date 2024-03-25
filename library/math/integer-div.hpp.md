@@ -34,8 +34,8 @@ data:
   timestamp: '2023-04-03 13:30:29+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/data-structure/line-container/yosupo-Line-Add-Get-Min.test.cpp
   - test/math/integer-div/unit-test-integer-div.test.cpp
+  - test/data-structure/line-container/yosupo-Line-Add-Get-Min.test.cpp
 documentation_of: library/math/integer-div.hpp
 layout: document
 title: Integer division ($\lfloor \frac{a}{b} \rfloor \lceil \frac{a}{b} \rceil$)

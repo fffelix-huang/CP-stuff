@@ -149,8 +149,8 @@ data:
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/data-structure/treap/yosupo-Dynamic-Sequence-Range-Affine-Range-Sum.test.cpp
-  - test/data-structure/treap/yosupo-Range-Reverse-Range-Sum.test.cpp
   - test/data-structure/treap/unit-test-treap.test.cpp
+  - test/data-structure/treap/yosupo-Range-Reverse-Range-Sum.test.cpp
 documentation_of: library/data-structure/treap.hpp
 layout: document
 title: treap

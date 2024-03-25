@@ -64,8 +64,8 @@ data:
   isVerificationFile: false
   path: library/math/divisor-multiple-transform.hpp
   requiredBy:
-  - library/convolution/gcd-convolution.hpp
   - library/convolution/lcm-convolution.hpp
+  - library/convolution/gcd-convolution.hpp
   timestamp: '2023-12-03 13:41:56+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
