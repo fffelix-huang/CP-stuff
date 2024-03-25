@@ -246,6 +246,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/random/splitmix64.hpp
       title: library/random/splitmix64.hpp
+  - name: library/simd
+    pages:
+    - icon: ':warning:'
+      path: library/simd/prefix-sum.hpp
+      title: library/simd/prefix-sum.hpp
   - name: library/string
     pages:
     - icon: ':heavy_check_mark:'
