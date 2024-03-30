@@ -248,7 +248,7 @@ data:
       title: library/random/splitmix64.hpp
   - name: library/simd
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: library/simd/prefix-sum.hpp
       title: library/simd/prefix-sum.hpp
   - name: library/string
@@ -612,6 +612,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/modint/modint/yosupo-Sqrt-Mod.test.cpp
       title: test/modint/modint/yosupo-Sqrt-Mod.test.cpp
+  - name: test/simd/prefix-sum
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/simd/prefix-sum/unit-test-simd-prefix-sum.test.cpp
+      title: test/simd/prefix-sum/unit-test-simd-prefix-sum.test.cpp
   - name: test/string/kmp
     pages:
     - icon: ':heavy_check_mark:'

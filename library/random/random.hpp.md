@@ -12,6 +12,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/math/xor-basis/unit-test-xor-basis.test.cpp
     title: test/math/xor-basis/unit-test-xor-basis.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/simd/prefix-sum/unit-test-simd-prefix-sum.test.cpp
+    title: test/simd/prefix-sum/unit-test-simd-prefix-sum.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -108,6 +111,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/math/xor-basis/unit-test-xor-basis.test.cpp
+  - test/simd/prefix-sum/unit-test-simd-prefix-sum.test.cpp
 documentation_of: library/random/random.hpp
 layout: document
 title: random_t

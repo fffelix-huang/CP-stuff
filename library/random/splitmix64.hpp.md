@@ -30,6 +30,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/math/xor-basis/unit-test-xor-basis.test.cpp
     title: test/math/xor-basis/unit-test-xor-basis.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/simd/prefix-sum/unit-test-simd-prefix-sum.test.cpp
+    title: test/simd/prefix-sum/unit-test-simd-prefix-sum.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -67,6 +70,7 @@ data:
   verifiedWith:
   - test/math/discrete-log/yosupo-Discrete-Logarithm.test.cpp
   - test/math/xor-basis/unit-test-xor-basis.test.cpp
+  - test/simd/prefix-sum/unit-test-simd-prefix-sum.test.cpp
   - test/data-structure/pbds/yosupo-Associative-Array.test.cpp
   - test/data-structure/pbds/yosupo-Static-Range-Sum.test.cpp
   - test/data-structure/pbds/yosupo-Static-Range-Frequency.test.cpp
