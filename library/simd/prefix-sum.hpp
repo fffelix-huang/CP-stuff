@@ -22,7 +22,7 @@ inline void prefix_sum(int* a, int n) {
 		last = a[i + 3];
 	}
 	// Compute partial sum for remaining elements.
-	for(int i = n & (~3); i < n; i++) {
+	for(int i = (n & (~3)) + (n < 4); i < n; i++) {
 		a[i] += a[i - 1];
 	}
 }
@@ -53,7 +53,7 @@ inline void prefix_max(int* a, int n) {
 		_mm_store_si128((__m128i*) &a[i], cur);
 		last = a[i + 3];
 	}
-	for(int i = n & (~3); i < n; i++) {
+	for(int i = (n & (~3)) + (n < 4); i < n; i++) {
 		a[i] = std::max(a[i], a[i - 1]);
 	}
 }
@@ -84,7 +84,7 @@ inline void prefix_min(int* a, int n) {
 		_mm_store_si128((__m128i*) &a[i], cur);
 		last = a[i + 3];
 	}
-	for(int i = n & (~3); i < n; i++) {
+	for(int i = (n & (~3)) + (n < 4); i < n; i++) {
 		a[i] = std::min(a[i], a[i - 1]);
 	}
 }
