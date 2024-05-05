@@ -279,6 +279,11 @@ data:
     - icon: ':warning:'
       path: library/tree/prufer.hpp
       title: library/tree/prufer.hpp
+  - name: tools
+    pages:
+    - icon: ':warning:'
+      path: tools/expander.py
+      title: tools/expander.py
   verificationCategories:
   - name: test/convolution/ntt
     pages:

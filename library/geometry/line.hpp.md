@@ -68,8 +68,8 @@ data:
   isVerificationFile: false
   path: library/geometry/line.hpp
   requiredBy:
-  - library/geometry/geometry.hpp
   - library/geometry/point-in-convex-hull.hpp
+  - library/geometry/geometry.hpp
   timestamp: '2023-05-26 16:40:39+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
