@@ -7,4 +7,14 @@
 
 [Library Document](https://fffelix-huang.github.io/CP-stuff/)
 
-QQ
+## Installation
+
+Open the terminal, and run the following commands.
+
+```
+git clone https://github.com/fffelix-huang/CP-stuff.git
+cd CP-stuff
+$SHELL install.sh
+```
+
+Then, restart the terminal to apply changes.
