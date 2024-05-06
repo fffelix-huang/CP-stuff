@@ -140,7 +140,7 @@ if __name__ == "__main__":
 
 	parser.add_argument("source", help="Source code file")
 	parser.add_argument("destination", help="Destination file to store result")
-	parser.add_argument("--lib", help="Path to your custom library")
+	parser.add_argument("--lib", help="Path to libraries, seperated with \':\'. Example: /path/to/library1:/path/to/library2")
 	parser.add_argument("--author", help="Author")
 
 	opts = parser.parse_args()
@@ -148,18 +148,22 @@ if __name__ == "__main__":
 	lib_paths = []
 
 	if opts.lib:
-		lib_paths.append(Path(opts.lib))
+		paths = list(map(Path, opts.lib.split(':')))
+
+		for path in paths:
+			logger.info(f"Add Library Path: {str(path)}")
+
+		lib_paths.extend(paths)
 
 	expander = Expander(lib_paths)
-
-	source = Path(opts.source)
-	output = expander.expand(source=source, directory=Path.cwd())
+	output = expander.expand(source=Path(opts.source), directory=Path.cwd())
 
 	if opts.author:
 		output.insert(0, "// Author: " + opts.author)
 
-	output = "\n".join(output)
+	result = "\n".join(output)
 
 	with open(opts.destination, "w") as f:
-		f.write(output)
+		f.write(result)
 
+	logger.info(f"{len(output)} lines generated to {opts.destination}.")

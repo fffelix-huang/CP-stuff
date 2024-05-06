@@ -5,13 +5,13 @@ function mkcdir() {
 # Usage: To compile "a.cpp" with -O2 flag, use the command `fast a`.
 function fast() {
 	echo -e '\033[1;45m[-O2 flag]\033[m Compiling' $1'.cpp with c++17.'
-	g++ -std=gnu++17 -I $FELIX_CPP_LIBRARY_PATH/library -Wall -O2 $1.cpp -o $1
+	g++ -std=gnu++17 -I $FELIX_CP_LIBRARY_PATH/library -Wall -O2 $1.cpp -o $1
 }
 
 # Usage: To compile "a.cpp" with -DLOCAL flag, use the command `debug a`.
 function debug() {
 	echo -e '\033[1;41m[DEBUG MODE]\033[m Compiling' $1'.cpp with c++17.'
-	g++ -std=gnu++17 -I $FELIX_CPP_LIBRARY_PATH/library -Wall -DLOCAL $1.cpp -o $1
+	g++ -std=gnu++17 -I $FELIX_CP_LIBRARY_PATH/library -Wall -DLOCAL $1.cpp -o $1
 }
 
 # Usage: Run stress tests.
@@ -40,13 +40,5 @@ function run-stress-test() {
 }
 
 function submit() {
-	echo 'Removing debug lines'
-	python3 $FELIX_CPP_LIBRARY_PATH/tools/cleaner.py $1.cpp
-	echo 'Expanding' $1'.cpp'
-	python3 $FELIX_CPP_LIBRARY_PATH/tools/expander.py $1.cpp --lib $FELIX_CPP_LIBRARY_PATH/library/
-	oj-bundle combined.cpp -I $FELIX_CPP_LIBRARY_PATH/library > qwerasdf.cpp
-	echo 'Formatting' $1'.cpp'
-	python3 $FELIX_CPP_LIBRARY_PATH/tools/formatter.py qwerasdf.cpp Penguin07
-	rm qwerasdf.cpp
-	echo -e "\033[1;42m"$(wc -l < combined.cpp) "lines generated to combined.cpp.\033[m"
+	python3 $FELIX_CP_LIBRARY_PATH/tools/expander.py $1.cpp combined.cpp --lib $FELIX_CP_LIBRARY_PATH/library --author Penguin07
 }
