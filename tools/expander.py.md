@@ -60,13 +60,16 @@ data:
     \ any lines containing the word \"debug\".\n\t\t\t2. Merge all custom header files\
     \ into a single file.\n\t\t\"\"\"\n\t)\n\n\tparser.add_argument(\"source\", help=\"\
     Source code file\")\n\tparser.add_argument(\"destination\", help=\"Destination\
-    \ file to store result\")\n\tparser.add_argument(\"--lib\", help=\"Path to your\
-    \ custom library\")\n\tparser.add_argument(\"--author\", help=\"Author\")\n\n\t\
-    opts = parser.parse_args()\n\n\tlib_paths = []\n\n\tif opts.lib:\n\t\tlib_paths.append(Path(opts.lib))\n\
-    \n\texpander = Expander(lib_paths)\n\n\tsource = Path(opts.source)\n\toutput =\
-    \ expander.expand(source=source, directory=Path.cwd())\n\n\tif opts.author:\n\t\
-    \toutput.insert(0, \"// Author: \" + opts.author)\n\n\toutput = \"\\n\".join(output)\n\
-    \n\twith open(opts.destination, \"w\") as f:\n\t\tf.write(output)\n\n"
+    \ file to store result\")\n\tparser.add_argument(\"--lib\", help=\"Path to libraries,\
+    \ seperated with \\':\\'. Example: /path/to/library1:/path/to/library2\")\n\t\
+    parser.add_argument(\"--author\", help=\"Author\")\n\n\topts = parser.parse_args()\n\
+    \n\tlib_paths = []\n\n\tif opts.lib:\n\t\tpaths = list(map(Path, opts.lib.split(':')))\n\
+    \n\t\tfor path in paths:\n\t\t\tlogger.info(f\"Add Library Path: {str(path)}\"\
+    )\n\n\t\tlib_paths.extend(paths)\n\n\texpander = Expander(lib_paths)\n\toutput\
+    \ = expander.expand(source=Path(opts.source), directory=Path.cwd())\n\n\tif opts.author:\n\
+    \t\toutput.insert(0, \"// Author: \" + opts.author)\n\n\tresult = \"\\n\".join(output)\n\
+    \n\twith open(opts.destination, \"w\") as f:\n\t\tf.write(result)\n\n\tlogger.info(f\"\
+    {len(output)} lines generated to {opts.destination}.\")\n"
   dependsOn: []
   isVerificationFile: false
   path: tools/expander.py
