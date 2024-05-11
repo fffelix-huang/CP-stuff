@@ -11,7 +11,7 @@ logger = getLogger(__name__)
 
 class Expander:
 	header_regex = re.compile(r"^\s*#include\s*[<\"]([^>\"]+)[>\"]\s*$")
-	
+
 	def __init__(self, lib_paths: List[Path]):
 		self.lib_paths = lib_paths
 		self.included_headers = set()
@@ -41,15 +41,15 @@ class Expander:
 			if path.exists() and path.is_file():
 				return path
 
-		return None	
+		return None
 
 	def expand_header(self, header: Path, directory: Path) -> List[str]:
 		if header.resolve() in self.included_headers:
-			logger.info(f"Already included: {str(header)}")
+			logger.info(f"Already included: {str(header.resolve())}")
 			return []
-		
+
 		self.included_headers.add(header.resolve())
-		logger.info(f"Include: {str(header)}")
+		logger.info(f"Include: {str(header.resolve())}")
 
 		file_path_str = str(header)
 		index_of_last_slash = file_path_str.rfind('/')
@@ -121,7 +121,7 @@ class Expander:
 			result.append(line)
 
 		return result
-	
+
 if __name__ == "__main__":
 	basicConfig(
 		format="%(asctime)s [%(levelname)s] %(message)s",
@@ -132,7 +132,7 @@ if __name__ == "__main__":
 	parser = argparse.ArgumentParser(description=
 		"""
 			expander.py performs the following functions:
-			
+
 			1. Removes ignored lines, or any lines containing the word "debug".
 			2. Merge all custom header files into a single file.
 		"""
