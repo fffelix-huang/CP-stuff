@@ -51,8 +51,8 @@ data:
   timestamp: '2023-07-30 19:34:47+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/data-structure/dsu/yosupo-Unionfind.test.cpp
   - test/data-structure/dsu/aoj-dsl-Disjoint-Set-Union-Find-Tree.test.cpp
+  - test/data-structure/dsu/yosupo-Unionfind.test.cpp
 documentation_of: library/data-structure/dsu.hpp
 layout: document
 title: "DSU (\u4E26\u67E5\u96C6)"

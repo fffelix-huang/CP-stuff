@@ -129,8 +129,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/graph/lowlink/yosupo-Two-Edge-Connected-Components.test.cpp
-  - test/graph/lowlink/yosupo-Biconnected-Components.test.cpp
   - test/graph/lowlink/aoj-grl-Bridges.test.cpp
+  - test/graph/lowlink/yosupo-Biconnected-Components.test.cpp
   - test/graph/lowlink/aoj-grl-Articulation-Points.test.cpp
 documentation_of: library/graph/lowlink.hpp
 layout: document
