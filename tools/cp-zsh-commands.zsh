@@ -25,7 +25,7 @@ function run-stress-test() {
         ./$1 $i > debug_in
         ./$3 < debug_in > my_out
         ./$2 < debug_in > ans_out
-        diff -Z my_out ans_out || break
+        diff my_out ans_out || break
         echo -e "\033[1;32mPassed test: $i\033[m"
         i=$((i + 1))
     done
