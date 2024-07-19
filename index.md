@@ -201,7 +201,7 @@ data:
       title: "xor basis (\u7DDA\u6027\u57FA)"
   - name: library/matrix
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/matrix/matrix.hpp
       title: library/matrix/matrix.hpp
   - name: library/misc
@@ -601,7 +601,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/matrix/matrix/yosupo-Determinant-of-Matrix.test.cpp
       title: test/matrix/matrix/yosupo-Determinant-of-Matrix.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/matrix/matrix/yosupo-Matrix-Product.test.cpp
       title: test/matrix/matrix/yosupo-Matrix-Product.test.cpp
   - name: test/misc/fastio
