@@ -21,7 +21,7 @@ public:
 	int H() const { return (int) a.size(); }
 	int W() const { return (int) a[0].size(); }
 
-	inline const std::vector<T> operator[](int i) const { return a[i]; }
+	inline const std::vector<T>& operator[](int i) const { return a[i]; }
 	inline std::vector<T>& operator[](int i) { return a[i]; }
 
 	static Matrix I(int n) {
