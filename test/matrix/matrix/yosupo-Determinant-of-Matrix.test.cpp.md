@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: library/math/safe-mod.hpp
     title: library/math/safe-mod.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/matrix/matrix.hpp
     title: library/matrix/matrix.hpp
   - icon: ':question:'
@@ -48,8 +48,8 @@ data:
     \t\t\ta[i][j] -= b.a[i][j];\r\n\t\t\t}\r\n\t\t}\r\n\t\treturn *this;\r\n\t}\r\n\
     \r\n\tMatrix& operator*=(const Matrix& b) {\r\n\t\tint n = H(), m = W(), p = b.W();\r\
     \n\t\tassert(m == b.H());\r\n\t\tstd::vector<std::vector<T>> c(n, std::vector<T>(p));\r\
-    \n\t\tfor(int i = 0; i < n; i++) {\r\n\t\t\tfor(int j = 0; j < m; j++) {\r\n\t\
-    \t\t\tfor(int k = 0; k < p; k++) {\r\n\t\t\t\t\tc[i][k] += a[i][j] * b.a[j][k];\r\
+    \n\t\tfor(int k = 0; k < n; k++) {\r\n\t\t\tfor(int i = 0; i < m; i++) {\r\n\t\
+    \t\t\tfor(int j = 0; j < p; j++) {\r\n\t\t\t\t\tc[i][k] += a[i][j] * b.a[j][k];\r\
     \n\t\t\t\t}\r\n\t\t\t}\r\n\t\t}\r\n\t\tstd::swap(a, c);\r\n\t\treturn *this;\r\
     \n\t}\r\n\r\n\ttemplate<class U>\r\n\tMatrix& operator*=(const U& x) {\r\n\t\t\
     int n = H(), m = W();\r\n\t\tfor(int i = 0; i < n; i++) {\r\n\t\t\tfor(int j =\
@@ -219,7 +219,7 @@ data:
   isVerificationFile: true
   path: test/matrix/matrix/yosupo-Determinant-of-Matrix.test.cpp
   requiredBy: []
-  timestamp: '2023-07-31 16:36:45+08:00'
+  timestamp: '2024-07-19 19:03:36+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/matrix/matrix/yosupo-Determinant-of-Matrix.test.cpp

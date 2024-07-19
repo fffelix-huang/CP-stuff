@@ -44,13 +44,13 @@ data:
   isVerificationFile: false
   path: library/math/binary-gcd.hpp
   requiredBy:
-  - library/math/discrete-log.hpp
   - library/math/factorize.hpp
+  - library/math/discrete-log.hpp
   timestamp: '2023-04-03 17:58:04+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/math/binary-gcd/aoj-ntl-Least-Common-Multiple.test.cpp
   - test/math/discrete-log/yosupo-Discrete-Logarithm.test.cpp
+  - test/math/binary-gcd/aoj-ntl-Least-Common-Multiple.test.cpp
   - test/math/factorize/yosupo-Factorize.test.cpp
   - test/math/factorize/aoj-ntl-Prime-Factorize.test.cpp
 documentation_of: library/math/binary-gcd.hpp

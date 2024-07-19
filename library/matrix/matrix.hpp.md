@@ -6,12 +6,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/matrix/matrix/yosupo-Determinant-of-Matrix.test.cpp
     title: test/matrix/matrix/yosupo-Determinant-of-Matrix.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/matrix/matrix/yosupo-Matrix-Product.test.cpp
     title: test/matrix/matrix/yosupo-Matrix-Product.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"library/matrix/matrix.hpp\"\n#include <vector>\r\n#include\
@@ -34,8 +34,8 @@ data:
     \t\t\ta[i][j] -= b.a[i][j];\r\n\t\t\t}\r\n\t\t}\r\n\t\treturn *this;\r\n\t}\r\n\
     \r\n\tMatrix& operator*=(const Matrix& b) {\r\n\t\tint n = H(), m = W(), p = b.W();\r\
     \n\t\tassert(m == b.H());\r\n\t\tstd::vector<std::vector<T>> c(n, std::vector<T>(p));\r\
-    \n\t\tfor(int i = 0; i < n; i++) {\r\n\t\t\tfor(int j = 0; j < m; j++) {\r\n\t\
-    \t\t\tfor(int k = 0; k < p; k++) {\r\n\t\t\t\t\tc[i][k] += a[i][j] * b.a[j][k];\r\
+    \n\t\tfor(int k = 0; k < n; k++) {\r\n\t\t\tfor(int i = 0; i < m; i++) {\r\n\t\
+    \t\t\tfor(int j = 0; j < p; j++) {\r\n\t\t\t\t\tc[i][k] += a[i][j] * b.a[j][k];\r\
     \n\t\t\t\t}\r\n\t\t\t}\r\n\t\t}\r\n\t\tstd::swap(a, c);\r\n\t\treturn *this;\r\
     \n\t}\r\n\r\n\ttemplate<class U>\r\n\tMatrix& operator*=(const U& x) {\r\n\t\t\
     int n = H(), m = W();\r\n\t\tfor(int i = 0; i < n; i++) {\r\n\t\t\tfor(int j =\
@@ -81,8 +81,8 @@ data:
     \t\t\ta[i][j] -= b.a[i][j];\r\n\t\t\t}\r\n\t\t}\r\n\t\treturn *this;\r\n\t}\r\n\
     \r\n\tMatrix& operator*=(const Matrix& b) {\r\n\t\tint n = H(), m = W(), p = b.W();\r\
     \n\t\tassert(m == b.H());\r\n\t\tstd::vector<std::vector<T>> c(n, std::vector<T>(p));\r\
-    \n\t\tfor(int i = 0; i < n; i++) {\r\n\t\t\tfor(int j = 0; j < m; j++) {\r\n\t\
-    \t\t\tfor(int k = 0; k < p; k++) {\r\n\t\t\t\t\tc[i][k] += a[i][j] * b.a[j][k];\r\
+    \n\t\tfor(int k = 0; k < n; k++) {\r\n\t\t\tfor(int i = 0; i < m; i++) {\r\n\t\
+    \t\t\tfor(int j = 0; j < p; j++) {\r\n\t\t\t\t\tc[i][k] += a[i][j] * b.a[j][k];\r\
     \n\t\t\t\t}\r\n\t\t\t}\r\n\t\t}\r\n\t\tstd::swap(a, c);\r\n\t\treturn *this;\r\
     \n\t}\r\n\r\n\ttemplate<class U>\r\n\tMatrix& operator*=(const U& x) {\r\n\t\t\
     int n = H(), m = W();\r\n\t\tfor(int i = 0; i < n; i++) {\r\n\t\t\tfor(int j =\
@@ -113,8 +113,8 @@ data:
   isVerificationFile: false
   path: library/matrix/matrix.hpp
   requiredBy: []
-  timestamp: '2023-07-01 16:21:32+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-07-19 19:03:36+08:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/matrix/matrix/yosupo-Matrix-Product.test.cpp
   - test/matrix/matrix/yosupo-Determinant-of-Matrix.test.cpp

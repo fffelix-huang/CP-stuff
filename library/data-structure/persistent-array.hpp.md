@@ -84,8 +84,8 @@ data:
   timestamp: '2023-08-13 14:16:40+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/data-structure/persistent-dsu/yosupo-Persistent-Unionfind.test.cpp
   - test/data-structure/persistent-dsu/yosupo-Unionfind.test.cpp
+  - test/data-structure/persistent-dsu/yosupo-Persistent-Unionfind.test.cpp
 documentation_of: library/data-structure/persistent-array.hpp
 layout: document
 redirect_from:

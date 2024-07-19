@@ -45,9 +45,9 @@ data:
   isVerificationFile: false
   path: library/math/prime-enumerate.hpp
   requiredBy:
-  - library/math/divisor-multiple-transform.hpp
-  - library/convolution/lcm-convolution.hpp
   - library/convolution/gcd-convolution.hpp
+  - library/convolution/lcm-convolution.hpp
+  - library/math/divisor-multiple-transform.hpp
   timestamp: '2023-12-03 13:41:56+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
