@@ -165,8 +165,8 @@ data:
   timestamp: '2023-05-28 03:49:52+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/misc/fastio/yosupo-Many-A+B-128-bit.test.cpp
   - test/convolution/ntt/yosupo-Convolution-Large.test.cpp
+  - test/misc/fastio/yosupo-Many-A+B-128-bit.test.cpp
 documentation_of: library/misc/fastio.hpp
 layout: document
 redirect_from:

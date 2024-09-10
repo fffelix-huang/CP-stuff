@@ -141,8 +141,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/convolution/subset-convolution/yosupo-Subset-Convolution.test.cpp
-  - test/convolution/subset-convolution/yosupo-Bitwise-Xor-Convolution.test.cpp
   - test/convolution/subset-convolution/yosupo-Bitwise-And-Convolution.test.cpp
+  - test/convolution/subset-convolution/yosupo-Bitwise-Xor-Convolution.test.cpp
 documentation_of: library/convolution/subset-convolution.hpp
 layout: document
 redirect_from:

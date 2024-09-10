@@ -178,14 +178,14 @@ data:
   timestamp: '2023-08-13 14:16:40+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/tree/hld/yosupo-Vertex-Add-Subtree-Sum.test.cpp
   - test/tree/hld/aoj-grl-Range-Query-on-a-Tree-II.test.cpp
-  - test/tree/hld/yosupo-Vertex-Set-Path-Composite.test.cpp
-  - test/tree/hld/aoj-grl-Range-Query-on-a-Tree.test.cpp
-  - test/tree/hld/yosupo-Lowest-Common-Ancestor.test.cpp
-  - test/tree/hld/yosupo-Vertex-Add-Path-Sum.test.cpp
-  - test/tree/hld/aoj-grl-Lowest-Common-Ancestor.test.cpp
   - test/tree/hld/yosupo-Jump-on-Tree.test.cpp
+  - test/tree/hld/aoj-grl-Lowest-Common-Ancestor.test.cpp
+  - test/tree/hld/yosupo-Vertex-Add-Subtree-Sum.test.cpp
+  - test/tree/hld/yosupo-Vertex-Add-Path-Sum.test.cpp
+  - test/tree/hld/yosupo-Lowest-Common-Ancestor.test.cpp
+  - test/tree/hld/aoj-grl-Range-Query-on-a-Tree.test.cpp
+  - test/tree/hld/yosupo-Vertex-Set-Path-Composite.test.cpp
 documentation_of: library/tree/hld.hpp
 layout: document
 redirect_from:

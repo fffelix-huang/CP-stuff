@@ -53,15 +53,15 @@ data:
     if(p[i]) {\r\n\t\t\t\td.push_back(p[i]);\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n};\r\n\r\
     \n} // namespace felix\r\n#line 3 \"library/random/random.hpp\"\n#include <set>\n\
     #include <cstring>\n#line 7 \"library/random/random.hpp\"\n#include <numeric>\n\
-    #include <climits>\n#line 3 \"library/random/splitmix64.hpp\"\n\r\nnamespace felix\
-    \ {\r\n\r\nnamespace internal {\r\n\r\n// http://xoshiro.di.unimi.it/splitmix64.c\r\
+    #include <climits>\n#include <string>\n#line 3 \"library/random/splitmix64.hpp\"\
+    \n\r\nnamespace felix {\r\n\r\nnamespace internal {\r\n\r\n// http://xoshiro.di.unimi.it/splitmix64.c\r\
     \nstruct splitmix64_hash {\r\n\tstatic unsigned long long splitmix64(unsigned\
     \ long long x) {\r\n\t\tx += 0x9e3779b97f4a7c15;\r\n\t\tx = (x ^ (x >> 30)) *\
     \ 0xbf58476d1ce4e5b9;\r\n\t\tx = (x ^ (x >> 27)) * 0x94d049bb133111eb;\r\n\t\t\
     return x ^ (x >> 31);\r\n\t}\r\n \r\n\tunsigned long long operator()(unsigned\
     \ long long x) const {\r\n\t\tstatic const unsigned long long FIXED_RANDOM = std::chrono::steady_clock::now().time_since_epoch().count();\r\
     \n\t\treturn splitmix64(x + FIXED_RANDOM);\r\n\t}\r\n};\r\n\r\n} // namespace\
-    \ internal\r\n\r\n} // namespace felix\r\n#line 10 \"library/random/random.hpp\"\
+    \ internal\r\n\r\n} // namespace felix\r\n#line 11 \"library/random/random.hpp\"\
     \n\nnamespace felix {\n\nstruct random_t {\npublic:\n\texplicit random_t(unsigned\
     \ long long seed = 3905348978240129619LL) {\n\t\tset_seed(seed);\n\t}\n\n\tvoid\
     \ set_seed(unsigned long long seed) {\n\t\tfor(int i = 0; i < 4; i++) {\n\t\t\t\
@@ -138,7 +138,7 @@ data:
   isVerificationFile: true
   path: test/math/xor-basis/unit-test-xor-basis.test.cpp
   requiredBy: []
-  timestamp: '2023-07-02 17:03:19+08:00'
+  timestamp: '2024-09-10 10:42:34+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/math/xor-basis/unit-test-xor-basis.test.cpp

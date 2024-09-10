@@ -545,15 +545,15 @@ data:
   timestamp: '2023-07-31 16:36:45+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/formal-power-series/series/yosupo-Partition-Function.test.cpp
-  - test/formal-power-series/poly/yosupo-Sqrt-of-Formal-Power-Series.test.cpp
+  - test/formal-power-series/poly/yosupo-Inv-of-Formal-Power-Series.test.cpp
   - test/formal-power-series/poly/yosupo-Pow-of-Formal-Power-Series.test.cpp
   - test/formal-power-series/poly/yosupo-Polynomial-Taylor-Shift.test.cpp
-  - test/formal-power-series/poly/yosupo-Multipoint-Evaluation.test.cpp
-  - test/formal-power-series/poly/yosupo-Exp-of-Formal-Power-Series.test.cpp
-  - test/formal-power-series/poly/yosupo-Log-of-Formal-Power-Series.test.cpp
-  - test/formal-power-series/poly/yosupo-Inv-of-Formal-Power-Series.test.cpp
   - test/formal-power-series/poly/yosupo-Product-of-Polynomial-Sequence.test.cpp
+  - test/formal-power-series/poly/yosupo-Exp-of-Formal-Power-Series.test.cpp
+  - test/formal-power-series/poly/yosupo-Sqrt-of-Formal-Power-Series.test.cpp
+  - test/formal-power-series/poly/yosupo-Log-of-Formal-Power-Series.test.cpp
+  - test/formal-power-series/poly/yosupo-Multipoint-Evaluation.test.cpp
+  - test/formal-power-series/series/yosupo-Partition-Function.test.cpp
 documentation_of: library/formal-power-series/poly.hpp
 layout: document
 redirect_from:
