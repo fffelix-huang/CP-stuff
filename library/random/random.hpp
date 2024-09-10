@@ -6,6 +6,7 @@
 #include <cassert>
 #include <numeric>
 #include <climits>
+#include <string>
 #include "splitmix64.hpp"
 
 namespace felix {
